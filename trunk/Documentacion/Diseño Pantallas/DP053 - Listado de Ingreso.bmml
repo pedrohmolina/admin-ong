@@ -1,0 +1,52 @@
+<mockup version="1.0" skin="sketch" measuredW="1331" measuredH="862" mockupW="1000" mockupH="846">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="321" y="6" w="1000" h="846" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>ADMIN-ONG%0Ahttp%3A//admin-ong.com.ar</text>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::FieldSet" x="481" y="139" w="684" h="664" measuredW="200" measuredH="170" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Listar%20Ingresos</text>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::DataGrid" x="481" y="249" w="684" h="479" measuredW="464" measuredH="148" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Tipo%20Ingreso%2C%20Fecha%20%2C%20Financiador%2C%20Monto%2C%20Tools%0ADonacion%2C10/12/2001%2C%20Hasar%20SRL%2C%2010000.50%2C%20C%20M%20D%0ADonacion%2C03/03/2002%2C%20Lorena%20Torres%2C%2050.00%2C%20C%20M%20D%0AVenta%20de%20Servicio%2C25/07/2003%2C%20SAHDES%2C%202000.00%2CC%20M%20D%0AFinaciador%2C12/10/2010%2C%20TGV%20SRL%2C%205000.00%2C%20C%20M%20D</text>
+        <verticalScrollbar>false</verticalScrollbar>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Label" x="503" y="168" w="-1" h="-1" measuredW="48" measuredH="25" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Fecha%3A</text>
+      </controlProperties>
+    </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::Button" x="1076" y="212" w="65" h="29" measuredW="65" measuredH="28" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Filtrar</text>
+      </controlProperties>
+    </control>
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::Button" x="1026" y="743" w="-1" h="-1" measuredW="115" measuredH="28" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Nueno%20Ingreso</text>
+      </controlProperties>
+    </control>
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::Label" x="692" y="167" w="-1" h="-1" measuredW="88" measuredH="25" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Tipo%20Ingreso%3A</text>
+      </controlProperties>
+    </control>
+    <control controlID="10" controlTypeID="com.balsamiq.mockups::ButtonBar" x="426" y="93" w="684" h="31" measuredW="775" measuredH="31" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <selectedIndex>0</selectedIndex>
+        <text>Administracion%2C%20Proyecto%2C%20Objetivos%20Generales%2C%20Objetivos%20Especificos%2C%20Metas%2C%20Actividades%2C%20Gastos%20</text>
+      </controlProperties>
+    </control>
+    <control controlID="11" controlTypeID="com.balsamiq.mockups::DateChooser" x="558" y="165" w="-1" h="-1" measuredW="106" measuredH="29" zOrder="8" locked="false" isInGroup="-1"/>
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::ComboBox" x="780" y="168" w="119" h="-1" measuredW="32" measuredH="24" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
