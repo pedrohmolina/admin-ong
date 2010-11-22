@@ -7,7 +7,7 @@
     </control>
     <control controlID="2" controlTypeID="com.balsamiq.mockups::FieldSet" x="481" y="135" w="684" h="546" measuredW="200" measuredH="170" zOrder="1" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Alta%20Proveedor</text>
+        <text>Modificacion%20de%20Proveedor</text>
       </controlProperties>
     </control>
     <control controlID="6" controlTypeID="com.balsamiq.mockups::Label" x="496" y="163" w="-1" h="-1" measuredW="211" measuredH="25" zOrder="2" locked="false" isInGroup="-1">
