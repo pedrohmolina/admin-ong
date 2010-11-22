@@ -33,7 +33,7 @@
     </control>
     <control controlID="6" controlTypeID="com.balsamiq.mockups::TextArea" x="782" y="201" w="305" h="67" measuredW="200" measuredH="140" zOrder="6" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Donacion%20de%20Hasar%20por%20un%20monto%20de%201000.50%20el%2010/11/2010</text>
+        <text/>
       </controlProperties>
     </control>
     <control controlID="7" controlTypeID="com.balsamiq.mockups::Label" x="782" y="291" w="65" h="25" measuredW="48" measuredH="25" zOrder="7" locked="false" isInGroup="-1">
