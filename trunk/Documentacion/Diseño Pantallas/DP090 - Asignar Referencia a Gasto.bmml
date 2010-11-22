@@ -1,0 +1,45 @@
+<mockup version="1.0" skin="sketch" measuredW="1331" measuredH="862" mockupW="1000" mockupH="846">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="321" y="6" w="1000" h="846" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>ADMIN-ONG%0Ahttp%3A//admin-ong.com.ar</text>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::FieldSet" x="481" y="135" w="684" h="220" measuredW="200" measuredH="170" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Asignar%20Referencia%20a%20Gasto</text>
+      </controlProperties>
+    </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::Label" x="496" y="163" w="-1" h="-1" measuredW="124" measuredH="25" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Nombre%20del%20Gasto%3A</text>
+      </controlProperties>
+    </control>
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::TextInput" x="620" y="160" w="158" h="-1" measuredW="128" measuredH="29" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>13421772</color>
+        <text>Compra%20de%20Folletos</text>
+      </controlProperties>
+    </control>
+    <control controlID="45" controlTypeID="com.balsamiq.mockups::Button" x="1080" y="296" w="70" h="37" measuredW="80" measuredH="28" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Aceptar%20</text>
+      </controlProperties>
+    </control>
+    <control controlID="46" controlTypeID="com.balsamiq.mockups::Button" x="993" y="297" w="72" h="36" measuredW="78" measuredH="28" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Cancelar</text>
+      </controlProperties>
+    </control>
+    <control controlID="47" controlTypeID="com.balsamiq.mockups::Label" x="496" y="213" w="-1" h="-1" measuredW="79" measuredH="25" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Referencia%3A</text>
+      </controlProperties>
+    </control>
+    <control controlID="48" controlTypeID="com.balsamiq.mockups::TextArea" x="593" y="203" w="440" h="67" measuredW="200" measuredH="140" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>La%20compra%20de%20folletos%20se%20realizo%20para%20repartir%20informacion%20sobre%20vacunacion%20gratis</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
