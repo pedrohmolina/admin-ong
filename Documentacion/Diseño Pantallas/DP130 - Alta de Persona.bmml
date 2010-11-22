@@ -191,9 +191,9 @@
         <text>Relaci%F3n%20Contractual%3A</text>
       </controlProperties>
     </control>
-    <control controlID="66" controlTypeID="com.balsamiq.mockups::ComboBox" x="1028" y="363" w="113" h="-1" measuredW="83" measuredH="25" zOrder="38" locked="false" isInGroup="-1">
+    <control controlID="66" controlTypeID="com.balsamiq.mockups::ComboBox" x="1028" y="363" w="113" h="-1" measuredW="89" measuredH="25" zOrder="38" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Efectivo</text>
+        <text>Empleado</text>
       </controlProperties>
     </control>
     <control controlID="67" controlTypeID="com.balsamiq.mockups::Label" x="496" y="446" w="103" h="25" measuredW="102" measuredH="25" zOrder="39" locked="false" isInGroup="-1">
@@ -206,9 +206,9 @@
         <text>Efectivo</text>
       </controlProperties>
     </control>
-    <control controlID="70" controlTypeID="com.balsamiq.mockups::Label" x="714" y="444" w="-1" h="-1" measuredW="152" measuredH="25" zOrder="41" locked="false" isInGroup="-1">
+    <control controlID="70" controlTypeID="com.balsamiq.mockups::Label" x="714" y="444" w="-1" h="-1" measuredW="153" measuredH="25" zOrder="41" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Pacturar%20a%20Nombre%20de%3A</text>
+        <text>Facturar%20a%20Nombre%20de%3A</text>
       </controlProperties>
     </control>
     <control controlID="71" controlTypeID="com.balsamiq.mockups::TextInput" x="866" y="443" w="186" h="-1" measuredW="111" measuredH="29" zOrder="42" locked="false" isInGroup="-1">
