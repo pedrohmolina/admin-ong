@@ -116,17 +116,7 @@
         <text/>
       </controlProperties>
     </control>
-    <control controlID="42" controlTypeID="com.balsamiq.mockups::Label" x="955" y="276" w="-1" h="-1" measuredW="53" measuredH="25" zOrder="24" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>Estado%3A</text>
-      </controlProperties>
-    </control>
-    <control controlID="43" controlTypeID="com.balsamiq.mockups::ComboBox" x="1014" y="277" w="121" h="-1" measuredW="32" measuredH="24" zOrder="25" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text/>
-      </controlProperties>
-    </control>
-    <control controlID="44" controlTypeID="com.balsamiq.mockups::ButtonBar" x="432" y="89" w="684" h="31" measuredW="775" measuredH="31" zOrder="26" locked="false" isInGroup="-1">
+    <control controlID="44" controlTypeID="com.balsamiq.mockups::ButtonBar" x="432" y="89" w="684" h="31" measuredW="775" measuredH="31" zOrder="24" locked="false" isInGroup="-1">
       <controlProperties>
         <selectedIndex>0</selectedIndex>
         <text>Administracion%2C%20Proyecto%2C%20Objetivos%20Generales%2C%20Objetivos%20Especificos%2C%20Metas%2C%20Actividades%2C%20Gastos%20</text>
