@@ -12,7 +12,7 @@
     </control>
     <control controlID="3" controlTypeID="com.balsamiq.mockups::DataGrid" x="481" y="249" w="684" h="479" measuredW="393" measuredH="148" zOrder="2" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Nombre%2C%20Ponderacion%2C%20Completitud%2C%20Tools%0AObjetivo%20Especifico%2001%2C%2040%25%2C%2030%25%2C%20C%20M%20D%0AObjetivo%20Especifico%2002%2C%2050%25%2C%2060%25%2C%20C%20M%20D%0AObjetivo%20Especifico%2003%2C%2060%25%2C%20100%25%2CC%20M%20D%0AObjetivo%20Especifico%2004%2C%20100%25%2C%2090%25%2C%20C%20M%20D</text>
+        <text>Nombre%2C%20Ponderacion%2C%20Completitud%2C%20Tools%0AObjetivo%20Especifico%2001%2C%2040%25%2C%2030%25%2C%20C%20M%20B%0AObjetivo%20Especifico%2002%2C%2050%25%2C%2060%25%2C%20C%20M%20B%0AObjetivo%20Especifico%2003%2C%2060%25%2C%20100%25%2CC%20M%20B%0AObjetivo%20Especifico%2004%2C%20100%25%2C%2090%25%2C%20C%20M%20B</text>
       </controlProperties>
     </control>
     <control controlID="4" controlTypeID="com.balsamiq.mockups::Label" x="766" y="171" w="-1" h="-1" measuredW="186" measuredH="25" zOrder="3" locked="false" isInGroup="-1">
