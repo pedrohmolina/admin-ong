@@ -10,9 +10,9 @@
         <text>Listar%20Ingresos</text>
       </controlProperties>
     </control>
-    <control controlID="3" controlTypeID="com.balsamiq.mockups::DataGrid" x="481" y="249" w="684" h="479" measuredW="464" measuredH="148" zOrder="2" locked="false" isInGroup="-1">
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::DataGrid" x="481" y="249" w="684" h="479" measuredW="462" measuredH="148" zOrder="2" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Tipo%20Ingreso%2C%20Fecha%20%2C%20Financiador%2C%20Monto%2C%20Tools%0ADonacion%2C10/12/2001%2C%20Hasar%20SRL%2C%2010000.50%2C%20C%20M%20D%0ADonacion%2C03/03/2002%2C%20Lorena%20Torres%2C%2050.00%2C%20C%20M%20D%0AVenta%20de%20Servicio%2C25/07/2003%2C%20SAHDES%2C%202000.00%2CC%20M%20D%0AFinaciador%2C12/10/2010%2C%20TGV%20SRL%2C%205000.00%2C%20C%20M%20D</text>
+        <text>Tipo%20Ingreso%2C%20Fecha%20%2C%20Financiador%2C%20Monto%2C%20Tools%0ADonacion%2C10/12/2001%2C%20Hasar%20SRL%2C%2010000.50%2C%20C%20M%20B%0ADonacion%2C03/03/2002%2C%20Lorena%20Torres%2C%2050.00%2C%20C%20M%20B%0AVenta%20de%20Servicio%2C25/07/2003%2C%20SAHDES%2C%202000.00%2CC%20M%20B%0AFinaciador%2C12/10/2010%2C%20TGV%20SRL%2C%205000.00%2C%20C%20M%20B</text>
         <verticalScrollbar>false</verticalScrollbar>
       </controlProperties>
     </control>
