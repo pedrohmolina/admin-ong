@@ -5,65 +5,65 @@
         <text>ADMIN-ONG%0Ahttp%3A//admin-ong.com.ar</text>
       </controlProperties>
     </control>
-    <control controlID="1" controlTypeID="com.balsamiq.mockups::ButtonBar" x="481" y="93" w="684" h="31" measuredW="655" measuredH="31" zOrder="1" locked="false" isInGroup="-1">
-      <controlProperties>
-        <selectedIndex>2</selectedIndex>
-        <text>Proyecto%2C%20Objetivos%20Generales%2C%20Objetivos%20Especificos%2C%20Metas%2C%20Actividades%2C%20Gastos%20</text>
-      </controlProperties>
-    </control>
-    <control controlID="2" controlTypeID="com.balsamiq.mockups::FieldSet" x="481" y="139" w="684" h="329" measuredW="200" measuredH="170" zOrder="2" locked="false" isInGroup="-1">
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::FieldSet" x="481" y="139" w="684" h="329" measuredW="200" measuredH="170" zOrder="1" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Alta%20Objetivo%20Especifico</text>
       </controlProperties>
     </control>
-    <control controlID="3" controlTypeID="com.balsamiq.mockups::Label" x="502" y="179" w="-1" h="-1" measuredW="120" measuredH="25" zOrder="3" locked="false" isInGroup="-1">
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::Label" x="502" y="179" w="-1" h="-1" measuredW="120" measuredH="25" zOrder="2" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Objetivo%20General%3A</text>
       </controlProperties>
     </control>
-    <control controlID="4" controlTypeID="com.balsamiq.mockups::ComboBox" x="622" y="178" w="161" h="-1" measuredW="162" measuredH="25" zOrder="4" locked="false" isInGroup="-1">
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::ComboBox" x="622" y="178" w="161" h="-1" measuredW="162" measuredH="25" zOrder="3" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Objetivo%20General%2001</text>
       </controlProperties>
     </control>
-    <control controlID="5" controlTypeID="com.balsamiq.mockups::Label" x="502" y="299" w="-1" h="-1" measuredW="122" measuredH="25" zOrder="5" locked="false" isInGroup="-1">
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::Label" x="502" y="299" w="-1" h="-1" measuredW="122" measuredH="25" zOrder="4" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Descripci%F3n%20Breve%3A</text>
       </controlProperties>
     </control>
-    <control controlID="6" controlTypeID="com.balsamiq.mockups::TextArea" x="502" y="324" w="305" h="67" measuredW="200" measuredH="140" zOrder="6" locked="false" isInGroup="-1">
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::TextArea" x="502" y="324" w="305" h="67" measuredW="200" measuredH="140" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Objetivo%20Especifico%20del%20primer%20Proyecto%20de%20SAHDES</text>
       </controlProperties>
     </control>
-    <control controlID="7" controlTypeID="com.balsamiq.mockups::Label" x="502" y="219" w="65" h="25" measuredW="59" measuredH="25" zOrder="7" locked="false" isInGroup="-1">
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::Label" x="502" y="219" w="65" h="25" measuredW="59" measuredH="25" zOrder="6" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Nombre%3A</text>
       </controlProperties>
     </control>
-    <control controlID="9" controlTypeID="com.balsamiq.mockups::TextInput" x="576" y="216" w="158" h="-1" measuredW="157" measuredH="29" zOrder="8" locked="false" isInGroup="-1">
+    <control controlID="9" controlTypeID="com.balsamiq.mockups::TextInput" x="576" y="216" w="158" h="-1" measuredW="157" measuredH="29" zOrder="7" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Objetivo%20Especifico%2001</text>
       </controlProperties>
     </control>
-    <control controlID="10" controlTypeID="com.balsamiq.mockups::Label" x="502" y="259" w="87" h="25" measuredW="83" measuredH="25" zOrder="9" locked="false" isInGroup="-1">
+    <control controlID="10" controlTypeID="com.balsamiq.mockups::Label" x="502" y="259" w="87" h="25" measuredW="83" measuredH="25" zOrder="8" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Ponderacion%3A</text>
       </controlProperties>
     </control>
-    <control controlID="11" controlTypeID="com.balsamiq.mockups::NumericStepper" x="600" y="258" w="-1" h="-1" measuredW="60" measuredH="26" zOrder="10" locked="false" isInGroup="-1">
+    <control controlID="11" controlTypeID="com.balsamiq.mockups::NumericStepper" x="600" y="258" w="-1" h="-1" measuredW="60" measuredH="26" zOrder="9" locked="false" isInGroup="-1">
       <controlProperties>
         <text>50%25</text>
       </controlProperties>
     </control>
-    <control controlID="12" controlTypeID="com.balsamiq.mockups::Button" x="1078" y="410" w="70" h="37" measuredW="80" measuredH="28" zOrder="11" locked="false" isInGroup="-1">
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::Button" x="1078" y="410" w="70" h="37" measuredW="80" measuredH="28" zOrder="10" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Aceptar%20</text>
       </controlProperties>
     </control>
-    <control controlID="13" controlTypeID="com.balsamiq.mockups::Button" x="991" y="411" w="72" h="36" measuredW="78" measuredH="28" zOrder="12" locked="false" isInGroup="-1">
+    <control controlID="13" controlTypeID="com.balsamiq.mockups::Button" x="991" y="411" w="72" h="36" measuredW="78" measuredH="28" zOrder="11" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Cancelar</text>
+      </controlProperties>
+    </control>
+    <control controlID="14" controlTypeID="com.balsamiq.mockups::ButtonBar" x="426" y="93" w="684" h="31" measuredW="775" measuredH="31" zOrder="12" locked="false" isInGroup="-1">
+      <controlProperties>
+        <selectedIndex>3</selectedIndex>
+        <text>Administracion%2C%20Proyecto%2C%20Objetivos%20Generales%2C%20Objetivos%20Especificos%2C%20Metas%2C%20Actividades%2C%20Gastos%20</text>
       </controlProperties>
     </control>
   </controls>
