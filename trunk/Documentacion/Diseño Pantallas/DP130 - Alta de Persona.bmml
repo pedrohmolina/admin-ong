@@ -196,9 +196,9 @@
         <text>Empleado</text>
       </controlProperties>
     </control>
-    <control controlID="67" controlTypeID="com.balsamiq.mockups::Label" x="496" y="446" w="103" h="25" measuredW="102" measuredH="25" zOrder="39" locked="false" isInGroup="-1">
+    <control controlID="67" controlTypeID="com.balsamiq.mockups::Label" x="496" y="446" w="103" h="25" measuredW="97" measuredH="25" zOrder="39" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Forma%20de%20Pago%3A</text>
+        <text>Modo%20de%20Pago%3A</text>
       </controlProperties>
     </control>
     <control controlID="69" controlTypeID="com.balsamiq.mockups::ComboBox" x="599" y="445" w="104" h="-1" measuredW="83" measuredH="25" zOrder="40" locked="false" isInGroup="-1">
