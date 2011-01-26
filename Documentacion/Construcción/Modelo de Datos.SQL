@@ -184,10 +184,9 @@ CREATE TABLE coordinador
 CREATE TABLE rolAcceso
 (
 	idRol INT NOT NULL,
-	idRecuso INT NOT NULL,
-	idAccion INT NOT NULL,
-	PRIMARY KEY (idRol, idRecuso, idAccion),
-	KEY (idRecuso, idAccion),
+	idAcceso INT NOT NULL,
+	PRIMARY KEY (idRol, idAcceso),
+	KEY (idAcceso),
 	KEY (idRol)
 ) 
 ;
@@ -326,11 +325,12 @@ CREATE TABLE financiador
 
 CREATE TABLE acceso
 (
-	idRecurso INT NOT NULL COMMENT 'Primary Key',
+	id INT NOT NULL AUTO_INCREMENT,
+	idRecurso INT NOT NULL,
 	idAccion INT NOT NULL,
 	PRIMARY KEY (idRecurso, idAccion),
-	KEY (idAccion),
-	KEY (idRecurso)
+	KEY (id),
+	UNIQUE UQ_rec_accion(idRecurso, idAccion)
 ) 
 ;
 
@@ -623,7 +623,7 @@ ALTER TABLE coordinador ADD CONSTRAINT FK_coordinador_proyecto
 ;
 
 ALTER TABLE rolAcceso ADD CONSTRAINT FK_rolAcceso_acceso 
-	FOREIGN KEY (idRecuso, idAccion) REFERENCES acceso (idRecurso, idAccion)
+	FOREIGN KEY (idAcceso) REFERENCES acceso (id)
 ;
 
 ALTER TABLE rolAcceso ADD CONSTRAINT FK_rolAcceso_rol 
