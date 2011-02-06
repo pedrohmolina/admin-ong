@@ -80,6 +80,7 @@ CREATE TABLE actividad
 	fechaInicio DATE COMMENT 'Fecha que inicia la Actividad',
 	fechaFin DATE COMMENT 'Fecha que termina la Actividad',
 	ponderacion DECIMAL(3) NOT NULL COMMENT 'Peso arbitrariamente asignado',
+	completitud DECIMAL(3) NOT NULL COMMENT 'Porcentaje en el que se ha completado la actividad',
 	presupuesto DECIMAL(10,2) COMMENT 'Presupuesto asignado a esta Actividad',
 	activo BOOL NOT NULL COMMENT 'Señal para manejo de baja logica',
 	PRIMARY KEY (id),
@@ -106,7 +107,7 @@ CREATE TABLE meta
 ;
 
 
-CREATE TABLE objectivoEspecifico
+CREATE TABLE objetivoEspecifico
 (
 	id INT NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
 	nombre VARCHAR(255) NOT NULL COMMENT 'Nombre del Objetivo Especifico ',
@@ -115,7 +116,7 @@ CREATE TABLE objectivoEspecifico
 	idObjetivoGeneral INT NOT NULL COMMENT 'Objetivo General del que depende este Objetivo Especifico',
 	activo BOOL NOT NULL COMMENT 'Señal para manejo de baja logica',
 	PRIMARY KEY (id),
-	UNIQUE UQ_objectivoEspecifico_id(id),
+	UNIQUE UQ_objetivoEspecifico_id(id),
 	KEY (idObjetivoGeneral)
 ) 
 ;
@@ -402,7 +403,8 @@ CREATE TABLE rubro
 (
 	id INT NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
 	idRubroPadre INT,
-	descripcion VARCHAR(50),
+	nombre VARCHAR(16) NOT NULL,
+	descripcion VARCHAR(255) NOT NULL,
 	activo BOOL NOT NULL COMMENT 'Señal para manejo de baja logica',
 	PRIMARY KEY (id),
 	UNIQUE UQ_rubro_id(id),
@@ -586,11 +588,11 @@ ALTER TABLE actividad ADD CONSTRAINT FK_actividad_meta
 	FOREIGN KEY (idMeta) REFERENCES meta (id)
 ;
 
-ALTER TABLE meta ADD CONSTRAINT FK_meta_objectivoEspecifico 
-	FOREIGN KEY (idObjetivoEspecifico) REFERENCES objectivoEspecifico (id)
+ALTER TABLE meta ADD CONSTRAINT FK_meta_objetivoEspecifico 
+	FOREIGN KEY (idObjetivoEspecifico) REFERENCES objetivoEspecifico (id)
 ;
 
-ALTER TABLE objectivoEspecifico ADD CONSTRAINT FK_objectivoEspecifico_objetivoGeneral 
+ALTER TABLE objetivoEspecifico ADD CONSTRAINT FK_objetivoEspecifico_objetivoGeneral 
 	FOREIGN KEY (idObjetivoGeneral) REFERENCES objetivoGeneral (id)
 ;
 
