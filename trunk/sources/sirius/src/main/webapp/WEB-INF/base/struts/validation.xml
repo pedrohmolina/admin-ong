@@ -1,0 +1,694 @@
+<!DOCTYPE form-validation PUBLIC
+     "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.3.0//EN"
+     "http://jakarta.apache.org/commons/dtds/validator_1_3_0.dtd">
+<form-validation>
+
+	<formset>
+		<form name="actividadForm">
+			<field property="nombre" depends="required, minlength, maxlength">
+				<arg position="0" key="sirius.actividad.nombre.label"/>
+				<arg position="1" key="${var:minlength}" resource="false" />
+				<arg position="2" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>minlength</var-name>
+					<var-value>5</var-value>
+				</var>
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>255</var-value>
+				</var>
+			</field>
+			<field property="fechaInicio" depends="date">
+				<arg position="0" key="sirius.actividad.fechaInicio.label"/>
+				<var>
+					<var-name>datePattern</var-name>
+					<var-value>dd/MM/yyyy</var-value>
+				</var>
+			</field>
+			<field property="fechaFin" depends="date">
+				<arg position="0" key="sirius.actividad.fechaFin.label"/>
+				<var>
+					<var-name>datePattern</var-name>
+					<var-value>dd/MM/yyyy</var-value>
+				</var>
+			</field>
+			<field property="observaciones" depends="required, minlength, maxlength">
+				<arg position="0" key="sirius.actividad.observaciones.label"/>
+				<arg position="1" key="${var:minlength}" resource="false" />
+				<arg position="2" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>minlength</var-name>
+					<var-value>5</var-value>
+				</var>
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>2000</var-value>
+				</var>
+			</field>
+			<field property="presupuesto" depends="double">
+				<arg position="0" key="sirius.actividad.presupuesto.label"/>
+			</field>
+			<field property="idMeta" depends="required">
+				<arg position="0" key="sirius.actividad.meta.label"/>
+			</field>
+			<field property="ponderacion" depends="required, integer, intRange">
+				<arg position="0" key="sirius.actividad.ponderacion.label"/>
+			    <arg position="1" name="intRange" key="${var:min}" resource="false"/>
+    			<arg position="2" name="intRange" key="${var:max}" resource="false"/>
+				<var>
+					<var-name>min</var-name>
+					<var-value>0</var-value>
+				</var>
+				<var>
+					<var-name>max</var-name>
+					<var-value>100</var-value>
+				</var>
+			</field>
+			<field property="completitud" depends="required, integer, intRange">
+				<arg position="0" key="sirius.actividad.completitud.label"/>
+			    <arg position="1" name="intRange" key="${var:min}" resource="false"/>
+    			<arg position="2" name="intRange" key="${var:max}" resource="false"/>
+				<var>
+					<var-name>min</var-name>
+					<var-value>0</var-value>
+				</var>
+				<var>
+					<var-name>max</var-name>
+					<var-value>100</var-value>
+				</var>
+			</field>
+		</form>
+
+		<form name="financiadorForm">
+			<field property="nombre" depends="required, maxlength">
+				<arg position="0" key="sirius.financiador.nombre.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>255</var-value>
+				</var>
+			</field>
+			<field property="cuit" depends="maxlength">
+				<arg position="0" key="sirius.financiador.cuit.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>20</var-value>
+				</var>
+			</field>
+			<field property="cbu" depends="maxlength">
+				<arg position="0" key="sirius.financiador.cbu.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>50</var-value>
+				</var>
+			</field>
+			<field property="direccion" depends="required, maxlength">
+				<arg position="0" key="sirius.financiador.direccion.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>255</var-value>
+				</var>
+			</field>
+			<field property="telefono" depends="required, maxlength">
+				<arg position="0" key="sirius.financiador.telefono.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>20</var-value>
+				</var>
+			</field>
+			<field property="contacto" depends="maxlength">
+				<arg position="0" key="sirius.financiador.contacto.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>255</var-value>
+				</var>
+			</field>
+			<field property="celular" depends="maxlength">
+				<arg position="0" key="sirius.financiador.celular.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>20</var-value>
+				</var>
+			</field>
+			<field property="email" depends="maxlength">
+				<arg position="0" key="sirius.financiador.email.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>50</var-value>
+				</var>
+			</field>
+			<field property="observaciones" depends="maxlength">
+				<arg position="0" key="sirius.financiador.observaciones.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>255</var-value>
+				</var>
+			</field>
+			<field property="idEstadoFinanciador" depends="required">
+				<arg position="0" key="sirius.financiador.estadoFinanciador.label"/>
+			</field>
+			<field property="idTipoFinanciador" depends="required">
+				<arg position="0" key="sirius.financiador.tipoFinanciador.label"/>
+			</field>
+		</form>
+
+		<form name="ingresoForm">
+			<field property="idTipoIngreso" depends="required">
+				<arg position="0" key="sirius.ingreso.tipoIngreso.label"/>
+			</field>
+			<field property="monto" depends="required, double">
+				<arg position="0" key="sirius.ingreso.monto.label"/> <!-- Habria que validar un monto maximo tambien -->
+			</field>
+			<field property="fecha" depends="required, date">
+				<arg position="0" key="sirius.ingreso.fecha.label"/>
+				<var>
+					<var-name>datePattern</var-name>
+					<var-value>dd/MM/yyyy</var-value>
+				</var>
+			</field>
+			<field property="descripcion" depends="maxlength">
+				<arg position="0" key="sirius.ingreso.descripcion.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>2000</var-value>
+				</var>
+			</field>
+		</form>
+
+		<form name="metaForm">
+			<field property="nombre" depends="required, minlength, maxlength">
+				<arg position="0" key="sirius.meta.nombre.label"/>
+				<arg position="1" key="${var:minlength}" resource="false" />
+				<arg position="2" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>minlength</var-name>
+					<var-value>5</var-value>
+				</var>
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>255</var-value>
+				</var>
+			</field>
+			<field property="descripcion" depends="required, minlength, maxlength">
+				<arg position="0" key="sirius.meta.descripcion.label"/>
+				<arg position="1" key="${var:minlength}" resource="false" />
+				<arg position="2" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>minlength</var-name>
+					<var-value>5</var-value>
+				</var>
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>2000</var-value>
+				</var>
+			</field>
+			<field property="idObjetivoEspecifico" depends="required">
+				<arg position="0" key="sirius.meta.objetivoEspecifico.label"/>
+			</field>
+			<field property="ponderacion" depends="required, integer, intRange">
+				<arg position="0" key="sirius.meta.ponderacion.label"/>
+			    <arg position="1" name="intRange" key="${var:min}" resource="false"/>
+    			<arg position="2" name="intRange" key="${var:max}" resource="false"/>
+				<var>
+					<var-name>min</var-name>
+					<var-value>0</var-value>
+				</var>
+				<var>
+					<var-name>max</var-name>
+					<var-value>100</var-value>
+				</var>
+			</field>
+		</form>
+
+		<form name="objetivoEspecificoForm">
+			<field property="nombre" depends="required, minlength, maxlength">
+				<arg position="0" key="sirius.objetivoEspecifico.nombre.label"/>
+				<arg position="1" key="${var:minlength}" resource="false" />
+				<arg position="2" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>minlength</var-name>
+					<var-value>5</var-value>
+				</var>
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>255</var-value>
+				</var>
+			</field>
+			<field property="descripcion" depends="required, minlength, maxlength">
+				<arg position="0" key="sirius.objetivoEspecifico.descripcion.label"/>
+				<arg position="1" key="${var:minlength}" resource="false" />
+				<arg position="2" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>minlength</var-name>
+					<var-value>5</var-value>
+				</var>
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>2000</var-value>
+				</var>
+			</field>
+			<field property="idObjetivoGeneral" depends="required">
+				<arg position="0" key="sirius.objetivoEspecifico.objetivoGeneral.label"/>
+			</field>
+			<field property="ponderacion" depends="required, integer, intRange">
+				<arg position="0" key="sirius.objetivoEspecifico.ponderacion.label"/>
+			    <arg position="1" name="intRange" key="${var:min}" resource="false"/>
+    			<arg position="2" name="intRange" key="${var:max}" resource="false"/>
+				<var>
+					<var-name>min</var-name>
+					<var-value>0</var-value>
+				</var>
+				<var>
+					<var-name>max</var-name>
+					<var-value>100</var-value>
+				</var>
+			</field>
+		</form>
+
+		<form name="objetivoGeneralForm">
+			<field property="nombre" depends="required, minlength, maxlength">
+				<arg position="0" key="sirius.objetivoGeneral.nombre.label"/>
+				<arg position="1" key="${var:minlength}" resource="false" />
+				<arg position="2" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>minlength</var-name>
+					<var-value>5</var-value>
+				</var>
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>255</var-value>
+				</var>
+			</field>
+			<field property="descripcion" depends="required, minlength, maxlength">
+				<arg position="0" key="sirius.objetivoGeneral.descripcion.label"/>
+				<arg position="1" key="${var:minlength}" resource="false" />
+				<arg position="2" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>minlength</var-name>
+					<var-value>5</var-value>
+				</var>
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>2000</var-value>
+				</var>
+			</field>
+			<field property="idProyecto" depends="required">
+				<arg position="0" key="sirius.objetivoGeneral.proyecto.label"/>
+			</field>
+			<field property="ponderacion" depends="required, integer, intRange">
+				<arg position="0" key="sirius.objetivoGeneral.ponderacion.label"/>
+			    <arg position="1" name="intRange" key="${var:min}" resource="false"/>
+    			<arg position="2" name="intRange" key="${var:max}" resource="false"/>
+				<var>
+					<var-name>min</var-name>
+					<var-value>0</var-value>
+				</var>
+				<var>
+					<var-name>max</var-name>
+					<var-value>100</var-value>
+				</var>
+			</field>
+		</form>
+
+		<form name="perfilForm">
+			<field property="nombre" depends="required, maxlength">
+				<arg position="0" key="sirius.rol.nombre.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>16</var-value>
+				</var>
+			</field>
+			<field property="descripcion" depends="required, maxlength">
+				<arg position="0" key="sirius.rol.descripcion.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>255</var-value>
+				</var>
+			</field>
+		</form>
+
+		<form name="personaForm">
+			<field property="apellido" depends="required, maxlength">
+				<arg position="0" key="sirius.persona.apellido.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>255</var-value>
+				</var>
+			</field>
+			<field property="nombre" depends="required, maxlength">
+				<arg position="0" key="sirius.persona.nombre.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>255</var-value>
+				</var>
+			</field>
+			<field property="segundoNombre" depends="maxlength">
+				<arg position="0" key="sirius.persona.segundoNombre.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>255</var-value>
+				</var>
+			</field>
+			<field property="idTipoDocumento" depends="required">
+				<arg position="0" key="sirius.persona.tipoDocumento.label"/>
+			</field>
+			<field property="numeroDocumento" depends="required, integer">
+				<arg position="0" key="sirius.persona.nombre.label"/>
+			</field>
+			<field property="cuit" depends="maxlength">
+				<arg position="0" key="sirius.persona.cuit.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>20</var-value>
+				</var>
+			</field>
+			<field property="cbu" depends="maxlength">
+				<arg position="0" key="sirius.persona.cbu.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>50</var-value>
+				</var>
+			</field>
+			<field property="nacionalidad" depends="maxlength">
+				<arg position="0" key="sirius.persona.nacionalidad.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>255</var-value>
+				</var>
+			</field>
+			<field property="fechaNacimiento" depends="date">
+				<arg position="0" key="sirius.persona.fechaNacimiento.label"/>
+				<var>
+					<var-name>datePattern</var-name>
+					<var-value>dd/MM/yyyy</var-value>
+				</var>
+			</field>
+			<field property="profesion" depends="maxlength">
+				<arg position="0" key="sirius.persona.profesion.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>255</var-value>
+				</var>
+			</field>
+			<field property="direccion" depends="maxlength">
+				<arg position="0" key="sirius.persona.direccion.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>255</var-value>
+				</var>
+			</field>
+			<field property="telefono" depends="maxlength">
+				<arg position="0" key="sirius.persona.telefono.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>20</var-value>
+				</var>
+			</field>
+			<field property="celular" depends="maxlength">
+				<arg position="0" key="sirius.persona.celular.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>20</var-value>
+				</var>
+			</field>
+			<field property="idRelacionContractual" depends="required">
+				<arg position="0" key="sirius.persona.relacionContractual.label"/>
+			</field>
+			<field property="email" depends="maxlength">
+				<arg position="0" key="sirius.persona.email.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>50</var-value>
+				</var>
+			</field>
+			<field property="funcion" depends="maxlength">
+				<arg position="0" key="sirius.persona.funcion.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>255</var-value>
+				</var>
+			</field>
+			<field property="observaciones" depends="maxlength">
+				<arg position="0" key="sirius.persona.observaciones.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>255</var-value>
+				</var>
+			</field>
+			<field property="idFormaPago" depends="required">
+				<arg position="0" key="sirius.persona.formaPago.label"/>
+			</field>
+		</form>
+
+		<form name="proveedorForm">
+			<field property="nombre" depends="required, maxlength">
+				<arg position="0" key="sirius.financiador.nombre.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>255</var-value>
+				</var>
+			</field>
+			<field property="cuit" depends="maxlength">
+				<arg position="0" key="sirius.financiador.cuit.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>20</var-value>
+				</var>
+			</field>
+			<field property="cbu" depends="maxlength">
+				<arg position="0" key="sirius.financiador.cbu.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>50</var-value>
+				</var>
+			</field>
+			<field property="direccion" depends="required, maxlength">
+				<arg position="0" key="sirius.financiador.direccion.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>255</var-value>
+				</var>
+			</field>
+			<field property="telefono" depends="required, maxlength">
+				<arg position="0" key="sirius.financiador.telefono.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>20</var-value>
+				</var>
+			</field>
+			<field property="contacto" depends="maxlength">
+				<arg position="0" key="sirius.financiador.contacto.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>255</var-value>
+				</var>
+			</field>
+			<field property="celular" depends="maxlength">
+				<arg position="0" key="sirius.financiador.celular.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>20</var-value>
+				</var>
+			</field>
+			<field property="email" depends="maxlength">
+				<arg position="0" key="sirius.financiador.email.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>50</var-value>
+				</var>
+			</field>
+			<field property="observaciones" depends="maxlength">
+				<arg position="0" key="sirius.financiador.observaciones.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>255</var-value>
+				</var>
+			</field>
+			<field property="idTipoProveedor" depends="required">
+				<arg position="0" key="sirius.financiador.tipoProveedor.label"/>
+			</field>
+		</form>
+
+		<form name="proyectoForm">
+			<field property="nombre" depends="required, minlength, maxlength">
+				<arg position="0" key="sirius.proyecto.nombre.label"/>
+				<arg position="1" key="${var:minlength}" resource="false" />
+				<arg position="2" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>minlength</var-name>
+					<var-value>5</var-value>
+				</var>
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>255</var-value>
+				</var>
+			</field>
+			<field property="descripcion" depends="required, minlength, maxlength">
+				<arg position="0" key="sirius.proyecto.descripcion.label"/>
+				<arg position="1" key="${var:minlength}" resource="false" />
+				<arg position="2" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>minlength</var-name>
+					<var-value>5</var-value>
+				</var>
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>2000</var-value>
+				</var>
+			</field>
+			<field property="fechaInicio" depends="date">
+				<arg position="0" key="sirius.proyecto.fechaInicio.label"/>
+				<var>
+					<var-name>datePattern</var-name>
+					<var-value>dd/MM/yyyy</var-value>
+				</var>
+			</field>
+			<field property="fechaFin" depends="date">
+				<arg position="0" key="sirius.proyecto.fechaFin.label"/>
+				<var>
+					<var-name>datePattern</var-name>
+					<var-value>dd/MM/yyyy</var-value>
+				</var>
+			</field>
+			<field property="ubicacion" depends="maxlength">
+				<arg position="0" key="sirius.proyecto.ubicacion.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>2000</var-value>
+				</var>
+			</field>
+			<field property="idResponsable" depends="required">
+				<arg position="0" key="sirius.proyecto.responsable.label"/>
+			</field>
+			<field property="beneficiariosDirectos" depends="maxlength">
+				<arg position="0" key="sirius.proyecto.beneficiariosDirectos.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>2000</var-value>
+				</var>
+			</field>
+			<field property="beneficiariosIndirectos" depends="maxlength">
+				<arg position="0" key="sirius.proyecto.beneficiariosIndirectos.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>2000</var-value>
+				</var>
+			</field>
+			<field property="idFinanciador" depends="required">
+				<arg position="0" key="sirius.proyecto.financiador.label"/>
+			</field>
+			<field property="idAreaTematica" depends="required">
+				<arg position="0" key="sirius.proyecto.areasTematicas.label"/>
+			</field>
+		</form>
+
+		<form name="relacionContractualForm">
+			<field property="nombre" depends="required, maxlength">
+				<arg position="0" key="sirius.relacionContractual.nombre.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>16</var-value>
+				</var>
+			</field>
+			<field property="descripcion" depends="required, maxlength">
+				<arg position="0" key="sirius.relacionContractual.descripcion.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>255</var-value>
+				</var>
+			</field>
+		</form>
+
+		<form name="rolForm">
+			<field property="nombre" depends="required, maxlength">
+				<arg position="0" key="sirius.rol.nombre.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>16</var-value>
+				</var>
+			</field>
+			<field property="descripcion" depends="required, maxlength">
+				<arg position="0" key="sirius.rol.descripcion.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>255</var-value>
+				</var>
+			</field>
+		</form>
+
+		<form name="rubroForm">
+			<field property="nombre" depends="required, maxlength">
+				<arg position="0" key="sirius.rubro.nombre.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>16</var-value>
+				</var>
+			</field>
+			<field property="descripcion" depends="required, maxlength">
+				<arg position="0" key="sirius.rubro.descripcion.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>255</var-value>
+				</var>
+			</field>
+			<field property="idRubroNivelUno" depends="validwhen">
+				<arg position="0" key="sirius.rubro.rubroNivelUno.label"/>
+				<var>
+					<var-name>test</var-name>
+					<var-value>((nivel == 1) or (*this* != null))</var-value>
+				</var>
+			</field>
+			<field property="idRubroNivelDos" depends="validwhen">
+				<arg position="0" key="sirius.rubro.rubroNivelDos.label"/>
+				<var>
+					<var-name>test</var-name>
+					<var-value>(((nivel == 1) or (nivel == 2)) or (*this* != null))</var-value>
+				</var>
+			</field>
+		</form>
+
+	</formset>
+
+</form-validation>

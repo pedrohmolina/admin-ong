@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<bean id="abstractTransactionManager" abstract="true">
+		<property name="transactionAttributes">
+			<props>
+				<prop key="save*">PROPAGATION_REQUIRED</prop>
+				<prop key="update*">PROPAGATION_REQUIRED</prop>
+				<prop key="delete*">PROPAGATION_REQUIRED</prop>
+				<prop key="ejecutar*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- Servicios de entidades que se actualizan desde la aplicacion -->
+
+	<bean id="actividadService" parent="abstractTransactionManager" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" autowire="byName">
+		<property name="target">
+			<bean class="com.antares.sirius.service.impl.ActividadServiceImpl" autowire="byName">
+				<property name="dao" ref="actividadDAO" /> 
+			</bean>
+		</property>
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+	
+	<bean id="financiadorService" parent="abstractTransactionManager" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" autowire="byName">
+		<property name="target">
+			<bean class="com.antares.sirius.service.impl.FinanciadorServiceImpl" autowire="byName">
+				<property name="dao" ref="financiadorDAO" /> 
+			</bean>
+		</property>
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+	
+	<bean id="ingresoService" parent="abstractTransactionManager" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" autowire="byName">
+		<property name="target">
+			<bean class="com.antares.sirius.service.impl.IngresoServiceImpl" autowire="byName">
+				<property name="dao" ref="ingresoDAO" /> 
+			</bean>
+		</property>
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+	
+	<bean id="metaService" parent="abstractTransactionManager" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" autowire="byName">
+		<property name="target">
+			<bean class="com.antares.sirius.service.impl.MetaServiceImpl" autowire="byName">
+				<property name="dao" ref="metaDAO" /> 
+			</bean>
+		</property>
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+	
+	<bean id="objetivoEspecificoService" parent="abstractTransactionManager" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" autowire="byName">
+		<property name="target">
+			<bean class="com.antares.sirius.service.impl.ObjetivoEspecificoServiceImpl" autowire="byName">
+				<property name="dao" ref="objetivoEspecificoDAO" /> 
+			</bean>
+		</property>
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+	
+	<bean id="objetivoGeneralService" parent="abstractTransactionManager" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" autowire="byName">
+		<property name="target">
+			<bean class="com.antares.sirius.service.impl.ObjetivoGeneralServiceImpl" autowire="byName">
+				<property name="dao" ref="objetivoGeneralDAO" /> 
+			</bean>
+		</property>
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+	
+	<bean id="perfilService" parent="abstractTransactionManager" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" autowire="byName">
+		<property name="target">
+			<bean class="com.antares.sirius.service.impl.PerfilServiceImpl" autowire="byName">
+				<property name="dao" ref="perfilDAO" /> 
+			</bean>
+		</property>
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+	
+	<bean id="personaService" parent="abstractTransactionManager" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" autowire="byName">
+		<property name="target">
+			<bean class="com.antares.sirius.service.impl.PersonaServiceImpl" autowire="byName">
+				<property name="dao" ref="personaDAO" /> 
+			</bean>
+		</property>
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+	
+	<bean id="proveedorService" parent="abstractTransactionManager" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" autowire="byName">
+		<property name="target">
+			<bean class="com.antares.sirius.service.impl.ProveedorServiceImpl" autowire="byName">
+				<property name="dao" ref="proveedorDAO" /> 
+			</bean>
+		</property>
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+	
+	<bean id="proyectoService" parent="abstractTransactionManager" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" autowire="byName">
+		<property name="target">
+			<bean class="com.antares.sirius.service.impl.ProyectoServiceImpl" autowire="byName">
+				<property name="dao" ref="proyectoDAO" /> 
+			</bean>
+		</property>
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+	
+	<bean id="relacionContractualService" parent="abstractTransactionManager" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" autowire="byName">
+		<property name="target">
+			<bean class="com.antares.sirius.service.impl.RelacionContractualServiceImpl" autowire="byName">
+				<property name="dao" ref="relacionContractualDAO" /> 
+			</bean>
+		</property>
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+	
+	<bean id="rolService" parent="abstractTransactionManager" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" autowire="byName">
+		<property name="target">
+			<bean class="com.antares.sirius.service.impl.RolServiceImpl" autowire="byName">
+				<property name="dao" ref="rolDAO" /> 
+			</bean>
+		</property>
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+	
+	<bean id="rubroService" parent="abstractTransactionManager" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" autowire="byName">
+		<property name="target">
+			<bean class="com.antares.sirius.service.impl.RubroServiceImpl" autowire="byName">
+				<property name="dao" ref="rubroDAO" /> 
+			</bean>
+		</property>
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+	
+
+	<!-- Servicios de entidades que no se actualizan desde la aplicacion -->
+	<bean id="accesoService" class="com.antares.sirius.service.impl.AccesoServiceImpl" autowire="byName">
+		<property name="dao" ref="accesoDAO" /> 
+	</bean>
+	
+	<bean id="areaTematicaService" class="com.antares.sirius.service.impl.AreaTematicaServiceImpl" autowire="byName">
+		<property name="dao" ref="areaTematicaDAO" /> 
+	</bean>
+	
+	<bean id="asignacionService" class="com.antares.sirius.service.impl.AsignacionServiceImpl" autowire="byName">
+		<property name="dao" ref="asignacionDAO" /> 
+	</bean>
+	
+	<bean id="estadoFinanciadorService" class="com.antares.sirius.service.impl.EstadoFinanciadorServiceImpl" autowire="byName">
+		<property name="dao" ref="estadoFinanciadorDAO" /> 
+	</bean>
+
+	<bean id="estadoProyectoService" class="com.antares.sirius.service.impl.EstadoProyectoServiceImpl" autowire="byName">
+		<property name="dao" ref="estadoProyectoDAO" /> 
+	</bean>
+
+	<bean id="formaPagoService" class="com.antares.sirius.service.impl.FormaPagoServiceImpl" autowire="byName">
+		<property name="dao" ref="formaPagoDAO" /> 
+	</bean>
+	
+	<bean id="origenService" class="com.antares.sirius.service.impl.OrigenServiceImpl" autowire="byName">
+		<property name="dao" ref="origenDAO" /> 
+	</bean>
+	
+	<bean id="presupuestoService" class="com.antares.sirius.service.impl.PresupuestoServiceImpl" autowire="byName">
+		<property name="dao" ref="presupuestoDAO" /> 
+	</bean>
+	
+	<bean id="tipoAsignacionService" class="com.antares.sirius.service.impl.TipoAsignacionServiceImpl" autowire="byName">
+		<property name="dao" ref="tipoAsignacionDAO" /> 
+	</bean>
+	
+	<bean id="tipoComprobanteService" class="com.antares.sirius.service.impl.TipoComprobanteServiceImpl" autowire="byName">
+		<property name="dao" ref="tipoComprobanteDAO" /> 
+	</bean>
+	
+	<bean id="tipoDocumentoService" class="com.antares.sirius.service.impl.TipoDocumentoServiceImpl" autowire="byName">
+		<property name="dao" ref="tipoDocumentoDAO" /> 
+	</bean>
+	
+	<bean id="tipoFinanciadorService" class="com.antares.sirius.service.impl.TipoFinanciadorServiceImpl" autowire="byName">
+		<property name="dao" ref="tipoFinanciadorDAO" /> 
+	</bean>
+	
+	<bean id="tipoGastoService" class="com.antares.sirius.service.impl.TipoGastoServiceImpl" autowire="byName">
+		<property name="dao" ref="tipoGastoDAO" /> 
+	</bean>
+	
+	<bean id="tipoIngresoService" class="com.antares.sirius.service.impl.TipoIngresoServiceImpl" autowire="byName">
+		<property name="dao" ref="tipoIngresoDAO" /> 
+	</bean>
+	
+	<bean id="tipoProveedorService" class="com.antares.sirius.service.impl.TipoProveedorServiceImpl" autowire="byName">
+		<property name="dao" ref="tipoProveedorDAO" /> 
+	</bean>
+	
+	<!-- Otros servicios -->
+	<bean id="utilsService" class="com.antares.commons.util.Utils" autowire="byName" />
+	
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="messages" />
+	</bean>
+
+</beans>
