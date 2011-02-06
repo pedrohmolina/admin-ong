@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN" "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+<taglib>
+	<tlibversion>1.0</tlibversion>
+	<jspversion>1.1</jspversion>
+	<shortname>menu</shortname>
+	<tag>
+		<name>menu</name>
+		<tagclass>com.antares.commons.view.tag.MenuTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<info>Crea el menu jsp.</info>
+	</tag>
+	<tag>
+		<name>submenu</name>
+		<tagclass>com.antares.commons.view.tag.SubMenuTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<info>Crea una opcion</info>
+	    <attribute>
+	    	<name>style</name>
+	    	<required>false</required>
+	    	<rtexprvalue>false</rtexprvalue>
+	    </attribute>
+	    <attribute>
+	    	<name>href</name>
+	    	<required>false</required>
+	    	<rtexprvalue>false</rtexprvalue>
+	    </attribute>
+	    <attribute>
+	    	<name>label</name>
+	    	<required>false</required>
+	    	<rtexprvalue>false</rtexprvalue>
+	    </attribute>
+	    <attribute>
+	    	<name>top</name>
+	    	<required>false</required>
+	    	<rtexprvalue>false</rtexprvalue>
+	    </attribute>
+	</tag>
+	<tag>
+		<name>item</name>
+		<tagclass>com.antares.commons.view.tag.ItemMenuTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<info>Crea un link simple. Debe incluirse el link http internamente (por ejemplo usando c:url)</info>
+	    <attribute>
+	    	<name>style</name>
+	    	<required>false</required>
+	    	<rtexprvalue>false</rtexprvalue>
+	    </attribute>
+	    <attribute>
+	    	<name>label</name>
+	    	<required>true</required>
+	    	<rtexprvalue>false</rtexprvalue>
+	    </attribute>
+	    <attribute>
+	    	<name>top</name>
+	    	<required>false</required>
+	    	<rtexprvalue>false</rtexprvalue>
+	    </attribute>
+	</tag>
+</taglib>
