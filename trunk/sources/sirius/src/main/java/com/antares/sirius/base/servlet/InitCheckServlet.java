@@ -3,11 +3,6 @@
  */
 package com.antares.sirius.base.servlet;
 
-import static com.antares.sirius.base.Constants.CONFIGURATION_DIR;
-import static com.antares.sirius.base.Constants.CONFIGURATION_FILE;
-import static com.antares.sirius.base.Constants.CONFIGURATION_LOG;
-
-import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.Servlet;
@@ -40,25 +35,25 @@ public class InitCheckServlet implements Servlet {
 	private void doInit() throws ServletException {
 		System.out.println("Chequeando el estado del entorno para poder levantar la aplicación ...");
 
-		String path = System.getProperty(CONFIGURATION_DIR);
-		if (path == null || path.equals("")) {
-			throw new ServletException("La aplicación no puede levantar porque no está seteada la variable de entorno '" + CONFIGURATION_DIR + "' (el valor actual es " + path + ")");
-		}
-		System.out.println("El valor de la variable de entorno '" + CONFIGURATION_DIR + "' es: " + path);
-
-		System.out.println("Chequeando si están los archivos de configuración necesarios ...");
-		File file = new File(path + System.getProperty("file.separator") + CONFIGURATION_FILE);
-		if (!file.exists()) {
-			String message = "La aplicación no puede levantar porque no existe el archivo de configuración 'configuration.properties' ('" + path + System.getProperty("file.separator") + CONFIGURATION_FILE + "')";
-			throw new ServletException(message);
-		}
-		System.out.println("Se encontró configuration.properties ...");
-
-		file = new File(path + System.getProperty("file.separator") + CONFIGURATION_LOG);
-		if (!file.exists()) {
-			System.out.println("No se encuentra la configuración de log4j");
-		}
-		System.out.println("Se encontró " + CONFIGURATION_LOG + " ...");
+//		String path = System.getProperty(CONFIGURATION_DIR);
+//		if (path == null || path.equals("")) {
+//			throw new ServletException("La aplicación no puede levantar porque no está seteada la variable de entorno '" + CONFIGURATION_DIR + "' (el valor actual es " + path + ")");
+//		}
+//		System.out.println("El valor de la variable de entorno '" + CONFIGURATION_DIR + "' es: " + path);
+//
+//		System.out.println("Chequeando si están los archivos de configuración necesarios ...");
+//		File file = new File(path + System.getProperty("file.separator") + CONFIGURATION_FILE);
+//		if (!file.exists()) {
+//			String message = "La aplicación no puede levantar porque no existe el archivo de configuración 'configuration.properties' ('" + path + System.getProperty("file.separator") + CONFIGURATION_FILE + "')";
+//			throw new ServletException(message);
+//		}
+//		System.out.println("Se encontró configuration.properties ...");
+//
+//		file = new File(path + System.getProperty("file.separator") + CONFIGURATION_LOG);
+//		if (!file.exists()) {
+//			System.out.println("No se encuentra la configuración de log4j");
+//		}
+//		System.out.println("Se encontró " + CONFIGURATION_LOG + " ...");
 
 	}
 

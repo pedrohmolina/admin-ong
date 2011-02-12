@@ -1,8 +1,11 @@
 package com.antares.sirius.service.impl;
 
+import static com.antares.sirius.base.Constants.ID_ESTADO_ACTIVIDAD_PROGRESO;
+
 import com.antares.commons.service.impl.BusinessEntityServiceImpl;
 import com.antares.sirius.dao.ActividadDAO;
 import com.antares.sirius.model.Actividad;
+import com.antares.sirius.model.EstadoActividad;
 import com.antares.sirius.service.ActividadService;
 
 /**
@@ -24,4 +27,24 @@ public class ActividadServiceImpl extends BusinessEntityServiceImpl<Actividad, A
 		return isNombreRepetido;
 	}
 
+	public void saveCambioEstado(Actividad actividad, Integer idEstado) {
+		EstadoActividad nuevoEstado = null;
+		for (EstadoActividad estado : actividad.getEstadoActividad().getProximosEstadosPosibles()) {
+			if (estado.getId().equals(idEstado)) {
+				nuevoEstado = estado;
+			}
+		}
+		if (nuevoEstado != null) {
+			actividad.setEstadoActividad(nuevoEstado);
+			dao.save(actividad);
+		}
+	}
+
+	public boolean isActualizarCompletitud(Actividad actividad) {
+		boolean actualizarCompletitud = false;
+		if (actividad.getEstadoActividad() != null) {
+			actualizarCompletitud = actividad.getEstadoActividad().getId().equals(ID_ESTADO_ACTIVIDAD_PROGRESO);
+		}
+		return actualizarCompletitud;
+	}
 }

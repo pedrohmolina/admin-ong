@@ -57,11 +57,12 @@ function confirmarAccion(mensaje) {
 			<display:setProperty name="basic.msg.empty_list"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablaTitulo"><tr><td align="center"></td></tr></table></display:setProperty>
 		</c:if>
 
-		<display:column sortable="true" property="nombre" 		titleKey="sirius.actividad.nombre.label" />
-		<display:column sortable="true" property="fechaInicio" 	titleKey="sirius.actividad.fechaInicio.label"  	format="{0,date,dd/MM/yyyy}" />
-		<display:column sortable="true" property="fechaFin" 	titleKey="sirius.actividad.fechaFin.label"  	format="{0,date,dd/MM/yyyy}" />
-		<display:column sortable="true" property="ponderacion" 	titleKey="sirius.actividad.ponderacion.label" />
-		<display:column sortable="true" property="completitud" 	titleKey="sirius.actividad.completitud.label" />
+		<display:column sortable="true" property="nombre" 						titleKey="sirius.actividad.nombre.label" />
+		<display:column sortable="true" property="fechaInicio" 					titleKey="sirius.actividad.fechaInicio.label"  	format="{0,date,dd/MM/yyyy}" />
+		<display:column sortable="true" property="fechaFin" 					titleKey="sirius.actividad.fechaFin.label"  	format="{0,date,dd/MM/yyyy}" />
+		<display:column sortable="true" property="ponderacion" 					titleKey="sirius.actividad.ponderacion.label" />
+		<display:column sortable="true" property="completitud" 					titleKey="sirius.actividad.completitud.label" />
+		<display:column sortable="true" property="estadoActividad.descripcion" 	titleKey="sirius.actividad.estadoActividad.label" />
 
 		<display:column title="Acciones" media="html">
 			<a href="<c:url value="/actividad/actividad-form.do?method=view&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Visualizar" title="Visualizar"
@@ -70,6 +71,12 @@ function confirmarAccion(mensaje) {
 				src="<c:url value="/img/icoModificar.gif"/>" /></a>
 			<a href="<c:url value="/actividad/actividad-query.do?method=remove&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Eliminar" title="Eliminar"
 				src="<c:url value="/img/icons/cross.png"/>" onclick="return confirmarAccion('Est&aacute; seguro que desea eliminar el registro <bean:write name="item" property="nombre"/>?')" /></a>
+			<logic:iterate id="estado" name="item" property="estadoActividad.proximosEstadosPosibles">
+				<a href="<c:url value="/actividad/actividad-query.do?method=cambiarEstado&id="/><bean:write name="item" property="id"/>&idEstado=<bean:write name="estado" property="id"/>"><img border="0" 
+					alt="Pasar a estado <bean:write name="estado" property="descripcion"/>" 
+					title="Pasar a estado <bean:write name="estado" property="descripcion"/>"
+					src="<c:url value="/img/icoEstados.gif"/>" /></a>
+			</logic:iterate>
 		</display:column>
 	</display-el:table>
 </div>

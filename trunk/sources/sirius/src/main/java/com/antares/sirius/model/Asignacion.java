@@ -6,7 +6,7 @@ import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Asignacion extends PersistentObject {
+public class Asignacion extends BusinessObject {
 
 	@ManyToOne
 	@JoinColumns(@JoinColumn(name = "idTipoAsignacion"))

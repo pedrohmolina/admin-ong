@@ -70,8 +70,11 @@
 		<label for="observaciones"><bean:message key="sirius.persona.observaciones.label" />:</label>
 		<html:textarea property="observaciones" rows="5" readonly="true" />
 		<br>
-		<label for="idFormaPago"><bean:message key="sirius.persona.formaPago.label" />&nbsp;:</label>
+		<label for="labelFormaPago"><bean:message key="sirius.persona.formaPago.label" />&nbsp;:</label>
 		<html:text property="labelFormaPago" readonly="true" />
+		<br>
+		<label for="labelPersonaFactura"><bean:message key="sirius.persona.personaFactura.label" />&nbsp;:</label>
+		<html:text property="labelPersonaFactura" readonly="true" />
 		<br>
 	</div>
 

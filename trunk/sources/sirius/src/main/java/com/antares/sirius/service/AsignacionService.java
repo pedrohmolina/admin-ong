@@ -1,6 +1,6 @@
 package com.antares.sirius.service;
 
-import com.antares.commons.service.BaseService;
+import com.antares.commons.service.BusinessEntityService;
 import com.antares.sirius.model.Asignacion;
 
 /**
@@ -10,6 +10,6 @@ import com.antares.sirius.model.Asignacion;
  * @author <a href:mailto:otakon@gmail.com>Julian Martinez</a>
  *
  */
-public interface AsignacionService extends BaseService<Asignacion> {
+public interface AsignacionService extends BusinessEntityService<Asignacion> {
 
 }

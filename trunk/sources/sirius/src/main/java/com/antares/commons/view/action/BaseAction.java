@@ -105,7 +105,6 @@ public abstract class BaseAction<T extends BusinessObject, V extends AbstractFor
 		V viewForm = (V)form;
 		viewForm.initializeForm();
 		viewForm.setAction(CREATE);
-		loadCollections(viewForm);
 		return initForm(mapping, form, request, response);
 	}
 
@@ -124,7 +123,6 @@ public abstract class BaseAction<T extends BusinessObject, V extends AbstractFor
 		V viewForm = (V)form;
 		loadEntity(viewForm, request);
 		viewForm.setAction(UPDATE);
-		loadCollections(viewForm);
 		return initForm(mapping, form, request, response);
 	}
 
@@ -174,6 +172,7 @@ public abstract class BaseAction<T extends BusinessObject, V extends AbstractFor
 		Integer id = new Integer(request.getParameter("id"));
 		T entity = service.findById(id);
 		viewForm.initializeForm(entity);
+		postLoadEntity(entity, viewForm);
 	}
 	
 	/**
@@ -271,6 +270,16 @@ public abstract class BaseAction<T extends BusinessObject, V extends AbstractFor
 	 * @param form objeto que representa el formulario de alta, actualizacion o visualizacion 
 	 */
 	protected void loadCollections(V form) {
+		// Por defecto, vacio. Se deberá redefinir en las clases hijas que lo requieran
+	}
+
+	/**
+	 * Permite que los actions hijos puedan asignar valores extra del form usando reglas de negocio  
+	 * 
+	 * @param entity entidad cuyos datos se muestran en el form
+	 * @param viewForm form cuyos campos se deben completar con los atributos de la entidad
+	 */
+	protected void postLoadEntity(T entity, V viewForm) {
 		// Por defecto, vacio. Se deberá redefinir en las clases hijas que lo requieran
 	}
 

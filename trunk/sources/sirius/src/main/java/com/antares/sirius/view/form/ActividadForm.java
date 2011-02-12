@@ -37,6 +37,9 @@ public class ActividadForm extends AbstractForm<Actividad> {
 	private String labelMeta;
 	private String labelFinanciador;
 
+	private Integer idEstado;
+	private boolean actualizarCompletitud;
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -157,6 +160,22 @@ public class ActividadForm extends AbstractForm<Actividad> {
 		this.presupuesto = presupuesto;
 	}
 
+	public Integer getIdEstado() {
+		return idEstado;
+	}
+
+	public void setIdEstado(Integer idEstado) {
+		this.idEstado = idEstado;
+	}
+
+	public boolean isActualizarCompletitud() {
+		return actualizarCompletitud;
+	}
+
+	public void setActualizarCompletitud(boolean actualizarCompletitud) {
+		this.actualizarCompletitud = actualizarCompletitud;
+	}
+
 	@Override
 	public void initialize() {
 		this.id = null;
@@ -172,6 +191,9 @@ public class ActividadForm extends AbstractForm<Actividad> {
 		this.filtroIdMeta = "";
 		this.labelMeta = "";
 		this.labelFinanciador = "";
+
+		this.idEstado = null;
+		this.actualizarCompletitud = false;
 	}
 
 	@Override
@@ -186,6 +208,9 @@ public class ActividadForm extends AbstractForm<Actividad> {
 		this.idFinanciador = "";
 		this.labelMeta = "";
 		this.labelFinanciador = "";
+
+		this.idEstado = null;
+		this.actualizarCompletitud = false;
 	}
 
 	@Override
@@ -200,6 +225,9 @@ public class ActividadForm extends AbstractForm<Actividad> {
 		this.idFinanciador = entity.getFinanciador().getId().toString();
 		this.labelMeta = entity.getMeta().getNombre();
 		this.labelFinanciador = entity.getFinanciador().getNombre();
+
+		this.idEstado = entity.getEstadoActividad().getId();
+		this.actualizarCompletitud = false;
 	}
 
 }

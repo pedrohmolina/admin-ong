@@ -11,6 +11,26 @@
 		<put name="menu" value="/common/menu.jsp" />
 	</definition>
 
+	<definition name=".400" extends="mainLayout">
+		<put name="title" value="Pedido malformado" />
+		<put name="body" value="/errors/400.jsp" />
+	</definition>
+
+	<definition name=".403" extends="mainLayout">
+		<put name="title" value="Sin Permisos" />
+		<put name="body" value="/errors/403.jsp" />
+	</definition>
+
+	<definition name=".404" extends="mainLayout">
+		<put name="title" value="Recurso no encontrado" />
+		<put name="body" value="/errors/404.jsp" />
+	</definition>
+
+	<definition name=".500" extends="mainLayout">
+		<put name="title" value="Problema interno" />
+		<put name="body" value="/errors/500.jsp" />
+	</definition>
+
 	<definition name=".adminHome" extends="mainLayout">
 		<put name="title" value="Sirius - Bienvenido" />
 		<put name="body" value="/base/admin-home.jsp" />
@@ -31,6 +51,22 @@
 	<definition name=".abmActividadView" extends="mainLayout">
 		<put name="title" value="Actividad - Datos" />
 		<put name="body" value="/WEB-INF/actividad/actividad-view.jsp" />
+	</definition>
+
+	<!-- Asignacion -->
+	<definition name=".abmAsignacionQuery" extends="mainLayout">
+		<put name="title" value="Administración de Asignaciones" />
+		<put name="body" value="/WEB-INF/asignacion/asignacion-query.jsp" />
+	</definition>
+
+	<definition name=".abmAsignacionForm" extends="mainLayout">
+		<put name="title" value="Asignacion - Datos" />
+		<put name="body" value="/WEB-INF/asignacion/asignacion-form.jsp" />
+	</definition>
+
+	<definition name=".abmAsignacionView" extends="mainLayout">
+		<put name="title" value="Asignacion - Datos" />
+		<put name="body" value="/WEB-INF/asignacion/asignacion-view.jsp" />
 	</definition>
 
 	<!-- Financiador -->
