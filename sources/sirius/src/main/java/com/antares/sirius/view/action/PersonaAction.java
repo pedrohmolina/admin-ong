@@ -62,7 +62,7 @@ public class PersonaAction extends BaseAction<Persona, PersonaForm, PersonaServi
 		form.setRelacionesContractuales(relacionContractualService.findAll());
 		form.setTiposDocumento(tipoDocumentoService.findAll());
 		form.setFormasPago(formaPagoService.findAll());
-		form.setPersonasFactura(service.findAll());
+		form.setPersonasFactura(service.findAllOthers(form.getId()));
 	}
 
 	public void setRelacionContractualService(RelacionContractualService relacionContractualService) {

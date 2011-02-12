@@ -28,6 +28,9 @@ public class AsignacionDAOImpl extends BusinessEntityDAOImpl<Asignacion> impleme
 		if (entityFilter.getPersona() != null) {
 			crit.add(Restrictions.eq("persona", entityFilter.getPersona()));
 		}
+		if (entityFilter.getTipoAsignacion() != null) {
+			crit.add(Restrictions.eq("tipoAsignacion", entityFilter.getTipoAsignacion()));
+		}
 	}
 
 	@Override
