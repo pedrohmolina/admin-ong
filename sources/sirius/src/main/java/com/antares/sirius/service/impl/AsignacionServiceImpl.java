@@ -1,6 +1,6 @@
 package com.antares.sirius.service.impl;
 
-import com.antares.commons.service.impl.BaseServiceImpl;
+import com.antares.commons.service.impl.BusinessEntityServiceImpl;
 import com.antares.sirius.dao.AsignacionDAO;
 import com.antares.sirius.model.Asignacion;
 import com.antares.sirius.service.AsignacionService;
@@ -12,6 +12,6 @@ import com.antares.sirius.service.AsignacionService;
  * @author <a href:mailto:otakon@gmail.com> Julian Martinez </a>
  *
  */
-public class AsignacionServiceImpl extends BaseServiceImpl<Asignacion, AsignacionDAO> implements AsignacionService {
+public class AsignacionServiceImpl extends BusinessEntityServiceImpl<Asignacion, AsignacionDAO> implements AsignacionService {
 
 }

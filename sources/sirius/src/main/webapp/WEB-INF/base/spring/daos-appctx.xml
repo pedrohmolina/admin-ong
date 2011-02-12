@@ -7,6 +7,7 @@
 	<bean id="actividadDAO" 			class="com.antares.sirius.dao.impl.ActividadDAOImpl" 			autowire="byName" />
 	<bean id="areaTematicaDAO" 			class="com.antares.sirius.dao.impl.AreaTematicaDAOImpl" 		autowire="byName" />
 	<bean id="asignacionDAO" 			class="com.antares.sirius.dao.impl.AsignacionDAOImpl" 			autowire="byName" />
+	<bean id="estadoActividadDAO" 		class="com.antares.sirius.dao.impl.EstadoActividadDAOImpl" 		autowire="byName" />
 	<bean id="estadoFinanciadorDAO" 	class="com.antares.sirius.dao.impl.EstadoFinanciadorDAOImpl" 	autowire="byName" />
 	<bean id="estadoProyectoDAO" 		class="com.antares.sirius.dao.impl.EstadoProyectoDAOImpl" 		autowire="byName" />
 	<bean id="financiadorDAO" 			class="com.antares.sirius.dao.impl.FinanciadorDAOImpl" 			autowire="byName" />

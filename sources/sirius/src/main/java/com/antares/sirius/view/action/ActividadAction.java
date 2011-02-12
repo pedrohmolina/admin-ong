@@ -1,5 +1,7 @@
 package com.antares.sirius.view.action;
 
+import static com.antares.sirius.base.Constants.ID_ESTADO_ACTIVIDAD_LATENTE;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,6 +22,7 @@ import com.antares.sirius.model.Actividad;
 import com.antares.sirius.model.Financiador;
 import com.antares.sirius.model.Meta;
 import com.antares.sirius.service.ActividadService;
+import com.antares.sirius.service.EstadoActividadService;
 import com.antares.sirius.service.FinanciadorService;
 import com.antares.sirius.service.MetaService;
 import com.antares.sirius.view.form.ActividadForm;
@@ -28,6 +31,7 @@ public class ActividadAction extends BaseAction<Actividad, ActividadForm, Activi
 
 	private MetaService metaService;
 	private FinanciadorService financiadorService;
+	private EstadoActividadService estadoActividadService;
 
 	@Override
 	public ActividadFilter createFilter(ActividadForm form) {
@@ -53,7 +57,17 @@ public class ActividadAction extends BaseAction<Actividad, ActividadForm, Activi
 		if (Utils.isNotNullNorEmpty(form.getIdFinanciador())) {
 			entity.setFinanciador(financiadorService.findById(Integer.parseInt(form.getIdFinanciador())));
 		}
-		entity.setCompletitud(form.getCompletitud().doubleValue());
+
+		if (entity.getEstadoActividad() == null) {
+			entity.setEstadoActividad(estadoActividadService.findById(ID_ESTADO_ACTIVIDAD_LATENTE));
+		} else if (service.isActualizarCompletitud(entity)) {
+			entity.setCompletitud(form.getCompletitud().doubleValue());
+		}
+	}
+
+	@Override
+	protected void postLoadEntity(Actividad entity, ActividadForm viewForm) {
+		viewForm.setActualizarCompletitud(service.isActualizarCompletitud(entity));
 	}
 
 	@Override
@@ -104,12 +118,27 @@ public class ActividadAction extends BaseAction<Actividad, ActividadForm, Activi
 		return null;
 	}
 		
+	public ActionForward cambiarEstado(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String strId = request.getParameter("id");
+		String strIdEstado = request.getParameter("idEstado");
+		if (Utils.isNotNullNorEmpty(strId) && Utils.isNotNullNorEmpty(strIdEstado)) {
+			Actividad actividad = service.findById(Integer.parseInt(strId));
+			Integer idEstado = new Integer(strIdEstado);
+			service.saveCambioEstado(actividad, idEstado);
+		}
+		return query(mapping, form, request, response);
+	}
+
 	public void setMetaService(MetaService metaService) {
 		this.metaService = metaService;
 	}
 
 	public void setFinanciadorService(FinanciadorService financiadorService) {
 		this.financiadorService = financiadorService;
+	}
+
+	public void setEstadoActividadService(EstadoActividadService estadoActividadService) {
+		this.estadoActividadService = estadoActividadService;
 	}
 
 }

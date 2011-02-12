@@ -34,14 +34,15 @@ public class PersonaForm extends AbstractForm<Persona> {
 	private String celular;
 	private String email;
 	private String funcion;
-	private String cuitPersonaFactura;
 	private String observaciones;
 	private String idTipoDocumento;
 	private String idRelacionContractual;
 	private String idFormaPago;
+	private String idPersonaFactura;
 	private Collection<TipoDocumento> tiposDocumento;
 	private Collection<RelacionContractual> relacionesContractuales;
 	private Collection<FormaPago> formasPago;
+	private Collection<Persona> personasFactura;
 
 	private String filtroApellido;
 	private String filtroNombre;
@@ -52,6 +53,7 @@ public class PersonaForm extends AbstractForm<Persona> {
 	private String labelTipoDocumento;
 	private String labelRelacionContractual;
 	private String labelFormaPago;
+	private String labelPersonaFactura;
 
 	public String getApellido() {
 		return apellido;
@@ -163,14 +165,6 @@ public class PersonaForm extends AbstractForm<Persona> {
 
 	public void setFuncion(String funcion) {
 		this.funcion = funcion;
-	}
-
-	public String getCuitPersonaFactura() {
-		return cuitPersonaFactura;
-	}
-
-	public void setCuitPersonaFactura(String cuitPersonaFactura) {
-		this.cuitPersonaFactura = cuitPersonaFactura;
 	}
 
 	public String getObservaciones() {
@@ -293,6 +287,30 @@ public class PersonaForm extends AbstractForm<Persona> {
 		this.labelFormaPago = labelFormaPago;
 	}
 
+	public String getIdPersonaFactura() {
+		return idPersonaFactura;
+	}
+
+	public void setIdPersonaFactura(String idPersonaFactura) {
+		this.idPersonaFactura = idPersonaFactura;
+	}
+
+	public Collection<Persona> getPersonasFactura() {
+		return personasFactura;
+	}
+
+	public void setPersonasFactura(Collection<Persona> personasFactura) {
+		this.personasFactura = personasFactura;
+	}
+
+	public String getLabelPersonaFactura() {
+		return labelPersonaFactura;
+	}
+
+	public void setLabelPersonaFactura(String labelPersonaFactura) {
+		this.labelPersonaFactura = labelPersonaFactura;
+	}
+
 	@Override
 	public void initialize() {
 		this.id = null;
@@ -311,14 +329,15 @@ public class PersonaForm extends AbstractForm<Persona> {
 		this.celular = "";
 		this.email = "";
 		this.funcion = "";
-		this.cuitPersonaFactura = "";
 		this.observaciones = "";
 		this.idTipoDocumento = "";
 		this.idRelacionContractual = "";
 		this.idFormaPago = "";
+		this.idPersonaFactura = "";
 		this.labelTipoDocumento = "";
 		this.labelRelacionContractual = "";
 		this.labelFormaPago = "";
+		this.labelPersonaFactura = "";
 	}
 
 	@Override
@@ -338,14 +357,15 @@ public class PersonaForm extends AbstractForm<Persona> {
 		this.celular = "";
 		this.email = "";
 		this.funcion = "";
-		this.cuitPersonaFactura = "";
 		this.observaciones = "";
 		this.idTipoDocumento = "";
 		this.idRelacionContractual = "";
 		this.idFormaPago = "";
+		this.idPersonaFactura = "";
 		this.labelTipoDocumento = "";
 		this.labelRelacionContractual = "";
 		this.labelFormaPago = "";
+		this.labelPersonaFactura = "";
 	}
 
 	@Override
@@ -365,7 +385,6 @@ public class PersonaForm extends AbstractForm<Persona> {
 		this.celular = entity.getCelular();
 		this.email = entity.getEmail();
 		this.funcion = entity.getFuncion();
-		this.cuitPersonaFactura = entity.getCuitPersonaFactura();
 		this.observaciones = entity.getObservaciones();
 		this.idTipoDocumento = entity.getTipoDocumento().getId().toString();
 		this.idRelacionContractual = entity.getRelacionContractual().getId().toString();
@@ -373,6 +392,14 @@ public class PersonaForm extends AbstractForm<Persona> {
 		this.labelTipoDocumento = entity.getTipoDocumento().getDescripcion();
 		this.labelRelacionContractual = entity.getRelacionContractual().getDescripcion();
 		this.labelFormaPago = entity.getFormaPago().getDescripcion();
+		
+		if (entity.getPersonaFactura() != null) {
+			this.idPersonaFactura = entity.getPersonaFactura().getId().toString();
+			this.labelPersonaFactura = entity.getPersonaFactura().getNombreYApellido();
+		} else {
+			this.idPersonaFactura = "";
+			this.labelPersonaFactura = "";
+		}
 	}
 
 }

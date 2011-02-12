@@ -21,6 +21,7 @@
 		</form-bean>
 		
 		<form-bean name="actividadForm" type="com.antares.sirius.view.form.ActividadForm" />
+		<form-bean name="asignacionForm" type="com.antares.sirius.view.form.AsignacionForm" />
 		<form-bean name="financiadorForm" type="com.antares.sirius.view.form.FinanciadorForm" />
 		<form-bean name="ingresoForm" type="com.antares.sirius.view.form.IngresoForm" />
 		<form-bean name="metaForm" type="com.antares.sirius.view.form.MetaForm" />
@@ -85,6 +86,28 @@
 				input="/actividad/actividad-form.do?method=initForm">
 			<forward name="success" 	path="/actividad/actividad-query.do?method=query" />
 			<forward name="error" 		path="/actividad/actividad-form.do?method=initForm" />
+		</action>
+		<!-- Fin de actions de actividades -->
+
+		<!-- Actions de asignaciones -->
+		<action path="/asignacion/asignacion-query" name="asignacionForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="query" 		path=".abmAsignacionQuery" />
+			<forward name="success" 	path="/asignacion/asignacion-query.do?method=query" />
+		</action>
+
+		<action path="/asignacion/asignacion-form" name="asignacionForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="form" 		path=".abmAsignacionForm" />
+			<forward name="view" 		path=".abmAsignacionView"></forward>
+			<forward name="success" 	path="/asignacion/asignacion-query.do?method=query" />
+		</action>
+
+		<action path="/asignacion/asignacion-form-validate" name="asignacionForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/asignacion/asignacion-form.do?method=initForm">
+			<forward name="success" 	path="/asignacion/asignacion-query.do?method=query" />
+			<forward name="error" 		path="/asignacion/asignacion-form.do?method=initForm" />
 		</action>
 		<!-- Fin de actions de actividades -->
 

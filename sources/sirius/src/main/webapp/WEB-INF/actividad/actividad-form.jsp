@@ -50,7 +50,12 @@
 		<br />
 		<logic:equal name="actividadForm" property="action.descripcion" value="update">
 			<label for="completitud"><bean:message key="sirius.actividad.completitud.label" />(*)&nbsp;:</label>
-			<html:text maxlength="3" property="completitud" />
+			<logic:equal name="actividadForm" property="actualizarCompletitud" value="true">
+				<html:text maxlength="3" property="completitud" />
+			</logic:equal>
+			<logic:notEqual name="actividadForm" property="actualizarCompletitud" value="true">
+				<html:text property="completitud" readonly="true"/>
+			</logic:notEqual>
 			<br />
 		</logic:equal>
 		<label for="fechaInicio"><bean:message key="sirius.actividad.fechaInicio.label" />&nbsp;:</label>

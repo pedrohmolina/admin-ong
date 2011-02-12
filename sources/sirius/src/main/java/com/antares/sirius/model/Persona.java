@@ -46,7 +46,6 @@ public class Persona extends BusinessObject {
 	private String celular;
 	private String email;
 	private String funcion;
-	private String cuitPersonaFactura;
 	private String observaciones;
 
 	public String getApellido() {
@@ -191,14 +190,6 @@ public class Persona extends BusinessObject {
 
 	public void setPersonaFactura(Persona personaFactura) {
 		this.personaFactura = personaFactura;
-	}
-
-	public String getCuitPersonaFactura() {
-		return cuitPersonaFactura;
-	}
-
-	public void setCuitPersonaFactura(String cuitPersonaFactura) {
-		this.cuitPersonaFactura = cuitPersonaFactura;
 	}
 
 	public String getObservaciones() {

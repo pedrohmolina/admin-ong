@@ -18,6 +18,10 @@ public class Actividad extends Ponderable {
 	@JoinColumns(@JoinColumn(name = "idFinanciador"))
 	private Financiador financiador;
 
+	@ManyToOne
+	@JoinColumns(@JoinColumn(name = "idEstadoActividad"))
+	private EstadoActividad estadoActividad;
+
 	private String nombre;
 	private String observaciones;
 	private Date fechaInicio;
@@ -87,6 +91,14 @@ public class Actividad extends Ponderable {
 
 	public void setCompletitud(Double completitud) {
 		this.completitud = completitud;
+	}
+
+	public EstadoActividad getEstadoActividad() {
+		return estadoActividad;
+	}
+
+	public void setEstadoActividad(EstadoActividad estadoActividad) {
+		this.estadoActividad = estadoActividad;
 	}
 
 }

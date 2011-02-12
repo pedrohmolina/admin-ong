@@ -21,4 +21,21 @@ public interface ActividadService extends BusinessEntityService<Actividad> {
 	 */
 	boolean isNombreRepetido(String nombre, Integer id);
 
+	/**
+	 * Cambia el estado del proyecto al estado del id pasado por parametro. 
+	 * En caso que la transicion de estados no sea valida, no realiza ninguna modificacion sobre el proyecto
+	 * 
+	 * @param proyecto proyecto cuyo estado se quiere modificar
+	 * @param idEstado id del nuevo estado al que se quiere cambiar
+	 */
+	void saveCambioEstado(Actividad actividad, Integer idEstado);
+
+	/**
+	 * Evalua si el campo completitud se puede modificar o no
+	 * 
+	 * @param actividad
+	 * @return
+	 */
+	public boolean isActualizarCompletitud(Actividad actividad);
+
 }

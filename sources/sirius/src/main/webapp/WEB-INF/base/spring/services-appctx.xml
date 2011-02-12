@@ -26,6 +26,15 @@
 		<property name="proxyTargetClass" value="true" />
 	</bean>
 	
+	<bean id="asignacionService" parent="abstractTransactionManager" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" autowire="byName">
+		<property name="target">
+			<bean class="com.antares.sirius.service.impl.AsignacionServiceImpl" autowire="byName">
+				<property name="dao" ref="asignacionDAO" /> 
+			</bean>
+		</property>
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+	
 	<bean id="financiadorService" parent="abstractTransactionManager" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" autowire="byName">
 		<property name="target">
 			<bean class="com.antares.sirius.service.impl.FinanciadorServiceImpl" autowire="byName">
@@ -144,10 +153,10 @@
 		<property name="dao" ref="areaTematicaDAO" /> 
 	</bean>
 	
-	<bean id="asignacionService" class="com.antares.sirius.service.impl.AsignacionServiceImpl" autowire="byName">
-		<property name="dao" ref="asignacionDAO" /> 
+	<bean id="estadoActividadService" class="com.antares.sirius.service.impl.EstadoActividadServiceImpl" autowire="byName">
+		<property name="dao" ref="estadoActividadDAO" /> 
 	</bean>
-	
+
 	<bean id="estadoFinanciadorService" class="com.antares.sirius.service.impl.EstadoFinanciadorServiceImpl" autowire="byName">
 		<property name="dao" ref="estadoFinanciadorDAO" /> 
 	</bean>

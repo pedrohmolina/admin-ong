@@ -8,13 +8,24 @@
 
 	
 	<bean name="actividadAction" class="com.antares.sirius.view.action.ActividadAction" autowire="byName" >
-		<property name="service" 			ref="actividadService" />
-		<property name="metaService" 		ref="metaService" />
-		<property name="financiadorService" ref="financiadorService" />
+		<property name="service" 					ref="actividadService" />
+		<property name="metaService" 				ref="metaService" />
+		<property name="financiadorService" 		ref="financiadorService" />
+		<property name="estadoActividadService" 	ref="estadoActividadService" />
 	</bean>
 	<bean name="/actividad/actividad-query" 		parent="actividadAction" singleton="false" />
 	<bean name="/actividad/actividad-form" 			parent="actividadAction" singleton="false" />
 	<bean name="/actividad/actividad-form-validate" parent="actividadAction" singleton="false" />
+
+	<bean name="asignacionAction" class="com.antares.sirius.view.action.AsignacionAction" autowire="byName" >
+		<property name="service" 				ref="asignacionService" />
+		<property name="tipoAsignacionService" 	ref="tipoAsignacionService" />
+		<property name="personaService" 		ref="personaService" />
+		<property name="actividadService" 		ref="actividadService" />
+	</bean>
+	<bean name="/asignacion/asignacion-query" 			parent="asignacionAction" singleton="false" />
+	<bean name="/asignacion/asignacion-form" 			parent="asignacionAction" singleton="false" />
+	<bean name="/asignacion/asignacion-form-validate" 	parent="asignacionAction" singleton="false" />
 
 	<bean name="financiadorAction" class="com.antares.sirius.view.action.FinanciadorAction" autowire="byName" >
 		<property name="service" 					ref="financiadorService" />

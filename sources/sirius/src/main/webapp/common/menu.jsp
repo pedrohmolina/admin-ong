@@ -28,6 +28,7 @@
 			<menu:item style="width: 160px;" label="Objetivos Especificos"><c:url value="/objetivo-especifico/objetivo-especifico-query.do?method=initQuery"/></menu:item>
 			<menu:item style="width: 160px;" label="Metas"><c:url value="/meta/meta-query.do?method=initQuery"/></menu:item>
 			<menu:item style="width: 160px;" label="Actividades"><c:url value="/actividad/actividad-query.do?method=initQuery"/></menu:item>
+			<menu:item style="width: 160px;" label="Asignaciones"><c:url value="/asignacion/asignacion-query.do?method=initQuery"/></menu:item>
 		</menu:submenu>
 	<%--
 	</authz:authorize>

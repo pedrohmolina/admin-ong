@@ -17,4 +17,9 @@
 		}
 		form.submit();
 	}
+
+	function getContextUrl(url) {
+		return '<c:url value="/" />' + url;
+	}
+
 </script>
