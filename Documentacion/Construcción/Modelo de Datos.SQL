@@ -61,6 +61,7 @@ CREATE TABLE asignacion
 	idPersona INT NOT NULL,
 	idActividad INT NOT NULL,
 	cantidad NUMERIC(10) NOT NULL,
+	activo BOOL NOT NULL COMMENT 'Señal para manejo de baja logica',
 	PRIMARY KEY (id),
 	UNIQUE UQ_asignacion_id(id),
 	KEY (idActividad),
@@ -75,6 +76,7 @@ CREATE TABLE actividad
 	id INT NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
 	idMeta INT NOT NULL,
 	idFinanciador INT NOT NULL,
+	idEstadoActividad INT NOT NULL,
 	nombre VARCHAR(255) COMMENT 'Nombre de la Actividad',
 	observaciones TEXT COMMENT 'Observaciones generales de la Actividad',
 	fechaInicio DATE COMMENT 'Fecha que inicia la Actividad',
@@ -87,7 +89,8 @@ CREATE TABLE actividad
 	UNIQUE UQ_actividad_id(id),
 	UNIQUE UQ_actividad_nombre(nombre),
 	KEY (idFinanciador),
-	KEY (idMeta)
+	KEY (idMeta),
+	KEY (idEstadoActividad)
 ) 
 ;
 
@@ -262,7 +265,6 @@ CREATE TABLE persona
 	idRelacionContractual INT NOT NULL,
 	idFormaPago INT NOT NULL,
 	idPersonaFactura INT COMMENT 'Persona en nombre de la cual se va a facturar',
-	cuitPersonaFactura VARCHAR(20) COMMENT 'El número de CUIT de la persona a facturarle',
 	observaciones VARCHAR(255) COMMENT 'Observaciones de la Persona a crear',
 	activo BOOL NOT NULL COMMENT 'Señal para manejo de baja logica',
 	PRIMARY KEY (id),
@@ -494,6 +496,26 @@ CREATE TABLE estadoProyecto
 ;
 
 
+CREATE TABLE estadoActividad
+(
+	id INT NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
+	descripcion VARCHAR(50) NOT NULL COMMENT 'Descripcion del Estado del Proyecto',
+	PRIMARY KEY (id),
+	UNIQUE UQ_estadoActividad_descripcion(descripcion),
+	UNIQUE UQ_estadoActividad_id(id)
+) 
+;
+
+
+CREATE TABLE proximoEstadoActividad
+(
+	idEstadoActividad INT NOT NULL,
+	idProximoEstadoActividad INT NOT NULL,
+	PRIMARY KEY (idEstadoActividad, idProximoEstadoActividad)
+) 
+;
+
+
 CREATE TABLE estadoFinanciador
 (
 	id INT NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
@@ -694,4 +716,16 @@ ALTER TABLE rubro ADD CONSTRAINT FK_rubro_rubro
 
 ALTER TABLE estadoProyecto ADD CONSTRAINT FK_estadoProyecto_estadoProyecto 
 	FOREIGN KEY (idEstadoAnterior) REFERENCES estadoProyecto (id)
+;
+
+ALTER TABLE proximoEstadoActividad ADD CONSTRAINT FK_proximoEstadoActividad_estadoActividad 
+	FOREIGN KEY (idEstadoActividad) REFERENCES estadoActvidad (id)
+;
+
+ALTER TABLE proximoEstadoActividad ADD CONSTRAINT FK_proximoEstadoActividad_proximoEstadoActividad 
+	FOREIGN KEY (idProximoEstadoActividad) REFERENCES estadoActvidad (id)
+;
+
+ALTER TABLE actividad ADD CONSTRAINT FK_actividad_estadoActividad 
+	FOREIGN KEY (idEstadoActividad) REFERENCES estadoActividad (id)
 ;
