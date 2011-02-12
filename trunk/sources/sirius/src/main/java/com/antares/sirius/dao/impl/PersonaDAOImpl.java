@@ -1,5 +1,7 @@
 package com.antares.sirius.dao.impl;
 
+import java.util.Collection;
+
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
@@ -41,6 +43,16 @@ public class PersonaDAOImpl extends BusinessEntityDAOImpl<Persona> implements Pe
 		}
 	}
 
+	@SuppressWarnings("unchecked")
+	public Collection<Persona> findAllOthers(Integer id) {
+		Criteria crit = getSession().createCriteria(persistentClass);
+		if (id != null) {
+			crit.add(Restrictions.ne("id", id));
+		}
+		addLogicConstraint(crit);
+		addOrder(crit);
+		return crit.list();
+	}
 	@Override
 	protected void addOrder(Criteria crit) {
 		crit.addOrder(Order.asc("apellido"));

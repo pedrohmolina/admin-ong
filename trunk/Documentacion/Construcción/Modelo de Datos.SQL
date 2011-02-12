@@ -64,6 +64,7 @@ CREATE TABLE asignacion
 	activo BOOL NOT NULL COMMENT 'Señal para manejo de baja logica',
 	PRIMARY KEY (id),
 	UNIQUE UQ_asignacion_id(id),
+	UNIQUE UQ_asignacion_tupla(idActividad, idPersona, idTipoAsignacion),
 	KEY (idActividad),
 	KEY (idPersona),
 	KEY (idTipoAsignacion)

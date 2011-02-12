@@ -1,5 +1,7 @@
 package com.antares.sirius.service;
 
+import java.util.Collection;
+
 import com.antares.commons.service.BusinessEntityService;
 import com.antares.sirius.model.Persona;
 
@@ -11,5 +13,13 @@ import com.antares.sirius.model.Persona;
  *
  */
 public interface PersonaService extends BusinessEntityService<Persona> {
+
+	/**
+	 * Devuelve todas las personas del sistema excepto la que tiene un id igual al parametro. Si el parametro es null, se comporta como findAll
+	 * 
+	 * @param id id de Persona
+	 * @return
+	 */
+	Collection<Persona> findAllOthers(Integer id);
 
 }

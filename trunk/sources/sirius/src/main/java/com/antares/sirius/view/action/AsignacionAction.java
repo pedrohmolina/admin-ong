@@ -1,11 +1,15 @@
 package com.antares.sirius.view.action;
 
 import org.apache.struts.action.ActionErrors;
+import org.apache.struts.action.ActionMessage;
 
 import com.antares.commons.util.Utils;
 import com.antares.commons.view.action.BaseAction;
 import com.antares.sirius.filter.AsignacionFilter;
+import com.antares.sirius.model.Actividad;
 import com.antares.sirius.model.Asignacion;
+import com.antares.sirius.model.Persona;
+import com.antares.sirius.model.TipoAsignacion;
 import com.antares.sirius.service.ActividadService;
 import com.antares.sirius.service.AsignacionService;
 import com.antares.sirius.service.PersonaService;
@@ -54,7 +58,12 @@ public class AsignacionAction extends BaseAction<Asignacion, AsignacionForm, Asi
 	@Override
 	protected ActionErrors validate(AsignacionForm form) {
 		ActionErrors errors = new ActionErrors();
-		//TODO revisar estas validaciones una vez que este hecho el CU
+		Actividad actividad = actividadService.findById(Integer.parseInt(form.getIdActividad()));
+		Persona persona = personaService.findById(Integer.parseInt(form.getIdPersona()));
+		TipoAsignacion tipoAsignacion = tipoAsignacionService.findById(Integer.parseInt(form.getIdTipoAsignacion()));
+		if (service.isAsignacionRepetida(form.getId(), actividad, persona, tipoAsignacion)) {
+			errors.add("error", new ActionMessage("errors.asignacion"));
+		}
 		return errors;
 	}
 

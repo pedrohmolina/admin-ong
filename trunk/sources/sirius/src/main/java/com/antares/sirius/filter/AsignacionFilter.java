@@ -4,6 +4,7 @@ import com.antares.commons.filter.Filter;
 import com.antares.sirius.model.Actividad;
 import com.antares.sirius.model.Asignacion;
 import com.antares.sirius.model.Persona;
+import com.antares.sirius.model.TipoAsignacion;
 
 /**
  * Filter para la endidad Actividad.
@@ -17,6 +18,7 @@ public class AsignacionFilter extends Filter<Asignacion> {
 
 	private Actividad actividad;
 	private Persona persona;
+	private TipoAsignacion tipoAsignacion;
 
 	public Actividad getActividad() {
 		return actividad;
@@ -29,6 +31,12 @@ public class AsignacionFilter extends Filter<Asignacion> {
 	}
 	public void setPersona(Persona persona) {
 		this.persona = persona;
+	}
+	public TipoAsignacion getTipoAsignacion() {
+		return tipoAsignacion;
+	}
+	public void setTipoAsignacion(TipoAsignacion tipoAsignacion) {
+		this.tipoAsignacion = tipoAsignacion;
 	}
 
 }
