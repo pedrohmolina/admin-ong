@@ -1,0 +1,78 @@
+--  Area Tematica
+INSERT INTO areatematica (id,descripcion) VALUES (1,'Salud y Nutrición');
+INSERT INTO areatematica (id,descripcion) VALUES (2,'Derechos Humanos');
+INSERT INTO areatematica (id,descripcion) VALUES (3,'Educación Básica');
+INSERT INTO areatematica (id,descripcion) VALUES (4,'Desarrollo Democrático');
+INSERT INTO areatematica (id,descripcion) VALUES (5,'Capacitación Laboral');
+INSERT INTO areatematica (id,descripcion) VALUES (6,'Otros');
+
+--  Tipo Financiador
+INSERT INTO tipofinanciador (id,descripcion) VALUES (1,'Persona');
+INSERT INTO tipofinanciador (id,descripcion) VALUES (2,'Institución');
+INSERT INTO tipofinanciador (id,descripcion) VALUES (3,'Empresa');
+
+--  Estado Financiador
+INSERT INTO estadofinanciador (id,descripcion) VALUES (1,'Activo');
+INSERT INTO estadofinanciador (id,descripcion) VALUES (2,'Inactivo');
+INSERT INTO estadofinanciador (id,descripcion) VALUES (3,'Potencial');
+
+--  Estado Proyecto
+INSERT INTO estadoproyecto (id,descripcion) VALUES (1,'Idea');
+INSERT INTO estadoproyecto (id,descripcion) VALUES (2,'Diseño');
+INSERT INTO estadoproyecto (id,descripcion) VALUES (3,'Ejecución');
+INSERT INTO estadoproyecto (id,descripcion) VALUES (4,'Evaluación');
+
+--  Tipo Ingreso
+INSERT INTO tipoingreso (id,descripcion) VALUES (1,'Donación');
+INSERT INTO tipoingreso (id,descripcion) VALUES (2,'Venta de Servicio');
+INSERT INTO tipoingreso (id,descripcion) VALUES (3,'Financiador');
+
+--  Tipo Documento
+INSERT INTO tipodocumento (id,descripcion) VALUES (1,'DNI');
+INSERT INTO tipodocumento (id,descripcion) VALUES (2,'Cedula Identidad');
+INSERT INTO tipodocumento (id,descripcion) VALUES (3,'Pasaporte');
+INSERT INTO tipodocumento (id,descripcion) VALUES (4,'Libreta de Enrolamiento');
+INSERT INTO tipodocumento (id,descripcion) VALUES (5,'Libreta Cívica');
+
+--  Tipo Gasto
+INSERT INTO tipogasto (id,descripcion) VALUES (1,'Gastos de Actividad');
+INSERT INTO tipogasto (id,descripcion) VALUES (2,'Gastos Generales');
+INSERT INTO tipogasto (id,descripcion) VALUES (3,'Gastos Institucionales');
+
+--  Tipo Comprobante
+INSERT INTO tipocomprobante (id,descripcion) VALUES (1,'Ticket Fiscal');
+INSERT INTO tipocomprobante (id,descripcion) VALUES (2,'Factura Tipo A');
+INSERT INTO tipocomprobante (id,descripcion) VALUES (3,'Factura Tipo B');
+INSERT INTO tipocomprobante (id,descripcion) VALUES (4,'Factura Tipo C');
+
+--  Forma de pago
+INSERT INTO formapago (id,descripcion) VALUES (1,'Efectivo');
+INSERT INTO formapago (id,descripcion) VALUES (2,'Cheque');
+INSERT INTO formapago (id,descripcion) VALUES (3,'Transferencia Bancaria');
+INSERT INTO formapago (id,descripcion) VALUES (4,'Tarjeta de Crédito');
+
+--  Tipo Proveedor
+INSERT INTO tipoproveedor (id,descripcion) VALUES (1,'Persona');
+INSERT INTO tipoproveedor (id,descripcion) VALUES (2,'Institución');
+INSERT INTO tipoproveedor (id,descripcion) VALUES (3,'Empresa');
+
+--  Tipo Asignacion
+INSERT INTO tipoasignacion (id,descripcion) VALUES (1,'Por jornada');
+INSERT INTO tipoasignacion (id,descripcion) VALUES (2,'Por hora');
+INSERT INTO tipoasignacion (id,descripcion) VALUES (3,'Por mes');
+
+--  Estado Actividad
+INSERT INTO estadoactividad (id,descripcion) VALUES (1,'Latencia');
+INSERT INTO estadoactividad (id,descripcion) VALUES (2,'Progreso');
+INSERT INTO estadoactividad (id,descripcion) VALUES (3,'Suspensión');
+INSERT INTO estadoactividad (id,descripcion) VALUES (4,'Cancelada');
+INSERT INTO estadoactividad (id,descripcion) VALUES (5,'Cumplida');
+
+--  Relacion Contractual
+INSERT INTO relacioncontractual (id,nombre,descripcion,activo) VALUES (1,'Empleado','Empleado',true);
+INSERT INTO relacioncontractual (id,nombre,descripcion,activo) VALUES (2,'Profesional','Profesional Contratado',true);
+INSERT INTO relacioncontractual (id,nombre,descripcion,activo) VALUES (3,'Voluntario','Voluntario',true);
+INSERT INTO relacioncontractual (id,nombre,descripcion,activo) VALUES (4,'Becario','Becario',true);
+INSERT INTO relacioncontractual (id,nombre,descripcion,activo) VALUES (5,'Pasante','Pasante',true);
+INSERT INTO relacioncontractual (id,nombre,descripcion,activo) VALUES (6,'Socio','Socio',true);
+INSERT INTO relacioncontractual (id,nombre,descripcion,activo) VALUES (7,'Miembro CD','Miembro de la Comisión Directiva',true);
