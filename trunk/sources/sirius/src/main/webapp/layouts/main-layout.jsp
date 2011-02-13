@@ -29,6 +29,6 @@
 </head>
 <body>
 <jsp:include flush="true" page="/common/menu.jsp"></jsp:include>
-<tiles:insert attribute="body"/></div>
+<tiles:insert attribute="body"/>
 </body>
 </html>
