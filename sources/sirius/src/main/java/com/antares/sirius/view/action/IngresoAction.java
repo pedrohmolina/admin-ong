@@ -1,7 +1,5 @@
 package com.antares.sirius.view.action;
 
-import static com.antares.sirius.base.Constants.ID_TIPO_INGRESO_FINANCIACION;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,10 +39,10 @@ public class IngresoAction extends BaseAction<Ingreso, IngresoForm, IngresoServi
 	@Override
 	public void updateEntity(Ingreso entity, IngresoForm form) {
 		entity.setTipoIngreso(tipoIngresoService.findById(Integer.parseInt(form.getIdTipoIngreso())));
-		entity.setMonto(Utils.parseDouble(form.getMonto())); //TODO revisar esto
+		entity.setMonto(Utils.parseDouble(form.getMonto()));
 		entity.setFecha(Utils.parseDate(form.getFecha()));
 		entity.setDescripcion(form.getDescripcion());
-		if (form.getIdTipoIngreso().equals(ID_TIPO_INGRESO_FINANCIACION) && Utils.isNotNullNorEmpty(form.getIdFinanciador())) {
+		if (tipoIngresoService.isIdFinanciacion(form.getIdTipoIngreso()) && Utils.isNotNullNorEmpty(form.getIdFinanciador())) {
 			entity.setFinanciador(financiadorService.findById(Integer.parseInt(form.getIdFinanciador())));
 		} else {
 			entity.setFinanciador(null);
@@ -60,7 +58,7 @@ public class IngresoAction extends BaseAction<Ingreso, IngresoForm, IngresoServi
 	@Override
 	protected ActionErrors validate(IngresoForm form) {
 		ActionErrors errors = new ActionErrors();
-		if (form.getIdTipoIngreso().equals(ID_TIPO_INGRESO_FINANCIACION) && Utils.isNullOrEmpty(form.getIdFinanciador())){
+		if (tipoIngresoService.isIdFinanciacion(form.getIdTipoIngreso()) && Utils.isNullOrEmpty(form.getIdFinanciador())){
 			errors.add("error", new ActionMessage("errors.required", Utils.getMessage("sirius.ingreso.financiador.label")));
 		}
 		return errors;
@@ -71,7 +69,7 @@ public class IngresoAction extends BaseAction<Ingreso, IngresoForm, IngresoServi
 		
 		String idTipoIngreso =(String) request.getParameter("idTipoIngreso");
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("isFinanciacion", ID_TIPO_INGRESO_FINANCIACION.equals(idTipoIngreso) ? "true" : "false");
+		map.put("isFinanciacion", tipoIngresoService.isIdFinanciacion(idTipoIngreso) ? "true" : "false");
 		sendJSON(response, map);
 		
 		return null;

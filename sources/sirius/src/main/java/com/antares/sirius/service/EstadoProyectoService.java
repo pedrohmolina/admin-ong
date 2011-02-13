@@ -12,4 +12,12 @@ import com.antares.sirius.model.EstadoProyecto;
  */
 public interface EstadoProyectoService extends BaseService<EstadoProyecto> {
 
+	/**
+	 * Devuelve el estado por defecto del proyecto
+	 * 
+	 * @return
+	 */
+	EstadoProyecto findDefault();
+
+
 }

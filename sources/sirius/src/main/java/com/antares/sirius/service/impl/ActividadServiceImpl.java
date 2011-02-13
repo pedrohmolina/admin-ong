@@ -1,12 +1,11 @@
 package com.antares.sirius.service.impl;
 
-import static com.antares.sirius.base.Constants.ID_ESTADO_ACTIVIDAD_PROGRESO;
-
 import com.antares.commons.service.impl.BusinessEntityServiceImpl;
 import com.antares.sirius.dao.ActividadDAO;
 import com.antares.sirius.model.Actividad;
 import com.antares.sirius.model.EstadoActividad;
 import com.antares.sirius.service.ActividadService;
+import com.antares.sirius.service.ParametroService;
 
 /**
  * Implementacion de la interfaz ActividadService.
@@ -17,6 +16,8 @@ import com.antares.sirius.service.ActividadService;
  */
 public class ActividadServiceImpl extends BusinessEntityServiceImpl<Actividad, ActividadDAO> implements ActividadService {
 
+	private ParametroService parametroService;
+	
 	public boolean isNombreRepetido(String nombre, Integer id) {
 		boolean isNombreRepetido;
 		if (id == null) {
@@ -43,8 +44,14 @@ public class ActividadServiceImpl extends BusinessEntityServiceImpl<Actividad, A
 	public boolean isActualizarCompletitud(Actividad actividad) {
 		boolean actualizarCompletitud = false;
 		if (actividad.getEstadoActividad() != null) {
-			actualizarCompletitud = actividad.getEstadoActividad().getId().equals(ID_ESTADO_ACTIVIDAD_PROGRESO);
+			Integer idEstadoActividadProgreso = parametroService.findIdEstadoActividadProgreso();
+			actualizarCompletitud = actividad.getEstadoActividad().getId().equals(idEstadoActividadProgreso);
 		}
 		return actualizarCompletitud;
 	}
+
+	public void setParametroService(ParametroService parametroService) {
+		this.parametroService = parametroService;
+	}
+
 }

@@ -1,7 +1,5 @@
 package com.antares.sirius.view.action;
 
-import static com.antares.sirius.base.Constants.ID_ESTADO_PROYECTO_IDEA;
-
 import java.util.Date;
 import java.util.HashSet;
 
@@ -68,7 +66,7 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 		updateAreasTematicas(entity, form.getIdCoordinadores());
 		
 		if (entity.getEstadoProyecto() == null) {
-			entity.setEstadoProyecto(estadoProyectoService.findById(ID_ESTADO_PROYECTO_IDEA));
+			entity.setEstadoProyecto(estadoProyectoService.findDefault());
 		}
 	}
 

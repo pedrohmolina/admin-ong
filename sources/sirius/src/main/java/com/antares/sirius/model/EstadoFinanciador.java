@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 
 
 @Entity
+@SuppressWarnings("serial")
 public class EstadoFinanciador extends PersistentObject {
 
 	private String descripcion;

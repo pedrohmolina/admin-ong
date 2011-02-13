@@ -17,6 +17,7 @@
 	<bean id="objetivoEspecificoDAO" 	class="com.antares.sirius.dao.impl.ObjetivoEspecificoDAOImpl" 	autowire="byName" />
 	<bean id="objetivoGeneralDAO" 		class="com.antares.sirius.dao.impl.ObjetivoGeneralDAOImpl" 		autowire="byName" />
 	<bean id="origenDAO" 				class="com.antares.sirius.dao.impl.OrigenDAOImpl" 				autowire="byName" />
+	<bean id="parametroDAO" 			class="com.antares.sirius.dao.impl.ParametroDAOImpl" 			autowire="byName" />
 	<bean id="perfilDAO" 				class="com.antares.sirius.dao.impl.PerfilDAOImpl" 				autowire="byName" />
 	<bean id="personaDAO" 				class="com.antares.sirius.dao.impl.PersonaDAOImpl" 				autowire="byName" />
 	<bean id="presupuestoDAO" 			class="com.antares.sirius.dao.impl.PresupuestoDAOImpl" 			autowire="byName" />

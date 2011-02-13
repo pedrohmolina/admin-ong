@@ -1,5 +1,6 @@
 package com.antares.sirius.model;
 
+@SuppressWarnings("serial")
 public class Usuario extends PersistentObject {
 
 	private Persona persona;

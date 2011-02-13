@@ -12,4 +12,11 @@ import com.antares.sirius.model.EstadoActividad;
  */
 public interface EstadoActividadService extends BaseService<EstadoActividad> {
 
+	/**
+	 * Devuelve el estado por defecto de la actividad
+	 * 
+	 * @return
+	 */
+	EstadoActividad findDefault();
+
 }

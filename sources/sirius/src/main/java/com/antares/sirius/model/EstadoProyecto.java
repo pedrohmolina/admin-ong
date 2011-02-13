@@ -7,6 +7,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
+@SuppressWarnings("serial")
 public class EstadoProyecto extends PersistentObject {
 
 	private String descripcion;

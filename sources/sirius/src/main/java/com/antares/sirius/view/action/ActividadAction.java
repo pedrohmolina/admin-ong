@@ -1,7 +1,5 @@
 package com.antares.sirius.view.action;
 
-import static com.antares.sirius.base.Constants.ID_ESTADO_ACTIVIDAD_LATENTE;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -59,7 +57,8 @@ public class ActividadAction extends BaseAction<Actividad, ActividadForm, Activi
 		}
 
 		if (entity.getEstadoActividad() == null) {
-			entity.setEstadoActividad(estadoActividadService.findById(ID_ESTADO_ACTIVIDAD_LATENTE));
+			entity.setEstadoActividad(estadoActividadService.findDefault());
+			entity.setCompletitud(0D);
 		} else if (service.isActualizarCompletitud(entity)) {
 			entity.setCompletitud(form.getCompletitud().doubleValue());
 		}
