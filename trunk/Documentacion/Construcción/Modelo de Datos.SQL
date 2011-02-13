@@ -200,7 +200,7 @@ CREATE TABLE rolAcceso
 CREATE TABLE parametro
 (
 	id INT NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
-	nombre VARCHAR(20) NOT NULL COMMENT 'Nombre del Parametro',
+	nombre VARCHAR(50) NOT NULL COMMENT 'Nombre del Parametro',
 	valor VARCHAR(255) NOT NULL COMMENT 'Valor del Parametro',
 	descripcion VARCHAR(255) NOT NULL COMMENT 'Descripcion del Parametro',
 	PRIMARY KEY (id),
