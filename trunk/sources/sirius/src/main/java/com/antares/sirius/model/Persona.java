@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 @Entity
+@SuppressWarnings("serial")
 public class Persona extends BusinessObject {
 
 	@ManyToOne(fetch = FetchType.EAGER)

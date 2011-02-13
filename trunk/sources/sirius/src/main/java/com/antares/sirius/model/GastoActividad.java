@@ -2,6 +2,7 @@ package com.antares.sirius.model;
 
 
 
+@SuppressWarnings("serial")
 public class GastoActividad extends Gasto {
 
 	private Actividad actividad;

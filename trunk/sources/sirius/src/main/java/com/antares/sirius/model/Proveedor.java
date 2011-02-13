@@ -7,6 +7,7 @@ import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 
 @Entity
+@SuppressWarnings("serial")
 public class Proveedor extends BusinessObject {
 
 	@ManyToOne(fetch = FetchType.EAGER)

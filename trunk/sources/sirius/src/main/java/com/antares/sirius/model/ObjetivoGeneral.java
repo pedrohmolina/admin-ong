@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
+@SuppressWarnings("serial")
 public class ObjetivoGeneral extends Ponderable {
 
 	@ManyToOne

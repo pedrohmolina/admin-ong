@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
+@SuppressWarnings("serial")
 public class RelacionContractual extends BusinessObject {
 
     @Column(nullable = false)

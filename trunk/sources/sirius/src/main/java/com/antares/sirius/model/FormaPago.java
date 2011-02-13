@@ -3,6 +3,7 @@ package com.antares.sirius.model;
 import javax.persistence.Entity;
 
 @Entity
+@SuppressWarnings("serial")
 public class FormaPago extends PersistentObject {
 
 	private String descripcion;

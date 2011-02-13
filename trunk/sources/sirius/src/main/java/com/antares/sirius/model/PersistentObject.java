@@ -1,12 +1,14 @@
 package com.antares.sirius.model;
 
+import java.io.Serializable;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public abstract class PersistentObject {
+public abstract class PersistentObject implements Serializable {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 @Entity
+@SuppressWarnings("serial")
 public class Proyecto extends BusinessObject {
 
 	@ManyToOne(fetch = FetchType.EAGER)

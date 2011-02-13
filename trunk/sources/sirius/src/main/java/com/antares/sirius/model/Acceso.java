@@ -8,6 +8,7 @@ import javax.persistence.ManyToOne;
 
 
 @Entity
+@SuppressWarnings("serial")
 public class Acceso extends PersistentObject implements Comparable<Acceso>{
 
 	@ManyToOne(fetch = FetchType.EAGER)

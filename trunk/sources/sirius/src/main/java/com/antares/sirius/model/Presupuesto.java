@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
 @Entity
+@SuppressWarnings("serial")
 public class Presupuesto extends PersistentObject {
 
 	@ManyToOne

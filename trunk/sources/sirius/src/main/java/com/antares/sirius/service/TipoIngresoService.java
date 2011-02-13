@@ -12,4 +12,11 @@ import com.antares.sirius.model.TipoIngreso;
  */
 public interface TipoIngresoService extends BaseService<TipoIngreso> {
 
+	/**
+	 * Veirifica que el id pasado por parametro corresponda al Tipo Ingreso Financiacion 
+	 * @param id
+	 * @return
+	 */
+	boolean isIdFinanciacion(String id);
+
 }

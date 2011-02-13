@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 
 
 @Entity
+@SuppressWarnings("serial")
 public class Accion extends PersistentObject {
 
     @Column(nullable = false)
