@@ -512,8 +512,11 @@ CREATE TABLE proximoEstadoActividad
 (
 	idEstadoActividad INT NOT NULL,
 	idProximoEstadoActividad INT NOT NULL,
-	PRIMARY KEY (idEstadoActividad, idProximoEstadoActividad)
-) 
+        KEY (idEstadoActividad),
+        KEY (idProximoEstadoActividad),
+        CONSTRAINT FK_proximoEstadoActividad_estadoActividad FOREIGN KEY (idProximoEstadoActividad) REFERENCES estadoActividad(id),
+        CONSTRAINT FK_proximoEstadoActividad_proximoEstadoActividad FOREIGN KEY (idEstadoActividad) REFERENCES estadoActividad(id)
+)
 ;
 
 
@@ -717,14 +720,6 @@ ALTER TABLE rubro ADD CONSTRAINT FK_rubro_rubro
 
 ALTER TABLE estadoProyecto ADD CONSTRAINT FK_estadoProyecto_estadoProyecto 
 	FOREIGN KEY (idEstadoAnterior) REFERENCES estadoProyecto (id)
-;
-
-ALTER TABLE proximoEstadoActividad ADD CONSTRAINT FK_proximoEstadoActividad_estadoActividad 
-	FOREIGN KEY (idEstadoActividad) REFERENCES estadoActvidad (id)
-;
-
-ALTER TABLE proximoEstadoActividad ADD CONSTRAINT FK_proximoEstadoActividad_proximoEstadoActividad 
-	FOREIGN KEY (idProximoEstadoActividad) REFERENCES estadoActvidad (id)
 ;
 
 ALTER TABLE actividad ADD CONSTRAINT FK_actividad_estadoActividad 
