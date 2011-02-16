@@ -5,7 +5,6 @@ import static com.antares.commons.enums.ActionEnum.UPDATE;
 
 import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -235,8 +234,7 @@ public abstract class BaseAction<T extends BusinessObject, V extends AbstractFor
 		T entity = null;
 		try {
 			// Obtengo una nueva instancia de la entidad usando reflection
-	        Type type = getClass().getGenericSuperclass();
-	        ParameterizedType paramType = (ParameterizedType) type;
+	        ParameterizedType paramType = findParameterizedType(getClass());
 	        Class<T> clazz = (Class<T>) paramType.getActualTypeArguments()[0];
 	        entity = clazz.newInstance();
 
@@ -245,6 +243,25 @@ public abstract class BaseAction<T extends BusinessObject, V extends AbstractFor
 			throw new ViewException("Ha ocurrido un error al crear la entidad a partir del formulario", e);
 		}
         return entity;
+	}
+
+	/**
+	 * Busca de forma recursiva en las clases padre la primera clase genérica parametrizable
+	 * 
+	 * @param clazz clase
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	protected ParameterizedType findParameterizedType(Class clazz) {
+		ParameterizedType type = null;
+		if (clazz != null) {
+			if (clazz.getGenericSuperclass() instanceof ParameterizedType) {
+				type = (ParameterizedType)clazz.getGenericSuperclass();
+			} else {
+				type = findParameterizedType(clazz.getSuperclass());
+			}
+		}
+		return type;
 	}
 
 	/**

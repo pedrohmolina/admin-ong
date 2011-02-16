@@ -185,6 +185,99 @@
 			</field>
 		</form>
 
+		<form name="gastoActividadForm">
+			<field property="idProyecto" depends="required">
+				<arg position="0" key="sirius.gasto.proyecto.label"/>
+			</field>
+			<field property="idActividad" depends="required">
+				<arg position="0" key="sirius.gasto.actividad.label"/>
+			</field>
+			<field property="fecha" depends="required, date">
+				<arg position="0" key="sirius.gasto.fecha.label"/>
+				<var>
+					<var-name>datePattern</var-name>
+					<var-value>dd/MM/yyyy</var-value>
+				</var>
+			</field>
+			<field property="idRubro" depends="required">
+				<arg position="0" key="sirius.gasto.rubro.label"/>
+			</field>
+			<field property="idOrigen" depends="required">
+				<arg position="0" key="sirius.gasto.origen.label"/>
+			</field>
+			<field property="idProveedor" depends="required">
+				<arg position="0" key="sirius.gasto.proveedor.label"/>
+			</field>
+			<field property="idTipoComprobante" depends="required">
+				<arg position="0" key="sirius.gasto.tipoComprobante.label"/>
+			</field>
+			<field property="importe" depends="required, positiveDouble">
+				<arg position="0" key="sirius.gasto.importe.label"/>
+			</field>
+			<field property="numeroComprobante" depends="required, integer">
+				<arg position="0" key="sirius.gasto.numeroComprobante.label"/>
+			</field>
+		</form>
+
+		<form name="gastoOrganizacionForm">
+			<field property="fecha" depends="required, date">
+				<arg position="0" key="sirius.gasto.fecha.label"/>
+				<var>
+					<var-name>datePattern</var-name>
+					<var-value>dd/MM/yyyy</var-value>
+				</var>
+			</field>
+			<field property="idRubro" depends="required">
+				<arg position="0" key="sirius.gasto.rubro.label"/>
+			</field>
+			<field property="idOrigen" depends="required">
+				<arg position="0" key="sirius.gasto.origen.label"/>
+			</field>
+			<field property="idProveedor" depends="required">
+				<arg position="0" key="sirius.gasto.proveedor.label"/>
+			</field>
+			<field property="idTipoComprobante" depends="required">
+				<arg position="0" key="sirius.gasto.tipoComprobante.label"/>
+			</field>
+			<field property="importe" depends="required, positiveDouble">
+				<arg position="0" key="sirius.gasto.importe.label"/>
+			</field>
+			<field property="numeroComprobante" depends="required, integer">
+				<arg position="0" key="sirius.gasto.numeroComprobante.label"/>
+			</field>
+		</form>
+
+		<form name="gastoProyectoForm">
+			<field property="idProyecto" depends="required">
+				<arg position="0" key="sirius.gasto.proyecto.label"/>
+			</field>
+			<field property="fecha" depends="required, date">
+				<arg position="0" key="sirius.gasto.fecha.label"/>
+				<var>
+					<var-name>datePattern</var-name>
+					<var-value>dd/MM/yyyy</var-value>
+				</var>
+			</field>
+			<field property="idRubro" depends="required">
+				<arg position="0" key="sirius.gasto.rubro.label"/>
+			</field>
+			<field property="idOrigen" depends="required">
+				<arg position="0" key="sirius.gasto.origen.label"/>
+			</field>
+			<field property="idProveedor" depends="required">
+				<arg position="0" key="sirius.gasto.proveedor.label"/>
+			</field>
+			<field property="idTipoComprobante" depends="required">
+				<arg position="0" key="sirius.gasto.tipoComprobante.label"/>
+			</field>
+			<field property="importe" depends="required, positiveDouble">
+				<arg position="0" key="sirius.gasto.importe.label"/>
+			</field>
+			<field property="numeroComprobante" depends="required, integer">
+				<arg position="0" key="sirius.gasto.numeroComprobante.label"/>
+			</field>
+		</form>
+
 		<form name="ingresoForm">
 			<field property="idTipoIngreso" depends="required">
 				<arg position="0" key="sirius.ingreso.tipoIngreso.label"/>

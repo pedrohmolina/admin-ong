@@ -1,9 +1,12 @@
 package com.antares.sirius.service.impl;
 
+import java.util.Collection;
+
 import com.antares.commons.service.impl.BusinessEntityServiceImpl;
 import com.antares.sirius.dao.ActividadDAO;
 import com.antares.sirius.model.Actividad;
 import com.antares.sirius.model.EstadoActividad;
+import com.antares.sirius.model.Proyecto;
 import com.antares.sirius.service.ActividadService;
 import com.antares.sirius.service.ParametroService;
 
@@ -47,6 +50,10 @@ public class ActividadServiceImpl extends BusinessEntityServiceImpl<Actividad, A
 			actualizarCompletitud = actividad.getEstadoActividad().getId().equals(idEstadoActividadProgreso);
 		}
 		return actualizarCompletitud;
+	}
+
+	public Collection<Actividad> findAllByProyecto(Proyecto proyecto) {
+		return dao.findAllByProyecto(proyecto);
 	}
 
 	public void setParametroService(ParametroService parametroService) {

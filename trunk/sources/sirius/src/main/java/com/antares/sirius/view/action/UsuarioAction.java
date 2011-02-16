@@ -35,7 +35,6 @@ public class UsuarioAction extends BaseAction<Usuario, UsuarioForm, UsuarioServi
 
 	@Override
 	public UsuarioFilter createFilter(UsuarioForm form) {
-		//TODO revisar el tema del filtro
 		UsuarioFilter filter = new UsuarioFilter();
 		filter.setApellido(form.getFiltroApellido());
 		filter.setNombre(form.getFiltroNombre());

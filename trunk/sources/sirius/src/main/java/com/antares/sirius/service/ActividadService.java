@@ -1,7 +1,10 @@
 package com.antares.sirius.service;
 
+import java.util.Collection;
+
 import com.antares.commons.service.BusinessEntityService;
 import com.antares.sirius.model.Actividad;
+import com.antares.sirius.model.Proyecto;
 
 /**
  * Servicio que contiene la lógica de negocio de la entidad Actividad.
@@ -38,4 +41,11 @@ public interface ActividadService extends BusinessEntityService<Actividad> {
 	 */
 	public boolean isActualizarCompletitud(Actividad actividad);
 
+	/**
+	 * Devuelve todas las actividades pertenecientes al proyecto
+	 * 
+	 * @param proyecto proyecto
+	 * @return
+	 */
+	Collection<Actividad> findAllByProyecto(Proyecto proyecto);
 }

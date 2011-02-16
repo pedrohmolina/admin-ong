@@ -85,6 +85,54 @@
 		<put name="body" value="/WEB-INF/financiador/financiador-view.jsp" />
 	</definition>
 
+	<!-- Gasto Actividad -->
+	<definition name=".abmGastoActividadQuery" extends="mainLayout">
+		<put name="title" value="Administración de Gastos de Actividad" />
+		<put name="body" value="/WEB-INF/gasto/gasto-actividad-query.jsp" />
+	</definition>
+
+	<definition name=".abmGastoActividadForm" extends="mainLayout">
+		<put name="title" value="Gasto de Actividad - Datos" />
+		<put name="body" value="/WEB-INF/gasto/gasto-actividad-form.jsp" />
+	</definition>
+
+	<definition name=".abmGastoActividadView" extends="mainLayout">
+		<put name="title" value="Gasto de Actividad - Datos" />
+		<put name="body" value="/WEB-INF/gasto/gasto-actividad-view.jsp" />
+	</definition>
+
+	<!-- Gasto Organizacion -->
+	<definition name=".abmGastoOrganizacionQuery" extends="mainLayout">
+		<put name="title" value="Administración de Gastos Generales de Organizacion" />
+		<put name="body" value="/WEB-INF/gasto/gasto-organizacion-query.jsp" />
+	</definition>
+
+	<definition name=".abmGastoOrganizacionForm" extends="mainLayout">
+		<put name="title" value="Gasto General de Organizacion - Datos" />
+		<put name="body" value="/WEB-INF/gasto/gasto-organizacion-form.jsp" />
+	</definition>
+
+	<definition name=".abmGastoOrganizacionView" extends="mainLayout">
+		<put name="title" value="Gasto General de Organizacion - Datos" />
+		<put name="body" value="/WEB-INF/gasto/gasto-organizacion-view.jsp" />
+	</definition>
+
+	<!-- Gasto Proyecto -->
+	<definition name=".abmGastoProyectoQuery" extends="mainLayout">
+		<put name="title" value="Administración de Gastos Generales de Proyecto" />
+		<put name="body" value="/WEB-INF/gasto/gasto-proyecto-query.jsp" />
+	</definition>
+
+	<definition name=".abmGastoProyectoForm" extends="mainLayout">
+		<put name="title" value="Gasto General de Proyecto - Datos" />
+		<put name="body" value="/WEB-INF/gasto/gasto-proyecto-form.jsp" />
+	</definition>
+
+	<definition name=".abmGastoProyectoView" extends="mainLayout">
+		<put name="title" value="Gasto General de Proyecto - Datos" />
+		<put name="body" value="/WEB-INF/gasto/gasto-proyecto-view.jsp" />
+	</definition>
+
 	<!-- Ingreso -->
 	<definition name=".abmIngresoQuery" extends="mainLayout">
 		<put name="title" value="Administración de Ingresos" />

@@ -49,4 +49,25 @@ public interface ParametroService extends BaseService<Parametro> {
 	 */
 	Integer findIdEstadoActividadProgreso();
 
+	/**
+	 * Devuelve el id del tipo de gasto correspondiente a gastos de actividades
+	 * 
+	 * @return
+	 */
+	Integer findIdTipoGastoActividad();
+
+	/**
+	 * Devuelve el id del tipo de gasto correspondiente a gastos de organizacion
+	 * 
+	 * @return
+	 */
+	Integer findIdTipoGastoOrganizacion();
+
+	/**
+	 * Devuelve el id del tipo de gasto correspondiente a gastos de proyectos
+	 * 
+	 * @return
+	 */
+	Integer findIdTipoGastoProyecto();
+
 }
