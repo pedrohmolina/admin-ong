@@ -53,8 +53,10 @@ public class PersonaDAOImpl extends BusinessEntityDAOImpl<Persona> implements Pe
 		addOrder(crit);
 		return crit.list();
 	}
+
 	@Override
 	protected void addOrder(Criteria crit) {
 		crit.addOrder(Order.asc("apellido"));
 	}
+
 }

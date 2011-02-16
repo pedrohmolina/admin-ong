@@ -34,6 +34,8 @@
 		<form-bean name="relacionContractualForm" type="com.antares.sirius.view.form.RelacionContractualForm" />
 		<form-bean name="rolForm" type="com.antares.sirius.view.form.RolForm" />
 		<form-bean name="rubroForm" type="com.antares.sirius.view.form.RubroForm" />
+		<form-bean name="usuarioForm" type="com.antares.sirius.view.form.UsuarioForm" />
+		<form-bean name="usuarioPersonaForm" type="com.antares.sirius.view.form.UsuarioPersonaForm" />
 	</form-beans>
 
 	<!-- ================= Global Exceptions Definitions ================== -->
@@ -374,6 +376,41 @@
 			<forward name="error" 		path="/rubro/rubro-form.do?method=initForm" />
 		</action>
 		<!-- Fin de actions de rubros -->
+
+		<!-- Actions de usuarios -->
+		<action path="/usuario/usuario-query" name="usuarioForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="query" 		path=".abmUsuarioQuery" />
+			<forward name="success" 	path="/usuario/usuario-query.do?method=query" />
+		</action>
+
+		<action path="/usuario/usuario-form" name="usuarioForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="form" 		path=".abmUsuarioForm" />
+			<forward name="view" 		path=".abmUsuarioView"></forward>
+			<forward name="success" 	path="/usuario/usuario-query.do?method=query" />
+		</action>
+
+		<action path="/usuario/usuario-form-validate" name="usuarioForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/usuario/usuario-form.do?method=initForm">
+			<forward name="success" 	path="/usuario/usuario-query.do?method=query" />
+			<forward name="error" 		path="/usuario/usuario-form.do?method=initForm" />
+		</action>
+
+		<action path="/usuario/usuario-persona-form" name="usuarioPersonaForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="form" 		path=".abmUsuarioPersonaForm" />
+		</action>
+
+		<action path="/usuario/usuario-persona-form-validate" name="usuarioPersonaForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/usuario/usuario-persona-form.do?method=initFormUsuarioPersona">
+			<forward name="success" 	path="/persona/persona-query.do?method=query" />
+			<forward name="error" 		path="/usuario/usuario-persona-form.do?method=initFormUsuarioPersona" />
+		</action>
+
+		<!-- Fin de actions de usuarios -->
 
 
 	</action-mappings>

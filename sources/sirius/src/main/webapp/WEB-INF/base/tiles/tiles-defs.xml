@@ -162,7 +162,7 @@
 
 	<definition name=".abmPerfilView" extends="mainLayout">
 		<put name="title" value="Perfil - Datos" />
-		<put name="body" value="/WEB-INF/persona/persona-view.jsp" />
+		<put name="body" value="/WEB-INF/perfil/perfil-view.jsp" />
 	</definition>
 
 	<!-- Persona -->
@@ -259,6 +259,27 @@
 	<definition name=".abmRubroView" extends="mainLayout">
 		<put name="title" value="Rubro - Datos" />
 		<put name="body" value="/WEB-INF/rubro/rubro-view.jsp" />
+	</definition>
+
+	<!-- Usuario -->
+	<definition name=".abmUsuarioQuery" extends="mainLayout">
+		<put name="title" value="Administración de Usuarios" />
+		<put name="body" value="/WEB-INF/usuario/usuario-query.jsp" />
+	</definition>
+
+	<definition name=".abmUsuarioForm" extends="mainLayout">
+		<put name="title" value="Usuario - Datos" />
+		<put name="body" value="/WEB-INF/usuario/usuario-form.jsp" />
+	</definition>
+
+	<definition name=".abmUsuarioView" extends="mainLayout">
+		<put name="title" value="Usuario - Datos" />
+		<put name="body" value="/WEB-INF/usuario/usuario-view.jsp" />
+	</definition>
+
+	<definition name=".abmUsuarioPersonaForm" extends="mainLayout">
+		<put name="title" value="Usuario - Datos" />
+		<put name="body" value="/WEB-INF/usuario/usuario-persona-form.jsp" />
 	</definition>
 
 </tiles-definitions>

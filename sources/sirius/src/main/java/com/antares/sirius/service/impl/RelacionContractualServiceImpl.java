@@ -15,11 +15,10 @@ import com.antares.sirius.service.RelacionContractualService;
 public class RelacionContractualServiceImpl extends BusinessEntityServiceImpl<RelacionContractual, RelacionContractualDAO> implements RelacionContractualService {
 
 	public boolean isNombreRepetido(String nombre, Integer id) {
-		boolean isNombreRepetido;
-		if (id == null) {
-			isNombreRepetido = dao.findByNombre(nombre) != null;
-		} else {
-			isNombreRepetido = !dao.findByNombre(nombre).getId().equals(id);
+		boolean isNombreRepetido = false;
+		RelacionContractual entity = dao.findByNombre(nombre);
+		if (entity != null) {
+			isNombreRepetido = !entity.getId().equals(id);
 		}
 		return isNombreRepetido;
 	}

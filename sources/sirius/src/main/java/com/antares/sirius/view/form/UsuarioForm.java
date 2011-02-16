@@ -5,20 +5,22 @@ import java.util.Collection;
 import com.antares.commons.util.Utils;
 import com.antares.commons.view.form.AbstractForm;
 import com.antares.sirius.model.FormaPago;
+import com.antares.sirius.model.Perfil;
 import com.antares.sirius.model.Persona;
 import com.antares.sirius.model.RelacionContractual;
 import com.antares.sirius.model.TipoDocumento;
+import com.antares.sirius.model.Usuario;
 
 /**
  * Representacion en la capa de vista de la entidad de modelo Perfil.
  *
- * @version 1.0.0 Created 23/01/2011 by Julian Martinez
+ * @version 1.0.0 Created 14/02/2011 by Julian Martinez
  * @author <a href:mailto:otakon@gmail.com> Julian Martinez </a>
  *
  * @param <T> clase de la entidad de modelo
  */
 @SuppressWarnings("serial")
-public class PersonaForm extends AbstractForm<Persona> {
+public class UsuarioForm extends AbstractForm<Usuario> {
 
 	private String apellido;
 	private String nombre;
@@ -35,25 +37,32 @@ public class PersonaForm extends AbstractForm<Persona> {
 	private String email;
 	private String funcion;
 	private String observaciones;
+	private String username;
+	private String password;
+	private String password2;
 	private String idTipoDocumento;
 	private String idRelacionContractual;
 	private String idFormaPago;
 	private String idPersonaFactura;
+	private String idPerfil;
 	private Collection<TipoDocumento> tiposDocumento;
 	private Collection<RelacionContractual> relacionesContractuales;
 	private Collection<FormaPago> formasPago;
 	private Collection<Persona> personasFactura;
+	private Collection<Perfil> perfiles;
 
 	private String filtroApellido;
 	private String filtroNombre;
 	private String filtroNumeroDocumento;
 	private String filtroCuit;
 	private String filtroIdRelacionContractual;
+	private String filtroIdPerfil;
 
 	private String labelTipoDocumento;
 	private String labelRelacionContractual;
 	private String labelFormaPago;
 	private String labelPersonaFactura;
+	private String labelPerfil;
 
 	public String getApellido() {
 		return apellido;
@@ -311,6 +320,62 @@ public class PersonaForm extends AbstractForm<Persona> {
 		this.labelPersonaFactura = labelPersonaFactura;
 	}
 
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getPassword2() {
+		return password2;
+	}
+
+	public void setPassword2(String password2) {
+		this.password2 = password2;
+	}
+
+	public String getIdPerfil() {
+		return idPerfil;
+	}
+
+	public void setIdPerfil(String idPerfil) {
+		this.idPerfil = idPerfil;
+	}
+
+	public Collection<Perfil> getPerfiles() {
+		return perfiles;
+	}
+
+	public void setPerfiles(Collection<Perfil> perfiles) {
+		this.perfiles = perfiles;
+	}
+
+	public String getFiltroIdPerfil() {
+		return filtroIdPerfil;
+	}
+
+	public void setFiltroIdPerfil(String filtroIdPerfil) {
+		this.filtroIdPerfil = filtroIdPerfil;
+	}
+
+	public String getLabelPerfil() {
+		return labelPerfil;
+	}
+
+	public void setLabelPerfil(String labelPerfil) {
+		this.labelPerfil = labelPerfil;
+	}
+
 	@Override
 	public void initialize() {
 		this.id = null;
@@ -330,19 +395,25 @@ public class PersonaForm extends AbstractForm<Persona> {
 		this.email = "";
 		this.funcion = "";
 		this.observaciones = "";
+		this.username = "";
+		this.password = "";
+		this.password2 = "";
+		this.idTipoDocumento = "";
+		this.idRelacionContractual = "";
+		this.idFormaPago = "";
+		this.idPersonaFactura = "";
+		this.idPerfil = "";
 		this.filtroApellido = "";
 		this.filtroNombre = "";
 		this.filtroNumeroDocumento = "";
 		this.filtroCuit = "";
 		this.filtroIdRelacionContractual = "";
-		this.idTipoDocumento = "";
-		this.idRelacionContractual = "";
-		this.idFormaPago = "";
-		this.idPersonaFactura = "";
+		this.filtroIdPerfil = "";
 		this.labelTipoDocumento = "";
 		this.labelRelacionContractual = "";
 		this.labelFormaPago = "";
 		this.labelPersonaFactura = "";
+		this.labelPerfil = "";
 	}
 
 	@Override
@@ -363,48 +434,59 @@ public class PersonaForm extends AbstractForm<Persona> {
 		this.email = "";
 		this.funcion = "";
 		this.observaciones = "";
+		this.username = "";
+		this.password = "";
+		this.password2 = "";
 		this.idTipoDocumento = "";
 		this.idRelacionContractual = "";
 		this.idFormaPago = "";
 		this.idPersonaFactura = "";
+		this.idPerfil = "";
 		this.labelTipoDocumento = "";
 		this.labelRelacionContractual = "";
 		this.labelFormaPago = "";
 		this.labelPersonaFactura = "";
+		this.labelPerfil = "";
 	}
 
 	@Override
-	public void initializeForm(Persona entity) {
+	public void initializeForm(Usuario entity) {
 		this.id = entity.getId();
-		this.apellido = entity.getApellido();
-		this.nombre = entity.getNombre();
-		this.segundoNombre = entity.getSegundoNombre();
-		this.numeroDocumento = entity.getNumeroDocumento().toString();
-		this.cuit = entity.getCuit();
-		this.cbu = entity.getCbu();
-		this.nacionalidad = entity.getNacionalidad();
-		this.fechaNacimiento = Utils.formatDate(entity.getFechaNacimiento());
-		this.profesion = entity.getProfesion();
-		this.direccion = entity.getDireccion();
-		this.telefono = entity.getTelefono();
-		this.celular = entity.getCelular();
-		this.email = entity.getEmail();
-		this.funcion = entity.getFuncion();
-		this.observaciones = entity.getObservaciones();
-		this.idTipoDocumento = entity.getTipoDocumento().getId().toString();
-		this.idRelacionContractual = entity.getRelacionContractual().getId().toString();
-		this.idFormaPago = entity.getFormaPago().getId().toString();
-		this.labelTipoDocumento = entity.getTipoDocumento().getDescripcion();
-		this.labelRelacionContractual = entity.getRelacionContractual().getDescripcion();
-		this.labelFormaPago = entity.getFormaPago().getDescripcion();
+		this.apellido = entity.getPersona().getApellido();
+		this.nombre = entity.getPersona().getNombre();
+		this.segundoNombre = entity.getPersona().getSegundoNombre();
+		this.numeroDocumento = entity.getPersona().getNumeroDocumento().toString();
+		this.cuit = entity.getPersona().getCuit();
+		this.cbu = entity.getPersona().getCbu();
+		this.nacionalidad = entity.getPersona().getNacionalidad();
+		this.fechaNacimiento = Utils.formatDate(entity.getPersona().getFechaNacimiento());
+		this.profesion = entity.getPersona().getProfesion();
+		this.direccion = entity.getPersona().getDireccion();
+		this.telefono = entity.getPersona().getTelefono();
+		this.celular = entity.getPersona().getCelular();
+		this.email = entity.getPersona().getEmail();
+		this.funcion = entity.getPersona().getFuncion();
+		this.observaciones = entity.getPersona().getObservaciones();
+		this.idTipoDocumento = entity.getPersona().getTipoDocumento().getId().toString();
+		this.idRelacionContractual = entity.getPersona().getRelacionContractual().getId().toString();
+		this.idFormaPago = entity.getPersona().getFormaPago().getId().toString();
+		this.labelTipoDocumento = entity.getPersona().getTipoDocumento().getDescripcion();
+		this.labelRelacionContractual = entity.getPersona().getRelacionContractual().getDescripcion();
+		this.labelFormaPago = entity.getPersona().getFormaPago().getDescripcion();
 		
-		if (entity.getPersonaFactura() != null) {
-			this.idPersonaFactura = entity.getPersonaFactura().getId().toString();
-			this.labelPersonaFactura = entity.getPersonaFactura().getNombreYApellido();
+		if (entity.getPersona().getPersonaFactura() != null) {
+			this.idPersonaFactura = entity.getPersona().getPersonaFactura().getId().toString();
+			this.labelPersonaFactura = entity.getPersona().getPersonaFactura().getNombreYApellido();
 		} else {
 			this.idPersonaFactura = "";
 			this.labelPersonaFactura = "";
 		}
+		
+		this.username = entity.getUsername();
+		this.password = "0123456789"; //TODO revisar, esto es fruta para que no reviente la validacion cuando se hace update
+		this.password2 = "0123456789";
+		this.idPerfil = entity.getPerfil().getId().toString();
+		this.labelPerfil = entity.getPerfil().getNombre();
 	}
 
 }

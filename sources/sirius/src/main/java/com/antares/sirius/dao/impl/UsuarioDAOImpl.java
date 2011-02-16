@@ -1,8 +1,11 @@
 package com.antares.sirius.dao.impl;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
-import com.antares.commons.dao.impl.GenericDAOImpl;
+import com.antares.commons.dao.impl.BusinessEntityDAOImpl;
 import com.antares.sirius.dao.UsuarioDAO;
 import com.antares.sirius.model.Usuario;
 
@@ -13,10 +16,16 @@ import com.antares.sirius.model.Usuario;
  * @author <a href:mailto:otakon@gmail.com> Julian Martinez </a>
  *
  */
-public class UsuarioDAOImpl extends GenericDAOImpl<Usuario> implements UsuarioDAO {
+public class UsuarioDAOImpl extends BusinessEntityDAOImpl<Usuario> implements UsuarioDAO {
 	
+	public Usuario findByUsername(String username) {
+		Criteria crit = buildCriteria();
+		crit.add(Restrictions.ilike("username", username, MatchMode.EXACT));
+		return (Usuario)crit.uniqueResult();
+	}
+
 	@Override
 	protected void addOrder(Criteria crit) {
-		//TODO agregar orden
+		crit.addOrder(Order.asc("username"));
 	}
 }

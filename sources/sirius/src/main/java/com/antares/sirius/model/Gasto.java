@@ -2,9 +2,16 @@ package com.antares.sirius.model;
 
 import java.sql.Date;
 
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.MappedSuperclass;
 
+
 @MappedSuperclass
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="idTipoGasto", discriminatorType=DiscriminatorType.INTEGER)
 public abstract class Gasto extends PersistentObject {
 
 	private Rubro rubro;

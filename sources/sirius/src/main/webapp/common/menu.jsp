@@ -40,6 +40,7 @@
 		<menu:submenu top="true" label="&nbsp;Seguridad&nbsp;">
 			<menu:item style="width: 160px;" label="Rol"><c:url value="/rol/rol-query.do?method=initQuery"/></menu:item>
 			<menu:item style="width: 160px;" label="Perfil"><c:url value="/perfil/perfil-query.do?method=initQuery"/></menu:item>
+			<menu:item style="width: 160px;" label="Usuario"><c:url value="/usuario/usuario-query.do?method=initQuery"/></menu:item>
 		</menu:submenu>
 	<%--
 	</authz:authorize>

@@ -19,11 +19,10 @@ public class ActividadServiceImpl extends BusinessEntityServiceImpl<Actividad, A
 	private ParametroService parametroService;
 	
 	public boolean isNombreRepetido(String nombre, Integer id) {
-		boolean isNombreRepetido;
-		if (id == null) {
-			isNombreRepetido = dao.findByNombre(nombre) != null;
-		} else {
-			isNombreRepetido = !dao.findByNombre(nombre).getId().equals(id);
+		boolean isNombreRepetido = false;
+		Actividad entity = dao.findByNombre(nombre);
+		if (entity != null) {
+			isNombreRepetido = !entity.getId().equals(id);
 		}
 		return isNombreRepetido;
 	}
