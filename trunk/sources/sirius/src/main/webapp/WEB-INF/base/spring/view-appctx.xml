@@ -78,7 +78,7 @@
 	<bean name="/perfil/perfil-form-validate" 	parent="perfilAction" singleton="false" />
 
 	<bean name="personaAction" class="com.antares.sirius.view.action.PersonaAction" autowire="byName">
-		<property name="service" ref="personaService" />
+		<property name="service" 						ref="personaService" />
 		<property name="tipoDocumentoService" 			ref="tipoDocumentoService" />
 		<property name="relacionContractualService" 	ref="relacionContractualService" />
 		<property name="formaPagoService" 				ref="formaPagoService" />
@@ -127,5 +127,19 @@
 	<bean name="/rubro/rubro-query" 		parent="rubroAction" singleton="false" />
 	<bean name="/rubro/rubro-form" 			parent="rubroAction" singleton="false" />
 	<bean name="/rubro/rubro-form-validate" parent="rubroAction" singleton="false" />
+
+	<bean name="usuarioAction" class="com.antares.sirius.view.action.UsuarioAction" autowire="byName">
+		<property name="service" 						ref="usuarioService" />
+		<property name="personaService" 				ref="personaService" />
+		<property name="perfilService" 					ref="perfilService" />
+		<property name="tipoDocumentoService" 			ref="tipoDocumentoService" />
+		<property name="relacionContractualService" 	ref="relacionContractualService" />
+		<property name="formaPagoService" 				ref="formaPagoService" />
+	</bean>
+	<bean name="/usuario/usuario-query" 					parent="usuarioAction" singleton="false" />
+	<bean name="/usuario/usuario-form" 						parent="usuarioAction" singleton="false" />
+	<bean name="/usuario/usuario-form-validate" 			parent="usuarioAction" singleton="false" />
+	<bean name="/usuario/usuario-persona-form" 				parent="usuarioAction" singleton="false" />
+	<bean name="/usuario/usuario-persona-form-validate" 	parent="usuarioAction" singleton="false" />
 
 </beans>

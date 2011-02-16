@@ -1,6 +1,6 @@
 package com.antares.sirius.service;
 
-import com.antares.commons.service.BaseService;
+import com.antares.commons.service.BusinessEntityService;
 import com.antares.sirius.model.Usuario;
 
 /**
@@ -10,6 +10,29 @@ import com.antares.sirius.model.Usuario;
  * @author <a href:mailto:otakon@gmail.com>Julian Martinez</a>
  *
  */
-public interface UsuarioService extends BaseService<Usuario> {
+public interface UsuarioService extends BusinessEntityService<Usuario> {
+
+	/**
+	 * Valida que el nombre no este repetido otra entidad con distinto id
+	 * 
+	 * @param nombre nombre a validar
+	 * @param id id de la entidad actual
+	 * @return
+	 */
+	boolean isNombreRepetido(String nombre, Integer id);
+
+	/**
+	 * Bloquea al usuario en el sistema, impidiendo que se pueda loguear
+	 * 
+	 * @param entity usuario a bloquear
+	 */
+	void ejecutarBloqueo(Usuario entity);
+	
+	/**
+	 * Desbloquea al usuario en el sistema, permitiendo que se pueda loguear
+	 * 
+	 * @param entity usuario a desbloquear
+	 */
+	void ejecutarDesbloqueo(Usuario entity);
 
 }

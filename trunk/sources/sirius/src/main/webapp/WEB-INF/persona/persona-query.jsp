@@ -78,6 +78,10 @@ function confirmarAccion(mensaje) {
 				src="<c:url value="/img/icoModificar.gif"/>" /></a>
 			<a href="<c:url value="/persona/persona-query.do?method=remove&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Eliminar" title="Eliminar"
 				src="<c:url value="/img/icons/cross.png"/>" onclick="return confirmarAccion('Est&aacute; seguro que desea eliminar el registro <bean:write name="item" property="nombre"/>?')" /></a>
+			<logic:empty name="item" property="usuario">
+				<a href="<c:url value="/usuario/usuario-persona-form.do?method=initCreateUsuarioPersona&idPersona="/><bean:write name="item" property="id"/>"><img border="0" alt="Crear Usuario" title="Crear Usuario"
+					src="<c:url value="/img/add_ico.gif"/>" /></a>
+			</logic:empty>
 		</display:column>
 	</display-el:table>
 </div>

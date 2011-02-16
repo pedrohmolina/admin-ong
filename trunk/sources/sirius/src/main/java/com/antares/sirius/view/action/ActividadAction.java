@@ -47,7 +47,7 @@ public class ActividadAction extends BaseAction<Actividad, ActividadForm, Activi
 		entity.setFechaInicio(Utils.parseDate(form.getFechaInicio()));
 		entity.setFechaFin(Utils.parseDate(form.getFechaFin()));
 		entity.setObservaciones(form.getObservaciones());
-		entity.setPresupuesto(Utils.parseDouble(form.getPresupuesto())); //TODO revisar esto
+		entity.setPresupuesto(Utils.parseDouble(form.getPresupuesto()));
 		entity.setPonderacion(Integer.parseInt(form.getPonderacion()));
 		if (Utils.isNotNullNorEmpty(form.getIdMeta())) {
 			entity.setMeta(metaService.findById(Integer.parseInt(form.getIdMeta())));

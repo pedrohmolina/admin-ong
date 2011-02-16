@@ -144,6 +144,15 @@
 		<property name="proxyTargetClass" value="true" />
 	</bean>
 	
+	<bean id="usuarioService" parent="abstractTransactionManager" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" autowire="byName">
+		<property name="target">
+			<bean class="com.antares.sirius.service.impl.UsuarioServiceImpl" autowire="byName">
+				<property name="dao" ref="usuarioDAO" /> 
+			</bean>
+		</property>
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+	
 
 	<!-- Servicios de entidades que no se actualizan desde la aplicacion -->
 	<bean id="accesoService" class="com.antares.sirius.service.impl.AccesoServiceImpl" autowire="byName">

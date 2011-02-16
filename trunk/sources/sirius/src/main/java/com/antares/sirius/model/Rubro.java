@@ -55,4 +55,14 @@ public class Rubro extends BusinessObject {
 		this.subRubros = subRubros;
 	}
 
+	@Override
+	public void setActivo(Boolean activo) {
+		super.setActivo(activo);
+		if (!activo) {
+			for (Rubro rubro : this.subRubros) {
+				rubro.setActivo(activo);
+			}
+		}
+	}
+
 }

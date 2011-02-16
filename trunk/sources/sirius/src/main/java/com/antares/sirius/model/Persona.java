@@ -8,7 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
+import javax.persistence.OneToOne;
 
 @Entity
 @SuppressWarnings("serial")
@@ -26,7 +26,7 @@ public class Persona extends BusinessObject {
 	@JoinColumns(@JoinColumn(name = "idFormaPago"))
 	private FormaPago formaPago;
 
-	@Transient //TODO cambiar por @OneToOne cuando se mapee el Usuario
+	@OneToOne(mappedBy = "persona")
 	private Usuario usuario;
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -211,6 +211,14 @@ public class Persona extends BusinessObject {
 
 	public String getNombreYApellido() {
 		return nombre + " " + apellido;
+	}
+
+	@Override
+	public void setActivo(Boolean activo) {
+		super.setActivo(activo);
+		if (!activo && this.usuario != null) {
+			usuario.setActivo(activo);
+		}
 	}
 
 }
