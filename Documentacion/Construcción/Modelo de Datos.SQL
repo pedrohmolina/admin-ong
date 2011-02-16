@@ -133,6 +133,8 @@ CREATE TABLE usuario
 	username VARCHAR(50) NOT NULL COMMENT 'Nombre de usuario con el que se accedera al sistema',
 	password VARCHAR(50) NOT NULL COMMENT 'Contraseña',
 	idPerfil INT NOT NULL COMMENT 'Perfil del Usuario',
+	bloqueado BOOL NOT NULL COMMENT 'Señal para manejo de bloqueos',
+	activo BOOL NOT NULL COMMENT 'Señal para manejo de baja logica',
 	PRIMARY KEY (id),
 	KEY (idPersona),
 	KEY (idPersona)
@@ -636,7 +638,7 @@ ALTER TABLE objetivoEspecifico ADD CONSTRAINT FK_objetivoEspecifico_objetivoGene
 ;
 
 ALTER TABLE usuario ADD CONSTRAINT FK_usuario_perfil 
-	FOREIGN KEY (idPersona) REFERENCES perfil (id)
+	FOREIGN KEY (idPerfil) REFERENCES perfil (id)
 ;
 
 ALTER TABLE usuario ADD CONSTRAINT FK_usuario_persona 
