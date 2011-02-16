@@ -34,8 +34,10 @@ public class RolAction extends BaseAction<Rol, RolForm, RolService> {
 		} else {
 			entity.getAccesos().clear();
 		}
-		for (Integer idAcceso : form.getIdAccesos()) {
-			entity.getAccesos().add(accesoService.findById(idAcceso));
+		if (form.getIdAccesos() != null) {
+			for (Integer idAcceso : form.getIdAccesos()) {
+				entity.getAccesos().add(accesoService.findById(idAcceso));
+			}
 		}
 	}
 

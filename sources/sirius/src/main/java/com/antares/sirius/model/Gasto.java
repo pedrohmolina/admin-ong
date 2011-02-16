@@ -1,36 +1,56 @@
 package com.antares.sirius.model;
 
-import java.sql.Date;
 
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.MappedSuperclass;
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
 
 
-@MappedSuperclass
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="idTipoGasto", discriminatorType=DiscriminatorType.INTEGER)
-public abstract class Gasto extends PersistentObject {
+@Entity
+@SuppressWarnings("serial")
+public class Gasto extends BusinessObject {
 
+	@ManyToOne
+	@JoinColumns(@JoinColumn(name = "idRubro"))
 	private Rubro rubro;
 
+	@ManyToOne
+	@JoinColumns(@JoinColumn(name = "idOrigen"))
 	private Origen origen;
 
+	@ManyToOne
+	@JoinColumns(@JoinColumn(name = "idProveedor"))
 	private Proveedor proveedor;
 
+	@ManyToOne
+	@JoinColumns(@JoinColumn(name = "idTipoComprobante"))
 	private TipoComprobante tipoComprobante;
 
+	@ManyToOne
+	@JoinColumns(@JoinColumn(name = "idPersona"))
 	private Persona persona;
 
+	@ManyToOne
+	@JoinColumns(@JoinColumn(name = "idProyecto"))
+    private Proyecto proyecto;
+
+	@ManyToOne
+	@JoinColumns(@JoinColumn(name = "idActividad"))
+	private Actividad actividad;
+
+	@ManyToOne
+	@JoinColumns(@JoinColumn(name = "idTipoGasto"))
 	private TipoGasto tipoGasto;
 
 	private Date fecha;
 	private String numeroComprobante;
 	private String paquete;
+	private String observaciones;
 	private Double importe;
-	private Boolean confirmado;
+	private Boolean confirmado = Boolean.FALSE;
 
 	public Date getFecha() {
 		return fecha;
@@ -104,20 +124,44 @@ public abstract class Gasto extends PersistentObject {
 		this.persona = persona;
 	}
 
-	public TipoGasto getTipoGasto() {
-		return tipoGasto;
-	}
-
-	public void setTipoGasto(TipoGasto tipoGasto) {
-		this.tipoGasto = tipoGasto;
-	}
-
 	public Boolean getConfirmado() {
 		return confirmado;
 	}
 
 	public void setConfirmado(Boolean confirmado) {
 		this.confirmado = confirmado;
+	}
+
+	public String getObservaciones() {
+		return observaciones;
+	}
+
+	public void setObservaciones(String observaciones) {
+		this.observaciones = observaciones;
+	}
+
+	public Proyecto getProyecto() {
+		return proyecto;
+	}
+
+	public void setProyecto(Proyecto proyecto) {
+		this.proyecto = proyecto;
+	}
+
+	public Actividad getActividad() {
+		return actividad;
+	}
+
+	public void setActividad(Actividad actividad) {
+		this.actividad = actividad;
+	}
+
+	public TipoGasto getTipoGasto() {
+		return tipoGasto;
+	}
+
+	public void setTipoGasto(TipoGasto tipoGasto) {
+		this.tipoGasto = tipoGasto;
 	}
 
 }

@@ -45,6 +45,15 @@
 		<property name="proxyTargetClass" value="true" />
 	</bean>
 	
+	<bean id="gastoService" parent="abstractTransactionManager" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" autowire="byName">
+		<property name="target">
+			<bean class="com.antares.sirius.service.impl.GastoServiceImpl" autowire="byName">
+				<property name="dao" ref="gastoDAO" /> 
+			</bean>
+		</property>
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+	
 	<bean id="ingresoService" parent="abstractTransactionManager" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" autowire="byName">
 		<property name="target">
 			<bean class="com.antares.sirius.service.impl.IngresoServiceImpl" autowire="byName">
@@ -210,11 +219,12 @@
 	</bean>
 	
 	<bean id="tipoGastoService" class="com.antares.sirius.service.impl.TipoGastoServiceImpl" autowire="byName">
-		<property name="dao" ref="tipoGastoDAO" /> 
+		<property name="dao" 				ref="tipoGastoDAO" /> 
+		<property name="parametroService" 	ref="parametroService" /> 
 	</bean>
 	
 	<bean id="tipoIngresoService" class="com.antares.sirius.service.impl.TipoIngresoServiceImpl" autowire="byName">
-		<property name="dao" ref="tipoIngresoDAO" /> 
+		<property name="dao" 				ref="tipoIngresoDAO" /> 
 		<property name="parametroService" 	ref="parametroService" /> 
 	</bean>
 	

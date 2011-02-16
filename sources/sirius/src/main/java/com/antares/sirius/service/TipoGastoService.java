@@ -12,4 +12,25 @@ import com.antares.sirius.model.TipoGasto;
  */
 public interface TipoGastoService extends BaseService<TipoGasto> {
 
+	/**
+	 * Devuelve el tipo de gasto correspondiente a actividades
+	 * 
+	 * @return
+	 */
+	TipoGasto findTipoGastoActividad();
+
+	/**
+	 * Devuelve el tipo de gasto correspondiente a la organizacion
+	 * 
+	 * @return
+	 */
+	TipoGasto findTipoGastoOrganizacion();
+
+	/**
+	 * Devuelve el tipo de gasto correspondiente a proyectos
+	 * 
+	 * @return
+	 */
+	TipoGasto findTipoGastoProyecto();
+
 }

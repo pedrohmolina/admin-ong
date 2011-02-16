@@ -3,6 +3,9 @@ package com.antares.sirius.service.impl;
 import static com.antares.commons.enums.ParametroEnum.ESTADO_ACTIVIDAD_LATENTE;
 import static com.antares.commons.enums.ParametroEnum.ESTADO_ACTIVIDAD_PROGRESO;
 import static com.antares.commons.enums.ParametroEnum.ESTADO_PROYECTO_IDEA;
+import static com.antares.commons.enums.ParametroEnum.TIPO_GASTO_ACTIVIDAD;
+import static com.antares.commons.enums.ParametroEnum.TIPO_GASTO_ORGANIZACION;
+import static com.antares.commons.enums.ParametroEnum.TIPO_GASTO_PROYECTO;
 import static com.antares.commons.enums.ParametroEnum.TIPO_INGRESO_FINANCIACION;
 
 import com.antares.commons.enums.ParametroEnum;
@@ -44,6 +47,18 @@ public class ParametroServiceImpl extends BaseServiceImpl<Parametro, ParametroDA
 
 	public Integer findIdEstadoActividadProgreso() {
 		return Utils.parseInteger(findValueByEnum(ESTADO_ACTIVIDAD_PROGRESO));
+	}
+
+	public Integer findIdTipoGastoActividad() {
+		return Utils.parseInteger(findValueByEnum(TIPO_GASTO_ACTIVIDAD));
+	}
+
+	public Integer findIdTipoGastoOrganizacion() {
+		return Utils.parseInteger(findValueByEnum(TIPO_GASTO_ORGANIZACION));
+	}
+
+	public Integer findIdTipoGastoProyecto() {
+		return Utils.parseInteger(findValueByEnum(TIPO_GASTO_PROYECTO));
 	}
 
 }

@@ -20,22 +20,25 @@
 			<form-property initial="3" name="idDia" type="java.lang.Integer" />
 		</form-bean>
 		
-		<form-bean name="actividadForm" type="com.antares.sirius.view.form.ActividadForm" />
-		<form-bean name="asignacionForm" type="com.antares.sirius.view.form.AsignacionForm" />
-		<form-bean name="financiadorForm" type="com.antares.sirius.view.form.FinanciadorForm" />
-		<form-bean name="ingresoForm" type="com.antares.sirius.view.form.IngresoForm" />
-		<form-bean name="metaForm" type="com.antares.sirius.view.form.MetaForm" />
-		<form-bean name="objetivoEspecificoForm" type="com.antares.sirius.view.form.ObjetivoEspecificoForm" />
-		<form-bean name="objetivoGeneralForm" type="com.antares.sirius.view.form.ObjetivoGeneralForm" />
-		<form-bean name="perfilForm" type="com.antares.sirius.view.form.PerfilForm" />
-		<form-bean name="personaForm" type="com.antares.sirius.view.form.PersonaForm" />
-		<form-bean name="proveedorForm" type="com.antares.sirius.view.form.ProveedorForm" />
-		<form-bean name="proyectoForm" type="com.antares.sirius.view.form.ProyectoForm" />
-		<form-bean name="relacionContractualForm" type="com.antares.sirius.view.form.RelacionContractualForm" />
-		<form-bean name="rolForm" type="com.antares.sirius.view.form.RolForm" />
-		<form-bean name="rubroForm" type="com.antares.sirius.view.form.RubroForm" />
-		<form-bean name="usuarioForm" type="com.antares.sirius.view.form.UsuarioForm" />
-		<form-bean name="usuarioPersonaForm" type="com.antares.sirius.view.form.UsuarioPersonaForm" />
+		<form-bean name="actividadForm" 			type="com.antares.sirius.view.form.ActividadForm" />
+		<form-bean name="asignacionForm" 			type="com.antares.sirius.view.form.AsignacionForm" />
+		<form-bean name="financiadorForm" 			type="com.antares.sirius.view.form.FinanciadorForm" />
+		<form-bean name="gastoActividadForm" 		type="com.antares.sirius.view.form.GastoForm" />
+		<form-bean name="gastoOrganizacionForm" 	type="com.antares.sirius.view.form.GastoForm" />
+		<form-bean name="gastoProyectoForm" 		type="com.antares.sirius.view.form.GastoForm" />
+		<form-bean name="ingresoForm" 				type="com.antares.sirius.view.form.IngresoForm" />
+		<form-bean name="metaForm" 					type="com.antares.sirius.view.form.MetaForm" />
+		<form-bean name="objetivoEspecificoForm" 	type="com.antares.sirius.view.form.ObjetivoEspecificoForm" />
+		<form-bean name="objetivoGeneralForm" 		type="com.antares.sirius.view.form.ObjetivoGeneralForm" />
+		<form-bean name="perfilForm" 				type="com.antares.sirius.view.form.PerfilForm" />
+		<form-bean name="personaForm" 				type="com.antares.sirius.view.form.PersonaForm" />
+		<form-bean name="proveedorForm" 			type="com.antares.sirius.view.form.ProveedorForm" />
+		<form-bean name="proyectoForm" 				type="com.antares.sirius.view.form.ProyectoForm" />
+		<form-bean name="relacionContractualForm" 	type="com.antares.sirius.view.form.RelacionContractualForm" />
+		<form-bean name="rolForm" 					type="com.antares.sirius.view.form.RolForm" />
+		<form-bean name="rubroForm" 				type="com.antares.sirius.view.form.RubroForm" />
+		<form-bean name="usuarioForm" 				type="com.antares.sirius.view.form.UsuarioForm" />
+		<form-bean name="usuarioPersonaForm" 		type="com.antares.sirius.view.form.UsuarioPersonaForm" />
 	</form-beans>
 
 	<!-- ================= Global Exceptions Definitions ================== -->
@@ -134,6 +137,72 @@
 			<forward name="error" 		path="/financiador/financiador-form.do?method=initForm" />
 		</action>
 		<!-- Fin de actions de financiadores -->
+
+		<!-- Actions de gastos de actividad -->
+		<action path="/gasto/gasto-actividad-query" name="gastoActividadForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="query" 		path=".abmGastoActividadQuery" />
+			<forward name="success" 	path="/gasto/gasto-actividad-query.do?method=query" />
+		</action>
+
+		<action path="/gasto/gasto-actividad-form" name="gastoActividadForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="form" 		path=".abmGastoActividadForm" />
+			<forward name="view" 		path=".abmGastoActividadView"></forward>
+			<forward name="success" 	path="/gasto/gasto-actividad-query.do?method=query" />
+		</action>
+
+		<action path="/gasto/gasto-actividad-form-validate" name="gastoActividadForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/gasto/gasto-actividad-form.do?method=initForm">
+			<forward name="success" 	path="/gasto/gasto-actividad-query.do?method=query" />
+			<forward name="error" 		path="/gasto/gasto-actividad-form.do?method=initForm" />
+		</action>
+		<!-- Fin de actions de gastos de actividad -->
+
+		<!-- Actions de gastos de organizacion -->
+		<action path="/gasto/gasto-organizacion-query" name="gastoOrganizacionForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="query" 		path=".abmGastoOrganizacionQuery" />
+			<forward name="success" 	path="/gasto/gasto-organizacion-query.do?method=query" />
+		</action>
+
+		<action path="/gasto/gasto-organizacion-form" name="gastoOrganizacionForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="form" 		path=".abmGastoOrganizacionForm" />
+			<forward name="view" 		path=".abmGastoOrganizacionView"></forward>
+			<forward name="success" 	path="/gasto/gasto-organizacion-query.do?method=query" />
+		</action>
+
+		<action path="/gasto/gasto-organizacion-form-validate" name="gastoOrganizacionForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/gasto/gasto-organizacion-form.do?method=initForm">
+			<forward name="success" 	path="/gasto/gasto-organizacion-query.do?method=query" />
+			<forward name="error" 		path="/gasto/gasto-organizacion-form.do?method=initForm" />
+		</action>
+		<!-- Fin de actions de gastos de organizacion -->
+
+		<!-- Actions de gastos de proyecto -->
+		<action path="/gasto/gasto-proyecto-query" name="gastoProyectoForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="query" 		path=".abmGastoProyectoQuery" />
+			<forward name="success" 	path="/gasto/gasto-proyecto-query.do?method=query" />
+		</action>
+
+		<action path="/gasto/gasto-proyecto-form" name="gastoProyectoForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="form" 		path=".abmGastoProyectoForm" />
+			<forward name="view" 		path=".abmGastoProyectoView"></forward>
+			<forward name="success" 	path="/gasto/gasto-proyecto-query.do?method=query" />
+		</action>
+
+		<action path="/gasto/gasto-proyecto-form-validate" name="gastoProyectoForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/gasto/gasto-proyecto-form.do?method=initForm">
+			<forward name="success" 	path="/gasto/gasto-proyecto-query.do?method=query" />
+			<forward name="error" 		path="/gasto/gasto-proyecto-form.do?method=initForm" />
+		</action>
+		<!-- Fin de actions de gastos de proyecto -->
 
 		<!-- Actions de ingresos -->
 		<action path="/ingreso/ingreso-query" name="ingresoForm" parameter="method" 

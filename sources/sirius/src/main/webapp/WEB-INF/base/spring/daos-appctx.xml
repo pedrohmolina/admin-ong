@@ -12,6 +12,7 @@
 	<bean id="estadoProyectoDAO" 		class="com.antares.sirius.dao.impl.EstadoProyectoDAOImpl" 		autowire="byName" />
 	<bean id="financiadorDAO" 			class="com.antares.sirius.dao.impl.FinanciadorDAOImpl" 			autowire="byName" />
 	<bean id="formaPagoDAO" 			class="com.antares.sirius.dao.impl.FormaPagoDAOImpl" 			autowire="byName" />
+	<bean id="gastoDAO" 				class="com.antares.sirius.dao.impl.GastoDAOImpl" 				autowire="byName" />
 	<bean id="ingresoDAO" 				class="com.antares.sirius.dao.impl.IngresoDAOImpl" 				autowire="byName" />
 	<bean id="metaDAO" 					class="com.antares.sirius.dao.impl.MetaDAOImpl" 				autowire="byName" />
 	<bean id="objetivoEspecificoDAO" 	class="com.antares.sirius.dao.impl.ObjetivoEspecificoDAOImpl" 	autowire="byName" />

@@ -36,6 +36,48 @@
 	<bean name="/financiador/financiador-form" 			parent="financiadorAction" singleton="false" />
 	<bean name="/financiador/financiador-form-validate" parent="financiadorAction" singleton="false" />
 
+	<bean name="gastoActividadAction" class="com.antares.sirius.view.action.GastoActividadAction" autowire="byName" >
+		<property name="service" 					ref="gastoService" />
+		<property name="rubroService" 				ref="rubroService" />
+		<property name="origenService" 				ref="origenService" />
+		<property name="proveedorService" 			ref="proveedorService" />
+		<property name="tipoComprobanteService" 	ref="tipoComprobanteService" />
+		<property name="tipoGastoService" 			ref="tipoGastoService" />
+		<property name="personaService" 			ref="personaService" />
+		<property name="proyectoService" 			ref="proyectoService" />
+		<property name="actividadService" 			ref="actividadService" />
+	</bean>
+	<bean name="/gasto/gasto-actividad-query" 			parent="gastoActividadAction" singleton="false" />
+	<bean name="/gasto/gasto-actividad-form" 			parent="gastoActividadAction" singleton="false" />
+	<bean name="/gasto/gasto-actividad-form-validate" 	parent="gastoActividadAction" singleton="false" />
+
+	<bean name="gastoOrganizacionAction" class="com.antares.sirius.view.action.GastoOrganizacionAction" autowire="byName" >
+		<property name="service" 					ref="gastoService" />
+		<property name="rubroService" 				ref="rubroService" />
+		<property name="origenService" 				ref="origenService" />
+		<property name="proveedorService" 			ref="proveedorService" />
+		<property name="tipoComprobanteService" 	ref="tipoComprobanteService" />
+		<property name="tipoGastoService" 			ref="tipoGastoService" />
+		<property name="personaService" 			ref="personaService" />
+	</bean>
+	<bean name="/gasto/gasto-organizacion-query" 			parent="gastoOrganizacionAction" singleton="false" />
+	<bean name="/gasto/gasto-organizacion-form" 			parent="gastoOrganizacionAction" singleton="false" />
+	<bean name="/gasto/gasto-organizacion-form-validate" 	parent="gastoOrganizacionAction" singleton="false" />
+
+	<bean name="gastoProyectoAction" class="com.antares.sirius.view.action.GastoProyectoAction" autowire="byName" >
+		<property name="service" 					ref="gastoService" />
+		<property name="rubroService" 				ref="rubroService" />
+		<property name="origenService" 				ref="origenService" />
+		<property name="proveedorService" 			ref="proveedorService" />
+		<property name="tipoComprobanteService" 	ref="tipoComprobanteService" />
+		<property name="tipoGastoService" 			ref="tipoGastoService" />
+		<property name="personaService" 			ref="personaService" />
+		<property name="proyectoService" 			ref="proyectoService" />
+	</bean>
+	<bean name="/gasto/gasto-proyecto-query" 			parent="gastoProyectoAction" singleton="false" />
+	<bean name="/gasto/gasto-proyecto-form" 			parent="gastoProyectoAction" singleton="false" />
+	<bean name="/gasto/gasto-proyecto-form-validate" 	parent="gastoProyectoAction" singleton="false" />
+
 	<bean name="ingresoAction" class="com.antares.sirius.view.action.IngresoAction" autowire="byName">
 		<property name="service" ref="ingresoService" />
 		<property name="tipoIngresoService" 	ref="tipoIngresoService" />

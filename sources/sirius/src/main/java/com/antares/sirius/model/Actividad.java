@@ -102,4 +102,8 @@ public class Actividad extends Ponderable {
 		this.estadoActividad = estadoActividad;
 	}
 
+	public Proyecto getProyecto() {
+		return meta.getObjetivoEspecifico().getObjetivoGeneral().getProyecto();
+	}
+
 }

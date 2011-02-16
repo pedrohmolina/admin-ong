@@ -1,5 +1,7 @@
 package com.antares.sirius.dao.impl;
 
+import java.util.Collection;
+
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
@@ -11,6 +13,7 @@ import com.antares.commons.util.Utils;
 import com.antares.sirius.dao.ActividadDAO;
 import com.antares.sirius.filter.ActividadFilter;
 import com.antares.sirius.model.Actividad;
+import com.antares.sirius.model.Proyecto;
 
 /**
  * Implementacion de la interfaz ActividadDAO.
@@ -25,6 +28,16 @@ public class ActividadDAOImpl extends BusinessEntityDAOImpl<Actividad> implement
 		Criteria crit = buildCriteria();
 		crit.add(Restrictions.ilike("nombre", nombre, MatchMode.EXACT));
 		return (Actividad)crit.uniqueResult();
+	}
+
+	@SuppressWarnings("unchecked")
+	public Collection<Actividad> findAllByProyecto(Proyecto proyecto) {
+		Criteria crit = buildCriteria();
+		crit.createAlias("meta", "meta");
+		crit.createAlias("meta.objetivoEspecifico", "objetivoEspecifico");
+		crit.createAlias("objetivoEspecifico.objetivoGeneral", "objetivoGeneral");
+		crit.add(Restrictions.eq("objetivoGeneral.proyecto", proyecto));
+		return crit.list();
 	}
 
 	@Override
