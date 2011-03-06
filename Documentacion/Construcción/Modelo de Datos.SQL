@@ -217,6 +217,7 @@ CREATE TABLE proyecto
 (
 	id INT NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
 	idEstadoProyecto INT NOT NULL COMMENT 'Estado del Proyecto',
+	idTipoAgrupamiento INT NOT NULL COMMENT 'Agrupamiento de los gastos del Proyecto',
 	nombre VARCHAR(255) NOT NULL COMMENT 'Nombre del Proyecto',
 	descripcion TEXT COMMENT 'Descripción breve del Proyecto',
 	fechaInicio DATE COMMENT 'Fecha que inicia el Proyecto',
@@ -233,6 +234,7 @@ CREATE TABLE proyecto
 	UNIQUE UQ_proyecto_id(id),
 	UNIQUE UQ_proyecto_nombre(nombre),
 	KEY (idEstadoProyecto),
+	KEY (idTipoAgrupamiento),
 	KEY (financiador),
 	KEY (responsable)
 ) 
@@ -418,6 +420,17 @@ CREATE TABLE tipoAsignacion
 ;
 
 
+CREATE TABLE tipoAgrupamiento
+(
+	id INT NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
+	descripcion VARCHAR(50) NOT NULL,
+	PRIMARY KEY (id),
+	UNIQUE UQ_tipoAgrupamiento_descripcion(descripcion),
+	UNIQUE UQ_tipoAgrupamiento_id(id)
+) 
+;
+
+
 CREATE TABLE rubro
 (
 	id INT NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
@@ -490,13 +503,25 @@ CREATE TABLE origen
 ;
 
 
-CREATE TABLE formaPago(
+CREATE TABLE formaPago
+(
 	id INT NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
 	descripcion VARCHAR(50) NOT NULL,
 	PRIMARY KEY (id),
 	UNIQUE UQ_formaPago_descripcion(descripcion),
 	UNIQUE UQ_formaPago_id(id)
 ) 
+;
+
+
+CREATE TABLE estadoactividad 
+(
+	id int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
+	descripcion varchar(50) NOT NULL COMMENT 'Descripcion del Estado de la Actividad',
+	PRIMARY KEY  (id),
+	UNIQUE KEY UQ_estadoActividad_descripcion (descripcion),
+	UNIQUE KEY UQ_estadoActividad_id (id)
+)
 ;
 
 
@@ -676,6 +701,10 @@ ALTER TABLE rolAcceso ADD CONSTRAINT FK_rolAcceso_rol
 
 ALTER TABLE proyecto ADD CONSTRAINT FK_proyecto_estadoProyecto 
 	FOREIGN KEY (idEstadoProyecto) REFERENCES estadoProyecto (id)
+;
+
+ALTER TABLE proyecto ADD CONSTRAINT FK_proyecto_tipoAgrupamiento 
+	FOREIGN KEY (idTipoAgrupamiento) REFERENCES tipoAgrupamiento (id)
 ;
 
 ALTER TABLE proyecto ADD CONSTRAINT FK_proyecto_financiador 
