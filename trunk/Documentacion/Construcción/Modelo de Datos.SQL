@@ -39,6 +39,7 @@ CREATE TABLE gasto
 	idPersona INT NOT NULL COMMENT 'Persona que imputa el gasto',
 	idTipoGasto INT NOT NULL COMMENT 'Esto no recuerdo que es',
 	observaciones TEXT COMMENT 'Observaciones del gasto',
+	referencia VARCHAR(255) COMMENT 'Referencia',
 	confirmado BOOL NOT NULL DEFAULT false COMMENT 'Indica que el gasto fue confirmado por el administrador',
 	activo BOOL NOT NULL COMMENT 'Señal para manejo de baja logica',
         PRIMARY KEY (id),
