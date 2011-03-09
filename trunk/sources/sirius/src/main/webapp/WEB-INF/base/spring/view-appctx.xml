@@ -138,11 +138,12 @@
 	<bean name="/proveedor/proveedor-form-validate" parent="proveedorAction" singleton="false" />
 
 	<bean name="proyectoAction" class="com.antares.sirius.view.action.ProyectoAction" autowire="byName">
-		<property name="service" 				ref="proyectoService" />
-		<property name="estadoProyectoService" 	ref="estadoProyectoService" />
-		<property name="personaService" 		ref="personaService" />
-		<property name="financiadorService" 	ref="financiadorService" />
-		<property name="areaTematicaService" 	ref="areaTematicaService" />
+		<property name="service" 					ref="proyectoService" />
+		<property name="estadoProyectoService" 		ref="estadoProyectoService" />
+		<property name="personaService" 			ref="personaService" />
+		<property name="financiadorService" 		ref="financiadorService" />
+		<property name="areaTematicaService" 		ref="areaTematicaService" />
+		<property name="tipoAgrupamientoService" 	ref="tipoAgrupamientoService" />
 	</bean>
 	<bean name="/proyecto/proyecto-query" 			parent="proyectoAction" singleton="false" />
 	<bean name="/proyecto/proyecto-form" 			parent="proyectoAction" singleton="false" />

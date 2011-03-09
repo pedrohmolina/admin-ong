@@ -205,17 +205,8 @@
 			<field property="idOrigen" depends="required">
 				<arg position="0" key="sirius.gasto.origen.label"/>
 			</field>
-			<field property="idProveedor" depends="required">
-				<arg position="0" key="sirius.gasto.proveedor.label"/>
-			</field>
-			<field property="idTipoComprobante" depends="required">
-				<arg position="0" key="sirius.gasto.tipoComprobante.label"/>
-			</field>
 			<field property="importe" depends="required, positiveDouble">
 				<arg position="0" key="sirius.gasto.importe.label"/>
-			</field>
-			<field property="numeroComprobante" depends="required, integer">
-				<arg position="0" key="sirius.gasto.numeroComprobante.label"/>
 			</field>
 		</form>
 
@@ -264,17 +255,8 @@
 			<field property="idOrigen" depends="required">
 				<arg position="0" key="sirius.gasto.origen.label"/>
 			</field>
-			<field property="idProveedor" depends="required">
-				<arg position="0" key="sirius.gasto.proveedor.label"/>
-			</field>
-			<field property="idTipoComprobante" depends="required">
-				<arg position="0" key="sirius.gasto.tipoComprobante.label"/>
-			</field>
 			<field property="importe" depends="required, positiveDouble">
 				<arg position="0" key="sirius.gasto.importe.label"/>
-			</field>
-			<field property="numeroComprobante" depends="required, integer">
-				<arg position="0" key="sirius.gasto.numeroComprobante.label"/>
 			</field>
 		</form>
 
@@ -733,6 +715,9 @@
 			</field>
 			<field property="idAreaTematica" depends="required">
 				<arg position="0" key="sirius.proyecto.areasTematicas.label"/>
+			</field>
+			<field property="idTipoAgrupamiento" depends="required">
+				<arg position="0" key="sirius.proyecto.tipoAgrupamiento.label"/>
 			</field>
 		</form>
 

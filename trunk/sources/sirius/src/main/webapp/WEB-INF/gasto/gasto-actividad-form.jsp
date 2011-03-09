@@ -12,16 +12,52 @@
 
 <script>
 
-	function cargarComboActividad(select, destinationCombo){
-	 	$("#" + destinationCombo).removeOption(/^[^-]/i);
-	 	$("#" + destinationCombo).val("");
+$(document).ready(function(){
+	changeProyecto();
+})
 
-	 	var selectedOption = $(select).val();
-	 	if (selectedOption != "") {
-			url = "<c:url value='/gasto/gasto-actividad-form.do?method=cargarComboActividad' />";
-	 		$("#" + destinationCombo).ajaxAddOption(url, {idProyecto:selectedOption}, false);
-	 	}
-	}
+function changeProyecto() {
+	var idProyecto = $("#proyecto").val();
+	isIndividual(idProyecto);
+	isAgrupado(idProyecto);
+}
+
+function isIndividual(idProyecto) {
+	url = "<c:url value='/gasto/gasto-actividad-form.do?method=isIndividual' />";
+	$.getJSON(url, {idProyecto:idProyecto}, function(json){
+		if (json.isIndividual == "true") {
+			$("#comboProveedor").attr("disabled", false);
+			$("#comboTipoComprobante").attr("disabled", false);
+			$("#numeroComprobante").attr("disabled", false);
+		} else {
+			$("#comboProveedor").attr("disabled", true);
+			$("#comboTipoComprobante").attr("disabled", true);
+			$("#numeroComprobante").attr("disabled", true);
+		}
+	});
+}
+
+function isAgrupado(idProyecto) {
+	url = "<c:url value='/gasto/gasto-actividad-form.do?method=isAgrupado' />";
+	$.getJSON(url, {idProyecto:idProyecto}, function(json){
+		if (json.isAgrupado == "true") {
+			$("#paquete").attr("disabled", false);
+		} else {
+			$("#paquete").attr("disabled", true);
+		}
+	});
+}
+
+function cargarComboActividad(select, destinationCombo){
+ 	$("#" + destinationCombo).removeOption(/^[^-]/i);
+ 	$("#" + destinationCombo).val("");
+
+ 	var selectedOption = $(select).val();
+ 	if (selectedOption != "") {
+		url = "<c:url value='/gasto/gasto-actividad-form.do?method=cargarComboActividad' />";
+ 		$("#" + destinationCombo).ajaxAddOption(url, {idProyecto:selectedOption}, false);
+ 	}
+}
 	
 </script>
 
@@ -31,16 +67,26 @@
 	<h1>Datos</h1>
 	<div style="float:left;">
 		<label for="idProyecto"><bean:message key="sirius.gasto.proyecto.label" />(*)&nbsp;:</label>
-		<html:select property="idProyecto" styleId="proyecto" onchange="cargarComboActividad(this, 'actividad')">
-			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
-			<html:optionsCollection name="gastoActividadForm" property="proyectos" label="nombre" value="id"/>
+		<logic:equal name="gastoActividadForm" property="action.descripcion" value="create">
+			<html:select property="idProyecto" styleId="proyecto" onchange="cargarComboActividad(this, 'actividad');changeProyecto();">
+				<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
+				<html:optionsCollection name="gastoActividadForm" property="proyectos" label="nombre" value="id"/>
 		</html:select>
+		</logic:equal>
+		<logic:equal name="gastoActividadForm" property="action.descripcion" value="update">
+			<html:text property="labelProyecto" readonly="true" />
+		</logic:equal>
 		<br>
 		<label for="idActividad"><bean:message key="sirius.gasto.actividad.label" />(*)&nbsp;:</label>
-		<html:select property="idActividad" styleId="actividad">
-			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
-			<html:optionsCollection name="gastoActividadForm" property="actividades" label="nombre" value="id"/>
-		</html:select>
+		<logic:equal name="gastoActividadForm" property="action.descripcion" value="create">
+			<html:select property="idActividad" styleId="actividad">
+				<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
+				<html:optionsCollection name="gastoActividadForm" property="actividades" label="nombre" value="id"/>
+			</html:select>
+		</logic:equal>
+		<logic:equal name="gastoActividadForm" property="action.descripcion" value="update">
+			<html:text property="labelActividad" readonly="true" />
+		</logic:equal>
 		<br>
 		<label for="fecha"><bean:message key="sirius.gasto.fecha.label" />(*)&nbsp;:</label>
 		<html:text property="fecha" />
@@ -57,30 +103,36 @@
 			<html:optionsCollection name="gastoActividadForm" property="origenes" label="descripcion" value="id"/>
 		</html:select>
 		<br>
-		<label for="idProveedor"><bean:message key="sirius.gasto.proveedor.label" />(*)&nbsp;:</label>
-		<html:select property="idProveedor">
-			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
-			<html:optionsCollection name="gastoActividadForm" property="proveedores" label="nombre" value="id"/>
-		</html:select>
-		<br>
-		<label for="idTipoComprobante"><bean:message key="sirius.gasto.tipoComprobante.label" />(*)&nbsp;:</label>
-		<html:select property="idTipoComprobante">
-			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
-			<html:optionsCollection name="gastoActividadForm" property="tiposComprobante" label="descripcion" value="id"/>
-		</html:select>
-		<br>
+		<logic:equal name="gastoActividadForm" property="individual" value="true">
+			<label for="idProveedor"><bean:message key="sirius.gasto.proveedor.label" />(*)&nbsp;:</label>
+				<html:select property="idProveedor" styleId="comboProveedor">
+				<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
+				<html:optionsCollection name="gastoActividadForm" property="proveedores" label="nombre" value="id"/>
+			</html:select>
+			<br>
+			<label for="idTipoComprobante"><bean:message key="sirius.gasto.tipoComprobante.label" />(*)&nbsp;:</label>
+			<html:select property="idTipoComprobante" styleId="comboTipoComprobante">
+				<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
+				<html:optionsCollection name="gastoActividadForm" property="tiposComprobante" label="descripcion" value="id"/>
+			</html:select>
+			<br>
+		</logic:equal>
 		<label for="observaciones"><bean:message key="sirius.gasto.observaciones.label" />:</label>
 		<html:textarea property="observaciones" rows="5" />
 		<br>
 		<label for="importe"><bean:message key="sirius.gasto.importe.label" />(*)&nbsp;:</label>
 		<html:text property="importe" />
 		<br>
-		<label for="numeroComprobante"><bean:message key="sirius.gasto.numeroComprobante.label" />(*)&nbsp;:</label>
-		<html:text property="numeroComprobante" />
-		<br>
-		<label for="paquete"><bean:message key="sirius.gasto.paquete.label" />(*)&nbsp;:</label>
-		<html:text property="paquete" />
-		<br>
+		<logic:equal name="gastoActividadForm" property="individual" value="true">
+			<label for="numeroComprobante"><bean:message key="sirius.gasto.numeroComprobante.label" />(*)&nbsp;:</label>
+			<html:text property="numeroComprobante" styleId="numeroComprobante" />
+			<br>
+		</logic:equal>
+		<logic:equal name="gastoActividadForm" property="agrupado" value="true">
+			<label for="paquete"><bean:message key="sirius.gasto.paquete.label" />(*)&nbsp;:</label>
+			<html:text property="paquete" styleId="paquete" />
+			<br>
+		</logic:equal>
 	</div>
 	
 	<div style="clear:both; padding:5px 0 0 0;">

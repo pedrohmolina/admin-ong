@@ -150,12 +150,13 @@
 			<forward name="form" 		path=".abmGastoActividadForm" />
 			<forward name="view" 		path=".abmGastoActividadView"></forward>
 			<forward name="success" 	path="/gasto/gasto-actividad-query.do?method=query" />
+			<forward name="referencia" 	path=".abmGastoActividadReferencia"></forward>
 		</action>
 
 		<action path="/gasto/gasto-actividad-form-validate" name="gastoActividadForm" parameter="method" 
 				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
 				input="/gasto/gasto-actividad-form.do?method=initForm">
-			<forward name="success" 	path="/gasto/gasto-actividad-query.do?method=query" />
+			<forward name="success" 	path="/public/message.do" />
 			<forward name="error" 		path="/gasto/gasto-actividad-form.do?method=initForm" />
 		</action>
 		<!-- Fin de actions de gastos de actividad -->

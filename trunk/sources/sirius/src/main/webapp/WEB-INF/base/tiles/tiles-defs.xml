@@ -11,6 +11,16 @@
 		<put name="menu" value="/common/menu.jsp" />
 	</definition>
 
+	<definition name="popupLayout" path="/layouts/popup-layout.jsp">
+		<put name="js-header" value="/common/js-header.jsp" />
+		<put name="messages" value="/common/message.jsp" />
+	</definition>
+
+	<definition name=".message" extends="mainLayout">
+		<put name="title" value="Información" />
+		<put name="body" value="/common/message.jsp" />
+	</definition>
+
 	<definition name=".400" extends="mainLayout">
 		<put name="title" value="Pedido malformado" />
 		<put name="body" value="/errors/400.jsp" />
@@ -99,6 +109,11 @@
 	<definition name=".abmGastoActividadView" extends="mainLayout">
 		<put name="title" value="Gasto de Actividad - Datos" />
 		<put name="body" value="/WEB-INF/gasto/gasto-actividad-view.jsp" />
+	</definition>
+
+	<definition name=".abmGastoActividadReferencia" extends="popupLayout">
+		<put name="title" value="Gasto de Actividad - Referencia" />
+		<put name="body" value="/WEB-INF/gasto/gasto-actividad-referencia.jsp" />
 	</definition>
 
 	<!-- Gasto Organizacion -->

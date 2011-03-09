@@ -31,21 +31,25 @@
 		<label for="labelOrigen"><bean:message key="sirius.gasto.origen.label" />:</label>
 		<html:text property="labelOrigen" readonly="true" />
 		<br>
-		<label for="labelProveedor"><bean:message key="sirius.gasto.proveedor.label" />:</label>
-		<html:text property="labelProveedor" readonly="true" />
-		<br>
-		<label for="labelTipoComprobante"><bean:message key="sirius.gasto.tipoComprobante.label" />:</label>
-		<html:text property="labelTipoComprobante" readonly="true" />
-		<br>
+		<logic:equal name="gastoProyectoForm.individual" value="true">
+			<label for="labelProveedor"><bean:message key="sirius.gasto.proveedor.label" />:</label>
+			<html:text property="labelProveedor" readonly="true" />
+			<br>
+			<label for="labelTipoComprobante"><bean:message key="sirius.gasto.tipoComprobante.label" />:</label>
+			<html:text property="labelTipoComprobante" readonly="true" />
+			<br>
+		</logic:equal>
 		<label for="observaciones"><bean:message key="sirius.gasto.observaciones.label" />:</label>
 		<html:textarea property="observaciones" rows="5" readonly="true" />
 		<br>
 		<label for="importe"><bean:message key="sirius.gasto.importe.label" />:</label>
 		<html:text property="importe" readonly="true" />
 		<br>
-		<label for="numeroComprobante"><bean:message key="sirius.gasto.numeroComprobante.label" />:</label>
-		<html:text property="numeroComprobante" readonly="true" />
-		<br>
+		<logic:equal name="gastoProyectoForm.individual" value="true">
+			<label for="numeroComprobante"><bean:message key="sirius.gasto.numeroComprobante.label" />:</label>
+			<html:text property="numeroComprobante" readonly="true" />
+			<br>
+		</logic:equal>
 	</div>
 
 	<div style="clear: both;">

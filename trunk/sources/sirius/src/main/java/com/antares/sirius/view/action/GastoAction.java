@@ -29,9 +29,6 @@ public abstract class GastoAction extends BaseAction<Gasto, GastoForm, GastoServ
 		entity.setFecha(Utils.parseDate(form.getFecha()));
 		entity.setRubro(rubroService.findById(Integer.parseInt(form.getIdRubro())));
 		entity.setOrigen(origenService.findById(Integer.parseInt(form.getIdOrigen())));
-		entity.setProveedor(proveedorService.findById(Integer.parseInt(form.getIdProveedor())));
-		entity.setTipoComprobante(tipoComprobanteService.findById(Integer.parseInt(form.getIdTipoComprobante())));
-		entity.setNumeroComprobante(form.getNumeroComprobante());
 		entity.setImporte(Utils.parseDouble(form.getImporte()));
 		entity.setObservaciones(form.getObservaciones());
 		entity.setPersona(findPersona());
@@ -45,7 +42,7 @@ public abstract class GastoAction extends BaseAction<Gasto, GastoForm, GastoServ
 		form.setTiposComprobante(tipoComprobanteService.findAll());
 	}
 
-	private Persona findPersona() {
+	protected Persona findPersona() {
 		/* 
 		 * FIXME hardcode provisorio. este metodo deberia devolver la persona logueada en el sistema.
 		 * Cuando se implemente el login deberia redefinirse esta funcion

@@ -13,5 +13,5 @@
 </h3>
 <c:remove var="org.apache.struts.action.ACTION_MESSAGE" scope="session"/>
 
-<h3 class="info"><a href="<c:url value="${sessionScope['antares.originalPath']}"/>">Aceptar</a></h3>
+<h3 class="info"><a href="<c:url value="/base/home_init.do"/>">Aceptar</a></h3>
 

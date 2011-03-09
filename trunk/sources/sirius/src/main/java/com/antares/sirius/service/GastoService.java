@@ -19,4 +19,20 @@ public interface GastoService extends BusinessEntityService<Gasto> {
 	 */
 	void ejecutarConfirmacion(Gasto entity);
 
+	/**
+	 * Determina si el gasto soporta carga individual o agrupada. Para gastos de administracion, devuelve true
+	 * 
+	 * @param gasto
+	 * @return
+	 */
+	boolean isIndividual(Gasto gasto);
+	
+	/**
+	 * Determina si el gasto soporta carga individual o agrupada. Para gastos de administracion, devuelve false
+	 * 
+	 * @param gasto
+	 * @return
+	 */
+	boolean isAgrupado(Gasto gasto);
+
 }

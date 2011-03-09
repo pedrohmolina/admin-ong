@@ -23,6 +23,9 @@ public class GastoOrganizacionAction extends GastoAction {
 	public void updateEntity(Gasto entity, GastoForm form) {
 		entity.setTipoGasto(tipoGastoService.findTipoGastoOrganizacion());
 		super.updateEntity(entity, form);
+		entity.setProveedor(proveedorService.findById(Integer.parseInt(form.getIdProveedor())));
+		entity.setTipoComprobante(tipoComprobanteService.findById(Integer.parseInt(form.getIdTipoComprobante())));
+		entity.setNumeroComprobante(form.getNumeroComprobante());
 	}
 
 }
