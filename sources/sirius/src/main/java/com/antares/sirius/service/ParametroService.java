@@ -70,4 +70,17 @@ public interface ParametroService extends BaseService<Parametro> {
 	 */
 	Integer findIdTipoGastoProyecto();
 
+	/**
+	 * Devuelve el id del tipo de agrupamiento de gastos correspondiente a gastos indviduales
+	 * 
+	 * @return
+	 */
+	Integer findIdTipoAgrupamientoIndividual();
+
+	/**
+	 * Devuelve el id del tipo de agrupamiento de gastos correspondiente a gastos agrupados
+	 * 
+	 * @return
+	 */
+	Integer findIdTipoAgrupamientoAgrupado();
 }

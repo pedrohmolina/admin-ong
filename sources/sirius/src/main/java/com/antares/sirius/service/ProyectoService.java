@@ -30,4 +30,19 @@ public interface ProyectoService extends BusinessEntityService<Proyecto> {
 	 */
 	void saveCambioEstado(Proyecto proyecto, Integer idEstado);
 
+	/**
+	 * Determina si el proyecto soporta carga de gastos individual
+	 * 
+	 * @param proyecto
+	 * @return
+	 */
+	boolean isIndividual(Proyecto proyecto);
+
+	/**
+	 * Determina si el proyecto soporta carga de gastos agrupada
+	 * 
+	 * @param proyecto
+	 * @return
+	 */
+	boolean isAgrupado(Proyecto proyecto);
 }

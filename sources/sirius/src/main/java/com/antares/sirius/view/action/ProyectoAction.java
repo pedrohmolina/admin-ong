@@ -19,11 +19,13 @@ import com.antares.sirius.model.AreaTematica;
 import com.antares.sirius.model.Financiador;
 import com.antares.sirius.model.Persona;
 import com.antares.sirius.model.Proyecto;
+import com.antares.sirius.model.TipoAgrupamiento;
 import com.antares.sirius.service.AreaTematicaService;
 import com.antares.sirius.service.EstadoProyectoService;
 import com.antares.sirius.service.FinanciadorService;
 import com.antares.sirius.service.PersonaService;
 import com.antares.sirius.service.ProyectoService;
+import com.antares.sirius.service.TipoAgrupamientoService;
 import com.antares.sirius.view.form.ProyectoForm;
 
 public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoService> {
@@ -32,6 +34,7 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 	private FinanciadorService financiadorService;
 	private AreaTematicaService areaTematicaService;
 	private EstadoProyectoService estadoProyectoService;
+	private TipoAgrupamientoService tipoAgrupamientoService;
 
 	@Override
 	public ProyectoFilter createFilter(ProyectoForm form) {
@@ -62,9 +65,11 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 		entity.setFinanciador(financiador);
 		Persona responsable = personaService.findById(Integer.parseInt(form.getIdResponsable()));
 		entity.setResponsable(responsable);
+		TipoAgrupamiento tipoAgrupamiento = tipoAgrupamientoService.findById(Integer.parseInt(form.getIdTipoAgrupamiento()));
+		entity.setTipoAgrupamiento(tipoAgrupamiento);
 		updateCoordinadores(entity, form.getIdCoordinadores());
 		updateAreasTematicas(entity, form.getIdCoordinadores());
-		
+
 		if (entity.getEstadoProyecto() == null) {
 			entity.setEstadoProyecto(estadoProyectoService.findDefault());
 		}
@@ -98,6 +103,7 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 		form.setCoordinadores(personaService.findAll());
 		form.setFinanciadores(financiadorService.findAll());
 		form.setAreasTematicas(areaTematicaService.findAll());
+		form.setTiposAgrupamiento(tipoAgrupamientoService.findAll());
 	}
 
 	@Override
@@ -144,6 +150,10 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 
 	public void setEstadoProyectoService(EstadoProyectoService estadoProyectoService) {
 		this.estadoProyectoService = estadoProyectoService;
+	}
+
+	public void setTipoAgrupamientoService(TipoAgrupamientoService tipoAgrupamientoService) {
+		this.tipoAgrupamientoService = tipoAgrupamientoService;
 	}
 
 }

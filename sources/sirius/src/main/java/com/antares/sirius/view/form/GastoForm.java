@@ -59,6 +59,12 @@ public class GastoForm extends AbstractForm<Gasto> {
 	private String labelProyecto;
 	private String labelActividad;
 
+	private boolean individual;
+	private boolean agrupado;
+
+	private String referencia = "";
+	private String updated = "";
+
 	public Integer getIdPersona() {
 		return idPersona;
 	}
@@ -315,6 +321,38 @@ public class GastoForm extends AbstractForm<Gasto> {
 		this.personas = personas;
 	}
 
+	public boolean getIndividual() {
+		return id == null || individual;
+	}
+
+	public void setIndividual(boolean individual) {
+		this.individual = individual;
+	}
+
+	public boolean getAgrupado() {
+		return id == null || agrupado;
+	}
+
+	public void setAgrupado(boolean agrupado) {
+		this.agrupado = agrupado;
+	}
+
+	public String getReferencia() {
+		return referencia;
+	}
+
+	public void setReferencia(String referencia) {
+		this.referencia = referencia;
+	}
+
+	public String getUpdated() {
+		return updated;
+	}
+
+	public void setUpdated(String updated) {
+		this.updated = updated;
+	}
+
 	@Override
 	public void initialize() {
 		this.id = null;
@@ -380,13 +418,25 @@ public class GastoForm extends AbstractForm<Gasto> {
 		this.paquete = entity.getPaquete();
 		this.idRubro = entity.getRubro().getId().toString();
 		this.idOrigen = entity.getOrigen().getId().toString();
-		this.idProveedor = entity.getProveedor().getId().toString();
-		this.idTipoComprobante = entity.getTipoComprobante().getId().toString();
 		this.labelRubro = entity.getRubro().getDescripcion();
 		this.labelOrigen = entity.getOrigen().getDescripcion();
-		this.labelProveedor = entity.getProveedor().getNombre();
-		this.labelTipoComprobante = entity.getTipoComprobante().getDescripcion();
 		
+		if (entity.getProveedor() != null) {
+			this.idProveedor = entity.getProveedor().getId().toString();
+			this.labelProveedor = entity.getProveedor().getNombre();
+		} else {
+			this.idProveedor = "";
+			this.labelProveedor = "";
+		}
+
+		if (entity.getTipoComprobante() != null) {
+			this.idTipoComprobante = entity.getTipoComprobante().getId().toString();
+			this.labelTipoComprobante = entity.getTipoComprobante().getDescripcion();
+		} else {
+			this.idTipoComprobante = null;
+			this.labelTipoComprobante = null;
+		}
+
 		if (entity.getProyecto() != null) {
 			this.idProyecto = entity.getProyecto().getId().toString();
 			this.labelProyecto = entity.getProyecto().getNombre();

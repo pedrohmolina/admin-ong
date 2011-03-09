@@ -32,6 +32,10 @@ public class Proyecto extends BusinessObject {
 	@JoinColumns(@JoinColumn(name = "responsable"))
 	private Persona responsable;
 
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumns(@JoinColumn(name = "idTipoAgrupamiento"))
+	private TipoAgrupamiento tipoAgrupamiento;
+
 	private String nombre;
 	private String descripcion;
 	private Date fechaInicio;
@@ -149,6 +153,14 @@ public class Proyecto extends BusinessObject {
 
 	public void setAdjunto(File adjunto) {
 		this.adjunto = adjunto;
+	}
+
+	public TipoAgrupamiento getTipoAgrupamiento() {
+		return tipoAgrupamiento;
+	}
+
+	public void setTipoAgrupamiento(TipoAgrupamiento tipoAgrupamiento) {
+		this.tipoAgrupamiento = tipoAgrupamiento;
 	}
 
 	public Set<Persona> getCoordinadores() {

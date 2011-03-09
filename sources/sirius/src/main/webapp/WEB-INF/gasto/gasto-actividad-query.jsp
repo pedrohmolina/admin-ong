@@ -28,6 +28,22 @@ function cargarComboActividad(select, destinationCombo){
  		$("#" + destinationCombo).ajaxAddOption(url, {idProyecto:selectedOption}, false);
  	}
 }
+
+function initReferencia(id) {
+	var url = "<c:url value='/gasto/gasto-actividad-form.do?method=initReferencia&id=' />" + id;
+    var options = "fullscreen = 'no'" +
+                 ", toolbar = 'no'" +
+                 ", location = 'no'" +
+                 ", status = 'no'" +
+                 ", menubar = 'no'" +
+                 ", scrollbars = 'no'" +
+                 ", resizable = 'no'" +
+                 ", width= 1000" +
+                 ", height = 200" +
+                 ", left = 200" +
+                 ", top = 200";
+     var ventana = window.open(url,"",options); 
+}
 </script>
 
 <div class="form">
@@ -79,7 +95,6 @@ function cargarComboActividad(select, destinationCombo){
 		<div class="boton">
 			<a href="#" onclick="javascript:limpiarFiltro();"><bean:message key="antares.base.limpiarfiltro.label"/></a>
 			<a href="#" onclick="gastoActividadForm.submit();"><bean:message key="antares.base.buscar.label" /></a>
-			<a href="#" onclick="return hacerSubmit('gasto/gasto-actividad-form.do?method=initCreate');"><bean:message key="antares.base.nuevo.label" /></a>
 		</div>
 	</div>
 	
@@ -100,7 +115,7 @@ function cargarComboActividad(select, destinationCombo){
 		<display:column sortable="true" property="actividad.proyecto.nombre" 	titleKey="sirius.gasto.proyecto.label" />
 		<display:column sortable="true" property="actividad.nombre" 			titleKey="sirius.gasto.actividad.label" />
 		<display:column sortable="true" property="fecha" 						titleKey="sirius.gasto.fecha.label"  	format="{0,date,dd/MM/yyyy}" />
-		<display:column sortable="true" property="rubro.descripcion" 			titleKey="sirius.gasto.rubro.label" />
+		<display:column sortable="true" property="rubro.nombre" 			titleKey="sirius.gasto.rubro.label" />
 		<display:column sortable="true" property="proveedor.nombre" 			titleKey="sirius.gasto.proveedor.label" />
 		<display:column sortable="true" property="importe" 						titleKey="sirius.gasto.importe.label" />
 
@@ -115,6 +130,16 @@ function cargarComboActividad(select, destinationCombo){
 				<a href="<c:url value="/gasto/gasto-actividad-query.do?method=confirmar&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Confirmar" title="Confirmar"
 					src="<c:url value="/img/tick.png"/>" onclick="return confirmarAccion('Est&aacute; seguro que desea confirmar el gasto?')" /></a>
 			</logic:equal>
+			<logic:empty name="item" property="referencia">
+				<a href="#"/><img border="0" alt="Asignar Referencia" title="Asignar Referencia"
+					src="<c:url value="/img/tick.png"/>" onclick="initReferencia(<bean:write name="item" property="id"/>);" /></a>
+			</logic:empty>
+			<logic:notEmpty name="item" property="referencia">
+				<a href="#"/><img border="0" alt="Modificar Referencia" title="Modificar Referencia"
+					src="<c:url value="/img/tick.png"/>" onclick="initReferencia(<bean:write name="item" property="id"/>);" /></a>
+				<a href="<c:url value="/gasto/gasto-actividad-query.do?method=removeReferencia&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Eliminar Referencia" title="Eliminar Referencia"
+					src="<c:url value="/img/icons/cross.png"/>" onclick="return confirmarAccion('Est&aacute; seguro que desea eliminar la referencia?')" /></a>
+			</logic:notEmpty>
 		</display:column>
 	</display-el:table>
 </div>

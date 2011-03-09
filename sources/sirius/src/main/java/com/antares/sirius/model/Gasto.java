@@ -50,6 +50,7 @@ public class Gasto extends BusinessObject {
 	private String paquete;
 	private String observaciones;
 	private Double importe;
+	private String referencia;
 	private Boolean confirmado = Boolean.FALSE;
 
 	public Date getFecha() {
@@ -162,6 +163,14 @@ public class Gasto extends BusinessObject {
 
 	public void setTipoGasto(TipoGasto tipoGasto) {
 		this.tipoGasto = tipoGasto;
+	}
+
+	public String getReferencia() {
+		return referencia;
+	}
+
+	public void setReferencia(String referencia) {
+		this.referencia = referencia;
 	}
 
 }

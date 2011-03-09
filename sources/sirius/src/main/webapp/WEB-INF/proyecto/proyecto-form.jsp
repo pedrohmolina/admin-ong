@@ -58,6 +58,16 @@
 			<html:optionsCollection name="proyectoForm" property="areasTematicas" label="descripcion" value="id"/>
 		</html:select>
 		<br>
+		<logic:iterate id="tipoAgrupamiento" name="proyectoForm" property="tiposAgrupamiento">
+			<logic:equal name="proyectoForm" property="action.descripcion" value="create">
+				<html-el:radio property="idTipoAgrupamiento" value="${tipoAgrupamiento.id}" />
+			</logic:equal>
+			<logic:equal name="proyectoForm" property="action.descripcion" value="update">
+				<html-el:radio property="idTipoAgrupamiento" value="${tipoAgrupamiento.id}" disabled="true"/>
+			</logic:equal>
+			<bean:write name="tipoAgrupamiento" property="descripcion" />
+			<br /> 
+		</logic:iterate>
 	</div>
 	
 	<div style="clear:both; padding:5px 0 0 0;">

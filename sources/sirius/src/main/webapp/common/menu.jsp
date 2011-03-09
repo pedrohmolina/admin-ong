@@ -40,7 +40,8 @@
 		<menu:submenu top="true" label="&nbsp;Gastos&nbsp;">
 			<menu:item style="width: 160px;" label="Gasto General de Organizacion"><c:url value="/gasto/gasto-organizacion-query.do?method=initQuery"/></menu:item>
 			<menu:item style="width: 160px;" label="Gasto General de Proyecto"><c:url value="/gasto/gasto-proyecto-query.do?method=initQuery"/></menu:item>
-			<menu:item style="width: 160px;" label="Gasto General de Actividad"><c:url value="/gasto/gasto-actividad-query.do?method=initQuery"/></menu:item>
+			<menu:item style="width: 160px;" label="Gasto Registrados por Actividad"><c:url value="/gasto/gasto-actividad-query.do?method=initQuery"/></menu:item>
+			<menu:item style="width: 160px;" label="Registrar Gasto de Actividad"><c:url value="/gasto/gasto-actividad-form.do?method=initCreate"/></menu:item>
 		</menu:submenu>
 	<%--
 	</authz:authorize>

@@ -8,6 +8,7 @@ import com.antares.sirius.model.AreaTematica;
 import com.antares.sirius.model.Financiador;
 import com.antares.sirius.model.Persona;
 import com.antares.sirius.model.Proyecto;
+import com.antares.sirius.model.TipoAgrupamiento;
 
 /**
  * Representacion en la capa de vista de la entidad de modelo Proyecto.
@@ -32,10 +33,12 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 	private String idFinanciador;
 	private String resumen;
 	private Integer[] idAreaTematica;
+	private String idTipoAgrupamiento;
 	private Collection<Persona> coordinadores;
 	private Collection<Persona> responsables;
 	private Collection<Financiador> financiadores;
 	private Collection<AreaTematica> areasTematicas;
+	private Collection<TipoAgrupamiento> tiposAgrupamiento;
 
 	private String filtroNombre;
 	private String filtroFechaInicio;
@@ -239,6 +242,22 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 		this.labelFinanciador = labelFinanciador;
 	}
 
+	public Collection<TipoAgrupamiento> getTiposAgrupamiento() {
+		return tiposAgrupamiento;
+	}
+
+	public void setTiposAgrupamiento(Collection<TipoAgrupamiento> tiposAgrupamiento) {
+		this.tiposAgrupamiento = tiposAgrupamiento;
+	}
+
+	public String getIdTipoAgrupamiento() {
+		return idTipoAgrupamiento;
+	}
+
+	public void setIdTipoAgrupamiento(String idTipoAgrupamiento) {
+		this.idTipoAgrupamiento = idTipoAgrupamiento;
+	}
+
 	@Override
 	public void initialize() {
 		this.id = null;
@@ -255,6 +274,7 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 		this.idFinanciador = "";
 		this.resumen = "";
 		this.idAreaTematica = null;
+		this.idTipoAgrupamiento = "";
 		this.filtroNombre = "";
 		this.filtroFechaInicio = "";
 		this.filtroFechaFin = "";
@@ -280,6 +300,7 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 		this.idFinanciador = "";
 		this.resumen = "";
 		this.idAreaTematica = null;
+		this.idTipoAgrupamiento = "";
 		this.labelResponsable = "";
 		this.labelFinanciador = "";
 	}
@@ -310,6 +331,7 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 		for (AreaTematica area : entity.getAreasTematicas()) {
 			this.idAreaTematica[--cantAreas] = area.getId();
 		}
-}
+		this.idTipoAgrupamiento = entity.getTipoAgrupamiento().getId().toString();
+	}
 
 }

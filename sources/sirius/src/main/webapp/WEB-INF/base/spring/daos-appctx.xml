@@ -27,6 +27,7 @@
 	<bean id="relacionContractualDAO" 	class="com.antares.sirius.dao.impl.RelacionContractualDAOImpl" 	autowire="byName" />
 	<bean id="rolDAO" 					class="com.antares.sirius.dao.impl.RolDAOImpl" 					autowire="byName" />
 	<bean id="rubroDAO" 				class="com.antares.sirius.dao.impl.RubroDAOImpl" 				autowire="byName" />
+	<bean id="tipoAgrupamientoDAO" 		class="com.antares.sirius.dao.impl.TipoAgrupamientoDAOImpl" 	autowire="byName" />
 	<bean id="tipoAsignacionDAO" 		class="com.antares.sirius.dao.impl.TipoAsignacionDAOImpl" 		autowire="byName" />
 	<bean id="tipoComprobanteDAO" 		class="com.antares.sirius.dao.impl.TipoComprobanteDAOImpl" 		autowire="byName" />
 	<bean id="tipoDocumentoDAO" 		class="com.antares.sirius.dao.impl.TipoDocumentoDAOImpl" 		autowire="byName" />

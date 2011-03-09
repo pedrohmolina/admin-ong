@@ -70,8 +70,8 @@ public class IngresoAction extends BaseAction<Ingreso, IngresoForm, IngresoServi
 		String idTipoIngreso =(String) request.getParameter("idTipoIngreso");
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("isFinanciacion", tipoIngresoService.isIdFinanciacion(idTipoIngreso) ? "true" : "false");
+
 		sendJSON(response, map);
-		
 		return null;
 	}
 	
