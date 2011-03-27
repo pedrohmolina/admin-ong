@@ -10,9 +10,9 @@
         <text>Listar%20Proyecto</text>
       </controlProperties>
     </control>
-    <control controlID="3" controlTypeID="com.balsamiq.mockups::DataGrid" x="481" y="307" w="684" h="421" measuredW="694" measuredH="148" zOrder="2" locked="false" isInGroup="-1">
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::DataGrid" x="481" y="307" w="684" h="421" measuredW="719" measuredH="148" zOrder="2" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Nombre%2C%20Responsable%2C%20Fecha%20Inicio%2C%20Fecha%20Fin%2C%20Financiador%2C%20Estado%2C%20Tools%0AProyecto%2001%2C%20Pedro%20Molina%2C%2010/07/2001%2C%2010/11/2002%2C%20Hasar%20SRL%2C%20Finalizado%2C%20C%20M%20AP%0AProyecto%2002%2C%20Pablo%20Delfino%2C%2015/07/2010%2C%2017/11/2011%2C%20TGV%20SRL%2C%20Ejecuci%F3n%2CC%20M%20I%20F%20AP%0AProyecto%2003%2C%20Julina%20Martinez%2C%2028/11/2010%2C%2022/5/2011%2C%20TOP%20GROUP%20SRL%2C%20Dise%F1o%2C%20C%20M%20I%20E%20AP%0AProyecto%2004%2C%20Claudio%20Castro%2C%2010/07/2003%2C%2010/11/2005%2C%20Finalizado%2C%20HP%20SA%2C%20C%20M%20AP</text>
+        <text>Nombre%2C%20Responsable%2C%20Fecha%20Inicio%2C%20Fecha%20Fin%2C%20Financiador%2C%20Estado%2C%20Tools%0AProyecto%2001%2C%20Pedro%20Molina%2C%2010/07/2001%2C%2010/11/2002%2C%20Hasar%20SRL%2C%20Finalizado%2C%20C%20M%20AP%20OG%0AProyecto%2002%2C%20Pablo%20Delfino%2C%2015/07/2010%2C%2017/11/2011%2C%20TGV%20SRL%2C%20Ejecuci%F3n%2CC%20M%20I%20F%20AP%20OG%0AProyecto%2003%2C%20Julina%20Martinez%2C%2028/11/2010%2C%2022/5/2011%2C%20TOP%20GROUP%20SRL%2C%20Dise%F1o%2C%20C%20M%20I%20E%20AP%20OG%0AProyecto%2004%2C%20Claudio%20Castro%2C%2010/07/2003%2C%2010/11/2005%2C%20HP%20SA%2C%20Finalizado%2C%20C%20M%20AP%20OG</text>
       </controlProperties>
     </control>
     <control controlID="4" controlTypeID="com.balsamiq.mockups::HRule" x="481" y="307" w="682" h="-1" measuredW="100" measuredH="5" zOrder="3" locked="false" isInGroup="-1"/>
