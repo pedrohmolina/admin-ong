@@ -10,9 +10,9 @@
         <text>Listar%20Objetivo%20General</text>
       </controlProperties>
     </control>
-    <control controlID="3" controlTypeID="com.balsamiq.mockups::DataGrid" x="481" y="249" w="684" h="479" measuredW="379" measuredH="148" zOrder="2" locked="false" isInGroup="-1">
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::DataGrid" x="481" y="249" w="684" h="479" measuredW="402" measuredH="148" zOrder="2" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Nombre%2C%20Ponderacion%2C%20Completitud%2C%20Tools%0AObjetivo%20General%2001%2C%2050%25%2C%2020%25%2C%20C%20M%20B%0AObjetivo%20General%2002%2C%2030%25%2C%2010%25%2C%20C%20M%20B%0AObjetivo%20General%2003%2C%2020%25%2C%20100%25%2CC%20M%20B%0AObjetivo%20General%2004%2C%20100%25%2C%2090%25%2C%20C%20M%20B</text>
+        <text>Nombre%2C%20Ponderacion%2C%20Completitud%2C%20Tools%0AObjetivo%20General%2001%2C%2050%25%2C%2020%25%2C%20C%20M%20B%20OE%0AObjetivo%20General%2002%2C%2030%25%2C%2010%25%2C%20C%20M%20B%20OE%0AObjetivo%20General%2003%2C%2020%25%2C%20100%25%2CC%20M%20B%20OE%0AObjetivo%20General%2004%2C%20100%25%2C%2090%25%2C%20C%20M%20B%20OE</text>
       </controlProperties>
     </control>
     <control controlID="4" controlTypeID="com.balsamiq.mockups::Label" x="501" y="172" w="-1" h="-1" measuredW="118" measuredH="25" zOrder="3" locked="false" isInGroup="-1">
