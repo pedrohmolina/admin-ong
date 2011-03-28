@@ -80,6 +80,6 @@ INSERT INTO relacioncontractual (id,nombre,descripcion,activo) VALUES (7,'Miembr
 --  Parametros
 INSERT INTO parametro (id,nombre,valor,descripcion) VALUES (3,'ID_TIPO_INGRESO_FINANCIACION','3','Id de la tabla tipoIngreso correspondiente al registro que representa Financiacion');
 INSERT INTO parametro (id,nombre,valor,descripcion) VALUES (1,'ID_ESTADO_PROYECTO_IDEA','1','Id de la tabla estadoProyecto correspondiente al registro que representa el estado Idea');
-INSERT INTO parametro (id,nombre,valor,descripcion) VALUES (1,'ID_ESTADO_ACTIVIDAD_LATENTE','1','Id de la tabla estadoActividad correspondiente al registro que representa el estado Latente');
+INSERT INTO parametro (id,nombre,valor,descripcion) VALUES (4,'ID_ESTADO_ACTIVIDAD_LATENTE','1','Id de la tabla estadoActividad correspondiente al registro que representa el estado Latente');
 INSERT INTO parametro (id,nombre,valor,descripcion) VALUES (2,'ID_ESTADO_ACTIVIDAD_PROGRESO','2','Id de la tabla estadoActividad correspondiente al registro que representa el estado En Progreso');
 
