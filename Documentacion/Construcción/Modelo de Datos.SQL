@@ -515,16 +515,6 @@ CREATE TABLE formaPago
 ;
 
 
-CREATE TABLE estadoactividad 
-(
-	id int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
-	descripcion varchar(50) NOT NULL COMMENT 'Descripcion del Estado de la Actividad',
-	PRIMARY KEY  (id),
-	UNIQUE KEY UQ_estadoActividad_descripcion (descripcion),
-	UNIQUE KEY UQ_estadoActividad_id (id)
-)
-;
-
 
 CREATE TABLE estadoProyecto
 (
