@@ -53,6 +53,7 @@
     </control>
     <control controlID="50" controlTypeID="com.balsamiq.mockups::ComboBox" x="589" y="295" w="104" h="-1" measuredW="90" measuredH="25" zOrder="10" locked="false" isInGroup="-1">
       <controlProperties>
+        <state>disabled</state>
         <text>Movilidad</text>
       </controlProperties>
     </control>

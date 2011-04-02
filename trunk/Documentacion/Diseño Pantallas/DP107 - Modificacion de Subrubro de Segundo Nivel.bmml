@@ -53,6 +53,7 @@
     </control>
     <control controlID="50" controlTypeID="com.balsamiq.mockups::ComboBox" x="540" y="293" w="104" h="-1" measuredW="90" measuredH="25" zOrder="10" locked="false" isInGroup="-1">
       <controlProperties>
+        <state>disabled</state>
         <text>Movilidad</text>
       </controlProperties>
     </control>
@@ -61,8 +62,9 @@
         <text>Subrubro%20Padre%3A</text>
       </controlProperties>
     </control>
-    <control controlID="52" controlTypeID="com.balsamiq.mockups::ComboBox" x="706" y="293" w="104" h="-1" measuredW="81" measuredH="25" zOrder="12" locked="false" isInGroup="-1">
+    <control controlID="52" controlTypeID="com.balsamiq.mockups::ComboBox" x="775" y="293" w="104" h="-1" measuredW="81" measuredH="25" zOrder="12" locked="false" isInGroup="-1">
       <controlProperties>
+        <state>disabled</state>
         <text>Viaticos</text>
       </controlProperties>
     </control>
