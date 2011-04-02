@@ -17,6 +17,7 @@
     </control>
     <control controlID="4" controlTypeID="com.balsamiq.mockups::ComboBox" x="545" y="178" w="178" h="-1" measuredW="86" measuredH="25" zOrder="3" locked="false" isInGroup="-1">
       <controlProperties>
+        <state>disabled</state>
         <text>Meta%2001</text>
       </controlProperties>
     </control>
