@@ -44,6 +44,7 @@
 		<a href="#" onclick="objetivoGeneralForm.submit();" tabindex="17"><bean:message key="antares.base.aceptar.label" /></a>
 		<a href="<c:url value="/objetivo-general/objetivo-general-query.do?method=lastQuery"/>"><bean:message key="antares.base.cancelar.label" /></a>
 	</div>
+	<div style="clear:both; padding:5px 0 0 0;"></div>
 </html:form>
 
 </div>

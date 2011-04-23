@@ -40,6 +40,7 @@
 		<a href="#" onclick="perfilForm.submit();" tabindex="17"><bean:message key="antares.base.aceptar.label" /></a>
 		<a href="<c:url value="/perfil/perfil-query.do?method=lastQuery"/>"><bean:message key="antares.base.cancelar.label" /></a>
 	</div>
+	<div style="clear:both; padding:5px 0 0 0;"></div>
 </html:form>
 
 </div>
