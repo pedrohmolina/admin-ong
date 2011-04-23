@@ -6,6 +6,7 @@
 
 	<bean name="/base/home_init" 	class="com.antares.commons.view.action.HomeAction" singleton="false" />
 
+	<bean name="/public/logout" class="com.antares.commons.view.action.LogoutAction" singleton="false" />
 	
 	<bean name="actividadAction" class="com.antares.sirius.view.action.ActividadAction" autowire="byName" >
 		<property name="service" 					ref="actividadService" />

@@ -1,5 +1,8 @@
 package com.antares.sirius.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,9 +11,12 @@ import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import org.acegisecurity.GrantedAuthority;
+import org.acegisecurity.userdetails.UserDetails;
+
 @Entity
 @SuppressWarnings("serial")
-public class Usuario extends BusinessObject {
+public class Usuario extends BusinessObject implements UserDetails {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumns(@JoinColumn(name = "idPersona"))
@@ -24,7 +30,7 @@ public class Usuario extends BusinessObject {
 	private String password;
 	private Boolean bloqueado = Boolean.FALSE;
 
-    public Persona getPersona() {
+	public Persona getPersona() {
 		return persona;
 	}
 
@@ -62,6 +68,44 @@ public class Usuario extends BusinessObject {
 
 	public void setBloqueado(Boolean bloqueado) {
 		this.bloqueado = bloqueado;
+	}
+
+    @Override
+	public GrantedAuthority[] getAuthorities() {
+    	Set<Acceso> accesos = new HashSet<Acceso>();
+    	accesos.add(Acceso.getAccesoBase());
+    	for (Rol rol : this.getPerfil().getRoles()) {
+    		if (rol.isActivo()) {
+    			accesos.addAll(rol.getAccesos());
+    		}
+    	}
+
+    	int i = 0;
+    	GrantedAuthority[] authorities = new GrantedAuthority[accesos.size()];
+    	for (Acceso acceso : accesos) {
+    		authorities[i++] = acceso; 
+		}
+    	return authorities;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return !getBloqueado();
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return !getBloqueado();
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return !getBloqueado();
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return !getBloqueado();
 	}
 
 }

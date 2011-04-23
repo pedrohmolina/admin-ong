@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+
+	 <!-- ======================== FILTER CHAIN ======================= -->
+    <bean id="filterChainProxy" class="org.acegisecurity.util.FilterChainProxy">
+        <property name="filterInvocationDefinitionSource">
+            <value>
+                CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON
+                PATTERN_TYPE_APACHE_ANT
+                /**=httpSessionContextIntegrationFilter,authenticationProcessingFilter,remoteUserFilter,rememberMeProcessingFilter,anonymousProcessingFilter,exceptionTranslationFilter,filterInvocationInterceptor
+            </value>
+            <!-- Put channelProcessingFilter before remoteUserFilter to turn on SSL switching  -->
+            <!-- It's off by default b/c Canoo WebTest doesn't support SSL out-of-the-box -->
+        </property>
+    </bean>
+
+
+    <!-- ======================== AUTHENTICATION ======================= -->
+
+    <!-- Note the order that entries are placed against the objectDefinitionSource is critical.
+         The FilterSecurityInterceptor will work from the top of the list down to the FIRST pattern that matches the request URL.
+         Accordingly, you should place MOST SPECIFIC (ie a/b/c/d.*) expressions first, with LEAST SPECIFIC (ie a/.*) expressions last -->
+    <bean id="filterInvocationInterceptor" class="org.acegisecurity.intercept.web.FilterSecurityInterceptor">
+        <property name="authenticationManager" ref="authenticationManager"/>
+        <property name="accessDecisionManager" ref="accessDecisionManager"/>
+         <property name="objectDefinitionSource">
+            <value>
+                /actividad/.*=ENTIDAD_ACTIVIDAD-LISTADO
+                /asignacion/.*=ENTIDAD_ASIGNACION-LISTADO
+                /financiador/.*=ENTIDAD_FINANCIADOR-LISTADO
+                /gasto/gasto-actividad.*=ENTIDAD_GASTO_ACTIVIDAD-LISTADO
+                /gasto/gasto-organizacion.*=ENTIDAD_GASTO_ORGANIZACION-LISTADO
+                /gasto/gasto-proyecto.*=ENTIDAD_GASTO_PROYECTO-LISTADO
+                /ingreso/.*=ENTIDAD_INGRESO-LISTADO
+                /meta/.*=ENTIDAD_META-LISTADO
+                /objetivo-especifico/.*=ENTIDAD_OBJETIVO_ESPECIFICO-LISTADO
+                /objetivo-general/.*=ENTIDAD_OBJETIVO_GENERAL-LISTADO
+                /perfil/.*=ENTIDAD_PERFIL-LISTADO
+                /persona/.*=ENTIDAD_PERSONA-LISTADO
+                /proveedor/.*=ENTIDAD_PROVEEDOR-LISTADO
+                /proyecto/.*=ENTIDAD_PROYECTO-LISTADO
+                /relacion-contractual/.*=ENTIDAD_RELACION_CONTRACTUAL-LISTADO
+                /rol/.*=ENTIDAD_ROL-LISTADO
+                /rubro/.*=ENTIDAD_RUBRO-LISTADO
+                /usuario/.*=ENTIDAD_USUARIO-LISTADO
+            </value>
+        </property>
+    </bean>
+
+    <bean id="authenticationManager" class="org.acegisecurity.providers.ProviderManager">
+        <property name="providers">
+            <list>
+                <ref local="daoAuthenticationProvider"/>
+                <ref local="anonymousAuthenticationProvider"/>
+                <ref local="rememberMeAuthenticationProvider"/>
+            </list>
+        </property>
+		<property name="sessionController"><ref bean="concurrentSessionController"/></property>
+    </bean>
+
+	<bean id="concurrentSessionController" class="org.acegisecurity.concurrent.ConcurrentSessionControllerImpl">
+		<property name="maximumSessions"><value>3</value></property>
+		<property name="sessionRegistry"><ref local="sessionRegistry"/></property>
+	</bean>
+
+    <!-- Log failed authentication attempts to commons-logging -->
+    <bean id="loggerListener" class="org.acegisecurity.event.authentication.LoggerListener"/>
+
+	<bean id="daoAuthenticationProvider" class="org.acegisecurity.providers.dao.DaoAuthenticationProvider">
+		<property name="userDetailsService">
+			<ref bean="usuarioService"/>
+		</property>
+		<property name="passwordEncoder">
+			<ref bean="passwordEncoder"/>
+		</property>
+		<property name="hideUserNotFoundExceptions" value="false"/>
+	</bean>
+
+    <bean id="anonymousAuthenticationProvider" class="org.acegisecurity.providers.anonymous.AnonymousAuthenticationProvider">
+        <property name="key" value="anonymous"/>
+    </bean>
+
+    <bean id="roleVoter" class="org.acegisecurity.vote.RoleVoter">
+        <property name="rolePrefix" value=""/>
+    </bean>
+
+    <bean id="accessDecisionManager" class="org.acegisecurity.vote.AffirmativeBased">
+        <property name="allowIfAllAbstainDecisions" value="false"/>
+        <property name="decisionVoters">
+            <list>
+                <ref local="roleVoter"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- ===================== HTTP REQUEST SECURITY ==================== -->
+    <bean id="httpSessionContextIntegrationFilter" class="org.acegisecurity.context.HttpSessionContextIntegrationFilter"/>
+
+    <bean id="authenticationProcessingFilter" class="org.acegisecurity.ui.webapp.AuthenticationProcessingFilter">
+        <property name="authenticationManager" ref="authenticationManager"/>
+        <property name="authenticationFailureUrl" value="/public/login.do?error=true"/>
+        <property name="defaultTargetUrl" value="/base/home_init.do"/><!--
+        <property name="alwaysUseDefaultTargetUrl" value="true"/>
+        --><property name="filterProcessesUrl" value="/j_security_check_acegi"/>
+        <property name="rememberMeServices" ref="rememberMeServices"/>
+    </bean>
+
+    <bean id="anonymousProcessingFilter" class="org.acegisecurity.providers.anonymous.AnonymousProcessingFilter">
+        <property name="key" value="anonymous"/>
+        <property name="userAttribute" value="anonymous,MOSTRAR-OPCIONES_PUBLICAS"/>
+    </bean>
+
+    <bean id="exceptionTranslationFilter" class="org.acegisecurity.ui.ExceptionTranslationFilter">
+        <property name="authenticationEntryPoint" ref="authenticationProcessingFilterEntryPoint"/>
+    </bean>
+
+    <bean id="remoteUserFilter" class="org.acegisecurity.wrapper.SecurityContextHolderAwareRequestFilter"/>
+
+    <bean id="authenticationProcessingFilterEntryPoint" class="org.acegisecurity.ui.webapp.AuthenticationProcessingFilterEntryPoint">
+        <property name="loginFormUrl" value="/public/login.do"/>
+        <property name="forceHttps" value="false"/>
+    </bean>
+
+
+    <!-- ===================== REMEMBER ME ==================== -->
+    <bean id="rememberMeProcessingFilter" class="org.acegisecurity.ui.rememberme.RememberMeProcessingFilter">
+        <property name="authenticationManager" ref="authenticationManager"/>
+        <property name="rememberMeServices" ref="rememberMeServices"/>
+    </bean>
+
+    <bean id="rememberMeServices" class="org.acegisecurity.ui.rememberme.TokenBasedRememberMeServices">
+        <property name="userDetailsService" ref="usuarioService"/>
+        <property name="key" value="unique_key_generated_for_sirius"/>
+        <property name="parameter" value="rememberMe"/>
+    </bean>
+
+    <bean id="rememberMeAuthenticationProvider" class="org.acegisecurity.providers.rememberme.RememberMeAuthenticationProvider">
+        <property name="key" value="unique_key_generated_for_sirius"/>
+    </bean>
+
+	<!-- =================  Extensiones de Antares  ============== -->
+    <bean id="passwordEncoder" class="com.antares.commons.security.MD5Encoder"/>
+
+	<!--  
+	<bean id="sessionRegistry" class="com.antares.commons.security.SessionRegistry">
+		<property name="usuarioService" ref="usuarioService" />
+	</bean>
+	-->
+	<bean id="sessionRegistry" class="org.acegisecurity.concurrent.SessionRegistryImpl" />
+
+</beans>

@@ -32,8 +32,12 @@ function confirmarAccion(mensaje) {
 	<div style="float: left; width: 100%;">
 		<div class="boton">
 			<a href="#" onclick="javascript:limpiarFiltro();"><bean:message key="antares.base.limpiarfiltro.label"/></a>
-			<a href="#" onclick="relacionContractualForm.submit();"><bean:message key="antares.base.buscar.label" /></a>
-			<a href="#" onclick="return hacerSubmit('relacion-contractual/relacion-contractual-form.do?method=initCreate');"><bean:message key="antares.base.nuevo.label" /></a>
+			<authz:authorize ifAllGranted="ENTIDAD_RELACION_CONTRACTUAL-LISTADO">
+				<a href="#" onclick="relacionContractualForm.submit();"><bean:message key="antares.base.buscar.label" /></a>
+			</authz:authorize>
+			<authz:authorize ifAllGranted="ENTIDAD_RELACION_CONTRACTUAL-ALTA">
+				<a href="#" onclick="return hacerSubmit('relacion-contractual/relacion-contractual-form.do?method=initCreate');"><bean:message key="antares.base.nuevo.label" /></a>
+			</authz:authorize>
 		</div>
 	</div>
 	
@@ -55,12 +59,18 @@ function confirmarAccion(mensaje) {
 		<display:column sortable="true" property="descripcion" 	titleKey="sirius.relacionContractual.descripcion.label" />
 
 		<display:column title="Acciones" media="html">
-			<a href="<c:url value="/relacion-contractual/relacion-contractual-form.do?method=view&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Visualizar" title="Visualizar"
-				src="<c:url value="/img/icon.lupa.gif"/>" /></a>
-			<a href="<c:url value="/relacion-contractual/relacion-contractual-form.do?method=initUpdate&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Editar" title="Modificar"
-				src="<c:url value="/img/icoModificar.gif"/>" /></a>
-			<a href="<c:url value="/relacion-contractual/relacion-contractual-query.do?method=remove&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Eliminar" title="Eliminar"
-				src="<c:url value="/img/icons/cross.png"/>" onclick="return confirmarAccion('Est&aacute; seguro que desea eliminar el registro <bean:write name="item" property="nombre"/>?')" /></a>
+			<authz:authorize ifAllGranted="ENTIDAD_RELACION_CONTRACTUAL-DETALLE">
+				<a href="<c:url value="/relacion-contractual/relacion-contractual-form.do?method=view&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Visualizar" title="Visualizar"
+					src="<c:url value="/img/icon.lupa.gif"/>" /></a>
+			</authz:authorize>
+			<authz:authorize ifAllGranted="ENTIDAD_RELACION_CONTRACTUAL-MODIFICACION">
+				<a href="<c:url value="/relacion-contractual/relacion-contractual-form.do?method=initUpdate&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Editar" title="Modificar"
+					src="<c:url value="/img/icoModificar.gif"/>" /></a>
+			</authz:authorize>
+			<authz:authorize ifAllGranted="ENTIDAD_RELACION_CONTRACTUAL-BAJA">
+				<a href="<c:url value="/relacion-contractual/relacion-contractual-query.do?method=remove&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Eliminar" title="Eliminar"
+					src="<c:url value="/img/icons/cross.png"/>" onclick="return confirmarAccion('Est&aacute; seguro que desea eliminar el registro <bean:write name="item" property="nombre"/>?')" /></a>
+			</authz:authorize>
 		</display:column>
 	</display-el:table>
 </div>

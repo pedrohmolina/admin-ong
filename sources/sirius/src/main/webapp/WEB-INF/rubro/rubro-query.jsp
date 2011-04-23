@@ -32,10 +32,14 @@ function confirmarAccion(mensaje) {
 	<div style="float: left; width: 100%;">
 		<div class="boton">
 			<a href="#" onclick="javascript:limpiarFiltro();"><bean:message key="antares.base.limpiarfiltro.label"/></a>
-			<a href="#" onclick="rubroForm.submit();"><bean:message key="antares.base.buscar.label" /></a>
-			<a href="#" onclick="return hacerSubmit('rubro/rubro-form.do?method=initCreateNivelUno');"><bean:message key="sirius.rubro.nuevo.nivelUno.label" /></a>
-			<a href="#" onclick="return hacerSubmit('rubro/rubro-form.do?method=initCreateNivelDos');"><bean:message key="sirius.rubro.nuevo.nivelDos.label" /></a>
-			<a href="#" onclick="return hacerSubmit('rubro/rubro-form.do?method=initCreateNivelTres');"><bean:message key="sirius.rubro.nuevo.nivelTres.label" /></a>
+			<authz:authorize ifAllGranted="ENTIDAD_RUBRO-LISTADO">
+				<a href="#" onclick="rubroForm.submit();"><bean:message key="antares.base.buscar.label" /></a>
+			</authz:authorize>
+			<authz:authorize ifAllGranted="ENTIDAD_RUBRO-ALTA">
+				<a href="#" onclick="return hacerSubmit('rubro/rubro-form.do?method=initCreateNivelUno');"><bean:message key="sirius.rubro.nuevo.nivelUno.label" /></a>
+				<a href="#" onclick="return hacerSubmit('rubro/rubro-form.do?method=initCreateNivelDos');"><bean:message key="sirius.rubro.nuevo.nivelDos.label" /></a>
+				<a href="#" onclick="return hacerSubmit('rubro/rubro-form.do?method=initCreateNivelTres');"><bean:message key="sirius.rubro.nuevo.nivelTres.label" /></a>
+			</authz:authorize>
 		</div>
 	</div>
 	
@@ -63,12 +67,18 @@ function confirmarAccion(mensaje) {
 		</display:column>
 
 		<display:column title="Acciones" media="html">
-			<a href="<c:url value="/rubro/rubro-form.do?method=view&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Visualizar" title="Visualizar"
-				src="<c:url value="/img/icon.lupa.gif"/>" /></a>
-			<a href="<c:url value="/rubro/rubro-form.do?method=initUpdate&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Editar" title="Modificar"
-				src="<c:url value="/img/icoModificar.gif"/>" /></a>
-			<a href="<c:url value="/rubro/rubro-query.do?method=remove&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Eliminar" title="Eliminar"
-				src="<c:url value="/img/icons/cross.png"/>" onclick="return confirmarAccion('Est&aacute; seguro que desea eliminar el registro <bean:write name="item" property="nombre"/>?')" /></a>
+			<authz:authorize ifAllGranted="ENTIDAD_RUBRO-DETALLE">
+				<a href="<c:url value="/rubro/rubro-form.do?method=view&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Visualizar" title="Visualizar"
+					src="<c:url value="/img/icon.lupa.gif"/>" /></a>
+			</authz:authorize>
+			<authz:authorize ifAllGranted="ENTIDAD_RUBRO-MODIFICACION">
+				<a href="<c:url value="/rubro/rubro-form.do?method=initUpdate&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Editar" title="Modificar"
+					src="<c:url value="/img/icoModificar.gif"/>" /></a>
+			</authz:authorize>
+			<authz:authorize ifAllGranted="ENTIDAD_RUBRO-BAJA">
+				<a href="<c:url value="/rubro/rubro-query.do?method=remove&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Eliminar" title="Eliminar"
+					src="<c:url value="/img/icons/cross.png"/>" onclick="return confirmarAccion('Est&aacute; seguro que desea eliminar el registro <bean:write name="item" property="nombre"/>?')" /></a>
+			</authz:authorize>
 		</display:column>
 	</display-el:table>
 </div>

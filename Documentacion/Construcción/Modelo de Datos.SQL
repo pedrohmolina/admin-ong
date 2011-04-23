@@ -449,7 +449,7 @@ CREATE TABLE rubro
 CREATE TABLE rol
 (
 	id INT NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
-	nombre VARCHAR(16) NOT NULL COMMENT 'Identificador único del Rol en el sistema',
+	nombre VARCHAR(255) NOT NULL COMMENT 'Identificador único del Rol en el sistema',
 	descripcion VARCHAR(255) NOT NULL COMMENT 'Descripcion del Rol',
 	activo BOOL NOT NULL COMMENT 'Señal para manejo de baja logica',
 	PRIMARY KEY (id),

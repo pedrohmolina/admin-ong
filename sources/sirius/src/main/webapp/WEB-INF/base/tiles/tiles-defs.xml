@@ -21,6 +21,11 @@
 		<put name="body" value="/common/message.jsp" />
 	</definition>
 
+	<definition name=".login" extends="mainLayout">
+		<put name="title" value="Sirius - Login" />
+		<put name="body" value="/public/login.jsp" />
+	</definition>
+
 	<definition name=".400" extends="mainLayout">
 		<put name="title" value="Pedido malformado" />
 		<put name="body" value="/errors/400.jsp" />

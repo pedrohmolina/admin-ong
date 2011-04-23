@@ -47,8 +47,12 @@ function confirmarAccion(mensaje) {
 	<div style="float: left; width: 100%;">
 		<div class="boton">
 			<a href="#" onclick="javascript:limpiarFiltro();"><bean:message key="antares.base.limpiarfiltro.label"/></a>
-			<a href="#" onclick="usuarioForm.submit();"><bean:message key="antares.base.buscar.label" /></a>
-			<a href="#" onclick="return hacerSubmit('usuario/usuario-form.do?method=initCreate');"><bean:message key="antares.base.nuevo.label" /></a>
+			<authz:authorize ifAllGranted="ENTIDAD_USUARIO-LISTADO">
+				<a href="#" onclick="usuarioForm.submit();"><bean:message key="antares.base.buscar.label" /></a>
+			</authz:authorize>
+			<authz:authorize ifAllGranted="ENTIDAD_USUARIO-ALTA">
+				<a href="#" onclick="return hacerSubmit('usuario/usuario-form.do?method=initCreate');"><bean:message key="antares.base.nuevo.label" /></a>
+			</authz:authorize>
 		</div>
 	</div>
 	
@@ -74,18 +78,26 @@ function confirmarAccion(mensaje) {
 		<display:column sortable="true" property="persona.numeroDocumento" 				titleKey="sirius.usuario.numeroDocumento.label" />
 
 		<display:column title="Acciones" media="html">
-			<a href="<c:url value="/usuario/usuario-form.do?method=view&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Visualizar" title="Visualizar"
-				src="<c:url value="/img/icon.lupa.gif"/>" /></a>
-			<a href="<c:url value="/usuario/usuario-form.do?method=initUpdate&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Editar" title="Modificar"
-				src="<c:url value="/img/icoModificar.gif"/>" /></a>
-			<logic:equal name="item" property="bloqueado" value="false">
-				<a href="<c:url value="/usuario/usuario-query.do?method=bloquear&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Bloquear" title="Bloquear"
-					src="<c:url value="/img/disable_user.gif"/>" onclick="return confirmarAccion('Est&aacute; seguro que desea bloquear el usuario <bean:write name="item" property="username"/>?')" /></a>
-			</logic:equal>
-			<logic:equal name="item" property="bloqueado" value="true">
-				<a href="<c:url value="/usuario/usuario-query.do?method=desbloquear&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Desbloquear" title="Desbloquear"
-					src="<c:url value="/img/enable_user.gif"/>" onclick="return confirmarAccion('Est&aacute; seguro que desea desbloquear el usuario <bean:write name="item" property="username"/>?')" /></a>
-			</logic:equal>
+			<authz:authorize ifAllGranted="ENTIDAD_USUARIO-DETALLE">
+				<a href="<c:url value="/usuario/usuario-form.do?method=view&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Visualizar" title="Visualizar"
+					src="<c:url value="/img/icon.lupa.gif"/>" /></a>
+			</authz:authorize>
+			<authz:authorize ifAllGranted="ENTIDAD_USUARIO-MODIFICACION">
+				<a href="<c:url value="/usuario/usuario-form.do?method=initUpdate&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Editar" title="Modificar"
+					src="<c:url value="/img/icoModificar.gif"/>" /></a>
+			</authz:authorize>
+			<authz:authorize ifAllGranted="ENTIDAD_USUARIO-BLOQUEAR">
+				<logic:equal name="item" property="bloqueado" value="false">
+					<a href="<c:url value="/usuario/usuario-query.do?method=bloquear&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Bloquear" title="Bloquear"
+						src="<c:url value="/img/disable_user.gif"/>" onclick="return confirmarAccion('Est&aacute; seguro que desea bloquear el usuario <bean:write name="item" property="username"/>?')" /></a>
+				</logic:equal>
+			</authz:authorize>
+			<authz:authorize ifAllGranted="ENTIDAD_USUARIO-DESBLOQUEAR">
+				<logic:equal name="item" property="bloqueado" value="true">
+					<a href="<c:url value="/usuario/usuario-query.do?method=desbloquear&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Desbloquear" title="Desbloquear"
+						src="<c:url value="/img/enable_user.gif"/>" onclick="return confirmarAccion('Est&aacute; seguro que desea desbloquear el usuario <bean:write name="item" property="username"/>?')" /></a>
+				</logic:equal>
+			</authz:authorize>
 		</display:column>
 	</display-el:table>
 </div>

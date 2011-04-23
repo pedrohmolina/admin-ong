@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -19,7 +20,7 @@ public class Perfil extends BusinessObject {
     @Column(nullable = false)
     private String descripcion;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "perfilrol", joinColumns = @JoinColumn(name="idPerfil"), inverseJoinColumns = @JoinColumn(name = "idRol"))
 	private Set<Rol> roles;
 

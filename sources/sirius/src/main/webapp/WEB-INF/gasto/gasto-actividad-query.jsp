@@ -94,7 +94,9 @@ function initReferencia(id) {
 	<div style="float: left; width: 100%;">
 		<div class="boton">
 			<a href="#" onclick="javascript:limpiarFiltro();"><bean:message key="antares.base.limpiarfiltro.label"/></a>
-			<a href="#" onclick="gastoActividadForm.submit();"><bean:message key="antares.base.buscar.label" /></a>
+			<authz:authorize ifAllGranted="ENTIDAD_GASTO_ACTIVIDAD-LISTADO">
+				<a href="#" onclick="gastoActividadForm.submit();"><bean:message key="antares.base.buscar.label" /></a>
+			</authz:authorize>
 		</div>
 	</div>
 	
@@ -120,26 +122,36 @@ function initReferencia(id) {
 		<display:column sortable="true" property="importe" 						titleKey="sirius.gasto.importe.label" />
 
 		<display:column title="Acciones" media="html">
+			<authz:authorize ifAllGranted="ENTIDAD_GASTO_ACTIVIDAD-DETALLE">
 			<a href="<c:url value="/gasto/gasto-actividad-form.do?method=view&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Visualizar" title="Visualizar"
 				src="<c:url value="/img/icon.lupa.gif"/>" /></a>
+			</authz:authorize>
+			<authz:authorize ifAllGranted="ENTIDAD_GASTO_ACTIVIDAD-MODIFICACION">
 			<a href="<c:url value="/gasto/gasto-actividad-form.do?method=initUpdate&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Editar" title="Modificar"
 				src="<c:url value="/img/icoModificar.gif"/>" /></a>
+			</authz:authorize>
+			<authz:authorize ifAllGranted="ENTIDAD_GASTO_ACTIVIDAD-BAJA">
 			<a href="<c:url value="/gasto/gasto-actividad-query.do?method=remove&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Eliminar" title="Eliminar"
 				src="<c:url value="/img/icons/cross.png"/>" onclick="return confirmarAccion('Est&aacute; seguro que desea eliminar el registro?')" /></a>
-			<logic:equal name="item" property="confirmado" value="false">
-				<a href="<c:url value="/gasto/gasto-actividad-query.do?method=confirmar&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Confirmar" title="Confirmar"
-					src="<c:url value="/img/tick.png"/>" onclick="return confirmarAccion('Est&aacute; seguro que desea confirmar el gasto?')" /></a>
-			</logic:equal>
-			<logic:empty name="item" property="referencia">
-				<a href="#"/><img border="0" alt="Asignar Referencia" title="Asignar Referencia"
-					src="<c:url value="/img/tick.png"/>" onclick="initReferencia(<bean:write name="item" property="id"/>);" /></a>
-			</logic:empty>
-			<logic:notEmpty name="item" property="referencia">
-				<a href="#"/><img border="0" alt="Modificar Referencia" title="Modificar Referencia"
-					src="<c:url value="/img/tick.png"/>" onclick="initReferencia(<bean:write name="item" property="id"/>);" /></a>
-				<a href="<c:url value="/gasto/gasto-actividad-query.do?method=removeReferencia&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Eliminar Referencia" title="Eliminar Referencia"
-					src="<c:url value="/img/icons/cross.png"/>" onclick="return confirmarAccion('Est&aacute; seguro que desea eliminar la referencia?')" /></a>
-			</logic:notEmpty>
+			</authz:authorize>
+			<authz:authorize ifAllGranted="ENTIDAD_GASTO_ACTIVIDAD-CONFIRMAR">
+				<logic:equal name="item" property="confirmado" value="false">
+					<a href="<c:url value="/gasto/gasto-actividad-query.do?method=confirmar&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Confirmar" title="Confirmar"
+						src="<c:url value="/img/tick.png"/>" onclick="return confirmarAccion('Est&aacute; seguro que desea confirmar el gasto?')" /></a>
+				</logic:equal>
+			</authz:authorize>
+			<authz:authorize ifAllGranted="ENTIDAD_GASTO_ACTIVIDAD-MODIFICACION">
+				<logic:empty name="item" property="referencia">
+					<a href="#"/><img border="0" alt="Asignar Referencia" title="Asignar Referencia"
+						src="<c:url value="/img/tick.png"/>" onclick="initReferencia(<bean:write name="item" property="id"/>);" /></a>
+				</logic:empty>
+				<logic:notEmpty name="item" property="referencia">
+					<a href="#"/><img border="0" alt="Modificar Referencia" title="Modificar Referencia"
+						src="<c:url value="/img/tick.png"/>" onclick="initReferencia(<bean:write name="item" property="id"/>);" /></a>
+					<a href="<c:url value="/gasto/gasto-actividad-query.do?method=removeReferencia&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Eliminar Referencia" title="Eliminar Referencia"
+						src="<c:url value="/img/icons/cross.png"/>" onclick="return confirmarAccion('Est&aacute; seguro que desea eliminar la referencia?')" /></a>
+				</logic:notEmpty>
+			</authz:authorize>
 		</display:column>
 	</display-el:table>
 </div>

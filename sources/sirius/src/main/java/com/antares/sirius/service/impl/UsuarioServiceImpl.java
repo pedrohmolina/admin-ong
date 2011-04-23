@@ -3,6 +3,11 @@ package com.antares.sirius.service.impl;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
+import org.acegisecurity.userdetails.UserDetails;
+import org.acegisecurity.userdetails.UserDetailsService;
+import org.acegisecurity.userdetails.UsernameNotFoundException;
+import org.springframework.dao.DataAccessException;
+
 import com.antares.commons.service.impl.BusinessEntityServiceImpl;
 import com.antares.sirius.dao.UsuarioDAO;
 import com.antares.sirius.model.Usuario;
@@ -15,7 +20,7 @@ import com.antares.sirius.service.UsuarioService;
  * @author <a href:mailto:otakon@gmail.com> Julian Martinez </a>
  *
  */
-public class UsuarioServiceImpl extends BusinessEntityServiceImpl<Usuario, UsuarioDAO> implements UsuarioService {
+public class UsuarioServiceImpl extends BusinessEntityServiceImpl<Usuario, UsuarioDAO> implements UsuarioService, UserDetailsService {
 
 	public boolean isNombreRepetido(String nombre, Integer id) {
 		boolean isNombreRepetido = false;
@@ -34,6 +39,15 @@ public class UsuarioServiceImpl extends BusinessEntityServiceImpl<Usuario, Usuar
 	public void ejecutarDesbloqueo(Usuario entity) {
 		entity.setBloqueado(FALSE);
 		dao.save(entity);
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException, DataAccessException {
+		Usuario usuario = dao.findByUsername(username);
+		if (usuario == null || usuario.getBloqueado()) {
+			throw new UsernameNotFoundException("User not found.");
+		}
+		return usuario;
 	}
 
 }
