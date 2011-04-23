@@ -78,6 +78,7 @@
 			<authz:authorize ifAllGranted="ENTIDAD_USUARIO-LISTADO">
 				<menu:item style="width: 160px;" label="Usuario"><c:url value="/usuario/usuario-query.do?method=initQuery"/></menu:item>
 			</authz:authorize>
+			<menu:item style="width: 160px;" label="Logout"><c:url value="/public/logout.do"/></menu:item>		
 		</menu:submenu>
 	</authz:authorize>
 
