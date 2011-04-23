@@ -6,11 +6,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 
+import org.acegisecurity.GrantedAuthority;
+
 
 @Entity
 @SuppressWarnings("serial")
-public class Acceso extends PersistentObject implements Comparable<Acceso>{
+public class Acceso extends PersistentObject implements Comparable<Acceso>, GrantedAuthority {
 
+	private static Acceso accesoBase;
+	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumns(@JoinColumn(name = "idRecurso"))
 	private Recurso recurso;
@@ -45,4 +49,24 @@ public class Acceso extends PersistentObject implements Comparable<Acceso>{
 		return this.recurso.getDescripcion() + "-" + this.accion.getDescripcion();
 	}
 	
+	@Override
+	public String getAuthority() {
+		return toString();
+	}
+
+	public static Acceso getAccesoBase() {
+		if (accesoBase == null) {
+			accesoBase = new Acceso();
+
+			Accion accion = new Accion();
+			accion.setDescripcion("LOGIN");
+
+			Recurso recurso = new Recurso();
+			recurso.setDescripcion("APLICACION");
+			
+			accesoBase.setAccion(accion);
+			accesoBase.setRecurso(recurso);
+		}
+		return accesoBase;
+	}
 }

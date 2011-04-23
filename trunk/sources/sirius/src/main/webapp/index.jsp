@@ -2,7 +2,7 @@
 <%@ taglib uri="/WEB-INF/tlds/c.tld" prefix="c" %>
 <html>
 <head>
-<meta HTTP-EQUIV="REFRESH" content="0; url=<c:url value="/base/home_init.do"/>">
+<meta HTTP-EQUIV="REFRESH" content="0; url=<c:url value="/public/login.do"/>">
 <title>Redirecting ...</title>
 </head>
 <body>

@@ -38,8 +38,12 @@ function confirmarAccion(mensaje) {
 	<div style="float: left; width: 100%;">
 		<div class="boton">
 			<a href="#" onclick="javascript:limpiarFiltro();"><bean:message key="antares.base.limpiarfiltro.label"/></a>
-			<a href="#" onclick="actividadForm.submit();"><bean:message key="antares.base.buscar.label" /></a>
-			<a href="#" onclick="return hacerSubmit('actividad/actividad-form.do?method=initCreate');"><bean:message key="antares.base.nuevo.label" /></a>
+			<authz:authorize ifAllGranted="ENTIDAD_ACTIVIDAD-LISTADO">
+				<a href="#" onclick="actividadForm.submit();"><bean:message key="antares.base.buscar.label" /></a>
+			</authz:authorize>
+			<authz:authorize ifAllGranted="ENTIDAD_ACTIVIDAD-ALTA">
+				<a href="#" onclick="return hacerSubmit('actividad/actividad-form.do?method=initCreate');"><bean:message key="antares.base.nuevo.label" /></a>
+			</authz:authorize>
 		</div>
 	</div>
 	
@@ -65,18 +69,26 @@ function confirmarAccion(mensaje) {
 		<display:column sortable="true" property="estadoActividad.descripcion" 	titleKey="sirius.actividad.estadoActividad.label" />
 
 		<display:column title="Acciones" media="html">
-			<a href="<c:url value="/actividad/actividad-form.do?method=view&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Visualizar" title="Visualizar"
-				src="<c:url value="/img/icon.lupa.gif"/>" /></a>
-			<a href="<c:url value="/actividad/actividad-form.do?method=initUpdate&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Editar" title="Modificar"
-				src="<c:url value="/img/icoModificar.gif"/>" /></a>
-			<a href="<c:url value="/actividad/actividad-query.do?method=remove&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Eliminar" title="Eliminar"
-				src="<c:url value="/img/icons/cross.png"/>" onclick="return confirmarAccion('Est&aacute; seguro que desea eliminar el registro <bean:write name="item" property="nombre"/>?')" /></a>
-			<logic:iterate id="estado" name="item" property="estadoActividad.proximosEstadosPosibles">
-				<a href="<c:url value="/actividad/actividad-query.do?method=cambiarEstado&id="/><bean:write name="item" property="id"/>&idEstado=<bean:write name="estado" property="id"/>"><img border="0" 
-					alt="Pasar a estado <bean:write name="estado" property="descripcion"/>" 
-					title="Pasar a estado <bean:write name="estado" property="descripcion"/>"
-					src="<c:url value="/img/icoEstados.gif"/>" /></a>
-			</logic:iterate>
+			<authz:authorize ifAllGranted="ENTIDAD_ACTIVIDAD-DETALLE">
+				<a href="<c:url value="/actividad/actividad-form.do?method=view&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Visualizar" title="Visualizar"
+					src="<c:url value="/img/icon.lupa.gif"/>" /></a>
+			</authz:authorize>
+			<authz:authorize ifAllGranted="ENTIDAD_ACTIVIDAD-MODIFICACION">
+				<a href="<c:url value="/actividad/actividad-form.do?method=initUpdate&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Editar" title="Modificar"
+					src="<c:url value="/img/icoModificar.gif"/>" /></a>
+			</authz:authorize>
+			<authz:authorize ifAllGranted="ENTIDAD_ACTIVIDAD-BAJA">
+				<a href="<c:url value="/actividad/actividad-query.do?method=remove&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Eliminar" title="Eliminar"
+					src="<c:url value="/img/icons/cross.png"/>" onclick="return confirmarAccion('Est&aacute; seguro que desea eliminar el registro <bean:write name="item" property="nombre"/>?')" /></a>
+			</authz:authorize>
+			<authz:authorize ifAllGranted="ENTIDAD_ACTIVIDAD-CAMBIAR_ESTADO">
+				<logic:iterate id="estado" name="item" property="estadoActividad.proximosEstadosPosibles">
+					<a href="<c:url value="/actividad/actividad-query.do?method=cambiarEstado&id="/><bean:write name="item" property="id"/>&idEstado=<bean:write name="estado" property="id"/>"><img border="0" 
+						alt="Pasar a estado <bean:write name="estado" property="descripcion"/>" 
+						title="Pasar a estado <bean:write name="estado" property="descripcion"/>"
+						src="<c:url value="/img/icoEstados.gif"/>" /></a>
+				</logic:iterate>
+			</authz:authorize>
 		</display:column>
 	</display-el:table>
 </div>

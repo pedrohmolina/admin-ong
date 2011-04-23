@@ -421,7 +421,7 @@
 
 		<form name="perfilForm">
 			<field property="nombre" depends="required, maxlength">
-				<arg position="0" key="sirius.rol.nombre.label"/>
+				<arg position="0" key="sirius.perfil.nombre.label"/>
 				<arg position="1" key="${var:maxlength}" resource="false" />
 				<var>
 					<var-name>maxlength</var-name>
@@ -429,7 +429,7 @@
 				</var>
 			</field>
 			<field property="descripcion" depends="required, maxlength">
-				<arg position="0" key="sirius.rol.descripcion.label"/>
+				<arg position="0" key="sirius.perfil.descripcion.label"/>
 				<arg position="1" key="${var:maxlength}" resource="false" />
 				<var>
 					<var-name>maxlength</var-name>
@@ -746,7 +746,7 @@
 				<arg position="1" key="${var:maxlength}" resource="false" />
 				<var>
 					<var-name>maxlength</var-name>
-					<var-value>16</var-value>
+					<var-value>255</var-value>
 				</var>
 			</field>
 			<field property="descripcion" depends="required, maxlength">
