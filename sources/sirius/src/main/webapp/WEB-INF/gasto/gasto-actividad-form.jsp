@@ -142,6 +142,7 @@ function cargarComboActividad(select, destinationCombo){
 		<a href="#" onclick="gastoActividadForm.submit();" tabindex="17"><bean:message key="antares.base.aceptar.label" /></a>
 		<a href="<c:url value="/gasto/gasto-actividad-query.do?method=lastQuery"/>"><bean:message key="antares.base.cancelar.label" /></a>
 	</div>
+	<div style="clear:both; padding:5px 0 0 0;"></div>
 </html:form>
 
 </div>
