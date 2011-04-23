@@ -1,5 +1,5 @@
 -- Datos de Seguridad
-nsert into accion (id, descripcion) values (1, 'LISTADO');
+insert into accion (id, descripcion) values (1, 'LISTADO');
 insert into accion (id, descripcion) values (2, 'ALTA');
 insert into accion (id, descripcion) values (3, 'BAJA');
 insert into accion (id, descripcion) values (4, 'MODIFICACION');
@@ -291,7 +291,7 @@ insert into perfilrol (idPerfil, idRol) values (1, 17);
 insert into perfilrol (idPerfil, idRol) values (1, 18);
 insert into perfilrol (idPerfil, idRol) values (1, 19);
 
---Datos para crear un usuario default para administrardor (admin/admin)
+-- Datos para crear un usuario default para administrardor admin/admin
 insert into relacioncontractual (id, nombre, descripcion, activo) values (1, 'Voluntario', 'Voluntario', '1');
 insert into persona (id, apellido, nombre, segundoNombre, idTipoDocumento, numeroDocumento, cuit, cbu, nacionalidad, fechaNacimiento, profesion, direccion, telefono, celular, email, funcion, idRelacionContractual, idFormaPago, idPersonaFactura, cuitPersonaFactura, observaciones, activo) values (1, 'Otakon', 'Otakon', '', 1, 29319345, '', '', '', null, '', '', '', '', '', '', 1, 1, null, null, '', '1');
 insert into usuario (id, idPersona, username, password, idPerfil, activo, bloqueado) values (1, 1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, '1', '0');
