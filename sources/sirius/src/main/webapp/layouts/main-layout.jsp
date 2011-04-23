@@ -11,6 +11,7 @@
 %>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
 <head>
+<link rel="stylesheet" type="text/css" href="../css/style.css" />
 <meta http-equiv="Content-Type" content="text/html; charset=<%= System.getProperty("file.encoding") %>" />
 <meta http-equiv="Expires" content="-1"/>
 <meta http-equiv="Pragma" content="no-cache"/>
@@ -28,7 +29,13 @@
 <tiles:insert attribute="js-header"/>
 </head>
 <body>
-<jsp:include flush="true" page="/common/menu.jsp"></jsp:include>
-<tiles:insert attribute="body"/>
+	<div class='top-head'></div>
+	<div class='menu-container'>
+		<jsp:include flush="true" page="/common/menu.jsp"></jsp:include>
+	</div>
+	<div class='body-container'>
+		<tiles:insert attribute="body"/>
+	</div>
+	<div class='body-foot'></div>
 </body>
 </html>

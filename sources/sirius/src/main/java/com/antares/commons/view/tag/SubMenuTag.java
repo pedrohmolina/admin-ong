@@ -42,7 +42,7 @@ public class SubMenuTag extends TagSupport {
 			ftop4 = "</span>";
 			ftop5 = " class='sub'";
 		}
-		sb.append("<li" + ftop1 + " " + fstyle + "><a " + fstyle + " href='" + fhref + "' id='products'" + ftop2 + ">" + ftop3 + eval.evalString("label", label) + ftop4 + "<!--[if gte IE 7]><!--></a><!--<![endif]--><!--[if lte IE 6]><table><tr><td><![endif]--><ul" + ftop5 + ">");
+		sb.append("<li" + ftop1 + " " + fstyle + "><a href='" + fhref + "' id='products'" + ftop2 + ">" + ftop3 + eval.evalString("label", label) + ftop4 + "<!--[if gte IE 7]><!--></a><!--<![endif]--><!--[if lte IE 6]><table><tr><td><![endif]--><ul" + ftop5 + ">");
        
 		JspWriter writer = pageContext.getOut();
 		try {

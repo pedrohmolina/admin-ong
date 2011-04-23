@@ -15,7 +15,7 @@ public class MenuTag extends TagSupport {
 
 	public int doStartTag() throws JspException {
 		StringBuffer sb = new StringBuffer();
-		sb.append("<div id='multi-level'><ul class='menu2'>");
+		sb.append("<div id='multi-level'><ul class='menu'>");
 
 		JspWriter writer = pageContext.getOut();
 		try {
