@@ -55,14 +55,15 @@
 		<html:textarea property="observaciones" rows="5" />
 		<br>
 	</div>
-	
 	<div style="clear:both; padding:5px 0 0 0;">
 		<html:errors />
-	</div>
+	</div>	
+	
 	<div class="boton">
 		<a href="#" onclick="financiadorForm.submit();" tabindex="17"><bean:message key="antares.base.aceptar.label" /></a>
 		<a href="<c:url value="/financiador/financiador-query.do?method=lastQuery"/>"><bean:message key="antares.base.cancelar.label" /></a>
 	</div>
+	<div style="clear:both; padding:5px 0 0 0;"></div>
 </html:form>
 
 </div>

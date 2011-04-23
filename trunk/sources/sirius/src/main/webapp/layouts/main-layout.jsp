@@ -31,7 +31,7 @@
 <body>
 	<div class='top-head'></div>
 	<div class='menu-container'>
-		<a href="<c:url value="/public/logout.do"/>"><img src="<c:url value="/img/icoLogout.gif"/>" alt="LogOut" border="0" /></a>&nbsp;
+<%-- 		<a href="<c:url value="/public/logout.do"/>"><img src="<c:url value="/img/icoLogout.gif"/>" alt="LogOut" border="0" /></a>&nbsp; --%>
 		<jsp:include flush="true" page="/common/menu.jsp"></jsp:include>
 	</div>
 	<div class='body-container'>
