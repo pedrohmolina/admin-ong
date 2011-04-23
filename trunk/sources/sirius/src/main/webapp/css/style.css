@@ -1,29 +1,117 @@
-/*Credits: Dynamic Drive CSS Library */
-/*URL: http://www.dynamicdrive.com/style/ */
+/*Sirius Style*/
 
-.menu2{
-font-weight: bold;
-width: 100%;
+html 
+{
+	background-color:#EEEFF1
 }
 
-.menu2 ul{
-padding: 6px 0 7px 0; /*6px should equal top padding of "ul li a" below, 7px should equal bottom padding + bottom border of "ul li a" below*/
-margin: 0;
-text-align: right; //set value to "left", "center", or "right"*/
+body 
+{
+	background-color:#FFFFFF;  
+	width:900px; 
+	margin:10px auto 0px auto; 
+	position:relative;
+	font-family:Arial;
+	border:solid 1px;
+	border-color:#C8C8C8; 
 }
 
-.menu2 ul li{
-display: inline;
+.top-head
+{
+	position:relative;
+	background-color: #126180;
+	width:900px;
+	height: 10px;
+	border-bottom:solid 1px;
+	border-color:#C8C8C8; 
 }
 
-.menu2 ul li a{
-color: #494949;
-padding: 6px 3px 4px 3px; /*top padding is 6px, bottom padding is 4px*/
-margin-right: 20px; /*spacing between each menu link*/
-text-decoration: none;
-border-bottom: 3px solid gray; /*bottom border is 3px*/
+.menu-container
+{
+	position:relative;
+	background-color: #FEFEFE;
+	width:900px;
+	height:40px;
+	border-bottom:solid 1px;
+	border-color:#C8C8C8; 	
 }
 
-.menu2 ul li a:hover, .underlinemenu ul li a.selected{
-border-bottom-color: black;
+ul.menu
+{	
+	height: 10px;
+	margin :auto;
+	padding: 10px 0;
+	font-size: 18px;
+   	list-style:none;
+   	background-color: #FFFFFF;
+   	color: #C1C2C4;
+   	text-align: left;
+}
+
+ul.menu a
+{
+	text-decoration:none;
+	color: #999D9E;
+}
+
+
+ul.menu ul /* Para todos los ul debajo del ul.menu */
+{
+   display:none;
+   list-style:none;
+   background-color: #FFFFFF;
+   position:absolute; /* Esta posición es relativa al <li> que contiene a este <ul> */
+   left:0px; /* Para que no monte sobre el <li> */
+   top:0px;
+   display:none;
+   list-style:none;
+
+   
+}
+
+/* Esto afecta a todos los ul inmediatamente debajo (el > ) de un li que a su vez esté dentro de un ul.menu */
+ul.menu li:hover > ul
+{
+   display:block;
+   background-color: #FFFFFF;
+   list-style:none;
+}
+
+ul.menu li
+{
+	background-color: #FFFFFF;
+   	position:relative; /* Las coordenadas de los ul inferiores serán relativas al <li> que los contiene */
+   	display:inline;
+   	list-style:none;
+}
+
+ul.menu > li > ul /* Solo para los ul debajo de los li de primer nivel. */
+{
+   position:absolute;
+   left:-41px;
+   top:19px;
+   display:none;
+   list-style:none;
+}
+
+.top{
+	padding-left: 5px;
+	padding-right: 10px;
+}
+
+.body-container{
+	border: 1px solid;
+	border-color:#C8C8C8; 
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;	
+}
+
+.body-foot{
+	position:relative;
+	background-color: #126180;
+	height: 5px;
+	border-top:solid 1px;
+	border-color:#C8C8C8; 
 }

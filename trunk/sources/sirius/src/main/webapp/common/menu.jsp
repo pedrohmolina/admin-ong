@@ -7,7 +7,7 @@
 	<%--
 	<authz:authorize ifAllGranted="MOSTRAR-OPCIONES_ADMINISTRACION">
 	--%>
-		<menu:submenu top="true" label="&nbsp;Administracion&nbsp;">
+		<menu:submenu top="true" label="&nbsp;Administracion&nbsp;" style="border-right: solid 1px;border-color: red;">
 			<menu:item style="width: 160px;" label="Financiador"><c:url value="/financiador/financiador-query.do?method=initQuery"/></menu:item>
 			<menu:item style="width: 160px;" label="Ingreso"><c:url value="/ingreso/ingreso-query.do?method=initQuery"/></menu:item>
 			<menu:item style="width: 160px;" label="Persona"><c:url value="/persona/persona-query.do?method=initQuery"/></menu:item>
@@ -18,11 +18,10 @@
 	<%--
 	</authz:authorize>
 	--%>
-
 	<%--
 	<authz:authorize ifAllGranted="MOSTRAR-OPCIONES_PROYECTO">
 	--%>
-		<menu:submenu top="true" label="&nbsp;Proyecto&nbsp;">
+		<menu:submenu top="true" label="&nbsp;Proyecto&nbsp;" style="border-right: solid 1px;border-color: red;">
 			<menu:item style="width: 160px;" label="Proyectos"><c:url value="/proyecto/proyecto-query.do?method=initQuery"/></menu:item>
 			<menu:item style="width: 160px;" label="Objetivos Generales"><c:url value="/objetivo-general/objetivo-general-query.do?method=initQuery"/></menu:item>
 			<menu:item style="width: 160px;" label="Objetivos Especificos"><c:url value="/objetivo-especifico/objetivo-especifico-query.do?method=initQuery"/></menu:item>
@@ -33,11 +32,10 @@
 	<%--
 	</authz:authorize>
 	--%>
-
 	<%--
 	<authz:authorize ifAllGranted="MOSTRAR-OPCIONES_ADMINISTRACION">
 	--%>
-		<menu:submenu top="true" label="&nbsp;Gastos&nbsp;">
+		<menu:submenu top="true" label="&nbsp;Gastos&nbsp;" style="border-right: solid 1px;border-color: red;">
 			<menu:item style="width: 160px;" label="Gasto General de Organizacion"><c:url value="/gasto/gasto-organizacion-query.do?method=initQuery"/></menu:item>
 			<menu:item style="width: 160px;" label="Gasto General de Proyecto"><c:url value="/gasto/gasto-proyecto-query.do?method=initQuery"/></menu:item>
 			<menu:item style="width: 160px;" label="Gasto Registrados por Actividad"><c:url value="/gasto/gasto-actividad-query.do?method=initQuery"/></menu:item>
@@ -46,7 +44,6 @@
 	<%--
 	</authz:authorize>
 	--%>
-
 	<%--
 	<authz:authorize ifAllGranted="MOSTRAR-OPCIONES_SEGURIDAD">
 	--%>
