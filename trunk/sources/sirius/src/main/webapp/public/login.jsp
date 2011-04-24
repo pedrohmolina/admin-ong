@@ -10,6 +10,28 @@
 <%@ taglib uri="/WEB-INF/tlds/c.tld" prefix="c"%>
 <%@ taglib uri="/WEB-INF/tlds/authz.tld" prefix="authz"%>
 
+<script>
+
+	function submitenter(myfield,e)	{
+		var keycode;
+		if (window.event) {
+			keycode = window.event.keyCode;
+		} else if (e) {
+			keycode = e.which;
+		} else {
+			return true;
+		}
+		
+		if (keycode == 13) {
+		   myfield.form.submit();
+		   return false;
+		} else {
+		   return true;
+		}
+	}
+	
+</script>
+
 <div class="form">
 <form action="<c:url value="/j_security_check_acegi"/>">
 

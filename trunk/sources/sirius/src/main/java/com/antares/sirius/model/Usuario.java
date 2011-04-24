@@ -14,6 +14,7 @@ import javax.persistence.OneToOne;
 import org.acegisecurity.GrantedAuthority;
 import org.acegisecurity.userdetails.UserDetails;
 
+
 @Entity
 @SuppressWarnings("serial")
 public class Usuario extends BusinessObject implements UserDetails {

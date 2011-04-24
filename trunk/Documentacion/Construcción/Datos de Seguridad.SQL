@@ -31,6 +31,7 @@ insert into recurso (id, descripcion) values (19, 'ENTIDAD_GASTO_ACTIVIDAD');
 insert into recurso (id, descripcion) values (20, 'ENTIDAD_ROL');
 insert into recurso (id, descripcion) values (21, 'ENTIDAD_PERFIL');
 insert into recurso (id, descripcion) values (22, 'ENTIDAD_USUARIO');
+insert into recurso (id, descripcion) values (23, 'ENTIDAD_REGLA');
 
 insert into acceso (id, idRecurso, idAccion) values (1, 1, 1);
 insert into acceso (id, idRecurso, idAccion) values (2, 2, 1);
@@ -131,6 +132,11 @@ insert into acceso (id, idRecurso, idAccion) values (96, 15, 6);
 insert into acceso (id, idRecurso, idAccion) values (97, 19, 7);
 insert into acceso (id, idRecurso, idAccion) values (98, 22, 8);
 insert into acceso (id, idRecurso, idAccion) values (99, 22, 9);
+insert into acceso (id, idRecurso, idAccion) values (100, 23, 1);
+insert into acceso (id, idRecurso, idAccion) values (101, 23, 2);
+insert into acceso (id, idRecurso, idAccion) values (102, 23, 3);
+insert into acceso (id, idRecurso, idAccion) values (103, 23, 4);
+insert into acceso (id, idRecurso, idAccion) values (104, 23, 5);
 
 
 insert into rol (id, nombre, descripcion, activo) values (1, 'Administrador de Financiadores', 'Acceso completo al ABM de Financiadores', '1');
@@ -152,6 +158,7 @@ insert into rol (id, nombre, descripcion, activo) values (16, 'Carga de Gastos d
 insert into rol (id, nombre, descripcion, activo) values (17, 'Administrador de Roles', 'Acceso completo al ABM de Roles', '1');
 insert into rol (id, nombre, descripcion, activo) values (18, 'Administrador de Perfiles', 'Acceso completo al ABM de Perfiles', '1');
 insert into rol (id, nombre, descripcion, activo) values (19, 'Administrador de Usuarios', 'Acceso completo al ABM de Usuarios', '1');
+insert into rol (id, nombre, descripcion, activo) values (20, 'Administrador de Reglas de Seguridad', 'Acceso completo al ABM de Reglas de Seguridad', '1');
 
 insert into rolacceso (idRol, idAcceso) values (1, 1);
 insert into rolacceso (idRol, idAcceso) values (1, 5);
@@ -268,6 +275,11 @@ insert into rolacceso (idRol, idAcceso) values (11, 96);
 insert into rolacceso (idRol, idAcceso) values (15, 97);
 insert into rolacceso (idRol, idAcceso) values (19, 98);
 insert into rolacceso (idRol, idAcceso) values (19, 99);
+insert into rolacceso (idRol, idAcceso) values (20, 100);
+insert into rolacceso (idRol, idAcceso) values (20, 101);
+insert into rolacceso (idRol, idAcceso) values (20, 102);
+insert into rolacceso (idRol, idAcceso) values (20, 103);
+insert into rolacceso (idRol, idAcceso) values (20, 104);
 
 insert into perfil (id, nombre, descripcion, activo) values (1, 'Administrador', 'Administrador General', '1');
 
@@ -290,7 +302,136 @@ insert into perfilrol (idPerfil, idRol) values (1, 16);
 insert into perfilrol (idPerfil, idRol) values (1, 17);
 insert into perfilrol (idPerfil, idRol) values (1, 18);
 insert into perfilrol (idPerfil, idRol) values (1, 19);
+insert into perfilrol (idPerfil, idRol) values (1, 20);
 
 -- Datos para crear un usuario default para administrardor admin/admin
 insert into persona (id, apellido, nombre, segundoNombre, idTipoDocumento, numeroDocumento, cuit, cbu, nacionalidad, fechaNacimiento, profesion, direccion, telefono, celular, email, funcion, idRelacionContractual, idFormaPago, idPersonaFactura, observaciones, activo) values (1, 'Otakon', 'Otakon', '', 1, 29319345, '', '', '', null, '', '', '', '', '', '', 1, 1, null, '', '1');
 insert into usuario (id, idPersona, username, password, idPerfil, activo, bloqueado) values (1, 1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, '1', '0');
+
+
+
+
+
+
+-- SEGURIDAD POR VALOR
+insert into tipoatributo (id, descripcion) values (1, 'Numero');
+insert into tipoatributo (id, descripcion) values (2, 'Texto');
+insert into tipoatributo (id, descripcion) values (3, 'Fecha');
+insert into tipoatributo (id, descripcion) values (4, 'Booleano');
+
+insert into entidad (id, descripcion, nombreEntidad) values (1, 'Actividad', 'Actividad');
+insert into entidad (id, descripcion, nombreEntidad) values (2, 'Asignacion', 'Asignacion');
+insert into entidad (id, descripcion, nombreEntidad) values (3, 'Financiador', 'Financiador');
+insert into entidad (id, descripcion, nombreEntidad) values (4, 'Gasto', 'Gasto');
+insert into entidad (id, descripcion, nombreEntidad) values (5, 'Ingreso', 'Ingreso');
+insert into entidad (id, descripcion, nombreEntidad) values (6, 'Meta', 'Meta');
+insert into entidad (id, descripcion, nombreEntidad) values (7, 'Objetivo Especifico', 'ObjetivoEspecifico');
+insert into entidad (id, descripcion, nombreEntidad) values (8, 'Objetivo General', 'ObjetivoGeneral');
+insert into entidad (id, descripcion, nombreEntidad) values (9, 'Perfil', 'Perfil');
+insert into entidad (id, descripcion, nombreEntidad) values (10, 'Persona', 'Persona');
+insert into entidad (id, descripcion, nombreEntidad) values (11, 'Proveedor', 'Proveedor');
+insert into entidad (id, descripcion, nombreEntidad) values (12, 'Proyecto', 'Proyecto');
+insert into entidad (id, descripcion, nombreEntidad) values (13, 'Relacion Contractual', 'RelacionContractual');
+insert into entidad (id, descripcion, nombreEntidad) values (14, 'Rol', 'Rol');
+insert into entidad (id, descripcion, nombreEntidad) values (15, 'Rubro', 'Rubro');
+insert into entidad (id, descripcion, nombreEntidad) values (16, 'Usuario', 'Usuario');
+
+
+-- Operadores de tipo Numerico
+insert into operador (id, idTipoAtributo, descripcion) values (1, 1, 'Igual');
+insert into operador (id, idTipoAtributo, descripcion) values (2, 1, 'Distinto');
+insert into operador (id, idTipoAtributo, descripcion) values (3, 1, 'Menor');
+insert into operador (id, idTipoAtributo, descripcion) values (4, 1, 'Menor o igual');
+insert into operador (id, idTipoAtributo, descripcion) values (5, 1, 'Mayor');
+insert into operador (id, idTipoAtributo, descripcion) values (6, 1, 'Mayor o igual');
+
+-- Operadores de tipo Texto
+insert into operador (id, idTipoAtributo, descripcion) values (7, 2, 'Igual');
+insert into operador (id, idTipoAtributo, descripcion) values (8, 2, 'Distinto');
+insert into operador (id, idTipoAtributo, descripcion) values (9, 2, 'Contiene');
+insert into operador (id, idTipoAtributo, descripcion) values (10, 2, 'No contiene');
+insert into operador (id, idTipoAtributo, descripcion) values (11, 2, 'Empieza con');
+insert into operador (id, idTipoAtributo, descripcion) values (12, 2, 'No empieza con');
+insert into operador (id, idTipoAtributo, descripcion) values (13, 2, 'Termina con');
+insert into operador (id, idTipoAtributo, descripcion) values (14, 2, 'No termina con');
+
+-- Operadores de tipo Fecha
+insert into operador (id, idTipoAtributo, descripcion) values (15, 3, 'Igual');
+insert into operador (id, idTipoAtributo, descripcion) values (16, 3, 'Distinto');
+insert into operador (id, idTipoAtributo, descripcion) values (17, 3, 'Antes de');
+insert into operador (id, idTipoAtributo, descripcion) values (18, 3, 'Despues de');
+
+-- Operadores de tipo Booleano
+insert into operador (id, idTipoAtributo, descripcion) values (19, 4, 'Si');
+insert into operador (id, idTipoAtributo, descripcion) values (20, 4, 'No');
+
+
+-- Atributos simples de Actividad
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (1, 1, 2, 'nombre', 'sirius.actividad.nombre.label');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (2, 1, 3, 'fechaInicio', 'sirius.actividad.fechaInicio.label');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (3, 1, 3, 'fechaFin', 'sirius.actividad.fechaFin.label');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (4, 1, 1, 'presupuesto', 'sirius.actividad.presupuesto.label');
+
+-- Atributos simples de Financiador
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (5, 3, 2, 'nombre', 'sirius.financiador.nombre.label');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (6, 3, 2, 'cuit', 'sirius.financiador.cuit.label');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (7, 3, 2, 'cbu', 'sirius.financiador.cbu.label');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (8, 3, 2, 'email', 'sirius.financiador.email.label');
+
+-- Atributos simples de Gasto
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (9, 4, 2, 'fecha', 'sirius.gasto.fecha.label');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (10, 4, 2, 'numeroComprobante', 'sirius.gasto.numeroComprobante.label');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (11, 4, 2, 'paquete', 'sirius.gasto.paquete.label');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (12, 4, 1, 'importe', 'sirius.gasto.importe.label');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (13, 4, 4, 'confirmado', 'sirius.gasto.confirmado.label');
+
+-- Atributos simples de Ingreso
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (14, 5, 1, 'monto', 'sirius.ingreso.monto.label');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (15, 5, 3, 'fecha', 'sirius.ingreso.fecha.label');
+
+-- Atributos simples de Meta
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (16, 6, 2, 'nombre', 'sirius.meta.nombre.label');
+
+-- Atributos simples de Objetivo Especifico
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (17, 7, 2, 'nombre', 'sirius.objetivoEspecifico.nombre.label');
+
+-- Atributos simples de Objetivo General
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (18, 8, 2, 'nombre', 'sirius.objetivoGeneral.nombre.label');
+
+-- Atributos simples de Perfil
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (19, 9, 2, 'nombre', 'sirius.perfil.nombre.label');
+
+-- Atributos simples de Persona
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (20, 10, 2, 'apellido', 'sirius.persona.apellido.label');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (21, 10, 2, 'nombre', 'sirius.persona.nombre.label');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (22, 10, 2, 'segundoNombre', 'sirius.persona.segundoNombre.label');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (23, 10, 1, 'numeroDocumento', 'sirius.persona.numeroDocumento.label');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (24, 10, 2, 'cuit', 'sirius.persona.cuit.label');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (25, 10, 2, 'cbu', 'sirius.persona.cbu.label');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (26, 10, 2, 'nacionalidad', 'sirius.persona.nacionalidad.label');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (27, 10, 3, 'fechaNacimiento', 'sirius.persona.fechaNacimiento.label');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (28, 10, 2, 'email', 'sirius.persona.email.label');
+
+-- Atributos simples de Proveedor
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (29, 11, 2, 'nombre', 'sirius.proveedor.nombre.label');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (30, 11, 2, 'cuit', 'sirius.proveedor.cuit.label');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (31, 11, 2, 'cbu', 'sirius.proveedor.cbu.label');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (32, 11, 2, 'email', 'sirius.proveedor.email.label');
+
+-- Atributos simples de Proyecto
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (33, 12, 2, 'nombre', 'sirius.proyecto.nombre.label');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (34, 12, 3, 'fechaInicio', 'sirius.proyecto.fechaInicio.label');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (35, 12, 3, 'fechaFin', 'sirius.proyecto.fechaFin.label');
+
+-- Atributos simples de Relacion Contractual
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (36, 13, 2, 'nombre', 'sirius.relacionContractual.nombre.label');
+
+-- Atributos simples de Rol
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (37, 14, 2, 'nombre', 'sirius.rol.nombre.label');
+
+-- Atributos simples de Rubro
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (38, 15, 2, 'nombre', 'sirius.rubro.nombre.label');
+
+-- Atributos simples de Usuario
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (39, 16, 2, 'username', 'sirius.usuario.username.label');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (40, 16, 4, 'bloqueado', 'sirius.usuario.bloqueado.label');

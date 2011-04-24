@@ -9,6 +9,7 @@ import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+
 @Entity
 @SuppressWarnings("serial")
 public class Rubro extends BusinessObject {

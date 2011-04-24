@@ -9,6 +9,7 @@ import javax.persistence.ManyToOne;
 import org.acegisecurity.GrantedAuthority;
 
 
+
 @Entity
 @SuppressWarnings("serial")
 public class Acceso extends PersistentObject implements Comparable<Acceso>, GrantedAuthority {

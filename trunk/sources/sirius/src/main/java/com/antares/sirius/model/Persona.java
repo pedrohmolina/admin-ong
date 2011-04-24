@@ -10,6 +10,7 @@ import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+
 @Entity
 @SuppressWarnings("serial")
 public class Persona extends BusinessObject {

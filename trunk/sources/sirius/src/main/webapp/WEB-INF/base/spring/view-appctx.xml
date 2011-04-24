@@ -157,6 +157,17 @@
 	<bean name="/relacion-contractual/relacion-contractual-form" 			parent="relacionContractualAction" singleton="false" />
 	<bean name="/relacion-contractual/relacion-contractual-form-validate" 	parent="relacionContractualAction" singleton="false" />
 
+	<bean name="reglaAction" class="com.antares.sirius.view.action.ReglaAction" autowire="byName">
+		<property name="service" 				ref="reglaService" />
+		<property name="usuarioService" 		ref="usuarioService" />
+		<property name="entidadService" 		ref="entidadService" />
+		<property name="atributoService" 		ref="atributoService" />
+		<property name="operadorService" 		ref="operadorService" />
+	</bean>
+	<bean name="/regla/regla-query" 		parent="reglaAction" singleton="false" />
+	<bean name="/regla/regla-form" 			parent="reglaAction" singleton="false" />
+	<bean name="/regla/regla-form-validate" parent="reglaAction" singleton="false" />
+
 	<bean name="rolAction" class="com.antares.sirius.view.action.RolAction" autowire="byName">
 		<property name="service" 		ref="rolService" />
 		<property name="accesoService" 	ref="accesoService" />
