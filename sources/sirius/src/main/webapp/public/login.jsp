@@ -68,6 +68,7 @@
 	<div class="boton">
 		<a href="#" onclick="document.forms[0].submit()"><bean:message key="antares.base.aceptar.label" /></a>
 	</div>
+	<div style="clear:both; padding:5px 0 0 0;"></div>
 </form>
 
 </div>

@@ -26,7 +26,7 @@ public class SubMenuTag extends TagSupport {
 		String fhref = "#";
 		String fstyle = "";
 		String ftop1 = "";
-		String ftop2 = " class='fly'";
+		String ftop2 = " ";
 		String ftop3 = "";
 		String ftop4 = "";
 		String ftop5 = "";
@@ -36,11 +36,11 @@ public class SubMenuTag extends TagSupport {
 			fstyle = " style='" + eval.evalString("style", style) + "'";
 		if (top!=null && "true".equals(top))
 		{
-			ftop1 = " class='top'";
-			ftop2 = " class='top_link'";
-			ftop3 = "<span class='down'>";
+			ftop1 = " class='nivel1'";
+			ftop2 = " class='nivel1'";
+			ftop3 = "<span>";
 			ftop4 = "</span>";
-			ftop5 = " class='sub'";
+			ftop5 = " ";
 		}
 		sb.append("<li" + ftop1 + " " + fstyle + "><a href='" + fhref + "' id='products'" + ftop2 + ">" + ftop3 + eval.evalString("label", label) + ftop4 + "<!--[if gte IE 7]><!--></a><!--<![endif]--><!--[if lte IE 6]><table><tr><td><![endif]--><ul" + ftop5 + ">");
        
