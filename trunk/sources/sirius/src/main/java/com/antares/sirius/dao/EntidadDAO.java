@@ -5,4 +5,6 @@ import com.antares.sirius.model.Entidad;
 
 public interface EntidadDAO extends GenericDAO<Entidad> {
 
+	Entidad findByNombreEntidad(String descripcion);
+
 }
