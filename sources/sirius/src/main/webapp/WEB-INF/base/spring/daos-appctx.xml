@@ -37,4 +37,11 @@
 	<bean id="tipoProveedorDAO" 		class="com.antares.sirius.dao.impl.TipoProveedorDAOImpl" 		autowire="byName" />
 	<bean id="usuarioDAO" 				class="com.antares.sirius.dao.impl.UsuarioDAOImpl" 				autowire="byName" />
 
+	<!-- Seguridad por valor -->
+	<bean id="atributoDAO" 				class="com.antares.sirius.dao.impl.AtributoDAOImpl" 			autowire="byName" />
+	<bean id="tipoAtributoDAO" 			class="com.antares.sirius.dao.impl.TipoAtributoDAOImpl" 		autowire="byName" />
+	<bean id="operadorDAO" 				class="com.antares.sirius.dao.impl.OperadorDAOImpl" 			autowire="byName" />
+	<bean id="entidadDAO" 				class="com.antares.sirius.dao.impl.EntidadDAOImpl" 				autowire="byName" />
+	<bean id="reglaDAO" 				class="com.antares.sirius.dao.impl.ReglaDAOImpl" 				autowire="byName" />
+	
 </beans>

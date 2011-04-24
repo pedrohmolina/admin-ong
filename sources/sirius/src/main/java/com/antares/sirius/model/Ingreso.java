@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 
+
 @Entity
 @SuppressWarnings("serial")
 public class Ingreso extends BusinessObject {

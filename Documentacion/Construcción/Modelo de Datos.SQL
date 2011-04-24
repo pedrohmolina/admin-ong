@@ -761,3 +761,92 @@ ALTER TABLE estadoProyecto ADD CONSTRAINT FK_estadoProyecto_estadoProyecto
 ALTER TABLE actividad ADD CONSTRAINT FK_actividad_estadoActividad 
 	FOREIGN KEY (idEstadoActividad) REFERENCES estadoActividad (id)
 ;
+
+
+-- Seguridad por valor
+
+CREATE TABLE entidad
+(
+	id INT NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
+	descripcion VARCHAR(50) NOT NULL COMMENT 'Descripcion de la entidad',
+	nombreEntidad VARCHAR(50) NOT NULL COMMENT 'Nombre de la entidad usado por el motor de reglas',
+	PRIMARY KEY (id),
+	UNIQUE UQ_entidad_descripcion(descripcion),
+	UNIQUE UQ_entidad_id(id)
+) 
+;
+
+CREATE TABLE tipoAtributo
+(
+	id INT NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
+	descripcion VARCHAR(50) NOT NULL COMMENT 'Descripcion del tipo de atributo',
+	PRIMARY KEY (id),
+	UNIQUE UQ_tipoAtributo_descripcion(descripcion),
+	UNIQUE UQ_tipoAtributo_id(id)
+) 
+;
+
+CREATE TABLE atributo
+(
+	id INT NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
+	idEntidad INT COMMENT 'Entidad del atributo',
+	idTipoAtributo INT COMMENT 'Tipo del atributo',
+	nombreAtributo VARCHAR(50) NOT NULL COMMENT 'Nombre del atributo de la entidad usado por el motor de reglas',
+	descripcion VARCHAR(50) NOT NULL COMMENT 'Descripcion del atributo',
+	PRIMARY KEY (id),
+	UNIQUE UQ_atributo_id(id)
+) 
+;
+
+CREATE TABLE operador
+(
+	id INT NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
+	idTipoAtributo INT COMMENT 'Tipo de atributo al que pertenece',
+	descripcion VARCHAR(50) NOT NULL COMMENT 'Descripcion del operador',
+	PRIMARY KEY (id),
+	UNIQUE UQ_operador_id(id)
+) 
+;
+
+CREATE TABLE regla
+(
+	id INT NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
+ 	idEntidad INT COMMENT 'Entidad a la que aplica la regla',
+	idAtributo INT COMMENT 'Atributo al que aplica la regla',
+	idOperador INT COMMENT 'Operador de la regla',
+	idUsuario INT COMMENT 'Usuario al que aplica la serie',
+	valor VARCHAR(255) NOT NULL COMMENT 'Valor a asignar a la regla',
+	activo BOOL NOT NULL COMMENT 'Señal para manejo de baja logica',
+	PRIMARY KEY (id),
+	UNIQUE UQ_regla_id(id)
+) 
+;
+
+ALTER TABLE atributo ADD CONSTRAINT FK_atributo_entidad
+	FOREIGN KEY (idEntidad) REFERENCES entidad (id)
+;
+
+ALTER TABLE atributo ADD CONSTRAINT FK_atributo_tipoAtributo
+	FOREIGN KEY (idTipoAtributo) REFERENCES tipoAtributo (id)
+;
+
+ALTER TABLE operador ADD CONSTRAINT FK_operador_tipoAtributo
+	FOREIGN KEY (idTipoAtributo) REFERENCES tipoAtributo (id)
+;
+
+ALTER TABLE regla ADD CONSTRAINT FK_regla_entidad
+	FOREIGN KEY (idEntidad) REFERENCES entidad (id)
+;
+
+ALTER TABLE regla ADD CONSTRAINT FK_regla_atributo
+	FOREIGN KEY (idAtributo) REFERENCES atributo (id)
+;
+
+ALTER TABLE regla ADD CONSTRAINT FK_regla_operador
+	FOREIGN KEY (idOperador) REFERENCES operador (id)
+;
+
+ALTER TABLE regla ADD CONSTRAINT FK_regla_usuario
+	FOREIGN KEY (idUsuario) REFERENCES usuario (id)
+;
+

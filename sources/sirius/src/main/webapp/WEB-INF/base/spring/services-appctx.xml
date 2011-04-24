@@ -239,6 +239,34 @@
 		<property name="dao" ref="tipoProveedorDAO" /> 
 	</bean>
 	
+	<!-- Servicios de entidades de Seguridad por Valor -->
+	<bean id="atributoService" class="com.antares.sirius.service.impl.AtributoServiceImpl" autowire="byName">
+		<property name="dao" ref="atributoDAO" /> 
+	</bean>
+	
+	<bean id="tipoAtributoService" class="com.antares.sirius.service.impl.TipoAtributoServiceImpl" autowire="byName">
+		<property name="dao" ref="tipoAtributoDAO" /> 
+	</bean>
+	
+	<bean id="operadorService" class="com.antares.sirius.service.impl.OperadorServiceImpl" autowire="byName">
+		<property name="dao" ref="operadorDAO" /> 
+	</bean>
+	
+	<bean id="entidadService" class="com.antares.sirius.service.impl.EntidadServiceImpl" autowire="byName">
+		<property name="dao" ref="entidadDAO" /> 
+	</bean>
+	
+	<bean id="reglaService" parent="abstractTransactionManager" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" autowire="byName">
+		<property name="target">
+			<bean class="com.antares.sirius.service.impl.ReglaServiceImpl" autowire="byName">
+				<property name="dao" ref="reglaDAO" /> 
+			</bean>
+		</property>
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+	
+
+
 	<!-- Otros servicios -->
 	<bean id="utilsService" class="com.antares.commons.util.Utils" autowire="byName" />
 	

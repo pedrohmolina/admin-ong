@@ -7,6 +7,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+
 @Entity
 @SuppressWarnings("serial")
 public class EstadoActividad extends PersistentObject {

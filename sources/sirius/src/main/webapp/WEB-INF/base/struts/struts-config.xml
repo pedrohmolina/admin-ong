@@ -34,6 +34,7 @@
 		<form-bean name="personaForm" 				type="com.antares.sirius.view.form.PersonaForm" />
 		<form-bean name="proveedorForm" 			type="com.antares.sirius.view.form.ProveedorForm" />
 		<form-bean name="proyectoForm" 				type="com.antares.sirius.view.form.ProyectoForm" />
+		<form-bean name="reglaForm" 				type="com.antares.sirius.view.form.ReglaForm" />
 		<form-bean name="relacionContractualForm" 	type="com.antares.sirius.view.form.RelacionContractualForm" />
 		<form-bean name="rolForm" 					type="com.antares.sirius.view.form.RolForm" />
 		<form-bean name="rubroForm" 				type="com.antares.sirius.view.form.RubroForm" />
@@ -402,6 +403,28 @@
 			<forward name="error" 		path="/relacion-contractual/relacion-contractual-form.do?method=initForm" />
 		</action>
 		<!-- Fin de actions de relaciones contractuales -->
+
+		<!-- Actions de reglas -->
+		<action path="/regla/regla-query" name="reglaForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="query" 		path=".abmReglaQuery" />
+			<forward name="success" 	path="/regla/regla-query.do?method=query" />
+		</action>
+
+		<action path="/regla/regla-form" name="reglaForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="form" 		path=".abmReglaForm" />
+			<forward name="view" 		path=".abmReglaView"></forward>
+			<forward name="success" 	path="/regla/regla-query.do?method=query" />
+		</action>
+
+		<action path="/regla/regla-form-validate" name="reglaForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/regla/regla-form.do?method=initForm">
+			<forward name="success" 	path="/regla/regla-query.do?method=query" />
+			<forward name="error" 		path="/regla/regla-form.do?method=initForm" />
+		</action>
+		<!-- Fin de actions de reglas -->
 
 		<!-- Actions de roles -->
 		<action path="/rol/rol-query" name="rolForm" parameter="method" 

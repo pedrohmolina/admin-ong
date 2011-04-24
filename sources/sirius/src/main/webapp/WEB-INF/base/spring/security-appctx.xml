@@ -42,6 +42,7 @@
                 /persona/.*=ENTIDAD_PERSONA-LISTADO
                 /proveedor/.*=ENTIDAD_PROVEEDOR-LISTADO
                 /proyecto/.*=ENTIDAD_PROYECTO-LISTADO
+                /regla/.*=ENTIDAD_REGLA-LISTADO
                 /relacion-contractual/.*=ENTIDAD_RELACION_CONTRACTUAL-LISTADO
                 /rol/.*=ENTIDAD_ROL-LISTADO
                 /rubro/.*=ENTIDAD_RUBRO-LISTADO

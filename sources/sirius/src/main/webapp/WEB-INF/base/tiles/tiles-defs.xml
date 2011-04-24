@@ -281,6 +281,22 @@
 		<put name="body" value="/WEB-INF/proyecto/proyecto-view.jsp" />
 	</definition>
 
+	<!-- Regla -->
+	<definition name=".abmReglaQuery" extends="mainLayout">
+		<put name="title" value="Administración de Reglas" />
+		<put name="body" value="/WEB-INF/regla/regla-query.jsp" />
+	</definition>
+
+	<definition name=".abmReglaForm" extends="mainLayout">
+		<put name="title" value="Regla - Datos" />
+		<put name="body" value="/WEB-INF/regla/regla-form.jsp" />
+	</definition>
+
+	<definition name=".abmReglaView" extends="mainLayout">
+		<put name="title" value="Regla - Datos" />
+		<put name="body" value="/WEB-INF/regla/regla-view.jsp" />
+	</definition>
+
 	<!-- Relacion Contractual -->
 	<definition name=".abmRelacionContractualQuery" extends="mainLayout">
 		<put name="title" value="Administración de Relaciones Contractuales" />

@@ -16,6 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
+
 @Entity
 @SuppressWarnings("serial")
 public class Proyecto extends BusinessObject {
