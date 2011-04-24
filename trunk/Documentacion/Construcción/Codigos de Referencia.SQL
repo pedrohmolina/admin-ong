@@ -87,3 +87,9 @@ INSERT INTO parametro (id,nombre,valor,descripcion) VALUES (2,'ID_ESTADO_ACTIVID
 INSERT INTO tipoagrupamiento (id,descripcion) VALUES (1,'Individual');
 INSERT INTO tipoagrupamiento (id,descripcion) VALUES (2,'Agrupado');
 
+-- Proximo estado de actividad
+insert into proximoestadoactividad (idEstadoActividad, idProximoEstadoActividad) values (1, 2);
+insert into proximoestadoactividad (idEstadoActividad, idProximoEstadoActividad) values (2, 3);
+insert into proximoestadoactividad (idEstadoActividad, idProximoEstadoActividad) values (2, 4);
+insert into proximoestadoactividad (idEstadoActividad, idProximoEstadoActividad) values (2, 5);
+insert into proximoestadoactividad (idEstadoActividad, idProximoEstadoActividad) values (3, 2);
