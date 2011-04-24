@@ -10,6 +10,8 @@ import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 
+import org.acegisecurity.Authentication;
+import org.acegisecurity.context.SecurityContextHolder;
 import org.apache.log4j.Logger;
 import org.springframework.context.MessageSource;
 
@@ -164,4 +166,9 @@ public class Utils {
 		}
 		return md5Str;
 	}
+
+	public static Authentication getAuthentication() {
+		return SecurityContextHolder.getContext().getAuthentication();		
+	}
+	
 }

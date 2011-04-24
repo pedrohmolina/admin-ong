@@ -17,6 +17,9 @@ public class Entidad extends PersistentObject {
 	@OneToMany(mappedBy = "entidad", cascade = CascadeType.ALL)
 	private Set<Atributo> atributos;
 
+	@OneToMany(mappedBy = "entidad", cascade = CascadeType.ALL)
+	private Set<EntidadReferenciada> entidadesReferenciadas;
+
 
 	public String getDescripcion() {
 		return descripcion;
@@ -35,6 +38,12 @@ public class Entidad extends PersistentObject {
 	}
 	public void setAtributos(Set<Atributo> atributos) {
 		this.atributos = atributos;
+	}
+	public Set<EntidadReferenciada> getEntidadesReferenciadas() {
+		return entidadesReferenciadas;
+	}
+	public void setEntidadesReferenciadas(Set<EntidadReferenciada> entidadesReferenciadas) {
+		this.entidadesReferenciadas = entidadesReferenciadas;
 	}
 
 }

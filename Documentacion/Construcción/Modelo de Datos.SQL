@@ -776,6 +776,19 @@ CREATE TABLE entidad
 ) 
 ;
 
+CREATE TABLE entidadReferenciada
+(
+	id INT NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
+	idEntidad INT NOT NULL COMMENT 'Entidad que contiene la referencia',
+	idEntidadReferenciada INT NOT NULL COMMENT 'Entidad referenciada',
+	nombreEntidad VARCHAR(50) NOT NULL COMMENT 'Nombre del campo que contiene la referencia',
+	opcional BOOL NOT NULL COMMENT 'Señal para referencias opcionales',
+	PRIMARY KEY (idEntidad, idEntidadReferenciada),
+	UNIQUE UQ_entidadReferenciada_dupla(idEntidad, idEntidadReferenciada),
+	UNIQUE UQ_entidadReferenciada_id(id)
+) 
+;
+
 CREATE TABLE tipoAtributo
 (
 	id INT NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
@@ -850,3 +863,10 @@ ALTER TABLE regla ADD CONSTRAINT FK_regla_usuario
 	FOREIGN KEY (idUsuario) REFERENCES usuario (id)
 ;
 
+ALTER TABLE entidadReferenciada ADD CONSTRAINT FK_entidadReferenciada_entidad
+	FOREIGN KEY (idEntidad) REFERENCES entidad (id)
+;
+
+ALTER TABLE entidadReferenciada ADD CONSTRAINT FK_entidadReferenciada_entidadReferenciada
+	FOREIGN KEY (idEntidadReferenciada) REFERENCES entidad (id)
+;

@@ -1,7 +1,9 @@
 package com.antares.sirius.dao.impl;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
 import com.antares.commons.dao.impl.GenericDAOImpl;
 import com.antares.sirius.dao.EntidadDAO;
@@ -16,6 +18,12 @@ import com.antares.sirius.model.Entidad;
  */
 public class EntidadDAOImpl extends GenericDAOImpl<Entidad> implements EntidadDAO {
 	
+	public Entidad findByNombreEntidad(String descripcion) {
+		Criteria crit = getSession().createCriteria(persistentClass);
+		crit.add(Restrictions.ilike("nombreEntidad", descripcion, MatchMode.EXACT));
+		return (Entidad)crit.uniqueResult();
+	}
+
 	@Override
 	protected void addOrder(Criteria crit) {
 		crit.addOrder(Order.asc("descripcion"));
