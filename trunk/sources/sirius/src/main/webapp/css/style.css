@@ -1,4 +1,7 @@
 /*Sirius Style*/
+* { margin: 0px;
+padding: 0px; outline: 0;
+}
 
 html 
 {
@@ -26,88 +29,20 @@ body
 	border-color:#C8C8C8; 
 }
 
-.menu-container
-{
-	position:relative;
-	background-color: #FEFEFE;
-	width:900px;
-	height:40px;
-	border-bottom:solid 1px;
-	border-color:#C8C8C8; 	
-}
-
-ul.menu
-{	
-	height: 10px;
-	margin :auto;
-	padding: 10px 0;
-	font-size: 18px;
-   	list-style:none;
-   	background-color: #FFFFFF;
-   	color: #C1C2C4;
-   	text-align: left;
-}
-
-.top_link
-{
-	text-decoration:none;
-	color: #999D9E;	
-}
-
-ul.menu a
-{
-	border: none;
-	text-decoration: none;
-	color: #999D9E;
-	margin: 0;
-	background-color: white;
-	float:none;
-}
-
-
-ul.menu ul /* Para todos los ul debajo del ul.menu */
-{
-   display:none;
-   list-style:none;
-   background-color: #FFFFFF;
-   position:absolute; /* Esta posición es relativa al <li> que contiene a este <ul> */
-   left:0px; /* Para que no monte sobre el <li> */
-   top:0px;
-   display:none;
-   list-style:none;
-
-   
-}
-
-/* Esto afecta a todos los ul inmediatamente debajo (el > ) de un li que a su vez esté dentro de un ul.menu */
-ul.menu li:hover > ul
-{
-   display:block;
-   background-color: #FFFFFF;
-   list-style:none;
-}
-
-ul.menu li
-{
-	background-color: #FFFFFF;
-   	position:relative; /* Las coordenadas de los ul inferiores serán relativas al <li> que los contiene */
-   	display:inline;
-   	list-style:none;
-}
-
-ul.menu > li > ul /* Solo para los ul debajo de los li de primer nivel. */
-{
-   position:absolute;
-   left:-41px;
-   top:19px;
-   display:none;
-   list-style:none;
-}
-
-.top{
-	padding-left: 5px;
-	padding-right: 10px;
-}
+/*MENU*/
+.menu-container { position:relative; background-color: #FEFEFE; width:900px; height:40px; border-bottom:solid 1px; border-color:#C8C8C8; }
+#menu {text-align: center; font-size: 0.7em; width: 820px; margin: 0px ; }
+#menu ul { list-style-type: none;}
+#menu ul li.nivel1 { float: left; width: 162px; margin-right: 0px; }
+#menu ul li a {display: block; text-decoration: none; color: #fff; background-color: #399; border: solid 1px #fff; padding: 8px; position: relative; }
+#menu ul li:hover {position: relative; }
+#menu ul li a:hover, #menu ul li:hover a.nivel1 {background-color: #6CC; color: #000; position: relative; }
+#menu ul li a.nivel1 {display: block!important;display: none; position: relative; }
+#menu ul li ul {display: none; }
+#menu ul li a:hover ul, #menu ul li:hover ul {display: block; position: absolute;left: 0px; }
+#menu ul li ul li a {width: 160px; padding: 6px 0px 8px 0px; border-top-color: #000; }
+#menu ul li ul li a:hover {border-top-color: #000; position: relative; }
+/*END MENU*/
 
 .body-container{
 	border: 1px solid;
@@ -118,6 +53,8 @@ ul.menu > li > ul /* Solo para los ul debajo de los li de primer nivel. */
 	margin-bottom: 5px;	
 	padding-bottom: 10px;
 }
+
+
 
 .body-foot{
 	position:relative;
@@ -149,7 +86,7 @@ label{
 	float: left;
 }
 
-a {
+.boton a {
 	border: solid 1px #D2D1D6;
 	text-decoration:none;
 	color: #999D9E;

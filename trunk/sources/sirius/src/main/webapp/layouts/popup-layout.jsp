@@ -28,12 +28,12 @@
 			<bean-el:message key="${titulo}"/>
 		</c:if>
 </title>
-<link href="<c:url value="/css/estilosDIV.css"/>" type="text/css" rel="stylesheet"></link>
-<link href="<c:url value="/css/estilos.css"/>" type="text/css" rel="stylesheet"></link>
-<link href="<c:url value="/css/menu.css"/>" type="text/css" rel="stylesheet"></link>
-<link href="<c:url value="/css/calendar-win2k-1.css"/>" type="text/css" rel="stylesheet"></link>
-<link href="<c:url value="/css/thickbox.css"/>" type="text/css" rel="stylesheet"></link>
-<link href="<c:url value="/crud/css/customCrud.css"/>" type="text/css" rel="stylesheet"></link>
+<%-- <link href="<c:url value="/css/estilosDIV.css"/>" type="text/css" rel="stylesheet"></link> --%>
+<%-- <link href="<c:url value="/css/estilos.css"/>" type="text/css" rel="stylesheet"></link> --%>
+<%-- <link href="<c:url value="/css/menu.css"/>" type="text/css" rel="stylesheet"></link> --%>
+<%-- <link href="<c:url value="/css/calendar-win2k-1.css"/>" type="text/css" rel="stylesheet"></link> --%>
+<%-- <link href="<c:url value="/css/thickbox.css"/>" type="text/css" rel="stylesheet"></link> --%>
+<%-- <link href="<c:url value="/crud/css/customCrud.css"/>" type="text/css" rel="stylesheet"></link> --%>
 <tiles:insert attribute="js-header"/>
 </head>
 <body onload="return winOnLoad()">
