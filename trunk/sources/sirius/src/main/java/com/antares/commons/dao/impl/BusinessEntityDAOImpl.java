@@ -89,19 +89,24 @@ public abstract class BusinessEntityDAOImpl<T extends BusinessObject> extends Ge
 		Authentication authentication = Utils.getAuthentication();
 		if (authentication != null) {
 			String username = authentication.getName();
-			if (!authentication.getPrincipal().equals("anonymous") && this.usarSeguridadPorValor) {
-				
+
+			// Reviso que el usuario este logueado y que la seguridad por valor este activada
+			if (!authentication.getPrincipal().equals("anonymous") && this.usarSeguridadPorValor) {	
+
+				// Reviso que a la entidad en cuestion se le puedan aplicar reglas de seguridad
 				Entidad entidad = entidadDAO.findByNombreEntidad(persistentClass.getSimpleName());
-				Collection<Regla> reglas = reglaDAO.findByUsernameAndEntidad(username, entidad);
-
-				// Cargo las reglas correspondientes a la entidad
-				for (Regla regla : reglas) {
-					crit.add(Restrictions.not(createRestriction(regla)));
+				if (entidad != null) {
+					Collection<Regla> reglas = reglaDAO.findByUsernameAndEntidad(username, entidad);
+	
+					// Cargo las reglas correspondientes a la entidad
+					for (Regla regla : reglas) {
+						crit.add(Restrictions.not(createRestriction(regla)));
+					}
+	
+					// Cargo las reglas correspondientes a las entidades referenciadas
+					Set<String> references = new HashSet<String>();
+					addReferencedRestrictions(username, entidad, references, crit);
 				}
-
-				// Cargo las reglas correspondientes a las entidades referenciadas
-				Set<String> references = new HashSet<String>();
-				addReferencedRestrictions(username, entidad, references, crit);
 			}
 		}
 	}
