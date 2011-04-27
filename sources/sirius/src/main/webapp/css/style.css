@@ -30,11 +30,11 @@ body
 }
 
 /*MENU*/
-.menu-container { position:relative; background-color: #FEFEFE; width:900px; height:40px; border-bottom:solid 1px; border-color:#C8C8C8; }
-#menu {text-align: center; font-size: 0.7em; width: 820px; margin: 0px ; }
+.menu-container { position:relative; background-color: #FEFEFE; width:900px; height:40px;  }
+#menu {text-align: center; font-size: 1.3em; width: 820px; margin: 0px ;  }
 #menu ul { list-style-type: none;}
-#menu ul li.nivel1 { float: left; width: 162px; margin-right: 0px; }
-#menu ul li a {display: block; text-decoration: none; color: #fff; background-color: #399; border: solid 1px #fff; padding: 8px; position: relative; }
+#menu ul li.nivel1 { float: left; width: 162px; margin-right: 0px; font-size:0.7em;  }
+#menu ul li a {display: block; text-decoration: none; background-color: #fff;  padding: 8px; position: relative;color: #10617F; }
 #menu ul li:hover {position: relative; }
 #menu ul li a:hover, #menu ul li:hover a.nivel1 {background-color: #6CC; color: #000; position: relative; }
 #menu ul li a.nivel1 {display: block!important;display: none; position: relative; }
@@ -42,6 +42,9 @@ body
 #menu ul li a:hover ul, #menu ul li:hover ul {display: block; position: absolute;left: 0px; }
 #menu ul li ul li a {width: 160px; padding: 6px 0px 8px 0px; border-top-color: #000; }
 #menu ul li ul li a:hover {border-top-color: #000; position: relative; }
+.nivel11 {
+border-bottom:solid 1px; border-color: grey;
+}
 /*END MENU*/
 
 .body-container{
