@@ -81,8 +81,10 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 		} else {
 			entity.getCoordinadores().clear();
 		}
-		for (Integer idCoordinador : coordinadores) {
-			entity.getCoordinadores().add(personaService.findById(idCoordinador));
+		if (coordinadores != null) {
+			for (Integer idCoordinador : coordinadores) {
+				entity.getCoordinadores().add(personaService.findById(idCoordinador));
+			}
 		}
 	}
 
