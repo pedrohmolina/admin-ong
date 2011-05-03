@@ -8,6 +8,7 @@ insert into accion (id, descripcion) values (6, 'CAMBIAR_ESTADO');
 insert into accion (id, descripcion) values (7, 'CONFIRMAR');
 insert into accion (id, descripcion) values (8, 'BLOQUEAR');
 insert into accion (id, descripcion) values (9, 'DESBLOQUEAR');
+insert into accion (id, descripcion) values (10, 'EJECUTAR');
 
 insert into recurso (id, descripcion) values (1, 'MENU_ADMINISTRACION');
 insert into recurso (id, descripcion) values (2, 'MENU_PROYECTO');
@@ -32,6 +33,12 @@ insert into recurso (id, descripcion) values (20, 'ENTIDAD_ROL');
 insert into recurso (id, descripcion) values (21, 'ENTIDAD_PERFIL');
 insert into recurso (id, descripcion) values (22, 'ENTIDAD_USUARIO');
 insert into recurso (id, descripcion) values (23, 'ENTIDAD_REGLA');
+insert into recurso (id, descripcion) values (24, 'MENU_REPORTE');
+insert into recurso (id, descripcion) values (25, 'ENTIDAD_REPORTE_PERSONA');
+insert into recurso (id, descripcion) values (26, 'ENTIDAD_REPORTE_FINANCIADOR');
+insert into recurso (id, descripcion) values (27, 'ENTIDAD_REPORTE_PROVEEDOR');
+insert into recurso (id, descripcion) values (28, 'ENTIDAD_REPORTE_FINANZAS');
+
 
 insert into acceso (id, idRecurso, idAccion) values (1, 1, 1);
 insert into acceso (id, idRecurso, idAccion) values (2, 2, 1);
@@ -138,6 +145,11 @@ insert into acceso (id, idRecurso, idAccion) values (102, 23, 3);
 insert into acceso (id, idRecurso, idAccion) values (103, 23, 4);
 insert into acceso (id, idRecurso, idAccion) values (104, 23, 5);
 
+insert into acceso (id, idRecurso, idAccion) values (105, 24, 10);
+insert into acceso (id, idRecurso, idAccion) values (106, 25, 10);
+insert into acceso (id, idRecurso, idAccion) values (107, 26, 10);
+insert into acceso (id, idRecurso, idAccion) values (108, 27, 10);
+insert into acceso (id, idRecurso, idAccion) values (109, 28, 10);
 
 insert into rol (id, nombre, descripcion, activo) values (1, 'Administrador de Financiadores', 'Acceso completo al ABM de Financiadores', '1');
 insert into rol (id, nombre, descripcion, activo) values (2, 'Administrador de Ingresos', 'Acceso completo al ABM de Ingresos', '1');
@@ -159,6 +171,7 @@ insert into rol (id, nombre, descripcion, activo) values (17, 'Administrador de 
 insert into rol (id, nombre, descripcion, activo) values (18, 'Administrador de Perfiles', 'Acceso completo al ABM de Perfiles', '1');
 insert into rol (id, nombre, descripcion, activo) values (19, 'Administrador de Usuarios', 'Acceso completo al ABM de Usuarios', '1');
 insert into rol (id, nombre, descripcion, activo) values (20, 'Administrador de Reglas de Seguridad', 'Acceso completo al ABM de Reglas de Seguridad', '1');
+insert into rol (id, nombre, descripcion, activo) values (21, 'Administrador de Reportes', 'Acceso completo a los modulos de generacion de reportes', '1');
 
 insert into rolacceso (idRol, idAcceso) values (1, 1);
 insert into rolacceso (idRol, idAcceso) values (1, 5);
@@ -281,6 +294,13 @@ insert into rolacceso (idRol, idAcceso) values (20, 102);
 insert into rolacceso (idRol, idAcceso) values (20, 103);
 insert into rolacceso (idRol, idAcceso) values (20, 104);
 
+insert into rolacceso (idRol, idAcceso) values (21, 105);
+insert into rolacceso (idRol, idAcceso) values (21, 106);
+insert into rolacceso (idRol, idAcceso) values (21, 107);
+insert into rolacceso (idRol, idAcceso) values (21, 108);
+insert into rolacceso (idRol, idAcceso) values (21, 109);
+
+
 insert into perfil (id, nombre, descripcion, activo) values (1, 'Administrador', 'Administrador General', '1');
 
 insert into perfilrol (idPerfil, idRol) values (1, 1);
@@ -303,6 +323,8 @@ insert into perfilrol (idPerfil, idRol) values (1, 17);
 insert into perfilrol (idPerfil, idRol) values (1, 18);
 insert into perfilrol (idPerfil, idRol) values (1, 19);
 insert into perfilrol (idPerfil, idRol) values (1, 20);
+
+insert into perfilrol (idPerfil, idRol) values (1, 21);
 
 -- Datos para crear un usuario default para administrardor admin/admin
 insert into persona (id, apellido, nombre, segundoNombre, idTipoDocumento, numeroDocumento, cuit, cbu, nacionalidad, fechaNacimiento, profesion, direccion, telefono, celular, email, funcion, idRelacionContractual, idFormaPago, idPersonaFactura, observaciones, activo) values (1, 'Otakon', 'Otakon', '', 1, 29319345, '', '', '', null, '', '', '', '', '', '', 1, 1, null, '', '1');
