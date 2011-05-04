@@ -401,7 +401,7 @@ insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion
 insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (8, 3, 2, 'email', 'sirius.financiador.email.label');
 
 -- Atributos simples de Gasto
-insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (9, 4, 2, 'fecha', 'sirius.gasto.fecha.label');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (9, 4, 3, 'fecha', 'sirius.gasto.fecha.label');
 insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (10, 4, 2, 'numeroComprobante', 'sirius.gasto.numeroComprobante.label');
 insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (11, 4, 2, 'paquete', 'sirius.gasto.paquete.label');
 insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (12, 4, 1, 'importe', 'sirius.gasto.importe.label');
@@ -450,36 +450,39 @@ insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion
 
 -- Referencias de las distintas entidades
 -- Referencias de Actividad
-insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad, opcional) values (1, 1, 3, 'financiador', false);
-insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad, opcional) values (2, 1, 6, 'meta', false);
+insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad) values (1, 1, 3, 'financiador');
+insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad) values (2, 1, 6, 'meta');
 
 -- Referencias de Asignacion
-insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad, opcional) values (3, 2, 1, 'actividad', false);
-insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad, opcional) values (4, 2, 9, 'persona', false);
+insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad) values (3, 2, 1, 'actividad');
+insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad) values (4, 2, 9, 'persona');
 
 -- Referencias de Gasto
-insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad, opcional) values (5, 4, 1, 'actividad', true);
-insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad, opcional) values (6, 4, 9, 'persona', false);
-insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad, opcional) values (7, 4, 10, 'proveedor', true);
-insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad, opcional) values (8, 4, 11, 'proyecto', true);
-insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad, opcional) values (9, 4, 13, 'rubro', false);
+insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad) values (5, 4, 1, 'actividad');
+insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad) values (6, 4, 9, 'persona');
+insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad) values (7, 4, 10, 'proveedor');
+insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad) values (8, 4, 11, 'proyecto');
+insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad) values (9, 4, 13, 'rubro');
 
 -- Referencias de Ingreso
-insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad, opcional) values (10, 5, 3, 'financiador', true);
+insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad) values (10, 5, 3, 'financiador');
 
 -- Referencias de Meta
-insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad, opcional) values (11, 6, 7, 'objetivoEspecifico', false);
+insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad) values (11, 6, 7, 'objetivoEspecifico');
 
 -- Referencias de Objetivo Especifico
-insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad, opcional) values (12, 7, 8, 'objetivoGeneral', false);
+insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad) values (12, 7, 8, 'objetivoGeneral');
 
 -- Referencias de Objetivo General
-insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad, opcional) values (13, 8, 11, 'proyecto', false);
+insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad) values (13, 8, 11, 'proyecto');
 
 --Referencias de Persona
-insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad, opcional) values (14, 10, 12, 'relacionContractual', false);
+insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad) values (14, 9, 12, 'relacionContractual');
+
+--Referencias de Rubro
+insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad) values (15, 13, 13, 'rubroPadre');
 
 --Referencias de Proyecto
-insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad, opcional) values (16, 12, 3, 'financiador', false);
-insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad, opcional) values (17, 12, 9, 'responsable', false);
+insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad) values (16, 11, 3, 'financiador');
+insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad) values (17, 11, 9, 'responsable');
 
