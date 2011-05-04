@@ -40,6 +40,10 @@
 		<form-bean name="rubroForm" 				type="com.antares.sirius.view.form.RubroForm" />
 		<form-bean name="usuarioForm" 				type="com.antares.sirius.view.form.UsuarioForm" />
 		<form-bean name="usuarioPersonaForm" 		type="com.antares.sirius.view.form.UsuarioPersonaForm" />
+		<form-bean name="reportePersonaForm" 		type="com.antares.sirius.view.form.ReportePersonaForm" />
+		<form-bean name="reporteFinanciadorForm" 	type="com.antares.sirius.view.form.ReporteFinanciadorForm" />
+		<form-bean name="reporteProveedorForm" 		type="com.antares.sirius.view.form.ReporteProveedorForm" />
+		<form-bean name="reporteFinancieroForm" 	type="com.antares.sirius.view.form.ReporteFinancieroForm" />
 	</form-beans>
 
 	<!-- ================= Global Exceptions Definitions ================== -->
@@ -505,7 +509,32 @@
 
 		<!-- Fin de actions de usuarios -->
 
+		<!-- Actions de reportes -->
+		<action path="/reportes/reporte-persona" name="reportePersonaForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="init" 			   		   path=".reportePersona" />
+			<forward name="generarReportePersona" 	   path=".reportePersona" />
+		</action>
 
+		<action path="/reportes/reporte-financiador" name="reporteFinanciadorForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="init" 			   		   path=".reporteFinanciador" />
+			<forward name="generarReporteFinanciador"  path=".reporteFinanciador" />
+		</action>
+		
+		<action path="/reportes/reporte-proveedor" name="reporteProveedorForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="init" 			   		   path=".reporteProveedor" />
+			<forward name="generarReporteProveedor"    path=".reporteProveedor" />
+		</action>
+		
+		<action path="/reportes/reporte-financiero" name="reporteFinancieroForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="init" 			   		   path=".reporteFinanciero" />
+			<forward name="generarReporteFinanciero"   path=".reporteFinanciero" />
+		</action>
+		<!-- Fin de actions de reportes -->
+	
 	</action-mappings>
 	<controller maxFileSize="2048M" nocache="true" />
 

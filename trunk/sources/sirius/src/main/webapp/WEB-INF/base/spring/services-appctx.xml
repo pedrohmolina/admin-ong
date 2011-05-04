@@ -164,7 +164,7 @@
 		</property>
 		<property name="proxyTargetClass" value="true" />
 	</bean>
-	
+
 
 	<!-- Servicios de entidades que no se actualizan desde la aplicacion -->
 	<bean id="accesoService" class="com.antares.sirius.service.impl.AccesoServiceImpl" autowire="byName">
@@ -237,6 +237,18 @@
 	
 	<bean id="tipoProveedorService" class="com.antares.sirius.service.impl.TipoProveedorServiceImpl" autowire="byName">
 		<property name="dao" ref="tipoProveedorDAO" /> 
+	</bean>
+
+	<bean id="reportePersonaService" class="com.antares.sirius.service.impl.ReportePersonaServiceImpl" autowire="byName">
+	</bean>
+	
+	<bean id="reporteFinanciadorService" class="com.antares.sirius.service.impl.ReporteFinanciadorServiceImpl" autowire="byName">
+	</bean>
+	
+	<bean id="reporteProveedorService" class="com.antares.sirius.service.impl.ReporteProveedorServiceImpl" autowire="byName">
+	</bean>
+	
+	<bean id="reporteFinancieroService" class="com.antares.sirius.service.impl.ReporteFinancieroServiceImpl" autowire="byName">
 	</bean>
 	
 	<!-- Servicios de entidades de Seguridad por Valor -->

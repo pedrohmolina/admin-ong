@@ -68,7 +68,7 @@
 	</authz:authorize>
 
 	<authz:authorize ifAllGranted="MENU_SEGURIDAD-LISTADO">
-		<menu:submenu top="true" label="&nbsp;Seguridad&nbsp;">
+		<menu:submenu top="true" label="&nbsp;Seguridad&nbsp;" style="border-right: solid 1px;border-color: red;">
 			<authz:authorize ifAllGranted="ENTIDAD_ROL-LISTADO">
 				<menu:item   label="Rol"><c:url value="/rol/rol-query.do?method=initQuery"/></menu:item>
 			</authz:authorize>
@@ -85,5 +85,22 @@
 		</menu:submenu>
 	</authz:authorize>
 
+	<authz:authorize ifAllGranted="MENU_REPORTE-EJECUTAR">
+		<menu:submenu top="true" label="&nbsp;Reportes&nbsp;" >
+			<authz:authorize ifAllGranted="ENTIDAD_REPORTE_PERSONA-EJECUTAR">
+				<menu:item style="width: 160px;" label="Personas"><c:url value="/reportes/reporte-persona.do?method=initForm"/></menu:item>
+			</authz:authorize>
+			<authz:authorize ifAllGranted="ENTIDAD_REPORTE_FINANCIADOR-EJECUTAR">
+				<menu:item style="width: 160px;" label="Financiadores"><c:url value="/reportes/reporte-financiador.do?method=initForm"/></menu:item>
+			</authz:authorize>
+			<authz:authorize ifAllGranted="ENTIDAD_REPORTE_PROVEEDOR-EJECUTAR">
+				<menu:item style="width: 160px;" label="Proveedores"><c:url value="/reportes/reporte-proveedor.do?method=initForm"/></menu:item>
+			</authz:authorize>
+			<authz:authorize ifAllGranted="ENTIDAD_REPORTE_FINANZAS-EJECUTAR">
+				<menu:item style="width: 160px;" label="Finanzas"><c:url value="/reportes/reporte-financiero.do?method=initForm"/></menu:item>
+			</authz:authorize>
+		</menu:submenu>
+	</authz:authorize>
+	
 </menu:menu>
 
