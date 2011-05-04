@@ -52,7 +52,9 @@
 	</global-exceptions>
 
 	<!-- ================= Global Forward Definitions ================== -->
-	<global-forwards />
+	<global-forwards>
+		<forward name="restrictedAccess" path=".restrictedAccess" />
+	</global-forwards>
 
 	<!-- ================= Action Mapping Definitions ================== -->
 	<action-mappings>

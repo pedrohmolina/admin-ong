@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"	
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<bean id="secureFindInterceptor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+		<property name="advice">
+			<bean class="com.antares.commons.aop.SecureReadInterceptor" autowire="byName"/>
+		</property>
+		<property name="pattern" value=".*find.*" />
+	</bean>
+
+	<bean id="secureSaveInterceptor" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+		<property name="advice">
+			<bean class="com.antares.commons.aop.SecureWriteInterceptor" autowire="byName"/>
+		</property>
+		<property name="mappedName" value="save" />
+	</bean>
+
+	<bean id="secureUpdateInterceptor" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+		<property name="advice">
+			<bean class="com.antares.commons.aop.SecureWriteInterceptor" autowire="byName"/>
+		</property>
+		<property name="mappedName" value="update" />
+	</bean>
+
+	<bean id="secureDeleteInterceptor" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+		<property name="advice">
+			<bean class="com.antares.commons.aop.SecureWriteInterceptor" autowire="byName"/>
+		</property>
+		<property name="mappedName" value="delete" />
+	</bean>
+
+	<bean id="proxyCreator" class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<property name="beanNames">
+    		<value>*DAO</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+	        	<value>secureFindInterceptor</value>
+	        	<value>secureSaveInterceptor</value>
+	        	<value>secureUpdateInterceptor</value>
+	        	<value>secureDeleteInterceptor</value>
+			</list>
+		</property>
+	</bean>
+
+</beans>

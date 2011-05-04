@@ -13,6 +13,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 
+import com.antares.commons.exception.RestrictedAccessException;
 import com.antares.commons.util.Utils;
 import com.antares.commons.view.action.BaseAction;
 import com.antares.sirius.filter.ActividadFilter;
@@ -118,14 +119,24 @@ public class ActividadAction extends BaseAction<Actividad, ActividadForm, Activi
 	}
 		
 	public ActionForward cambiarEstado(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ActionForward forward;
 		String strId = request.getParameter("id");
 		String strIdEstado = request.getParameter("idEstado");
-		if (Utils.isNotNullNorEmpty(strId) && Utils.isNotNullNorEmpty(strIdEstado)) {
-			Actividad actividad = service.findById(Integer.parseInt(strId));
-			Integer idEstado = new Integer(strIdEstado);
-			service.saveCambioEstado(actividad, idEstado);
+		try {
+			if (Utils.isNotNullNorEmpty(strId) && Utils.isNotNullNorEmpty(strIdEstado)) {
+				Actividad actividad = service.findById(Integer.parseInt(strId));
+				if (actividad != null) {
+					Integer idEstado = new Integer(strIdEstado);
+					service.saveCambioEstado(actividad, idEstado);
+				} else {
+					forward = mapping.findForward("restrictedAccess"); 
+				}
+			}
+			forward = query(mapping, form, request, response);
+		} catch (RestrictedAccessException e) {
+			forward = mapping.findForward("restrictedAccess"); 
 		}
-		return query(mapping, form, request, response);
+		return forward;
 	}
 
 	public void setMetaService(MetaService metaService) {

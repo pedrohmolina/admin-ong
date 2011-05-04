@@ -18,9 +18,11 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.DispatchAction;
 
+import com.antares.commons.exception.RestrictedAccessException;
 import com.antares.commons.exception.ViewException;
 import com.antares.commons.filter.Filter;
 import com.antares.commons.service.BusinessEntityService;
+import com.antares.commons.util.Utils;
 import com.antares.commons.view.form.AbstractForm;
 import com.antares.sirius.model.BusinessObject;
 
@@ -119,10 +121,15 @@ public abstract class BaseAction<T extends BusinessObject, V extends AbstractFor
 	 */
 	@SuppressWarnings("unchecked")
 	public ActionForward initUpdate(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ActionForward forward;
 		V viewForm = (V)form;
-		loadEntity(viewForm, request);
-		viewForm.setAction(UPDATE);
-		return initForm(mapping, form, request, response);
+		if (loadEntity(viewForm, request)) {
+			viewForm.setAction(UPDATE);
+			forward = initForm(mapping, form, request, response);
+		} else {
+			forward = mapping.findForward("restrictedAccess"); 
+		}
+		return forward;
 	}
 
 	/**
@@ -154,10 +161,15 @@ public abstract class BaseAction<T extends BusinessObject, V extends AbstractFor
 	 */
 	@SuppressWarnings("unchecked")
 	public ActionForward view(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ActionForward forward;
 		V viewForm = (V)form;
-		loadEntity(viewForm, request);
-		loadCollections(viewForm);
-		return mapping.findForward("view");
+		if (loadEntity(viewForm, request)) {
+			loadCollections(viewForm);
+			forward = mapping.findForward("view");
+		} else {
+			forward = mapping.findForward("restrictedAccess"); 
+		}
+		return forward;
 	}
 
 	/**
@@ -166,12 +178,19 @@ public abstract class BaseAction<T extends BusinessObject, V extends AbstractFor
 	 * 
 	 * @param viewForm form cuyos campos se deben completar con los atributos de la entidad
 	 * @param request
+	 * @return true si pudo inicializarse correctamente el formulario o false si no lo pudo cargar 
+	 * 				(tanto en caso que no exista la entidad para el id como si el acceso a la misma se encuentra restringido) 
 	 */
-	protected void loadEntity(V viewForm, HttpServletRequest request) {
+	protected boolean loadEntity(V viewForm, HttpServletRequest request) {
+		boolean loaded = false;
 		Integer id = new Integer(request.getParameter("id"));
 		T entity = service.findById(id);
-		viewForm.initializeForm(entity);
-		postLoadEntity(entity, viewForm);
+		if (entity != null) {
+			viewForm.initializeForm(entity);
+			postLoadEntity(entity, viewForm);
+			loaded = true;
+		}
+		return loaded;
 	}
 	
 	/**
@@ -190,14 +209,25 @@ public abstract class BaseAction<T extends BusinessObject, V extends AbstractFor
 		ActionErrors errors = validate(viewForm);
 		ActionForward forward;
 		if (errors.isEmpty()) {
-			if (viewForm.getAction().equals(CREATE)) {
-				service.save(createEntity(viewForm));
-			} else if (viewForm.getAction().equals(UPDATE)) {
-				T entity = service.findById(viewForm.getId());
-				updateEntity(entity, viewForm);
-				service.update(entity);
+			try {
+				if (viewForm.getAction().equals(CREATE)) {
+					service.save(createEntity(viewForm));
+					forward = mapping.findForward("success");
+				} else if (viewForm.getAction().equals(UPDATE)) {
+					T entity = service.findById(viewForm.getId());
+					if (entity != null) {
+						updateEntity(entity, viewForm);
+						service.update(entity);
+						forward = mapping.findForward("success");
+					} else {
+						forward = mapping.findForward("restrictedAccess"); 
+					}
+				} else {
+					forward = mapping.findForward("success");
+				}
+			} catch (RestrictedAccessException e) {
+				forward = mapping.findForward("restrictedAccess"); 
 			}
-			forward = mapping.findForward("success"); 
 		} else {
 			saveErrors(request, errors);
 			forward = mapping.findForward("error"); 
@@ -216,10 +246,16 @@ public abstract class BaseAction<T extends BusinessObject, V extends AbstractFor
 	 * @throws Exception
 	 */
 	public ActionForward remove(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ActionForward forward;
 		Integer id = new Integer(request.getParameter("id"));
 		T entity = service.findById(id);
-		service.delete(entity);
-		return mapping.findForward("success");
+		if (entity != null) {
+			service.delete(entity);
+			forward = mapping.findForward("success");
+		} else {
+			forward = mapping.findForward("restrictedAccess"); 
+		}
+		return forward;
 	}
 
 	/**
@@ -234,7 +270,7 @@ public abstract class BaseAction<T extends BusinessObject, V extends AbstractFor
 		T entity = null;
 		try {
 			// Obtengo una nueva instancia de la entidad usando reflection
-	        ParameterizedType paramType = findParameterizedType(getClass());
+	        ParameterizedType paramType = Utils.findParameterizedType(getClass());
 	        Class<T> clazz = (Class<T>) paramType.getActualTypeArguments()[0];
 	        entity = clazz.newInstance();
 
@@ -243,25 +279,6 @@ public abstract class BaseAction<T extends BusinessObject, V extends AbstractFor
 			throw new ViewException("Ha ocurrido un error al crear la entidad a partir del formulario", e);
 		}
         return entity;
-	}
-
-	/**
-	 * Busca de forma recursiva en las clases padre la primera clase genérica parametrizable
-	 * 
-	 * @param clazz clase
-	 * @return
-	 */
-	@SuppressWarnings("unchecked")
-	protected ParameterizedType findParameterizedType(Class clazz) {
-		ParameterizedType type = null;
-		if (clazz != null) {
-			if (clazz.getGenericSuperclass() instanceof ParameterizedType) {
-				type = (ParameterizedType)clazz.getGenericSuperclass();
-			} else {
-				type = findParameterizedType(clazz.getSuperclass());
-			}
-		}
-		return type;
 	}
 
 	/**

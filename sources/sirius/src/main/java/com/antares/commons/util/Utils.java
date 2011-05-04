@@ -3,6 +3,7 @@ package com.antares.commons.util;
 import static com.antares.sirius.base.Constants.DEFAULT_DATE_FORMAT;
 import static com.antares.sirius.base.Constants.DEFAULT_DECIMAL_FORMAT;
 
+import java.lang.reflect.ParameterizedType;
 import java.security.MessageDigest;
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -167,8 +168,44 @@ public class Utils {
 		return md5Str;
 	}
 
-	public static Authentication getAuthentication() {
-		return SecurityContextHolder.getContext().getAuthentication();		
+	/**
+	 * Busca de forma recursiva en las clases padre la primera clase genérica parametrizable
+	 * 
+	 * @param clazz clase
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public static ParameterizedType findParameterizedType(Class clazz) {
+		ParameterizedType type = null;
+		if (clazz != null) {
+			if (clazz.getGenericSuperclass() instanceof ParameterizedType) {
+				type = (ParameterizedType)clazz.getGenericSuperclass();
+			} else {
+				type = findParameterizedType(clazz.getSuperclass());
+			}
+		}
+		return type;
+	}
+
+	public static boolean isAuthenticated() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		return authentication != null && !"annonymous".equals(authentication.getName());
 	}
 	
+	public static String getUsername() {
+		String username = null;
+		if (isAuthenticated()) {
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			username = authentication.getName();
+		}
+		return username;
+	}
+	
+	public static String getterName(String propertyName) {
+		String getterName = "";
+		if (isNotNullNorEmpty(propertyName)) {
+			getterName += "get" + Character.toUpperCase(propertyName.charAt(0)) + propertyName.substring(1);
+		}
+		return getterName;
+	}
 }

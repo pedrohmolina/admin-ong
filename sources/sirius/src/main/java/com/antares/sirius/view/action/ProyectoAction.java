@@ -12,6 +12,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 
+import com.antares.commons.exception.RestrictedAccessException;
 import com.antares.commons.util.Utils;
 import com.antares.commons.view.action.BaseAction;
 import com.antares.sirius.filter.ProyectoFilter;
@@ -130,12 +131,18 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 	public ActionForward cambiarEstado(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String strId = request.getParameter("id");
 		String strIdEstado = request.getParameter("idEstado");
-		if (Utils.isNotNullNorEmpty(strId) && Utils.isNotNullNorEmpty(strIdEstado)) {
-			Proyecto proyecto = service.findById(Integer.parseInt(strId));
-			Integer idEstado = new Integer(strIdEstado);
-			service.saveCambioEstado(proyecto, idEstado);
+		ActionForward forward;
+		try {
+			if (Utils.isNotNullNorEmpty(strId) && Utils.isNotNullNorEmpty(strIdEstado)) {
+				Proyecto proyecto = service.findById(Integer.parseInt(strId));
+				Integer idEstado = new Integer(strIdEstado);
+					service.saveCambioEstado(proyecto, idEstado);
+			}
+			forward = query(mapping, form, request, response);
+		} catch (RestrictedAccessException e) {
+			forward = mapping.findForward("restrictedAccess"); 
 		}
-		return query(mapping, form, request, response);
+		return forward;
 	}
 
 	public void setPersonaService(PersonaService personaService) {

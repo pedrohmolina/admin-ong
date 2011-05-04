@@ -21,6 +21,11 @@
 		<put name="body" value="/common/message.jsp" />
 	</definition>
 
+	<definition name=".restrictedAccess" extends="mainLayout">
+		<put name="title" value="Error" />
+		<put name="body" value="/common/restricted-access.jsp" />
+	</definition>
+
 	<definition name=".login" extends="mainLayout">
 		<put name="title" value="Sirius - Login" />
 		<put name="body" value="/public/login.jsp" />

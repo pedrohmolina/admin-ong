@@ -14,6 +14,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 
+import com.antares.commons.exception.RestrictedAccessException;
 import com.antares.commons.filter.Filter;
 import com.antares.commons.util.Utils;
 import com.antares.sirius.filter.GastoFilter;
@@ -121,10 +122,20 @@ public class GastoActividadAction extends GastoAction {
 	}
 
 	public ActionForward confirmar(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ActionForward forward;
 		Integer id = new Integer(request.getParameter("id"));
 		Gasto entity = service.findById(id);
-		service.ejecutarConfirmacion(entity);
-		return mapping.findForward("success");
+		try {
+			if (entity != null) {
+				service.ejecutarConfirmacion(entity);
+				forward = mapping.findForward("success");
+			} else {
+				forward = mapping.findForward("restrictedAccess"); 
+			}
+		} catch (RestrictedAccessException e) {
+			forward = mapping.findForward("restrictedAccess"); 
+		}
+		return forward;
 	}
 
 	public ActionForward cargarComboActividad(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) 
@@ -176,35 +187,61 @@ public class GastoActividadAction extends GastoAction {
 	}
 
 	public ActionForward initReferencia(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ActionForward forward;
 		GastoForm viewForm = (GastoForm)form;
 		Integer id = new Integer(request.getParameter("id"));
 		Gasto entity = service.findById(id);
-		viewForm.setReferencia(entity.getReferencia());
-		viewForm.setUpdated("false");
-		return mapping.findForward("referencia");
+		if (entity != null) {
+			viewForm.setReferencia(entity.getReferencia());
+			viewForm.setUpdated("false");
+			forward = mapping.findForward("referencia");
+		} else {
+			forward = mapping.findForward("restrictedAccess"); 
+		}
+		return forward;
 	}
 
 	public ActionForward saveReferencia(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ActionForward forward;
 		GastoForm viewForm = (GastoForm)form;
 		Gasto entity = service.findById(viewForm.getId());
-		if (viewForm.getReferencia() != null && viewForm.getReferencia().length() > 255) {
-			ActionErrors errors = new ActionErrors();
-			errors.add("error", new ActionMessage("errors.maxlength", new Object[]{Utils.getMessage("sirius.gasto.referencia.label"), "255"}));
-			saveErrors(request, errors);
-		} else {
-			entity.setReferencia(viewForm.getReferencia());
-			service.save(entity);
-			viewForm.setUpdated("true");
+		try {
+			if (entity != null) {
+				if (viewForm.getReferencia() != null && viewForm.getReferencia().length() > 255) {
+					ActionErrors errors = new ActionErrors();
+					errors.add("error", new ActionMessage("errors.maxlength", new Object[]{Utils.getMessage("sirius.gasto.referencia.label"), "255"}));
+					saveErrors(request, errors);
+				} else {
+					entity.setReferencia(viewForm.getReferencia());
+					service.save(entity);
+					viewForm.setUpdated("true");
+				}
+				forward = mapping.findForward("referencia");
+			} else {
+				forward = mapping.findForward("restrictedAccess"); 
+			}
+		} catch (RestrictedAccessException e) {
+			forward = mapping.findForward("restrictedAccess"); 
 		}
-		return mapping.findForward("referencia");
+		return forward;
 	}
 
 	public ActionForward removeReferencia(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ActionForward forward;
 		Integer id = new Integer(request.getParameter("id"));
 		Gasto entity = service.findById(id);
-		entity.setReferencia(null);
-		service.save(entity);
-		return mapping.findForward("success");
+		try {
+			if (entity != null) {
+				entity.setReferencia(null);
+				service.save(entity);
+				forward = mapping.findForward("success");
+			} else {
+				forward = mapping.findForward("restrictedAccess"); 
+			}
+		} catch (RestrictedAccessException e) {
+			forward = mapping.findForward("restrictedAccess"); 
+		}
+		return forward;
 	}
 
 	public void setProyectoService(ProyectoService proyectoService) {
