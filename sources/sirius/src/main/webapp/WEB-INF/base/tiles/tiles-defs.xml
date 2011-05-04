@@ -366,4 +366,24 @@
 		<put name="body" value="/WEB-INF/usuario/usuario-persona-form.jsp" />
 	</definition>
 
+	<!-- Reportes -->
+	<definition name=".reportePersona" extends="mainLayout">
+		<put name="title" value="Reportes de Personas" />
+		<put name="body" value="/WEB-INF/reportes/reporte-persona.jsp" />
+	</definition>
+
+	<definition name=".reporteFinanciador" extends="mainLayout">
+		<put name="title" value="Reportes de Financiadores" />
+		<put name="body" value="/WEB-INF/reportes/reporte-financiador.jsp" />
+	</definition>
+
+	<definition name=".reporteProveedor" extends="mainLayout">
+		<put name="title" value="Reportes de Proveedores" />
+		<put name="body" value="/WEB-INF/reportes/reporte-proveedor.jsp" />
+	</definition>
+
+	<definition name=".reporteFinanciero" extends="mainLayout">
+		<put name="title" value="Reportes de Finanzas" />
+		<put name="body" value="/WEB-INF/reportes/reporte-financiero.jsp" />
+	</definition>
 </tiles-definitions>

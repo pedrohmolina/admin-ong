@@ -197,4 +197,27 @@
 	<bean name="/usuario/usuario-persona-form" 				parent="usuarioAction" singleton="false" />
 	<bean name="/usuario/usuario-persona-form-validate" 	parent="usuarioAction" singleton="false" />
 
+	<bean name="reportePersonaAction" class="com.antares.sirius.view.action.ReportePersonaAction" autowire="byName">
+		<property name="personaService" 				ref="personaService" />
+		<property name="reportePersonaService" 			ref="reportePersonaService" />
+	</bean>
+	<bean name="/reportes/reporte-persona" 				parent="reportePersonaAction" singleton="false" />
+	
+	<bean name="reporteFinanciadorAction" class="com.antares.sirius.view.action.ReporteFinanciadorAction" autowire="byName">
+		<property name="financiadorService" 				ref="financiadorService" />
+		<property name="reporteFinanciadorService" 			ref="reporteFinanciadorService" />
+	</bean>
+	<bean name="/reportes/reporte-financiador" 				parent="reporteFinanciadorAction" singleton="false" />
+
+	<bean name="reporteProveedorAction" class="com.antares.sirius.view.action.ReporteProveedorAction" autowire="byName">
+		<property name="proveedorService" 					ref="proveedorService" />
+		<property name="reporteProveedorService" 			ref="reporteProveedorService" />
+	</bean>
+	<bean name="/reportes/reporte-proveedor"				parent="reporteProveedorAction" singleton="false" />
+
+	<bean name="reporteFinancieroAction" class="com.antares.sirius.view.action.ReporteFinancieroAction" autowire="byName">
+		<property name="reporteFinancieroService" 			ref="reporteFinancieroService" />
+	</bean>
+	<bean name="/reportes/reporte-financiero"				parent="reporteFinancieroAction" singleton="false" />
+	
 </beans>
