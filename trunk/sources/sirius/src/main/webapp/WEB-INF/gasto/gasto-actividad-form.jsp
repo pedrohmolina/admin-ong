@@ -94,7 +94,7 @@ function cargarComboActividad(select, destinationCombo){
 		<label for="idRubro"><bean:message key="sirius.gasto.rubro.label" />(*)&nbsp;:</label>
 		<html:select property="idRubro">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
-			<html:optionsCollection name="gastoActividadForm" property="rubros" label="descripcion" value="id"/>
+			<html:optionsCollection name="gastoActividadForm" property="rubros" label="nombre" value="id"/>
 		</html:select>
 		<br>
 		<label for="idOrigen"><bean:message key="sirius.gasto.origen.label" />(*)&nbsp;:</label>

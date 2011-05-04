@@ -11,6 +11,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 
+import com.antares.commons.exception.RestrictedAccessException;
 import com.antares.commons.util.Utils;
 import com.antares.commons.view.action.BaseAction;
 import com.antares.sirius.filter.UsuarioFilter;
@@ -128,26 +129,30 @@ public class UsuarioAction extends BaseAction<Usuario, UsuarioForm, UsuarioServi
 	public ActionForward saveUsuarioPersona(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		UsuarioPersonaForm viewForm = (UsuarioPersonaForm)form;
 		ActionForward forward = null;
-		if (viewForm.getAction().equals(CREATE)) {
-			ActionErrors errors = validateNombreRepetido(viewForm.getUsername(), viewForm.getId());
-			if (errors.isEmpty()) {
-				Usuario usuario = new Usuario();
-				Persona persona = personaService.findById(viewForm.getIdPersona());
-				usuario.setPersona(persona);
-				usuario.setUsername(viewForm.getUsername());
-				usuario.setPassword(Utils.encode(viewForm.getUsername() + viewForm.getPassword()));
-				usuario.setPerfil(perfilService.findById(Integer.parseInt(viewForm.getIdPerfil())));
-				service.save(usuario);
-
-				persona.setUsuario(usuario);
-				personaService.save(persona);
-			} else {
-				saveErrors(request, errors);
-				forward = mapping.findForward("error"); 
+		try {
+			if (viewForm.getAction().equals(CREATE)) {
+				ActionErrors errors = validateNombreRepetido(viewForm.getUsername(), viewForm.getId());
+				if (errors.isEmpty()) {
+					Usuario usuario = new Usuario();
+					Persona persona = personaService.findById(viewForm.getIdPersona());
+					usuario.setPersona(persona);
+					usuario.setUsername(viewForm.getUsername());
+					usuario.setPassword(Utils.encode(viewForm.getUsername() + viewForm.getPassword()));
+					usuario.setPerfil(perfilService.findById(Integer.parseInt(viewForm.getIdPerfil())));
+					service.save(usuario);
+	
+					persona.setUsuario(usuario);
+					personaService.save(persona);
+				} else {
+					saveErrors(request, errors);
+					forward = mapping.findForward("error"); 
+				}
 			}
-		}
-		if (forward == null) {
-			forward = mapping.findForward("success");
+			if (forward == null) {
+				forward = mapping.findForward("success");
+			}
+		} catch (RestrictedAccessException e) {
+			forward = mapping.findForward("restrictedAccess"); 
 		}
 		return forward;
 	}
@@ -167,17 +172,29 @@ public class UsuarioAction extends BaseAction<Usuario, UsuarioForm, UsuarioServi
 	}
 
 	public ActionForward bloquear(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ActionForward forward;
 		Integer id = new Integer(request.getParameter("id"));
 		Usuario entity = service.findById(id);
-		service.ejecutarBloqueo(entity);
-		return mapping.findForward("success");
+		if (entity != null) {
+			service.ejecutarBloqueo(entity);
+			forward = mapping.findForward("success");
+		} else {
+			forward = mapping.findForward("restrictedAccess"); 
+		}
+		return forward;
 	}
 
 	public ActionForward desbloquear(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ActionForward forward;
 		Integer id = new Integer(request.getParameter("id"));
 		Usuario entity = service.findById(id);
-		service.ejecutarDesbloqueo(entity);
-		return mapping.findForward("success");
+		if (entity != null) {
+			service.ejecutarDesbloqueo(entity);
+			forward = mapping.findForward("success");
+		} else {
+			forward = mapping.findForward("restrictedAccess"); 
+		}
+		return forward;
 	}
 
 	public void setRelacionContractualService(RelacionContractualService relacionContractualService) {

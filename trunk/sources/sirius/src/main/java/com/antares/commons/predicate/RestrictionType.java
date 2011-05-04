@@ -1,5 +1,11 @@
-package com.antares.commons.restrictions;
+package com.antares.commons.predicate;
 
+/**
+ * Enum que representa los tipos de restricciones de las reglas de seguridad por valor
+ *
+ * @version 1.0.0 Created 01/05/2011 by Julian Martinez
+ * @author <a href:mailto:otakon@gmail.com> Julian Martinez </a>
+ */
 public enum RestrictionType {
 
 	NUMERIC_EQUAL(1),

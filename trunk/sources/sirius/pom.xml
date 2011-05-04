@@ -374,6 +374,12 @@
 			<scope>compile</scope>
 		</dependency>
 
+		<dependency>
+		    <groupId>com.google.guava</groupId>
+		    <artifactId>guava</artifactId>
+		    <version>r09</version>
+		</dependency>
+
 		<!-- Dependencias de Reportes -->		
 		<dependency>
 		    <groupId>jasperreports</groupId>

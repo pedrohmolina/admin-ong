@@ -19,7 +19,6 @@ public class EntidadReferenciada extends PersistentObject {
 	private Entidad entidadReferenciada;
 	
 	private String nombreEntidad;
-	private Boolean opcional;
 
 	public Entidad getEntidad() {
 		return entidad;
@@ -43,14 +42,6 @@ public class EntidadReferenciada extends PersistentObject {
 
 	public void setNombreEntidad(String nombreEntidad) {
 		this.nombreEntidad = nombreEntidad;
-	}
-
-	public Boolean getOpcional() {
-		return opcional;
-	}
-
-	public void setOpcional(Boolean opcional) {
-		this.opcional = opcional;
 	}
 
 }
