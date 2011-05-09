@@ -805,6 +805,7 @@ CREATE TABLE atributo
 	idTipoAtributo INT COMMENT 'Tipo del atributo',
 	nombreAtributo VARCHAR(50) NOT NULL COMMENT 'Nombre del atributo de la entidad usado por el motor de reglas',
 	descripcion VARCHAR(50) NOT NULL COMMENT 'Descripcion del atributo',
+	optionBean VARCHAR(50) NULL COMMENT 'Nombre del bean con el cual obtener las opciones',
 	PRIMARY KEY (id),
 	UNIQUE UQ_atributo_id(id)
 ) 
@@ -828,6 +829,7 @@ CREATE TABLE regla
 	idOperador INT COMMENT 'Operador de la regla',
 	idUsuario INT COMMENT 'Usuario al que aplica la serie',
 	valor VARCHAR(255) NOT NULL COMMENT 'Valor a asignar a la regla',
+	valorDescripcion VARCHAR(255) NOT NULL COMMENT 'Valor a mostrar',
 	activo BOOL NOT NULL COMMENT 'Señal para manejo de baja logica',
 	PRIMARY KEY (id),
 	UNIQUE UQ_regla_id(id)
