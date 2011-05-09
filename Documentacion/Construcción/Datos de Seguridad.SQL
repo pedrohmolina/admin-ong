@@ -341,6 +341,7 @@ insert into tipoatributo (id, descripcion) values (1, 'Numero');
 insert into tipoatributo (id, descripcion) values (2, 'Texto');
 insert into tipoatributo (id, descripcion) values (3, 'Fecha');
 insert into tipoatributo (id, descripcion) values (4, 'Booleano');
+insert into tipoatributo (id, descripcion) values (5, 'Opcion');
 
 
 -- Operadores de tipo Numerico
@@ -371,6 +372,9 @@ insert into operador (id, idTipoAtributo, descripcion) values (18, 3, 'Despues d
 insert into operador (id, idTipoAtributo, descripcion) values (19, 4, 'Si');
 insert into operador (id, idTipoAtributo, descripcion) values (20, 4, 'No');
 
+-- Operadores de tipo Opcion
+insert into operador (id, idTipoAtributo, descripcion) values (21, 5, 'Igual');
+insert into operador (id, idTipoAtributo, descripcion) values (22, 5, 'Distinto');
 
 
 insert into entidad (id, descripcion, nombreEntidad) values (1, 'Actividad', 'Actividad');
@@ -447,6 +451,27 @@ insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion
 
 -- Atributos simples de Rubro
 insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion) values (38, 13, 2, 'nombre', 'sirius.rubro.nombre.label');
+
+
+-- Atributos de Opciones
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion, optionBean) values (39, 1, 5, 'estadoActividad.id', 'sirius.actividad.estadoActividad.label', 'estadoActividadDAO');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion, optionBean) values (40, 2, 5, 'tipoAsignacion.id', 'sirius.asignacion.tipoAsignacion.label', 'tipoAsignacionDAO');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion, optionBean) values (41, 3, 5, 'tipoFinanciador.id', 'sirius.financiador.tipoFinanciador.label', 'tipoFinanciadorDAO');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion, optionBean) values (42, 3, 5, 'estadoFinanciador.id', 'sirius.financiador.estadoFinanciador.label', 'estadoFinanciadorDAO');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion, optionBean) values (43, 4, 5, 'origen.id', 'sirius.gasto.origen.label', 'origenDAO');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion, optionBean) values (44, 4, 5, 'tipoComprobante.id', 'sirius.gasto.tipoComprobante.label', 'tipoComprobanteDAO');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion, optionBean) values (45, 4, 5, 'tipoGasto.id', 'sirius.gasto.tipoGasto.label', 'tipoGastoDAO');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion, optionBean) values (46, 5, 5, 'tipoIngreso.id', 'sirius.ingreso.tipoIngreso.label', 'tipoIngresoDAO');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion, optionBean) values (47, 9, 5, 'tipoDocumento.id', 'sirius.persona.tipoDocumento.label', 'tipoDocumentoDAO');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion, optionBean) values (48, 9, 5, 'formaPago.id', 'sirius.persona.formaPago.label', 'formaPagoDAO');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion, optionBean) values (49, 10, 5, 'tipoProveedor.id', 'sirius.proveedor.tipoProveedor.label', 'tipoProveedorDAO');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion, optionBean) values (50, 11, 5, 'estadoProyecto.id', 'sirius.proyecto.estadoProyecto.label', 'estadoProyectoDAO');
+insert into atributo (id, idEntidad, idTipoAtributo, nombreAtributo, descripcion, optionBean) values (51, 11, 5, 'tipoAgrupamiento.id', 'sirius.proyecto.tipoAgrupamiento.label', 'tipoAgrupamientoDAO');
+
+
+
+
+
 
 -- Referencias de las distintas entidades
 -- Referencias de Actividad
