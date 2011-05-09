@@ -14,6 +14,7 @@ public class PredicateFactoryHelper {
 	private static final PredicateFactory TEXT_PREDICATE_FACTORY = new TextPredicateFactory(); 
 	private static final PredicateFactory DATE_PREDICATE_FACTORY = new DatePredicateFactory(); 
 	private static final PredicateFactory BOOLEAN_PREDICATE_FACTORY = new BooleanPredicateFactory(); 
+	private static final PredicateFactory OPTION_PREDICATE_FACTORY = new OptionPredicateFactory(); 
 
 	/**
 	 * Devuelve el PredicateFactory correspondiente al tipo de propiedad necesaria 
@@ -28,6 +29,7 @@ public class PredicateFactoryHelper {
 			case TEXT: predicateFactory = TEXT_PREDICATE_FACTORY; break; 
 			case DATE: predicateFactory = DATE_PREDICATE_FACTORY; break; 
 			case BOOLEAN: predicateFactory = BOOLEAN_PREDICATE_FACTORY; break; 
+			case OPTION: predicateFactory = OPTION_PREDICATE_FACTORY; break; 
 			default: throw new PropertyTypeNotSupportedException("The property type " + propertyType + " is not supported");
 		}
 		return predicateFactory;

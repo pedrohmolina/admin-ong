@@ -1,6 +1,5 @@
 package com.antares.commons.aop;
 
-import java.lang.reflect.Method;
 import java.util.Collection;
 import java.util.HashSet;
 
@@ -53,7 +52,7 @@ public abstract class SecurityInterceptor implements MethodInterceptor {
 		}
 		return returnValue;
 	}
-	
+
 	/**
 	 * Determina si el BusinessObject pasador por parametro debe ser filtrado para el usuario, usando las reglas de seguridad 
 	 * por valor.
@@ -69,10 +68,9 @@ public abstract class SecurityInterceptor implements MethodInterceptor {
 		if (entidad != null) {
 			doFilter = filterObjectReferences(targetObject, entidad, username);
 		}
-
 		return doFilter;
 	}
-	
+
 	/**
 	 * Filtra la colleccion targetCollection pasada por parametro, eliminando los elementos que no deben visualizarse por el usuario,
 	 * usando las reglas de seguridad por valor.
@@ -99,7 +97,7 @@ public abstract class SecurityInterceptor implements MethodInterceptor {
 
 		return targetCollection;
 	}
-	
+
 	/**
 	 * Revisa, de forma recursiva si el targetObject (o alguno de los objetos de los cuales depende) debe ser filtrado o no.
 	 * 
@@ -110,22 +108,22 @@ public abstract class SecurityInterceptor implements MethodInterceptor {
 	 */
 	@SuppressWarnings("unchecked")
 	protected boolean filterObjectReferences(BusinessObject targetObject, Entidad entidad, String username) {
-		
+
 		// Reviso que a la entidad en cuestion se le puedan aplicar reglas de seguridad
 		Collection<Regla> reglas = reglaDAO.findByUsernameAndEntidad(username, entidad);
 		if (!reglas.isEmpty()) {
 			for (Regla regla : reglas) {
-				Object value = getPropertyValue(targetObject, regla.getAtributo().getNombreAtributo());
+				Object value = Utils.getPropertyValue(targetObject, regla.getAtributo().getNombreAtributo());
 				if (value != null && createPredicate(regla).apply(value)) {
 					return true;
 				}
 			}
 		}
-		
+
 		// Reviso las reglas de seguridad de las entidades referenciadas usando una llamada recusiva
 		for (EntidadReferenciada entidadReferenciada : entidad.getEntidadesReferenciadas()) {
 			Entidad referencia = entidadReferenciada.getEntidadReferenciada();
-			BusinessObject referencedObject = (BusinessObject)getPropertyValue(targetObject, entidadReferenciada.getNombreEntidad());
+			BusinessObject referencedObject = (BusinessObject)Utils.getPropertyValue(targetObject, entidadReferenciada.getNombreEntidad());
 
 			// Si el objeto referenciado es distinto de null, realizo una llamada recursiva
 			if (referencedObject != null) {
@@ -135,27 +133,6 @@ public abstract class SecurityInterceptor implements MethodInterceptor {
 			}
 		}
 		return false;
-	}
-
-	/**
-	 * Obtiene, el valor de una propiedad del businessObject.
-	 *  
-	 * @param businessObject objeto cuya propiedad se quiere obtener
-	 * @param propertyName nombre de la propiedad
-	 * @return
-	 */
-	protected Object getPropertyValue(BusinessObject businessObject, String propertyName) {
-		Object rval = null;
-		try {
-			Class<?> clazz = businessObject.getClass();
-			Method method = clazz.getMethod(Utils.getterName(propertyName), new Class[]{});
-			rval = method.invoke(businessObject, new Object[]{});
-		} catch (Exception e) {
-			// TODO ver como manejar esto
-			System.out.println("Problema al intentar acceder a la propiedad " + propertyName + " de la clase" + businessObject.getClass().getSimpleName());
-			e.printStackTrace();
-		}
-		return rval;
 	}
 
 	/**

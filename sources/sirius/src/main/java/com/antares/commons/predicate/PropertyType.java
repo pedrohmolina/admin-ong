@@ -13,6 +13,7 @@ public enum PropertyType {
 	TEXT(2),
 	DATE(3),
 	BOOLEAN(4),
+	OPTION(5)
 	;
 	
 	private PropertyType(Integer id) {

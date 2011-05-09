@@ -14,6 +14,7 @@ public class Atributo extends PersistentObject {
 
 	private String descripcion;
 	private String nombreAtributo;
+	private String optionBean;
 
 	@ManyToOne
 	@JoinColumns(@JoinColumn(name = "idEntidad"))
@@ -50,6 +51,12 @@ public class Atributo extends PersistentObject {
 	}
 	public void setEntidad(Entidad entidad) {
 		this.entidad = entidad;
+	}
+	public String getOptionBean() {
+		return optionBean;
+	}
+	public void setOptionBean(String optionBean) {
+		this.optionBean = optionBean;
 	}
 
 }

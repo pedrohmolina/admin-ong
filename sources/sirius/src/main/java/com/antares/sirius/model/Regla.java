@@ -27,6 +27,7 @@ public class Regla extends BusinessObject {
 	private Operador operador;
 
 	private String valor;
+	private String valorDescripcion;
 
 	public Entidad getEntidad() {
 		return entidad;
@@ -57,6 +58,12 @@ public class Regla extends BusinessObject {
 	}
 	public void setValor(String valor) {
 		this.valor = valor;
+	}
+	public String getValorDescripcion() {
+		return valorDescripcion;
+	}
+	public void setValorDescripcion(String valorDescripcion) {
+		this.valorDescripcion = valorDescripcion;
 	}
 
 }

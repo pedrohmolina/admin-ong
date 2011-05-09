@@ -64,7 +64,7 @@ function confirmarAccion(mensaje) {
 			<bean-el:message key="${item.atributo.descripcion}"/>
 		</display:column>
 		<display:column sortable="true" property="operador.descripcion" 	titleKey="sirius.regla.operador.label" />
-		<display:column sortable="true" property="valor" 					titleKey="sirius.regla.valor.label" />
+		<display:column sortable="true" property="valorDescripcion" 		titleKey="sirius.regla.valor.label" />
 
 		<display:column title="Acciones" media="html">
 			<authz:authorize ifAllGranted="ENTIDAD_REGLA-DETALLE">

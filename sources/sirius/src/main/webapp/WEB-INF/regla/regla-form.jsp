@@ -11,12 +11,17 @@
 <%@ taglib uri="/WEB-INF/tlds/authz.tld" prefix="authz"%>
 
 <script>
+	$(document).ready(function(){
+		mostrarOcultarDivs(false);
+	})
 
 	function changeEntidad() {
 	 	$("#atributo").removeOption(/^[^-]/i);
 	 	$("#atributo").val("");
 	 	$("#operador").removeOption(/^[^-]/i);
 	 	$("#operador").val("");
+	 	$("#valorOpcion").removeOption(/^[^-]/i);
+	 	$("#valorOpcion").val("");
 
 	 	var selectedOption = $("#entidad").val();
 	 	if (selectedOption != "") {
@@ -28,14 +33,97 @@
 	function changeAtributo() {
 	 	$("#operador").removeOption(/^[^-]/i);
 	 	$("#operador").val("");
-
+	 	$("#valorOpcion").removeOption(/^[^-]/i);
+	 	$("#valorOpcion").val("");
+		
 	 	var selectedOption = $("#atributo").val();
 	 	if (selectedOption != "") {
 			url = "<c:url value='/regla/regla-form.do?method=cargarComboOperadores' />";
-	 		$("#operador").ajaxAddOption(url, {idAtributo:selectedOption}, false);
+		 	$("#operador").ajaxAddOption(url, {idAtributo:selectedOption}, false);
+		 }
+		mostrarOcultarDivs(true);
+	}
+
+	function mostrarOcultarDivs(recargarComboValores) {
+	 	var selectedOption = $("#atributo").val();
+	 	if (selectedOption != "") {
+			url = "<c:url value='/regla/regla-form.do?method=' />";
+
+			$.getJSON(url + "getTipoAtributo", {idAtributo:selectedOption}, function(json){
+				if (json.tipoAtributo == "1") {
+					mostrarDivValorNumerico();
+				} else if (json.tipoAtributo == "3") {
+					mostrarDivValorFecha();
+				} else if (json.tipoAtributo == "4") {
+					ocultarTodoDivValor();
+				} else if (json.tipoAtributo == "5") {
+					mostrarDivValorCombo();
+					if (recargarComboValores) {
+			 			$("#valorCombo").ajaxAddOption(url + 'cargarComboValores', {idAtributo:selectedOption}, false);
+					}
+				} else {
+					mostrarDivValor();
+				}
+			});
+	 	} else {
+	 		mostrarDivValor();
 	 	}
 	}
-	
+
+	function ocultarDivValor() {
+		$("#divValor").attr("style", "display:none");
+		$("#valor").val("");
+	}
+
+	function ocultarDivValorNumerico() {
+		$("#divValorNumerico").attr("style", "display:none");
+		$("#valorNumerico").val("");
+	}
+
+	function ocultarDivValorFecha() {
+		$("#divValorFecha").attr("style", "display:none");
+		$("#valorFecha").val("");
+	}
+
+	function ocultarDivValorCombo() {
+		$("#divValorCombo").attr("style", "display:none");
+		$("#valorCombo").val("");
+	}
+
+	function mostrarDivValor() {
+		$("#divValor").attr("style", "display:block");
+		ocultarDivValorNumerico();
+		ocultarDivValorFecha();
+		ocultarDivValorCombo();
+	}
+
+	function mostrarDivValorNumerico() {
+		ocultarDivValor();
+		$("#divValorNumerico").attr("style", "display:block");
+		ocultarDivValorFecha();
+		ocultarDivValorCombo();
+	}
+
+	function mostrarDivValorFecha() {
+		ocultarDivValor();
+		ocultarDivValorNumerico();
+		$("#divValorFecha").attr("style", "display:block");
+		ocultarDivValorCombo();
+	}
+
+	function mostrarDivValorCombo() {
+		ocultarDivValor();
+		ocultarDivValorNumerico();
+		ocultarDivValorFecha();
+		$("#divValorCombo").attr("style", "display:block");
+	}
+
+	function ocultarTodoDivValor() {
+		ocultarDivValor();
+		ocultarDivValorNumerico();
+		ocultarDivValorFecha();
+		ocultarDivValorCombo();
+	}
 </script>
 
 <div class="form">
@@ -67,9 +155,29 @@
 			<html:optionsCollection name="reglaForm" property="operadores" label="descripcion" value="id"/>
 		</html:select>
 		<br>
-		<label for="valor"><bean:message key="sirius.regla.valor.label" />(*)&nbsp;:</label>
-		<html:text property="valor" />
-		<br>
+		<div id="divValor">
+			<label for="valor"><bean:message key="sirius.regla.valor.label" />(*)&nbsp;:</label>
+			<html:text property="valor" styleId="valor" />
+			<br>
+		</div>
+		<div id="divValorNumerico">
+			<label for="valorNumerico"><bean:message key="sirius.regla.valor.label" />(*)&nbsp;:</label>
+			<html:text property="valorNumerico" styleId="valorNumerico" />
+			<br>
+		</div>
+		<div id="divValorFecha">
+			<label for="valorFecha"><bean:message key="sirius.regla.valor.label" />(*)&nbsp;:</label>
+			<html:text property="valorFecha" styleId="valorFecha" />Calendario
+			<br>
+		</div>
+		<div id="divValorCombo">
+			<label for="valorCombo"><bean:message key="sirius.regla.valor.label" />(*)&nbsp;:</label>
+			<html:select property="valorCombo" styleId="valorCombo">
+			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
+				<html:optionsCollection name="reglaForm" property="valores" label="descripcion" value="id"/>
+			</html:select>
+			<br>
+		</div>
 	</div>
 	
 	<div style="clear:both; padding:5px 0 0 0;">

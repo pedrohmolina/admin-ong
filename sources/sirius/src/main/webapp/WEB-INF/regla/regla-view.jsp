@@ -19,20 +19,20 @@
 <html:form action="/regla/regla-query.do?method=query">
 	<h1>Datos</h1>
 	<div style="float:left;">
-		<label for="idUsuario"><bean:message key="sirius.regla.usuario.label" />&nbsp;:</label>
+		<label for="labelUsuario"><bean:message key="sirius.regla.usuario.label" />&nbsp;:</label>
 		<html:text property="labelUsuario" readonly="true" />
 		<br>
-		<label for="idEntity"><bean:message key="sirius.regla.entity.label" />&nbsp;:</label>
-		<html:text property="labelEntity" readonly="true" />
+		<label for="labelEntidad"><bean:message key="sirius.regla.entidad.label" />&nbsp;:</label>
+		<html:text property="labelEntidad" readonly="true" />
 		<br>
-		<label for="idAtributo"><bean:message key="sirius.regla.atributo.label" />&nbsp;:</label>
+		<label for="labelAtributo"><bean:message key="sirius.regla.atributo.label" />&nbsp;:</label>
 		<html:text property="labelAtributo" readonly="true" />
 		<br>
-		<label for="idOperador"><bean:message key="sirius.regla.operador.label" />&nbsp;:</label>
+		<label for="labelOperador"><bean:message key="sirius.regla.operador.label" />&nbsp;:</label>
 		<html:text property="labelOperador" readonly="true" />
 		<br>
-		<label for="valor"><bean:message key="sirius.regla.valor.label" />&nbsp;:</label>
-		<html:text property="valor" readonly="true" />
+		<label for="labelValor"><bean:message key="sirius.regla.valor.label" />&nbsp;:</label>
+		<html:text property="labelValor" readonly="true" />
 		<br>
 	</div>
 

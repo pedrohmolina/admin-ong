@@ -11,22 +11,22 @@
 <%@ taglib uri="/WEB-INF/tlds/authz.tld" prefix="authz"%>
 
 <script>
-$(document).ready(function(){
-	changeTipoIngreso();
-})
-
-function changeTipoIngreso() {
-	var idTipoIngreso = $("#tipoIngreso").val();
+	$(document).ready(function(){
+		changeTipoIngreso();
+	})
 	
-	url = "<c:url value='/ingreso/ingreso-form.do?method=isFinanciacion' />";
-	$.getJSON(url, {idTipoIngreso:idTipoIngreso}, function(json){
-		if (json.isFinanciacion == "true") {
-			$("#comboFinanciador").attr("disabled", false);
-		} else {
-			$("#comboFinanciador").attr("disabled", true);
-		}
-	});
-}
+	function changeTipoIngreso() {
+		var idTipoIngreso = $("#tipoIngreso").val();
+		
+		url = "<c:url value='/ingreso/ingreso-form.do?method=isFinanciacion' />";
+		$.getJSON(url, {idTipoIngreso:idTipoIngreso}, function(json){
+			if (json.isFinanciacion == "true") {
+				$("#comboFinanciador").attr("disabled", false);
+			} else {
+				$("#comboFinanciador").attr("disabled", true);
+			}
+		});
+	}
 </script>
 
 <div class="form">

@@ -7,6 +7,7 @@ import com.antares.commons.view.form.AbstractForm;
 import com.antares.sirius.model.Atributo;
 import com.antares.sirius.model.Entidad;
 import com.antares.sirius.model.Operador;
+import com.antares.sirius.model.PersistentObject;
 import com.antares.sirius.model.Regla;
 import com.antares.sirius.model.Usuario;
 
@@ -26,10 +27,14 @@ public class ReglaForm extends AbstractForm<Regla> {
 	private String idAtributo;
 	private String idOperador;
 	private String valor;
+	private String valorNumerico;
+	private String valorFecha;
+	private String valorCombo;
 	private Collection<Usuario> usuarios;
 	private Collection<Entidad> entidades;
 	private Collection<Atributo> atributos;
 	private Collection<Operador> operadores;
+	private Collection<PersistentObject> valores;
 
 	private String filtroIdUsuario;
 
@@ -37,6 +42,7 @@ public class ReglaForm extends AbstractForm<Regla> {
 	private String labelEntidad;
 	private String labelAtributo;
 	private String labelOperador;
+	private String labelValor;
 
 	public String getIdUsuario() {
 		return idUsuario;
@@ -150,6 +156,38 @@ public class ReglaForm extends AbstractForm<Regla> {
 		this.labelOperador = labelOperador;
 	}
 
+	public String getValorFecha() {
+		return valorFecha;
+	}
+
+	public void setValorFecha(String valorFecha) {
+		this.valorFecha = valorFecha;
+	}
+
+	public String getValorCombo() {
+		return valorCombo;
+	}
+
+	public void setValorCombo(String valorCombo) {
+		this.valorCombo = valorCombo;
+	}
+
+	public Collection<PersistentObject> getValores() {
+		return valores;
+	}
+
+	public void setValores(Collection<PersistentObject> valores) {
+		this.valores = valores;
+	}
+
+	public String getValorNumerico() {
+		return valorNumerico;
+	}
+
+	public void setValorNumerico(String valorNumerico) {
+		this.valorNumerico = valorNumerico;
+	}
+
 	@Override
 	public void initialize() {
 		this.id = null;
@@ -159,11 +197,15 @@ public class ReglaForm extends AbstractForm<Regla> {
 		this.idAtributo = "";
 		this.idOperador = "";
 		this.valor = "";
+		this.valorNumerico = "";
+		this.valorFecha = "";
+		this.valorCombo = "";
 		this.filtroIdUsuario = "";
 		this.labelUsuario = "";
 		this.labelEntidad = "";
 		this.labelAtributo = "";
 		this.labelOperador = "";
+		this.labelValor = "";
 	}
 
 	@Override
@@ -174,10 +216,14 @@ public class ReglaForm extends AbstractForm<Regla> {
 		this.idAtributo = "";
 		this.idOperador = "";
 		this.valor = "";
+		this.valorNumerico = "";
+		this.valorFecha = "";
+		this.valorCombo = "";
 		this.labelUsuario = "";
 		this.labelEntidad = "";
 		this.labelAtributo = "";
 		this.labelOperador = "";
+		this.labelValor = "";
 	}
 
 	@Override
@@ -187,11 +233,19 @@ public class ReglaForm extends AbstractForm<Regla> {
 		this.idEntidad = entity.getEntidad().getId().toString();
 		this.idAtributo = entity.getAtributo().getId().toString();
 		this.idOperador = entity.getOperador().getId().toString();
-		this.valor = entity.getValor();
 		this.labelUsuario = entity.getUsuario().getUsername();
 		this.labelEntidad = entity.getEntidad().getDescripcion();
 		this.labelAtributo = Utils.getMessage(entity.getAtributo().getDescripcion());
-		this.labelOperador = Utils.getMessage(entity.getOperador().getDescripcion());
+		this.labelOperador = entity.getOperador().getDescripcion();
+		this.labelValor = entity.getValorDescripcion();
+	}
+
+	public String getLabelValor() {
+		return labelValor;
+	}
+
+	public void setLabelValor(String labelValor) {
+		this.labelValor = labelValor;
 	}
 
 }

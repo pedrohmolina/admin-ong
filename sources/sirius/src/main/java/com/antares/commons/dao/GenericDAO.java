@@ -3,6 +3,8 @@ package com.antares.commons.dao;
 import java.io.Serializable;
 import java.util.Collection;
 
+import com.antares.sirius.model.PersistentObject;
+
 /**
  * DAO genérico para administrar las distintas entidades del sistema.
  * 
@@ -11,7 +13,7 @@ import java.util.Collection;
  *
  * @param <T> clase de la entidad de modelo
  */
-public interface GenericDAO<T> {
+public interface GenericDAO<T extends PersistentObject> {
  
 	/**
 	 * Devuelve un objeto de tipo T a partir de un Id especifico
