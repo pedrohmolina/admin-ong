@@ -3,6 +3,7 @@ package com.antares.commons.util;
 import static com.antares.sirius.base.Constants.DEFAULT_DATE_FORMAT;
 import static com.antares.sirius.base.Constants.DEFAULT_DECIMAL_FORMAT;
 
+import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.security.MessageDigest;
 import java.text.DecimalFormat;
@@ -16,6 +17,7 @@ import org.acegisecurity.context.SecurityContextHolder;
 import org.apache.log4j.Logger;
 import org.springframework.context.MessageSource;
 
+import com.antares.sirius.model.PersistentObject;
 import com.antares.sirius.model.Ponderable;
 
 public class Utils {
@@ -208,4 +210,36 @@ public class Utils {
 		}
 		return getterName;
 	}
+
+	/**
+	 * Obtiene el valor de una propiedad del persistentObject. Esta propiedad puede ser llamada a traves de una cadena de metodos.
+	 * Para ello, debe indicarse los nombres de los atributos separados por "." en el propertyName. Por ejemplo:
+	 * Si propertyName="estadoProyect.id" este metodo va a retornar el resultado de persistentObject.getEstadoProyecto().getId()
+	 * En este caso, el metodo se llama de forma recursiva la cantidad de veces que sea necesario.
+	 *  
+	 * @param persistentObject objeto cuya propiedad se quiere obtener
+	 * @param propertyName nombre de la propiedad
+	 * @return
+	 */
+	public static Object getPropertyValue(PersistentObject persistentObject, String propertyName) {
+		Object rval = null;
+		try {
+			if (propertyName.indexOf(".") > 0) {
+				Class<?> clazz = persistentObject.getClass();
+				Method method = clazz.getMethod(Utils.getterName(propertyName.substring(0, propertyName.indexOf("."))), new Class[]{});
+				PersistentObject newPersistentObject = (PersistentObject)method.invoke(persistentObject, new Object[]{});
+				rval = getPropertyValue(newPersistentObject, propertyName.substring(propertyName.indexOf(".") + 1));
+			} else {
+				Class<?> clazz = persistentObject.getClass();
+				Method method = clazz.getMethod(Utils.getterName(propertyName), new Class[]{});
+				rval = method.invoke(persistentObject, new Object[]{});
+			}
+		} catch (Exception e) {
+			// TODO ver como manejar esto
+			System.out.println("Problema al intentar acceder a la propiedad " + propertyName + " de la clase" + persistentObject.getClass().getSimpleName());
+			e.printStackTrace();
+		}
+		return rval;
+	}
+
 }

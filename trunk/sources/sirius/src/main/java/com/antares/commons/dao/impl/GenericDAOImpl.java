@@ -9,6 +9,7 @@ import org.hibernate.Criteria;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.antares.commons.dao.GenericDAO;
+import com.antares.sirius.model.PersistentObject;
 
 /**
  * Implementacion genérica de la interfaz GenericDAO.
@@ -19,7 +20,7 @@ import com.antares.commons.dao.GenericDAO;
  * @param <T> clase de la entidad de modelo
  */
 @SuppressWarnings("unchecked")
-public abstract class GenericDAOImpl<T> extends HibernateDaoSupport implements GenericDAO<T> {
+public abstract class GenericDAOImpl<T extends PersistentObject> extends HibernateDaoSupport implements GenericDAO<T> {
 
 	protected Class<T> persistentClass;
 

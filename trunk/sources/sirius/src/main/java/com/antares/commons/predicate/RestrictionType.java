@@ -27,7 +27,9 @@ public enum RestrictionType {
 	DATE_BEFORE(17),
 	DATE_AFTER(18),
 	BOOLEAN_TRUE(19),
-	BOOLEAN_FALSE(20)
+	BOOLEAN_FALSE(20),
+	OPTION_EQUAL(21),
+	OPTION_NOT_EQUAL(22)
 	;
 	
 	private RestrictionType(Integer id) {

@@ -3,6 +3,8 @@ package com.antares.commons.service;
 import java.io.Serializable;
 import java.util.Collection;
 
+import com.antares.sirius.model.PersistentObject;
+
 /**
  * Servicio genérico para administrar las distintas entidades del sistema.
  * 
@@ -11,7 +13,7 @@ import java.util.Collection;
  *
  * @param <T> clase de la entidad de modelo
  */
-public interface BaseService<T> {
+public interface BaseService<T extends PersistentObject> {
  
 	/**
 	 * Devuelve un objeto de tipo T a partir de un Id especifico

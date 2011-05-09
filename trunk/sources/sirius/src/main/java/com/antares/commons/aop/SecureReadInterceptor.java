@@ -22,15 +22,15 @@ public class SecureReadInterceptor extends SecurityInterceptor {
 		Object target = invocation.getThis();
 		ParameterizedType type = Utils.findParameterizedType(target.getClass());
 		Class<?> entityClass = (Class<?>)type.getActualTypeArguments()[0];
-		
+
 		// Primero verifico que sea una clase de negocio
 		if (BusinessObject.class.isAssignableFrom(entityClass)) {
 	        String entityName = entityClass.getSimpleName();
-			
+
 			// Reviso que el usuario este logueado
 			if (Utils.isAuthenticated()) {
 				String username = Utils.getUsername();
-				
+
 				// Me aseguro que el resultado devuelto por el metodo no este vacio
 				if (returnValue != null) {
 					// Filtro el resultado aplicando las reglas de seguridad por valor

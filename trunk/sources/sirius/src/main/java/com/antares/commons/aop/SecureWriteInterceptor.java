@@ -46,8 +46,6 @@ public class SecureWriteInterceptor extends SecurityInterceptor {
 		} else {
 			invocation.proceed();
 		}
-			
-		
 		return null;
 	}
 
