@@ -501,13 +501,13 @@ insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEnt
 -- Referencias de Objetivo General
 insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad) values (13, 8, 11, 'proyecto');
 
---Referencias de Persona
+-- Referencias de Persona
 insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad) values (14, 9, 12, 'relacionContractual');
 
---Referencias de Rubro
+-- Referencias de Rubro
 insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad) values (15, 13, 13, 'rubroPadre');
 
---Referencias de Proyecto
+-- Referencias de Proyecto
 insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad) values (16, 11, 3, 'financiador');
 insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad) values (17, 11, 9, 'responsable');
 
