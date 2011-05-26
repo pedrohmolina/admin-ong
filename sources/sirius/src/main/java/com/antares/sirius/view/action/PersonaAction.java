@@ -54,6 +54,8 @@ public class PersonaAction extends BaseAction<Persona, PersonaForm, PersonaServi
 		
 		if (Utils.isNotNullNorEmpty(form.getIdPersonaFactura())) {
 			entity.setPersonaFactura(service.findById(Integer.parseInt(form.getIdPersonaFactura())));
+		} else {
+			entity.setPersonaFactura(null);
 		}
 	}
 
@@ -63,6 +65,16 @@ public class PersonaAction extends BaseAction<Persona, PersonaForm, PersonaServi
 		form.setTiposDocumento(tipoDocumentoService.findAll());
 		form.setFormasPago(formaPagoService.findAll());
 		form.setPersonasFactura(service.findAllOthers(form.getId()));
+	}
+
+	@Override
+	protected void completeCollections(Persona entity, PersonaForm form) {
+		if (!entity.getRelacionContractual().isActivo()) {
+			form.getRelacionesContractuales().add(entity.getRelacionContractual());
+		}
+		if (entity.getPersonaFactura() != null && !entity.getPersonaFactura().isActivo()) {
+			form.getPersonasFactura().add(entity.getPersonaFactura());
+		}
 	}
 
 	public void setRelacionContractualService(RelacionContractualService relacionContractualService) {

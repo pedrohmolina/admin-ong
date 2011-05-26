@@ -1,3 +1,4 @@
+<%@ taglib uri="/WEB-INF/tlds/struts-bean-el.tld" prefix="bean-el"%>
 <%@ taglib uri="/WEB-INF/tlds/struts-bean.tld" prefix="bean"%>
 <%@ taglib uri="/WEB-INF/tlds/struts-html.tld" prefix="html"%>
 <%@ taglib uri="/WEB-INF/tlds/struts-html-el.tld" prefix="html-el"%>
@@ -140,7 +141,9 @@
 		<label for="idEntidad"><bean:message key="sirius.regla.entidad.label" />(*)&nbsp;:</label>
 		<html:select property="idEntidad" styleId="entidad" onchange="changeEntidad();" >
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
-			<html:optionsCollection name="reglaForm" property="entidades" label="descripcion" value="id"/>
+			<logic:iterate id="entidad" name="reglaForm" property="entidades">
+				<html-el:option value="${entidad.id}"><bean-el:message key="${entidad.descripcion}"/></html-el:option>
+			</logic:iterate>
 		</html:select>
 		<br>
 		<label for="idAtributo"><bean:message key="sirius.regla.atributo.label" />(*)&nbsp;:</label>

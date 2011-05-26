@@ -31,6 +31,11 @@
 	    	<rtexprvalue>false</rtexprvalue>
 	    </attribute>
 	    <attribute>
+	    	<name>labelKey</name>
+	    	<required>false</required>
+	    	<rtexprvalue>false</rtexprvalue>
+	    </attribute>
+	    <attribute>
 	    	<name>top</name>
 	    	<required>false</required>
 	    	<rtexprvalue>false</rtexprvalue>
@@ -48,7 +53,12 @@
 	    </attribute>
 	    <attribute>
 	    	<name>label</name>
-	    	<required>true</required>
+	    	<required>false</required>
+	    	<rtexprvalue>false</rtexprvalue>
+	    </attribute>
+	    <attribute>
+	    	<name>labelKey</name>
+	    	<required>false</required>
 	    	<rtexprvalue>false</rtexprvalue>
 	    </attribute>
 	    <attribute>

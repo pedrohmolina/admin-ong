@@ -22,13 +22,17 @@ import com.antares.sirius.service.UsuarioService;
  */
 public class UsuarioServiceImpl extends BusinessEntityServiceImpl<Usuario, UsuarioDAO> implements UsuarioService, UserDetailsService {
 
-	public boolean isNombreRepetido(String nombre, Integer id) {
+	public boolean isNombreRepetido(String username, Integer id) {
 		boolean isNombreRepetido = false;
-		Usuario entity = dao.findByUsername(nombre);
+		Usuario entity = dao.findByUsername(username);
 		if (entity != null) {
 			isNombreRepetido = !entity.getId().equals(id);
 		}
 		return isNombreRepetido;
+	}
+
+	public Usuario findByUsername(String username) {
+		return dao.findByUsername(username);
 	}
 
 	public void ejecutarBloqueo(Usuario entity) {

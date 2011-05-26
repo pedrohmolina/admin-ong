@@ -27,7 +27,7 @@ public class CustomValidationRoutines {
 
 		if (strValue != null) {
 			Double value = Utils.parseDouble(strValue);
-			if (value != null && value.doubleValue() <= 0) {
+			if (value == null || value.doubleValue() < 0) {
 				errors.add("error", new ActionMessage("errors.positiveDouble", Utils.getMessage(field.getArg(0).getKey())));
 				return false;
 			}

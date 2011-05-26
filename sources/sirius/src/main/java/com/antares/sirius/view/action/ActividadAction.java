@@ -77,6 +77,13 @@ public class ActividadAction extends BaseAction<Actividad, ActividadForm, Activi
 	}
 
 	@Override
+	protected void completeCollections(Actividad entity, ActividadForm form) {
+		if (!entity.getFinanciador().isActivo()) {
+			form.getFinanciadores().add(entity.getFinanciador());
+		}
+	}
+
+	@Override
 	protected ActionErrors validate(ActividadForm form) {
 		ActionErrors errors = new ActionErrors();
 		Meta meta = metaService.findById(Integer.parseInt(form.getIdMeta()));

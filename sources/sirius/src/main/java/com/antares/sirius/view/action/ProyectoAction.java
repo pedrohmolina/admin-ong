@@ -69,7 +69,7 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 		TipoAgrupamiento tipoAgrupamiento = tipoAgrupamientoService.findById(Integer.parseInt(form.getIdTipoAgrupamiento()));
 		entity.setTipoAgrupamiento(tipoAgrupamiento);
 		updateCoordinadores(entity, form.getIdCoordinadores());
-		updateAreasTematicas(entity, form.getIdCoordinadores());
+		updateAreasTematicas(entity, form.getIdAreaTematica());
 
 		if (entity.getEstadoProyecto() == null) {
 			entity.setEstadoProyecto(estadoProyectoService.findDefault());
@@ -107,6 +107,21 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 		form.setFinanciadores(financiadorService.findAll());
 		form.setAreasTematicas(areaTematicaService.findAll());
 		form.setTiposAgrupamiento(tipoAgrupamientoService.findAll());
+	}
+
+	@Override
+	protected void completeCollections(Proyecto entity, ProyectoForm form) {
+		if (!entity.getFinanciador().isActivo()) {
+			form.getFinanciadores().add(entity.getFinanciador());
+		}
+		if (!entity.getResponsable().isActivo()) {
+			form.getResponsables().add(entity.getResponsable());
+		}
+		for (Persona persona : entity.getCoordinadores()) {
+			if (!persona.isActivo()) {
+				form.getCoordinadores().add(persona);
+			}
+		}
 	}
 
 	@Override
