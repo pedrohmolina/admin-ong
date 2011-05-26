@@ -106,7 +106,8 @@ public abstract class BaseAction<T extends BusinessObject, V extends AbstractFor
 		V viewForm = (V)form;
 		viewForm.initializeForm();
 		viewForm.setAction(CREATE);
-		return initForm(mapping, form, request, response);
+		loadCollections(viewForm);
+		return mapping.findForward("form");
 	}
 
 	/**
@@ -125,7 +126,7 @@ public abstract class BaseAction<T extends BusinessObject, V extends AbstractFor
 		V viewForm = (V)form;
 		if (loadEntity(viewForm, request)) {
 			viewForm.setAction(UPDATE);
-			forward = initForm(mapping, form, request, response);
+			forward = mapping.findForward("form");
 		} else {
 			forward = mapping.findForward("restrictedAccess"); 
 		}
@@ -144,8 +145,6 @@ public abstract class BaseAction<T extends BusinessObject, V extends AbstractFor
 	 */
 	@SuppressWarnings("unchecked")
 	public ActionForward initForm(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		V viewForm = (V)form;
-		loadCollections(viewForm);
 		return mapping.findForward("form");
 	}
 
@@ -164,7 +163,6 @@ public abstract class BaseAction<T extends BusinessObject, V extends AbstractFor
 		ActionForward forward;
 		V viewForm = (V)form;
 		if (loadEntity(viewForm, request)) {
-			loadCollections(viewForm);
 			forward = mapping.findForward("view");
 		} else {
 			forward = mapping.findForward("restrictedAccess"); 
@@ -188,6 +186,8 @@ public abstract class BaseAction<T extends BusinessObject, V extends AbstractFor
 		if (entity != null) {
 			viewForm.initializeForm(entity);
 			postLoadEntity(entity, viewForm);
+			loadCollections(viewForm);
+			completeCollections(entity, viewForm);
 			loaded = true;
 		}
 		return loaded;
@@ -304,6 +304,17 @@ public abstract class BaseAction<T extends BusinessObject, V extends AbstractFor
 	 * @param form objeto que representa el formulario de alta, actualizacion o visualizacion 
 	 */
 	protected void loadCollections(V form) {
+		// Por defecto, vacio. Se deberá redefinir en las clases hijas que lo requieran
+	}
+
+	/**
+	 * Permite que los actions hijos puedan especificar como completar las colecciones con elementos que fueron dados
+	 * de baja (logica) pero con los que aun mantienen relacion
+	 * 
+	 * @param entity entidad cuyos datos se muestran en el form
+	 * @param form objeto que representa el formulario de alta, actualizacion o visualizacion 
+	 */
+	protected void completeCollections(T entity, V form) {
 		// Por defecto, vacio. Se deberá redefinir en las clases hijas que lo requieran
 	}
 

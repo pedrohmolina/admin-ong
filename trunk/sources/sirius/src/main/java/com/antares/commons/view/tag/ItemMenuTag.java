@@ -11,10 +11,13 @@ import org.apache.struts.Globals;
 import org.apache.struts.util.MessageResources;
 import org.displaytag.tags.el.ExpressionEvaluator;
 
+import com.antares.commons.util.Utils;
+
 @SuppressWarnings("serial")
 public class ItemMenuTag extends TagSupport {
 
 	private String label;
+	private String labelKey;
 	private String style;
 	private String top;
 
@@ -51,9 +54,9 @@ public class ItemMenuTag extends TagSupport {
 		StringBuffer sb = new StringBuffer();
 
 		if (top != null && "true".equals(top)) {
-			sb.append("' id='home' class='top_link'><span>" + eval.evalString("label", label) + "</span></a></li>");
+			sb.append("' id='home' class='top_link'><span>" + eval.evalString("label", resolveLabel()) + "</span></a></li>");
 		} else {
-			sb.append("'>" + eval.evalString("label", label) + "</a></li>");
+			sb.append("'>" + eval.evalString("label", resolveLabel()) + "</a></li>");
 		}
 
 		JspWriter writer = pageContext.getOut();
@@ -65,6 +68,16 @@ public class ItemMenuTag extends TagSupport {
 			throw new JspException(messages.getMessage("write.io", e.toString()));
 		}
 		return super.doEndTag();
+	}
+
+	private String resolveLabel() {
+		String label = "";
+		if (labelKey != null) {
+			label = Utils.getMessage(labelKey); 
+		} else if (label != null) {
+			label = this.label;
+		}
+		return label;
 	}
 
 	public String getLabel() {
@@ -89,6 +102,14 @@ public class ItemMenuTag extends TagSupport {
 
 	public void setStyle(String style) {
 		this.style = style;
+	}
+
+	public String getLabelKey() {
+		return labelKey;
+	}
+
+	public void setLabelKey(String labelKey) {
+		this.labelKey = labelKey;
 	}
 
 }

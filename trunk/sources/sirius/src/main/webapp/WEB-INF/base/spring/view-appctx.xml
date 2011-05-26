@@ -45,6 +45,7 @@
 		<property name="tipoComprobanteService" 	ref="tipoComprobanteService" />
 		<property name="tipoGastoService" 			ref="tipoGastoService" />
 		<property name="personaService" 			ref="personaService" />
+		<property name="usuarioService" 			ref="usuarioService" />
 		<property name="proyectoService" 			ref="proyectoService" />
 		<property name="actividadService" 			ref="actividadService" />
 	</bean>
@@ -60,6 +61,7 @@
 		<property name="tipoComprobanteService" 	ref="tipoComprobanteService" />
 		<property name="tipoGastoService" 			ref="tipoGastoService" />
 		<property name="personaService" 			ref="personaService" />
+		<property name="usuarioService" 			ref="usuarioService" />
 	</bean>
 	<bean name="/gasto/gasto-organizacion-query" 			parent="gastoOrganizacionAction" singleton="false" />
 	<bean name="/gasto/gasto-organizacion-form" 			parent="gastoOrganizacionAction" singleton="false" />
@@ -73,6 +75,7 @@
 		<property name="tipoComprobanteService" 	ref="tipoComprobanteService" />
 		<property name="tipoGastoService" 			ref="tipoGastoService" />
 		<property name="personaService" 			ref="personaService" />
+		<property name="usuarioService" 			ref="usuarioService" />
 		<property name="proyectoService" 			ref="proyectoService" />
 	</bean>
 	<bean name="/gasto/gasto-proyecto-query" 			parent="gastoProyectoAction" singleton="false" />

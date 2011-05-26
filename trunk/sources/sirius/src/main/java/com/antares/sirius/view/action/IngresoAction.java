@@ -56,6 +56,13 @@ public class IngresoAction extends BaseAction<Ingreso, IngresoForm, IngresoServi
 	}
 
 	@Override
+	protected void completeCollections(Ingreso entity, IngresoForm form) {
+		if (entity.getFinanciador() != null && !entity.getFinanciador().isActivo()) {
+			form.getFinanciadores().add(entity.getFinanciador());
+		}
+	}
+
+	@Override
 	protected ActionErrors validate(IngresoForm form) {
 		ActionErrors errors = new ActionErrors();
 		if (tipoIngresoService.isIdFinanciacion(form.getIdTipoIngreso()) && Utils.isNullOrEmpty(form.getIdFinanciador())){

@@ -15,11 +15,17 @@ public interface UsuarioService extends BusinessEntityService<Usuario> {
 	/**
 	 * Valida que el nombre no este repetido otra entidad con distinto id
 	 * 
-	 * @param nombre nombre a validar
+	 * @param username nombre a validar
 	 * @param id id de la entidad actual
 	 * @return
 	 */
-	boolean isNombreRepetido(String nombre, Integer id);
+	boolean isNombreRepetido(String username, Integer id);
+
+	/**
+	 * Devuelve un Usuario a partir de su username
+	 * @return Usuario usuario encontrado o null, en caso de que no exista
+	 */
+	Usuario findByUsername(String username);
 
 	/**
 	 * Bloquea al usuario en el sistema, impidiendo que se pueda loguear
