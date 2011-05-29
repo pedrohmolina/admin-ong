@@ -34,27 +34,28 @@
 
 	<h1>Datos</h1>
 	<div style="float:left;">
+	<p>
 		<label for="idTipoIngreso"><bean:message key="sirius.ingreso.tipoIngreso.label" />(*)&nbsp;:</label>
 		<html:select property="idTipoIngreso" onchange="changeTipoIngreso();" styleId="tipoIngreso">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="ingresoForm" property="tiposIngreso" label="descripcion" value="id"/>
 		</html:select>
-		<br>
+		</p><br><p>
 		<label for="monto"><bean:message key="sirius.ingreso.monto.label" />(*)&nbsp;:</label>
 		<html:text property="monto" />
-		<br>
+		</p><br><p>
 		<label for="fecha"><bean:message key="sirius.ingreso.fecha.label" />(*)&nbsp;:</label>
 		<html:text property="fecha" />
-		<br>
+		</p><br><p>
 		<label for="descripcion"><bean:message key="sirius.ingreso.descripcion.label" />:</label>
 		<html:textarea property="descripcion" rows="5" />
-		<br>
+		</p><br><p>
 		<label for="idFinanciador"><bean:message key="sirius.ingreso.financiador.label" />&nbsp;:</label>
 		<html:select property="idFinanciador" styleId="comboFinanciador">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="ingresoForm" property="financiadores" label="nombre" value="id"/>
 		</html:select>
-		<br>
+		</p><br>
 	</div>
 	
 	<div style="clear:both; padding:5px 0 0 0;">
