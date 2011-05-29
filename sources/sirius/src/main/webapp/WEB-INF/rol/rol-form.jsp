@@ -15,12 +15,13 @@
 
 	<h1>Datos</h1>
 	<div style="float:left;">
+	<p>
 		<label for="nombre"><bean:message key="sirius.rol.nombre.label" />(*)&nbsp;:</label>
 		<html:text maxlength="20" property="nombre"></html:text>
-		<br />
+		</p><br><p>
 		<label for="descripcion"><bean:message key="sirius.rol.descripcion.label" />(*)&nbsp;:</label>
 		<html:textarea property="descripcion" rows="5" />
-		<br />
+		</p><br><p>
 		<label for="idAccesos"><bean:message key="sirius.rol.accesos.label" />&nbsp;:</label>
 		<br />
 		<br />
@@ -31,6 +32,7 @@
 			<bean:write name="acceso" />
 			<br /> 
 		</logic:iterate>
+		</p><br>		
 	</div>
 	
 	<div style="clear:both; padding:5px 0 0 0;">
