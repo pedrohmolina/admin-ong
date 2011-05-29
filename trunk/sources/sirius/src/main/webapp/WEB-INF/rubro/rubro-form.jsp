@@ -30,26 +30,31 @@
 
 	<h1>Datos</h1>
 	<div style="float:left;">
+	<p>
 		<label for="nombre"><bean:message key="sirius.rubro.nombre.label" />(*)&nbsp;:</label>
 		<html:text maxlength="16" property="nombre" />
-		<br />
+		</p><br><p>
 		<label for="descripcion"><bean:message key="sirius.rubro.descripcion.label" />(*)&nbsp;:</label>
 		<html:textarea property="descripcion" rows="5" />
-		<br />
+		</p><br>
 		
 		<logic:equal name="rubroForm" property="nivel" value="2">
 			<logic:equal name="rubroForm" property="action.descripcion" value="update">
+				<p>
 				<label for="idRubroNivelUno"><bean:message key="sirius.rubro.rubroNivelUno.label" />&nbsp;:</label>
 				<html:text property="labelRubroNivelUno" readonly="true" />
+				</p><br>
+
 			</logic:equal>
 			<logic:equal name="rubroForm" property="action.descripcion" value="create">
+				<p>
 				<label for="idRubroNivelUno"><bean:message key="sirius.rubro.rubroNivelUno.label" />(*)&nbsp;:</label>
 				<html:select property="idRubroNivelUno">
 					<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 					<html:optionsCollection name="rubroForm" property="rubrosNivelUno" label="nombre" value="id"/>
 				</html:select>
+				</p><br>
 			</logic:equal>
-			<br />
 		</logic:equal>
 
 		<logic:equal name="rubroForm" property="nivel" value="3">
