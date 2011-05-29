@@ -132,12 +132,13 @@
 
 	<h1>Datos</h1>
 	<div style="float:left;">
+	<p>
 		<label for="idUsuario"><bean:message key="sirius.regla.usuario.label" />(*)&nbsp;:</label>
 		<html:select property="idUsuario">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="reglaForm" property="usuarios" label="username" value="id"/>
 		</html:select>
-		<br>
+		</p><br><p>
 		<label for="idEntidad"><bean:message key="sirius.regla.entidad.label" />(*)&nbsp;:</label>
 		<html:select property="idEntidad" styleId="entidad" onchange="changeEntidad();" >
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
@@ -145,41 +146,45 @@
 				<html-el:option value="${entidad.id}"><bean-el:message key="${entidad.descripcion}"/></html-el:option>
 			</logic:iterate>
 		</html:select>
-		<br>
+		</p><br><p>
 		<label for="idAtributo"><bean:message key="sirius.regla.atributo.label" />(*)&nbsp;:</label>
 		<html:select property="idAtributo" styleId="atributo" onchange="changeAtributo();" >
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="reglaForm" property="atributos" label="displayName" value="id"/>
 		</html:select>
-		<br>
+		</p><br><p>
 		<label for="idOperador"><bean:message key="sirius.regla.operador.label" />(*)&nbsp;:</label>
 		<html:select property="idOperador" styleId="operador">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="reglaForm" property="operadores" label="descripcion" value="id"/>
 		</html:select>
-		<br>
+		</p><br>
 		<div id="divValor">
+		<p>
 			<label for="valor"><bean:message key="sirius.regla.valor.label" />(*)&nbsp;:</label>
 			<html:text property="valor" styleId="valor" />
-			<br>
+		</p><br>
 		</div>
 		<div id="divValorNumerico">
+		<p>
 			<label for="valorNumerico"><bean:message key="sirius.regla.valor.label" />(*)&nbsp;:</label>
 			<html:text property="valorNumerico" styleId="valorNumerico" />
-			<br>
+			</p><br>
 		</div>
 		<div id="divValorFecha">
+		<p>
 			<label for="valorFecha"><bean:message key="sirius.regla.valor.label" />(*)&nbsp;:</label>
 			<html:text property="valorFecha" styleId="valorFecha" />Calendario
-			<br>
+			</p><br>
 		</div>
 		<div id="divValorCombo">
+		<p>
 			<label for="valorCombo"><bean:message key="sirius.regla.valor.label" />(*)&nbsp;:</label>
 			<html:select property="valorCombo" styleId="valorCombo">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 				<html:optionsCollection name="reglaForm" property="valores" label="descripcion" value="id"/>
 			</html:select>
-			<br>
+			</p><br>
 		</div>
 	</div>
 	
