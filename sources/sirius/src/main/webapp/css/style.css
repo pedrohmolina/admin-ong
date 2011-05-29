@@ -19,6 +19,16 @@ body {
 	border-color: #C8C8C8;
 }
 
+input{
+	font-family: Arial;
+	color: #7C7C7C;
+}
+
+select {
+	font-family: Arial;
+	color: #7C7C7C;
+}
+
 .top-head {
 	position: relative;
 	background-color: #126180;
@@ -143,6 +153,9 @@ h1 {
 	margin-left: 5px;
 	margin-right: 5px;
 	margin-bottom: 20px;
+	margin-top: 10px;
+	padding-bottom: 5px;
+	padding-left: 10px;
 }
 
 label {
@@ -156,15 +169,7 @@ label {
 	float: left;
 }
 
-.boton a {
-	border: solid 1px #D2D1D6;
-	text-decoration: none;
-	color: #999D9E;
-	margin: 10px;
-	background-color: #F6F6F6;
-	padding: 2px;
-	float: right;
-}
+
 
 table {
 	border: 1px solid #D2D1D6;
@@ -245,3 +250,45 @@ table tbody a {
 	font-weight: bold;
 	text-decoration: underline;
 }
+
+/*Filtros de Busqueda*/
+.form {
+	line-height:10px;
+}
+
+.form label {
+	text-align: right;
+	padding-right: 5px;
+	padding-top: 5px;
+	
+}
+
+.form input{
+	border: 1px solid #D3D3D3;
+	width: 140px;
+	height: 20px;
+}
+
+.form select{
+	border-style:none;
+	border: 1px solid #D3D3D3;
+	width: 140px;
+	text-align: center;
+	height: 20px;
+}
+
+.boton a {
+	border: solid 1px #D2D1D6;
+	text-decoration: none;
+	margin: 10px;
+	padding: 7px;
+	float: right;
+	border-color: #11627D;
+	color: #11627D; 
+}
+
+.boton a:HOVER {
+	border-color: #D71A21;
+	color: #D71A21; 
+}
+
