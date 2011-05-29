@@ -15,6 +15,7 @@
 
 	<h1>Datos</h1>
 	<div style="float:left;">
+	<p>
 		<label for="idProyecto"><bean:message key="sirius.objetivoGeneral.proyecto.label" />(*)&nbsp;:</label>
 		<logic:equal name="objetivoGeneralForm" property="action.descripcion" value="update">
 			<html:text maxlength="255" property="labelProyecto" readonly="true" />
@@ -25,16 +26,16 @@
 				<html:optionsCollection name="objetivoGeneralForm" property="proyectos" label="nombre" value="id"/>
 			</html:select>
 		</logic:equal>
-		<br>
+		</p><br><p>
 		<label for="nombre"><bean:message key="sirius.objetivoGeneral.nombre.label" />(*)&nbsp;:</label>
 		<html:text maxlength="255" property="nombre" />
-		<br />
+		</p><br><p>
 		<label for="ponderacion"><bean:message key="sirius.objetivoGeneral.ponderacion.label" />(*)&nbsp;:</label>
 		<html:text maxlength="3" property="ponderacion" />
-		<br />
+		</p><br><p>
 		<label for="descripcion"><bean:message key="sirius.objetivoGeneral.descripcion.label" />(*)&nbsp;:</label>
 		<html:textarea property="descripcion" rows="5" />
-		<br />
+		</p><br>
 	</div>
 	
 	<div style="clear:both; padding:5px 0 0 0;">

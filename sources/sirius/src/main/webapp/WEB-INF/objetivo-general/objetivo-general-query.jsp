@@ -24,15 +24,16 @@ function confirmarAccion(mensaje) {
 	<html:form action="/objetivo-general/objetivo-general-query.do?method=query">
 	<h1>Búsqueda de Objetivos Generales</h1>
 	<div style="float:left; width: 100%;">
+		<p>
 		<label for="filtroIdProyecto"><bean:message key="sirius.objetivoGeneral.proyecto.label" />&nbsp;:</label>
 		<html:select property="filtroIdProyecto">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="objetivoGeneralForm" property="proyectos" label="nombre" value="id"/>
 		</html:select>
-		<br>
+		</p><br><p>
 		<label for="filtroNombre"><bean:message key="sirius.objetivoGeneral.nombre.label" />:</label>
 		<html:text maxlength="255" property="filtroNombre"></html:text>
-		<br>
+		</p><br>
 	</div>
 
 	<div style="float: left; width: 100%;">
