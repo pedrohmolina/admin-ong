@@ -31,6 +31,7 @@
 
 	<h1>Datos</h1>
 	<div style="float:left;">
+		<p>
 		<label for="idMeta"><bean:message key="sirius.actividad.meta.label" />(*)&nbsp;:</label>
 		<logic:equal name="actividadForm" property="action.descripcion" value="update">
 			<html:text property="labelMeta" readonly="true" />
@@ -41,13 +42,16 @@
 				<html:optionsCollection name="actividadForm" property="metas" label="nombre" value="id"/>
 			</html:select>
 		</logic:equal>
-		<br>
+		</p><br>
+		<p>
 		<label for="nombre"><bean:message key="sirius.actividad.nombre.label" />(*)&nbsp;:</label>
 		<html:text maxlength="255" property="nombre" />
-		<br />
+		</p><br>
+		<p>
 		<label for="ponderacion"><bean:message key="sirius.actividad.ponderacion.label" />(*)&nbsp;:</label>
 		<html:text maxlength="3" property="ponderacion" />
-		<br />
+		</p><br>
+		<p>
 		<logic:equal name="actividadForm" property="action.descripcion" value="update">
 			<label for="completitud"><bean:message key="sirius.actividad.completitud.label" />(*)&nbsp;:</label>
 			<logic:equal name="actividadForm" property="actualizarCompletitud" value="true">
@@ -60,21 +64,26 @@
 		</logic:equal>
 		<label for="fechaInicio"><bean:message key="sirius.actividad.fechaInicio.label" />&nbsp;:</label>
 		<html:text property="fechaInicio" />
-		<br />
+		</p><br>
+		<p>
 		<label for="fechaFin"><bean:message key="sirius.actividad.fechaFin.label" />&nbsp;:</label>
 		<html:text property="fechaFin" />
-		<br />
+		</p><br>
+		<p>
 		<label for="observaciones"><bean:message key="sirius.actividad.observaciones.label" />(*)&nbsp;:</label>
 		<html:textarea property="observaciones" rows="5" />
-		<br />
+		</p><br>
+		<p>
 		<label for="presupuesto"><bean:message key="sirius.actividad.presupuesto.label" />&nbsp;:</label>
 		<html:text property="presupuesto" />
-		<br />
+		</p><br>
+		<p>
 		<label for="idFinanciador"><bean:message key="sirius.actividad.financiador.label" />(*)&nbsp;:</label>
 		<html:select property="idFinanciador" styleId="financiador">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="actividadForm" property="financiadores" label="nombre" value="id"/>
 		</html:select>
+		</p>
 	</div>
 	
 	<div style="clear:both; padding:5px 0 0 0;">
