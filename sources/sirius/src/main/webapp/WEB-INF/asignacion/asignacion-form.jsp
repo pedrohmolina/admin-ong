@@ -15,6 +15,7 @@
 
 	<h1>Datos</h1>
 	<div style="float:left;">
+	<p>
 		<label for="idActividad"><bean:message key="sirius.asignacion.actividad.label" />(*)&nbsp;:</label>
 		<logic:equal name="asignacionForm" property="action.descripcion" value="update">
 			<html:text property="labelActividad" readonly="true" />
@@ -25,7 +26,8 @@
 				<html:optionsCollection name="asignacionForm" property="actividades" label="nombre" value="id"/>
 			</html:select>
 		</logic:equal>
-		<br>
+		</p><br>
+		<p>
 		<label for="idPersona"><bean:message key="sirius.asignacion.persona.label" />(*)&nbsp;:</label>
 		<logic:equal name="asignacionForm" property="action.descripcion" value="update">
 			<html:text property="labelPersona" readonly="true" />
@@ -36,16 +38,19 @@
 				<html:optionsCollection name="asignacionForm" property="personas" label="nombreYApellido" value="id"/>
 			</html:select>
 		</logic:equal>
-		<br>
+		</p><br>
+		<p>
 		<label for="idTipoAsignacion"><bean:message key="sirius.asignacion.tipoAsignacion.label" />(*)&nbsp;:</label>
 		<html:select property="idTipoAsignacion">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="asignacionForm" property="tiposAsignacion" label="descripcion" value="id"/>
 		</html:select>
-		<br>
+		</p><br>
+		<p>
 		<label for="nombre"><bean:message key="sirius.asignacion.cantidad.label" />(*)&nbsp;:</label>
 		<html:text maxlength="3" property="cantidad" />
-		<br />
+		</p><br>
+
 	</div>
 	
 	<div style="clear:both; padding:5px 0 0 0;">
