@@ -19,18 +19,19 @@
 <html:form action="/objetivo-especifico/objetivo-especifico-query.do?method=query">
 	<h1>Datos</h1>
 	<div style="float:left;">
+	<p>
 		<label for="labelObjetivoGeneral"><bean:message key="sirius.objetivoEspecifico.objetivoGeneral.label" />&nbsp;:</label>
 		<html:text maxlength="255" property="labelObjetivoGeneral" readonly="true" />
-		<br>
+		</p><br><p>
 		<label for="nombre"><bean:message key="sirius.objetivoEspecifico.nombre.label" />&nbsp;:</label>
 		<html:text maxlength="255" property="nombre" readonly="true" />
-		<br />
+		</p><br><p>
 		<label for="ponderacion"><bean:message key="sirius.objetivoEspecifico.ponderacion.label" />&nbsp;:</label>
 		<html:text maxlength="3" property="ponderacion" readonly="true" />
-		<br />
+		</p><br><p>
 		<label for="descripcion"><bean:message key="sirius.objetivoEspecifico.descripcion.label" />&nbsp;:</label>
 		<html:textarea property="descripcion" rows="5" readonly="true" />
-		<br />
+		</p><br>
 	</div>
 
 	<div style="clear: both;">
