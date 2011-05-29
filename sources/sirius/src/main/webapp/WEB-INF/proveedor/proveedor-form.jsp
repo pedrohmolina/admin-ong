@@ -15,39 +15,40 @@
 
 	<h1>Datos</h1>
 	<div style="float:left;">
+	<p>
 		<label for="nombre"><bean:message key="sirius.proveedor.nombre.label" />(*)&nbsp;:</label>
 		<html:text property="nombre" />
-		<br>
+		</p><br><p>
 		<label for="idTipoProveedor"><bean:message key="sirius.proveedor.tipoProveedor.label" />(*)&nbsp;:</label>
 		<html:select property="idTipoProveedor">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="proveedorForm" property="tiposProveedor" label="descripcion" value="id"/>
 		</html:select>
-		<br>
+		</p><br><p>
 		<label for="cuit"><bean:message key="sirius.proveedor.cuit.label" />&nbsp;:</label>
 		<html:text property="cuit" />
-		<br>
+		</p><br><p>
 		<label for="cbu"><bean:message key="sirius.proveedor.cbu.label" />&nbsp;:</label>
 		<html:text property="cbu" />
-		<br>
+		</p><br><p>
 		<label for="direccion"><bean:message key="sirius.proveedor.direccion.label" />(*)&nbsp;:</label>
 		<html:text property="direccion" />
-		<br>
+		</p><br><p>
 		<label for="contacto"><bean:message key="sirius.proveedor.contacto.label" />&nbsp;:</label>
 		<html:text property="contacto" />
-		<br>
+		</p><br><p>
 		<label for="telefono"><bean:message key="sirius.proveedor.telefono.label" />(*)&nbsp;:</label>
 		<html:text property="telefono" />
-		<br>
+		</p><br><p>
 		<label for="celular"><bean:message key="sirius.proveedor.celular.label" />&nbsp;:</label>
 		<html:text property="celular" />
-		<br>
+		</p><br><p>
 		<label for="email"><bean:message key="sirius.proveedor.email.label" />&nbsp;:</label>
 		<html:text property="email" />
-		<br>
+		</p><br><p>
 		<label for="observaciones"><bean:message key="sirius.proveedor.observaciones.label" />:</label>
 		<html:textarea property="observaciones" rows="5" readonly="true" />
-		<br>
+		</p><br>
 	</div>
 	
 	<div style="clear:both; padding:5px 0 0 0;">
