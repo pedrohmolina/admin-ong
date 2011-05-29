@@ -24,33 +24,34 @@ function confirmarAccion(mensaje) {
 	<html:form action="/proyecto/proyecto-query.do?method=query">
 	<h1>Búsqueda de Proyectos</h1>
 	<div style="float:left; width: 100%;">
+	<p>
 		<label for="filtroNombre"><bean:message key="sirius.proyecto.nombre.label" />:</label>
 		<html:text property="filtroNombre" />
-		<br>
+		</p><br><p>
 		<label for="filtroFechaInicio"><bean:message key="sirius.proyecto.fechaInicio.label" />:</label>
 		<html:text property="filtroFechaInicio" />
-		<br>
+		</p><br><p>
 		<label for="filtroFechaFin"><bean:message key="sirius.proyecto.fechaFin.label" />:</label>
 		<html:text property="filtroFechaFin" />
-		<br>
+		</p><br><p>
 		<label for="filtroIdResponsable"><bean:message key="sirius.proyecto.responsable.label" />:</label>
 		<html:select property="filtroIdResponsable">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="proyectoForm" property="responsables" label="nombreYApellido" value="id"/>
 		</html:select>
-		<br>
+		</p><br><p>
 		<label for="filtroIdFinanciador"><bean:message key="sirius.proyecto.financiador.label" />:</label>
 		<html:select property="filtroIdFinanciador">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="proyectoForm" property="financiadores" label="nombre" value="id"/>
 		</html:select>
-		<br>
+		</p><br><p>
 		<label for="filtroIdAreaTematica"><bean:message key="sirius.proyecto.areasTematicas.label" />:</label>
 		<html:select property="filtroIdAreaTematica">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="proyectoForm" property="areasTematicas" label="descripcion" value="id"/>
 		</html:select>
-		<br>
+		</p><br>
 	</div>
 
 	<div style="float: left; width: 100%;">

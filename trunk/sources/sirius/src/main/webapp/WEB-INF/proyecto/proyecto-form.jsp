@@ -15,49 +15,50 @@
 
 	<h1>Datos</h1>
 	<div style="float:left;">
+	<p>
 		<label for="nombre"><bean:message key="sirius.proyecto.nombre.label" />(*)&nbsp;:</label>
 		<html:text property="nombre" />
-		<br>
+		</p><br><p>
 		<label for="descripcion"><bean:message key="sirius.proyecto.descripcion.label" />(*)&nbsp;:</label>
 		<html:textarea property="descripcion" rows="5"/>
-		<br>
+		</p><br><p>
 		<label for="fechaInicio"><bean:message key="sirius.proyecto.fechaInicio.label" />&nbsp;:</label>
 		<html:text property="fechaInicio" />
-		<br>
+		</p><br><p>
 		<label for="fechaFin"><bean:message key="sirius.proyecto.fechaFin.label" />&nbsp;:</label>
 		<html:text property="fechaFin" />
-		<br>
+		</p><br><p>
 		<label for="ubicacion"><bean:message key="sirius.proyecto.ubicacion.label" />&nbsp;:</label>
 		<html:text property="ubicacion" />
-		<br>
+		</p><br><p>
 		<label for="idCoordinadores"><bean:message key="sirius.proyecto.coordinadores.label" />&nbsp;:</label>
 		<html:select property="idCoordinadores" multiple="true">
 			<html:optionsCollection name="proyectoForm" property="coordinadores" label="nombreYApellido" value="id"/>
 		</html:select>
-		<br>
+		</p><br><p>
 		<label for="idResponsable"><bean:message key="sirius.proyecto.responsable.label" />(*)&nbsp;:</label>
 		<html:select property="idResponsable">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="proyectoForm" property="responsables" label="nombreYApellido" value="id"/>
 		</html:select>
-		<br>
+		</p><br><p>
 		<label for="beneficiariosDirectos"><bean:message key="sirius.proyecto.beneficiariosDirectos.label" />&nbsp;:</label>
 		<html:textarea property="beneficiariosDirectos" rows="5"/>
-		<br>
+		</p><br><p>
 		<label for="beneficiariosIndirectos"><bean:message key="sirius.proyecto.beneficiariosIndirectos.label" />&nbsp;:</label>
 		<html:textarea property="beneficiariosIndirectos" rows="5"/>
-		<br>
+		</p><br><p>
 		<label for="idFinanciador"><bean:message key="sirius.proyecto.financiador.label" />(*)&nbsp;:</label>
 		<html:select property="idFinanciador">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="proyectoForm" property="financiadores" label="nombre" value="id"/>
 		</html:select>
-		<br>
+		</p><br><p>
 		<label for="idAreaTematica"><bean:message key="sirius.proyecto.areasTematicas.label" />(*)&nbsp;:</label>
 		<html:select property="idAreaTematica" multiple="true">
 			<html:optionsCollection name="proyectoForm" property="areasTematicas" label="descripcion" value="id"/>
 		</html:select>
-		<br>
+		</p><br><p>
 		<logic:iterate id="tipoAgrupamiento" name="proyectoForm" property="tiposAgrupamiento">
 			<logic:equal name="proyectoForm" property="action.descripcion" value="create">
 				<html-el:radio property="idTipoAgrupamiento" value="${tipoAgrupamiento.id}" />
@@ -68,6 +69,7 @@
 			<bean:write name="tipoAgrupamiento" property="descripcion" />
 			<br /> 
 		</logic:iterate>
+		</p><br>
 	</div>
 	
 	<div style="clear:both; padding:5px 0 0 0;">
