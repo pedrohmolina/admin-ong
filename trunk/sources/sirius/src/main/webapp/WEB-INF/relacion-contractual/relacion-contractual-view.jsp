@@ -19,12 +19,13 @@
 <html:form action="/relacion-contractual/relacion-contractual-query.do?method=query">
 	<h1>Datos</h1>
 	<div style="float:left;">
+	<p>
 		<label for="nombre"><bean:message key="sirius.relacionContractual.nombre.label" />&nbsp;:</label>
 		<html:text property="nombre" readonly="true" />
-		<br />
+		</p><br><p>
 		<label for="descripcion"><bean:message key="sirius.relacionContractual.descripcion.label" />&nbsp;:</label>
 		<html:textarea property="descripcion" rows="5" readonly="true" />
-		<br/> 
+		</p><br> 
 	</div>
 
 	<div style="clear: both;">
