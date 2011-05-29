@@ -19,26 +19,29 @@
 <html:form action="/rubro/rubro-query.do?method=query">
 	<h1>Datos</h1>
 	<div style="float:left;">
+	<p>
 		<label for="nombre"><bean:message key="sirius.rubro.nombre.label" />&nbsp;:</label>
 		<html:text maxlength="255" property="nombre" readonly="true" />
-		<br />
+		</p><br><p>
 		<label for="descripcion"><bean:message key="sirius.rubro.descripcion.label" />&nbsp;:</label>
 		<html:textarea property="descripcion" rows="5" readonly="true" />
-		<br />
-
+		</p><br>
 		<logic:equal name="rubroForm" property="nivel" value="2">
+			<p>
 			<label for="idRubroNivelUno"><bean:message key="sirius.rubro.rubroNivelUno.label" />&nbsp;:</label>
 			<html:text property="labelRubroNivelUno" readonly="true" />
 			<br />
+			</p><br>
 		</logic:equal>
-
+		
 		<logic:equal name="rubroForm" property="nivel" value="3">
+			<p>
 			<label for="idRubroNivelUno"><bean:message key="sirius.rubro.rubroNivelUno.label" />&nbsp;:</label>
 			<html:text property="labelRubroNivelUno" readonly="true" />
-			<br />
+			</p><br><p>
 			<label for="idRubroNivelDos"><bean:message key="sirius.rubro.rubroNivelDos.label" />&nbsp;:</label>
 			<html:text property="labelRubroNivelDos" readonly="true" />
-			<br />
+			</p><br>
 		</logic:equal>
 	</div>
 
