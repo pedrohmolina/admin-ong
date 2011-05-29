@@ -15,6 +15,7 @@
 
 	<h1>Datos</h1>
 	<div style="float:left;">
+	<p>
 		<label for="username"><bean:message key="sirius.usuario.username.label" />(*)&nbsp;:</label>
 		<logic:equal name="usuarioPersonaForm" property="action.descripcion" value="create">
 			<html:text property="username" />
@@ -22,21 +23,23 @@
 		<logic:equal name="usuarioPersonaForm" property="action.descripcion" value="update">
 			<html:text property="username" readonly="true"/>
 		</logic:equal>
-		<br>
+		</p><br>
 		<logic:equal name="usuarioPersonaForm" property="action.descripcion" value="create">
+		 	<p>
 			<label for="password"><bean:message key="sirius.usuario.password.label" />(*)&nbsp;:</label>
 			<html:password property="password" />
-			<br>
+			</p><br><p>
 			<label for="password2"><bean:message key="sirius.usuario.password2.label" />(*)&nbsp;:</label>
 			<html:password property="password2" />
-			<br>
+			</p><br>
 		</logic:equal>
+		<p>
 		<label for="idPerfil"><bean:message key="sirius.usuario.perfil.label" />(*)&nbsp;:</label>
 		<html:select property="idPerfil">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="usuarioPersonaForm" property="perfiles" label="nombre" value="id"/>
 		</html:select>
-		<br>
+		</p><br>
 	</div>
 	
 	<div style="clear:both; padding:5px 0 0 0;">
