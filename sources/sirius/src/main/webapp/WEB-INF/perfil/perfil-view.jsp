@@ -19,12 +19,13 @@
 <html:form action="/perfil/perfil-query.do?method=query">
 	<h1>Datos</h1>
 	<div style="float:left;">
+	<p>
 		<label for="firstName"><bean:message key="sirius.perfil.nombre.label" />&nbsp;</label>
 		<html:text property="nombre" readonly="true" />
-		<br />
+		</p><br><p>
 		<label for="telefono"><bean:message key="sirius.perfil.descripcion.label" />&nbsp;</label>
 		<html:textarea property="descripcion" rows="5" readonly="true" />
-		<br /> 
+		</p><br><p>
 		<label for="idRoles"><bean:message key="sirius.perfil.roles.label" />&nbsp;:</label>
 		<br />
 		<br />
@@ -35,6 +36,7 @@
 			<bean:write name="rol" property="nombre"/>
 			<br />
 		</logic:iterate>
+		 </p>
 	</div>
 
 	<div style="clear: both;">
