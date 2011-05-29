@@ -16,30 +16,38 @@
 	</div>
 </div>x
 <div class="form">
-<html:form action="/asignacion/asignacion-query.do?method=query">
-	<h1>Datos</h1>
-	<div style="float:left;">
-		<label for="idActividad"><bean:message key="sirius.asignacion.actividad.label" />(*)&nbsp;:</label>
-		<html:text property="labelActividad" readonly="true" />
-		<br>
-		<label for="idPersona"><bean:message key="sirius.asignacion.persona.label" />(*)&nbsp;:</label>
-		<html:text property="labelPersona" readonly="true" />
-		<br />
-		<label for="idTipoAsignacion"><bean:message key="sirius.asignacion.tipoAsignacion.label" />(*)&nbsp;:</label>
-		<html:text property="labelTipoAsignacion" readonly="true" />
-		<br />
-		<label for="cantidad"><bean:message key="sirius.asignacion.cantidad.label" />&nbsp;:</label>
-		<html:text property="cantidad" readonly="true" />
-		<br />
-	</div>
+	<html:form action="/asignacion/asignacion-query.do?method=query">
+		<h1>Datos</h1>
+		<div style="float: left;">
+			<p>
+				<label for="idActividad"><bean:message key="sirius.asignacion.actividad.label" />(*)&nbsp;:</label>
+				<html:text property="labelActividad" readonly="true" />
+			</p>
+			<br>
+			<p>
+				<label for="idPersona"><bean:message key="sirius.asignacion.persona.label" />(*)&nbsp;:</label>
+				<html:text property="labelPersona" readonly="true" />
+			</p>
+			<br>
+			<p>
+				<label for="idTipoAsignacion"><bean:message key="sirius.asignacion.tipoAsignacion.label" />(*)&nbsp;:</label>
+				<html:text property="labelTipoAsignacion" readonly="true" />
+			</p>
+			<br>
+			<p>
+				<label for="cantidad"><bean:message key="sirius.asignacion.cantidad.label" />&nbsp;:</label>
+				<html:text property="cantidad" readonly="true" />
+			</p>
+			<br>
+		</div>
 
-	<div style="clear: both;">
-		<html:errors />
-	</div> 
-	
-	<div class="boton">
-		<a href="<c:url value="/asignacion/asignacion-query.do?method=lastQuery"/>"><bean:message key="antares.base.volver.label" /></a>
-	</div>
-</html:form>
+		<div style="clear: both;">
+			<html:errors />
+		</div>
+
+		<div class="boton">
+			<a href="<c:url value="/asignacion/asignacion-query.do?method=lastQuery"/>"><bean:message key="antares.base.volver.label" /></a>
+		</div>
+	</html:form>
 </div>
 
