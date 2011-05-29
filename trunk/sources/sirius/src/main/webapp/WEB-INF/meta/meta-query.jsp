@@ -24,15 +24,16 @@ function confirmarAccion(mensaje) {
 	<html:form action="/meta/meta-query.do?method=query">
 	<h1>Búsqueda de Metas</h1>
 	<div style="float:left; width: 100%;">
+	<p>
 		<label for="filtroIdObjetivoEspecifico"><bean:message key="sirius.meta.objetivoEspecifico.label" />&nbsp;:</label>
 		<html:select property="filtroIdObjetivoEspecifico">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="metaForm" property="objetivosEspecificos" label="nombre" value="id"/>
 		</html:select>
-		<br>
+		</p><br><p>
 		<label for="filtroNombre"><bean:message key="sirius.meta.nombre.label" />:</label>
 		<html:text maxlength="255" property="filtroNombre"></html:text>
-		<br>
+		</p><br>
 	</div>
 
 	<div style="float: left; width: 100%;">
