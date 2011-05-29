@@ -19,18 +19,19 @@
 <html:form action="/meta/meta-query.do?method=query">
 	<h1>Datos</h1>
 	<div style="float:left;">
+	<p>
 		<label for="labelObjetivoEspecifico"><bean:message key="sirius.meta.objetivoEspecifico.label" />&nbsp;:</label>
 		<html:text maxlength="255" property="labelObjetivoEspecifico" readonly="true" />
-		<br>
+		</p><br><p>
 		<label for="nombre"><bean:message key="sirius.meta.nombre.label" />&nbsp;:</label>
 		<html:text maxlength="255" property="nombre" readonly="true" />
-		<br />
+		</p><br><p>
 		<label for="ponderacion"><bean:message key="sirius.meta.ponderacion.label" />&nbsp;:</label>
 		<html:text maxlength="3" property="ponderacion" readonly="true" />
-		<br />
+		</p><br><p>
 		<label for="descripcion"><bean:message key="sirius.meta.descripcion.label" />&nbsp;:</label>
 		<html:textarea property="descripcion" rows="5" readonly="true" />
-		<br />
+		</p><br>
 	</div>
 
 	<div style="clear: both;">
