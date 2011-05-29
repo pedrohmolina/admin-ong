@@ -24,36 +24,37 @@ function confirmarAccion(mensaje) {
 	<html:form action="/proveedor/proveedor-query.do?method=query">
 	<h1>Búsqueda de Proveedores</h1>
 	<div style="float:left; width: 100%;">
+	<p>
 		<label for="filtroNombre"><bean:message key="sirius.proveedor.nombre.label" />:</label>
 		<html:text property="filtroNombre" />
-		<br>
+		</p><br><p>
 		<label for="filtroIdTipoProveedor"><bean:message key="sirius.proveedor.tipoProveedor.label" />:</label>
 		<html:select property="filtroIdTipoProveedor">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="proveedorForm" property="tiposProveedor" label="descripcion" value="id"/>
 		</html:select>
-		<br>
+		</p><br><p>
 		<label for="filtroCuit"><bean:message key="sirius.proveedor.cuit.label" />:</label>
 		<html:text property="filtroCuit" />
-		<br>
+		</p><br><p>
 		<label for="filtroCbu"><bean:message key="sirius.proveedor.cbu.label" />:</label>
 		<html:text property="filtroCbu" />
-		<br>
+		</p><br><p>
 		<label for="filtroTelefono"><bean:message key="sirius.proveedor.telefono.label" />:</label>
 		<html:text property="filtroTelefono" />
-		<br>
+		</p><br><p>
 		<label for="filtroDireccion"><bean:message key="sirius.proveedor.direccion.label" />:</label>
 		<html:text property="filtroDireccion" />
-		<br>
+		</p><br><p>
 		<label for="filtroContacto"><bean:message key="sirius.proveedor.contacto.label" />:</label>
 		<html:text property="filtroContacto" />
-		<br>
+		</p><br><p>
 		<label for="filtroCelular"><bean:message key="sirius.proveedor.celular.label" />:</label>
 		<html:text property="filtroCelular" />
-		<br>
+		</p><br><p>
 		<label for="filtroEmail"><bean:message key="sirius.proveedor.email.label" />:</label>
 		<html:text property="filtroEmail" />
-		<br>
+		</p><br>
 	</div>
 
 	<div style="float: left; width: 100%;">
