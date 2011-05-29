@@ -16,45 +16,63 @@
 	</div>
 </div>x
 <div class="form">
-<html:form action="/actividad/actividad-query.do?method=query">
-	<h1>Datos</h1>
-	<div style="float:left;">
-		<label for="labelMeta"><bean:message key="sirius.actividad.meta.label" />&nbsp;:</label>
-		<html:text property="labelMeta" readonly="true" />
-		<br>
-		<label for="nombre"><bean:message key="sirius.actividad.nombre.label" />&nbsp;:</label>
-		<html:text property="nombre" readonly="true" />
-		<br />
-		<label for="ponderacion"><bean:message key="sirius.actividad.ponderacion.label" />&nbsp;:</label>
-		<html:text property="ponderacion" readonly="true" />
-		<br />
-		<label for="completitud"><bean:message key="sirius.actividad.completitud.label" />&nbsp;:</label>
-		<html:text maxlength="3" property="completitud" readonly="true" />
-		<br />
-		<label for="fechaInicio"><bean:message key="sirius.actividad.fechaInicio.label" />&nbsp;:</label>
-		<html:text property="fechaInicio" readonly="true" />
-		<br />
-		<label for="fechaFin"><bean:message key="sirius.actividad.fechaFin.label" />&nbsp;:</label>
-		<html:text property="fechaFin" readonly="true" />
-		<br />
-		<label for="observaciones"><bean:message key="sirius.actividad.observaciones.label" />&nbsp;:</label>
-		<html:textarea property="observaciones" rows="5" readonly="true" />
-		<br />
-		<label for="presupuesto"><bean:message key="sirius.actividad.presupuesto.label" />&nbsp;:</label>
-		<html:text property="presupuesto" readonly="true" />
-		<br />
-		<label for="labelFinanciador"><bean:message key="sirius.actividad.financiador.label" />&nbsp;:</label>
-		<html:text property="labelFinanciador" readonly="true" />
-		<br>
-	</div>
+	<html:form action="/actividad/actividad-query.do?method=query">
+		<h1>Datos</h1>
+		<div style="float: left;">
+			<p>
+				<label for="labelMeta"><bean:message key="sirius.actividad.meta.label" />&nbsp;:</label>
+				<html:text property="labelMeta" readonly="true" />
+			</p>
+			<br>
+			<p>
+				<label for="nombre"><bean:message key="sirius.actividad.nombre.label" />&nbsp;:</label>
+				<html:text property="nombre" readonly="true" />
+			</p>
+			<br>
+			<p>
+				<label for="ponderacion"><bean:message key="sirius.actividad.ponderacion.label" />&nbsp;:</label>
+				<html:text property="ponderacion" readonly="true" />
+			</p>
+			<br>
+			<p>
+				<label for="completitud"><bean:message key="sirius.actividad.completitud.label" />&nbsp;:</label>
+				<html:text maxlength="3" property="completitud" readonly="true" />
+			</p>
+			<br>
+			<p>
+				<label for="fechaInicio"><bean:message key="sirius.actividad.fechaInicio.label" />&nbsp;:</label>
+				<html:text property="fechaInicio" readonly="true" />
+			</p>
+			<br>
+			<p>
+				<label for="fechaFin"><bean:message key="sirius.actividad.fechaFin.label" />&nbsp;:</label>
+				<html:text property="fechaFin" readonly="true" />
+			</p>
+			<br>
+			<p>
+				<label for="observaciones"><bean:message key="sirius.actividad.observaciones.label" />&nbsp;:</label>
+				<html:textarea property="observaciones" rows="5" readonly="true" />
+			</p>
+			<br>
+			<p>
+				<label for="presupuesto"><bean:message key="sirius.actividad.presupuesto.label" />&nbsp;:</label>
+				<html:text property="presupuesto" readonly="true" />
+			</p>
+			<br>
+			<p>
+				<label for="labelFinanciador"><bean:message key="sirius.actividad.financiador.label" />&nbsp;:</label>
+				<html:text property="labelFinanciador" readonly="true" />
+			</p>
+			<br>
+		</div>
 
-	<div style="clear: both;">
-		<html:errors />
-	</div> 
-	
-	<div class="boton">
-		<a href="<c:url value="/actividad/actividad-query.do?method=lastQuery"/>"><bean:message key="antares.base.volver.label" /></a>
-	</div>
-</html:form>
+		<div style="clear: both;">
+			<html:errors />
+		</div>
+
+		<div class="boton">
+			<a href="<c:url value="/actividad/actividad-query.do?method=lastQuery"/>"><bean:message key="antares.base.volver.label" /> </a>
+		</div>
+	</html:form>
 </div>
 
