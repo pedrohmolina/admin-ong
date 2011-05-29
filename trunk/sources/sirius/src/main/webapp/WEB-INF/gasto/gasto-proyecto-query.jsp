@@ -17,52 +17,54 @@ function limpiarFiltro(){
 function confirmarAccion(mensaje) {
 	return confirm(mensaje);
 }
-
+	
 </script>
 
 <div class="form">
 	<html:form action="/gasto/gasto-proyecto-query.do?method=query">
-	<h1>Búsqueda de Gastos Generales de Organizacion</h1>
-	<div style="float:left; width: 100%;">
-		<label for="filtroIdProyecto"><bean:message key="sirius.gasto.proyecto.label" />:</label>
-		<html:select property="filtroIdProyecto">
-			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
-			<html:optionsCollection name="gastoProyectoForm" property="proyectos" label="descripcion" value="id"/>
-		</html:select>
-		<br>
-	</div>
-
-	<div style="float: left; width: 100%;">
-		<div class="boton">
-			<a href="#" onclick="javascript:limpiarFiltro();"><bean:message key="antares.base.limpiarfiltro.label"/></a>
-			<authz:authorize ifAllGranted="ENTIDAD_GASTO_PROYECTO-LISTADO">
-				<a href="#" onclick="gastoProyectoForm.submit();"><bean:message key="antares.base.buscar.label" /></a>
-			</authz:authorize>
-			<authz:authorize ifAllGranted="ENTIDAD_GASTO_PROYECTO-ALTA">
-				<a href="#" onclick="return hacerSubmit('gasto/gasto-proyecto-form.do?method=initCreate');"><bean:message key="antares.base.nuevo.label" /></a>
-			</authz:authorize>
+		<h1>Búsqueda de Gastos Generales de Organizacion</h1>
+		<div style="float: left; width: 100%;">
+			<p>
+				<label for="filtroIdProyecto"><bean:message key="sirius.gasto.proyecto.label" />:</label>
+				<html:select property="filtroIdProyecto"> 
+					<html:option value=""> <bean:message key="antares.base.seleccione.label" /> </html:option>
+					<html:optionsCollection name="gastoProyectoForm" property="proyectos" label="descripcion" value="id" />
+				</html:select>
+			</p>
+			<br>
 		</div>
-	</div>
-	
+
+		<div style="float: left; width: 100%;">
+			<div class="boton">
+				<a href="#" onclick="javascript:limpiarFiltro();"><bean:message key="antares.base.limpiarfiltro.label" /> </a>
+				<authz:authorize ifAllGranted="ENTIDAD_GASTO_PROYECTO-LISTADO">
+					<a href="#" onclick="gastoProyectoForm.submit();"><bean:message key="antares.base.buscar.label" /></a>
+				</authz:authorize>
+				<authz:authorize ifAllGranted="ENTIDAD_GASTO_PROYECTO-ALTA">
+					<a href="#" onclick="return hacerSubmit('gasto/gasto-proyecto-form.do?method=initCreate');"><bean:message key="antares.base.nuevo.label" /></a>
+				</authz:authorize>
+			</div>
+		</div>
+
 	</html:form>
-	
+
 	<div style="clear: both;">
 		<html:errors />
 	</div>
 
 	<h1>Resultado de la Búsqueda</h1>
 	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.gastoProyectoForm.result" id="item"
-		requestURI="/gasto/gasto-proyecto-query.do" sort="list" >
+		requestURI="/gasto/gasto-proyecto-query.do" sort="list">
 
 		<c:if test="${not empty requestScope['notShowMessage']}">
-			<display:setProperty name="basic.msg.empty_list"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablaTitulo"><tr><td align="center"></td></tr></table></display:setProperty>
+			<display:setProperty name="basic.msg.empty_list"> <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablaTitulo"> <tr> <td align="center"></td> </tr> </table> </display:setProperty>
 		</c:if>
-	
-		<display:column sortable="true" property="proyecto.nombre" 			titleKey="sirius.gasto.proyecto.label" />
-		<display:column sortable="true" property="fecha" 					titleKey="sirius.gasto.fecha.label"  	format="{0,date,dd/MM/yyyy}" />
-		<display:column sortable="true" property="rubro.nombre" 			titleKey="sirius.gasto.rubro.label" />
-		<display:column sortable="true" property="proveedor.nombre" 		titleKey="sirius.gasto.proveedor.label" />
-		<display:column sortable="true" property="importe" 					titleKey="sirius.gasto.importe.label" />
+
+		<display:column sortable="true" property="proyecto.nombre" titleKey="sirius.gasto.proyecto.label" />
+		<display:column sortable="true" property="fecha" titleKey="sirius.gasto.fecha.label" format="{0,date,dd/MM/yyyy}" />
+		<display:column sortable="true" property="rubro.nombre" titleKey="sirius.gasto.rubro.label" />
+		<display:column sortable="true" property="proveedor.nombre" titleKey="sirius.gasto.proveedor.label" />
+		<display:column sortable="true" property="importe" titleKey="sirius.gasto.importe.label" />
 
 		<display:column title="Acciones" media="html">
 			<authz:authorize ifAllGranted="ENTIDAD_GASTO_PROYECTO-DETALLE">
@@ -75,7 +77,7 @@ function confirmarAccion(mensaje) {
 			</authz:authorize>
 			<authz:authorize ifAllGranted="ENTIDAD_GASTO_PROYECTO-BAJA">
 				<a href="<c:url value="/gasto/gasto-proyecto-query.do?method=remove&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Eliminar" title="Eliminar"
-					src="<c:url value="/img/icons/cross.png"/>" onclick="return confirmarAccion('Est&aacute; seguro que desea eliminar el registro?')" /></a>
+					src="<c:url value="/img/icons/cross.png"/>" onclick="return confirmarAccion('Est&aacute; seguro que desea eliminar el registro?')" /> </a>
 			</authz:authorize>
 		</display:column>
 	</display-el:table>
