@@ -396,6 +396,11 @@
 		    <artifactId>poi</artifactId>
 		    <version>3.1-FINAL</version>
 		</dependency>
+		<dependency>
+		    <groupId>ar.com.fdvs</groupId>
+		    <artifactId>DynamicJasper</artifactId>
+		    <version>3.0.13</version>
+		</dependency>
 		<!-- Fin dependencias de Reportes -->	
 
 	</dependencies>

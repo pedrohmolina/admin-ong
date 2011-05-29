@@ -20,12 +20,25 @@ public class ReportePersonaForm extends ActionForm{
 	private Collection<FormatoReporte> formatosReporte;
 	private String formatoReporte;
 
+	//Filtros 
 	private String apellido;
 	private String nombre;
 	private String numeroDocumento;
 	private String cuit;
 	private String nacionalidad;
-
+	
+	//Columnas a visualizar en el reporte
+	private Boolean verNumeroDocumento;
+	private Boolean verCuit;
+	private Boolean verCBU;
+	private Boolean verFechaNacimiento;
+	private Boolean verProfesion;
+	private Boolean verDireccion;
+	private Boolean verTelefono;
+	private Boolean verEmail;
+	private Boolean verFuncion;
+	private Boolean verRelacionContractual;
+	
 	
 	public String getFormatoReporte() {
 		return formatoReporte;
@@ -90,6 +103,17 @@ public class ReportePersonaForm extends ActionForm{
 		this.numeroDocumento = "";
 		this.cuit = "";
 		this.nacionalidad = "";
+		this.verNumeroDocumento = false;
+		this.verCuit = false;
+		this.verCBU = false;
+		this.verFechaNacimiento = false;
+		this.verProfesion = false;
+		this.verDireccion = false;
+		this.verTelefono = false;
+		this.verEmail = false;
+		this.verFuncion = false;
+		this.verRelacionContractual = false;
+
 	}
 
 	public void initializeForm() {
@@ -98,6 +122,17 @@ public class ReportePersonaForm extends ActionForm{
 		this.numeroDocumento = "";
 		this.cuit = "";
 		this.nacionalidad = "";
+		this.verNumeroDocumento = false;
+		this.verCuit = false;
+		this.verCBU = false;
+		this.verFechaNacimiento = false;
+		this.verProfesion = false;
+		this.verDireccion = false;
+		this.verTelefono = false;
+		this.verEmail = false;
+		this.verFuncion = false;
+		this.verRelacionContractual = false;
+
 	}
 
 	public void initializeForm(Persona entity) {
@@ -108,4 +143,145 @@ public class ReportePersonaForm extends ActionForm{
 		this.nacionalidad = entity.getNacionalidad();
 		}
 
+	/**
+	 * @return the verNumeroDocumento
+	 */
+	public Boolean getVerNumeroDocumento() {
+		return verNumeroDocumento;
+	}
+
+	/**
+	 * @param verNumeroDocumento the verNumeroDocumento to set
+	 */
+	public void setVerNumeroDocumento(Boolean verNumeroDocumento) {
+		this.verNumeroDocumento = verNumeroDocumento;
+	}
+
+	/**
+	 * @return the verCuit
+	 */
+	public Boolean getVerCuit() {
+		return verCuit;
+	}
+
+	/**
+	 * @param verCuit the verCuit to set
+	 */
+	public void setVerCuit(Boolean verCuit) {
+		this.verCuit = verCuit;
+	}
+
+	/**
+	 * @return the verCBU
+	 */
+	public Boolean getVerCBU() {
+		return verCBU;
+	}
+
+	/**
+	 * @param verCBU the verCBU to set
+	 */
+	public void setVerCBU(Boolean verCBU) {
+		this.verCBU = verCBU;
+	}
+
+	/**
+	 * @return the verFechaNacimiento
+	 */
+	public Boolean getVerFechaNacimiento() {
+		return verFechaNacimiento;
+	}
+
+	/**
+	 * @param verFechaNacimiento the verFechaNacimiento to set
+	 */
+	public void setVerFechaNacimiento(Boolean verFechaNacimiento) {
+		this.verFechaNacimiento = verFechaNacimiento;
+	}
+
+	/**
+	 * @return the verProfesion
+	 */
+	public Boolean getVerProfesion() {
+		return verProfesion;
+	}
+
+	/**
+	 * @param verProfesion the verProfesion to set
+	 */
+	public void setVerProfesion(Boolean verProfesion) {
+		this.verProfesion = verProfesion;
+	}
+
+	/**
+	 * @return the verDireccion
+	 */
+	public Boolean getVerDireccion() {
+		return verDireccion;
+	}
+
+	/**
+	 * @param verDireccion the verDireccion to set
+	 */
+	public void setVerDireccion(Boolean verDireccion) {
+		this.verDireccion = verDireccion;
+	}
+
+	/**
+	 * @return the verTelefono
+	 */
+	public Boolean getVerTelefono() {
+		return verTelefono;
+	}
+
+	/**
+	 * @param verTelefono the verTelefono to set
+	 */
+	public void setVerTelefono(Boolean verTelefono) {
+		this.verTelefono = verTelefono;
+	}
+
+	/**
+	 * @return the verEmail
+	 */
+	public Boolean getVerEmail() {
+		return verEmail;
+	}
+
+	/**
+	 * @param verEmail the verEmail to set
+	 */
+	public void setVerEmail(Boolean verEmail) {
+		this.verEmail = verEmail;
+	}
+
+	/**
+	 * @return the verFuncion
+	 */
+	public Boolean getVerFuncion() {
+		return verFuncion;
+	}
+
+	/**
+	 * @param verFuncion the verFuncion to set
+	 */
+	public void setVerFuncion(Boolean verFuncion) {
+		this.verFuncion = verFuncion;
+	}
+
+	/**
+	 * @return the verRelacionContractual
+	 */
+	public Boolean getVerRelacionContractual() {
+		return verRelacionContractual;
+	}
+
+	/**
+	 * @param verRelacionContractual the verRelacionContractual to set
+	 */
+	public void setVerRelacionContractual(Boolean verRelacionContractual) {
+		this.verRelacionContractual = verRelacionContractual;
+	}
+
+	
 }
