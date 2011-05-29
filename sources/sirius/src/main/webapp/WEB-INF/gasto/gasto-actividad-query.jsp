@@ -50,45 +50,46 @@ function initReferencia(id) {
 	<html:form action="/gasto/gasto-actividad-query.do?method=query">
 	<h1>Búsqueda de Gastos Registrados por Actividad</h1>
 	<div style="float:left; width: 100%;">
+	<p>
 		<label for="filtroIdProyecto"><bean:message key="sirius.gasto.proyecto.label" />:</label>
 		<html:select property="filtroIdProyecto" styleId="proyecto" onchange="cargarComboActividad(this, 'actividad')">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="gastoActividadForm" property="proyectos" label="nombre" value="id"/>
 		</html:select>
-		<br>
+		</p><br><p>
 		<label for="filtroIdActividad"><bean:message key="sirius.gasto.actividad.label" />:</label>
 		<html:select property="filtroIdActividad" styleId="actividad">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="gastoActividadForm" property="actividades" label="nombre" value="id"/>
 		</html:select>
-		<br>
+		</p><br><p>
 		<label for="filtroIdPersona"><bean:message key="sirius.gasto.persona.label" />:</label>
 		<html:select property="filtroIdPersona">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="gastoActividadForm" property="personas" label="nombreYApellido" value="id"/>
 		</html:select>
-		<br>
+		</p><br><p>
 		<label for="filtroFecha"><bean:message key="sirius.gasto.fecha.label" />:</label>
 		<html:text property="filtroFecha" />
-		<br>
+		</p><br><p>
 		<label for="filtroIdRubro"><bean:message key="sirius.gasto.rubro.label" />:</label>
 		<html:select property="filtroIdRubro">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="gastoActividadForm" property="rubros" label="nombre" value="id"/>
 		</html:select>
-		<br>
+		</p><br><p>
 		<label for="filtroIdOrigen"><bean:message key="sirius.gasto.origen.label" />:</label>
 		<html:select property="filtroIdOrigen">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="gastoActividadForm" property="origenes" label="descripcion" value="id"/>
 		</html:select>
-		<br>
+		</p><br><p>
 		<label for="filtroIdProveedor"><bean:message key="sirius.gasto.origen.label" />:</label>
 		<html:select property="filtroIdProveedor">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="gastoActividadForm" property="proveedores" label="nombre" value="id"/>
 		</html:select>
-		<br>
+		</p>
 	</div>
 
 	<div style="float: left; width: 100%;">
