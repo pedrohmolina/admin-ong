@@ -40,15 +40,38 @@ function confirmarAccion(mensaje) {
 		<label for="numeroDocumento"><bean:message key="sirius.persona.numeroDocumento.label" />:</label>
 		<html:text property="numeroDocumento" />
 		</p><br><p>
-		<label for="formatosReporte"><bean:message key="sirius.reportes.formatoSalida" />:</label>
-		<html:select property="formatoReporte">
-			<html:optionsCollection name="reportePersonaForm" property="formatosReporte" label="descripcion" value="descripcion"/>
-		</html:select>
-		</p><br>
 	</div>
 
 	<br>
 	<br>
+	
+	<div style="float: left; width: 100%;">
+	<p>
+		<div class="boton">
+			<a href="#" onclick="javascript:limpiarFiltro();"><bean:message key="antares.base.limpiarfiltro.label"/></a>
+			<a href="#" onclick="return hacerSubmit('/reportes/reporte-persona.do?method=verResultados');"><bean:message key="sirius.reportes.vistaPrevia" /></a>
+		</div>
+	</p><br>	
+	</div>
+
+	<div style="float: left; width: 100%;">
+	<p>	
+	<h2>Vista Previa Resultados</h2>
+	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.reportePersonaForm.result" id="item"
+		requestURI="/reportes/reporte-persona.do" sort="list" >
+
+		<c:if test="${not empty requestScope['notShowMessage']}">
+			<display:setProperty name="basic.msg.empty_list"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablaTitulo"><tr><td align="center"></td></tr></table></display:setProperty>
+		</c:if>
+	
+		<display:column sortable="true" property="apellido" 					titleKey="sirius.persona.apellido.label" />
+		<display:column sortable="true" property="nombre" 						titleKey="sirius.persona.nombre.label" />
+		<display:column sortable="true" property="tipoDocumento.descripcion"	titleKey="sirius.persona.tipoDocumento.label" />
+		<display:column sortable="true" property="numeroDocumento" 				titleKey="sirius.persona.numeroDocumento.label" />
+
+	</display-el:table>
+	</p><br>	
+	</div>
 	
 	<div style="float:left;">
 	<p>	
@@ -132,17 +155,25 @@ function confirmarAccion(mensaje) {
 		</p><br>
 	</div>
 
+	
 	<div style="float: left; width: 100%;">
+		<p>
+		<label for="formatosReporte"><bean:message key="sirius.reportes.formatoSalida" />:</label>
+		<html:select property="formatoReporte">
+			<html:optionsCollection name="reportePersonaForm" property="formatosReporte" label="descripcion" value="descripcion"/>
+		</html:select>
 		<div class="boton">
-			<a href="#" onclick="javascript:limpiarFiltro();"><bean:message key="antares.base.limpiarfiltro.label"/></a>
 			<a href="#" onclick="reportePersonaForm.submit();"><bean:message key="sirius.reportes.generar" /></a>
 		</div>
+		</p><br>
 	</div>
+
 	
 	</html:form>
 	
 	<div style="clear: both;">
 		<html:errors />
 	</div>
+	
 
 </div>

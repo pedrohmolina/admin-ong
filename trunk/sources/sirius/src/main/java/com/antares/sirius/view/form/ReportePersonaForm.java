@@ -27,6 +27,9 @@ public class ReportePersonaForm extends ActionForm{
 	private String cuit;
 	private String nacionalidad;
 	
+	//Lista previa de resultados
+	private Collection<Persona> result;
+	
 	//Columnas a visualizar en el reporte
 	private Boolean verNumeroDocumento;
 	private Boolean verCuit;
@@ -282,6 +285,22 @@ public class ReportePersonaForm extends ActionForm{
 	public void setVerRelacionContractual(Boolean verRelacionContractual) {
 		this.verRelacionContractual = verRelacionContractual;
 	}
+
+	/**
+	 * @return the result
+	 */
+	public Collection<Persona> getResult() {
+		return result;
+	}
+
+	/**
+	 * @param result the result to set
+	 */
+	public void setResult(Collection<Persona> result) {
+		this.result = result;
+	}
+
+
 
 	
 }

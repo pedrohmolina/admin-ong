@@ -85,6 +85,25 @@ public class ReportePersonaAction extends ReporteAction{
 	}
 	
 	/**
+	 * Genera una vista previa de los resultados a ser visualizados en el reporte
+	 * 
+	 * @param mapping
+	 * @param form
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ActionForward verResultados(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		ReportePersonaForm viewForm = (ReportePersonaForm)form;
+		PersonaFilter filter = this.createFilter(viewForm);
+		Collection<Persona> result = personaService.findByFilter(filter);
+		viewForm.setResult(result);
+		return mapping.findForward("verResultados");
+	}	
+	
+	/**
 	 * Genera el reporte de Personas acorde a los parametros ingresados
 	 * 
 	 * @param mapping
