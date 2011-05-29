@@ -24,24 +24,25 @@ function confirmarAccion(mensaje) {
 	<html:form action="/persona/persona-query.do?method=query">
 	<h1>Búsqueda de Personas</h1>
 	<div style="float:left; width: 100%;">
+	<p>
 		<label for="filtroApellido"><bean:message key="sirius.persona.apellido.label" />:</label>
 		<html:text property="filtroApellido" />
-		<br>
+		</p><br><p>
 		<label for="filtroNombre"><bean:message key="sirius.persona.nombre.label" />:</label>
 		<html:text property="filtroNombre" />
-		<br>
+		</p><br><p>
 		<label for="filtroCuit"><bean:message key="sirius.persona.cuit.label" />:</label>
 		<html:text property="filtroCuit" />
-		<br>
+		</p><br><p>
 		<label for="filtroNumeroDocumento"><bean:message key="sirius.persona.numeroDocumento.label" />:</label>
 		<html:text property="filtroNumeroDocumento" />
-		<br>
+		</p><br><p>
 		<label for="filtroIdRelacionContractual"><bean:message key="sirius.persona.relacionContractual.label" />:</label>
 		<html:select property="filtroIdRelacionContractual">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="personaForm" property="relacionesContractuales" label="descripcion" value="id"/>
 		</html:select>
-		<br>
+		</p><br>
 	</div>
 
 	<div style="float: left; width: 100%;">
