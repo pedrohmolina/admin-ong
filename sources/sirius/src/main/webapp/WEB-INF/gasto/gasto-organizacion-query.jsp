@@ -24,15 +24,16 @@ function confirmarAccion(mensaje) {
 	<html:form action="/gasto/gasto-organizacion-query.do?method=query">
 	<h1>Búsqueda de Gastos Generales de Organizacion</h1>
 	<div style="float:left; width: 100%;">
+		<p>
 		<label for="filtroIdRubro"><bean:message key="sirius.gasto.rubro.label" />:</label>
 		<html:select property="filtroIdRubro">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="gastoOrganizacionForm" property="rubros" label="nombre" value="id"/>
 		</html:select>
-		<br>
+		</p><br><p>
 		<label for="filtroFecha"><bean:message key="sirius.gasto.fecha.label" />:</label>
 		<html:text property="filtroFecha" />
-		<br>
+		</p><br>
 	</div>
 
 	<div style="float: left; width: 100%;">
