@@ -25,13 +25,13 @@ function confirmarAccion(mensaje) {
 	<h1>Reporte de Finanzas</h1>
 	
 	<div style="float:left; width: 100%;">
-
+		<p>
 		<label for="formatosReporte"><bean:message key="sirius.reportes.formatoSalida" />:</label>
 		<html:select property="formatoReporte">
 			<html:optionsCollection name="reporteFinancieroForm" property="formatosReporte" label="descripcion" value="descripcion"/>
 		</html:select>
 		
-		<br>
+		</p><br>
 	</div>
 
 	<div style="float: left; width: 100%;">

@@ -25,22 +25,22 @@ function confirmarAccion(mensaje) {
 	<h1>Reporte de Proveedores</h1>
 	
 	<div style="float:left; width: 100%;">
-
+		<p>
 		<label for="nombre"><bean:message key="sirius.proveedor.nombre.label" />:</label>
 		<html:text property="nombre" />
-		<br>
+		</p><br><p>
 		<label for="cuit"><bean:message key="sirius.proveedor.cuit.label" />:</label>
 		<html:text property="cuit" />
-		<br>
+		</p><br><p>
 		<label for="cbu"><bean:message key="sirius.proveedor.cbu.label" />:</label>
 		<html:text property="cbu" />
-		<br>
+		</p><br><p>
 
 		<label for="formatosReporte"><bean:message key="sirius.reportes.formatoSalida" />:</label>
 		<html:select property="formatoReporte">
 			<html:optionsCollection name="reporteProveedorForm" property="formatosReporte" label="descripcion" value="descripcion"/>
 		</html:select>
-		<br>
+		</p><br>
 
 	</div>
 

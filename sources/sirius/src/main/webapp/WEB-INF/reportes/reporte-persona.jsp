@@ -25,24 +25,24 @@ function confirmarAccion(mensaje) {
 	<h1>Reporte de Personas</h1>
 	
 	<div style="float:left; width: 100%;">
+	<p>
 		<label for="apellido"><bean:message key="sirius.persona.apellido.label" />:</label>
 		<html:text property="apellido" />
-		<br>
+		</p><br><p>
 		<label for="nombre"><bean:message key="sirius.persona.nombre.label" />:</label>
 		<html:text property="nombre" />
-		<br>
+		</p><br><p>
 		<label for="cuit"><bean:message key="sirius.persona.cuit.label" />:</label>
 		<html:text property="cuit" />
-		<br>
+		</p><br><p>
 		<label for="numeroDocumento"><bean:message key="sirius.persona.numeroDocumento.label" />:</label>
 		<html:text property="numeroDocumento" />
-		<br>
+		</p><br><p>
 		<label for="formatosReporte"><bean:message key="sirius.reportes.formatoSalida" />:</label>
 		<html:select property="formatoReporte">
 			<html:optionsCollection name="reportePersonaForm" property="formatosReporte" label="descripcion" value="descripcion"/>
 		</html:select>
-		
-		<br>
+		</p><br>
 	</div>
 
 	<div style="float: left; width: 100%;">
