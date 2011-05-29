@@ -19,30 +19,31 @@
 <html:form action="/gasto/gasto-organizacion-query.do?method=query">
 	<h1>Datos</h1>
 	<div style="float:left;">
+	<p>
 		<label for="fecha"><bean:message key="sirius.gasto.fecha.label" />:</label>
 		<html:text property="fecha" readonly="true" />
-		<br>
+		</p><br><p>
 		<label for="labelRubro"><bean:message key="sirius.gasto.rubro.label" />:</label>
 		<html:text property="labelRubro" readonly="true" />
-		<br>
+		</p><br><p>
 		<label for="labelOrigen"><bean:message key="sirius.gasto.origen.label" />:</label>
 		<html:text property="labelOrigen" readonly="true" />
-		<br>
+		</p><br><p>
 		<label for="labelProveedor"><bean:message key="sirius.gasto.proveedor.label" />:</label>
 		<html:text property="labelProveedor" readonly="true" />
-		<br>
+		</p><br><p>
 		<label for="labelTipoComprobante"><bean:message key="sirius.gasto.tipoComprobante.label" />:</label>
 		<html:text property="labelTipoComprobante" readonly="true" />
-		<br>
+		</p><br><p>
 		<label for="observaciones"><bean:message key="sirius.gasto.observaciones.label" />:</label>
 		<html:textarea property="observaciones" rows="5" readonly="true" />
-		<br>
+		</p><br><p>
 		<label for="importe"><bean:message key="sirius.gasto.importe.label" />:</label>
 		<html:text property="importe" readonly="true" />
-		<br>
+		</p><br><p>
 		<label for="numeroComprobante"><bean:message key="sirius.gasto.numeroComprobante.label" />:</label>
 		<html:text property="numeroComprobante" readonly="true" />
-		<br>
+		</p><br>
 	</div>
 
 	<div style="clear: both;">
