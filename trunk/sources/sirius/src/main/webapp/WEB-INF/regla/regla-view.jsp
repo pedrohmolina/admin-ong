@@ -19,21 +19,22 @@
 <html:form action="/regla/regla-query.do?method=query">
 	<h1>Datos</h1>
 	<div style="float:left;">
+	<p>
 		<label for="labelUsuario"><bean:message key="sirius.regla.usuario.label" />&nbsp;:</label>
 		<html:text property="labelUsuario" readonly="true" />
-		<br>
+		</p><br><p>
 		<label for="labelEntidad"><bean:message key="sirius.regla.entidad.label" />&nbsp;:</label>
 		<html:text property="labelEntidad" readonly="true" />
-		<br>
+		</p><br><p>
 		<label for="labelAtributo"><bean:message key="sirius.regla.atributo.label" />&nbsp;:</label>
 		<html:text property="labelAtributo" readonly="true" />
-		<br>
+		</p><br><p>
 		<label for="labelOperador"><bean:message key="sirius.regla.operador.label" />&nbsp;:</label>
 		<html:text property="labelOperador" readonly="true" />
-		<br>
+		</p><br><p>
 		<label for="labelValor"><bean:message key="sirius.regla.valor.label" />&nbsp;:</label>
 		<html:text property="labelValor" readonly="true" />
-		<br>
+		</p><br>
 	</div>
 
 	<div style="clear: both;">

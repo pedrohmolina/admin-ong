@@ -24,12 +24,13 @@ function confirmarAccion(mensaje) {
 	<html:form action="/regla/regla-query.do?method=query">
 	<h1>Búsqueda de Reglas</h1>
 	<div style="float:left; width: 100%;">
+	<p>
 		<label for="filtroIdUsuario"><bean:message key="sirius.regla.usuario.label" />:</label>
 		<html:select property="filtroIdUsuario">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="reglaForm" property="usuarios" label="username" value="id"/>
 		</html:select>
-		<br>
+		</p><br>
 	</div>
 
 	<div style="float: left; width: 100%;">
