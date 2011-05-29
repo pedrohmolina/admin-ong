@@ -15,75 +15,76 @@
 
 	<h1>Datos</h1>
 	<div style="float:left;">
+	<p>
 		<label for="apellido"><bean:message key="sirius.persona.apellido.label" />(*)&nbsp;:</label>
 		<html:text property="apellido" />
-		<br>
+		</p><br><p>
 		<label for="nombre"><bean:message key="sirius.persona.nombre.label" />(*)&nbsp;:</label>
 		<html:text property="nombre" />
-		<br>
+		</p><br><p>
 		<label for="segundoNombre"><bean:message key="sirius.persona.segundoNombre.label" />&nbsp;:</label>
 		<html:text property="segundoNombre" />
-		<br>
+		</p><br><p>
 		<label for="idTipoDocumento"><bean:message key="sirius.persona.tipoDocumento.label" />(*)&nbsp;:</label>
 		<html:select property="idTipoDocumento">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="personaForm" property="tiposDocumento" label="descripcion" value="id"/>
 		</html:select>
-		<br>
+		</p><br><p>
 		<label for="numeroDocumento"><bean:message key="sirius.persona.numeroDocumento.label" />(*)&nbsp;:</label>
 		<html:text property="numeroDocumento" />
-		<br>
+		</p><br><p>
 		<label for="cuit"><bean:message key="sirius.persona.cuit.label" />&nbsp;:</label>
 		<html:text property="cuit" />
-		<br>
+		</p><br><p>
 		<label for="cbu"><bean:message key="sirius.persona.cbu.label" />&nbsp;:</label>
 		<html:text property="cbu" />
-		<br>
+		</p><br><p>
 		<label for="nacionalidad"><bean:message key="sirius.persona.nacionalidad.label" />&nbsp;:</label>
 		<html:text property="nacionalidad" />
-		<br>
+		</p><br><p>
 		<label for="fechaNacimiento"><bean:message key="sirius.persona.fechaNacimiento.label" />&nbsp;:</label>
 		<html:text property="fechaNacimiento" />
-		<br>
+		</p><br><p>
 		<label for="profesion"><bean:message key="sirius.persona.profesion.label" />&nbsp;:</label>
 		<html:text property="profesion" />
-		<br>
+		</p><br><p>
 		<label for="direccion"><bean:message key="sirius.persona.direccion.label" />&nbsp;:</label>
 		<html:text property="direccion" />
-		<br>
+		</p><br><p>
 		<label for="telefono"><bean:message key="sirius.persona.telefono.label" />&nbsp;:</label>
 		<html:text property="telefono" />
-		<br>
+		</p><br><p>
 		<label for="celular"><bean:message key="sirius.persona.celular.label" />&nbsp;:</label>
 		<html:text property="celular" />
-		<br>
+		</p><br><p>
 		<label for="idRelacionContractual"><bean:message key="sirius.persona.relacionContractual.label" />(*)&nbsp;:</label>
 		<html:select property="idRelacionContractual">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="personaForm" property="relacionesContractuales" label="descripcion" value="id"/>
 		</html:select>
-		<br>
+		</p><br><p>
 		<label for="email"><bean:message key="sirius.persona.email.label" />&nbsp;:</label>
 		<html:text property="email" />
-		<br>
+		</p><br><p>
 		<label for="funcion"><bean:message key="sirius.persona.funcion.label" />&nbsp;:</label>
 		<html:text property="funcion" />
-		<br>
+		</p><br><p>
 		<label for="observaciones"><bean:message key="sirius.persona.observaciones.label" />:</label>
 		<html:textarea property="observaciones" rows="5" />
-		<br>
+		</p><br><p>
 		<label for="idFormaPago"><bean:message key="sirius.persona.formaPago.label" />(*)&nbsp;:</label>
 		<html:select property="idFormaPago">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="personaForm" property="formasPago" label="descripcion" value="id"/>
 		</html:select>
-		<br>
+		</p><br><p>
 		<label for="idPersonaFactura"><bean:message key="sirius.persona.personaFactura.label" />(*)&nbsp;:</label>
 		<html:select property="idPersonaFactura">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="personaForm" property="personasFactura" label="nombreYApellido" value="id"/>
 		</html:select>
-		<br>
+		</p><br>
 	</div>
 	
 	<div style="clear:both; padding:5px 0 0 0;">
