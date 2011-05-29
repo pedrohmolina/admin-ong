@@ -26,9 +26,10 @@ $(document).ready(function(){
 
 	<h1>Datos</h1>
 	<div style="float:left;">
+		<p>
 		<label for="referencia"><bean:message key="sirius.gasto.referencia.label" />:</label>
 		<html:textarea property="referencia" rows="5" />
-		<br>
+		</p><br>
 	</div>
 	
 	<div style="clear:both; padding:5px 0 0 0;">
