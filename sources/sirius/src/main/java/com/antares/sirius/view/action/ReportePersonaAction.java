@@ -3,18 +3,36 @@
  */
 package com.antares.sirius.view.action;
 
+import java.awt.Color;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
+import ar.com.fdvs.dj.core.DynamicJasperHelper;
+import ar.com.fdvs.dj.core.layout.ClassicLayoutManager;
+import ar.com.fdvs.dj.domain.AutoText;
+import ar.com.fdvs.dj.domain.DynamicReport;
+import ar.com.fdvs.dj.domain.ImageBanner;
+import ar.com.fdvs.dj.domain.Style;
+import ar.com.fdvs.dj.domain.builders.DynamicReportBuilder;
+import ar.com.fdvs.dj.domain.builders.StyleBuilder;
+import ar.com.fdvs.dj.domain.constants.Border;
+import ar.com.fdvs.dj.domain.constants.Font;
+import ar.com.fdvs.dj.domain.constants.Transparency;
+import ar.com.fdvs.dj.domain.entities.columns.AbstractColumn;
+
 import com.antares.commons.util.ReportUtils;
+import com.antares.sirius.base.Constants;
 import com.antares.sirius.filter.PersonaFilter;
 import com.antares.sirius.model.Persona;
 import com.antares.sirius.service.PersonaService;
@@ -82,8 +100,106 @@ public class ReportePersonaAction extends ReporteAction{
 		PersonaFilter filter = this.createFilter(viewForm);
 		Collection<Persona> result = personaService.findByFilter(filter);
 
+   		Style oddRowStyle = new Style();
+  		oddRowStyle.setBorder(Border.NO_BORDER); oddRowStyle.setBackgroundColor(Color.LIGHT_GRAY);oddRowStyle.setTransparency(Transparency.OPAQUE);
+		
+		
+		DynamicReportBuilder drb = new DynamicReportBuilder();
+		drb.setTitle("SAHDES")	
+		        .setSubtitle("Reporte de Personal")
+		        .setReportName("ReportePersonas");		
+	
+		Integer margin = new Integer(15);
+		drb.setTitleStyle(getTitleStyle())
+			.setDefaultStyles(getTitleStyle(), getSubtitleStyle(), getHeaderStyle(), getDetailStyle())
+			.setDetailHeight(new Integer(15))
+			.setLeftMargin(margin)
+			.setRightMargin(margin)
+			.setTopMargin(margin)
+			.setBottomMargin(margin)
+			.setPrintBackgroundOnOddRows(true)
+			.setOddRowBackgroundStyle(oddRowStyle)
+			.addFirstPageImageBanner("/reports/Antares.jpg", new Integer(90), new Integer(20), ImageBanner.ALIGN_RIGHT);
+		  ;
+		
+		//Cargo columnas por defecto
+		AbstractColumn columnaNombre = 
+			getColumn("nombre", String.class, "Nombre", 80, getHeaderStyle(), getDetailStyle());
+		drb.addColumn(columnaNombre);
+		
+		AbstractColumn columnaApellido = 
+		    getColumn("apellido", String.class, "Apellido", 80, getHeaderStyle(), getDetailStyle());
+		drb.addColumn(columnaApellido);
+		
+		if (viewForm.getVerNumeroDocumento()){
+			
+			AbstractColumn columnaNumeroDocumento =
+			    getColumn("numeroDocumento", Integer.class, "Numero Documento", 80, getHeaderStyle(), getDetailStyle());
+			drb.addColumn(columnaNumeroDocumento);
+
+		}
+
+		if (viewForm.getVerCuit()){
+			AbstractColumn columnaCuit = 
+			    getColumn("cuit", String.class, "Cuit", 80, getHeaderStyle(), getDetailStyle());
+			drb.addColumn(columnaCuit);
+		}
+
+		if (viewForm.getVerFechaNacimiento()){
+			AbstractColumn columnaFechaNacimiento =
+			    getColumn("fechaNacimiento", Date.class, "Fecha Nacimiento", 80, getHeaderStyle(), getDetailStyle());
+			columnaFechaNacimiento.setPattern(Constants.DEFAULT_DATE_FORMAT);
+	        drb.addColumn(columnaFechaNacimiento);
+		}
+
+		if (viewForm.getVerCBU()){
+			AbstractColumn columnaCbu = 
+			    getColumn("cbu", String.class, "CBU", 80, getHeaderStyle(), getDetailStyle());
+			drb.addColumn(columnaCbu);
+		}
+		
+		if (viewForm.getVerProfesion()){
+			AbstractColumn columnaProfesion =
+			    getColumn("profesion", String.class, "Profesion", 80, getHeaderStyle(), getDetailStyle());
+			drb.addColumn(columnaProfesion);
+		}
+
+		if (viewForm.getVerFuncion()){
+			AbstractColumn columnaFuncion = 
+			    getColumn("funcion", String.class, "Funcion", 80, getHeaderStyle(), getDetailStyle());
+			drb.addColumn(columnaFuncion);
+		}
+
+		if (viewForm.getVerEmail()){
+			AbstractColumn columnaEmail = 
+			    getColumn("email", String.class, "Email", 140, getHeaderStyle(), getDetailStyle());
+			drb.addColumn(columnaEmail);
+		}
+
+		if (viewForm.getVerTelefono()){
+			AbstractColumn columnaTelefono =
+			    getColumn("telefono", String.class, "Telefono", 80, getHeaderStyle(), getDetailStyle());
+			drb.addColumn(columnaTelefono);
+		}
+		
+		if (viewForm.getVerRelacionContractual()){
+			AbstractColumn columnaRelacionContractual =
+			    getColumn("relacionContractual.descripcion", String.class, "Relacion Contractual", 80, getHeaderStyle(), getDetailStyle());
+			drb.addColumn(columnaRelacionContractual);
+		}
+
+		Style atStyle2 = new StyleBuilder(true).setFont(new Font(9, Font._FONT_TIMES_NEW_ROMAN, false, true, false)).setTextColor(Color.BLACK).build();
+		drb.addAutoText(AutoText.AUTOTEXT_PAGE_X_SLASH_Y, AutoText.POSITION_FOOTER, AutoText.ALIGNMENT_RIGHT,30,30,atStyle2);
+		drb.setUseFullPageWidth(true); 
+        
+		DynamicReport dr = drb.build(); //Build the report
+		
+		JRDataSource ds = new JRBeanCollectionDataSource(result);
+		JasperPrint jasperPrint = DynamicJasperHelper.generateJasperPrint(dr, new ClassicLayoutManager(), ds);
+
 		String reportType = viewForm.getFormatoReporte();
-		JasperPrint jasperPrint = reportePersonaService.generateReportBytes(result);
+		
+		//JasperPrint jasperPrint = reportePersonaService.generateReportBytes(result);
 
 		this.generateReport(request, response, reportType, jasperPrint);
 
@@ -101,5 +217,6 @@ public class ReportePersonaAction extends ReporteAction{
 		}
 		return filter;
 	}
+	
 
 }
