@@ -515,6 +515,7 @@
 		<action path="/reportes/reporte-persona" name="reportePersonaForm" parameter="method" 
 				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
 			<forward name="init" 			   		   path=".reportePersona" />
+			<forward name="verResultados"		 	   path=".reportePersona" />
 			<forward name="generarReportePersona" 	   path=".reportePersona" />
 		</action>
 
