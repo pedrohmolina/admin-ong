@@ -229,7 +229,7 @@ CREATE TABLE proyecto
 	beneficiariosIndirectos TEXT COMMENT 'Descripción de los Beneficiarios indirectos del Proyecto',
 	financiador INT,
 	resumen TEXT COMMENT 'Resumen del Proyecto',
-	adjunto BLOB COMMENT 'Resumen del Proyecto',
+	idArchivo INT NULL COMMENT 'Resumen del Proyecto',
 	activo BOOL NOT NULL COMMENT 'Señal para manejo de baja logica',
 	PRIMARY KEY (id),
 	UNIQUE UQ_proyecto_id(id),
@@ -582,6 +582,18 @@ CREATE TABLE accion
 ;
 
 
+CREATE TABLE archivo
+(
+	id INT NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
+	hash varchar(50) NOT NULL,
+	nombre varchar(255) NOT NULL,
+	contenido LONGBLOB NULL,
+	PRIMARY KEY (id),
+	UNIQUE UQ_archivo_id(id)
+) 
+;
+
+
 
 
 
@@ -760,6 +772,10 @@ ALTER TABLE estadoProyecto ADD CONSTRAINT FK_estadoProyecto_estadoProyecto
 
 ALTER TABLE actividad ADD CONSTRAINT FK_actividad_estadoActividad 
 	FOREIGN KEY (idEstadoActividad) REFERENCES estadoActividad (id)
+;
+
+ALTER TABLE proyecto ADD CONSTRAINT FK_proyecto_archivo 
+	FOREIGN KEY (idArchivo) REFERENCES archivo (id)
 ;
 
 
