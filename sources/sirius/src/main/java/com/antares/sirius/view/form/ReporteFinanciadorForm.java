@@ -7,6 +7,7 @@ import org.apache.struts.action.ActionForm;
 import com.antares.sirius.model.EstadoFinanciador;
 import com.antares.sirius.model.Financiador;
 import com.antares.sirius.model.FormatoReporte;
+import com.antares.sirius.model.Proveedor;
 import com.antares.sirius.model.TipoFinanciador;
 
 /**
@@ -22,6 +23,7 @@ public class ReporteFinanciadorForm extends ActionForm{
 	private Collection<FormatoReporte> formatosReporte;
 	private String formatoReporte;
 
+	//Filtros
 	private String nombre;
 	private String cuit;
 	private String cbu;
@@ -33,6 +35,72 @@ public class ReporteFinanciadorForm extends ActionForm{
 	
 	private Collection<EstadoFinanciador> estadosFinanciador;
 	private Collection<TipoFinanciador> tiposFinanciador;
+
+	//Lista Previa de resultados
+	private Collection<Financiador> result;
+		
+	//Columnas a visualizar en el reporte
+	private Boolean verTipoFinanciador;
+	private Boolean verEstadoFinanciador;
+	private Boolean verCuit;
+	private Boolean verCBU;
+	private Boolean verContacto;
+	private Boolean verDireccion;
+	private Boolean verTelefono;
+	private Boolean verEmail;
+	private Boolean verObservaciones;
+	
+	
+	public void initialize() {
+		this.nombre = "";
+		this.cuit = "";
+		this.cbu = "";
+		this.idEstadoFinanciador = "";
+		this.idTipoFinanciador = "";
+		this.labelEstadoFinanciador = "";
+		this.labelTipoFinanciador = "";
+		this.verTipoFinanciador = false;
+		this.verEstadoFinanciador = false;
+		this.verCuit = false;
+		this.verCBU = false;
+		this.verContacto = false;
+		this.verDireccion = false;
+		this.verTelefono = false;
+		this.verEmail = false;
+		this.verObservaciones = false;
+
+	}
+
+	public void initializeForm() {
+		this.nombre = "";
+		this.cuit = "";
+		this.cbu = "";
+		this.idEstadoFinanciador = "";
+		this.idTipoFinanciador = "";
+		this.labelEstadoFinanciador = "";
+		this.labelTipoFinanciador = "";
+		this.verTipoFinanciador = false;
+		this.verEstadoFinanciador = false;
+		this.verCuit = false;
+		this.verCBU = false;
+		this.verContacto = false;
+		this.verDireccion = false;
+		this.verTelefono = false;
+		this.verEmail = false;
+		this.verObservaciones = false;
+
+	}
+
+	public void initializeForm(Financiador entity) {
+		this.nombre = entity.getNombre();
+		this.cuit = entity.getCuit();
+		this.cbu = entity.getCbu();
+		this.idEstadoFinanciador = entity.getEstadoFinanciador().getId().toString();
+		this.idTipoFinanciador = entity.getTipoFinanciador().getId().toString();
+		this.labelEstadoFinanciador = entity.getEstadoFinanciador().getDescripcion();
+		this.labelTipoFinanciador = entity.getTipoFinanciador().getDescripcion();
+
+	}
 
 	
 	public String getFormatoReporte() {
@@ -179,36 +247,147 @@ public class ReporteFinanciadorForm extends ActionForm{
 		this.labelTipoFinanciador = labelTipoFinanciador;
 	}
 
-	public void initialize() {
-		this.nombre = "";
-		this.cuit = "";
-		this.cbu = "";
-		this.idEstadoFinanciador = "";
-		this.idTipoFinanciador = "";
-		this.labelEstadoFinanciador = "";
-		this.labelTipoFinanciador = "";
+	
+	/**
+	 * @return the result
+	 */
+	public Collection<Financiador> getResult() {
+		return result;
 	}
 
-	public void initializeForm() {
-		this.nombre = "";
-		this.cuit = "";
-		this.cbu = "";
-		this.idEstadoFinanciador = "";
-		this.idTipoFinanciador = "";
-		this.labelEstadoFinanciador = "";
-		this.labelTipoFinanciador = "";
-
+	/**
+	 * @param result the result to set
+	 */
+	public void setResult(Collection<Financiador> result) {
+		this.result = result;
 	}
 
-	public void initializeForm(Financiador entity) {
-		this.nombre = entity.getNombre();
-		this.cuit = entity.getCuit();
-		this.cbu = entity.getCbu();
-		this.idEstadoFinanciador = entity.getEstadoFinanciador().getId().toString();
-		this.idTipoFinanciador = entity.getTipoFinanciador().getId().toString();
-		this.labelEstadoFinanciador = entity.getEstadoFinanciador().getDescripcion();
-		this.labelTipoFinanciador = entity.getTipoFinanciador().getDescripcion();
-
+	/**
+	 * @return the verTipoFinanciador
+	 */
+	public Boolean getVerTipoFinanciador() {
+		return verTipoFinanciador;
 	}
+
+	/**
+	 * @param verTipoFinanciador the verTipoFinanciador to set
+	 */
+	public void setVerTipoFinanciador(Boolean verTipoFinanciador) {
+		this.verTipoFinanciador = verTipoFinanciador;
+	}
+
+	/**
+	 * @return the verEstadoFinanciador
+	 */
+	public Boolean getVerEstadoFinanciador() {
+		return verEstadoFinanciador;
+	}
+
+	/**
+	 * @param verEstadoFinanciador the verEstadoFinanciador to set
+	 */
+	public void setVerEstadoFinanciador(Boolean verEstadoFinanciador) {
+		this.verEstadoFinanciador = verEstadoFinanciador;
+	}
+
+	/**
+	 * @return the verCuit
+	 */
+	public Boolean getVerCuit() {
+		return verCuit;
+	}
+
+	/**
+	 * @param verCuit the verCuit to set
+	 */
+	public void setVerCuit(Boolean verCuit) {
+		this.verCuit = verCuit;
+	}
+
+	/**
+	 * @return the verCBU
+	 */
+	public Boolean getVerCBU() {
+		return verCBU;
+	}
+
+	/**
+	 * @param verCBU the verCBU to set
+	 */
+	public void setVerCBU(Boolean verCBU) {
+		this.verCBU = verCBU;
+	}
+
+	/**
+	 * @return the verContacto
+	 */
+	public Boolean getVerContacto() {
+		return verContacto;
+	}
+
+	/**
+	 * @param verContacto the verContacto to set
+	 */
+	public void setVerContacto(Boolean verContacto) {
+		this.verContacto = verContacto;
+	}
+
+	/**
+	 * @return the verDireccion
+	 */
+	public Boolean getVerDireccion() {
+		return verDireccion;
+	}
+
+	/**
+	 * @param verDireccion the verDireccion to set
+	 */
+	public void setVerDireccion(Boolean verDireccion) {
+		this.verDireccion = verDireccion;
+	}
+
+	/**
+	 * @return the verTelefono
+	 */
+	public Boolean getVerTelefono() {
+		return verTelefono;
+	}
+
+	/**
+	 * @param verTelefono the verTelefono to set
+	 */
+	public void setVerTelefono(Boolean verTelefono) {
+		this.verTelefono = verTelefono;
+	}
+
+	/**
+	 * @return the verEmail
+	 */
+	public Boolean getVerEmail() {
+		return verEmail;
+	}
+
+	/**
+	 * @param verEmail the verEmail to set
+	 */
+	public void setVerEmail(Boolean verEmail) {
+		this.verEmail = verEmail;
+	}
+
+	/**
+	 * @return the verObservaciones
+	 */
+	public Boolean getVerObservaciones() {
+		return verObservaciones;
+	}
+
+	/**
+	 * @param verObservaciones the verObservaciones to set
+	 */
+	public void setVerObservaciones(Boolean verObservaciones) {
+		this.verObservaciones = verObservaciones;
+	}
+
+	
 
 }

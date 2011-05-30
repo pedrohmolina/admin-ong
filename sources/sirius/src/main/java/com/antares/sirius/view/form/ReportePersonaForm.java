@@ -42,6 +42,51 @@ public class ReportePersonaForm extends ActionForm{
 	private Boolean verFuncion;
 	private Boolean verRelacionContractual;
 	
+	public void initialize() {
+		this.apellido = "";
+		this.nombre = "";
+		this.numeroDocumento = "";
+		this.cuit = "";
+		this.nacionalidad = "";
+		this.verNumeroDocumento = false;
+		this.verCuit = false;
+		this.verCBU = false;
+		this.verFechaNacimiento = false;
+		this.verProfesion = false;
+		this.verDireccion = false;
+		this.verTelefono = false;
+		this.verEmail = false;
+		this.verFuncion = false;
+		this.verRelacionContractual = false;
+
+	}
+
+	public void initializeForm() {
+		this.apellido = "";
+		this.nombre = "";
+		this.numeroDocumento = "";
+		this.cuit = "";
+		this.nacionalidad = "";
+		this.verNumeroDocumento = false;
+		this.verCuit = false;
+		this.verCBU = false;
+		this.verFechaNacimiento = false;
+		this.verProfesion = false;
+		this.verDireccion = false;
+		this.verTelefono = false;
+		this.verEmail = false;
+		this.verFuncion = false;
+		this.verRelacionContractual = false;
+
+	}
+
+	public void initializeForm(Persona entity) {
+		this.apellido = entity.getApellido();
+		this.nombre = entity.getNombre();
+		this.numeroDocumento = entity.getNumeroDocumento().toString();
+		this.cuit = entity.getCbu();
+		this.nacionalidad = entity.getNacionalidad();
+		}
 	
 	public String getFormatoReporte() {
 		return formatoReporte;
@@ -99,52 +144,6 @@ public class ReportePersonaForm extends ActionForm{
 	public void setCuit(String cuit) {
 		this.cuit = cuit;
 	}
-
-	public void initialize() {
-		this.apellido = "";
-		this.nombre = "";
-		this.numeroDocumento = "";
-		this.cuit = "";
-		this.nacionalidad = "";
-		this.verNumeroDocumento = false;
-		this.verCuit = false;
-		this.verCBU = false;
-		this.verFechaNacimiento = false;
-		this.verProfesion = false;
-		this.verDireccion = false;
-		this.verTelefono = false;
-		this.verEmail = false;
-		this.verFuncion = false;
-		this.verRelacionContractual = false;
-
-	}
-
-	public void initializeForm() {
-		this.apellido = "";
-		this.nombre = "";
-		this.numeroDocumento = "";
-		this.cuit = "";
-		this.nacionalidad = "";
-		this.verNumeroDocumento = false;
-		this.verCuit = false;
-		this.verCBU = false;
-		this.verFechaNacimiento = false;
-		this.verProfesion = false;
-		this.verDireccion = false;
-		this.verTelefono = false;
-		this.verEmail = false;
-		this.verFuncion = false;
-		this.verRelacionContractual = false;
-
-	}
-
-	public void initializeForm(Persona entity) {
-		this.apellido = entity.getApellido();
-		this.nombre = entity.getNombre();
-		this.numeroDocumento = entity.getNumeroDocumento().toString();
-		this.cuit = entity.getCbu();
-		this.nacionalidad = entity.getNacionalidad();
-		}
 
 	/**
 	 * @return the verNumeroDocumento
