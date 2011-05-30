@@ -19,7 +19,7 @@
 <html:form action="/meta/meta-query.do?method=query">
 	<h1>Datos</h1>
 	<div style="float:left;">
-	<p>
+		<p>
 		<label for="labelObjetivoEspecifico"><bean:message key="sirius.meta.objetivoEspecifico.label" />&nbsp;:</label>
 		<html:text maxlength="255" property="labelObjetivoEspecifico" readonly="true" />
 		</p><br><p>

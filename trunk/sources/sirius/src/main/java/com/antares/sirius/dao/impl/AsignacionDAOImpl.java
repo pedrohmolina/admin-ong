@@ -24,6 +24,12 @@ public class AsignacionDAOImpl extends BusinessEntityDAOImpl<Asignacion> impleme
 		AsignacionFilter entityFilter = (AsignacionFilter)filter;
 		if (entityFilter.getActividad() != null) {
 			crit.add(Restrictions.eq("actividad", entityFilter.getActividad()));
+		} else if (entityFilter.getProyecto() != null) {
+			crit.createAlias("actividad", "actividad");
+			crit.createAlias("actividad.meta", "meta");
+			crit.createAlias("meta.objetivoEspecifico", "objetivoEspecifico");
+			crit.createAlias("objetivoEspecifico.objetivoGeneral", "objetivoGeneral");
+			crit.add(Restrictions.eq("objetivoGeneral.proyecto", entityFilter.getProyecto()));
 		}
 		if (entityFilter.getPersona() != null) {
 			crit.add(Restrictions.eq("persona", entityFilter.getPersona()));

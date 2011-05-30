@@ -21,34 +21,32 @@ function confirmarAccion(mensaje) {
 
 <div class="form">
 	<html:form action="/ingreso/ingreso-query.do?method=query">
-		<h1>Búsqueda de Ingresos</h1>
-		<div style="float: left; width: 100%;">
-			<p>
-				<label for="filtroFecha"><bean:message key="sirius.ingreso.fecha.label" />:</label>
-				<html:text property="filtroFecha" />
-			</p>
-			<br>
-			<p>
-				<label for="filtroIdTipoIngreso"><bean:message key="sirius.ingreso.tipoIngreso.label" />:</label>
-				<html:select property="filtroIdTipoIngreso">
-					<html:option value=""><bean:message key="antares.base.seleccione.label" /></html:option>
-					<html:optionsCollection name="ingresoForm" property="tiposIngreso" label="descripcion" value="id" />
-				</html:select>
-			</p>
-			<br>
-		</div>
+	<h1>Búsqueda de Ingresos</h1>
+	<div style="float: left; width: 100%;">
+		<p>
+		<label for="filtroFecha"><bean:message key="sirius.ingreso.fecha.label" />:</label>
+		<html:text property="filtroFecha" />
+		</p><br><p>
+		<label for="filtroIdTipoIngreso"><bean:message key="sirius.ingreso.tipoIngreso.label" />:</label>
+		<html:select property="filtroIdTipoIngreso">
+			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
+			<html:optionsCollection name="ingresoForm" property="tiposIngreso" label="descripcion" value="id"/>
+		</html:select>
+		</p>
+		<br>
+	</div>
 
-		<div style="float: left; width: 100%;">
-			<div class="boton">
-				<a href="#" onclick="javascript:limpiarFiltro();"><bean:message key="antares.base.limpiarfiltro.label" /> </a>
-				<authz:authorize ifAllGranted="ENTIDAD_INGRESO-LISTADO">
-					<a href="#" onclick="ingresoForm.submit();"><bean:message key="antares.base.buscar.label" /></a>
-				</authz:authorize>
-				<authz:authorize ifAllGranted="ENTIDAD_INGRESO-ALTA">
-					<a href="#" onclick="return hacerSubmit('ingreso/ingreso-form.do?method=initCreate');"><bean:message key="antares.base.nuevo.label" /></a>
-				</authz:authorize>
-			</div>
+	<div style="float: left; width: 100%;">
+		<div class="boton">
+			<a href="#" onclick="javascript:limpiarFiltro();"><bean:message key="antares.base.limpiarfiltro.label"/></a>
+			<authz:authorize ifAllGranted="ENTIDAD_INGRESO-LISTADO">
+				<a href="#" onclick="ingresoForm.submit();"><bean:message key="antares.base.buscar.label" /></a>
+			</authz:authorize>
+			<authz:authorize ifAllGranted="ENTIDAD_INGRESO-ALTA">
+				<a href="#" onclick="return hacerSubmit('ingreso/ingreso-form.do?method=initCreate');"><bean:message key="antares.base.nuevo.label" /></a>
+			</authz:authorize>
 		</div>
+	</div>
 
 	</html:form>
 
@@ -58,22 +56,23 @@ function confirmarAccion(mensaje) {
 
 	<h1>Resultado de la Búsqueda</h1>
 	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.ingresoForm.result" id="item"
-		requestURI="/ingreso/ingreso-query.do" sort="list">
+		requestURI="/ingreso/ingreso-query.do" sort="list" >
 
 		<c:if test="${not empty requestScope['notShowMessage']}">
 			<display:setProperty name="basic.msg.empty_list"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablaTitulo"><tr><td align="center"></td></tr></table></display:setProperty>
 		</c:if>
+	
+		<display:column sortable="true" property="tipoIngreso.descripcion" 	titleKey="sirius.ingreso.tipoIngreso.label" />
+		<display:column sortable="true" property="fecha" 					titleKey="sirius.ingreso.fecha.label" format="{0,date,dd/MM/yyyy}" />
 
-		<display:column sortable="true" property="tipoIngreso.descripcion" titleKey="sirius.ingreso.tipoIngreso.label" />
-		<display:column sortable="true" property="fecha" titleKey="sirius.ingreso.fecha.label" format="{0,date,dd/MM/yyyy}" />
-		<display:column sortable="true"	titleKey="sirius.ingreso.financiador.label">
+		<display:column sortable="true" 									titleKey="sirius.ingreso.financiador.label">
 			<logic:empty name="item" property="financiador">&nbsp;-&nbsp;</logic:empty>
 			<logic:notEmpty name="item" property="financiador">
 				<bean:write name="item" property="financiador.nombre" />
 			</logic:notEmpty>
 		</display:column>
 
-		<display:column sortable="true" property="monto" titleKey="sirius.ingreso.monto.label" />
+		<display:column sortable="true" property="monto" 					titleKey="sirius.ingreso.monto.label" />
 
 		<display:column title="Acciones" media="html">
 			<authz:authorize ifAllGranted="ENTIDAD_INGRESO-DETALLE">

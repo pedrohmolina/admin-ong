@@ -24,7 +24,7 @@ function confirmarAccion(mensaje) {
 	<html:form action="/proveedor/proveedor-query.do?method=query">
 	<h1>Búsqueda de Proveedores</h1>
 	<div style="float:left; width: 100%;">
-	<p>
+		<p>
 		<label for="filtroNombre"><bean:message key="sirius.proveedor.nombre.label" />:</label>
 		<html:text property="filtroNombre" />
 		</p><br><p>

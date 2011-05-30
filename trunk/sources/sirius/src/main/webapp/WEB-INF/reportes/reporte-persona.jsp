@@ -25,7 +25,7 @@ function confirmarAccion(mensaje) {
 	<h1>Reporte de Personas</h1>
 	
 	<div style="float:left; width: 100%;">
-	<p>
+		<p>
 		<h2>Filtros</h2>
 		
 		<label for="apellido"><bean:message key="sirius.persona.apellido.label" />:</label>

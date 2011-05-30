@@ -22,6 +22,7 @@
 		<property name="service" 				ref="asignacionService" />
 		<property name="tipoAsignacionService" 	ref="tipoAsignacionService" />
 		<property name="personaService" 		ref="personaService" />
+		<property name="proyectoService" 		ref="proyectoService" />
 		<property name="actividadService" 		ref="actividadService" />
 	</bean>
 	<bean name="/asignacion/asignacion-query" 			parent="asignacionAction" singleton="false" />
@@ -52,6 +53,7 @@
 	<bean name="/gasto/gasto-actividad-query" 			parent="gastoActividadAction" singleton="false" />
 	<bean name="/gasto/gasto-actividad-form" 			parent="gastoActividadAction" singleton="false" />
 	<bean name="/gasto/gasto-actividad-form-validate" 	parent="gastoActividadAction" singleton="false" />
+	<bean name="/gasto/gasto-actividad-list" 			parent="gastoActividadAction" singleton="false" />
 
 	<bean name="gastoOrganizacionAction" class="com.antares.sirius.view.action.GastoOrganizacionAction" autowire="byName" >
 		<property name="service" 					ref="gastoService" />
@@ -199,6 +201,12 @@
 	<bean name="/usuario/usuario-form-validate" 			parent="usuarioAction" singleton="false" />
 	<bean name="/usuario/usuario-persona-form" 				parent="usuarioAction" singleton="false" />
 	<bean name="/usuario/usuario-persona-form-validate" 	parent="usuarioAction" singleton="false" />
+	<bean name="/usuario/usuario-password-form" 			parent="usuarioAction" singleton="false" />
+	<bean name="/usuario/usuario-password-form-validate" 	parent="usuarioAction" singleton="false" />
+
+	<bean name="/archivo/archivo" class="com.antares.sirius.view.action.ArchivoAction" autowire="byName">
+		<property name="archivoService" 				ref="archivoService" />
+	</bean>
 
 	<bean name="reportePersonaAction" class="com.antares.sirius.view.action.ReportePersonaAction" autowire="byName">
 		<property name="personaService" 				ref="personaService" />

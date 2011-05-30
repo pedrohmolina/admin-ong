@@ -2,6 +2,8 @@ package com.antares.sirius.view.form;
 
 import java.util.Collection;
 
+import org.apache.struts.upload.FormFile;
+
 import com.antares.commons.util.Utils;
 import com.antares.commons.view.form.AbstractForm;
 import com.antares.sirius.model.AreaTematica;
@@ -39,11 +41,15 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 	private Collection<Financiador> financiadores;
 	private Collection<AreaTematica> areasTematicas;
 	private Collection<TipoAgrupamiento> tiposAgrupamiento;
+	private FormFile archivo;
+	private String nombreArchivo;
+	private String hashArchivo;
 
 	private String filtroNombre;
 	private String filtroFechaInicio;
 	private String filtroFechaFin;
 	private String filtroIdResponsable;
+	private String filtroIdCoordinador;
 	private String filtroIdFinanciador;
 	private String filtroIdAreaTematica;
 	
@@ -258,6 +264,38 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 		this.idTipoAgrupamiento = idTipoAgrupamiento;
 	}
 
+	public FormFile getArchivo() {
+		return archivo;
+	}
+
+	public void setArchivo(FormFile archivo) {
+		this.archivo = archivo;
+	}
+
+	public String getNombreArchivo() {
+		return nombreArchivo;
+	}
+
+	public void setNombreArchivo(String nombreArchivo) {
+		this.nombreArchivo = nombreArchivo;
+	}
+
+	public String getHashArchivo() {
+		return hashArchivo;
+	}
+
+	public void setHashArchivo(String hashArchivo) {
+		this.hashArchivo = hashArchivo;
+	}
+
+	public String getFiltroIdCoordinador() {
+		return filtroIdCoordinador;
+	}
+
+	public void setFiltroIdCoordinador(String filtroIdCoordinador) {
+		this.filtroIdCoordinador = filtroIdCoordinador;
+	}
+
 	@Override
 	public void initialize() {
 		this.id = null;
@@ -279,10 +317,14 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 		this.filtroFechaInicio = "";
 		this.filtroFechaFin = "";
 		this.filtroIdResponsable = "";
+		this.filtroIdCoordinador = "";
 		this.filtroIdFinanciador = "";
 		this.filtroIdAreaTematica = "";
 		this.labelResponsable = "";
 		this.labelFinanciador = "";
+		this.archivo = null;
+		this.nombreArchivo = "";
+		this.hashArchivo = "";
 	}
 
 	@Override
@@ -303,6 +345,9 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 		this.idTipoAgrupamiento = "";
 		this.labelResponsable = "";
 		this.labelFinanciador = "";
+		this.archivo = null;
+		this.nombreArchivo = "";
+		this.hashArchivo = "";
 	}
 
 	@Override
@@ -332,6 +377,14 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 			this.idAreaTematica[--cantAreas] = area.getId();
 		}
 		this.idTipoAgrupamiento = entity.getTipoAgrupamiento().getId().toString();
+
+		if (entity.getArchivo() != null) {
+			this.nombreArchivo = entity.getArchivo().getNombre();
+			this.hashArchivo = entity.getArchivo().getHash();
+		} else {
+			this.nombreArchivo = "";
+			this.hashArchivo = "";
+		}
 	}
 
 }

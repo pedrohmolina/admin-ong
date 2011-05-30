@@ -24,7 +24,7 @@ function confirmarAccion(mensaje) {
 	<html:form action="/rubro/rubro-query.do?method=query">
 	<h1>Búsqueda de Rubros</h1>
 	<div style="float:left; width: 100%;">
-	<p>
+		<p>
 		<label for="filtroNombre"><bean:message key="sirius.rubro.nombre.label" />:</label>
 		<html:text maxlength="255" property="filtroNombre"></html:text>
 		</p><br>

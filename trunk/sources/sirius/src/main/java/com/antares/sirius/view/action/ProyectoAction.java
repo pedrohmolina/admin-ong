@@ -1,5 +1,6 @@
 package com.antares.sirius.view.action;
 
+import java.sql.Blob;
 import java.util.Date;
 import java.util.HashSet;
 
@@ -11,11 +12,13 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
+import org.apache.struts.upload.FormFile;
 
 import com.antares.commons.exception.RestrictedAccessException;
 import com.antares.commons.util.Utils;
 import com.antares.commons.view.action.BaseAction;
 import com.antares.sirius.filter.ProyectoFilter;
+import com.antares.sirius.model.Archivo;
 import com.antares.sirius.model.AreaTematica;
 import com.antares.sirius.model.Financiador;
 import com.antares.sirius.model.Persona;
@@ -46,6 +49,12 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdFinanciador())) {
 			filter.setFinanciador(financiadorService.findById(Integer.parseInt(form.getFiltroIdFinanciador())));
 		}
+		if (Utils.isNotNullNorEmpty(form.getFiltroIdResponsable())) {
+			filter.setResponsable(personaService.findById(Integer.parseInt(form.getFiltroIdResponsable())));
+		}
+		if (Utils.isNotNullNorEmpty(form.getFiltroIdCoordinador())) {
+			filter.setCoordinador(personaService.findById(Integer.parseInt(form.getFiltroIdCoordinador())));
+		}
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdAreaTematica())) {
 			filter.setAreaTematica(areaTematicaService.findById(Integer.parseInt(form.getFiltroIdAreaTematica())));
 		}
@@ -70,6 +79,7 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 		entity.setTipoAgrupamiento(tipoAgrupamiento);
 		updateCoordinadores(entity, form.getIdCoordinadores());
 		updateAreasTematicas(entity, form.getIdAreaTematica());
+		updateArchivo(entity, form.getArchivo());
 
 		if (entity.getEstadoProyecto() == null) {
 			entity.setEstadoProyecto(estadoProyectoService.findDefault());
@@ -97,6 +107,20 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 		}
 		for (Integer idAreaTematica : areasTematicas) {
 			entity.getAreasTematicas().add(areaTematicaService.findById(idAreaTematica));
+		}
+	}
+
+	private void updateArchivo(Proyecto entity, FormFile formFile) {
+		if (formFile != null) {
+			Blob contenido = Utils.createBlob(formFile);
+			if (contenido != null) {
+				if (entity.getArchivo() == null) {
+					entity.setArchivo(new Archivo());
+				}
+				entity.getArchivo().setHash(Utils.encode(new Date().getTime() + "-" + formFile.getFileName()));
+				entity.getArchivo().setNombre(formFile.getFileName());
+				entity.getArchivo().setContenido(contenido);
+			}
 		}
 	}
 

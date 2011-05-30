@@ -25,7 +25,7 @@ function confirmarAccion(mensaje) {
 	<h1>Reporte de Proveedores</h1>
 	
 	<div style="float:left; width: 100%;">
-	<p>
+		<p>
 		<h2>Filtros</h2>
 		<label for="nombre"><bean:message key="sirius.proveedor.nombre.label" />:</label>
 		<html:text property="nombre" />

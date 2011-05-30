@@ -19,7 +19,7 @@
 <html:form action="/regla/regla-query.do?method=query">
 	<h1>Datos</h1>
 	<div style="float:left;">
-	<p>
+		<p>
 		<label for="labelUsuario"><bean:message key="sirius.regla.usuario.label" />&nbsp;:</label>
 		<html:text property="labelUsuario" readonly="true" />
 		</p><br><p>

@@ -4,6 +4,7 @@ import com.antares.commons.filter.Filter;
 import com.antares.sirius.model.Actividad;
 import com.antares.sirius.model.Asignacion;
 import com.antares.sirius.model.Persona;
+import com.antares.sirius.model.Proyecto;
 import com.antares.sirius.model.TipoAsignacion;
 
 /**
@@ -16,6 +17,7 @@ import com.antares.sirius.model.TipoAsignacion;
  */
 public class AsignacionFilter extends Filter<Asignacion> {
 
+	private Proyecto proyecto;
 	private Actividad actividad;
 	private Persona persona;
 	private TipoAsignacion tipoAsignacion;
@@ -37,6 +39,12 @@ public class AsignacionFilter extends Filter<Asignacion> {
 	}
 	public void setTipoAsignacion(TipoAsignacion tipoAsignacion) {
 		this.tipoAsignacion = tipoAsignacion;
+	}
+	public Proyecto getProyecto() {
+		return proyecto;
+	}
+	public void setProyecto(Proyecto proyecto) {
+		this.proyecto = proyecto;
 	}
 
 }

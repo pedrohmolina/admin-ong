@@ -15,7 +15,7 @@
 
 	<h1>Datos</h1>
 	<div style="float:left;">
-	<p>
+		<p>
 		<label for="apellido"><bean:message key="sirius.persona.apellido.label" />(*)&nbsp;:</label>
 		<html:text property="apellido" />
 		</p><br><p>

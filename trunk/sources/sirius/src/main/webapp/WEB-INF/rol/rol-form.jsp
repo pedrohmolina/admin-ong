@@ -15,7 +15,7 @@
 
 	<h1>Datos</h1>
 	<div style="float:left;">
-	<p>
+		<p>
 		<label for="nombre"><bean:message key="sirius.rol.nombre.label" />(*)&nbsp;:</label>
 		<html:text maxlength="20" property="nombre"></html:text>
 		</p><br><p>

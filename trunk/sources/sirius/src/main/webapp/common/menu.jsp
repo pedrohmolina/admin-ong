@@ -50,7 +50,7 @@
 		</menu:submenu>
 	</authz:authorize>
 
-	<authz:authorize ifAllGranted="ENTIDAD_GASTO_ORGANIZACION-LISTADO, ENTIDAD_GASTO_PROYECTO-LISTADO, ENTIDAD_GASTO_ACTIVIDAD-LISTADO, ENTIDAD_GASTO_ACTIVIDAD-ALTA">
+	<authz:authorize ifAllGranted="ENTIDAD_GASTO_ORGANIZACION-LISTADO, ENTIDAD_GASTO_PROYECTO-LISTADO, ENTIDAD_GASTO_ACTIVIDAD-LISTADO, ENTIDAD_GASTO_ACTIVIDAD-ALTA, ENTIDAD_GASTO_ACTIVIDAD-HISTORICO">
 		<menu:submenu top="true" labelKey="sirius.menu.gastos.label" style="border-right: solid 1px;border-color: red;">
 			<authz:authorize ifAllGranted="ENTIDAD_GASTO_ORGANIZACION-LISTADO">
 				<menu:item labelKey="sirius.gasto.gastoOrganizacion.label"><c:url value="/gasto/gasto-organizacion-query.do?method=initQuery"/></menu:item>
@@ -63,6 +63,9 @@
 			</authz:authorize>
 			<authz:authorize ifAllGranted="ENTIDAD_GASTO_ACTIVIDAD-ALTA">
 				<menu:item labelKey="sirius.gasto.gastoActividad.registracion.label"><c:url value="/gasto/gasto-actividad-form.do?method=initCreate"/></menu:item>
+			</authz:authorize>
+			<authz:authorize ifAllGranted="ENTIDAD_GASTO_ACTIVIDAD-HISTORICO">
+				<menu:item labelKey="sirius.gasto.gastoActividad.historial.label"><c:url value="/gasto/gasto-actividad-list.do?method=initList"/></menu:item>
 			</authz:authorize>
 		</menu:submenu>
 	</authz:authorize>
@@ -84,23 +87,22 @@
 		</menu:submenu>
 	</authz:authorize>
 	
-	<authz:authorize ifAllGranted="ENTIDAD_ROL-LISTADO, ENTIDAD_PERFIL-LISTADO, ENTIDAD_USUARIO-LISTADO, ENTIDAD_REGLA-LISTADO">
-		<menu:submenu top="true" labelKey="sirius.menu.seguridad.label" style="border-right: solid 1px;border-color: red;">
-			<authz:authorize ifAllGranted="ENTIDAD_ROL-LISTADO">
-				<menu:item labelKey="sirius.rol.label"><c:url value="/rol/rol-query.do?method=initQuery"/></menu:item>
-			</authz:authorize>
-			<authz:authorize ifAllGranted="ENTIDAD_PERFIL-LISTADO">
-				<menu:item labelKey="sirius.perfil.label"><c:url value="/perfil/perfil-query.do?method=initQuery"/></menu:item>
-			</authz:authorize>
-			<authz:authorize ifAllGranted="ENTIDAD_USUARIO-LISTADO">
-				<menu:item labelKey="sirius.usuario.label"><c:url value="/usuario/usuario-query.do?method=initQuery"/></menu:item>
-			</authz:authorize>
-			<authz:authorize ifAllGranted="ENTIDAD_REGLA-LISTADO">
-				<menu:item labelKey="sirius.regla.label"><c:url value="/regla/regla-query.do?method=initQuery"/></menu:item>
-			</authz:authorize>
-			<menu:item   label="Logout"><c:url value="/public/logout.do"/></menu:item>		
-		</menu:submenu>
-	</authz:authorize>
+	<menu:submenu top="true" labelKey="sirius.menu.seguridad.label" style="border-right: solid 1px;border-color: red;">
+		<authz:authorize ifAllGranted="ENTIDAD_ROL-LISTADO">
+			<menu:item labelKey="sirius.rol.label"><c:url value="/rol/rol-query.do?method=initQuery"/></menu:item>
+		</authz:authorize>
+		<authz:authorize ifAllGranted="ENTIDAD_PERFIL-LISTADO">
+			<menu:item labelKey="sirius.perfil.label"><c:url value="/perfil/perfil-query.do?method=initQuery"/></menu:item>
+		</authz:authorize>
+		<authz:authorize ifAllGranted="ENTIDAD_USUARIO-LISTADO">
+			<menu:item labelKey="sirius.usuario.label"><c:url value="/usuario/usuario-query.do?method=initQuery"/></menu:item>
+		</authz:authorize>
+		<authz:authorize ifAllGranted="ENTIDAD_REGLA-LISTADO">
+			<menu:item labelKey="sirius.regla.label"><c:url value="/regla/regla-query.do?method=initQuery"/></menu:item>
+		</authz:authorize>
+		<menu:item labelKey="sirius.usuario.cambiarPassword.label"><c:url value="/usuario/usuario-password-form.do?method=initCambiarPassword"/></menu:item>
+		<menu:item label="Logout"><c:url value="/public/logout.do"/></menu:item>		
+	</menu:submenu>
 
 </menu:menu>
 

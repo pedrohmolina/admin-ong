@@ -15,7 +15,7 @@
 
 	<h1>Datos</h1>
 	<div style="float:left;">
-	<p>
+		<p>
 		<label for="username"><bean:message key="sirius.usuario.username.label" />(*)&nbsp;:</label>
 		<logic:equal name="usuarioForm" property="action.descripcion" value="create">
 			<html:text property="username" />
@@ -25,7 +25,7 @@
 		</logic:equal>
 		</p><br>
 		<logic:equal name="usuarioForm" property="action.descripcion" value="create">
-		<p>
+			<p>
 			<label for="password"><bean:message key="sirius.usuario.password.label" />(*)&nbsp;:</label>
 			<html:password property="password" />
 			</p><br><p>
@@ -46,7 +46,7 @@
 		</p><br><p>
 		<label for="nombre"><bean:message key="sirius.usuario.nombre.label" />(*)&nbsp;:</label>
 		<html:text property="nombre" />
-				</p><br><p>
+		</p><br><p>
 		<label for="segundoNombre"><bean:message key="sirius.usuario.segundoNombre.label" />&nbsp;:</label>
 		<html:text property="segundoNombre" />
 		</p><br><p>

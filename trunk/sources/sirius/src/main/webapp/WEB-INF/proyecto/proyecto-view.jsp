@@ -19,7 +19,7 @@
 <html:form action="/proyecto/proyecto-query.do?method=query">
 	<h1>Datos</h1>
 	<div style="float:left;">
-	<p>
+		<p>
 		<label for="nombre"><bean:message key="sirius.proyecto.nombre.label" />&nbsp;:</label>
 		<html:text property="nombre" readonly="true" />
 		</p><br><p>
@@ -60,8 +60,18 @@
 		<logic:iterate id="tipoAgrupamiento" name="proyectoForm" property="tiposAgrupamiento">
 			<html-el:radio property="idTipoAgrupamiento" value="${tipoAgrupamiento.id}" disabled="true"/>
 			<bean:write name="tipoAgrupamiento" property="descripcion" />
-			<br /> 
+			</p><br><p>
 		</logic:iterate>
+		<logic:notEmpty name="proyectoForm" property="hashArchivo">
+			</p><br><p>
+			<label><bean:message key="sirius.proyecto.archivo.label" />&nbsp;:</label>
+			<c:url var="url" value="/archivo/archivo.do">
+				<c:param name="method" value="download" />
+				<c:param name="hash" value="${proyectoForm.hashArchivo}" />
+			</c:url>
+			<a href="<c:out value="${url}"/>"><bean:write name="proyectoForm" property="nombreArchivo"/></a>
+			</p><br><p>
+		</logic:notEmpty>
 		</p>
 	</div>
 

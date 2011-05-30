@@ -19,7 +19,7 @@
 <html:form action="/perfil/perfil-query.do?method=query">
 	<h1>Datos</h1>
 	<div style="float:left;">
-	<p>
+		<p>
 		<label for="firstName"><bean:message key="sirius.perfil.nombre.label" />&nbsp;</label>
 		<html:text property="nombre" readonly="true" />
 		</p><br><p>

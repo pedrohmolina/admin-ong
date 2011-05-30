@@ -1,6 +1,5 @@
 package com.antares.sirius.model;
 
-import java.io.File;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
@@ -14,7 +13,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Transient;
+import javax.persistence.OneToOne;
 
 
 @Entity
@@ -37,6 +36,10 @@ public class Proyecto extends BusinessObject {
 	@JoinColumns(@JoinColumn(name = "idTipoAgrupamiento"))
 	private TipoAgrupamiento tipoAgrupamiento;
 
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumns(@JoinColumn(name = "idArchivo"))
+	private Archivo archivo;
+
 	private String nombre;
 	private String descripcion;
 	private Date fechaInicio;
@@ -45,9 +48,6 @@ public class Proyecto extends BusinessObject {
 	private String beneficiariosDirectos;
 	private String beneficiariosIndirectos;
 	private String resumen;
-
-	@Transient //TODO esto es provisorio, sacar cuando se agregue el archivo al ABM
-	private File adjunto;
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "coordinador", joinColumns = @JoinColumn(name="idProyecto"), inverseJoinColumns = @JoinColumn(name = "idPersona"))
@@ -148,14 +148,6 @@ public class Proyecto extends BusinessObject {
 		this.resumen = resumen;
 	}
 
-	public File getAdjunto() {
-		return adjunto;
-	}
-
-	public void setAdjunto(File adjunto) {
-		this.adjunto = adjunto;
-	}
-
 	public TipoAgrupamiento getTipoAgrupamiento() {
 		return tipoAgrupamiento;
 	}
@@ -186,6 +178,14 @@ public class Proyecto extends BusinessObject {
 
 	public void setObjetivosGenerales(Collection<ObjetivoGeneral> objetivosGenerales) {
 		this.objetivosGenerales = objetivosGenerales;
+	}
+
+	public Archivo getArchivo() {
+		return archivo;
+	}
+
+	public void setArchivo(Archivo archivo) {
+		this.archivo = archivo;
 	}
 
 	@Override

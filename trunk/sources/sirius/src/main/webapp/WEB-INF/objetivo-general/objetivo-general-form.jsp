@@ -15,7 +15,7 @@
 
 	<h1>Datos</h1>
 	<div style="float:left;">
-	<p>
+		<p>
 		<label for="idProyecto"><bean:message key="sirius.objetivoGeneral.proyecto.label" />(*)&nbsp;:</label>
 		<logic:equal name="objetivoGeneralForm" property="action.descripcion" value="update">
 			<html:text maxlength="255" property="labelProyecto" readonly="true" />

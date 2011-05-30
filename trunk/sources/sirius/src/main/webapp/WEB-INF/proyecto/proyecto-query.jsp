@@ -24,7 +24,7 @@ function confirmarAccion(mensaje) {
 	<html:form action="/proyecto/proyecto-query.do?method=query">
 	<h1>Búsqueda de Proyectos</h1>
 	<div style="float:left; width: 100%;">
-	<p>
+		<p>
 		<label for="filtroNombre"><bean:message key="sirius.proyecto.nombre.label" />:</label>
 		<html:text property="filtroNombre" />
 		</p><br><p>
@@ -38,6 +38,12 @@ function confirmarAccion(mensaje) {
 		<html:select property="filtroIdResponsable">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="proyectoForm" property="responsables" label="nombreYApellido" value="id"/>
+		</html:select>
+		</p><br><p>
+		<label for="filtroIdCoordinador"><bean:message key="sirius.proyecto.coordinador.label" />:</label>
+		<html:select property="filtroIdCoordinador">
+			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
+			<html:optionsCollection name="proyectoForm" property="coordinadores" label="nombreYApellido" value="id"/>
 		</html:select>
 		</p><br><p>
 		<label for="filtroIdFinanciador"><bean:message key="sirius.proyecto.financiador.label" />:</label>
