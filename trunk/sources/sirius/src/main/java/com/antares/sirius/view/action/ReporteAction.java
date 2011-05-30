@@ -22,9 +22,13 @@ import net.sf.jasperreports.j2ee.servlets.ImageServlet;
 
 import org.apache.struts.actions.DispatchAction;
 
+import ar.com.fdvs.dj.domain.AutoText;
+import ar.com.fdvs.dj.domain.ImageBanner;
 import ar.com.fdvs.dj.domain.Style;
 import ar.com.fdvs.dj.domain.builders.ColumnBuilder;
 import ar.com.fdvs.dj.domain.builders.ColumnBuilderException;
+import ar.com.fdvs.dj.domain.builders.DynamicReportBuilder;
+import ar.com.fdvs.dj.domain.builders.StyleBuilder;
 import ar.com.fdvs.dj.domain.constants.Border;
 import ar.com.fdvs.dj.domain.constants.Font;
 import ar.com.fdvs.dj.domain.constants.HorizontalAlign;
@@ -125,6 +129,35 @@ public class ReporteAction extends DispatchAction {
 		}
 	}
 
+	public static DynamicReportBuilder getDynamicReport(String title, String subtitle, String reportName){
+		
+		DynamicReportBuilder drb = new DynamicReportBuilder();
+		drb.setTitle(title)	
+		        .setSubtitle(subtitle)
+		        .setReportName(reportName);		
+	
+   		Style oddRowStyle = new Style();
+  		oddRowStyle.setBorder(Border.NO_BORDER); oddRowStyle.setBackgroundColor(Color.LIGHT_GRAY);oddRowStyle.setTransparency(Transparency.OPAQUE);
+		Integer margin = new Integer(15);
+		Style atStyle2 = new StyleBuilder(true).setFont(new Font(9, Font._FONT_TIMES_NEW_ROMAN, false, true, false)).setTextColor(Color.BLACK).build();
+		drb.addAutoText(AutoText.AUTOTEXT_PAGE_X_SLASH_Y, AutoText.POSITION_FOOTER, AutoText.ALIGNMENT_RIGHT,30,30,atStyle2);
+		drb.setUseFullPageWidth(true); 
+
+		drb.setTitleStyle(getTitleStyle())
+			.setDefaultStyles(getTitleStyle(), getSubtitleStyle(), getHeaderStyle(), getDetailStyle())
+			.setDetailHeight(new Integer(15))
+			.setLeftMargin(margin)
+			.setRightMargin(margin)
+			.setTopMargin(margin)
+			.setBottomMargin(margin)
+			.setPrintBackgroundOnOddRows(true)
+			.setOddRowBackgroundStyle(oddRowStyle)
+			.addFirstPageImageBanner(Constants.ANTARES_LOGO, new Integer(90), new Integer(20), ImageBanner.ALIGN_RIGHT);
+		  ;
+		  
+		return drb;
+	}
+	
 	public static Style getHeaderStyle(){
 		Style headerStyle = new Style();
   		headerStyle.setFont(Font.VERDANA_MEDIUM_BOLD);

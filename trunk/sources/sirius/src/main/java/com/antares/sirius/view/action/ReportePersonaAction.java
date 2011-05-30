@@ -3,7 +3,6 @@
  */
 package com.antares.sirius.view.action;
 
-import java.awt.Color;
 import java.util.Collection;
 import java.util.Date;
 
@@ -20,15 +19,8 @@ import org.apache.struts.action.ActionMapping;
 
 import ar.com.fdvs.dj.core.DynamicJasperHelper;
 import ar.com.fdvs.dj.core.layout.ClassicLayoutManager;
-import ar.com.fdvs.dj.domain.AutoText;
 import ar.com.fdvs.dj.domain.DynamicReport;
-import ar.com.fdvs.dj.domain.ImageBanner;
-import ar.com.fdvs.dj.domain.Style;
 import ar.com.fdvs.dj.domain.builders.DynamicReportBuilder;
-import ar.com.fdvs.dj.domain.builders.StyleBuilder;
-import ar.com.fdvs.dj.domain.constants.Border;
-import ar.com.fdvs.dj.domain.constants.Font;
-import ar.com.fdvs.dj.domain.constants.Transparency;
 import ar.com.fdvs.dj.domain.entities.columns.AbstractColumn;
 
 import com.antares.commons.util.ReportUtils;
@@ -119,29 +111,9 @@ public class ReportePersonaAction extends ReporteAction{
 		PersonaFilter filter = this.createFilter(viewForm);
 		Collection<Persona> result = personaService.findByFilter(filter);
 
-   		Style oddRowStyle = new Style();
-  		oddRowStyle.setBorder(Border.NO_BORDER); oddRowStyle.setBackgroundColor(Color.LIGHT_GRAY);oddRowStyle.setTransparency(Transparency.OPAQUE);
-		
-		
-		DynamicReportBuilder drb = new DynamicReportBuilder();
-		drb.setTitle("SAHDES")	
-		        .setSubtitle("Reporte de Personal")
-		        .setReportName("ReportePersonas");		
-	
-		Integer margin = new Integer(15);
-		drb.setTitleStyle(getTitleStyle())
-			.setDefaultStyles(getTitleStyle(), getSubtitleStyle(), getHeaderStyle(), getDetailStyle())
-			.setDetailHeight(new Integer(15))
-			.setLeftMargin(margin)
-			.setRightMargin(margin)
-			.setTopMargin(margin)
-			.setBottomMargin(margin)
-			.setPrintBackgroundOnOddRows(true)
-			.setOddRowBackgroundStyle(oddRowStyle)
-			.addFirstPageImageBanner("/reports/Antares.jpg", new Integer(90), new Integer(20), ImageBanner.ALIGN_RIGHT);
-		  ;
-		
-		//Cargo columnas por defecto
+		DynamicReportBuilder drb = getDynamicReport("SAHDES", "Reporte de Personal", "ReportePersonas");
+
+		//Carga columnas por defecto
 		AbstractColumn columnaNombre = 
 			getColumn("nombre", String.class, "Nombre", 80, getHeaderStyle(), getDetailStyle());
 		drb.addColumn(columnaNombre);
@@ -149,7 +121,8 @@ public class ReportePersonaAction extends ReporteAction{
 		AbstractColumn columnaApellido = 
 		    getColumn("apellido", String.class, "Apellido", 80, getHeaderStyle(), getDetailStyle());
 		drb.addColumn(columnaApellido);
-		
+
+		//Carga de columnas seleccionadas por el usuario
 		if (viewForm.getVerNumeroDocumento()){
 			
 			AbstractColumn columnaNumeroDocumento =
@@ -207,10 +180,6 @@ public class ReportePersonaAction extends ReporteAction{
 			drb.addColumn(columnaRelacionContractual);
 		}
 
-		Style atStyle2 = new StyleBuilder(true).setFont(new Font(9, Font._FONT_TIMES_NEW_ROMAN, false, true, false)).setTextColor(Color.BLACK).build();
-		drb.addAutoText(AutoText.AUTOTEXT_PAGE_X_SLASH_Y, AutoText.POSITION_FOOTER, AutoText.ALIGNMENT_RIGHT,30,30,atStyle2);
-		drb.setUseFullPageWidth(true); 
-        
 		DynamicReport dr = drb.build(); //Build the report
 		
 		JRDataSource ds = new JRBeanCollectionDataSource(result);

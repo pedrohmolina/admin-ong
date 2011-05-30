@@ -8,11 +8,19 @@ import java.util.Collection;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+
+import ar.com.fdvs.dj.core.DynamicJasperHelper;
+import ar.com.fdvs.dj.core.layout.ClassicLayoutManager;
+import ar.com.fdvs.dj.domain.DynamicReport;
+import ar.com.fdvs.dj.domain.builders.DynamicReportBuilder;
+import ar.com.fdvs.dj.domain.entities.columns.AbstractColumn;
 
 import com.antares.commons.util.ReportUtils;
 import com.antares.sirius.filter.FinanciadorFilter;
@@ -56,6 +64,25 @@ public class ReporteFinanciadorAction extends ReporteAction{
 	}
 	
 	/**
+	 * Genera una vista previa de los resultados a ser visualizados en el reporte
+	 * 
+	 * @param mapping
+	 * @param form
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ActionForward verResultados(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		ReporteFinanciadorForm viewForm = (ReporteFinanciadorForm)form;
+		FinanciadorFilter filter = this.createFilter(viewForm);
+		Collection<Financiador> result = financiadorService.findByFilter(filter);
+		viewForm.setResult(result);
+		return mapping.findForward("verResultados");
+	}
+	
+	/**
 	 * Genera el reporte de Financiadores acorde a los parametros ingresados
 	 * 
 	 * @param mapping
@@ -71,9 +98,79 @@ public class ReporteFinanciadorAction extends ReporteAction{
 		FinanciadorFilter filter = this.createFilter(viewForm);
 		Collection<Financiador> result = financiadorService.findByFilter(filter);
 
-		String reportType = viewForm.getFormatoReporte();
-		JasperPrint jasperPrint = reporteFinanciadorService.generateReportBytes(result);
+		DynamicReportBuilder drb = getDynamicReport("SAHDES", "Reporte de Financiadores", "ReporteFinanciadores");
+		
+		//Carga columnas por defecto
+		AbstractColumn columnaNombre = 
+			getColumn("nombre", String.class, "Nombre", 80, getHeaderStyle(), getDetailStyle());
+		drb.addColumn(columnaNombre);
+		
+		//Carga de columnas seleccionadas por el usuario
+		if (viewForm.getVerTipoFinanciador()){
+			
+			AbstractColumn columnaNumeroDocumento =
+			    getColumn("tipoFinanciador.descripcion", String.class, "Tipo Financiador", 80, getHeaderStyle(), getDetailStyle());
+			drb.addColumn(columnaNumeroDocumento);
 
+		}
+
+		if (viewForm.getVerEstadoFinanciador()){
+			
+			AbstractColumn columnaNumeroDocumento =
+			    getColumn("estadoFinanciador.descripcion", String.class, "Estado Financiador", 80, getHeaderStyle(), getDetailStyle());
+			drb.addColumn(columnaNumeroDocumento);
+
+		}
+
+		if (viewForm.getVerCuit()){
+			AbstractColumn columnaCuit = 
+			    getColumn("cuit", String.class, "Cuit", 80, getHeaderStyle(), getDetailStyle());
+			drb.addColumn(columnaCuit);
+		}
+
+		if (viewForm.getVerCBU()){
+			AbstractColumn columnaCbu = 
+			    getColumn("cbu", String.class, "CBU", 80, getHeaderStyle(), getDetailStyle());
+			drb.addColumn(columnaCbu);
+		}
+
+		if (viewForm.getVerContacto()){
+			AbstractColumn columnaContacto = 
+			    getColumn("contacto", String.class, "Contacto", 80, getHeaderStyle(), getDetailStyle());
+			drb.addColumn(columnaContacto);
+		}
+		
+		if (viewForm.getVerDireccion()){
+			AbstractColumn columnaDireccion = 
+			    getColumn("direccion", String.class, "Direccion", 80, getHeaderStyle(), getDetailStyle());
+			drb.addColumn(columnaDireccion);
+		}
+
+		if (viewForm.getVerTelefono()){
+			AbstractColumn columnaTelefono = 
+			    getColumn("telefono", String.class, "Telefono", 80, getHeaderStyle(), getDetailStyle());
+			drb.addColumn(columnaTelefono);
+		}
+
+		if (viewForm.getVerEmail()){
+			AbstractColumn columnaTelefono = 
+			    getColumn("email", String.class, "Email", 80, getHeaderStyle(), getDetailStyle());
+			drb.addColumn(columnaTelefono);
+		}
+
+		if (viewForm.getVerObservaciones()){
+			AbstractColumn columnaTelefono = 
+			    getColumn("observaciones", String.class, "Observaciones", 80, getHeaderStyle(), getDetailStyle());
+			drb.addColumn(columnaTelefono);
+		}
+
+		DynamicReport dr = drb.build(); //Build the report
+		
+		JRDataSource ds = new JRBeanCollectionDataSource(result);
+		JasperPrint jasperPrint = DynamicJasperHelper.generateJasperPrint(dr, new ClassicLayoutManager(), ds);
+
+		String reportType = viewForm.getFormatoReporte();
+		
 		this.generateReport(request, response, reportType, jasperPrint);
 
 		return mapping.findForward("null");

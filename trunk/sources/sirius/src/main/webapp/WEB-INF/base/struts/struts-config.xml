@@ -522,12 +522,14 @@
 		<action path="/reportes/reporte-financiador" name="reporteFinanciadorForm" parameter="method" 
 				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
 			<forward name="init" 			   		   path=".reporteFinanciador" />
+			<forward name="verResultados"		 	   path=".reporteFinanciador" />
 			<forward name="generarReporteFinanciador"  path=".reporteFinanciador" />
 		</action>
 		
 		<action path="/reportes/reporte-proveedor" name="reporteProveedorForm" parameter="method" 
 				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
 			<forward name="init" 			   		   path=".reporteProveedor" />
+			<forward name="verResultados"		 	   path=".reporteProveedor" />
 			<forward name="generarReporteProveedor"    path=".reporteProveedor" />
 		</action>
 		

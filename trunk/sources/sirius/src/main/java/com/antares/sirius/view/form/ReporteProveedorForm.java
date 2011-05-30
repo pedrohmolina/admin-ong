@@ -21,6 +21,7 @@ public class ReporteProveedorForm extends ActionForm{
 	private Collection<FormatoReporte> formatosReporte;
 	private String formatoReporte;
 
+	//Filtros
 	private String nombre;
 	private String cuit;
 	private String cbu;
@@ -28,6 +29,61 @@ public class ReporteProveedorForm extends ActionForm{
 	private String labelTipoProveedor;
 	
 	private Collection<TipoProveedor> tiposProveedor;
+	
+	//Lista Previa de resultados
+	private Collection<Proveedor> result;
+	
+	//Columnas a visualizar en el reporte
+	private Boolean verTipoProveedor;
+	private Boolean verCuit;
+	private Boolean verCBU;
+	private Boolean verContacto;
+	private Boolean verDireccion;
+	private Boolean verTelefono;
+	private Boolean verEmail;
+	private Boolean verObservaciones;
+
+	public void initialize() {
+		this.nombre = "";
+		this.cuit = "";
+		this.cbu = "";
+		this.idTipoProveedor = "";
+		this.labelTipoProveedor = "";
+		this.verTipoProveedor = false;
+		this.verCuit = false;
+		this.verCBU = false;
+		this.verContacto = false;
+		this.verDireccion = false;
+		this.verTelefono = false;
+		this.verEmail = false;
+		this.verObservaciones = false;
+	}
+
+	public void initializeForm() {
+		this.nombre = "";
+		this.cuit = "";
+		this.cbu = "";
+		this.idTipoProveedor = "";
+		this.labelTipoProveedor = "";
+		this.verTipoProveedor = false;
+		this.verCuit = false;
+		this.verCBU = false;
+		this.verContacto = false;
+		this.verDireccion = false;
+		this.verTelefono = false;
+		this.verEmail = false;
+		this.verObservaciones = false;
+
+	}
+
+	public void initializeForm(Proveedor entity) {
+		this.nombre = entity.getNombre();
+		this.cuit = entity.getCuit();
+		this.cbu = entity.getCbu();
+		this.idTipoProveedor = entity.getTipoProveedor().getId().toString();
+		this.labelTipoProveedor = entity.getTipoProveedor().getDescripcion();
+	}
+
 	/**
 	 * @return the formatosReporte
 	 */
@@ -125,29 +181,116 @@ public class ReporteProveedorForm extends ActionForm{
 		this.labelTipoProveedor = labelTipoProveedor;
 	}
 	
-	public void initialize() {
-		this.nombre = "";
-		this.cuit = "";
-		this.cbu = "";
-		this.idTipoProveedor = "";
-		this.labelTipoProveedor = "";
+	
+	/**
+	 * @return the result
+	 */
+	public Collection<Proveedor> getResult() {
+		return result;
 	}
-
-	public void initializeForm() {
-		this.nombre = "";
-		this.cuit = "";
-		this.cbu = "";
-		this.idTipoProveedor = "";
-		this.labelTipoProveedor = "";
-	}
-
-	public void initializeForm(Proveedor entity) {
-		this.nombre = entity.getNombre();
-		this.cuit = entity.getCuit();
-		this.cbu = entity.getCbu();
-		this.idTipoProveedor = entity.getTipoProveedor().getId().toString();
-		this.labelTipoProveedor = entity.getTipoProveedor().getDescripcion();
+	/**
+	 * @param result the result to set
+	 */
+	public void setResult(Collection<Proveedor> result) {
+		this.result = result;
 	}
 	
+	
+	/**
+	 * @return the verTipoProveedor
+	 */
+	public Boolean getVerTipoProveedor() {
+		return verTipoProveedor;
+	}
+	/**
+	 * @param verTipoProveedor the verTipoProveedor to set
+	 */
+	public void setVerTipoProveedor(Boolean verTipoProveedor) {
+		this.verTipoProveedor = verTipoProveedor;
+	}
+	/**
+	 * @return the verCuit
+	 */
+	public Boolean getVerCuit() {
+		return verCuit;
+	}
+	/**
+	 * @param verCuit the verCuit to set
+	 */
+	public void setVerCuit(Boolean verCuit) {
+		this.verCuit = verCuit;
+	}
+	/**
+	 * @return the verCBU
+	 */
+	public Boolean getVerCBU() {
+		return verCBU;
+	}
+	/**
+	 * @param verCBU the verCBU to set
+	 */
+	public void setVerCBU(Boolean verCBU) {
+		this.verCBU = verCBU;
+	}
+	/**
+	 * @return the verContacto
+	 */
+	public Boolean getVerContacto() {
+		return verContacto;
+	}
+	/**
+	 * @param verContacto the verContacto to set
+	 */
+	public void setVerContacto(Boolean verContacto) {
+		this.verContacto = verContacto;
+	}
+	/**
+	 * @return the verDireccion
+	 */
+	public Boolean getVerDireccion() {
+		return verDireccion;
+	}
+	/**
+	 * @param verDireccion the verDireccion to set
+	 */
+	public void setVerDireccion(Boolean verDireccion) {
+		this.verDireccion = verDireccion;
+	}
+	/**
+	 * @return the verTelefono
+	 */
+	public Boolean getVerTelefono() {
+		return verTelefono;
+	}
+	/**
+	 * @param verTelefono the verTelefono to set
+	 */
+	public void setVerTelefono(Boolean verTelefono) {
+		this.verTelefono = verTelefono;
+	}
+	/**
+	 * @return the verEmail
+	 */
+	public Boolean getVerEmail() {
+		return verEmail;
+	}
+	/**
+	 * @param verEmail the verEmail to set
+	 */
+	public void setVerEmail(Boolean verEmail) {
+		this.verEmail = verEmail;
+	}
+	/**
+	 * @return the verObservaciones
+	 */
+	public Boolean getVerObservaciones() {
+		return verObservaciones;
+	}
+	/**
+	 * @param verObservaciones the verObservaciones to set
+	 */
+	public void setVerObservaciones(Boolean verObservaciones) {
+		this.verObservaciones = verObservaciones;
+	}
 
 }
