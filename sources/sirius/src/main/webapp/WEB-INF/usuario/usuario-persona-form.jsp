@@ -15,7 +15,7 @@
 
 	<h1>Datos</h1>
 	<div style="float:left;">
-	<p>
+		<p>
 		<label for="username"><bean:message key="sirius.usuario.username.label" />(*)&nbsp;:</label>
 		<logic:equal name="usuarioPersonaForm" property="action.descripcion" value="create">
 			<html:text property="username" />

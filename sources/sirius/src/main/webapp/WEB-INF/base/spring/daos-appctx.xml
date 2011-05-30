@@ -23,6 +23,7 @@
 
 	<!-- DAOs de entidades simples -->
 	<bean id="accesoDAO" 				class="com.antares.sirius.dao.impl.AccesoDAOImpl" 				autowire="byName" />
+	<bean id="archivoDAO" 				class="com.antares.sirius.dao.impl.ArchivoDAOImpl" 				autowire="byName" />
 	<bean id="areaTematicaDAO" 			class="com.antares.sirius.dao.impl.AreaTematicaDAOImpl" 		autowire="byName" />
 	<bean id="estadoActividadDAO" 		class="com.antares.sirius.dao.impl.EstadoActividadDAOImpl" 		autowire="byName" />
 	<bean id="estadoFinanciadorDAO" 	class="com.antares.sirius.dao.impl.EstadoFinanciadorDAOImpl" 	autowire="byName" />

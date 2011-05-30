@@ -31,6 +31,8 @@ public class GastoFilter extends Filter<Gasto> {
 	private Origen origen;
 	private Proveedor proveedor;
 	private Date fecha;
+	private Date fechaDesde;
+	private Date fechaHasta;
 
 	public Proyecto getProyecto() {
 		return proyecto;
@@ -85,6 +87,18 @@ public class GastoFilter extends Filter<Gasto> {
 	}
 	public void setProyectoActividad(Proyecto proyectoActividad) {
 		this.proyectoActividad = proyectoActividad;
+	}
+	public Date getFechaDesde() {
+		return fechaDesde;
+	}
+	public void setFechaDesde(Date fechaDesde) {
+		this.fechaDesde = fechaDesde;
+	}
+	public Date getFechaHasta() {
+		return fechaHasta;
+	}
+	public void setFechaHasta(Date fechaHasta) {
+		this.fechaHasta = fechaHasta;
 	}
 
 }

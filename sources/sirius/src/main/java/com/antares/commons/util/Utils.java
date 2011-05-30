@@ -3,9 +3,11 @@ package com.antares.commons.util;
 import static com.antares.sirius.base.Constants.DEFAULT_DATE_FORMAT;
 import static com.antares.sirius.base.Constants.DEFAULT_DECIMAL_FORMAT;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.security.MessageDigest;
+import java.sql.Blob;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -15,6 +17,8 @@ import java.util.Date;
 import org.acegisecurity.Authentication;
 import org.acegisecurity.context.SecurityContextHolder;
 import org.apache.log4j.Logger;
+import org.apache.struts.upload.FormFile;
+import org.hibernate.Hibernate;
 import org.springframework.context.MessageSource;
 
 import com.antares.sirius.model.PersistentObject;
@@ -242,4 +246,19 @@ public class Utils {
 		return rval;
 	}
 
+	/**
+	 * Devuelve un Blob con el contenido del FormFile
+	 * 
+	 * @param formFile FormFile con el contenido del archivo a transformar en Blob
+	 * @return Blob con el contenido del archivo
+	 */
+	public static Blob createBlob(FormFile formFile) {
+		Blob blob = null;
+		try {
+			blob = Hibernate.createBlob(formFile.getInputStream());
+		} catch (IOException e) {
+			// Si da una excepcion IO, devuelvo null
+		}
+		return blob;
+	}
 }

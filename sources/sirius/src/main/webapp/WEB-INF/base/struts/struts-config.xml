@@ -40,6 +40,7 @@
 		<form-bean name="rubroForm" 				type="com.antares.sirius.view.form.RubroForm" />
 		<form-bean name="usuarioForm" 				type="com.antares.sirius.view.form.UsuarioForm" />
 		<form-bean name="usuarioPersonaForm" 		type="com.antares.sirius.view.form.UsuarioPersonaForm" />
+		<form-bean name="usuarioPasswordForm" 		type="com.antares.sirius.view.form.UsuarioPasswordForm" />
 		<form-bean name="reportePersonaForm" 		type="com.antares.sirius.view.form.ReportePersonaForm" />
 		<form-bean name="reporteFinanciadorForm" 	type="com.antares.sirius.view.form.ReporteFinanciadorForm" />
 		<form-bean name="reporteProveedorForm" 		type="com.antares.sirius.view.form.ReporteProveedorForm" />
@@ -163,8 +164,14 @@
 		<action path="/gasto/gasto-actividad-form-validate" name="gastoActividadForm" parameter="method" 
 				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
 				input="/gasto/gasto-actividad-form.do?method=initForm">
-			<forward name="success" 	path="/public/message.do" />
-			<forward name="error" 		path="/gasto/gasto-actividad-form.do?method=initForm" />
+			<forward name="successEdit" 	path="/gasto/gasto-actividad-query.do?method=query" />
+			<forward name="successCreate" 	path="/public/message.do" />
+			<forward name="error" 			path="/gasto/gasto-actividad-form.do?method=initForm" />
+		</action>
+
+		<action path="/gasto/gasto-actividad-list" name="gastoActividadForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="query" 		path=".abmGastoActividadList" />
 		</action>
 		<!-- Fin de actions de gastos de actividad -->
 
@@ -509,7 +516,24 @@
 			<forward name="error" 		path="/usuario/usuario-persona-form.do?method=initFormUsuarioPersona" />
 		</action>
 
+		<action path="/usuario/usuario-password-form" name="usuarioPasswordForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="form" 		path=".abmUsuarioPasswordForm" />
+		</action>
+
+		<action path="/usuario/usuario-password-form-validate" name="usuarioPasswordForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/usuario/usuario-password-form.do?method=initCambiarPassword">
+			<forward name="success" 	path="/public/message.do" />
+			<forward name="error" 		path="/usuario/usuario-password-form.do?method=initCambiarPassword" />
+		</action>
+
 		<!-- Fin de actions de usuarios -->
+
+		<!-- Actions para archivos -->
+		<action path="/archivo/archivo" name="usuarioForm" parameter="method" 
+				scope="request" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false" />
+		<!-- Fin de actions para archivos -->
 
 		<!-- Actions de reportes -->
 		<action path="/reportes/reporte-persona" name="reportePersonaForm" parameter="method" 

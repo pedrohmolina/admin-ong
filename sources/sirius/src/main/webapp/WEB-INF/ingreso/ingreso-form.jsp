@@ -34,7 +34,7 @@
 
 	<h1>Datos</h1>
 	<div style="float:left;">
-	<p>
+		<p>
 		<label for="idTipoIngreso"><bean:message key="sirius.ingreso.tipoIngreso.label" />(*)&nbsp;:</label>
 		<html:select property="idTipoIngreso" onchange="changeTipoIngreso();" styleId="tipoIngreso">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>

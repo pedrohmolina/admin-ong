@@ -24,6 +24,7 @@ import com.antares.sirius.service.RelacionContractualService;
 import com.antares.sirius.service.TipoDocumentoService;
 import com.antares.sirius.service.UsuarioService;
 import com.antares.sirius.view.form.UsuarioForm;
+import com.antares.sirius.view.form.UsuarioPasswordForm;
 import com.antares.sirius.view.form.UsuarioPersonaForm;
 
 public class UsuarioAction extends BaseAction<Usuario, UsuarioForm, UsuarioService> {
@@ -85,7 +86,9 @@ public class UsuarioAction extends BaseAction<Usuario, UsuarioForm, UsuarioServi
 		entity.setPerfil(perfilService.findById(Integer.parseInt(form.getIdPerfil())));
 
 		if (form.getAction().equals(CREATE)) {
-			entity.setPassword(Utils.encode(form.getUsername() + form.getPassword()));
+			//TODO deberia quedar asi, pero actualmente la seguridad no funciona con username+pass
+//			entity.setPassword(Utils.encode(form.getUsername() + form.getPassword()));
+			entity.setPassword(Utils.encode(form.getPassword()));
 		}
 	}
 
@@ -115,8 +118,7 @@ public class UsuarioAction extends BaseAction<Usuario, UsuarioForm, UsuarioServi
 			viewForm.setPerfiles(perfilService.findAll());
 			forward = mapping.findForward("form");
 		} else {
-			//TODO Se deberia mostrar un error diciendo que no se puede crear un usuario para esa persona
-			forward = mapping.findForward("error");
+			forward = mapping.findForward("restrictedAccess");
 		}
 
 		return forward;
@@ -137,7 +139,10 @@ public class UsuarioAction extends BaseAction<Usuario, UsuarioForm, UsuarioServi
 					Persona persona = personaService.findById(viewForm.getIdPersona());
 					usuario.setPersona(persona);
 					usuario.setUsername(viewForm.getUsername());
-					usuario.setPassword(Utils.encode(viewForm.getUsername() + viewForm.getPassword()));
+
+					//TODO deberia quedar asi, pero actualmente la seguridad no funciona con username+pass
+//					usuario.setPassword(Utils.encode(viewForm.getUsername() + viewForm.getPassword()));
+					usuario.setPassword(Utils.encode(viewForm.getPassword()));
 					usuario.setPerfil(perfilService.findById(Integer.parseInt(viewForm.getIdPerfil())));
 					service.save(usuario);
 	
@@ -195,6 +200,46 @@ public class UsuarioAction extends BaseAction<Usuario, UsuarioForm, UsuarioServi
 			forward = mapping.findForward("restrictedAccess"); 
 		}
 		return forward;
+	}
+
+	public ActionForward initCambiarPassword(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		UsuarioPasswordForm viewForm = (UsuarioPasswordForm)form;
+		viewForm.initializeForm();
+		return mapping.findForward("form");
+	}
+
+	public ActionForward savePassword(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		UsuarioPasswordForm viewForm = (UsuarioPasswordForm)form;
+		ActionForward forward = mapping.findForward("success");
+		try {
+			ActionErrors errors = validatePassword(Utils.getUsername(), viewForm.getPasswordActual());
+			if (errors.isEmpty()) {
+				Usuario usuario = service.findByUsername(Utils.getUsername());
+
+				//TODO deberia quedar asi, pero actualmente la seguridad no funciona con username+pass
+//				usuario.setPassword(Utils.encode(usuario.getUsername() + viewForm.getPassword()));
+				usuario.setPassword(Utils.encode(viewForm.getPassword()));
+				service.save(usuario);
+			} else {
+				saveErrors(request, errors);
+				forward = mapping.findForward("error"); 
+			}
+		} catch (RestrictedAccessException e) {
+			forward = mapping.findForward("restrictedAccess"); 
+		}
+		return forward;
+	}
+
+	private ActionErrors validatePassword(String username, String password) {
+		ActionErrors errors = new ActionErrors();
+		Usuario usuario = service.findByUsername(username);
+
+		//TODO deberia quedar asi, pero actualmente la seguridad no funciona con username+pass
+//		if (!usuario.getPassword().equals(Utils.encode(usuario.getUsername() + password))) {
+		if (!usuario.getPassword().equals(Utils.encode(password))) {
+			errors.add("error", new ActionMessage("errors.invalidPasswordActual"));
+		}
+		return errors;
 	}
 
 	public void setRelacionContractualService(RelacionContractualService relacionContractualService) {

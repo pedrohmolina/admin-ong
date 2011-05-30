@@ -11,11 +11,11 @@
 <%@ taglib uri="/WEB-INF/tlds/authz.tld" prefix="authz"%>
 
 <div class="form">
-<html:form action="/proyecto/proyecto-form-validate.do?method=save" styleId="abmForm">
+<html:form action="/proyecto/proyecto-form-validate.do?method=save" styleId="abmForm" enctype="multipart/form-data">
 
 	<h1>Datos</h1>
 	<div style="float:left;">
-	<p>
+		<p>
 		<label for="nombre"><bean:message key="sirius.proyecto.nombre.label" />(*)&nbsp;:</label>
 		<html:text property="nombre" />
 		</p><br><p>
@@ -58,8 +58,9 @@
 		<html:select property="idAreaTematica" multiple="true">
 			<html:optionsCollection name="proyectoForm" property="areasTematicas" label="descripcion" value="id"/>
 		</html:select>
-		</p><br><p>
+		</p><br>
 		<logic:iterate id="tipoAgrupamiento" name="proyectoForm" property="tiposAgrupamiento">
+			<p>
 			<logic:equal name="proyectoForm" property="action.descripcion" value="create">
 				<html-el:radio property="idTipoAgrupamiento" value="${tipoAgrupamiento.id}" />
 			</logic:equal>
@@ -67,9 +68,22 @@
 				<html-el:radio property="idTipoAgrupamiento" value="${tipoAgrupamiento.id}" disabled="true"/>
 			</logic:equal>
 			<bean:write name="tipoAgrupamiento" property="descripcion" />
-			<br /> 
+			</p><br>
 		</logic:iterate>
+		</p><br><p>
+		<label for="idArchivo"><bean:message key="sirius.proyecto.archivo.label" />&nbsp;:</label>
+		<html:file property="archivo" style="width:300px"/>
 		</p><br>
+		<logic:notEmpty name="proyectoForm" property="hashArchivo">
+			<p>
+			<label>&nbsp;</label>
+			<c:url var="url" value="/archivo/archivo.do">
+				<c:param name="method" value="download" />
+				<c:param name="hash" value="${proyectoForm.hashArchivo}" />
+			</c:url>
+			<a href="<c:out value="${url}"/>"><bean:write name="proyectoForm" property="nombreArchivo"/></a>
+			</p><br>
+		</logic:notEmpty>
 	</div>
 	
 	<div style="clear:both; padding:5px 0 0 0;">

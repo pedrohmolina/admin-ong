@@ -19,7 +19,7 @@
 <html:form action="/objetivo-general/objetivo-general-query.do?method=query">
 	<h1>Datos</h1>
 	<div style="float:left;">
-	<p>
+		<p>
 		<label for="labelProyecto"><bean:message key="sirius.objetivoGeneral.proyecto.label" />&nbsp;:</label>
 		<html:text maxlength="255" property="labelProyecto" readonly="true" />
 		</p><br><p>

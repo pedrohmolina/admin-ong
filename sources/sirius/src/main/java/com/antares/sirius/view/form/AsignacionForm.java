@@ -6,6 +6,7 @@ import com.antares.commons.view.form.AbstractForm;
 import com.antares.sirius.model.Actividad;
 import com.antares.sirius.model.Asignacion;
 import com.antares.sirius.model.Persona;
+import com.antares.sirius.model.Proyecto;
 import com.antares.sirius.model.TipoAsignacion;
 
 /**
@@ -21,12 +22,15 @@ public class AsignacionForm extends AbstractForm<Asignacion> {
 
 	private String cantidad;
 	private String idTipoAsignacion;
+	private String idProyecto;
 	private String idActividad;
 	private String idPersona;
 	private Collection<TipoAsignacion> tiposAsignacion;
+	private Collection<Proyecto> proyectos;
 	private Collection<Actividad> actividades;
 	private Collection<Persona> personas;
 
+	private String filtroIdProyecto;
 	private String filtroIdActividad;
 	private String filtroIdPersona;
 
@@ -130,14 +134,40 @@ public class AsignacionForm extends AbstractForm<Asignacion> {
 		this.labelPersona = labelPersona;
 	}
 
+	public String getFiltroIdProyecto() {
+		return filtroIdProyecto;
+	}
+
+	public void setFiltroIdProyecto(String filtroIdProyecto) {
+		this.filtroIdProyecto = filtroIdProyecto;
+	}
+
+	public Collection<Proyecto> getProyectos() {
+		return proyectos;
+	}
+
+	public void setProyectos(Collection<Proyecto> proyectos) {
+		this.proyectos = proyectos;
+	}
+
+	public String getIdProyecto() {
+		return idProyecto;
+	}
+
+	public void setIdProyecto(String idProyecto) {
+		this.idProyecto = idProyecto;
+	}
+
 	@Override
 	public void initialize() {
 		this.id = null;
 		this.result = null;
 		this.cantidad = "";
 		this.idTipoAsignacion = "";
+		this.idProyecto = "";
 		this.idActividad = "";
 		this.idPersona = "";
+		this.filtroIdProyecto = "";
 		this.filtroIdActividad = "";
 		this.filtroIdPersona = "";
 		this.labelTipoAsignacion = "";
@@ -150,6 +180,7 @@ public class AsignacionForm extends AbstractForm<Asignacion> {
 		this.id = null;
 		this.cantidad = "";
 		this.idTipoAsignacion = "";
+		this.idProyecto = "";
 		this.idActividad = "";
 		this.idPersona = "";
 		this.labelTipoAsignacion = "";
@@ -162,6 +193,7 @@ public class AsignacionForm extends AbstractForm<Asignacion> {
 		this.id = entity.getId();
 		this.cantidad = entity.getCantidad().toString();
 		this.idTipoAsignacion = entity.getTipoAsignacion().getId().toString();
+		this.idProyecto = "";
 		this.idActividad = entity.getActividad().getId().toString();
 		this.idPersona = entity.getPersona().getId().toString();
 		this.labelTipoAsignacion = entity.getTipoAsignacion().getDescripcion();

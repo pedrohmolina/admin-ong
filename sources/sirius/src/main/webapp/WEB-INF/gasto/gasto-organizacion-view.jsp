@@ -19,7 +19,7 @@
 <html:form action="/gasto/gasto-organizacion-query.do?method=query">
 	<h1>Datos</h1>
 	<div style="float:left;">
-	<p>
+		<p>
 		<label for="fecha"><bean:message key="sirius.gasto.fecha.label" />:</label>
 		<html:text property="fecha" readonly="true" />
 		</p><br><p>

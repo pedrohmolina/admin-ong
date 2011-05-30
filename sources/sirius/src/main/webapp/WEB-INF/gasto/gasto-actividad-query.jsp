@@ -50,7 +50,7 @@ function initReferencia(id) {
 	<html:form action="/gasto/gasto-actividad-query.do?method=query">
 	<h1>Búsqueda de Gastos Registrados por Actividad</h1>
 	<div style="float:left; width: 100%;">
-	<p>
+		<p>
 		<label for="filtroIdProyecto"><bean:message key="sirius.gasto.proyecto.label" />:</label>
 		<html:select property="filtroIdProyecto" styleId="proyecto" onchange="cargarComboActividad(this, 'actividad')">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
@@ -117,6 +117,7 @@ function initReferencia(id) {
 	
 		<display:column sortable="true" property="actividad.proyecto.nombre" 	titleKey="sirius.gasto.proyecto.label" />
 		<display:column sortable="true" property="actividad.nombre" 			titleKey="sirius.gasto.actividad.label" />
+		<display:column sortable="true" property="persona.nombreYApellido" 		titleKey="sirius.gasto.persona.label" />
 		<display:column sortable="true" property="fecha" 						titleKey="sirius.gasto.fecha.label"  	format="{0,date,dd/MM/yyyy}" />
 		<display:column sortable="true" property="rubro.nombre" 				titleKey="sirius.gasto.rubro.label" />
 		<display:column sortable="true" property="proveedor.nombre" 			titleKey="sirius.gasto.proveedor.label" />

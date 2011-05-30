@@ -171,6 +171,10 @@
 		<property name="dao" ref="accesoDAO" /> 
 	</bean>
 	
+	<bean id="archivoService" class="com.antares.sirius.service.impl.ArchivoServiceImpl" autowire="byName">
+		<property name="dao" ref="archivoDAO" /> 
+	</bean>
+	
 	<bean id="areaTematicaService" class="com.antares.sirius.service.impl.AreaTematicaServiceImpl" autowire="byName">
 		<property name="dao" ref="areaTematicaDAO" /> 
 	</bean>

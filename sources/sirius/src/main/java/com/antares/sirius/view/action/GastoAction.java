@@ -34,7 +34,12 @@ public abstract class GastoAction extends BaseAction<Gasto, GastoForm, GastoServ
 		entity.setOrigen(origenService.findById(Integer.parseInt(form.getIdOrigen())));
 		entity.setImporte(Utils.parseDouble(form.getImporte()));
 		entity.setObservaciones(form.getObservaciones());
-		entity.setPersona(findPersona());
+
+		if (Utils.isNullOrEmpty(form.getIdPersona())) {
+			entity.setPersona(findPersona());
+		} else {
+			entity.setPersona(personaService.findById(Integer.parseInt(form.getIdPersona())));
+		}
 	}
 
 	@Override

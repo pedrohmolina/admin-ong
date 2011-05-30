@@ -19,7 +19,7 @@
 <html:form action="/rubro/rubro-query.do?method=query">
 	<h1>Datos</h1>
 	<div style="float:left;">
-	<p>
+		<p>
 		<label for="nombre"><bean:message key="sirius.rubro.nombre.label" />&nbsp;:</label>
 		<html:text maxlength="255" property="nombre" readonly="true" />
 		</p><br><p>

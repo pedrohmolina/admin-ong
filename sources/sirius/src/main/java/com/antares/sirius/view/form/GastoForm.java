@@ -24,7 +24,7 @@ import com.antares.sirius.model.TipoComprobante;
 @SuppressWarnings("serial")
 public class GastoForm extends AbstractForm<Gasto> {
 
-	private Integer idPersona;
+	private String idPersona;
 	private String fecha;
 	private String observaciones;
 	private String importe;
@@ -49,6 +49,8 @@ public class GastoForm extends AbstractForm<Gasto> {
 	private String filtroIdOrigen;
 	private String filtroIdProveedor;
 	private String filtroFecha;
+	private String filtroFechaDesde;
+	private String filtroFechaHasta;
 	private String filtroIdProyecto;
 	private String filtroIdActividad;
 
@@ -65,11 +67,11 @@ public class GastoForm extends AbstractForm<Gasto> {
 	private String referencia = "";
 	private String updated = "";
 
-	public Integer getIdPersona() {
+	public String getIdPersona() {
 		return idPersona;
 	}
 
-	public void setIdPersona(Integer idPersona) {
+	public void setIdPersona(String idPersona) {
 		this.idPersona = idPersona;
 	}
 
@@ -353,11 +355,27 @@ public class GastoForm extends AbstractForm<Gasto> {
 		this.updated = updated;
 	}
 
+	public String getFiltroFechaDesde() {
+		return filtroFechaDesde;
+	}
+
+	public void setFiltroFechaDesde(String filtroFechaDesde) {
+		this.filtroFechaDesde = filtroFechaDesde;
+	}
+
+	public String getFiltroFechaHasta() {
+		return filtroFechaHasta;
+	}
+
+	public void setFiltroFechaHasta(String filtroFechaHasta) {
+		this.filtroFechaHasta = filtroFechaHasta;
+	}
+
 	@Override
 	public void initialize() {
 		this.id = null;
 		this.result = null;
-		this.idPersona = null;
+		this.idPersona = "";
 		this.fecha = "";
 		this.observaciones = "";
 		this.importe = "";
@@ -376,6 +394,8 @@ public class GastoForm extends AbstractForm<Gasto> {
 		this.filtroIdProyecto = "";
 		this.filtroIdActividad = "";
 		this.filtroFecha = "";
+		this.filtroFechaDesde = "";
+		this.filtroFechaHasta = "";
 		this.labelRubro = "";
 		this.labelOrigen = "";
 		this.labelProveedor = "";
@@ -387,7 +407,7 @@ public class GastoForm extends AbstractForm<Gasto> {
 	@Override
 	public void initializeForm() {
 		this.id = null;
-		this.idPersona = null;
+		this.idPersona = "";
 		this.fecha = "";
 		this.observaciones = "";
 		this.importe = "";
@@ -410,7 +430,7 @@ public class GastoForm extends AbstractForm<Gasto> {
 	@Override
 	public void initializeForm(Gasto entity) {
 		this.id = entity.getId();
-		this.idPersona = entity.getPersona().getId();
+		this.idPersona = entity.getPersona().getId().toString();
 		this.fecha = Utils.formatDate(entity.getFecha());
 		this.observaciones = entity.getObservaciones();
 		this.importe = Utils.formatDouble(entity.getImporte());

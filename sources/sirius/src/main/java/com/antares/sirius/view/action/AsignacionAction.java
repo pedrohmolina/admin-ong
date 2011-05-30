@@ -1,6 +1,16 @@
 package com.antares.sirius.view.action;
 
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.struts.action.ActionErrors;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 
 import com.antares.commons.util.Utils;
@@ -9,16 +19,19 @@ import com.antares.sirius.filter.AsignacionFilter;
 import com.antares.sirius.model.Actividad;
 import com.antares.sirius.model.Asignacion;
 import com.antares.sirius.model.Persona;
+import com.antares.sirius.model.Proyecto;
 import com.antares.sirius.model.TipoAsignacion;
 import com.antares.sirius.service.ActividadService;
 import com.antares.sirius.service.AsignacionService;
 import com.antares.sirius.service.PersonaService;
+import com.antares.sirius.service.ProyectoService;
 import com.antares.sirius.service.TipoAsignacionService;
 import com.antares.sirius.view.form.AsignacionForm;
 
 public class AsignacionAction extends BaseAction<Asignacion, AsignacionForm, AsignacionService> {
 
 	private TipoAsignacionService tipoAsignacionService;
+	private ProyectoService proyectoService;
 	private ActividadService actividadService;
 	private PersonaService personaService;
 
@@ -27,6 +40,8 @@ public class AsignacionAction extends BaseAction<Asignacion, AsignacionForm, Asi
 		AsignacionFilter filter = new AsignacionFilter();
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdActividad())) {
 			filter.setActividad(actividadService.findById(Integer.parseInt(form.getFiltroIdActividad())));
+		} else if (Utils.isNotNullNorEmpty(form.getFiltroIdProyecto())) {
+			filter.setProyecto(proyectoService.findById(Integer.parseInt(form.getFiltroIdProyecto())));
 		}
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdPersona())) {
 			filter.setPersona(personaService.findById(Integer.parseInt(form.getFiltroIdPersona())));
@@ -51,6 +66,7 @@ public class AsignacionAction extends BaseAction<Asignacion, AsignacionForm, Asi
 	@Override
 	protected void loadCollections(AsignacionForm form) {
 		form.setTiposAsignacion(tipoAsignacionService.findAll());
+		form.setProyectos(proyectoService.findAll());
 		form.setActividades(actividadService.findAll());
 		form.setPersonas(personaService.findAll());
 	}
@@ -67,6 +83,28 @@ public class AsignacionAction extends BaseAction<Asignacion, AsignacionForm, Asi
 		return errors;
 	}
 
+	public ActionForward cargarComboActividad(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) 
+			throws Exception {
+		
+		String id =(String) request.getParameter("idProyecto");
+		Collection<Actividad> lista = null;
+		if (!"".equals(id)) {
+			Proyecto proyecto = proyectoService.findById(Integer.parseInt(id));
+			lista = actividadService.findAllByProyecto(proyecto);
+		} else {
+			lista = actividadService.findAll();
+		}
+		((AsignacionForm)form).setActividades(lista);
+
+		Map<String, String> map = new HashMap<String, String>();
+		for (Actividad actividad : lista) {
+			map.put(new Integer(actividad.getId()).toString(), actividad.getNombre());
+		}
+		
+		sendJSON(response, map);
+		return null;
+	}
+	
 	public void setTipoAsignacionService(TipoAsignacionService tipoAsignacionService) {
 		this.tipoAsignacionService = tipoAsignacionService;
 	}
@@ -77,6 +115,10 @@ public class AsignacionAction extends BaseAction<Asignacion, AsignacionForm, Asi
 
 	public void setPersonaService(PersonaService personaService) {
 		this.personaService = personaService;
+	}
+
+	public void setProyectoService(ProyectoService proyectoService) {
+		this.proyectoService = proyectoService;
 	}
 
 }

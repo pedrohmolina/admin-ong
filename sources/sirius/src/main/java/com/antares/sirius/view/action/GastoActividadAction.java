@@ -1,5 +1,8 @@
 package com.antares.sirius.view.action;
 
+import static com.antares.commons.enums.ActionEnum.CREATE;
+import static com.antares.commons.enums.ActionEnum.UPDATE;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -80,12 +83,27 @@ public class GastoActividadAction extends GastoAction {
 	}
 
 	@Override
+	public ActionForward save(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ActionForward forward = super.save(mapping, form, request, response);
+		if (((GastoForm)form).getAction().equals(CREATE)) {
+			forward = mapping.findForward("successCreate");
+		} else if (((GastoForm)form).getAction().equals(UPDATE)) {
+			forward = mapping.findForward("successEdit");
+		}
+		return forward;
+	}
+
+	@Override
 	protected void loadCollections(GastoForm form) {
 		super.loadCollections(form);
 		form.setPersonas(personaService.findAll());
 		form.setProyectos(proyectoService.findAll());
 		if (form.getActividades() == null) {
 			form.setActividades(new ArrayList<Actividad>());
+		}
+
+		if (Utils.isNullOrEmpty(form.getIdPersona())) {
+			form.setIdPersona(findPersona().getId().toString());
 		}
 	}
 
@@ -242,6 +260,33 @@ public class GastoActividadAction extends GastoAction {
 			forward = mapping.findForward("restrictedAccess"); 
 		}
 		return forward;
+	}
+
+	public ActionForward initList(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		GastoForm gastoForm = (GastoForm)form;
+		gastoForm.initialize();
+		GastoFilter filter = new GastoFilter();
+		filter.setTipoGasto(tipoGastoService.findTipoGastoActividad());
+		filter.setPersona(findPersona());
+		Collection<Gasto> result = service.findByFilter(filter);
+		gastoForm.setResult(result);
+		return mapping.findForward("query");
+	}
+
+	public ActionForward list(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		GastoForm gastoForm = (GastoForm)form;
+		GastoFilter filter = new GastoFilter();
+		filter.setTipoGasto(tipoGastoService.findTipoGastoActividad());
+		filter.setPersona(findPersona());
+		if (Utils.isNotNullNorEmpty(gastoForm.getFiltroFechaDesde())) {
+			filter.setFechaDesde(Utils.parseDate(gastoForm.getFiltroFechaDesde()));
+		}
+		if (Utils.isNotNullNorEmpty(gastoForm.getFiltroFechaHasta())) {
+			filter.setFechaHasta(Utils.parseDate(gastoForm.getFiltroFechaHasta()));
+		}
+		Collection<Gasto> result = service.findByFilter(filter);
+		gastoForm.setResult(result);
+		return mapping.findForward("query");
 	}
 
 	public void setProyectoService(ProyectoService proyectoService) {

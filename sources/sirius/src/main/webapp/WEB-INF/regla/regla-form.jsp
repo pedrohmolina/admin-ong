@@ -132,7 +132,7 @@
 
 	<h1>Datos</h1>
 	<div style="float:left;">
-	<p>
+		<p>
 		<label for="idUsuario"><bean:message key="sirius.regla.usuario.label" />(*)&nbsp;:</label>
 		<html:select property="idUsuario">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
@@ -160,25 +160,25 @@
 		</html:select>
 		</p><br>
 		<div id="divValor">
-		<p>
+			<p>
 			<label for="valor"><bean:message key="sirius.regla.valor.label" />(*)&nbsp;:</label>
 			<html:text property="valor" styleId="valor" />
 		</p><br>
 		</div>
 		<div id="divValorNumerico">
-		<p>
+			<p>
 			<label for="valorNumerico"><bean:message key="sirius.regla.valor.label" />(*)&nbsp;:</label>
 			<html:text property="valorNumerico" styleId="valorNumerico" />
 			</p><br>
 		</div>
 		<div id="divValorFecha">
-		<p>
+			<p>
 			<label for="valorFecha"><bean:message key="sirius.regla.valor.label" />(*)&nbsp;:</label>
 			<html:text property="valorFecha" styleId="valorFecha" />Calendario
 			</p><br>
 		</div>
 		<div id="divValorCombo">
-		<p>
+			<p>
 			<label for="valorCombo"><bean:message key="sirius.regla.valor.label" />(*)&nbsp;:</label>
 			<html:select property="valorCombo" styleId="valorCombo">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>

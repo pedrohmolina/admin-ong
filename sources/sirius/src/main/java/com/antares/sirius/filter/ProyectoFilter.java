@@ -22,6 +22,7 @@ public class ProyectoFilter extends Filter<Proyecto> {
 	private Date fechaInicio;
 	private Date fechaFin;
 	private Persona responsable;
+	private Persona coordinador;
 	private Financiador financiador;
 	private AreaTematica areaTematica;
 
@@ -60,6 +61,12 @@ public class ProyectoFilter extends Filter<Proyecto> {
 	}
 	public void setAreaTematica(AreaTematica areaTematica) {
 		this.areaTematica = areaTematica;
+	}
+	public Persona getCoordinador() {
+		return coordinador;
+	}
+	public void setCoordinador(Persona coordinador) {
+		this.coordinador = coordinador;
 	}
 	
 }

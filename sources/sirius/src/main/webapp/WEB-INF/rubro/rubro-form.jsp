@@ -30,7 +30,7 @@
 
 	<h1>Datos</h1>
 	<div style="float:left;">
-	<p>
+		<p>
 		<label for="nombre"><bean:message key="sirius.rubro.nombre.label" />(*)&nbsp;:</label>
 		<html:text maxlength="16" property="nombre" />
 		</p><br><p>
@@ -44,7 +44,6 @@
 				<label for="idRubroNivelUno"><bean:message key="sirius.rubro.rubroNivelUno.label" />&nbsp;:</label>
 				<html:text property="labelRubroNivelUno" readonly="true" />
 				</p><br>
-
 			</logic:equal>
 			<logic:equal name="rubroForm" property="action.descripcion" value="create">
 				<p>

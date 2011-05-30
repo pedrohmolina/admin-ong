@@ -161,7 +161,7 @@
 					<var-value>20</var-value>
 				</var>
 			</field>
-			<field property="email" depends="maxlength">
+			<field property="email" depends="maxlength, email">
 				<arg position="0" key="sirius.financiador.email.label"/>
 				<arg position="1" key="${var:maxlength}" resource="false" />
 				<var>
@@ -562,11 +562,19 @@
 			<field property="idFormaPago" depends="required">
 				<arg position="0" key="sirius.persona.formaPago.label"/>
 			</field>
+			<field property="email" depends="maxlength, email">
+				<arg position="0" key="sirius.persona.email.label"/>
+				<arg position="1" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>50</var-value>
+				</var>
+			</field>
 		</form>
 
 		<form name="proveedorForm">
 			<field property="nombre" depends="required, maxlength">
-				<arg position="0" key="sirius.financiador.nombre.label"/>
+				<arg position="0" key="sirius.proveedor.nombre.label"/>
 				<arg position="1" key="${var:maxlength}" resource="false" />
 				<var>
 					<var-name>maxlength</var-name>
@@ -574,7 +582,7 @@
 				</var>
 			</field>
 			<field property="cuit" depends="maxlength">
-				<arg position="0" key="sirius.financiador.cuit.label"/>
+				<arg position="0" key="sirius.proveedor.cuit.label"/>
 				<arg position="1" key="${var:maxlength}" resource="false" />
 				<var>
 					<var-name>maxlength</var-name>
@@ -582,7 +590,7 @@
 				</var>
 			</field>
 			<field property="cbu" depends="maxlength">
-				<arg position="0" key="sirius.financiador.cbu.label"/>
+				<arg position="0" key="sirius.proveedor.cbu.label"/>
 				<arg position="1" key="${var:maxlength}" resource="false" />
 				<var>
 					<var-name>maxlength</var-name>
@@ -590,7 +598,7 @@
 				</var>
 			</field>
 			<field property="direccion" depends="required, maxlength">
-				<arg position="0" key="sirius.financiador.direccion.label"/>
+				<arg position="0" key="sirius.proveedor.direccion.label"/>
 				<arg position="1" key="${var:maxlength}" resource="false" />
 				<var>
 					<var-name>maxlength</var-name>
@@ -598,7 +606,7 @@
 				</var>
 			</field>
 			<field property="telefono" depends="required, maxlength">
-				<arg position="0" key="sirius.financiador.telefono.label"/>
+				<arg position="0" key="sirius.proveedor.telefono.label"/>
 				<arg position="1" key="${var:maxlength}" resource="false" />
 				<var>
 					<var-name>maxlength</var-name>
@@ -606,7 +614,7 @@
 				</var>
 			</field>
 			<field property="contacto" depends="maxlength">
-				<arg position="0" key="sirius.financiador.contacto.label"/>
+				<arg position="0" key="sirius.proveedor.contacto.label"/>
 				<arg position="1" key="${var:maxlength}" resource="false" />
 				<var>
 					<var-name>maxlength</var-name>
@@ -614,15 +622,15 @@
 				</var>
 			</field>
 			<field property="celular" depends="maxlength">
-				<arg position="0" key="sirius.financiador.celular.label"/>
+				<arg position="0" key="sirius.proveedor.celular.label"/>
 				<arg position="1" key="${var:maxlength}" resource="false" />
 				<var>
 					<var-name>maxlength</var-name>
 					<var-value>20</var-value>
 				</var>
 			</field>
-			<field property="email" depends="maxlength">
-				<arg position="0" key="sirius.financiador.email.label"/>
+			<field property="email" depends="maxlength, email">
+				<arg position="0" key="sirius.proveedor.email.label"/>
 				<arg position="1" key="${var:maxlength}" resource="false" />
 				<var>
 					<var-name>maxlength</var-name>
@@ -630,7 +638,7 @@
 				</var>
 			</field>
 			<field property="observaciones" depends="maxlength">
-				<arg position="0" key="sirius.financiador.observaciones.label"/>
+				<arg position="0" key="sirius.proveedor.observaciones.label"/>
 				<arg position="1" key="${var:maxlength}" resource="false" />
 				<var>
 					<var-name>maxlength</var-name>
@@ -638,7 +646,7 @@
 				</var>
 			</field>
 			<field property="idTipoProveedor" depends="required">
-				<arg position="0" key="sirius.financiador.tipoProveedor.label"/>
+				<arg position="0" key="sirius.proveedor.tipoProveedor.label"/>
 			</field>
 		</form>
 
@@ -983,6 +991,33 @@
 			</field>
 			<field property="idPerfil" depends="required">
 				<arg position="0" key="sirius.usuario.perfil.label"/>
+			</field>
+		</form>
+
+		<form name="usuarioPasswordForm">
+			<field property="passwordActual" depends="required">
+				<arg position="0" key="sirius.usuario.passwordActual.label"/>
+			</field>
+			<field property="password" depends="required, minlength, maxlength">
+				<arg position="0" key="sirius.usuario.password.label"/>
+				<arg position="1" key="${var:minlength}" resource="false" />
+				<arg position="2" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>minlength</var-name>
+					<var-value>8</var-value>
+				</var>
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>16</var-value>
+				</var>
+			</field>
+			<field property="password2" depends="required, validwhen">
+				<arg position="0" key="sirius.usuario.password2.label"/>
+				<var>
+					<var-name>test</var-name>
+					<var-value>(*this* == password)</var-value>
+				</var>
+ 				<msg name="validwhen" key="errors.validwhen.password2"/>
 			</field>
 		</form>
 

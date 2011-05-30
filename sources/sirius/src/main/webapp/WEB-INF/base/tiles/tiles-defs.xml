@@ -111,6 +111,11 @@
 		<put name="body" value="/WEB-INF/gasto/gasto-actividad-query.jsp" />
 	</definition>
 
+	<definition name=".abmGastoActividadList" extends="mainLayout">
+		<put name="title" value="Administración de Gastos de Actividad" />
+		<put name="body" value="/WEB-INF/gasto/gasto-actividad-list.jsp" />
+	</definition>
+
 	<definition name=".abmGastoActividadForm" extends="mainLayout">
 		<put name="title" value="Gasto de Actividad - Datos" />
 		<put name="body" value="/WEB-INF/gasto/gasto-actividad-form.jsp" />
@@ -369,6 +374,11 @@
 	<definition name=".abmUsuarioPersonaForm" extends="mainLayout">
 		<put name="title" value="Usuario - Datos" />
 		<put name="body" value="/WEB-INF/usuario/usuario-persona-form.jsp" />
+	</definition>
+
+	<definition name=".abmUsuarioPasswordForm" extends="mainLayout">
+		<put name="title" value="Usuario - Datos" />
+		<put name="body" value="/WEB-INF/usuario/usuario-password-form.jsp" />
 	</definition>
 
 	<!-- Reportes -->
