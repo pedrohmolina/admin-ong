@@ -172,7 +172,8 @@ public class ReporteAction extends DispatchAction {
 
 	public static Style getTitleStyle(){
 		Style titleStyle = new Style();
-		titleStyle.setFont(new Font(14,Font._FONT_VERDANA,true));
+		titleStyle.setFont(new Font(18,Font._FONT_VERDANA,true));
+		titleStyle.setHorizontalAlign(HorizontalAlign.CENTER);
 		return titleStyle;
 	}
 
