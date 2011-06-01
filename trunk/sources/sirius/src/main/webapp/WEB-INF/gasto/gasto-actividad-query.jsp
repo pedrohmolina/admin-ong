@@ -145,7 +145,7 @@ function initReferencia(id) {
 			<authz:authorize ifAllGranted="ENTIDAD_GASTO_ACTIVIDAD-MODIFICACION">
 				<logic:empty name="item" property="referencia">
 					<a href="#"/><img border="0" alt="Asignar Referencia" title="Asignar Referencia"
-						src="<c:url value="/img/tick.png"/>" onclick="initReferencia(<bean:write name="item" property="id"/>);" /></a>
+						src="<c:url value="/img/icons/add.png"/>" onclick="initReferencia(<bean:write name="item" property="id"/>);" /></a>
 				</logic:empty>
 				<logic:notEmpty name="item" property="referencia">
 					<a href="#"/><img border="0" alt="Modificar Referencia" title="Modificar Referencia"

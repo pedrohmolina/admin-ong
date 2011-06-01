@@ -1,8 +1,5 @@
 package com.antares.sirius.dao.impl;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
@@ -13,7 +10,6 @@ import com.antares.commons.filter.Filter;
 import com.antares.commons.util.Utils;
 import com.antares.sirius.dao.ProyectoDAO;
 import com.antares.sirius.filter.ProyectoFilter;
-import com.antares.sirius.model.Persona;
 import com.antares.sirius.model.Proyecto;
 
 /**
