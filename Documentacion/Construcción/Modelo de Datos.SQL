@@ -10,13 +10,26 @@
 
 
 --  Create Tables 
+CREATE TABLE tipoPresupuesto
+(
+	id INT NOT NULL AUTO_INCREMENT,
+	descripcion VARCHAR(50) NOT NULL,
+	PRIMARY KEY (id)
+) 
+;
+
+
 CREATE TABLE presupuesto
 (
 	id INT NOT NULL AUTO_INCREMENT,
-	idActividad INT NOT NULL,
+	idTipoPresupuesto INT NOT NULL,
+	idProyecto INT NULL,
+	idActividad INT NULL,
 	idRubro INT NOT NULL,
 	monto DECIMAL(10,2) NOT NULL,
 	PRIMARY KEY (id),
+	KEY (idTipoProsupuesto),
+	KEY (idProyecto),
 	KEY (idActividad),
 	KEY (idRubro)
 ) 
@@ -598,6 +611,14 @@ CREATE TABLE archivo
 
 
 --  Create Foreign Key Constraints 
+ALTER TABLE presupuesto ADD CONSTRAINT FK_presupuesto_tipoPresupuesto 
+	FOREIGN KEY (idTipoPresupuesto) REFERENCES tipoPresupuesto (id)
+;
+
+ALTER TABLE presupuesto ADD CONSTRAINT FK_presupuesto_proyecto 
+	FOREIGN KEY (idProyecto) REFERENCES proyecto (id)
+;
+
 ALTER TABLE presupuesto ADD CONSTRAINT FK_presupuesto_actividad 
 	FOREIGN KEY (idActividad) REFERENCES actividad (id)
 ;
