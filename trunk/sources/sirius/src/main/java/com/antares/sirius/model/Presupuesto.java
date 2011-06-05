@@ -9,6 +9,12 @@ import javax.persistence.ManyToOne;
 public class Presupuesto extends PersistentObject {
 
 	@ManyToOne
+	private TipoPresupuesto tipoPresupuesto;
+
+	@ManyToOne
+	private Proyecto proyecto;
+
+	@ManyToOne
 	private Actividad actividad;
 
 	@ManyToOne
@@ -38,6 +44,22 @@ public class Presupuesto extends PersistentObject {
 
 	public void setMonto(Double monto) {
 		this.monto = monto;
+	}
+
+	public Proyecto getProyecto() {
+		return proyecto;
+	}
+
+	public void setProyecto(Proyecto proyecto) {
+		this.proyecto = proyecto;
+	}
+
+	public TipoPresupuesto getTipoPresupuesto() {
+		return tipoPresupuesto;
+	}
+
+	public void setTipoPresupuesto(TipoPresupuesto tipoPresupuesto) {
+		this.tipoPresupuesto = tipoPresupuesto;
 	}
 
 }
