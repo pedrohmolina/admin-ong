@@ -5,7 +5,7 @@
 <menu:menu>
 
 	<authz:authorize ifAnyGranted="ENTIDAD_FINANCIADOR-LISTADO, ENTIDAD_INGRESO-LISTADO, ENTIDAD_PERSONA-LISTADO, ENTIDAD_PROVEEDOR-LISTADO, ENTIDAD_RELACION_CONTRACTUAL-LISTADO, ENTIDAD_RUBRO-LISTADO">
-		<menu:submenu top="true" labelKey="sirius.menu.administracion.label" style="border-right: solid 1px;border-color: red;">
+		<menu:submenu top="true" labelKey="sirius.menu.administracion.label" style="border-right: solid 1px;border-color: #B11116;">
 			<authz:authorize ifAllGranted="ENTIDAD_FINANCIADOR-LISTADO">
 				<menu:item labelKey="sirius.financiador.label"><c:url value="/financiador/financiador-query.do?method=initQuery"/></menu:item>
 			</authz:authorize>
@@ -28,7 +28,7 @@
 	</authz:authorize>
 
 	<authz:authorize ifAllGranted="ENTIDAD_PROYECTO-LISTADO, ENTIDAD_OBJETIVO_GENERAL-LISTADO, ENTIDAD_OBJETIVO_ESPECIFICO-LISTADO, ENTIDAD_META-LISTADO, ENTIDAD_ACTIVIDAD-LISTADO, ENTIDAD_ASIGNACION-LISTADO">
-		<menu:submenu top="true" labelKey="sirius.menu.proyecto.label" style="border-right: solid 1px;border-color: red;">
+		<menu:submenu top="true" labelKey="sirius.menu.proyecto.label" style="border-right: solid 1px;border-color: #B11116;">
 			<authz:authorize ifAllGranted="ENTIDAD_PROYECTO-LISTADO">
 				<menu:item labelKey="sirius.proyecto.label"><c:url value="/proyecto/proyecto-query.do?method=initQuery"/></menu:item>
 			</authz:authorize>
@@ -51,7 +51,7 @@
 	</authz:authorize>
 
 	<authz:authorize ifAllGranted="ENTIDAD_GASTO_ORGANIZACION-LISTADO, ENTIDAD_GASTO_PROYECTO-LISTADO, ENTIDAD_GASTO_ACTIVIDAD-LISTADO, ENTIDAD_GASTO_ACTIVIDAD-ALTA, ENTIDAD_GASTO_ACTIVIDAD-HISTORICO">
-		<menu:submenu top="true" labelKey="sirius.menu.gastos.label" style="border-right: solid 1px;border-color: red;">
+		<menu:submenu top="true" labelKey="sirius.menu.gastos.label" style="border-right: solid 1px;border-color: #B11116;">
 			<authz:authorize ifAllGranted="ENTIDAD_GASTO_ORGANIZACION-LISTADO">
 				<menu:item labelKey="sirius.gasto.gastoOrganizacion.label"><c:url value="/gasto/gasto-organizacion-query.do?method=initQuery"/></menu:item>
 			</authz:authorize>
@@ -71,7 +71,7 @@
 	</authz:authorize>
 
  	<authz:authorize ifAllGranted="ENTIDAD_REPORTE_PERSONA-EJECUTAR, ENTIDAD_REPORTE_FINANCIADOR-EJECUTAR, ENTIDAD_REPORTE_PROVEEDOR-EJECUTAR, ENTIDAD_REPORTE_FINANZAS-EJECUTAR">
-		<menu:submenu top="true" labelKey="sirius.menu.reportes.label" style="border-right: solid 1px;border-color: red;">
+		<menu:submenu top="true" labelKey="sirius.menu.reportes.label" style="border-right: solid 1px;border-color: #B11116;">
 			<authz:authorize ifAllGranted="ENTIDAD_REPORTE_PERSONA-EJECUTAR">
 				<menu:item style="width: 160px;" labelKey="sirius.reporte.personas.label"><c:url value="/reportes/reporte-persona.do?method=initForm"/></menu:item>
 			</authz:authorize>
@@ -87,7 +87,7 @@
 		</menu:submenu>
 	</authz:authorize>
 	
-	<menu:submenu top="true" labelKey="sirius.menu.seguridad.label" style="border-right: solid 1px;border-color: red;">
+	<menu:submenu top="true" labelKey="sirius.menu.seguridad.label">
 		<authz:authorize ifAllGranted="ENTIDAD_ROL-LISTADO">
 			<menu:item labelKey="sirius.rol.label"><c:url value="/rol/rol-query.do?method=initQuery"/></menu:item>
 		</authz:authorize>

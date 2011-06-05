@@ -23,7 +23,7 @@
 		<html:textarea property="descripcion" rows="5"/>
 		</p><br><p>
 		<label for="fechaInicio"><bean:message key="sirius.proyecto.fechaInicio.label" />&nbsp;:</label>
-		<html:text property="fechaInicio" />
+		<html:text property="fechaInicio" styleId="datepicker"/>
 		</p><br><p>
 		<label for="fechaFin"><bean:message key="sirius.proyecto.fechaFin.label" />&nbsp;:</label>
 		<html:text property="fechaFin" />

@@ -2,6 +2,7 @@
 
 <script type="text/javascript" language="javascript" src="<c:url value="/scripts/jquery-1.5.2.min.js"/>"></script>
 <script type="text/javascript" language="javascript" src="<c:url value="/scripts/jquery.selectboxes.js"/>"></script>
+<script type="text/javascript" language="javascript" src="<c:url value="/scripts/jquery-ui-1.8.13.custom.min.js"/>"></script>
 
 <script type="text/javascript">
 	function hacerSubmit(act, form) {
@@ -17,5 +18,12 @@
 	function getContextUrl(url) {
 		return '<c:url value="/" />' + url;
 	}
+	
+	$(function() {
+		$( "#datepicker" ).datepicker({ dateFormat: 'dd-mm-yy' });
+	});
+	
+	
+
 
 </script>

@@ -29,7 +29,7 @@ function confirmarAccion(mensaje) {
 		<html:text property="filtroNombre" />
 		</p><br><p>
 		<label for="filtroFechaInicio"><bean:message key="sirius.proyecto.fechaInicio.label" />:</label>
-		<html:text property="filtroFechaInicio" />
+		<html:text property="filtroFechaInicio"  styleId="datepicker"/>
 		</p><br><p>
 		<label for="filtroFechaFin"><bean:message key="sirius.proyecto.fechaFin.label" />:</label>
 		<html:text property="filtroFechaFin" />
