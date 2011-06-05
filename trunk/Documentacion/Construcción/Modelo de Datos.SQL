@@ -28,7 +28,7 @@ CREATE TABLE presupuesto
 	idRubro INT NOT NULL,
 	monto DECIMAL(10,2) NOT NULL,
 	PRIMARY KEY (id),
-	KEY (idTipoProsupuesto),
+	KEY (idTipoPresupuesto),
 	KEY (idProyecto),
 	KEY (idActividad),
 	KEY (idRubro)
