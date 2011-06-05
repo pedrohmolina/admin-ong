@@ -5,6 +5,8 @@
 	outline: 0;
 }
 
+/* AZUL = 0A607E */
+
 html {
 	background-color: #EEEFF1
 }
@@ -29,11 +31,24 @@ select {
 	color: #7C7C7C;
 }
 
+.emptylist{
+	margin: 20px;
+	text-align: center;
+	width: 100%; 
+	float:none;
+}
+
+div.ui-datepicker{
+	font-size:10px;
+ 	margin-left: -319px
+}
+
+
 .top-head {
 	position: relative;
 	background-color: #126180;
 	width: 900px;
-	height: 10px;
+	height: 8px;
 	border-bottom: solid 1px;
 	border-color: #C8C8C8;
 }
@@ -44,6 +59,7 @@ select {
 	background-color: #FEFEFE;
 	width: 900px;
 	height: 40px;
+	border-bottom: 1px solid  #C8C8C8;
 }
 
 #menu {
@@ -51,7 +67,6 @@ select {
 	font-size: 1.1em;
 	width: 820px;
 	margin: 0px;
-	margin-top: 5px;
 }
 
 #menu ul {
@@ -61,14 +76,16 @@ select {
 #menu ul li.nivel1 {
 	float: left;
 	width: 162px;
-	margin-right: 0px;
+	height: 29px;
+    margin-right: 0;
+    margin-top: 4px;
 }
 
 #menu ul li a {
 	display: block;
 	text-decoration: none;
 	background-color: #fff;
-	padding: 8px;
+	padding: 5px;
 	position: relative;
 	color: #7B7D7C;
 }
@@ -149,7 +166,7 @@ h1 {
 	font-size: 16px;
 	font-style: normal;
 	font-weight: lighter;
-	border-bottom: 1px solid red;
+	border-bottom: 1px solid #B11116;
 	margin-left: 5px;
 	margin-right: 5px;
 	margin-bottom: 20px;

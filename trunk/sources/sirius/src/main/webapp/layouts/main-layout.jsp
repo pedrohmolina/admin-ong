@@ -12,6 +12,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
 <head>
 <link rel="stylesheet" type="text/css" href="../css/style.css" />
+<link rel="stylesheet" type="text/css" href="../css/smoothness/jquery-ui-1.8.13.custom.css" />
 <meta http-equiv="Content-Type" content="text/html; charset=<%= System.getProperty("file.encoding") %>" />
 <meta http-equiv="Expires" content="-1"/>
 <meta http-equiv="Pragma" content="no-cache"/>
