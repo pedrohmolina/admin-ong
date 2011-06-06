@@ -228,6 +228,11 @@
 
 	<bean name="reporteFinancieroAction" class="com.antares.sirius.view.action.ReporteFinancieroAction" autowire="byName">
 		<property name="reporteFinancieroService" 			ref="reporteFinancieroService" />
+		<property name="proyectoService" 					ref="proyectoService" />
+		<property name="objetivoGeneralService" 			ref="objetivoGeneralService" />
+		<property name="objetivoEspecificoService" 			ref="objetivoEspecificoService" />
+		<property name="metaService" 						ref="metaService" />
+		<property name="actividadService" 					ref="actividadService" />		
 	</bean>
 	<bean name="/reportes/reporte-financiero"				parent="reporteFinancieroAction" singleton="false" />
 	

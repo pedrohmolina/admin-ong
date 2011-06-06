@@ -3,6 +3,7 @@ package com.antares.sirius.view.action;
 import java.awt.Color;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.export.JRRtfExporter;
 import net.sf.jasperreports.engine.export.JRXlsExporter;
 import net.sf.jasperreports.j2ee.servlets.ImageServlet;
+import net.sf.json.JSONObject;
 
 import org.apache.struts.actions.DispatchAction;
 
@@ -200,6 +202,20 @@ public class ReporteAction extends DispatchAction {
 			.setStyle(detailStyle).setHeaderStyle(headerStyle).build();
 		
 		return columnState;
+	}
+
+	/**
+	 * Convierte el mapa clave-valor pasar por parametro en un objeto JSON para enviar a la pagina.
+	 * Usado para cargar datos en los combos.
+	 * 
+	 * @param response response http
+	 * @param map mapa clave-valor con los elementos a enviar
+	 * @throws IOException
+	 */
+	protected void sendJSON(HttpServletResponse response, Map<String, String> map) throws IOException {
+		JSONObject jsonMap = JSONObject.fromObject(map);
+		response.setContentType("text/html; charset=iso-8859-1");
+		response.getOutputStream().print(jsonMap.toString());
 	}
 
 
