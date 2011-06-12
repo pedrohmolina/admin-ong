@@ -26,7 +26,7 @@
 		<html:text property="fechaInicio" styleId="datepicker"/>
 		</p><br><p>
 		<label for="fechaFin"><bean:message key="sirius.proyecto.fechaFin.label" />&nbsp;:</label>
-		<html:text property="fechaFin" />
+		<html:text property="fechaFin" styleId="datepicker"/>
 		</p><br><p>
 		<label for="ubicacion"><bean:message key="sirius.proyecto.ubicacion.label" />&nbsp;:</label>
 		<html:text property="ubicacion" />
