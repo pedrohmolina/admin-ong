@@ -69,7 +69,7 @@
 		<html:text property="nacionalidad" />
 		</p><br><p>
 		<label for="fechaNacimiento"><bean:message key="sirius.usuario.fechaNacimiento.label" />&nbsp;:</label>
-		<html:text property="fechaNacimiento" styleId="datepicker"/>
+		<html:text property="fechaNacimiento" styleClass="datepicker"/>
 		</p><br><p>
 		<label for="profesion"><bean:message key="sirius.usuario.profesion.label" />&nbsp;:</label>
 		<html:text property="profesion" />

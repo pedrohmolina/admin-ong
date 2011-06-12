@@ -68,7 +68,7 @@ function changeProyecto() {
 		<logic:equal name="gastoProyectoForm" property="individual"	value="true">
 			<p>
 			<label for="idProveedor"><bean:message key="sirius.gasto.proveedor.label" />(*)&nbsp;:</label>
-			<html:select property="idProveedor" styleId="comboProveedor">
+			<html:select property="idProveedor" styleClass="comboProveedor">
 				<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 				<html:optionsCollection name="gastoProyectoForm" property="proveedores" label="nombre" value="id"/>
 			</html:select>

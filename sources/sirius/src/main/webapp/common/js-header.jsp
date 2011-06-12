@@ -20,7 +20,7 @@
 	}
 	
 	$(function() {
-		$( "#datepicker" ).datepicker({ 
+		$( ".datepicker" ).datepicker({ 
 			dateFormat: 'dd/MM/yy',
 			showOn: "button",
 			buttonImage: "../img/calendar.gif",

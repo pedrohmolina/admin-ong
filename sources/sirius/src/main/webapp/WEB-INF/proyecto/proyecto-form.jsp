@@ -23,10 +23,10 @@
 		<html:textarea property="descripcion" rows="5"/>
 		</p><br><p>
 		<label for="fechaInicio"><bean:message key="sirius.proyecto.fechaInicio.label" />&nbsp;:</label>
-		<html:text property="fechaInicio" styleId="datepicker"/>
+		<html:text property="fechaInicio" styleClass="datepicker"/>
 		</p><br><p>
 		<label for="fechaFin"><bean:message key="sirius.proyecto.fechaFin.label" />&nbsp;:</label>
-		<html:text property="fechaFin" styleId="datepicker"/>
+		<html:text property="fechaFin" styleClass="datepicker"/>
 		</p><br><p>
 		<label for="ubicacion"><bean:message key="sirius.proyecto.ubicacion.label" />&nbsp;:</label>
 		<html:text property="ubicacion" />
