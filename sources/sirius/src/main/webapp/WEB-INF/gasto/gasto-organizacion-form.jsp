@@ -17,7 +17,7 @@
 	<div style="float: left;">
 		<p>
 		<label for="fecha"><bean:message key="sirius.gasto.fecha.label" />(*)&nbsp;:</label>
-		<html:text property="fecha" />
+		<html:text property="fecha" styleId="datepicker"/>
 		</p><br><p>
 		<label for="idRubro"><bean:message key="sirius.gasto.rubro.label" />(*)&nbsp;:</label>
 		<html:select property="idRubro">

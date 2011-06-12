@@ -63,11 +63,11 @@
 			<br />
 		</logic:equal>
 		<label for="fechaInicio"><bean:message key="sirius.actividad.fechaInicio.label" />&nbsp;:</label>
-		<html:text property="fechaInicio" />
+		<html:text property="fechaInicio" styleId="datepicker"/>
 		</p><br>
 		<p>
 		<label for="fechaFin"><bean:message key="sirius.actividad.fechaFin.label" />&nbsp;:</label>
-		<html:text property="fechaFin" />
+		<html:text property="fechaFin" styleId="datepicker"/>
 		</p><br>
 		<p>
 		<label for="observaciones"><bean:message key="sirius.actividad.observaciones.label" />(*)&nbsp;:</label>

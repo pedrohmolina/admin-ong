@@ -45,7 +45,7 @@
 		<html:text property="monto" />
 		</p><br><p>
 		<label for="fecha"><bean:message key="sirius.ingreso.fecha.label" />(*)&nbsp;:</label>
-		<html:text property="fecha" />
+		<html:text property="fecha" styleId="datepicker"/>
 		</p><br><p>
 		<label for="descripcion"><bean:message key="sirius.ingreso.descripcion.label" />:</label>
 		<html:textarea property="descripcion" rows="5" />

@@ -20,7 +20,12 @@
 	}
 	
 	$(function() {
-		$( "#datepicker" ).datepicker({ dateFormat: 'dd-mm-yy' });
+		$( "#datepicker" ).datepicker({ 
+			dateFormat: 'dd/MM/yy',
+			showOn: "button",
+			buttonImage: "../img/calendar.gif",
+			buttonImageOnly: true
+		});
 	});
 	
 	
