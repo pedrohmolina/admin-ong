@@ -31,10 +31,10 @@
 		</p><br><p>
 		<label for="descripcion"><bean:message key="sirius.objetivoGeneral.descripcion.label" />&nbsp;:</label>
 		<html:textarea property="descripcion" rows="5" readonly="true" />
-		</p><br><p>
+		</p><br>
 	</div>
 
-	<div style="clear: both;">
+	<div style="clear: both;" class="errores">
 		<html:errors />
 	</div> 
 	

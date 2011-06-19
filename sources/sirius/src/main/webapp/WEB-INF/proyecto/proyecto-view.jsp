@@ -72,10 +72,10 @@
 			<a href="<c:out value="${url}"/>"><bean:write name="proyectoForm" property="nombreArchivo"/></a>
 			</p><br><p>
 		</logic:notEmpty>
-		</p>
+		</p><br>
 	</div>
 
-	<div style="clear: both;">
+	<div style="clear: both;" class="errores">
 		<html:errors />
 	</div> 
 	

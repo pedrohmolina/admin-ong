@@ -36,7 +36,7 @@ function confirmarAccion(mensaje) {
 	
 	</html:form>
 	
-	<div style="clear: both;">
+	<div style="clear: both;" class="errores">
 		<html:errors />
 	</div>
 
