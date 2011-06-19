@@ -89,7 +89,7 @@ function initReferencia(id) {
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="gastoActividadForm" property="proveedores" label="nombre" value="id"/>
 		</html:select>
-		</p>
+		</p><br>
 	</div>
 
 	<div style="float: left; width: 100%;">
@@ -103,7 +103,7 @@ function initReferencia(id) {
 	
 	</html:form>
 	
-	<div style="clear: both;">
+	<div style="clear: both;" class="errores">
 		<html:errors />
 	</div>
 

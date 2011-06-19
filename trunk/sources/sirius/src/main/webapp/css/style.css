@@ -6,7 +6,6 @@
 }
 
 /* AZUL = 0A607E */
-
 html {
 	background-color: #EEEFF1
 }
@@ -21,7 +20,7 @@ body {
 	border-color: #C8C8C8;
 }
 
-input{
+input {
 	font-family: Arial;
 	color: #7C7C7C;
 }
@@ -31,18 +30,17 @@ select {
 	color: #7C7C7C;
 }
 
-.emptylist{
+.emptylist {
 	margin: 20px;
 	text-align: center;
-	width: 100%; 
-	float:none;
+	width: 100%;
+	float: none;
 }
 
-div.ui-datepicker{
-	font-size:10px;
- 	margin-left: -319px
+div.ui-datepicker {
+	font-size: 10px;
+	margin-left: -319px
 }
-
 
 .top-head {
 	position: relative;
@@ -59,7 +57,7 @@ div.ui-datepicker{
 	background-color: #FEFEFE;
 	width: 900px;
 	height: 40px;
-	border-bottom: 1px solid  #C8C8C8;
+	border-bottom: 1px solid #C8C8C8;
 }
 
 #menu {
@@ -77,8 +75,8 @@ div.ui-datepicker{
 	float: left;
 	width: 162px;
 	height: 29px;
-    margin-right: 0;
-    margin-top: 4px;
+	margin-right: 0;
+	margin-top: 4px;
 }
 
 #menu ul li a {
@@ -120,16 +118,14 @@ div.ui-datepicker{
 	left: 0px;
 }
 
-#menu ul li ul{
+#menu ul li ul {
 	border-left: 1px solid #F2F2F2;
-	border-right: 1px solid #F2F2F2; 
+	border-right: 1px solid #F2F2F2;
 }
 
-#menu ul li ul li{
+#menu ul li ul li {
 	border-bottom: 1px solid #F2F2F2;
-	 
 }
-
 
 #menu ul li ul li a {
 	width: 160px;
@@ -182,11 +178,9 @@ label {
 	font-weight: lighter;
 	margin-left: 15px;
 	margin-right: 5px;
-	width: 250px;
+	width: 400px;
 	float: left;
 }
-
-
 
 table {
 	border: 1px solid #D2D1D6;
@@ -270,24 +264,23 @@ table tbody a {
 
 /*Filtros de Busqueda*/
 .form {
-	line-height:10px;
+	line-height: 10px;
 }
 
 .form label {
 	text-align: right;
 	padding-right: 5px;
 	padding-top: 5px;
-	
 }
 
-.form input{
+.form input {
 	border: 1px solid #D3D3D3;
 	width: 140px;
 	height: 20px;
 }
 
-.form select{
-	border-style:none;
+.form select {
+	border-style: none;
 	border: 1px solid #D3D3D3;
 	width: 140px;
 	text-align: center;
@@ -301,11 +294,22 @@ table tbody a {
 	padding: 7px;
 	float: right;
 	border-color: #11627D;
-	color: #11627D; 
+	color: #11627D;
 }
 
 .boton a:HOVER {
 	border-color: #D71A21;
-	color: #D71A21; 
+	color: #D71A21;
 }
 
+/*errores*/
+.errores ul{
+	border: red 1px solid;
+	margin: 10px 5px 5px 10px;
+	padding: 10px;
+	line-height: 20px;
+	text-align: center;
+	list-style-type: none;
+	font: italic bold;
+	color: red;
+}

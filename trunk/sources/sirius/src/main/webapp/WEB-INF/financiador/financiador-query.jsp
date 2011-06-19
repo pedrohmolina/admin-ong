@@ -60,7 +60,7 @@ function confirmarAccion(mensaje) {
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="financiadorForm" property="estadosFinanciador" label="descripcion" value="id"/>
 		</html:select>
-		</p>
+		</p><br>
 	</div>
 
 	<div style="float: left; width: 100%;">
@@ -77,7 +77,7 @@ function confirmarAccion(mensaje) {
 	
 	</html:form>
 	
-	<div style="clear: both;">
+	<div style="clear: both;" class="errores">
 		<html:errors />
 	</div>
 
