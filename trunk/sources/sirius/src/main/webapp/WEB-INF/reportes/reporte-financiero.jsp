@@ -64,6 +64,7 @@ function cargarComboActividad(select, destinationCombo){
 	<p>
 		<h2>Nivel</h2>
 		
+			<p>		
 			<label for="filtroIdProyecto"><bean:message key="sirius.asignacion.proyecto.label" />&nbsp;:</label>
 			<html:select property="filtroIdProyecto" styleId="proyecto" onchange="cargarComboObjetivoGeneral(this, 'objetivoGeneral');">
 				<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
@@ -99,20 +100,26 @@ function cargarComboActividad(select, destinationCombo){
 			</html:select>
 			</p><br><p>
 
+		
 	</p><br><p>
 	</div>
 	
 	<div style="float:left; width: 100%;">
 	<p>
 		<h2>Rubro</h2>
-
+		<p>		
+			<label for="seleccionRubro"><bean:message key="sirius.reportes.finanzas.rubros" />&nbsp;:</label>
+			<html:select multiple="multiple" style="height: 100px" property="formatoReporte">
+				<html:optionsCollection name="reporteFinancieroForm" property="formatosReporte" label="descripcion" value="descripcion"/>
+			</html:select>
+		</p><br><p>
 	</p><br><p>
 	</div>
 		
 	<div style="float:left; width: 100%;">
 	<p>
 		<h2>Informacion</h2>
-
+	<p>
 	</p><br><p>
 	</div>
 	
