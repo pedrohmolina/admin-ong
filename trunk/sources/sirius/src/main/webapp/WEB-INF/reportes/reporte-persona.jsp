@@ -27,7 +27,7 @@ function confirmarAccion(mensaje) {
 	<div style="float:left; width: 100%;">
 		<p>
 		<h2>Filtros</h2>
-		
+		<p>
 		<label for="apellido"><bean:message key="sirius.persona.apellido.label" />:</label>
 		<html:text property="apellido" />
 		</p><br><p>
@@ -51,7 +51,7 @@ function confirmarAccion(mensaje) {
 			<a href="#" onclick="javascript:limpiarFiltro();"><bean:message key="antares.base.limpiarfiltro.label"/></a>
 			<a href="#" onclick="return hacerSubmit('/reportes/reporte-persona.do?method=verResultados');"><bean:message key="sirius.reportes.vistaPrevia" /></a>
 		</div>
-	</p><br>	
+	<br>	
 	</div>
 
 	<div style="float: left; width: 100%;">
@@ -70,10 +70,10 @@ function confirmarAccion(mensaje) {
 		<display:column sortable="true" property="numeroDocumento" 				titleKey="sirius.persona.numeroDocumento.label" />
 
 	</display-el:table>
-	</p><br>	
+	<br>	
 	</div>
 	
-	<div style="float:left;">
+	<div style="float:left; width: 100%;">
 	<p>	
 		<h2>Columnas</h2>
 		
@@ -152,7 +152,7 @@ function confirmarAccion(mensaje) {
 
 
 		</table>
-		</p><br>
+		<br>
 	</div>
 
 	
@@ -165,7 +165,7 @@ function confirmarAccion(mensaje) {
 		<div class="boton">
 			<a href="#" onclick="reportePersonaForm.submit();"><bean:message key="sirius.reportes.generar" /></a>
 		</div>
-		</p><br>
+		<br>
 	</div>
 
 	
