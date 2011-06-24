@@ -163,13 +163,18 @@ public class Utils {
 	}
 
 	/**
-	 * Calcula el porcentaje de un numero en un total
+	 * Calcula el porcentaje de un numero en un total. Si el total es 0, se devuelve 0
+	 * 
 	 * @param num numero cuyo porcentaje se quiere calcular
 	 * @param total numero que representa el 100%
 	 * @return
 	 */
 	public static BigDecimal calcularPorcentaje(BigDecimal num, BigDecimal total) {
-		return num.multiply(new BigDecimal(100)).divide(total, 2, RoundingMode.HALF_UP);
+		BigDecimal porcentaje = BigDecimal.ZERO; 
+		if (!BigDecimal.ZERO.equals(total)) {
+			porcentaje = num.multiply(new BigDecimal(100)).divide(total, 2, RoundingMode.HALF_UP);
+		}
+		return porcentaje;
 	}
 
 	public static boolean isNullOrEmpty(String str) {
