@@ -114,6 +114,10 @@ function confirmarAccion(mensaje) {
 						src="<c:url value="/img/icoEstados.gif"/>" /></a>
 				</logic:iterate>
 			</authz:authorize>
+			<authz:authorize ifAllGranted="ENTIDAD_PROYECTO-ADMINISTRAR_PRESUPUESTO">
+				<a href="<c:url value="/proyecto/presupuesto-form.do?method=show&idProyecto="/><bean:write name="item" property="id"/>"><img border="0" alt="Administrar Prespuesto" title="Administrar Prespuesto"
+					src="<c:url value="/img/application_form_edit.png"/>" /></a>
+			</authz:authorize>
 		</display:column>
 	</display-el:table>
 </div>

@@ -208,6 +208,8 @@
 		<property name="archivoService" 				ref="archivoService" />
 	</bean>
 
+	<bean name="/proyecto/presupuesto-form" class="com.antares.sirius.view.action.PresupuestoAction" autowire="byName" />
+
 	<bean name="reportePersonaAction" class="com.antares.sirius.view.action.ReportePersonaAction" autowire="byName">
 		<property name="personaService" 				ref="personaService" />
 		<property name="reportePersonaService" 			ref="reportePersonaService" />

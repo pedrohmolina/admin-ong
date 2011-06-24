@@ -39,6 +39,7 @@
 	<bean id="tipoFinanciadorDAO" 		class="com.antares.sirius.dao.impl.TipoFinanciadorDAOImpl" 		autowire="byName" />
 	<bean id="tipoGastoDAO" 			class="com.antares.sirius.dao.impl.TipoGastoDAOImpl" 			autowire="byName" />
 	<bean id="tipoIngresoDAO" 			class="com.antares.sirius.dao.impl.TipoIngresoDAOImpl" 			autowire="byName" />
+	<bean id="tipoPresupuestoDAO" 		class="com.antares.sirius.dao.impl.TipoPresupuestoDAOImpl" 		autowire="byName" />
 	<bean id="tipoProveedorDAO" 		class="com.antares.sirius.dao.impl.TipoProveedorDAOImpl" 		autowire="byName" />
 
 	<!-- Seguridad por valor -->

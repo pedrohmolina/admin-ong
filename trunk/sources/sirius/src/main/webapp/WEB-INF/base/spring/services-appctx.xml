@@ -165,6 +165,17 @@
 		<property name="proxyTargetClass" value="true" />
 	</bean>
 
+	<bean id="presupuestoService" parent="abstractTransactionManager" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" autowire="byName">
+		<property name="target">
+			<bean class="com.antares.sirius.service.impl.PresupuestoServiceImpl" autowire="byName">
+				<property name="dao" 						ref="presupuestoDAO" /> 
+				<property name="tipoPresupuestoService" 	ref="tipoPresupuestoService" /> 
+			</bean>
+		</property>
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+
+
 
 	<!-- Servicios de entidades que no se actualizan desde la aplicacion -->
 	<bean id="accesoService" class="com.antares.sirius.service.impl.AccesoServiceImpl" autowire="byName">
@@ -205,10 +216,6 @@
 		<property name="dao" ref="parametroDAO" /> 
 	</bean>
 	
-	<bean id="presupuestoService" class="com.antares.sirius.service.impl.PresupuestoServiceImpl" autowire="byName">
-		<property name="dao" ref="presupuestoDAO" /> 
-	</bean>
-	
 	<bean id="tipoAgrupamientoService" class="com.antares.sirius.service.impl.TipoAgrupamientoServiceImpl" autowire="byName">
 		<property name="dao" ref="tipoAgrupamientoDAO" /> 
 	</bean>
@@ -236,6 +243,11 @@
 	
 	<bean id="tipoIngresoService" class="com.antares.sirius.service.impl.TipoIngresoServiceImpl" autowire="byName">
 		<property name="dao" 				ref="tipoIngresoDAO" /> 
+		<property name="parametroService" 	ref="parametroService" /> 
+	</bean>
+	
+	<bean id="tipoPresupuestoService" class="com.antares.sirius.service.impl.TipoPresupuestoServiceImpl" autowire="byName">
+		<property name="dao" 				ref="tipoPresupuestoDAO" /> 
 		<property name="parametroService" 	ref="parametroService" /> 
 	</bean>
 	

@@ -6,6 +6,8 @@ import static com.antares.sirius.base.Constants.DEFAULT_DECIMAL_FORMAT;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.security.MessageDigest;
 import java.sql.Blob;
 import java.text.DecimalFormat;
@@ -23,6 +25,7 @@ import org.springframework.context.MessageSource;
 
 import com.antares.sirius.model.PersistentObject;
 import com.antares.sirius.model.Ponderable;
+import com.google.gson.Gson;
 
 public class Utils {
 
@@ -123,6 +126,25 @@ public class Utils {
 	}
 
 	/**
+	 * Verifica si el string pasado por parametro es double o no
+	 * 
+	 * @param doubleStr string a verificar
+	 * @return
+	 */
+	public static boolean isDouble(String doubleStr) {
+		boolean isDouble = false;
+		try {
+			if (isNotNullNorEmpty(doubleStr)) {
+				DECIMAL_FORMAT.parse(doubleStr).doubleValue();
+				isDouble = true;
+			}
+		} catch (ParseException e) {
+			// Si no se puede formatear, devuelvo false
+		}
+		return isDouble;
+	}
+
+	/**
 	 * Parsea el número entero, en caso de no poder parsearlo devuelve null
 	 * 
 	 * @param intStr entero a parsear
@@ -138,6 +160,16 @@ public class Utils {
 			// Si no se puede formatear, devuelvo null
 		}
 		return integer;
+	}
+
+	/**
+	 * Calcula el porcentaje de un numero en un total
+	 * @param num numero cuyo porcentaje se quiere calcular
+	 * @param total numero que representa el 100%
+	 * @return
+	 */
+	public static BigDecimal calcularPorcentaje(BigDecimal num, BigDecimal total) {
+		return num.multiply(new BigDecimal(100)).divide(total, 2, RoundingMode.HALF_UP);
 	}
 
 	public static boolean isNullOrEmpty(String str) {
@@ -158,6 +190,12 @@ public class Utils {
 		return ponderacion + nuevaPonderacion > 100;
 	}
 
+	/**
+	 * Genera un hash del String usando MD5
+	 * 
+	 * @param str String a hashear
+	 * @return String con el hash MD5
+	 */
 	public static String encode(String str) {
 		String md5Str = null;
 		try {
@@ -193,11 +231,21 @@ public class Utils {
 		return type;
 	}
 
+	/**
+	 * Verifica que el usuario este autenticado en el sistema.
+	 * 
+	 * @return true si esta autenticado, false si no lo está
+	 */
 	public static boolean isAuthenticated() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		return authentication != null && !"annonymous".equals(authentication.getName());
 	}
 	
+	/**
+	 * Retorna el username del usuario logueado en el sistema.
+	 * 
+	 * @return username del usuario logueado en el sistema
+	 */
 	public static String getUsername() {
 		String username = null;
 		if (isAuthenticated()) {
@@ -207,6 +255,13 @@ public class Utils {
 		return username;
 	}
 	
+	/**
+	 * Construye un String con el nombre del getter de la propiedad pasada por parametros.
+	 * Ej: Si propertyName == "nombre", el metodo devolvera "getNombre".
+	 * 
+	 * @param propertyName nombre de la propiedad
+	 * @return nombre del getter
+	 */
 	public static String getterName(String propertyName) {
 		String getterName = "";
 		if (isNotNullNorEmpty(propertyName)) {
@@ -223,7 +278,7 @@ public class Utils {
 	 *  
 	 * @param persistentObject objeto cuya propiedad se quiere obtener
 	 * @param propertyName nombre de la propiedad
-	 * @return
+	 * @return valor de la propiedad
 	 */
 	public static Object getPropertyValue(PersistentObject persistentObject, String propertyName) {
 		Object rval = null;
@@ -247,7 +302,7 @@ public class Utils {
 	}
 
 	/**
-	 * Devuelve un Blob con el contenido del FormFile
+	 * Devuelve un Blob con el contenido del FormFile.
 	 * 
 	 * @param formFile FormFile con el contenido del archivo a transformar en Blob
 	 * @return Blob con el contenido del archivo
@@ -261,4 +316,18 @@ public class Utils {
 		}
 		return blob;
 	}
+
+	/**
+	 * Convierte a JSON un objeto usando Gson.
+	 * 
+	 * @param obj objeto a convertir a JSON
+	 * @return String que contiene el objeto en JSON
+	 */
+	public static String convertToJSON(Object obj){
+		String json = null;
+		Gson gson = new Gson();
+		json=(gson.toJson(obj));
+		return json;
+	}
+
 }

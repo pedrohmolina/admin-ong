@@ -9,6 +9,8 @@ import static com.antares.commons.enums.ParametroEnum.TIPO_GASTO_ACTIVIDAD;
 import static com.antares.commons.enums.ParametroEnum.TIPO_GASTO_ORGANIZACION;
 import static com.antares.commons.enums.ParametroEnum.TIPO_GASTO_PROYECTO;
 import static com.antares.commons.enums.ParametroEnum.TIPO_INGRESO_FINANCIACION;
+import static com.antares.commons.enums.ParametroEnum.TIPO_PRESUPUESTO_ACTIVIDAD;
+import static com.antares.commons.enums.ParametroEnum.TIPO_PRESUPUESTO_PROYECTO;
 
 import com.antares.commons.enums.ParametroEnum;
 import com.antares.commons.service.impl.BaseServiceImpl;
@@ -69,6 +71,14 @@ public class ParametroServiceImpl extends BaseServiceImpl<Parametro, ParametroDA
 
 	public Integer findIdTipoAgrupamientoAgrupado() {
 		return Utils.parseInteger(findValueByEnum(TIPO_AGRUPAMIENTO_AGRUPADO));
+	}
+
+	public Integer findIdTipoPresupuestoActividad() {
+		return Utils.parseInteger(findValueByEnum(TIPO_PRESUPUESTO_ACTIVIDAD));
+	}
+
+	public Integer findIdTipoPresupuestoProyecto() {
+		return Utils.parseInteger(findValueByEnum(TIPO_PRESUPUESTO_PROYECTO));
 	}
 
 }
