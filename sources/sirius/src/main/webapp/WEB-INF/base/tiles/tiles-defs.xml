@@ -11,6 +11,10 @@
 		<put name="menu" value="/common/menu.jsp" />
 	</definition>
 
+	<definition name="loginLayout" path="/layouts/login-layout.jsp">
+		<put name="js-header" value="/common/js-header.jsp" />
+	</definition>
+
 	<definition name="popupLayout" path="/layouts/popup-layout.jsp">
 		<put name="js-header" value="/common/js-header.jsp" />
 		<put name="messages" value="/common/message.jsp" />
@@ -26,7 +30,7 @@
 		<put name="body" value="/common/restricted-access.jsp" />
 	</definition>
 
-	<definition name=".login" extends="mainLayout">
+	<definition name=".login" extends="loginLayout">
 		<put name="title" value="Sirius - Login" />
 		<put name="body" value="/public/login.jsp" />
 	</definition>
@@ -289,6 +293,11 @@
 	<definition name=".abmProyectoView" extends="mainLayout">
 		<put name="title" value="Proyecto - Datos" />
 		<put name="body" value="/WEB-INF/proyecto/proyecto-view.jsp" />
+	</definition>
+
+	<definition name=".presupuestoForm" extends="mainLayout">
+		<put name="title" value="Proyecto - Presupuesto" />
+		<put name="body" value="/WEB-INF/proyecto/presupuesto-form.jsp" />
 	</definition>
 
 	<!-- Regla -->

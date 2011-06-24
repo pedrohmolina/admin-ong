@@ -35,7 +35,7 @@
 <div class="form">
 <form action="<c:url value="/j_security_check_acegi"/>">
 
-	<h1>Datos</h1>
+	<h1>Por favor ingrese su Usuario y Contraseña para ingresar al sistema</h1>
 	<div style="float:left;">
 		<label for="j_username"><bean:message key="sirius.usuario.username.label"/>:</label><input type="text" name="j_username" id="j_username"  ><br/><br/>
 		<label for="j_password"><bean:message key="sirius.usuario.password.label"/>:</label><input type="password" onKeyPress="return submitenter(this,event)"  name="j_password" id="j_password"  maxlength="12">

@@ -1,6 +1,8 @@
 package com.antares.sirius.model;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 
 
@@ -9,16 +11,20 @@ import javax.persistence.ManyToOne;
 public class Presupuesto extends PersistentObject {
 
 	@ManyToOne
+	@JoinColumns(@JoinColumn(name = "idTipoPresupuesto"))
 	private TipoPresupuesto tipoPresupuesto;
 
 	@ManyToOne
+	@JoinColumns(@JoinColumn(name = "idProyecto"))
 	private Proyecto proyecto;
 
 	@ManyToOne
+	@JoinColumns(@JoinColumn(name = "idActividad"))
 	private Actividad actividad;
 
 	@ManyToOne
-	private TipoGasto tipoGasto;
+	@JoinColumns(@JoinColumn(name = "idRubro"))
+	private Rubro rubro;
 
 	private Double monto;
 
@@ -30,12 +36,12 @@ public class Presupuesto extends PersistentObject {
 		this.actividad = actividad;
 	}
 
-	public TipoGasto getTipoGasto() {
-		return tipoGasto;
+	public Rubro getRubro() {
+		return rubro;
 	}
 
-	public void setTipoGasto(TipoGasto tipoGasto) {
-		this.tipoGasto = tipoGasto;
+	public void setRubro(Rubro rubro) {
+		this.rubro = rubro;
 	}
 
 	public Double getMonto() {

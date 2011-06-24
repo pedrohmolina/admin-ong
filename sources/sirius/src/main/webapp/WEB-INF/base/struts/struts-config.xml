@@ -45,6 +45,15 @@
 		<form-bean name="reporteFinanciadorForm" 	type="com.antares.sirius.view.form.ReporteFinanciadorForm" />
 		<form-bean name="reporteProveedorForm" 		type="com.antares.sirius.view.form.ReporteProveedorForm" />
 		<form-bean name="reporteFinancieroForm" 	type="com.antares.sirius.view.form.ReporteFinancieroForm" />
+		
+		<form-bean name="presupuestoForm" type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="idProyecto" 		type="java.lang.Integer" />
+			<form-property name="nombreProyecto" 	type="java.lang.String" />
+			<form-property name="actividades" 		type="java.util.List" />
+			<form-property name="rubros" 			type="java.util.List" />
+			<form-property name="nombresColumnas" 	type="java.lang.String" />
+			<form-property name="presupuestos" 		type="com.antares.sirius.dto.PresupuestoDTO" />
+		</form-bean>
 	</form-beans>
 
 	<!-- ================= Global Exceptions Definitions ================== -->
@@ -392,6 +401,12 @@
 				input="/proyecto/proyecto-form.do?method=initForm">
 			<forward name="success" 	path="/proyecto/proyecto-query.do?method=query" />
 			<forward name="error" 		path="/proyecto/proyecto-form.do?method=initForm" />
+		</action>
+
+		<action path="/proyecto/presupuesto-form" name="presupuestoForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="show" 		path=".presupuestoForm" />
+			<forward name="success" 	path="/proyecto/proyecto-query.do?method=query" />
 		</action>
 		<!-- Fin de actions de proyectos -->
 

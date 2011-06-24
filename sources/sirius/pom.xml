@@ -379,7 +379,12 @@
 		    <artifactId>guava</artifactId>
 		    <version>r09</version>
 		</dependency>
-
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>1.7.1</version>
+		</dependency>
+    
 		<!-- Dependencias de Reportes -->		
 		<dependency>
 		    <groupId>jasperreports</groupId>
