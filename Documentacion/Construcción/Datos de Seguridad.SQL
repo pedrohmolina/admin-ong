@@ -10,6 +10,7 @@ insert into accion (id, descripcion) values (8, 'BLOQUEAR');
 insert into accion (id, descripcion) values (9, 'DESBLOQUEAR');
 insert into accion (id, descripcion) values (10, 'EJECUTAR');
 insert into accion (id, descripcion) values (11, 'HISTORICO');
+insert into accion (id, descripcion) values (12, 'ADMINISTRAR_PRESUPUESTO');
 
 insert into recurso (id, descripcion) values (5, 'ENTIDAD_FINANCIADOR');
 insert into recurso (id, descripcion) values (6, 'ENTIDAD_INGRESO');
@@ -143,6 +144,7 @@ insert into acceso (id, idRecurso, idAccion) values (108, 27, 10);
 insert into acceso (id, idRecurso, idAccion) values (109, 28, 10);
 
 insert into acceso (id, idRecurso, idAccion) values (110, 19, 11);
+insert into acceso (id, idRecurso, idAccion) values (111, 11, 12);
 
 insert into rol (id, nombre, descripcion, activo) values (1, 'Administrador de Financiadores', 'Acceso completo al ABM de Financiadores', '1');
 insert into rol (id, nombre, descripcion, activo) values (2, 'Administrador de Ingresos', 'Acceso completo al ABM de Ingresos', '1');
@@ -201,6 +203,7 @@ insert into rolacceso (idRol, idAcceso) values (7, 36);
 insert into rolacceso (idRol, idAcceso) values (7, 37);
 insert into rolacceso (idRol, idAcceso) values (7, 38);
 insert into rolacceso (idRol, idAcceso) values (7, 39);
+insert into rolacceso (idRol, idAcceso) values (7, 111);
 insert into rolacceso (idRol, idAcceso) values (8, 40);
 insert into rolacceso (idRol, idAcceso) values (8, 41);
 insert into rolacceso (idRol, idAcceso) values (8, 42);

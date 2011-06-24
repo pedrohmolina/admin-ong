@@ -51,6 +51,10 @@ INSERT INTO formapago (id,descripcion) VALUES (2,'Cheque');
 INSERT INTO formapago (id,descripcion) VALUES (3,'Transferencia Bancaria');
 INSERT INTO formapago (id,descripcion) VALUES (4,'Tarjeta de Crédito');
 
+--  Tipo Presupuesto
+insert into tipoPresupuesto (id, descripcion) VALUES (1, 'Proyecto');
+insert into tipoPresupuesto (id, descripcion) VALUES (2, 'Actividad');
+
 --  Tipo Proveedor
 INSERT INTO tipoproveedor (id,descripcion) VALUES (1,'Persona');
 INSERT INTO tipoproveedor (id,descripcion) VALUES (2,'Institución');
@@ -78,10 +82,17 @@ INSERT INTO relacioncontractual (id,nombre,descripcion,activo) VALUES (6,'Socio'
 INSERT INTO relacioncontractual (id,nombre,descripcion,activo) VALUES (7,'Miembro CD','Miembro de la Comisión Directiva',true);
 
 --  Parametros
-INSERT INTO parametro (id,nombre,valor,descripcion) VALUES (3,'ID_TIPO_INGRESO_FINANCIACION','3','Id de la tabla tipoIngreso correspondiente al registro que representa Financiacion');
-INSERT INTO parametro (id,nombre,valor,descripcion) VALUES (1,'ID_ESTADO_PROYECTO_IDEA','1','Id de la tabla estadoProyecto correspondiente al registro que representa el estado Idea');
-INSERT INTO parametro (id,nombre,valor,descripcion) VALUES (4,'ID_ESTADO_ACTIVIDAD_LATENTE','1','Id de la tabla estadoActividad correspondiente al registro que representa el estado Latente');
-INSERT INTO parametro (id,nombre,valor,descripcion) VALUES (2,'ID_ESTADO_ACTIVIDAD_PROGRESO','2','Id de la tabla estadoActividad correspondiente al registro que representa el estado En Progreso');
+insert into parametro (id, nombre, valor, descripcion) VALUES (1, 'ID_TIPO_INGRESO_FINANCIACION', '3', 'Id de la tabla tipoIngreso correspondiente al registro que representa Financiacion');
+insert into parametro (id, nombre, valor, descripcion) VALUES (2, 'ID_ESTADO_PROYECTO_IDEA', '1', 'Id de la tabla estadoProyecto correspondiente al registro que representa el estado Idea');
+insert into parametro (id, nombre, valor, descripcion) VALUES (3, 'ID_ESTADO_ACTIVIDAD_LATENTE', '1', 'Id de la tabla estadoActividad correspondiente al registro que representa el estado Latente');
+insert into parametro (id, nombre, valor, descripcion) VALUES (4, 'ID_ESTADO_ACTIVIDAD_PROGRESO', '2', 'Id de la tabla estadoActividad correspondiente al registro que representa el estado En Progreso');
+insert into parametro (id, nombre, valor, descripcion) VALUES (5, 'ID_TIPO_GASTO_ACTIVIDAD', '3', 'Id de la tabla tipoGasto correspondiente al registro que representa el tipo de gasto de actividades');
+insert into parametro (id, nombre, valor, descripcion) VALUES (6, 'ID_TIPO_GASTO_ORGANIZACION', '1', 'Id de la tabla tipoGasto correspondiente al registro que representa el tipo de gasto de organizacion');
+insert into parametro (id, nombre, valor, descripcion) VALUES (7, 'ID_TIPO_GASTO_PROYECTO', '2', 'Id de la tabla tipoGasto correspondiente al registro que representa el tipo de gasto de proyectos');
+insert into parametro (id, nombre, valor, descripcion) VALUES (8, 'ID_TIPO_AGRUPAMIENTO_INDIVIDUAL', '1', 'Id de la tabla tipoAgrupamiento correspondiente al registro que representa el tipo de agrupamiento individual');
+insert into parametro (id, nombre, valor, descripcion) VALUES (9, 'ID_TIPO_AGRUPAMIENTO_AGRUPADO', '2', 'Id de la tabla tipoAgrupamiento correspondiente al registro que representa el tipo de agrupamiento agrupado');
+insert into parametro (id, nombre, valor, descripcion) VALUES (10, 'ID_TIPO_PRESUPUESTO_ACTIVIDAD', '2', 'Id de la tabla tipoPresupuesto correspondiente al registro que representa el tipo de presupuesto para gastos de actividades');
+insert into parametro (id, nombre, valor, descripcion) VALUES (11, 'ID_TIPO_PRESUPUESTO_PROYECTO', '1', 'Id de la tabla tipoPresupuesto correspondiente al registro que representa el tipo de presupuesto para gastos de proyecto');
 
 -- Tipo de Agrupamiento
 INSERT INTO tipoagrupamiento (id,descripcion) VALUES (1,'Individual');
