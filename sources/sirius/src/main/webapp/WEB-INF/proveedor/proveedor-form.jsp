@@ -47,7 +47,7 @@
 		<html:text property="email" />
 		</p><br><p>
 		<label for="observaciones"><bean:message key="sirius.proveedor.observaciones.label" />:</label>
-		<html:textarea property="observaciones" rows="5" readonly="true" />
+		<html:textarea property="observaciones" rows="5" />
 		</p><br>
 	</div>
 	
