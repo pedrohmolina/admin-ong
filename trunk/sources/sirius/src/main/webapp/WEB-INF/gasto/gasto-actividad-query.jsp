@@ -84,7 +84,7 @@ function initReferencia(id) {
 			<html:optionsCollection name="gastoActividadForm" property="origenes" label="descripcion" value="id"/>
 		</html:select>
 		</p><br><p>
-		<label for="filtroIdProveedor"><bean:message key="sirius.gasto.origen.label" />:</label>
+		<label for="filtroIdProveedor"><bean:message key="sirius.gasto.proveedor.label" />:</label>
 		<html:select property="filtroIdProveedor">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="gastoActividadForm" property="proveedores" label="nombre" value="id"/>
