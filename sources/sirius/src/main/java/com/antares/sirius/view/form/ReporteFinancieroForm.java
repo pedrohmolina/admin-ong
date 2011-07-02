@@ -24,7 +24,7 @@ public class ReporteFinancieroForm extends ActionForm{
 
 	private Collection<FormatoReporte> formatosReporte;
 	private String formatoReporte;
-	
+
 	private Collection<Proyecto> proyectos;
 	private Collection<ObjetivoGeneral> objetivosGenerales;
 	private Collection<ObjetivoEspecifico> objetivosEspecificos;
@@ -43,7 +43,7 @@ public class ReporteFinancieroForm extends ActionForm{
 	private String filtroIdMeta;
 	private String filtroIdActividad;
 	
-
+	private String[] rubrosSeleccionados;
 	
 	/**
 	 * @return the proyectos
@@ -251,6 +251,18 @@ public class ReporteFinancieroForm extends ActionForm{
 		this.formatoReporte = formatoReporte;
 	}
 
+	/**
+	 * @return the rubrosSeleccionados
+	 */
+	public String[] getRubrosSeleccionados() {
+		return rubrosSeleccionados;
+	}
+	/**
+	 * @param rubrosSeleccionados the rubrosSeleccionados to set
+	 */
+	public void setRubrosSeleccionados(String[] rubrosSeleccionados) {
+		this.rubrosSeleccionados = rubrosSeleccionados;
+	}
 	public void initialize() {
 	}
 

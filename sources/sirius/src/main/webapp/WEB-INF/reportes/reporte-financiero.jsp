@@ -109,7 +109,7 @@ function cargarComboActividad(select, destinationCombo){
 		<h2>Rubro</h2>
 		<p>		
 			<label for="seleccionRubro"><bean:message key="sirius.reportes.finanzas.rubros" />&nbsp;:</label>
-			<html:select multiple="multiple" style="height: 100px" property="formatoReporte">
+			<html:select multiple="multiple" style="height: 100px" property="rubrosSeleccionados">
 				<html:optionsCollection name="reporteFinancieroForm" property="formatosReporte" label="descripcion" value="descripcion"/>
 			</html:select>
 		</p><br><p>
@@ -121,6 +121,18 @@ function cargarComboActividad(select, destinationCombo){
 		<h2>Informacion</h2>
 	<p>
 	</p><br><p>
+	</div>
+
+	<div style="float: left; width: 100%;">
+		<p>
+		<label for="formatosReporte"><bean:message key="sirius.reportes.formatoSalida" />:</label>
+		<html:select property="formatoReporte">
+			<html:optionsCollection name="reporteFinancieroForm" property="formatosReporte" label="descripcion" value="descripcion"/>
+		</html:select>
+		<div class="boton">
+			<a href="#" onclick="reporteFinancieroForm.submit();"><bean:message key="sirius.reportes.generar" /></a>
+		</div>
+		<br>
 	</div>
 	
 	
