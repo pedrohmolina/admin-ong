@@ -98,12 +98,13 @@ public class ReporteFinancieroAction extends ReporteAction{
 		ReporteFinancieroForm reporteFinancieroForm = (ReporteFinancieroForm)form;
 		
 		//Obtener Rubros seleccionados
+		/*
 		int size = reporteFinancieroForm.getRubrosSeleccionados().length;
 	    for (int i=0; i<size; i++)
 	    {
 	      System.out.println(reporteFinancieroForm.getRubrosSeleccionados()[i]);
 	    }
-
+		*/
 		//this.generateReport(request, response, reportType, jasperPrint);
 
 		return mapping.findForward("null");
