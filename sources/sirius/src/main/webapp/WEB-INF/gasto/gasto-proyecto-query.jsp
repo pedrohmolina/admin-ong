@@ -28,7 +28,7 @@ function confirmarAccion(mensaje) {
 		<label for="filtroIdProyecto"><bean:message key="sirius.gasto.proyecto.label" />:</label>
 		<html:select property="filtroIdProyecto">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
-			<html:optionsCollection name="gastoProyectoForm" property="proyectos" label="descripcion" value="id"/>
+			<html:optionsCollection name="gastoProyectoForm" property="proyectos" label="nombre" value="id"/>
 		</html:select>
 		</p><br>
 	</div>
