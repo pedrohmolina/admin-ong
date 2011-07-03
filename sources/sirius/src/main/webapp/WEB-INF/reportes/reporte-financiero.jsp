@@ -58,7 +58,6 @@ function cargarComboActividad(select, destinationCombo){
 
 <div class="form">
 	<html:form action="/reportes/reporte-financiero.do?method=generarReporteFinanciero">
-	<h1>Reporte Financiero</h1>
 	
 	<div style="float:left; width: 100%;">
 	<p>
