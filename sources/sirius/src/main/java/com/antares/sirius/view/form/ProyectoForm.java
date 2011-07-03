@@ -33,6 +33,7 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 	private String beneficiariosDirectos;
 	private String beneficiariosIndirectos;
 	private String idFinanciador;
+	private String presupuestoTotal;
 	private String resumen;
 	private Integer[] idAreaTematica;
 	private String idTipoAgrupamiento;
@@ -296,6 +297,14 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 		this.filtroIdCoordinador = filtroIdCoordinador;
 	}
 
+	public String getPresupuestoTotal() {
+		return presupuestoTotal;
+	}
+
+	public void setPresupuestoTotal(String presupuestoTotal) {
+		this.presupuestoTotal = presupuestoTotal;
+	}
+
 	@Override
 	public void initialize() {
 		this.id = null;
@@ -310,6 +319,7 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 		this.beneficiariosDirectos = "";
 		this.beneficiariosIndirectos = "";
 		this.idFinanciador = "";
+		this.presupuestoTotal = "";
 		this.resumen = "";
 		this.idAreaTematica = null;
 		this.idTipoAgrupamiento = "";
@@ -340,6 +350,7 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 		this.beneficiariosDirectos = "";
 		this.beneficiariosIndirectos = "";
 		this.idFinanciador = "";
+		this.presupuestoTotal = "";
 		this.resumen = "";
 		this.idAreaTematica = null;
 		this.idTipoAgrupamiento = "";
@@ -362,6 +373,7 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 		this.beneficiariosDirectos = entity.getBeneficiariosDirectos();
 		this.beneficiariosIndirectos = entity.getBeneficiariosIndirectos();
 		this.idFinanciador = entity.getFinanciador().getId().toString();
+		this.presupuestoTotal = Utils.formatDouble(entity.getPresupuestoTotal());
 		this.resumen = entity.getResumen();
 		this.labelResponsable = entity.getResponsable().getNombreYApellido();
 		this.labelFinanciador = entity.getFinanciador().getNombre();

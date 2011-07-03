@@ -45,6 +45,9 @@
 		<label for="idFinanciador"><bean:message key="sirius.proyecto.financiador.label" />&nbsp;:</label>
 		<html:text property="labelFinanciador" readonly="true" />
 		</p><br><p>
+		<label for="presupuestoTotal"><bean:message key="sirius.proyecto.presupuestoTotal.label" />(*)&nbsp;:</label>
+		<html:text property="presupuestoTotal" readonly="true" />
+		</p><br><p>
 		<label for="idAreaTematica"><bean:message key="sirius.proyecto.areasTematicas.label" />&nbsp;:</label>
 		<html:select property="idAreaTematica" multiple="true">
 			<html:optionsCollection name="proyectoForm" property="areasTematicas" label="descripcion" value="id"/>
