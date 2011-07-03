@@ -55,7 +55,7 @@ public abstract class GastoAction extends BaseAction<Gasto, GastoForm, GastoServ
 		if (!entity.getRubro().isActivo()) {
 			form.getRubros().add(entity.getRubro());
 		}
-		if (!entity.getProveedor().isActivo()) {
+		if (entity.getProveedor() != null && !entity.getProveedor().isActivo()) {
 			form.getProveedores().add(entity.getProveedor());
 		}
 	}
