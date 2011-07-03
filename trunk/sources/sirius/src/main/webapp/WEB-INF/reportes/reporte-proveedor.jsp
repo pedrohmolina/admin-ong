@@ -22,7 +22,6 @@ function confirmarAccion(mensaje) {
 
 <div class="form">
 	<html:form action="/reportes/reporte-proveedor.do?method=generarReporteProveedor">
-	<h1>Reporte de Proveedores</h1>
 	
 	<div style="float:left; width: 100%;">
 		<p>
@@ -75,64 +74,30 @@ function confirmarAccion(mensaje) {
 	<p>	
 		<h2>Columnas</h2>
 		
-		<table>
-			<tr>
-				<td>
-					<label for="tipoProveedor"><bean:message key="sirius.proveedor.tipoProveedor.label" />:</label>
-				</td>
-				<td>
-					<html:checkbox property="verTipoProveedor" />
-				</td>
-				<td>
-					<label for="cuit"><bean:message key="sirius.proveedor.cuit.label" />:</label>
-				</td>
-				<td>
-					<html:checkbox property="verCuit" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label for="cbu"><bean:message key="sirius.proveedor.cbu.label" />:</label>
- 				</td>
-				<td>
-					<html:checkbox property="verCBU" />
- 				</td>
-				<td>
-					<label for="contacto"><bean:message key="sirius.proveedor.contacto.label" />:</label>
- 				</td>
-				<td>
-					<html:checkbox property="verContacto" />
- 				</td>
-			</tr>
-			<tr>
-				<td>
-					<label for="observaciones"><bean:message key="sirius.proveedor.observaciones.label" />:</label>
- 				</td>
-				<td>
-					<html:checkbox property="verObservaciones" />
- 				</td>
-				<td>
-					<label for="direccion"><bean:message key="sirius.proveedor.direccion.label" />:</label>
- 				</td>
-				<td>
-					<html:checkbox property="verDireccion" />
- 				</td>
-			</tr>
-			<tr>
-				<td>
-					<label for="telefono"><bean:message key="sirius.proveedor.telefono.label" />:</label>
- 				</td>
-				<td>
-					<html:checkbox property="verTelefono" />
- 				</td>
-				<td>
-					<label for="email"><bean:message key="sirius.proveedor.email.label" />:</label>
- 				</td>
-				<td>
-					<html:checkbox property="verEmail" />
- 				</td>
-			</tr>
-		</table>
+		<p>
+			<label for="tipoProveedor"><bean:message key="sirius.proveedor.tipoProveedor.label" />:</label>
+			<html:checkbox property="verTipoProveedor" />
+		</p><br><p>
+			<label for="cuit"><bean:message key="sirius.proveedor.cuit.label" />:</label>
+			<html:checkbox property="verCuit" />
+		</p><br><p>
+			<label for="cbu"><bean:message key="sirius.proveedor.cbu.label" />:</label>
+			<html:checkbox property="verCBU" />
+		</p><br><p>
+			<label for="contacto"><bean:message key="sirius.proveedor.contacto.label" />:</label>
+			<html:checkbox property="verContacto" />
+		</p><br><p>
+			<label for="observaciones"><bean:message key="sirius.proveedor.observaciones.label" />:</label>
+			<html:checkbox property="verObservaciones" />
+		</p><br><p>
+			<label for="direccion"><bean:message key="sirius.proveedor.direccion.label" />:</label>
+			<html:checkbox property="verDireccion" />
+		</p><br><p>
+			<label for="telefono"><bean:message key="sirius.proveedor.telefono.label" />:</label>
+			<html:checkbox property="verTelefono" />
+		</p><br><p>
+			<label for="email"><bean:message key="sirius.proveedor.email.label" />:</label>
+			<html:checkbox property="verEmail" />
 		</p><br>
 	</div>
 
