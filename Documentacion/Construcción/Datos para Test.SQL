@@ -21,7 +21,7 @@ INSERT INTO `perfil` (`id`, `nombre`, `descripcion`, `activo`) VALUES ('2', 'Ope
 
 
 -- Agregar Proyecto
-INSERT INTO `proyecto` (`id`, `idEstadoProyecto`, `idTipoAgrupamiento`, `nombre`, `descripcion`, `fechaInicio`, `fechaFin`, `ubicacion`, `responsable`, `beneficiariosDirectos`, `beneficiariosIndirectos`, `financiador`, `resumen`, `idArchivo`, `activo`) VALUES ('1', '3', '2', 'Ole a la Gripe', 'El objetivo del  Proyecto es vacunar contra la gripe a los chicos que viven en la calle, de la zona Oeste de la provincia de Bs As', '2012-04-01', '2012-05-31', 'Zona Oeste de la Provincia de Bs As', '1', 'El grupo Antares', 'SAHDES', '1', NULL, NULL, '1');
+INSERT INTO `proyecto` (`id`, `idEstadoProyecto`, `idTipoAgrupamiento`, `nombre`, `descripcion`, `fechaInicio`, `fechaFin`, `ubicacion`, `responsable`, `beneficiariosDirectos`, `beneficiariosIndirectos`, `financiador`, `resumen`, `presupuestoTotal`, `idArchivo`, `activo`) VALUES ('1', '3', '2', 'Ole a la Gripe', 'El objetivo del  Proyecto es vacunar contra la gripe a los chicos que viven en la calle, de la zona Oeste de la provincia de Bs As', '2012-04-01', '2012-05-31', 'Zona Oeste de la Provincia de Bs As', '1', 'El grupo Antares', 'SAHDES', '1', NULL, 10000, NULL, '1');
 
 
 -- Agregar Objetivo General
