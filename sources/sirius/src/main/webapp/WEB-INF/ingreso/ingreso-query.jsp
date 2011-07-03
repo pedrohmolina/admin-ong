@@ -25,7 +25,7 @@ function confirmarAccion(mensaje) {
 	<div style="float: left; width: 100%;">
 		<p>
 		<label for="filtroFecha"><bean:message key="sirius.ingreso.fecha.label" />:</label>
-		<html:text property="filtroFecha" />
+		<html:text property="filtroFecha" styleClass="datepicker"/>
 		</p><br><p>
 		<label for="filtroIdTipoIngreso"><bean:message key="sirius.ingreso.tipoIngreso.label" />:</label>
 		<html:select property="filtroIdTipoIngreso">

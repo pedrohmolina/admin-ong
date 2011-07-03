@@ -20,10 +20,10 @@ function confirmarAccion(mensaje) {
 	<div style="float:left; width: 100%;">
 		<p>
 		<label for="filtroFechaDesde"><bean:message key="sirius.gasto.fechaDesde.label" />:</label>
-		<html:text property="filtroFechaDesde" />
+		<html:text property="filtroFechaDesde" styleClass="datepicker"/>
 		</p><br><p>
 		<label for="filtroFechaHasta"><bean:message key="sirius.gasto.fechaHasta.label" />:</label>
-		<html:text property="filtroFechaHasta" />
+		<html:text property="filtroFechaHasta" styleClass="datepicker"/>
 		</p><br>
 	</div>
 
