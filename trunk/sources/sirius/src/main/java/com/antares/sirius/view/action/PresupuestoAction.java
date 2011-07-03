@@ -5,12 +5,15 @@ import static java.math.BigDecimal.ZERO;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import net.sf.json.JSONObject;
 
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -253,6 +256,7 @@ public class PresupuestoAction extends DispatchAction {
 			matrizGrilla[filaTotal - 1][j] = Utils.calcularPorcentaje(matrizGrilla[filaTotal][j], totalGeneral);
 		}
 
+		presupuestos.setPresupuestoDisponible(new BigDecimal(presupuestos.getProyecto().getPresupuestoTotal()).subtract(totalGeneral).doubleValue());
 		matrizGrilla[actividades.size() + 2][rubros.size() + 1] = totalGeneral;
 		matrizGrilla[actividades.size() + 1][rubros.size()] = new BigDecimal(100);
 		return matrizGrilla;
@@ -297,6 +301,20 @@ public class PresupuestoAction extends DispatchAction {
 			}
 		}
 		return retval;
+	}
+
+	public ActionForward getPresupuestoDisponible(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) 
+			throws Exception {
+		
+		DynaActionForm dyna = (DynaActionForm)form;
+		PresupuestoDTO presupuestos = (PresupuestoDTO)dyna.get("presupuestos");
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("presupuestoDisponible", Utils.formatDouble(presupuestos.getPresupuestoDisponible()));
+
+		JSONObject jsonMap = JSONObject.fromObject(map);
+		response.setContentType("text/html; charset=iso-8859-1");
+		response.getOutputStream().print(jsonMap.toString());
+		return null;
 	}
 
 	public void setPresupuestoService(PresupuestoService presupuestoService) {

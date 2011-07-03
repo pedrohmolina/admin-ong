@@ -23,6 +23,7 @@ import com.antares.sirius.model.Rubro;
 public class PresupuestoDTO implements Serializable {
 
 	private Proyecto proyecto;
+	private Double presupuestoDisponible;
 
 	// Mapas indexados por id de actividad y rubro
 	private Map<Integer, Map<Integer, Presupuesto>> presupuestosPorActividad = new HashMap<Integer, Map<Integer,Presupuesto>>();
@@ -143,6 +144,14 @@ public class PresupuestoDTO implements Serializable {
 
 	public Proyecto getProyecto() {
 		return proyecto;
+	}
+
+	public Double getPresupuestoDisponible() {
+		return presupuestoDisponible;
+	}
+
+	public void setPresupuestoDisponible(Double presupuestoDisponible) {
+		this.presupuestoDisponible = presupuestoDisponible;
 	}
 
 }

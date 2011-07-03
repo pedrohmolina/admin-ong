@@ -48,6 +48,7 @@ public class Proyecto extends BusinessObject {
 	private String beneficiariosDirectos;
 	private String beneficiariosIndirectos;
 	private String resumen;
+	private Double presupuestoTotal;
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "coordinador", joinColumns = @JoinColumn(name="idProyecto"), inverseJoinColumns = @JoinColumn(name = "idPersona"))
@@ -186,6 +187,14 @@ public class Proyecto extends BusinessObject {
 
 	public void setArchivo(Archivo archivo) {
 		this.archivo = archivo;
+	}
+
+	public Double getPresupuestoTotal() {
+		return presupuestoTotal;
+	}
+
+	public void setPresupuestoTotal(Double presupuestoTotal) {
+		this.presupuestoTotal = presupuestoTotal;
 	}
 
 	@Override

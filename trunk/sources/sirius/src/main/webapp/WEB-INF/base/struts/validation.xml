@@ -721,6 +721,9 @@
 			<field property="idFinanciador" depends="required">
 				<arg position="0" key="sirius.proyecto.financiador.label"/>
 			</field>
+			<field property="presupuestoTotal" depends="required, positiveDouble">
+				<arg position="0" key="sirius.proyecto.presupuestoTotal.label"/>
+			</field>
 			<field property="idAreaTematica" depends="required">
 				<arg position="0" key="sirius.proyecto.areasTematicas.label"/>
 			</field>

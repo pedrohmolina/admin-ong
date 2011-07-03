@@ -18,6 +18,12 @@
 		<table id="jQGrid">
 		</table>
 	</div>
+	<div>
+		<p>
+		<label for="nombre"><bean:message key="sirius.proyecto.presupuestoTotal.label" />&nbsp;:</label>
+		<label id="presupuestoDisponible">&nbsp;</label>
+		</p><br>
+	</div>
 	<div class="boton">
 		<a href="#" onclick="aceptar();" tabindex="17"><bean:message key="antares.base.aceptar.label" /></a>
 		<a href="<c:url value="/proyecto/proyecto-query.do?method=lastQuery"/>"><bean:message key="antares.base.cancelar.label" /></a>
@@ -56,11 +62,16 @@
 			],			
 			cellurl: '<c:url value="/proyecto/presupuesto-form.do"/>?method=updateData',
 			afterSaveCell: afterSave,
-			loadComplete: changeEditable,
+			loadComplete: loadComplete,
 			multiselect: false,
 			paging: false,
 			cellEdit: true
 		});
+	}
+
+	function loadComplete() {
+		actualizarPresupuestoDisponible();
+		changeEditable();
 	}
 
 	// Es hace que las ultimas dos filas no sean editables (filas de totales)
@@ -83,6 +94,18 @@
     
 	function aceptar() {
 		document.presupuestoForm.submit();
+	}
+
+	function actualizarPresupuestoDisponible() {
+		var url = "<c:url value='/proyecto/presupuesto-form.do?method=getPresupuestoDisponible' />";
+		$.getJSON(url, {}, function(json){
+			$("#presupuestoDisponible").html(json.presupuestoDisponible);
+			if (parseFloat(json.presupuestoDisponible) >= 0) {
+				$("#presupuestoDisponible").addClass('textrojo');
+			} else {
+				$("#presupuestoDisponible").removeClass('textrojo');
+			}
+		});
 	}
 
     $(document).ready(function (){

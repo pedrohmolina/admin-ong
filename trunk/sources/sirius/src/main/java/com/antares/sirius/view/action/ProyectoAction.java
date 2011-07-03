@@ -70,6 +70,7 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 		entity.setUbicacion(form.getUbicacion());
 		entity.setBeneficiariosDirectos(form.getBeneficiariosDirectos());
 		entity.setBeneficiariosIndirectos(form.getBeneficiariosIndirectos());
+		entity.setPresupuestoTotal(Utils.parseDouble(form.getPresupuestoTotal()));
 
 		Financiador financiador = financiadorService.findById(Integer.parseInt(form.getIdFinanciador()));
 		entity.setFinanciador(financiador);
