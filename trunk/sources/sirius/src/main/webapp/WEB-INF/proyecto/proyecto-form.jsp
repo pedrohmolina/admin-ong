@@ -13,7 +13,6 @@
 <div class="form">
 <html:form action="/proyecto/proyecto-form-validate.do?method=save" styleId="abmForm" enctype="multipart/form-data">
 
-	<h1>Datos</h1>
 	<div style="float:left;">
 		<p>
 		<label for="nombre"><bean:message key="sirius.proyecto.nombre.label" />(*)&nbsp;:</label>
@@ -70,7 +69,7 @@
 			<bean:write name="tipoAgrupamiento" property="descripcion" />
 			</p><br>
 		</logic:iterate>
-		</p><br><p>
+		<br><p>
 		<label for="idArchivo"><bean:message key="sirius.proyecto.archivo.label" />&nbsp;:</label>
 		<html:file property="archivo" style="width:300px"/>
 		</p><br>

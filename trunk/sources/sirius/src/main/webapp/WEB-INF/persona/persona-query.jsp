@@ -22,7 +22,6 @@ function confirmarAccion(mensaje) {
 
 <div class="form">
 	<html:form action="/persona/persona-query.do?method=query">
-	<h1>Búsqueda de Personas</h1>
 	<div style="float:left; width: 100%;">
 		<p>
 		<label for="filtroApellido"><bean:message key="sirius.persona.apellido.label" />:</label>

@@ -28,7 +28,6 @@
 <div class="form">
 <html:form action="/rubro/rubro-form-validate.do?method=save" styleId="abmForm">
 
-	<h1>Datos</h1>
 	<div style="float:left;">
 		<p>
 		<label for="nombre"><bean:message key="sirius.rubro.nombre.label" />(*)&nbsp;:</label>

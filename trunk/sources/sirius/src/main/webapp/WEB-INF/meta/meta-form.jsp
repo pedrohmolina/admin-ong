@@ -13,7 +13,6 @@
 <div class="form">
 <html:form action="/meta/meta-form-validate.do?method=save" styleId="abmForm">
 
-	<h1>Datos</h1>
 	<div style="float:left;">
 		<p>
 		<label for="idObjetivoEspecifico"><bean:message key="sirius.meta.objetivoEspecifico.label" />(*)&nbsp;:</label>

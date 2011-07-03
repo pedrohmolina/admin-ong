@@ -22,7 +22,6 @@ function confirmarAccion(mensaje) {
 
 <div class="form">
 	<html:form action="/gasto/gasto-organizacion-query.do?method=query">
-	<h1>Búsqueda de Gastos Generales de Organizacion</h1>
 	<div style="float:left; width: 100%;">
 		<p>
 		<label for="filtroIdRubro"><bean:message key="sirius.gasto.rubro.label" />:</label>

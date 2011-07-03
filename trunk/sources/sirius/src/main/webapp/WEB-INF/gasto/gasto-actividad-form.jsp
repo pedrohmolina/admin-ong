@@ -63,7 +63,6 @@ function cargarComboActividad(select, destinationCombo) {
 <html:form action="/gasto/gasto-actividad-form-validate.do?method=save"
 	styleId="abmForm">
 
-	<h1>Datos</h1>
 	<div style="float:left;">
 		<p>
 		<label for="idProyecto"><bean:message key="sirius.gasto.proyecto.label" />(*)&nbsp;:</label>

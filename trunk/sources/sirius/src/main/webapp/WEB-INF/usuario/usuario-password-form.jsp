@@ -35,7 +35,6 @@
 <div class="form">
 <html:form action="/usuario/usuario-password-form-validate.do?method=savePassword" styleId="abmForm">
 
-	<h1>Datos</h1>
 	<div style="float:left;">
 		<p>
 		<label for="passwordActual"><bean:message key="sirius.usuario.passwordActual.label" />(*)&nbsp;:</label>

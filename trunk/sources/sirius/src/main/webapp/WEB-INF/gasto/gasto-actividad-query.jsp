@@ -48,7 +48,6 @@ function initReferencia(id) {
 
 <div class="form">
 	<html:form action="/gasto/gasto-actividad-query.do?method=query">
-	<h1>Búsqueda de Gastos Registrados por Actividad</h1>
 	<div style="float:left; width: 100%;">
 		<p>
 		<label for="filtroIdProyecto"><bean:message key="sirius.gasto.proyecto.label" />:</label>

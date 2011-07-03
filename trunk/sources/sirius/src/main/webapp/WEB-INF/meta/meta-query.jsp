@@ -22,7 +22,6 @@ function confirmarAccion(mensaje) {
 
 <div class="form">
 	<html:form action="/meta/meta-query.do?method=query">
-	<h1>Búsqueda de Metas</h1>
 	<div style="float:left; width: 100%;">
 		<p>
 		<label for="filtroIdObjetivoEspecifico"><bean:message key="sirius.meta.objetivoEspecifico.label" />&nbsp;:</label>

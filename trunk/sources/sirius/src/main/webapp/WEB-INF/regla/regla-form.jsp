@@ -130,7 +130,6 @@
 <div class="form">
 <html:form action="/regla/regla-form-validate.do?method=save" styleId="abmForm">
 
-	<h1>Datos</h1>
 	<div style="float:left;">
 		<p>
 		<label for="idUsuario"><bean:message key="sirius.regla.usuario.label" />(*)&nbsp;:</label>

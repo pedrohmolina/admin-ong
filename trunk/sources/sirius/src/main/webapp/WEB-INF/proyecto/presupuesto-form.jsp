@@ -38,7 +38,7 @@
 			scrollOffset: 2,
 			autowidth: true,
 			shrinkToFit: true,
-			colNames: ['Actividad', <bean:write name="presupuestoForm" property="nombresColumnas" filter="false"/>, '% TOTAL', 'TOTAL'],
+			colNames: ['Actividad', <bean:write name="presupuestoForm" property="nombresColumnas" filter="false"/> '% TOTAL', 'TOTAL'],
 			colModel: [
 				{name: 'Actividad', index: 'Actividad', sortable: false},
 				<logic:iterate id="rubro" name="presupuestoForm" property="rubros">

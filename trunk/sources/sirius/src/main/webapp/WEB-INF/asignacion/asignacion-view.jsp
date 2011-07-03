@@ -8,16 +8,9 @@
 <%@ taglib uri="/WEB-INF/tlds/displaytag.tld" prefix="display"%>
 <%@ taglib uri="/WEB-INF/tlds/displaytag-el.tld" prefix="display-el"%>
 <%@ taglib uri="/WEB-INF/tlds/c.tld" prefix="c"%>
-<div class="boxTitulo">
-	<div class="bi">
-		<div class="bt"><div></div></div>
-		<h1>Datos</h1>
-		<div class="bb"><div></div></div>
-	</div>
-</div>x
+
 <div class="form">
 <html:form action="/asignacion/asignacion-query.do?method=query">
-	<h1>Datos</h1>
 	<div style="float:left;">
 		<p>
 		<label for="idActividad"><bean:message key="sirius.asignacion.actividad.label" />(*)&nbsp;:</label>

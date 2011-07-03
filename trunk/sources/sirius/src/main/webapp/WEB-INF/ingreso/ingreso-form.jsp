@@ -32,7 +32,6 @@
 <div class="form">
 <html:form action="/ingreso/ingreso-form-validate.do?method=save" styleId="abmForm">
 
-	<h1>Datos</h1>
 	<div style="float:left;">
 		<p>
 		<label for="idTipoIngreso"><bean:message key="sirius.ingreso.tipoIngreso.label" />(*)&nbsp;:</label>

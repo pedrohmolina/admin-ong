@@ -13,7 +13,6 @@
 <div class="form">
 <html:form action="/gasto/gasto-organizacion-form-validate.do?method=save" styleId="abmForm">
 
-	<h1>Datos</h1>
 	<div style="float: left;">
 		<p>
 		<label for="fecha"><bean:message key="sirius.gasto.fecha.label" />(*)&nbsp;:</label>

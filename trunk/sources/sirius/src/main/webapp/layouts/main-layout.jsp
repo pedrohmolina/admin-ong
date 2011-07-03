@@ -36,6 +36,7 @@
 		<jsp:include flush="true" page="/common/menu.jsp"></jsp:include>
 	</div>
 	<div class='body-container'>
+		<h1><tiles:getAsString name="title"/></h1>
 		<tiles:insert attribute="body"/>
 	</div>
 	<div class='body-foot'></div>
