@@ -22,7 +22,6 @@ function confirmarAccion(mensaje) {
 
 <div class="form">
 	<html:form action="/rol/rol-query.do?method=query">
-	<h1>Búsqueda de Roles</h1>
 	<div style="float:left; width: 100%;">
 		<p>
 		<label for="nombre"><bean:message key="sirius.rol.nombre.label" />:</label>

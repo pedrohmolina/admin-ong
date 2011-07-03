@@ -13,7 +13,6 @@
 <div class="form">
 <html:form action="/persona/persona-form-validate.do?method=save" styleId="abmForm">
 
-	<h1>Datos</h1>
 	<div style="float:left;">
 		<p>
 		<label for="apellido"><bean:message key="sirius.persona.apellido.label" />(*)&nbsp;:</label>

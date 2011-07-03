@@ -22,7 +22,6 @@ function confirmarAccion(mensaje) {
 
 <div class="form">
 	<html:form action="/relacion-contractual/relacion-contractual-query.do?method=query">
-	<h1>Búsqueda de Relaciones Contractuales</h1>
 	<div style="float:left; width: 100%;">
 		<p>
 		<label for="filtroNombre"><bean:message key="sirius.relacionContractual.nombre.label" />:</label>

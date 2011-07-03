@@ -22,7 +22,6 @@ function confirmarAccion(mensaje) {
 
 <div class="form">
 	<html:form action="/objetivo-especifico/objetivo-especifico-query.do?method=query">
-	<h1>Búsqueda de Objetivos Especificos</h1>
 	<div style="float: left; width: 100%;">
 		<p>
 		<label for="filtroIdObjetivoGeneral"><bean:message key="sirius.objetivoEspecifico.objetivoGeneral.label" />&nbsp;:</label>

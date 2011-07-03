@@ -54,7 +54,6 @@ function confirmarAccion(mensaje) {
 		<html:errors />
 	</div>
 
-	<h1>Resultado de la Búsqueda</h1>
 	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.ingresoForm.result" id="item"
 		requestURI="/ingreso/ingreso-query.do" sort="list" >
 

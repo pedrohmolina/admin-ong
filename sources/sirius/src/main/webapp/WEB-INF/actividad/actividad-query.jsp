@@ -21,7 +21,6 @@ function confirmarAccion(mensaje) {
 
 <div class="form">
 	<html:form action="/actividad/actividad-query.do?method=query">
-	<h1>Búsqueda de Actividades</h1>
 	<div style="float:left; width:100%;">
 		<p>
 		<label for="filtroIdMeta"><bean:message key="sirius.actividad.meta.label" />&nbsp;:</label>

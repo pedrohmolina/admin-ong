@@ -25,7 +25,6 @@ function cargarComboActividad(select, destinationCombo){
 <div class="form">
 <html:form action="/asignacion/asignacion-form-validate.do?method=save" styleId="abmForm">
 
-	<h1>Datos</h1>
 	<div style="float:left;">
 		<p>
 		<logic:equal name="asignacionForm" property="action.descripcion" value="create">

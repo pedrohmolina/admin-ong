@@ -31,7 +31,6 @@ function cargarComboActividad(select, destinationCombo){
 
 <div class="form">
 	<html:form action="/asignacion/asignacion-query.do?method=query">
-	<h1>Búsqueda de Asignaciones</h1>
 	<div style="float: left; width: 100%;">
 		<p>
 		<label for="filtroIdProyecto"><bean:message key="sirius.asignacion.proyecto.label" />&nbsp;:</label>

@@ -24,7 +24,6 @@ $(document).ready(function(){
 <div class="form">
 <html:form action="/gasto/gasto-actividad-form.do?method=saveReferencia" styleId="abmForm">
 
-	<h1>Datos</h1>
 	<div style="float:left;">
 		<p>
 		<label for="referencia"><bean:message key="sirius.gasto.referencia.label" />:</label>

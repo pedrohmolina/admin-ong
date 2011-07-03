@@ -29,7 +29,6 @@
 <div class="form">
 <html:form action="/actividad/actividad-form-validate.do?method=save" styleId="abmForm">
 
-	<h1>Datos</h1>
 	<div style="float:left;">
 		<p>
 		<label for="idMeta"><bean:message key="sirius.actividad.meta.label" />(*)&nbsp;:</label>

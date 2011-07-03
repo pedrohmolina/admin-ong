@@ -13,7 +13,6 @@
 <div class="form">
 <html:form action="/proveedor/proveedor-form-validate.do?method=save" styleId="abmForm">
 
-	<h1>Datos</h1>
 	<div style="float:left;">
 		<p>
 		<label for="nombre"><bean:message key="sirius.proveedor.nombre.label" />(*)&nbsp;:</label>

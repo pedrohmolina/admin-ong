@@ -17,7 +17,6 @@ function confirmarAccion(mensaje) {
 
 <div class="form">
 	<html:form action="/gasto/gasto-actividad-list.do?method=list">
-	<h1>Búsqueda de Gastos Registrados por Actividad</h1>
 	<div style="float:left; width: 100%;">
 		<p>
 		<label for="filtroFechaDesde"><bean:message key="sirius.gasto.fechaDesde.label" />:</label>

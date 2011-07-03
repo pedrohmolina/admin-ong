@@ -22,7 +22,6 @@ function confirmarAccion(mensaje) {
 
 <div class="form">
 	<html:form action="/regla/regla-query.do?method=query">
-	<h1>Búsqueda de Reglas</h1>
 	<div style="float:left; width: 100%;">
 		<p>
 		<label for="filtroIdUsuario"><bean:message key="sirius.regla.usuario.label" />:</label>

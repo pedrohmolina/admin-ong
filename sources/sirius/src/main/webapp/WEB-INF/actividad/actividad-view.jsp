@@ -17,7 +17,6 @@
 </div>x
 <div class="form">
 <html:form action="/actividad/actividad-query.do?method=query">
-	<h1>Datos</h1>
 	<div style="float: left;">
 		<p>
 		<label for="labelMeta"><bean:message key="sirius.actividad.meta.label" />&nbsp;:</label>
