@@ -9,8 +9,8 @@ import com.antares.sirius.model.FormatoReporte;
 import com.antares.sirius.model.Meta;
 import com.antares.sirius.model.ObjetivoEspecifico;
 import com.antares.sirius.model.ObjetivoGeneral;
-import com.antares.sirius.model.Proveedor;
 import com.antares.sirius.model.Proyecto;
+import com.antares.sirius.model.Rubro;
 
 /**
  * Formulario que contendra los filtros a partir de los cuales se generara el reporte de Finanzas.
@@ -30,6 +30,7 @@ public class ReporteFinancieroForm extends ActionForm{
 	private Collection<ObjetivoEspecifico> objetivosEspecificos;
 	private Collection<Meta> metas;
 	private Collection<Actividad> actividades;
+	private Collection<Rubro> rubros;
 	
 	private String idProyecto;
 	private String idObjetivoGeneral;
@@ -44,6 +45,8 @@ public class ReporteFinancieroForm extends ActionForm{
 	private String filtroIdActividad;
 	
 	private String[] rubrosSeleccionados;
+	
+	private String tipoVisualizacion;
 	
 	/**
 	 * @return the proyectos
@@ -262,6 +265,33 @@ public class ReporteFinancieroForm extends ActionForm{
 	 */
 	public void setRubrosSeleccionados(String[] rubrosSeleccionados) {
 		this.rubrosSeleccionados = rubrosSeleccionados;
+	}
+	
+	/**
+	 * @return the tipoVisualizacion
+	 */
+	public String getTipoVisualizacion() {
+		return tipoVisualizacion;
+	}
+	/**
+	 * @param tipoVisualizacion the tipoVisualizacion to set
+	 */
+	public void setTipoVisualizacion(String tipoVisualizacion) {
+		this.tipoVisualizacion = tipoVisualizacion;
+	}
+	
+	
+	/**
+	 * @return the rubros
+	 */
+	public Collection<Rubro> getRubros() {
+		return rubros;
+	}
+	/**
+	 * @param rubros the rubros to set
+	 */
+	public void setRubros(Collection<Rubro> rubros) {
+		this.rubros = rubros;
 	}
 	public void initialize() {
 	}

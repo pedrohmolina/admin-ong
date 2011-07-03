@@ -24,5 +24,8 @@ public interface Constants {
 	String REPORTE_PROVEEDORES = "Proveedores";
 	String REPORTE_FINANCIEROS = "Finanzas";
 	
+	String REPORTE_FINANCIERO_VISUALIZACION_PORCENTUAL = "porcentual";
+	String REPORTE_FINANCIERO_VISUALIZACION_POR_MONTOS = "montos";
+	
 	String ANTARES_LOGO = "/reports/Antares.jpg";
 }

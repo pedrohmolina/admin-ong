@@ -234,7 +234,8 @@
 		<property name="objetivoGeneralService" 			ref="objetivoGeneralService" />
 		<property name="objetivoEspecificoService" 			ref="objetivoEspecificoService" />
 		<property name="metaService" 						ref="metaService" />
-		<property name="actividadService" 					ref="actividadService" />		
+		<property name="actividadService" 					ref="actividadService" />	
+		<property name="rubroService" 						ref="rubroService" />		
 	</bean>
 	<bean name="/reportes/reporte-financiero"				parent="reporteFinancieroAction" singleton="false" />
 	
