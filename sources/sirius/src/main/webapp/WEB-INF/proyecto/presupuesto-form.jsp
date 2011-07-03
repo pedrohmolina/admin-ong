@@ -13,7 +13,7 @@
 <div class="form">
 	<html:form action="/proyecto/presupuesto-form.do?method=save" styleId="abmForm" enctype="multipart/form-data">
 	</html:form>
-	<h1>Presupuesto del proyecto: <bean:write name="presupuestoForm" property="nombreProyecto"/></h1>
+	<h2><bean:write name="presupuestoForm" property="nombreProyecto"/></h2>
 	<div align="center">
 		<table id="jQGrid">
 		</table>
