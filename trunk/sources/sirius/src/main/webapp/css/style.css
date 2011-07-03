@@ -23,6 +23,7 @@ body {
 input {
 	font-family: Arial;
 	color: #7C7C7C;
+	vertical-align: top;
 }
 
 select {
@@ -39,7 +40,7 @@ select {
 
 div.ui-datepicker {
 	font-size: 10px;
-	margin-left: -319px
+	margin-left: -167px
 }
 
 .top-head {
