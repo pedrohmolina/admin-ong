@@ -60,13 +60,13 @@
 		</p><br>
 		<logic:iterate id="tipoAgrupamiento" name="proyectoForm" property="tiposAgrupamiento">
 			<p>
+			<label><bean:write name="tipoAgrupamiento" property="descripcion" /> :</label>
 			<logic:equal name="proyectoForm" property="action.descripcion" value="create">
-				<html-el:radio property="idTipoAgrupamiento" value="${tipoAgrupamiento.id}" />
+				<html-el:radio property="idTipoAgrupamiento" value="${tipoAgrupamiento.id}" style="width: 20px"/>
 			</logic:equal>
 			<logic:equal name="proyectoForm" property="action.descripcion" value="update">
-				<html-el:radio property="idTipoAgrupamiento" value="${tipoAgrupamiento.id}" disabled="true"/>
+				<html-el:radio property="idTipoAgrupamiento" value="${tipoAgrupamiento.id}" disabled="true" style="width: 20px"/>
 			</logic:equal>
-			<bean:write name="tipoAgrupamiento" property="descripcion" />
 			</p><br>
 		</logic:iterate>
 		<br><p>
