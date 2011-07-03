@@ -34,6 +34,7 @@ import com.antares.sirius.service.ObjetivoEspecificoService;
 import com.antares.sirius.service.ObjetivoGeneralService;
 import com.antares.sirius.service.ProyectoService;
 import com.antares.sirius.service.ReporteFinancieroService;
+import com.antares.sirius.service.RubroService;
 import com.antares.sirius.view.form.ActividadForm;
 import com.antares.sirius.view.form.AsignacionForm;
 import com.antares.sirius.view.form.ReporteFinancieroForm;
@@ -51,6 +52,7 @@ public class ReporteFinancieroAction extends ReporteAction{
 	private ObjetivoEspecificoService objetivoEspecificoService;
 	private MetaService metaService;
 	private ActividadService actividadService;
+	private RubroService rubroService;
 	
 	/**
 	 * Inicializa la pantalla de consulta.
@@ -78,6 +80,7 @@ public class ReporteFinancieroAction extends ReporteAction{
 		form.setObjetivosEspecificos(objetivoEspecificoService.findAll());
 		form.setMetas(metaService.findAll());
 		form.setActividades(actividadService.findAll());
+		form.setRubros(rubroService.findPrimerNivel());
 	}
 	
 	/**
@@ -351,6 +354,22 @@ public class ReporteFinancieroAction extends ReporteAction{
 	 */
 	public void setActividadService(ActividadService actividadService) {
 		this.actividadService = actividadService;
+	}
+
+
+	/**
+	 * @return the rubroService
+	 */
+	public RubroService getRubroService() {
+		return rubroService;
+	}
+
+
+	/**
+	 * @param rubroService the rubroService to set
+	 */
+	public void setRubroService(RubroService rubroService) {
+		this.rubroService = rubroService;
 	}
 
 	
