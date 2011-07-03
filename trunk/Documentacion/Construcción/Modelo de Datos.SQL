@@ -241,6 +241,7 @@ CREATE TABLE proyecto
 	beneficiariosDirectos TEXT COMMENT 'Descripción de los Beneficiarios directos del Proyecto.',
 	beneficiariosIndirectos TEXT COMMENT 'Descripción de los Beneficiarios indirectos del Proyecto',
 	financiador INT,
+	presupuestoTotal DECIMAL(10,2) NOT NULL,
 	resumen TEXT COMMENT 'Resumen del Proyecto',
 	idArchivo INT NULL COMMENT 'Resumen del Proyecto',
 	activo BOOL NOT NULL COMMENT 'Señal para manejo de baja logica',
