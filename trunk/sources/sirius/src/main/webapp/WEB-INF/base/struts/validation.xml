@@ -1046,7 +1046,7 @@
 					<var-value>(((*this* != null) or (valorNumerico != null)) or ((valorFecha != null) or (valorCombo != null)))</var-value>
 				</var>
 			</field>
-			<field property="valorNumerico" depends="double">
+			<field property="valorNumerico" depends="positiveDouble">
 				<arg position="0" key="sirius.regla.valor.label"/>
 			</field>
 			<field property="valorFecha" depends="date">
