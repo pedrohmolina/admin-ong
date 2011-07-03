@@ -57,7 +57,7 @@ function confirmarAccion(mensaje) {
 	<div style="float: left; width: 100%;">
 	<p>	
 	<h2>Vista Previa Resultados</h2>
-	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.reportePersonaForm.result" id="item"
+	<display-el:table export="false" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.reportePersonaForm.result" id="item"
 		requestURI="/reportes/reporte-persona.do" sort="list" >
 
 		<c:if test="${not empty requestScope['notShowMessage']}">
