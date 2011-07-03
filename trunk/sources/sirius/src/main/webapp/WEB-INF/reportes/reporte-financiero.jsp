@@ -116,31 +116,16 @@ function cargarComboActividad(select, destinationCombo){
 	</div>
 		
 	<div style="float:left; width: 100%;">
-	<p>
-		<h2>Informacion</h2>
- 
-		<table>
-			<tr>
-				<td>
-					<label for="tipoVisualizacion"><bean:message key="sirius.reportes.finanzas.porcentual" />:</label>
-				</td>
-				<td>
-					<html:radio property="tipoVisualizacion" value="porcentual" /> 
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label for="tipoVisualizacion"><bean:message key="sirius.reportes.finanzas.montos" />:</label>
-				</td>
-				<td>
-					<html:radio property="tipoVisualizacion" value="montos" /> 
-				</td>
-			</tr>
-			
-		</table>
 	
-	<p>
-	</p><br><p>
+		<h2>Informacion</h2>
+
+			<p>
+				<label for="tipoVisualizacion"><bean:message key="sirius.reportes.finanzas.porcentual"/> :</label>
+				<html:radio property="tipoVisualizacion" value="porcentual" style="width:20px"/>
+			</p><br><p>
+				<label for="tipoVisualizacion"><bean:message key="sirius.reportes.finanzas.montos" /> :</label>
+				<html:radio property="tipoVisualizacion" value="montos" style="width:20px" />
+			</p><br>
 	</div>
 
 	<div style="float: left; width: 100%;">
