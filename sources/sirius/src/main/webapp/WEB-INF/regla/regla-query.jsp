@@ -59,7 +59,9 @@ function confirmarAccion(mensaje) {
 		</c:if>
 	
 		<display:column sortable="true" property="usuario.username" 		titleKey="sirius.regla.usuario.label" />
-		<display:column sortable="true" property="entidad.descripcion" 		titleKey="sirius.regla.entidad.label" />
+		<display:column sortable="true" titleKey="sirius.regla.entidad.label">
+			<bean-el:message key="${item.entidad.descripcion}"/>
+		</display:column>
 		<display:column sortable="true" titleKey="sirius.regla.atributo.label">
 			<bean-el:message key="${item.atributo.descripcion}"/>
 		</display:column>

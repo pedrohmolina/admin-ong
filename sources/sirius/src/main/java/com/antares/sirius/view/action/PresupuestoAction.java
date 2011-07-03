@@ -276,9 +276,6 @@ public class PresupuestoAction extends DispatchAction {
 		for (Rubro rubro : rubros) {
 			nombresColumnas += "'" + rubro.getNombre() + "',";
 		}
-		if (nombresColumnas.length() > 0) {
-			nombresColumnas = nombresColumnas.substring(0, nombresColumnas.lastIndexOf(','));
-		}
 		return nombresColumnas;
 	}
 
