@@ -37,6 +37,7 @@
 	<div class="boton">
 		<a href="<c:url value="/ingreso/ingreso-query.do?method=lastQuery"/>"><bean:message key="antares.base.volver.label" /></a>
 	</div>
+	<div style="clear:both; padding:5px 0 0 0;"></div>
 </html:form>
 </div>
 

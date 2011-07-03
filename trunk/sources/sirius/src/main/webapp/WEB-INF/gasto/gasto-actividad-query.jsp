@@ -69,7 +69,7 @@ function initReferencia(id) {
 		</html:select>
 		</p><br><p>
 		<label for="filtroFecha"><bean:message key="sirius.gasto.fecha.label" />:</label>
-		<html:text property="filtroFecha" />
+		<html:text property="filtroFecha" styleClass="datepicker"/>
 		</p><br><p>
 		<label for="filtroIdRubro"><bean:message key="sirius.gasto.rubro.label" />:</label>
 		<html:select property="filtroIdRubro">

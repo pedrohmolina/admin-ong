@@ -59,6 +59,7 @@ div.ui-datepicker {
 	width: 900px;
 	height: 40px;
 	border-bottom: 1px solid #C8C8C8;
+	z-index: 1;
 }
 
 #menu {
