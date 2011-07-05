@@ -1,4 +1,6 @@
 <%@ taglib uri="/WEB-INF/tlds/c.tld" prefix="c" %>
+<div class="home">
 <center>
-<img alt="A LA PUCHA" src="../img/DSC05407.JPG" width="700px">
+<img alt="Sirius logo" src="../img/blogo.png" width="500px">
 </center>
+</div>
