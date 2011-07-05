@@ -10,7 +10,7 @@ html {
 	background-color: #EEEFF1
 }
 
-body {
+.body {
 	background-color: #FFFFFF;
 	width: 900px;
 	margin: 10px auto 0px auto;
@@ -157,6 +157,15 @@ div.ui-datepicker {
 	height: 5px;
 	border-top: solid 1px;
 	border-color: #C8C8C8;
+}
+
+.img-foot{
+	height: 50px;
+	background-image: url("../img/slogo.png");
+	background-repeat: no-repeat;
+	width: 900px;
+	margin: 1px auto 0px auto;
+	position: relative;
 }
 
 h1 {
@@ -352,4 +361,9 @@ table tbody a {
 
 .textrojo{
 	color: red;
+}
+
+.home{
+	padding-top: 70px;
+	height: 400px;
 }

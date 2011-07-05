@@ -32,7 +32,7 @@
 	
 </script>
 
-<div class="form">
+<div class="form home" >
 <form action="<c:url value="/j_security_check_acegi"/>">
 
 	<h1>Por favor ingrese su Usuario y Contraseña para ingresar al sistema</h1>
