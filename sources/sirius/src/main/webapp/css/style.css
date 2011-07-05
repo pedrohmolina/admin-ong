@@ -226,7 +226,7 @@ table thead a {
 table thead {
 	color: #ffffff;
 	background-color: #0d5772;
-	font-size: 10px;
+	font-size: 12px;
 	height: 20px;
 }
 
@@ -276,7 +276,6 @@ table tbody a {
 	font-weight: bold;
 	text-decoration: underline;
 }
-
 
 
 /*Filtros de Busqueda*/
@@ -335,6 +334,22 @@ table tbody a {
 	color: red;
 }
 
-.textrojo {
+.presupuesto{
+	float: right;
+	margin: 10px 10px 10px 10px;
+	border: 2px solid #D3D3D3;
+	padding: 3px 5px 5px 5px;
+}
+
+.presupuesto label{
+	width: 150px;
+	text-align: left;
+}
+
+#presupuestoDisponible{
+	width: 50px;
+}
+
+.textrojo{
 	color: red;
 }
