@@ -18,12 +18,14 @@
 		<table id="jQGrid">
 		</table>
 	</div>
-	<div>
+	<div class="presupuesto">
 		<p>
+
 		<label for="nombre"><bean:message key="sirius.proyecto.presupuestoTotal.label" />&nbsp;:</label>
 		<label id="presupuestoDisponible">&nbsp;</label>
 		</p><br>
 	</div>
+	<div style="clear:both; padding:5px 0 0 0;"></div>
 	<div class="boton">
 		<a href="#" onclick="aceptar();" tabindex="17"><bean:message key="antares.base.aceptar.label" /></a>
 		<a href="<c:url value="/proyecto/proyecto-query.do?method=lastQuery"/>"><bean:message key="antares.base.cancelar.label" /></a>
@@ -101,9 +103,9 @@
 		$.getJSON(url, {}, function(json){
 			$("#presupuestoDisponible").html(json.presupuestoDisponible);
 			if (parseFloat(json.presupuestoDisponible) >= 0) {
-				$("#presupuestoDisponible").addClass('textrojo');
-			} else {
 				$("#presupuestoDisponible").removeClass('textrojo');
+			} else {
+				$("#presupuestoDisponible").addClass('textrojo');
 			}
 		});
 	}
