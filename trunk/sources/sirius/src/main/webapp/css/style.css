@@ -342,12 +342,12 @@ table tbody a {
 }
 
 .presupuesto label{
-	width: 150px;
-	text-align: left;
+	width: 130px;
+	text-align: rigth;
 }
 
 #presupuestoDisponible{
-	width: 50px;
+	width: 80px;
 }
 
 .textrojo{
