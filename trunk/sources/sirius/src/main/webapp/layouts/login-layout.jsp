@@ -30,12 +30,15 @@
 <tiles:insert attribute="js-header"/>
 </head>
 <body>
-	<div class='top-head'></div>
-	<div class='menu-container'>
+	<div class="body">
+		<div class='top-head'></div>
+		<div class='menu-container'>
+		</div>
+		<div class='body-container'>
+			<tiles:insert attribute="body"/>
+		</div>
+		<div class='body-foot'></div>
 	</div>
-	<div class='body-container'>
-		<tiles:insert attribute="body"/>
-	</div>
-	<div class='body-foot'></div>
+	<div class='img-foot'></div>
 </body>
 </html>

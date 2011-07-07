@@ -67,7 +67,8 @@
 			loadComplete: loadComplete,
 			multiselect: false,
 			paging: false,
-			cellEdit: true
+			cellEdit: true,
+			height: 400
 		});
 	}
 
