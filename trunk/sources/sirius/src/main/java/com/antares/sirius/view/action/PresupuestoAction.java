@@ -209,6 +209,7 @@ public class PresupuestoAction extends DispatchAction {
 	 */
 	protected BigDecimal[][] buildMatrizPresupuesto(List<Rubro> rubros, List<Actividad> actividades, PresupuestoDTO presupuestos) {
 
+		BigDecimal presupuestoTotal = new BigDecimal(presupuestos.getProyecto().getPresupuestoTotal());
 		BigDecimal[][] matrizGrilla = new BigDecimal[actividades.size() + 3][rubros.size() + 2];
 
 		// Agrego los presupuestos por actividad
@@ -230,7 +231,7 @@ public class PresupuestoAction extends DispatchAction {
 		}
 
 		//Calcular totales
-		BigDecimal totalGeneral = ZERO;
+		BigDecimal totalAsignado = ZERO;
 		for (int i = 0; i < actividades.size() + 1; i++) {
 			for (int j = 0; j < rubros.size(); j++) {
 				BigDecimal cellValue = matrizGrilla[i][j];
@@ -242,7 +243,7 @@ public class PresupuestoAction extends DispatchAction {
 					
 				matrizGrilla[i][rubros.size() + 1] = matrizGrilla[i][rubros.size() + 1].add(cellValue);
 				matrizGrilla[actividades.size() + 2][j] = matrizGrilla[actividades.size() + 2][j].add(cellValue);
-				totalGeneral = totalGeneral.add(cellValue);
+				totalAsignado = totalAsignado.add(cellValue);
 			}
 		}
 
@@ -250,15 +251,15 @@ public class PresupuestoAction extends DispatchAction {
 		int columnaTotal = rubros.size() + 1;
 		int filaTotal = actividades.size() + 2;
 		for (int i = 0; i < actividades.size() + 1; i++) {
-			matrizGrilla[i][columnaTotal - 1] = Utils.calcularPorcentaje(matrizGrilla[i][columnaTotal], totalGeneral);
+			matrizGrilla[i][columnaTotal - 1] = Utils.calcularPorcentaje(matrizGrilla[i][columnaTotal], presupuestoTotal);
 		}
 		for (int j = 0; j < rubros.size(); j++) {
-			matrizGrilla[filaTotal - 1][j] = Utils.calcularPorcentaje(matrizGrilla[filaTotal][j], totalGeneral);
+			matrizGrilla[filaTotal - 1][j] = Utils.calcularPorcentaje(matrizGrilla[filaTotal][j], presupuestoTotal);
 		}
 
-		presupuestos.setPresupuestoDisponible(new BigDecimal(presupuestos.getProyecto().getPresupuestoTotal()).subtract(totalGeneral).doubleValue());
-		matrizGrilla[actividades.size() + 2][rubros.size() + 1] = totalGeneral;
-		matrizGrilla[actividades.size() + 1][rubros.size()] = new BigDecimal(100);
+		presupuestos.setPresupuestoDisponible(presupuestoTotal.subtract(totalAsignado).doubleValue());
+		matrizGrilla[actividades.size() + 2][rubros.size() + 1] = totalAsignado;
+		matrizGrilla[actividades.size() + 1][rubros.size()] = Utils.calcularPorcentaje(totalAsignado, presupuestoTotal);
 		return matrizGrilla;
 	}
 
