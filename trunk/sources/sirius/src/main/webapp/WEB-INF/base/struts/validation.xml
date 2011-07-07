@@ -45,9 +45,6 @@
 					<var-value>2000</var-value>
 				</var>
 			</field>
-			<field property="presupuesto" depends="positiveDouble">
-				<arg position="0" key="sirius.actividad.presupuesto.label"/>
-			</field>
 			<field property="idMeta" depends="required">
 				<arg position="0" key="sirius.actividad.meta.label"/>
 			</field>
