@@ -99,7 +99,6 @@ CREATE TABLE actividad
 	fechaFin DATE COMMENT 'Fecha que termina la Actividad',
 	ponderacion DECIMAL(3) NOT NULL COMMENT 'Peso arbitrariamente asignado',
 	completitud DECIMAL(3) NOT NULL COMMENT 'Porcentaje en el que se ha completado la actividad',
-	presupuesto DECIMAL(10,2) COMMENT 'Presupuesto asignado a esta Actividad',
 	activo BOOL NOT NULL COMMENT 'Señal para manejo de baja logica',
 	PRIMARY KEY (id),
 	UNIQUE UQ_actividad_id(id),
