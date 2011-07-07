@@ -40,9 +40,6 @@
 		<label for="observaciones"><bean:message key="sirius.actividad.observaciones.label" />&nbsp;:</label>
 		<html:textarea property="observaciones" rows="5" readonly="true" />
 		</p><br><p>
-		<label for="presupuesto"><bean:message key="sirius.actividad.presupuesto.label" />&nbsp;:</label>
-		<html:text property="presupuesto" readonly="true" />
-		</p><br><p>
 		<label for="labelFinanciador"><bean:message key="sirius.actividad.financiador.label" />&nbsp;:</label>
 		<html:text property="labelFinanciador" readonly="true" />
 		</p><br>

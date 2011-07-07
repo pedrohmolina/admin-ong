@@ -26,7 +26,6 @@ public class ActividadForm extends AbstractForm<Actividad> {
 	private String fechaFin;
 	private String idMeta;
 	private String idFinanciador;
-	private String presupuesto;
 	private Integer completitud;
 	private Collection<Meta> metas;
 	private Collection<Financiador> financiadores;
@@ -152,14 +151,6 @@ public class ActividadForm extends AbstractForm<Actividad> {
 		this.completitud = completitud;
 	}
 
-	public String getPresupuesto() {
-		return presupuesto;
-	}
-
-	public void setPresupuesto(String presupuesto) {
-		this.presupuesto = presupuesto;
-	}
-
 	public Integer getIdEstado() {
 		return idEstado;
 	}
@@ -183,7 +174,6 @@ public class ActividadForm extends AbstractForm<Actividad> {
 		this.nombre = "";
 		this.ponderacion = "";
 		this.observaciones = "";
-		this.presupuesto = "";
 		this.completitud = 0;
 		this.idMeta = "";
 		this.idFinanciador = "";
@@ -202,7 +192,6 @@ public class ActividadForm extends AbstractForm<Actividad> {
 		this.nombre = "";
 		this.ponderacion = "";
 		this.observaciones = "";
-		this.presupuesto = "";
 		this.completitud = 0;
 		this.idMeta = "";
 		this.idFinanciador = "";
@@ -219,7 +208,6 @@ public class ActividadForm extends AbstractForm<Actividad> {
 		this.nombre = entity.getNombre();
 		this.ponderacion = entity.getPonderacion().toString();
 		this.observaciones = entity.getObservaciones();
-		this.presupuesto = Utils.formatDouble(entity.getPresupuesto());
 		this.completitud = entity.getCompletitud().intValue();
 		this.idMeta = entity.getMeta().getId().toString();
 		this.idFinanciador = entity.getFinanciador().getId().toString();
