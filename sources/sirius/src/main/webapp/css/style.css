@@ -40,7 +40,7 @@ select {
 
 div.ui-datepicker {
 	font-size: 10px;
-	margin-left: -167px
+	margin-left: 0px;
 }
 
 .top-head {

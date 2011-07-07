@@ -21,7 +21,6 @@ function confirmarAccion(mensaje) {
 
 <div class="form">
 	<html:form action="/ingreso/ingreso-query.do?method=query">
-	<h1>Búsqueda de Ingresos</h1>
 	<div style="float: left; width: 100%;">
 		<p>
 		<label for="filtroFecha"><bean:message key="sirius.ingreso.fecha.label" />:</label>
