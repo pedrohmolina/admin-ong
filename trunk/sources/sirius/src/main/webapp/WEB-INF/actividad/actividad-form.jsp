@@ -50,8 +50,8 @@
 		<label for="ponderacion"><bean:message key="sirius.actividad.ponderacion.label" />(*)&nbsp;:</label>
 		<html:text maxlength="3" property="ponderacion" />
 		</p><br>
-		<p>
 		<logic:equal name="actividadForm" property="action.descripcion" value="update">
+			<p>
 			<label for="completitud"><bean:message key="sirius.actividad.completitud.label" />(*)&nbsp;:</label>
 			<logic:equal name="actividadForm" property="actualizarCompletitud" value="true">
 				<html:text maxlength="3" property="completitud" />
@@ -59,8 +59,9 @@
 			<logic:notEqual name="actividadForm" property="actualizarCompletitud" value="true">
 				<html:text property="completitud" readonly="true"/>
 			</logic:notEqual>
-			<br />
+			</p><br />
 		</logic:equal>
+		<p>
 		<label for="fechaInicio"><bean:message key="sirius.actividad.fechaInicio.label" />&nbsp;:</label>
 		<html:text property="fechaInicio" styleClass="datepicker"/>
 		</p><br>
@@ -71,10 +72,6 @@
 		<p>
 		<label for="observaciones"><bean:message key="sirius.actividad.observaciones.label" />(*)&nbsp;:</label>
 		<html:textarea property="observaciones" rows="5" />
-		</p><br>
-		<p>
-		<label for="presupuesto"><bean:message key="sirius.actividad.presupuesto.label" />&nbsp;:</label>
-		<html:text property="presupuesto" />
 		</p><br>
 		<p>
 		<label for="idFinanciador"><bean:message key="sirius.actividad.financiador.label" />(*)&nbsp;:</label>

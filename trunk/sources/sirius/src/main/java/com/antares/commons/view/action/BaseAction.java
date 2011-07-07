@@ -334,7 +334,7 @@ public abstract class BaseAction<T extends BusinessObject, V extends AbstractFor
 	 * @param form objeto que representa el formulario de alta, actualizacion o visualizacion
 	 */
 	protected ActionErrors validate(V form) {
-		// Por defecto, true. Se deberá redefinir en las clases hijas que requieran hacer validaciones extra
+		// Por defecto, vacio. Se deberá redefinir en las clases hijas que requieran hacer validaciones extra
 		return new ActionErrors(); 
 	}
 

@@ -27,7 +27,6 @@ public class Actividad extends Ponderable {
 	private String observaciones;
 	private Date fechaInicio;
 	private Date fechaFin;
-	private Double presupuesto;
 	private Double completitud;
 
 	public Meta getMeta() {
@@ -76,14 +75,6 @@ public class Actividad extends Ponderable {
 
 	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
-	}
-
-	public Double getPresupuesto() {
-		return presupuesto;
-	}
-
-	public void setPresupuesto(Double presupuesto) {
-		this.presupuesto = presupuesto;
 	}
 
 	public Double getCompletitud() {
