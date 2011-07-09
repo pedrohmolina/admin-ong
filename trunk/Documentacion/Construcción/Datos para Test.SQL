@@ -37,7 +37,7 @@ INSERT INTO `meta` (`id`, `nombre`, `descripcion`, `ponderacion`, `idObjetivoEsp
 
 
 -- Agregar Actividad
-INSERT INTO `actividad` (`id`, `idMeta`, `idFinanciador`, `idEstadoActividad`, `nombre`, `observaciones`, `fechaInicio`, `fechaFin`, `ponderacion`, `completitud`, `presupuesto`, `activo`) VALUES ('2', '1', '1', '3', 'Comprar 70 vacunas contra la gripe', 'Comprar las vacunas en Farmacity', '2012-04-03', '2012-04-03', '40.0', '0.0', '300.0', '1');
+INSERT INTO `actividad` (`id`, `idMeta`, `idFinanciador`, `idEstadoActividad`, `nombre`, `observaciones`, `fechaInicio`, `fechaFin`, `ponderacion`, `completitud`, `activo`) VALUES ('2', '1', '1', '3', 'Comprar 70 vacunas contra la gripe', 'Comprar las vacunas en Farmacity', '2012-04-03', '2012-04-03', '40.0', '0.0', '1');
 
 
 -- Agregar Ingreso
