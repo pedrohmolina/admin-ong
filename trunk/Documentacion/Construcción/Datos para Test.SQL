@@ -14,6 +14,9 @@ INSERT INTO `proveedor` (`id`, `idTipoProveedor`, `nombre`, `cuit`, `cbu`, `dire
 INSERT INTO `rubro` (`id`, `idRubroPadre`, `nombre`, `descripcion`, `activo`) VALUES ('1', NULL, 'Materiales', 'Se utiliza para identificar cualquier tipo de material utilizado en un proyecto', '1');
 INSERT INTO `rubro` (`id`, `idRubroPadre`, `nombre`, `descripcion`, `activo`) VALUES ('2', '1', 'Librería', 'Identifica todos los materiales relacionados con libreria', '1');
 INSERT INTO `rubro` (`id`, `idRubroPadre`, `nombre`, `descripcion`, `activo`) VALUES ('3', '2', 'Fotocopias', 'Fotocopias hechas para un proyecto', '1');
+INSERT INTO `rubro` (`id`, `idRubroPadre`, `nombre`, `descripcion`, `activo`) VALUES ('4', NULL, 'Honorarios', 'Honorarios', '1');
+INSERT INTO `rubro` (`id`, `idRubroPadre`, `nombre`, `descripcion`, `activo`) VALUES ('5', NULL, 'Movilidad', 'Movilidad', '1');
+INSERT INTO `rubro` (`id`, `idRubroPadre`, `nombre`, `descripcion`, `activo`) VALUES ('6', NULL, 'Reintegros', 'Reintegros', '1');
 
 
 -- Agregar Perfil
