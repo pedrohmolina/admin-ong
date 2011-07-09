@@ -8,8 +8,10 @@ import org.hibernate.criterion.Restrictions;
 
 import com.antares.commons.dao.impl.GenericDAOImpl;
 import com.antares.sirius.dao.PresupuestoDAO;
+import com.antares.sirius.model.Actividad;
 import com.antares.sirius.model.Presupuesto;
 import com.antares.sirius.model.Proyecto;
+import com.antares.sirius.model.Rubro;
 
 /**
  * Implementacion de la interfaz PresupuestoDAO.
@@ -47,6 +49,18 @@ public class PresupuestoDAOImpl extends GenericDAOImpl<Presupuesto> implements P
 		return (Collection<Presupuesto>)crit.list();
 	}
 
+	@SuppressWarnings("unchecked")
+	public Presupuesto findPresupuestoByActividadRubro(Actividad actividad, Rubro rubro) {
+		Criteria crit = getSession().createCriteria(persistentClass);
+		crit.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		crit = getSession().createCriteria(persistentClass);
+		crit.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		crit.add(Restrictions.eq("actividad", actividad));
+		crit.add(Restrictions.eq("rubro", rubro));
+		crit.addOrder(Order.asc("rubro"));
+		return (Presupuesto)crit.uniqueResult();
+	}
+	
 	@Override
 	public void save(Presupuesto presupuesto) {
 		if (presupuesto.getId() != null) {

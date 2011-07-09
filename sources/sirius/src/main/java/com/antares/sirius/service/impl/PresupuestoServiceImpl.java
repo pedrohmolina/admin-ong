@@ -154,4 +154,10 @@ public class PresupuestoServiceImpl extends BaseServiceImpl<Presupuesto, Presupu
 		this.tipoPresupuestoService = tipoPresupuestoService;
 	}
 
+	@Override
+	public Presupuesto findPresupuestoByActividadRubro(Actividad actividad,
+			Rubro rubro) {
+		return dao.findPresupuestoByActividadRubro(actividad, rubro);
+	}
+
 }

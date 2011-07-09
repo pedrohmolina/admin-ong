@@ -50,5 +50,15 @@ public interface PresupuestoService extends BaseService<Presupuesto> {
 	 * @param monto monto del nuevo presupuesto
 	 */
 	void addPresupuestoProyecto(PresupuestoDTO presupuestos, Rubro rubro, Double monto);
+	
+	/**
+	 * Devuelve el presupuesto correspondiente a una actividad y un rubro especifico
+	 * @param actividad
+	 * @param rubro
+	 * @return presupuesto
+	 */
+	Presupuesto findPresupuestoByActividadRubro(Actividad actividad, Rubro rubro);
+	
+	
 
 }
