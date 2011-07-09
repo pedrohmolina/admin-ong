@@ -3,18 +3,44 @@
  */
 package com.antares.sirius.view.action;
 
+import java.awt.Color;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+
+import ar.com.fdvs.dj.core.DJConstants;
+import ar.com.fdvs.dj.core.DynamicJasperHelper;
+import ar.com.fdvs.dj.core.layout.ClassicLayoutManager;
+import ar.com.fdvs.dj.domain.DJCalculation;
+import ar.com.fdvs.dj.domain.DJCrosstab;
+import ar.com.fdvs.dj.domain.DJCrosstabColumn;
+import ar.com.fdvs.dj.domain.DJCrosstabRow;
+import ar.com.fdvs.dj.domain.DynamicReport;
+import ar.com.fdvs.dj.domain.Style;
+import ar.com.fdvs.dj.domain.builders.CrosstabBuilder;
+import ar.com.fdvs.dj.domain.builders.CrosstabColumnBuilder;
+import ar.com.fdvs.dj.domain.builders.CrosstabRowBuilder;
+import ar.com.fdvs.dj.domain.builders.FastReportBuilder;
+import ar.com.fdvs.dj.domain.builders.StyleBuilder;
+import ar.com.fdvs.dj.domain.constants.Border;
+import ar.com.fdvs.dj.domain.constants.Font;
+import ar.com.fdvs.dj.domain.constants.HorizontalAlign;
+import ar.com.fdvs.dj.domain.constants.Page;
+import ar.com.fdvs.dj.domain.constants.VerticalAlign;
 
 import com.antares.commons.util.ReportUtils;
 import com.antares.commons.util.Utils;
@@ -27,11 +53,14 @@ import com.antares.sirius.model.Actividad;
 import com.antares.sirius.model.Meta;
 import com.antares.sirius.model.ObjetivoEspecifico;
 import com.antares.sirius.model.ObjetivoGeneral;
+import com.antares.sirius.model.Presupuesto;
 import com.antares.sirius.model.Proyecto;
+import com.antares.sirius.model.Rubro;
 import com.antares.sirius.service.ActividadService;
 import com.antares.sirius.service.MetaService;
 import com.antares.sirius.service.ObjetivoEspecificoService;
 import com.antares.sirius.service.ObjetivoGeneralService;
+import com.antares.sirius.service.PresupuestoService;
 import com.antares.sirius.service.ProyectoService;
 import com.antares.sirius.service.ReporteFinancieroService;
 import com.antares.sirius.service.RubroService;
@@ -53,6 +82,7 @@ public class ReporteFinancieroAction extends ReporteAction{
 	private MetaService metaService;
 	private ActividadService actividadService;
 	private RubroService rubroService;
+	private PresupuestoService presupuestoService;
 	
 	/**
 	 * Inicializa la pantalla de consulta.
@@ -100,18 +130,189 @@ public class ReporteFinancieroAction extends ReporteAction{
 		//TODO - Completar
 		ReporteFinancieroForm reporteFinancieroForm = (ReporteFinancieroForm)form;
 		
-		//Obtener Rubros seleccionados
 		/*
-		int size = reporteFinancieroForm.getRubrosSeleccionados().length;
-	    for (int i=0; i<size; i++)
-	    {
-	      System.out.println(reporteFinancieroForm.getRubrosSeleccionados()[i]);
-	    }
+		FastReportBuilder drb = new FastReportBuilder();
+		drb.setTitle("Reporte de Finanzas");
+		drb.setSubtitle("Reporte generado el dia " + new Date());
+		drb.setPageSizeAndOrientation(Page.Page_A4_Landscape());
+		drb.setPrintColumnNames(false);
+		drb.setUseFullPageWidth(true);
+		
+		DJCrosstab djcross = createCrosstab();
 		*/
-		//this.generateReport(request, response, reportType, jasperPrint);
+		
+		Collection<Presupuesto> presupuestos = new ArrayList<Presupuesto>();
+		//Obtenemos la lista de actividades
+		Collection<Actividad> actividades = this.obtenerListaActividades(reporteFinancieroForm);
+		
+		Iterator<Actividad> it = actividades.iterator();
+		
+		while (it.hasNext()){
+			Actividad actividad = it.next();
+			int size = reporteFinancieroForm.getRubrosSeleccionados().length;
+		    for (int i=0; i<size; i++){
+		    	//Obtener Rubros seleccionados
+		    	String rubroSeleccionadoId = reporteFinancieroForm.getRubrosSeleccionados()[i];
+		    	Rubro rubro = rubroService.findById(new Integer(rubroSeleccionadoId));
+		    	//Obtener los presupuestos por actividad y rubro
+		    	Presupuesto presupuesto = presupuestoService.findPresupuestoByActividadRubro(actividad, rubro);
+		    	presupuestos.add(presupuesto);
+		    }
+			
+		}
+		/*
+		drb.addHeaderCrosstab(djcross);
+		
+		DynamicReport dr = drb.build();
+		
+		JRDataSource ds = new JRBeanCollectionDataSource(presupuestos);
+		jasperPrint = DynamicJasperHelper.generateJasperPrint(dr, new ClassicLayoutManager(), ds);
+
+		reportType = reporteFinancieroForm.getFormatoReporte();
+		*/
+		jasperPrint = reporteFinancieroService.generateReportBytes(presupuestos);
+
+		this.generateReport(request, response, reportType, jasperPrint);
 
 		return mapping.findForward("null");
 	}
+
+	private DJCrosstab createCrosstab() {
+		
+		CrosstabBuilder cb = new CrosstabBuilder();
+		cb.setHeight(200);
+		cb.setWidth(500);
+		//cb.setHeaderStyle(mainHeaderStyle);
+		cb.setDatasource("sr",DJConstants.DATA_SOURCE_ORIGIN_PARAMETER, DJConstants.DATA_SOURCE_TYPE_COLLECTION);
+		cb.setUseFullWidth(true);
+		cb.setColorScheme(4);
+		cb.setAutomaticTitle(true);
+		cb.setCellBorder(Border.THIN);
+		
+		cb.addMeasure("monto",Double.class.getName(), DJCalculation.SUM , "Monto",new StyleBuilder(false).setPattern("#,###.##")
+				 			.setHorizontalAlign(HorizontalAlign.RIGHT)
+				 			.setFont(Font.ARIAL_MEDIUM)
+							.build());
+		
+		CrosstabRowBuilder row = new CrosstabRowBuilder();
+		row.setProperty("actividad.nombre",String.class.getName());
+		row.setHeaderWidth(100).setHeight(20);
+		row.setTitle("Actividad");
+		//row.setShowTotals(true).setTotalStyle(totalStyle);
+		//row.setTotalHeaderStyle(totalHeader).setHeaderStyle(colAndRowHeaderStyle);
+		
+		cb.addRow(row.build());
+		
+		CrosstabColumnBuilder col = new CrosstabColumnBuilder().setProperty("rubro.nombre",String.class.getName());
+		col.setHeaderHeight(60).setWidth(80);
+		col.setTitle("Rubro").setShowTotals(true);
+		//col.setTotalStyle(totalStyle).setTotalHeaderStyle(totalHeader);
+		//col.setHeaderStyle(colAndRowHeaderStyle);
+		cb.addColumn(col.build());
+		
+		return cb.build();
+	}
+	private Collection<Actividad> obtenerListaActividades(ReporteFinancieroForm reporteFinancieroForm){
+	
+		Collection<Actividad> actividades = new ArrayList<Actividad>();
+		
+		if (reporteFinancieroForm.getIdActividad()!=null 
+				&& !reporteFinancieroForm.getIdActividad().equals("")){
+			
+			//Se ha seleccionado una actividad especifica
+			Actividad actividad = this.actividadService.findById(
+					new Integer(reporteFinancieroForm.getIdActividad()));
+			actividades.add(actividad);
+			
+		}else{
+			
+			//Se trabajara con todas las actividades de un proyecto/meta/actividad
+			if (reporteFinancieroForm.getIdProyecto()!=null 
+					&& !reporteFinancieroForm.getIdProyecto().equals("")){
+				
+				//Se trabajara con las actividades vinculadas a un proyecto especifico
+				Proyecto proyecto = this.proyectoService.findById(
+						new Integer(reporteFinancieroForm.getIdProyecto()));
+				Collection<Actividad> actividadesProyecto = 
+					this.actividadService.findAllByProyecto(proyecto);
+				
+				Iterator<Actividad> it = actividadesProyecto.iterator();
+				
+				if (reporteFinancieroForm.getIdMeta()!=null 
+						&& !reporteFinancieroForm.getIdMeta().equals("")){
+					//Se trabajara con las actividades de una meta especifica
+					while (it.hasNext()){
+						Actividad actividadProyecto = it.next();
+						if (actividadProyecto.getMeta().getId().equals(
+								reporteFinancieroForm.getIdMeta())){
+							actividades.add(actividadProyecto);
+						}
+					}
+					
+				}else if (reporteFinancieroForm.getIdObjetivoEspecifico()!=null 
+						&& !reporteFinancieroForm.getIdObjetivoEspecifico().equals("")){
+					//Se trabajara con las actividades de todas las metas de un objetivo especifico
+					while (it.hasNext()){
+						Actividad actividadProyecto = it.next();
+						if (actividadProyecto.getMeta().getObjetivoEspecifico().getId().equals(
+								reporteFinancieroForm.getIdObjetivoEspecifico())){
+							actividades.add(actividadProyecto);
+						}
+					}
+					
+				}else if (reporteFinancieroForm.getIdObjetivoGeneral()!=null 
+						&& !reporteFinancieroForm.getIdObjetivoGeneral().equals("")){
+					//Se trabajara con las actividades de todas las metas y objetivos especificos de un objetivo general
+					while (it.hasNext()){
+						Actividad actividadProyecto = it.next();
+						if (actividadProyecto.getMeta().getObjetivoEspecifico().getObjetivoGeneral().getId().equals(
+								reporteFinancieroForm.getIdObjetivoGeneral())){
+							actividades.add(actividadProyecto);
+						}
+					}
+					
+				}else{
+					//Se trabajara con todas las actividades del proyecto
+					actividades.addAll(actividadesProyecto);
+				}
+				
+			}else {
+				//Se trabajara a nivel general de la organizacion, es decir, se mostraran los gastos 
+				//generales de todos los proyectos
+			}
+
+ 		}
+		
+		return actividades;
+	}
+	
+ 	private void initStyles() {
+ 		Style totalHeader = new StyleBuilder(false)
+ 			.setHorizontalAlign(HorizontalAlign.CENTER)
+ 			.setVerticalAlign(VerticalAlign.MIDDLE)
+ 			.setFont(Font.ARIAL_MEDIUM_BOLD)
+ 			.setTextColor(Color.BLUE)
+ 			.build();
+ 		Style colAndRowHeaderStyle = new StyleBuilder(false)
+ 			.setHorizontalAlign(HorizontalAlign.LEFT)
+ 			.setVerticalAlign(VerticalAlign.TOP)
+ 			.setFont(Font.ARIAL_MEDIUM_BOLD)
+ 			.build();
+ 		Style mainHeaderStyle = new StyleBuilder(false)
+ 			.setHorizontalAlign(HorizontalAlign.CENTER)
+ 			.setVerticalAlign(VerticalAlign.MIDDLE)
+ 			.setFont(Font.ARIAL_BIG_BOLD)
+ 			.setTextColor(Color.BLACK)
+ 			.build();
+ 		Style totalStyle = new StyleBuilder(false).setPattern("#,###.##")
+ 			.setHorizontalAlign(HorizontalAlign.RIGHT)
+ 			.setFont(Font.ARIAL_MEDIUM_BOLD)
+ 			.build();
+ 		Style measureStyle = new StyleBuilder(false).setPattern("#,###.##")
+ 			.setHorizontalAlign(HorizontalAlign.RIGHT)
+ 			.setFont(Font.ARIAL_MEDIUM)
+ 			.build();
+ 	}
 
 	/**
 	 * Metodo para cargar los posibles objetivos generales de un proyecto especifico
@@ -370,6 +571,22 @@ public class ReporteFinancieroAction extends ReporteAction{
 	 */
 	public void setRubroService(RubroService rubroService) {
 		this.rubroService = rubroService;
+	}
+
+
+	/**
+	 * @return the presupuestoService
+	 */
+	public PresupuestoService getPresupuestoService() {
+		return presupuestoService;
+	}
+
+
+	/**
+	 * @param presupuestoService the presupuestoService to set
+	 */
+	public void setPresupuestoService(PresupuestoService presupuestoService) {
+		this.presupuestoService = presupuestoService;
 	}
 
 	
