@@ -255,18 +255,6 @@
 		<property name="dao" ref="tipoProveedorDAO" /> 
 	</bean>
 
-	<bean id="reportePersonaService" class="com.antares.sirius.service.impl.ReportePersonaServiceImpl" autowire="byName">
-	</bean>
-	
-	<bean id="reporteFinanciadorService" class="com.antares.sirius.service.impl.ReporteFinanciadorServiceImpl" autowire="byName">
-	</bean>
-	
-	<bean id="reporteProveedorService" class="com.antares.sirius.service.impl.ReporteProveedorServiceImpl" autowire="byName">
-	</bean>
-	
-	<bean id="reporteFinancieroService" class="com.antares.sirius.service.impl.ReporteFinancieroServiceImpl" autowire="byName">
-	</bean>
-	
 	<!-- Servicios de entidades de Seguridad por Valor -->
 	<bean id="atributoService" class="com.antares.sirius.service.impl.AtributoServiceImpl" autowire="byName">
 		<property name="dao" ref="atributoDAO" /> 

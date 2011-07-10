@@ -37,7 +37,6 @@ import com.antares.sirius.view.form.ReporteProveedorForm;
  */
 public class ReporteProveedorAction extends ReporteAction{
 
-	private ReporteProveedorService reporteProveedorService;
 	private ProveedorService proveedorService;
 	
 
@@ -189,24 +188,6 @@ public class ReporteProveedorAction extends ReporteAction{
 		filter.setCbu(form.getCbu());
 		return filter;
 	}
-
-
-	/**
-	 * @return the reporteProveedorService
-	 */
-	public ReporteProveedorService getReporteProveedorService() {
-		return reporteProveedorService;
-	}
-
-
-	/**
-	 * @param reporteProveedorService the reporteProveedorService to set
-	 */
-	public void setReporteProveedorService(
-			ReporteProveedorService reporteProveedorService) {
-		this.reporteProveedorService = reporteProveedorService;
-	}
-
 
 	/**
 	 * @return the proveedorService
