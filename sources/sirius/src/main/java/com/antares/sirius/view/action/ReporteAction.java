@@ -195,6 +195,40 @@ public class ReporteAction extends DispatchAction {
 		return detailStyle;
 	}
 
+	public static Style getColHeaderStyle(){
+	
+		return new StyleBuilder(false)
+		.setFont(Font.VERDANA_MEDIUM_BOLD)
+		.setBorderBottom(Border.PEN_2_POINT)
+		.setHorizontalAlign(HorizontalAlign.CENTER)
+		.setVerticalAlign(VerticalAlign.MIDDLE)
+		.setBackgroundColor(Color.DARK_GRAY)
+		.setTextColor(Color.WHITE)
+		.setTransparency(Transparency.OPAQUE)
+		.build();
+	}
+
+	public static Style getTotalStyle(){
+		return new StyleBuilder(false).setPattern("#,###.##")
+		.setHorizontalAlign(HorizontalAlign.CENTER)
+		.setFont(Font.VERDANA_MEDIUM_BOLD)
+		.setBorderBottom(Border.PEN_2_POINT)
+		.setVerticalAlign(VerticalAlign.MIDDLE)
+		.setBackgroundColor(Color.GRAY)
+		.setTextColor(Color.BLACK)
+		.setTransparency(Transparency.OPAQUE)
+		.build();
+	}
+	
+	public static Style getMeasureStyle(){
+		return new StyleBuilder(false).setPattern("#,###.##")
+		.setHorizontalAlign(HorizontalAlign.CENTER)
+		.setFont(Font.VERDANA_MEDIUM)
+		.setBackgroundColor(Color.WHITE)
+		.setTextColor(Color.BLACK)
+		.build();
+	}
+	
 	public static AbstractColumn getColumn(String property, @SuppressWarnings("rawtypes") Class type,
 			String title, int width, Style headerStyle, Style detailStyle)
 			throws ColumnBuilderException {

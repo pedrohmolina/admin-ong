@@ -3,10 +3,9 @@
  */
 package com.antares.sirius.view.action;
 
-import java.awt.Color;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -15,40 +14,38 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.util.MessageResources;
 
 import ar.com.fdvs.dj.core.DJConstants;
 import ar.com.fdvs.dj.core.DynamicJasperHelper;
 import ar.com.fdvs.dj.core.layout.ClassicLayoutManager;
 import ar.com.fdvs.dj.domain.DJCalculation;
 import ar.com.fdvs.dj.domain.DJCrosstab;
-import ar.com.fdvs.dj.domain.DJCrosstabColumn;
-import ar.com.fdvs.dj.domain.DJCrosstabRow;
+import ar.com.fdvs.dj.domain.DJValueFormatter;
 import ar.com.fdvs.dj.domain.DynamicReport;
-import ar.com.fdvs.dj.domain.Style;
 import ar.com.fdvs.dj.domain.builders.CrosstabBuilder;
 import ar.com.fdvs.dj.domain.builders.CrosstabColumnBuilder;
 import ar.com.fdvs.dj.domain.builders.CrosstabRowBuilder;
-import ar.com.fdvs.dj.domain.builders.FastReportBuilder;
+import ar.com.fdvs.dj.domain.builders.DynamicReportBuilder;
 import ar.com.fdvs.dj.domain.builders.StyleBuilder;
 import ar.com.fdvs.dj.domain.constants.Border;
 import ar.com.fdvs.dj.domain.constants.Font;
 import ar.com.fdvs.dj.domain.constants.HorizontalAlign;
-import ar.com.fdvs.dj.domain.constants.Page;
-import ar.com.fdvs.dj.domain.constants.VerticalAlign;
 
 import com.antares.commons.util.ReportUtils;
-import com.antares.commons.util.Utils;
+import com.antares.sirius.base.Constants;
 import com.antares.sirius.filter.ActividadFilter;
 import com.antares.sirius.filter.MetaFilter;
 import com.antares.sirius.filter.ObjetivoEspecificoFilter;
 import com.antares.sirius.filter.ObjetivoGeneralFilter;
-import com.antares.sirius.filter.ProyectoFilter;
 import com.antares.sirius.model.Actividad;
 import com.antares.sirius.model.Meta;
 import com.antares.sirius.model.ObjetivoEspecifico;
@@ -62,10 +59,7 @@ import com.antares.sirius.service.ObjetivoEspecificoService;
 import com.antares.sirius.service.ObjetivoGeneralService;
 import com.antares.sirius.service.PresupuestoService;
 import com.antares.sirius.service.ProyectoService;
-import com.antares.sirius.service.ReporteFinancieroService;
 import com.antares.sirius.service.RubroService;
-import com.antares.sirius.view.form.ActividadForm;
-import com.antares.sirius.view.form.AsignacionForm;
 import com.antares.sirius.view.form.ReporteFinancieroForm;
 
 /**
@@ -74,8 +68,6 @@ import com.antares.sirius.view.form.ReporteFinancieroForm;
  */
 public class ReporteFinancieroAction extends ReporteAction{
 
-	private ReporteFinancieroService reporteFinancieroService;
-
 	private ProyectoService proyectoService;
 	private ObjetivoGeneralService objetivoGeneralService;
 	private ObjetivoEspecificoService objetivoEspecificoService;
@@ -83,7 +75,7 @@ public class ReporteFinancieroAction extends ReporteAction{
 	private ActividadService actividadService;
 	private RubroService rubroService;
 	private PresupuestoService presupuestoService;
-	
+
 	/**
 	 * Inicializa la pantalla de consulta.
 	 * 
@@ -127,21 +119,20 @@ public class ReporteFinancieroAction extends ReporteAction{
 		
 		String reportType = null;
 		JasperPrint jasperPrint = null;
-		//TODO - Completar
+		JasperReport jasperReport = null;
+		DynamicReport dr = null;
+		Map params = new HashMap();
+
 		ReporteFinancieroForm reporteFinancieroForm = (ReporteFinancieroForm)form;
 		
-		/*
-		FastReportBuilder drb = new FastReportBuilder();
-		drb.setTitle("Reporte de Finanzas");
-		drb.setSubtitle("Reporte generado el dia " + new Date());
-		drb.setPageSizeAndOrientation(Page.Page_A4_Landscape());
-		drb.setPrintColumnNames(false);
-		drb.setUseFullPageWidth(true);
+		DynamicReportBuilder drb = getDynamicReport("SAHDES", "Reporte de Finanzas", "ReporteFinanzas");
 		
-		DJCrosstab djcross = createCrosstab();
-		*/
+		Proyecto proyecto = proyectoService.findById(new Integer(reporteFinancieroForm.getIdProyecto()));
+		drb.setSubtitle("Reporte de Finanzas"+" - "+" Proyecto:"+proyecto.getNombre());
+		DJCrosstab djcross = createCrosstab(request);
 		
 		Collection<Presupuesto> presupuestos = new ArrayList<Presupuesto>();
+		
 		//Obtenemos la lista de actividades
 		Collection<Actividad> actividades = this.obtenerListaActividades(reporteFinancieroForm);
 		
@@ -160,58 +151,83 @@ public class ReporteFinancieroAction extends ReporteAction{
 		    }
 			
 		}
-		/*
+
 		drb.addHeaderCrosstab(djcross);
 		
-		DynamicReport dr = drb.build();
+		dr = drb.build();
 		
+		params.put("sr", presupuestos);
+
 		JRDataSource ds = new JRBeanCollectionDataSource(presupuestos);
-		jasperPrint = DynamicJasperHelper.generateJasperPrint(dr, new ClassicLayoutManager(), ds);
+		
+		jasperReport = DynamicJasperHelper.generateJasperReport(dr, new ClassicLayoutManager(), params);
+		
+		jasperPrint = JasperFillManager.fillReport(jasperReport, params, ds);
 
 		reportType = reporteFinancieroForm.getFormatoReporte();
-		*/
-		jasperPrint = reporteFinancieroService.generateReportBytes(presupuestos);
-
-		this.generateReport(request, response, reportType, jasperPrint);
+		
+		this.generateReport(request, response, reportType, jasperPrint, Constants.REPORTE_FINANCIERO);
 
 		return mapping.findForward("null");
 	}
 
-	private DJCrosstab createCrosstab() {
+
+	private DJCrosstab createCrosstab(HttpServletRequest request) {
 		
-		CrosstabBuilder cb = new CrosstabBuilder();
-		cb.setHeight(200);
-		cb.setWidth(500);
-		//cb.setHeaderStyle(mainHeaderStyle);
-		cb.setDatasource("sr",DJConstants.DATA_SOURCE_ORIGIN_PARAMETER, DJConstants.DATA_SOURCE_TYPE_COLLECTION);
-		cb.setUseFullWidth(true);
-		cb.setColorScheme(4);
-		cb.setAutomaticTitle(true);
-		cb.setCellBorder(Border.THIN);
+		MessageResources messageResources = getResources(request);
 		
-		cb.addMeasure("monto",Double.class.getName(), DJCalculation.SUM , "Monto",new StyleBuilder(false).setPattern("#,###.##")
-				 			.setHorizontalAlign(HorizontalAlign.RIGHT)
-				 			.setFont(Font.ARIAL_MEDIUM)
-							.build());
+		DJValueFormatter valueFormatter = new DJValueFormatter() {
+
+			DecimalFormat dc = new DecimalFormat("#0.0");
+ 			
+ 			public String getClassName() {
+ 				return String.class.getName();
+ 			}
+ 			
+ 			public Object evaluate(Object value, Map fields, Map variables, Map parameters) {
+ 				return "" + dc.format(value) + " %";
+ 			}
+ 		};
+
+		CrosstabBuilder djcross = new CrosstabBuilder();
+		djcross.setHeight(200);
+		djcross.setWidth(500);
+		djcross.useMainReportDatasource(false);
+		djcross.setHeaderStyle(getHeaderStyle());
+		djcross.setDatasource("sr",DJConstants.DATA_SOURCE_ORIGIN_PARAMETER, DJConstants.DATA_SOURCE_TYPE_COLLECTION, true);
+		djcross.setUseFullWidth(true);
+		djcross.setAutomaticTitle(true);
+		djcross.setColumnStyles(getHeaderStyle(), getTotalStyle(), getHeaderStyle());
+		djcross.setCellBorder(Border.THIN);
 		
 		CrosstabRowBuilder row = new CrosstabRowBuilder();
 		row.setProperty("actividad.nombre",String.class.getName());
 		row.setHeaderWidth(100).setHeight(20);
-		row.setTitle("Actividad");
-		//row.setShowTotals(true).setTotalStyle(totalStyle);
-		//row.setTotalHeaderStyle(totalHeader).setHeaderStyle(colAndRowHeaderStyle);
+		row.setTitle(messageResources.getMessage("sirius.entidad.actividad.label")).setShowTotals(true);
+		row.setShowTotals(true).setTotalStyle(getTotalStyle());
+		row.setTotalHeaderStyle(getHeaderStyle()).setHeaderStyle(getColHeaderStyle());
 		
-		cb.addRow(row.build());
+		djcross.addRow(row.build());
 		
 		CrosstabColumnBuilder col = new CrosstabColumnBuilder().setProperty("rubro.nombre",String.class.getName());
 		col.setHeaderHeight(60).setWidth(80);
-		col.setTitle("Rubro").setShowTotals(true);
-		//col.setTotalStyle(totalStyle).setTotalHeaderStyle(totalHeader);
-		//col.setHeaderStyle(colAndRowHeaderStyle);
-		cb.addColumn(col.build());
-		
-		return cb.build();
+		col.setTitle(messageResources.getMessage("sirius.entidad.rubro.label")).setShowTotals(true);
+		col.setTotalStyle(getTotalStyle()).setTotalHeaderStyle(getHeaderStyle());
+		col.setHeaderStyle(getColHeaderStyle());
+		djcross.addColumn(col.build());
+
+		djcross.addMeasure("monto",Double.class.getName(), DJCalculation.SUM , 
+				messageResources.getMessage("sirius.ingreso.monto.label"),
+				new StyleBuilder(false).setPattern("#,###.##")
+	 			.setHorizontalAlign(HorizontalAlign.RIGHT)
+	 			.setFont(Font.ARIAL_MEDIUM)
+				.build());
+	
+
+		return djcross.build();
 	}
+
+
 	private Collection<Actividad> obtenerListaActividades(ReporteFinancieroForm reporteFinancieroForm){
 	
 		Collection<Actividad> actividades = new ArrayList<Actividad>();
@@ -285,34 +301,6 @@ public class ReporteFinancieroAction extends ReporteAction{
 		
 		return actividades;
 	}
-	
- 	private void initStyles() {
- 		Style totalHeader = new StyleBuilder(false)
- 			.setHorizontalAlign(HorizontalAlign.CENTER)
- 			.setVerticalAlign(VerticalAlign.MIDDLE)
- 			.setFont(Font.ARIAL_MEDIUM_BOLD)
- 			.setTextColor(Color.BLUE)
- 			.build();
- 		Style colAndRowHeaderStyle = new StyleBuilder(false)
- 			.setHorizontalAlign(HorizontalAlign.LEFT)
- 			.setVerticalAlign(VerticalAlign.TOP)
- 			.setFont(Font.ARIAL_MEDIUM_BOLD)
- 			.build();
- 		Style mainHeaderStyle = new StyleBuilder(false)
- 			.setHorizontalAlign(HorizontalAlign.CENTER)
- 			.setVerticalAlign(VerticalAlign.MIDDLE)
- 			.setFont(Font.ARIAL_BIG_BOLD)
- 			.setTextColor(Color.BLACK)
- 			.build();
- 		Style totalStyle = new StyleBuilder(false).setPattern("#,###.##")
- 			.setHorizontalAlign(HorizontalAlign.RIGHT)
- 			.setFont(Font.ARIAL_MEDIUM_BOLD)
- 			.build();
- 		Style measureStyle = new StyleBuilder(false).setPattern("#,###.##")
- 			.setHorizontalAlign(HorizontalAlign.RIGHT)
- 			.setFont(Font.ARIAL_MEDIUM)
- 			.build();
- 	}
 
 	/**
 	 * Metodo para cargar los posibles objetivos generales de un proyecto especifico
@@ -458,24 +446,6 @@ public class ReporteFinancieroAction extends ReporteAction{
 		return filter;
 	}
 	
-	
-	/**
-	 * @return the reporteFinancieroService
-	 */
-	public ReporteFinancieroService getReporteFinancieroService() {
-		return reporteFinancieroService;
-	}
-
-
-	/**
-	 * @param reporteFinancieroService the reporteFinancieroService to set
-	 */
-	public void setReporteFinancieroService(
-			ReporteFinancieroService reporteFinancieroService) {
-		this.reporteFinancieroService = reporteFinancieroService;
-	}
-
-
 	/**
 	 * @return the proyectoService
 	 */

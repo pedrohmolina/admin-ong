@@ -28,7 +28,6 @@ import com.antares.sirius.base.Constants;
 import com.antares.sirius.filter.FinanciadorFilter;
 import com.antares.sirius.model.Financiador;
 import com.antares.sirius.service.FinanciadorService;
-import com.antares.sirius.service.ReporteFinanciadorService;
 import com.antares.sirius.view.form.ReporteFinanciadorForm;
 
 /**
@@ -37,7 +36,6 @@ import com.antares.sirius.view.form.ReporteFinanciadorForm;
  */
 public class ReporteFinanciadorAction extends ReporteAction{
 
-	private ReporteFinanciadorService reporteFinanciadorService;
 	private FinanciadorService financiadorService;
 	
 
@@ -197,23 +195,6 @@ public class ReporteFinanciadorAction extends ReporteAction{
 		filter.setCuit(form.getCuit());
 		filter.setCbu(form.getCbu());
 		return filter;
-	}
-
-
-	/**
-	 * @return the reporteFinanciadorService
-	 */
-	public ReporteFinanciadorService getReporteFinanciadorService() {
-		return reporteFinanciadorService;
-	}
-
-
-	/**
-	 * @param reporteFinanciadorService the reporteFinanciadorService to set
-	 */
-	public void setReporteFinanciadorService(
-			ReporteFinanciadorService reporteFinanciadorService) {
-		this.reporteFinanciadorService = reporteFinanciadorService;
 	}
 
 

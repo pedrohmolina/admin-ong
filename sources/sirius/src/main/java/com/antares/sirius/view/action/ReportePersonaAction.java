@@ -29,7 +29,6 @@ import com.antares.sirius.base.Constants;
 import com.antares.sirius.filter.PersonaFilter;
 import com.antares.sirius.model.Persona;
 import com.antares.sirius.service.PersonaService;
-import com.antares.sirius.service.ReportePersonaService;
 import com.antares.sirius.view.form.ReportePersonaForm;
 
 /**
@@ -38,15 +37,8 @@ import com.antares.sirius.view.form.ReportePersonaForm;
  */
 public class ReportePersonaAction extends ReporteAction{
 
-	private ReportePersonaService reportePersonaService;
 	private PersonaService personaService;
 	
-	public ReportePersonaService getReportePersonaService() {
-		return reportePersonaService;
-	}
-	public void setReportePersonaService(ReportePersonaService reportePersonaService) {
-		this.reportePersonaService = reportePersonaService;
-	}
 	public PersonaService getPersonaService() {
 		return personaService;
 	}
