@@ -24,6 +24,7 @@ import ar.com.fdvs.dj.domain.builders.DynamicReportBuilder;
 import ar.com.fdvs.dj.domain.entities.columns.AbstractColumn;
 
 import com.antares.commons.util.ReportUtils;
+import com.antares.sirius.base.Constants;
 import com.antares.sirius.filter.FinanciadorFilter;
 import com.antares.sirius.model.Financiador;
 import com.antares.sirius.service.FinanciadorService;
@@ -184,7 +185,7 @@ public class ReporteFinanciadorAction extends ReporteAction{
 
 		String reportType = viewForm.getFormatoReporte();
 		
-		this.generateReport(request, response, reportType, jasperPrint);
+		this.generateReport(request, response, reportType, jasperPrint, Constants.REPORTE_FINANCIADORES);
 
 		return mapping.findForward("null");
 	}

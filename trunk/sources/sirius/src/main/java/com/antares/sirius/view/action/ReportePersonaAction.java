@@ -200,10 +200,8 @@ public class ReportePersonaAction extends ReporteAction{
 		JasperPrint jasperPrint = DynamicJasperHelper.generateJasperPrint(dr, new ClassicLayoutManager(), ds);
 
 		String reportType = viewForm.getFormatoReporte();
-		
-		//JasperPrint jasperPrint = reportePersonaService.generateReportBytes(result);
 
-		this.generateReport(request, response, reportType, jasperPrint);
+		this.generateReport(request, response, reportType, jasperPrint, Constants.REPORTE_PERSONAS);
 
 		return mapping.findForward("null");
 	}
