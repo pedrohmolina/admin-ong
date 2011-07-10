@@ -34,6 +34,7 @@ import ar.com.fdvs.dj.domain.builders.StyleBuilder;
 import ar.com.fdvs.dj.domain.constants.Border;
 import ar.com.fdvs.dj.domain.constants.Font;
 import ar.com.fdvs.dj.domain.constants.HorizontalAlign;
+import ar.com.fdvs.dj.domain.constants.Page;
 import ar.com.fdvs.dj.domain.constants.Transparency;
 import ar.com.fdvs.dj.domain.constants.VerticalAlign;
 import ar.com.fdvs.dj.domain.entities.columns.AbstractColumn;
@@ -52,7 +53,7 @@ public class ReporteAction extends DispatchAction {
 	 * @param jasperPrint
 	 * @throws Exception
 	 */
-	public void generateReport(HttpServletRequest request, HttpServletResponse response, String reportType, JasperPrint jasperPrint) throws Exception {
+	public void generateReport(HttpServletRequest request, HttpServletResponse response, String reportType, JasperPrint jasperPrint, String fileName) throws Exception {
 		
 		OutputStream ouputStream = response.getOutputStream();
 		JRExporter exporter = null;
@@ -60,8 +61,8 @@ public class ReporteAction extends DispatchAction {
 		if( Constants.FORMATO_REPORTE_PDF.equalsIgnoreCase(reportType) )
 		{
 		    response.setContentType("application/pdf");
-		    response.setHeader("Content-Disposition", "attachment; filename="
-		    		+Constants.REPORTE_PERSONAS+"."+Constants.FORMATO_REPORTE_PDF);
+		    response.setHeader("Content-Disposition", "attachment; filename="+fileName
+		    		+"."+Constants.FORMATO_REPORTE_PDF);
 		    
 		    exporter = new JRPdfExporter();
 		    exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
@@ -70,7 +71,7 @@ public class ReporteAction extends DispatchAction {
 		else if( Constants.FORMATO_REPORTE_RTF.equalsIgnoreCase(reportType) )
 		{
 		    response.setContentType("application/rtf");
-		    response.setHeader("Content-Disposition", "attachment; filename="+Constants.REPORTE_PERSONAS
+		    response.setHeader("Content-Disposition", "attachment; filename="+fileName
 		    		+"."+Constants.FORMATO_REPORTE_RTF);
 
 		    exporter = new JRRtfExporter();
@@ -90,7 +91,7 @@ public class ReporteAction extends DispatchAction {
 		else if( Constants.FORMATO_REPORTE_XLS.equalsIgnoreCase(reportType) )
 		{
 		    response.setContentType("application/xls");
-		    response.setHeader("Content-Disposition", "attachment; filename="+Constants.REPORTE_PERSONAS
+		    response.setHeader("Content-Disposition", "attachment; filename="+fileName
 		    		+"."+Constants.FORMATO_REPORTE_XLS);
 
 		    exporter = new JRXlsExporter();
@@ -100,7 +101,7 @@ public class ReporteAction extends DispatchAction {
 		else if( Constants.FORMATO_REPORTE_CSV.equalsIgnoreCase(reportType) )
 		{
 		    response.setContentType("application/csv");
-		    response.setHeader("Content-Disposition", "attachment; filename="+Constants.REPORTE_PERSONAS
+		    response.setHeader("Content-Disposition", "attachment; filename="+fileName
 		    		+"."+Constants.FORMATO_REPORTE_CSV);
 
 		    exporter = new JRCsvExporter();
@@ -143,6 +144,7 @@ public class ReporteAction extends DispatchAction {
 		Integer margin = new Integer(15);
 		Style atStyle2 = new StyleBuilder(true).setFont(new Font(9, Font._FONT_TIMES_NEW_ROMAN, false, true, false)).setTextColor(Color.BLACK).build();
 		drb.addAutoText(AutoText.AUTOTEXT_PAGE_X_SLASH_Y, AutoText.POSITION_FOOTER, AutoText.ALIGNMENT_RIGHT,30,30,atStyle2);
+		drb.setPageSizeAndOrientation(Page.Page_A4_Landscape());
 		drb.setUseFullPageWidth(true); 
 
 		drb.setTitleStyle(getTitleStyle())

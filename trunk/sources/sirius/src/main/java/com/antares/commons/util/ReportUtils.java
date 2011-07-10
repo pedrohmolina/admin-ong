@@ -1,24 +1,21 @@
 package com.antares.commons.util;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-
-import com.antares.sirius.base.Constants;
-import com.antares.sirius.model.FormatoReporte;
 
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.JasperRunManager;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
+
+import com.antares.sirius.base.Constants;
+import com.antares.sirius.model.FormatoReporte;
 
 
 /**
@@ -42,21 +39,12 @@ public class ReportUtils {
 			
 			File f = ReportUtils.loadFile(reportName);
 			
-			/*
-			JasperDesign design = JRXmlLoader.load(
-			        new LegacyJasperInputStream(new FileInputStream(f.getPath()))
-			        );
-			 */
 			JasperDesign design = JRXmlLoader.load(f);
 			
 			JasperReport report = JasperCompileManager.compileReport(design);
 		
 			return JasperFillManager.fillReport(report, parameters, new JRListaDataSource(items));
 			
-			/*
-			return JasperRunManager.runReportToPdf(report, parameters,
-					new JRListaDataSource(items));
-			*/
 		} catch (JRException e) {
 			//throw new Exception(e);
 			return null;
