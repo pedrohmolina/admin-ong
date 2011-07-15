@@ -50,7 +50,7 @@ public class PresupuestoAction extends DispatchAction {
 
 		String idProyectoStr =(String) request.getParameter("idProyecto");
 		if (Utils.isNotNullNorEmpty(idProyectoStr)) {
-			Integer idProyecto = Integer.parseInt(idProyectoStr);
+			Integer idProyecto = Utils.parseInteger(idProyectoStr);
 			Proyecto proyecto = proyectoService.findById(idProyecto);
 			List<Actividad> actividades = (List<Actividad>)actividadService.findAllByProyecto(proyecto);
 			List<Rubro> rubros = (List<Rubro>)rubroService.findPrimerNivel();
@@ -128,8 +128,8 @@ public class PresupuestoAction extends DispatchAction {
 					monto = null;
 				}
 	
-				if (Integer.parseInt(request.getParameter("id")) <= actividades.size()) {
-					Actividad actividad = actividades.get(Integer.parseInt(request.getParameter("id")) - 1);
+				if (Utils.parseInteger(request.getParameter("id")) <= actividades.size()) {
+					Actividad actividad = actividades.get(Utils.parseInteger(request.getParameter("id")) - 1);
 					presupuestoService.addPresupuestoActividad(presupuestos, actividad, rubro, monto);
 				} else {
 					presupuestoService.addPresupuestoProyecto(presupuestos, rubro, monto);

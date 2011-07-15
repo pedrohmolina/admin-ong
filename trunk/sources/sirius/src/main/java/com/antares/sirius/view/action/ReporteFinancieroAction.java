@@ -3,70 +3,79 @@
  */
 package com.antares.sirius.view.action;
 
-import java.text.DecimalFormat;
+import static ar.com.fdvs.dj.core.DJConstants.DATA_SOURCE_ORIGIN_PARAMETER;
+import static ar.com.fdvs.dj.core.DJConstants.DATA_SOURCE_TYPE_COLLECTION;
+import static ar.com.fdvs.dj.domain.DJCalculation.SUM;
+import static ar.com.fdvs.dj.domain.constants.Font.ARIAL_MEDIUM;
+import static ar.com.fdvs.dj.domain.constants.HorizontalAlign.RIGHT;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
 
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.util.MessageResources;
 
-import ar.com.fdvs.dj.core.DJConstants;
 import ar.com.fdvs.dj.core.DynamicJasperHelper;
 import ar.com.fdvs.dj.core.layout.ClassicLayoutManager;
-import ar.com.fdvs.dj.domain.DJCalculation;
 import ar.com.fdvs.dj.domain.DJCrosstab;
-import ar.com.fdvs.dj.domain.DJValueFormatter;
 import ar.com.fdvs.dj.domain.DynamicReport;
+import ar.com.fdvs.dj.domain.builders.ColumnBuilderException;
 import ar.com.fdvs.dj.domain.builders.CrosstabBuilder;
 import ar.com.fdvs.dj.domain.builders.CrosstabColumnBuilder;
 import ar.com.fdvs.dj.domain.builders.CrosstabRowBuilder;
 import ar.com.fdvs.dj.domain.builders.DynamicReportBuilder;
 import ar.com.fdvs.dj.domain.builders.StyleBuilder;
 import ar.com.fdvs.dj.domain.constants.Border;
-import ar.com.fdvs.dj.domain.constants.Font;
-import ar.com.fdvs.dj.domain.constants.HorizontalAlign;
+import ar.com.fdvs.dj.domain.entities.columns.AbstractColumn;
 
-import com.antares.commons.util.ReportUtils;
-import com.antares.sirius.base.Constants;
-import com.antares.sirius.filter.ActividadFilter;
-import com.antares.sirius.filter.MetaFilter;
-import com.antares.sirius.filter.ObjetivoEspecificoFilter;
-import com.antares.sirius.filter.ObjetivoGeneralFilter;
+import com.antares.commons.enums.TipoAgregacionEnum;
+import com.antares.commons.util.Utils;
+import com.antares.sirius.dto.FinanzasDTO;
+import com.antares.sirius.dto.MontoDTO;
 import com.antares.sirius.model.Actividad;
 import com.antares.sirius.model.Meta;
 import com.antares.sirius.model.ObjetivoEspecifico;
 import com.antares.sirius.model.ObjetivoGeneral;
-import com.antares.sirius.model.Presupuesto;
+import com.antares.sirius.model.PersistentObject;
 import com.antares.sirius.model.Proyecto;
 import com.antares.sirius.model.Rubro;
 import com.antares.sirius.service.ActividadService;
+import com.antares.sirius.service.FinanzasService;
 import com.antares.sirius.service.MetaService;
 import com.antares.sirius.service.ObjetivoEspecificoService;
 import com.antares.sirius.service.ObjetivoGeneralService;
-import com.antares.sirius.service.PresupuestoService;
 import com.antares.sirius.service.ProyectoService;
 import com.antares.sirius.service.RubroService;
 import com.antares.sirius.view.form.ReporteFinancieroForm;
 
 /**
- * @author PDelfino
+ * Controlador correspondiente al reporte de finanzas 
+ * 
+ * @version 1.0.0 Created by Pablo Delfino
+ * @author <a href:mailto:pnicdelfino@gmail.com>Pablo Delfino</a>
+
+ * @version 2.0.0 Created 12/07/2011 by Julian Martinez
+ * @author <a href:mailto:otakon@gmail.com>Julian Martinez</a>
  *
  */
-public class ReporteFinancieroAction extends ReporteAction{
+public class ReporteFinancieroAction extends ReporteAction {
+
+	private static final String COL_DESCRIPCION = "descripcion";
+	private static final String SUFIJO_PRESUPUESTADO = "-a";
+	private static final String SUFIJO_GASTADO = "-b";
+	private static final String SUFIJO_DIFERENCIA = "-c";
+	private static final String FILENAME = "ReporteFinanzas";
 
 	private ProyectoService proyectoService;
 	private ObjetivoGeneralService objetivoGeneralService;
@@ -74,7 +83,7 @@ public class ReporteFinancieroAction extends ReporteAction{
 	private MetaService metaService;
 	private ActividadService actividadService;
 	private RubroService rubroService;
-	private PresupuestoService presupuestoService;
+	private FinanzasService finanzasService;
 
 	/**
 	 * Inicializa la pantalla de consulta.
@@ -90,19 +99,10 @@ public class ReporteFinancieroAction extends ReporteAction{
 	public ActionForward initForm(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ReporteFinancieroForm viewForm = (ReporteFinancieroForm)form;
 		viewForm.initialize();
-		loadCollections(viewForm);
+		viewForm.setFormatosReporte(getReportFormatList());
+		viewForm.setProyectos(proyectoService.findAll());
+		viewForm.setRubros(rubroService.findPrimerNivel());
 		return mapping.findForward("init");
-	}
-	
-
-	protected void loadCollections(ReporteFinancieroForm form) {
-		form.setFormatosReporte(ReportUtils.getReportFormatList());
-		form.setProyectos(proyectoService.findAll());
-		form.setObjetivosGenerales(objetivoGeneralService.findAll());
-		form.setObjetivosEspecificos(objetivoEspecificoService.findAll());
-		form.setMetas(metaService.findAll());
-		form.setActividades(actividadService.findAll());
-		form.setRubros(rubroService.findPrimerNivel());
 	}
 	
 	/**
@@ -116,85 +116,167 @@ public class ReporteFinancieroAction extends ReporteAction{
 	 * @throws Exception
 	 */
 	public ActionForward generarReporteFinanciero(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		String reportType = null;
-		JasperPrint jasperPrint = null;
-		JasperReport jasperReport = null;
-		DynamicReport dr = null;
-		Map params = new HashMap();
+		ReporteFinancieroForm reporteForm = (ReporteFinancieroForm)form;
+		Integer[] idRubros = Utils.parseInteger(reporteForm.getRubrosSeleccionados());
+		Collection<Rubro> rubros = rubroService.findByIds(idRubros);
+		Proyecto proyecto = proyectoService.findById(Utils.parseInteger(reporteForm.getIdProyecto()));
+		FinanzasDTO finanzas = getFinanzas(reporteForm, proyecto, rubros.toArray(new Rubro[0]));
 
-		ReporteFinancieroForm reporteFinancieroForm = (ReporteFinancieroForm)form;
-		
-		DynamicReportBuilder drb = getDynamicReport("SAHDES", "Reporte de Finanzas", "ReporteFinanzas");
-		
-		Proyecto proyecto = proyectoService.findById(new Integer(reporteFinancieroForm.getIdProyecto()));
-		drb.setSubtitle("Reporte de Finanzas"+" - "+" Proyecto:"+proyecto.getNombre());
-		DJCrosstab djcross = createCrosstab(request);
-		
-		Collection<Presupuesto> presupuestos = new ArrayList<Presupuesto>();
-		
-		//Obtenemos la lista de actividades
-		Collection<Actividad> actividades = this.obtenerListaActividades(reporteFinancieroForm);
-		
-		Iterator<Actividad> it = actividades.iterator();
-		
-		while (it.hasNext()){
-			Actividad actividad = it.next();
-			int size = reporteFinancieroForm.getRubrosSeleccionados().length;
-		    for (int i=0; i<size; i++){
-		    	//Obtener Rubros seleccionados
-		    	String rubroSeleccionadoId = reporteFinancieroForm.getRubrosSeleccionados()[i];
-		    	Rubro rubro = rubroService.findById(new Integer(rubroSeleccionadoId));
-		    	//Obtener los presupuestos por actividad y rubro
-		    	Presupuesto presupuesto = presupuestoService.findPresupuestoByActividadRubro(actividad, rubro);
-		    	presupuestos.add(presupuesto);
-		    }
-			
-		}
+		DynamicReportBuilder drb = getDynamicReport(Utils.getMessage("sirius.organizacion"), Utils.getMessage("sirius.reportes.finanzas.title"), "ReporteFinanzas");
+		drb.setSubtitle(Utils.getMessage("sirius.reportes.finanzas.title") + " - " + Utils.getMessage("sirius.reportes.finanzas.proyecto.label") + ": " + proyecto.getNombre());
+		addColumns(drb, rubros, reporteForm);
 
-		drb.addHeaderCrosstab(djcross);
-		
-		dr = drb.build();
-		
-		params.put("sr", presupuestos);
+		DynamicReport dr = drb.build();
+		Collection<PersistentObject> persistentObjects = getPersistentObjects(reporteForm, proyecto);
+		JRDataSource ds = buildDataSource(finanzas, persistentObjects, rubros, reporteForm);
+		JasperPrint jasperPrint = DynamicJasperHelper.generateJasperPrint(dr, new ClassicLayoutManager(), ds);
 
-		JRDataSource ds = new JRBeanCollectionDataSource(presupuestos);
-		
-		jasperReport = DynamicJasperHelper.generateJasperReport(dr, new ClassicLayoutManager(), params);
-		
-		jasperPrint = JasperFillManager.fillReport(jasperReport, params, ds);
-
-		reportType = reporteFinancieroForm.getFormatoReporte();
-		
-		this.generateReport(request, response, reportType, jasperPrint, Constants.REPORTE_FINANCIERO);
-
-		return mapping.findForward("null");
+		Integer reportType = Utils.parseInteger(reporteForm.getFormatoReporte());
+		this.generateReport(request, response, reportType, jasperPrint);
+		return null;
 	}
 
+	/*
+	 * Agrega las columnas necesarias al reporte
+	 */
+	private void addColumns(DynamicReportBuilder drb, Collection<Rubro> rubros, ReporteFinancieroForm reporteForm) throws ColumnBuilderException {
+		AbstractColumn columnaDescripcion = getColumn(COL_DESCRIPCION, String.class, Utils.getMessage("sirius.reportes.finanzas.descripcion.label"), 80, getHeaderStyle(), getDetailStyle());
+		drb.addColumn(columnaDescripcion);
+		String tituloPresupuestado = Utils.getMessage("sirius.reportes.finanzas.presupuestado.label"); 
+		String tituloGastado = Utils.getMessage("sirius.reportes.finanzas.gastado.label"); 
+		String tituloDiferencia = Utils.getMessage("sirius.reportes.finanzas.diferencia.label"); 
 
+		for (Rubro rubro : rubros) {
+			if (reporteForm.getVerPresupuestado()) {
+				AbstractColumn columnaPresupuestado = getColumn(rubro.getId() + SUFIJO_PRESUPUESTADO, Double.class, tituloPresupuestado, 80, getHeaderStyle(), getDetailStyle());
+				drb.addColumn(columnaPresupuestado);
+			}
+			if (reporteForm.getVerGastado()) {
+				AbstractColumn columnaGastado = getColumn(rubro.getId() + SUFIJO_GASTADO, Double.class, tituloGastado, 80, getHeaderStyle(), getDetailStyle());
+				drb.addColumn(columnaGastado);
+			}
+			if (reporteForm.getVerDiferencia()) {
+				AbstractColumn columnaDif = getColumn(rubro.getId() + SUFIJO_DIFERENCIA, Double.class, tituloDiferencia, 80, getHeaderStyle(), getDetailStyle());
+				drb.addColumn(columnaDif);
+			}
+		}
+	}
+
+	/*
+	 * Construye un data source para jasper en base a las finanzas, los rubros y los objetos del nivel de agregacion correspondiente
+	 */
+	private JRDataSource buildDataSource(FinanzasDTO finanzas, Collection<PersistentObject> persistentObjects, Collection<Rubro> rubros, ReporteFinancieroForm reporteForm) {
+
+		Collection<Map<String, Object>> col = new ArrayList<Map<String, Object>>(); 
+		for (PersistentObject persistentObject : persistentObjects) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			for (Rubro rubro : rubros) {
+				MontoDTO monto = finanzas.get(persistentObject.getId(), rubro.getId());
+				map.put(COL_DESCRIPCION, Utils.getPropertyValue(persistentObject, "nombre").toString());
+				if (monto != null) {
+					if (reporteForm.getVerPresupuestado()) {
+						map.put(rubro.getId().toString() + SUFIJO_PRESUPUESTADO, monto.getMontoPresupuestado());
+					}
+					if (reporteForm.getVerGastado()) {
+						map.put(rubro.getId().toString() + SUFIJO_GASTADO, monto.getMontoGastado());
+					}
+					if (reporteForm.getVerDiferencia()) {
+						map.put(rubro.getId().toString() + SUFIJO_DIFERENCIA, monto.getMontoDif());
+					}
+				} else {
+					if (reporteForm.getVerPresupuestado()) {
+						map.put(rubro.getId().toString() + SUFIJO_PRESUPUESTADO, Double.valueOf(0D));
+					}
+					if (reporteForm.getVerGastado()) {
+						map.put(rubro.getId().toString() + SUFIJO_GASTADO, Double.valueOf(0D));
+					}
+					if (reporteForm.getVerDiferencia()) {
+						map.put(rubro.getId().toString() + SUFIJO_DIFERENCIA, Double.valueOf(0D));
+					}
+				}
+			}
+			col.add(map);
+		}
+
+		return new JRMapCollectionDataSource(col);
+	}
+
+	/*
+	 * Obtiene las finanzas correspondientes al nivel de agregacion indicado en el reporteForm
+	 */
+	private FinanzasDTO getFinanzas(ReporteFinancieroForm reporteForm, Proyecto proyecto, Rubro[] rubros) {
+		TipoAgregacionEnum tipoAgregacion = TipoAgregacionEnum.findByNombre(reporteForm.getTipoAgregacion());
+		FinanzasDTO finanzas = null;
+		switch (tipoAgregacion) {
+			case ACTIVIDAD:
+				Actividad actividad = actividadService.findById(Integer.parseInt(reporteForm.getIdAgregacion()));
+				finanzas = finanzasService.finanzasPorActividad(actividad, rubros, reporteForm.calcularPresupuestos(), reporteForm.calcularGastos());
+				break;
+			case META:
+				Meta meta = metaService.findById(Integer.parseInt(reporteForm.getIdAgregacion()));
+				finanzas = finanzasService.finanzasPorMeta(meta, rubros, reporteForm.calcularPresupuestos(), reporteForm.calcularGastos());
+				break;
+			case OBJETIVO_ESPECIFICO:
+				ObjetivoEspecifico objetivoEspecifico = objetivoEspecificoService.findById(Integer.parseInt(reporteForm.getIdAgregacion()));
+				finanzas = finanzasService.finanzasPorObjetivoEspecifico(objetivoEspecifico, rubros, reporteForm.calcularPresupuestos(), reporteForm.calcularGastos());
+				break;
+			case OBJETIVO_GENERAL:
+				ObjetivoGeneral objetivoGeneral = objetivoGeneralService.findById(Integer.parseInt(reporteForm.getIdAgregacion()));
+				finanzas = finanzasService.finanzasPorObjetivoGeneral(objetivoGeneral, rubros, reporteForm.calcularPresupuestos(), reporteForm.calcularGastos());
+				break;
+			case PROYECTO:
+				finanzas = finanzasService.finanzasPorProyecto(proyecto, rubros, reporteForm.calcularPresupuestos(), reporteForm.calcularGastos());
+				break;
+			default: break;
+		}
+		return finanzas;
+	}
+
+	/*
+	 * Obtiene la lista de objetos persistentes correspondientes al nivel de agregacion indicado en el reporteForm
+	 */
+	private Collection<PersistentObject> getPersistentObjects(ReporteFinancieroForm reporteForm, Proyecto proyecto) {
+		TipoAgregacionEnum tipoAgregacion = TipoAgregacionEnum.findByNombre(reporteForm.getTipoAgregacion());
+		Collection<PersistentObject> persistentObject= new ArrayList<PersistentObject>();
+		switch (tipoAgregacion) {
+			case ACTIVIDAD:
+				Actividad actividad = actividadService.findById(Integer.parseInt(reporteForm.getIdAgregacion()));
+				persistentObject.add(actividad);
+				break;
+			case META:
+				Meta meta = metaService.findById(Integer.parseInt(reporteForm.getIdAgregacion()));
+				persistentObject.addAll(meta.getActividades());
+				break;
+			case OBJETIVO_ESPECIFICO:
+				ObjetivoEspecifico objetivoEspecifico = objetivoEspecificoService.findById(Integer.parseInt(reporteForm.getIdAgregacion()));
+				persistentObject.addAll(objetivoEspecifico.getMetas());
+				break;
+			case OBJETIVO_GENERAL:
+				ObjetivoGeneral objetivoGeneral = objetivoGeneralService.findById(Integer.parseInt(reporteForm.getIdAgregacion()));
+				persistentObject.addAll(objetivoGeneral.getObjetivosEspecificos());
+				break;
+			case PROYECTO:
+				persistentObject.addAll(proyecto.getObjetivosGenerales());
+				break;
+			default: break;
+		}
+		return persistentObject;
+	}
+
+	/*
+	 * TODO borrar
+	 * Este metodo lo dejé para tener de ejemple del uso de crosstabs
+	 */
 	private DJCrosstab createCrosstab(HttpServletRequest request) {
 		
 		MessageResources messageResources = getResources(request);
 		
-		DJValueFormatter valueFormatter = new DJValueFormatter() {
-
-			DecimalFormat dc = new DecimalFormat("#0.0");
- 			
- 			public String getClassName() {
- 				return String.class.getName();
- 			}
- 			
- 			public Object evaluate(Object value, Map fields, Map variables, Map parameters) {
- 				return "" + dc.format(value) + " %";
- 			}
- 		};
-
 		CrosstabBuilder djcross = new CrosstabBuilder();
 		djcross.setHeight(200);
 		djcross.setWidth(500);
 		djcross.useMainReportDatasource(false);
 		djcross.setHeaderStyle(getHeaderStyle());
-		djcross.setDatasource("sr",DJConstants.DATA_SOURCE_ORIGIN_PARAMETER, DJConstants.DATA_SOURCE_TYPE_COLLECTION, true);
+		djcross.setDatasource("sr",DATA_SOURCE_ORIGIN_PARAMETER, DATA_SOURCE_TYPE_COLLECTION, true);
 		djcross.setUseFullWidth(true);
 		djcross.setAutomaticTitle(true);
 		djcross.setColumnStyles(getHeaderStyle(), getTotalStyle(), getHeaderStyle());
@@ -216,94 +298,19 @@ public class ReporteFinancieroAction extends ReporteAction{
 		col.setHeaderStyle(getColHeaderStyle());
 		djcross.addColumn(col.build());
 
-		djcross.addMeasure("monto",Double.class.getName(), DJCalculation.SUM , 
+		djcross.addMeasure("monto",Double.class.getName(), SUM , 
 				messageResources.getMessage("sirius.ingreso.monto.label"),
 				new StyleBuilder(false).setPattern("#,###.##")
-	 			.setHorizontalAlign(HorizontalAlign.RIGHT)
-	 			.setFont(Font.ARIAL_MEDIUM)
+	 			.setHorizontalAlign(RIGHT)
+	 			.setFont(ARIAL_MEDIUM)
 				.build());
 	
 
 		return djcross.build();
 	}
 
-
-	private Collection<Actividad> obtenerListaActividades(ReporteFinancieroForm reporteFinancieroForm){
-	
-		Collection<Actividad> actividades = new ArrayList<Actividad>();
-		
-		if (reporteFinancieroForm.getIdActividad()!=null 
-				&& !reporteFinancieroForm.getIdActividad().equals("")){
-			
-			//Se ha seleccionado una actividad especifica
-			Actividad actividad = this.actividadService.findById(
-					new Integer(reporteFinancieroForm.getIdActividad()));
-			actividades.add(actividad);
-			
-		}else{
-			
-			//Se trabajara con todas las actividades de un proyecto/meta/actividad
-			if (reporteFinancieroForm.getIdProyecto()!=null 
-					&& !reporteFinancieroForm.getIdProyecto().equals("")){
-				
-				//Se trabajara con las actividades vinculadas a un proyecto especifico
-				Proyecto proyecto = this.proyectoService.findById(
-						new Integer(reporteFinancieroForm.getIdProyecto()));
-				Collection<Actividad> actividadesProyecto = 
-					this.actividadService.findAllByProyecto(proyecto);
-				
-				Iterator<Actividad> it = actividadesProyecto.iterator();
-				
-				if (reporteFinancieroForm.getIdMeta()!=null 
-						&& !reporteFinancieroForm.getIdMeta().equals("")){
-					//Se trabajara con las actividades de una meta especifica
-					while (it.hasNext()){
-						Actividad actividadProyecto = it.next();
-						if (actividadProyecto.getMeta().getId().equals(
-								reporteFinancieroForm.getIdMeta())){
-							actividades.add(actividadProyecto);
-						}
-					}
-					
-				}else if (reporteFinancieroForm.getIdObjetivoEspecifico()!=null 
-						&& !reporteFinancieroForm.getIdObjetivoEspecifico().equals("")){
-					//Se trabajara con las actividades de todas las metas de un objetivo especifico
-					while (it.hasNext()){
-						Actividad actividadProyecto = it.next();
-						if (actividadProyecto.getMeta().getObjetivoEspecifico().getId().equals(
-								reporteFinancieroForm.getIdObjetivoEspecifico())){
-							actividades.add(actividadProyecto);
-						}
-					}
-					
-				}else if (reporteFinancieroForm.getIdObjetivoGeneral()!=null 
-						&& !reporteFinancieroForm.getIdObjetivoGeneral().equals("")){
-					//Se trabajara con las actividades de todas las metas y objetivos especificos de un objetivo general
-					while (it.hasNext()){
-						Actividad actividadProyecto = it.next();
-						if (actividadProyecto.getMeta().getObjetivoEspecifico().getObjetivoGeneral().getId().equals(
-								reporteFinancieroForm.getIdObjetivoGeneral())){
-							actividades.add(actividadProyecto);
-						}
-					}
-					
-				}else{
-					//Se trabajara con todas las actividades del proyecto
-					actividades.addAll(actividadesProyecto);
-				}
-				
-			}else {
-				//Se trabajara a nivel general de la organizacion, es decir, se mostraran los gastos 
-				//generales de todos los proyectos
-			}
-
- 		}
-		
-		return actividades;
-	}
-
 	/**
-	 * Metodo para cargar los posibles objetivos generales de un proyecto especifico
+	 * Metodo para cargar los posibles objetivos generales del proyecto
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -312,15 +319,14 @@ public class ReporteFinancieroAction extends ReporteAction{
 	 * @throws Exception
 	 */
 	public ActionForward cargarComboObjetivoGeneral(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) 
-	throws Exception {
+			throws Exception {
 
 		String id =(String) request.getParameter("idProyecto");
 		Collection<ObjetivoGeneral> lista = null;
-		if (!"".equals(id)) {
-			ObjetivoGeneralFilter filter = this.createObjetivoGeneralFilter(id);
-			lista = objetivoGeneralService.findByFilter(filter);
+		if (Utils.isNotNullNorEmpty(id)) {
+			Proyecto proyecto = proyectoService.findById(Utils.parseInteger(id));
+			lista = objetivoGeneralService.findAllByProyecto(proyecto);
 		}
-		((ReporteFinancieroForm)form).setObjetivosGenerales(lista);
 		
 		Map<String, String> map = new HashMap<String, String>();
 		for (ObjetivoGeneral objetivoGeneral : lista) {
@@ -331,9 +337,10 @@ public class ReporteFinancieroAction extends ReporteAction{
 		return null;
 
 	}
-	
+
 	/**
-	 * Metodo para cargar los posibles objetivos especificos de un objetivo general especifico
+	 * Metodo para cargar los posibles objetivos especificos del proyecto
+	 * 
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -342,15 +349,14 @@ public class ReporteFinancieroAction extends ReporteAction{
 	 * @throws Exception
 	 */
 	public ActionForward cargarComboObjetivoEspecifico(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) 
-	throws Exception {
+			throws Exception {
 
-		String id =(String) request.getParameter("idObjetivoGeneral");
+		String id =(String) request.getParameter("idProyecto");
 		Collection<ObjetivoEspecifico> lista = null;
-		if (!"".equals(id)) {
-			ObjetivoEspecificoFilter filter = this.createObjetivoEspecificoFilter(id);
-			lista = objetivoEspecificoService.findByFilter(filter);
+		if (Utils.isNotNullNorEmpty(id)) {
+			Proyecto proyecto = proyectoService.findById(Utils.parseInteger(id));
+			lista = objetivoEspecificoService.findAllByProyecto(proyecto);
 		}
-		((ReporteFinancieroForm)form).setObjetivosEspecificos(lista);
 		
 		Map<String, String> map = new HashMap<String, String>();
 		for (ObjetivoEspecifico objetivoEspecifico : lista) {
@@ -363,7 +369,8 @@ public class ReporteFinancieroAction extends ReporteAction{
 	}
 	
 	/**
-	 * Metodo para cargar las posibles metas de una objectivo especifico
+	 * Metodo para cargar las posibles metas del proyecto
+	 * 
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -372,15 +379,14 @@ public class ReporteFinancieroAction extends ReporteAction{
 	 * @throws Exception
 	 */
 	public ActionForward cargarComboMeta(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) 
-	throws Exception {
+			throws Exception {
 
-		String id =(String) request.getParameter("idObjetivoEspecifico");
+		String id =(String) request.getParameter("idProyecto");
 		Collection<Meta> lista = null;
-		if (!"".equals(id)) {
-			MetaFilter filter = this.createMetaFilter(id);
-			lista = metaService.findByFilter(filter);
+		if (Utils.isNotNullNorEmpty(id)) {
+			Proyecto proyecto = proyectoService.findById(Utils.parseInteger(id));
+			lista = metaService.findAllByProyecto(proyecto);
 		}
-		((ReporteFinancieroForm)form).setMetas(lista);
 		
 		Map<String, String> map = new HashMap<String, String>();
 		for (Meta meta : lista) {
@@ -393,7 +399,8 @@ public class ReporteFinancieroAction extends ReporteAction{
 	}
 	
 	/**
-	 * Metodo para cargar las posibles actividades de una meta especifica
+	 * Metodo para cargar las posibles actividades del proyecto
+	 * 
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -402,15 +409,14 @@ public class ReporteFinancieroAction extends ReporteAction{
 	 * @throws Exception
 	 */
 	public ActionForward cargarComboActividad(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) 
-	throws Exception {
+			throws Exception {
 
-		String id =(String) request.getParameter("idMeta");
+		String id =(String) request.getParameter("idProyecto");
 		Collection<Actividad> lista = null;
-		if (!"".equals(id)) {
-			ActividadFilter filter = this.createActividadFilter(id);
-			lista = actividadService.findByFilter(filter);
+		if (Utils.isNotNullNorEmpty(id)) {
+			Proyecto proyecto = proyectoService.findById(Utils.parseInteger(id));
+			lista = actividadService.findAllByProyecto(proyecto);
 		}
-		((ReporteFinancieroForm)form).setActividades(lista);
 		
 		Map<String, String> map = new HashMap<String, String>();
 		for (Actividad actividad : lista) {
@@ -422,143 +428,37 @@ public class ReporteFinancieroAction extends ReporteAction{
 
 	}
 	
-	private ObjetivoGeneralFilter createObjetivoGeneralFilter(String proyecto) {
-		ObjetivoGeneralFilter filter = new ObjetivoGeneralFilter();
-		filter.setProyecto(proyectoService.findById(Integer.parseInt(proyecto)));
-		return filter;
+	@Override
+	protected String getFileName() {
+		return FILENAME;
 	}
 
-	private ObjetivoEspecificoFilter createObjetivoEspecificoFilter(String objetivoGeneral) {
-		ObjetivoEspecificoFilter filter = new ObjetivoEspecificoFilter();
-		filter.setObjetivoGeneral(objetivoGeneralService.findById(Integer.parseInt(objetivoGeneral)));
-		return filter;
-	}
-
-	private MetaFilter createMetaFilter(String objetivoEspecifico) {
-		MetaFilter filter = new MetaFilter();
-		filter.setObjetivoEspecifico(objetivoEspecificoService.findById(Integer.parseInt(objetivoEspecifico)));
-		return filter;
-	}
-	
-	private ActividadFilter createActividadFilter(String meta) {
-		ActividadFilter filter = new ActividadFilter();
-		filter.setMeta(metaService.findById(Integer.parseInt(meta)));
-		return filter;
-	}
-	
-	/**
-	 * @return the proyectoService
-	 */
-	public ProyectoService getProyectoService() {
-		return proyectoService;
-	}
-
-
-	/**
-	 * @param proyectoService the proyectoService to set
-	 */
 	public void setProyectoService(ProyectoService proyectoService) {
 		this.proyectoService = proyectoService;
 	}
 
-
-	/**
-	 * @return the objetivoGeneralService
-	 */
-	public ObjetivoGeneralService getObjetivoGeneralService() {
-		return objetivoGeneralService;
-	}
-
-
-	/**
-	 * @param objetivoGeneralService the objetivoGeneralService to set
-	 */
-	public void setObjetivoGeneralService(
-			ObjetivoGeneralService objetivoGeneralService) {
+	public void setObjetivoGeneralService(ObjetivoGeneralService objetivoGeneralService) {
 		this.objetivoGeneralService = objetivoGeneralService;
 	}
 
-
-	/**
-	 * @return the objetivoEspecificoService
-	 */
-	public ObjetivoEspecificoService getObjetivoEspecificoService() {
-		return objetivoEspecificoService;
-	}
-
-
-	/**
-	 * @param objetivoEspecificoService the objetivoEspecificoService to set
-	 */
-	public void setObjetivoEspecificoService(
-			ObjetivoEspecificoService objetivoEspecificoService) {
+	public void setObjetivoEspecificoService(ObjetivoEspecificoService objetivoEspecificoService) {
 		this.objetivoEspecificoService = objetivoEspecificoService;
 	}
 
-
-	/**
-	 * @return the metaService
-	 */
-	public MetaService getMetaService() {
-		return metaService;
-	}
-
-
-	/**
-	 * @param metaService the metaService to set
-	 */
 	public void setMetaService(MetaService metaService) {
 		this.metaService = metaService;
 	}
 
-
-	/**
-	 * @return the actividadService
-	 */
-	public ActividadService getActividadService() {
-		return actividadService;
-	}
-
-
-	/**
-	 * @param actividadService the actividadService to set
-	 */
 	public void setActividadService(ActividadService actividadService) {
 		this.actividadService = actividadService;
 	}
 
-
-	/**
-	 * @return the rubroService
-	 */
-	public RubroService getRubroService() {
-		return rubroService;
-	}
-
-
-	/**
-	 * @param rubroService the rubroService to set
-	 */
 	public void setRubroService(RubroService rubroService) {
 		this.rubroService = rubroService;
 	}
 
-
-	/**
-	 * @return the presupuestoService
-	 */
-	public PresupuestoService getPresupuestoService() {
-		return presupuestoService;
+	public void setFinanzasService(FinanzasService finanzasService) {
+		this.finanzasService = finanzasService;
 	}
-
-
-	/**
-	 * @param presupuestoService the presupuestoService to set
-	 */
-	public void setPresupuestoService(PresupuestoService presupuestoService) {
-		this.presupuestoService = presupuestoService;
-	}
-
-	
 
 }

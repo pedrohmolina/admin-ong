@@ -16,15 +16,15 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.util.MessageResources;
 
 import ar.com.fdvs.dj.core.DynamicJasperHelper;
 import ar.com.fdvs.dj.core.layout.ClassicLayoutManager;
 import ar.com.fdvs.dj.domain.DynamicReport;
+import ar.com.fdvs.dj.domain.builders.ColumnBuilderException;
 import ar.com.fdvs.dj.domain.builders.DynamicReportBuilder;
 import ar.com.fdvs.dj.domain.entities.columns.AbstractColumn;
 
-import com.antares.commons.util.ReportUtils;
+import com.antares.commons.util.Utils;
 import com.antares.sirius.base.Constants;
 import com.antares.sirius.filter.PersonaFilter;
 import com.antares.sirius.model.Persona;
@@ -32,19 +32,19 @@ import com.antares.sirius.service.PersonaService;
 import com.antares.sirius.view.form.ReportePersonaForm;
 
 /**
- * @author PDelfino
+ * Controlador correspondiente al reporte de personas 
+ * 
+ * @version 1.0.0 Created by Pablo Delfino
+ * @author <a href:mailto:pnicdelfino@gmail.com>Pablo Delfino</a>
+
+ * @version 1.0.1 Created 12/07/2011 by Julian Martinez
+ * @author <a href:mailto:otakon@gmail.com>Julian Martinez</a>
  *
  */
-public class ReportePersonaAction extends ReporteAction{
+public class ReportePersonaAction extends ReporteAction {
 
+	private static final String FILENAME = "ReportePersonas";
 	private PersonaService personaService;
-	
-	public PersonaService getPersonaService() {
-		return personaService;
-	}
-	public void setPersonaService(PersonaService personaService) {
-		this.personaService = personaService;
-	}
 	
 	/**
 	 * Inicializa la pantalla de consulta.
@@ -60,13 +60,8 @@ public class ReportePersonaAction extends ReporteAction{
 	public ActionForward initForm(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ReportePersonaForm viewForm = (ReportePersonaForm)form;
 		viewForm.initialize();
-		loadCollections(viewForm);
+		viewForm.setFormatosReporte(getReportFormatList());
 		return mapping.findForward("init");
-	}
-	
-
-	protected void loadCollections(ReportePersonaForm form) {
-		form.setFormatosReporte(ReportUtils.getReportFormatList());
 	}
 	
 	/**
@@ -80,7 +75,6 @@ public class ReportePersonaAction extends ReporteAction{
 	 * @throws Exception
 	 */
 	public ActionForward verResultados(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
 		ReportePersonaForm viewForm = (ReportePersonaForm)form;
 		PersonaFilter filter = this.createFilter(viewForm);
 		Collection<Persona> result = personaService.findByFilter(filter);
@@ -104,100 +98,64 @@ public class ReportePersonaAction extends ReporteAction{
 		PersonaFilter filter = this.createFilter(viewForm);
 		Collection<Persona> result = personaService.findByFilter(filter);
 
-		DynamicReportBuilder drb = getDynamicReport("SAHDES", "Reporte de Personal", "ReportePersonas");
+		DynamicReportBuilder drb = getDynamicReport(Utils.getMessage("sirius.organizacion"), "Reporte de Personal", "ReportePersonas");
+		addColumns(drb, viewForm);
 
-		MessageResources messageResources = getResources(request);
-		
-		//Carga columnas por defecto
-		AbstractColumn columnaNombre = 
-			getColumn("nombre", String.class, 
-					messageResources.getMessage("sirius.persona.nombre.label"), 80, getHeaderStyle(), getDetailStyle());
-		drb.addColumn(columnaNombre);
-		
-		AbstractColumn columnaApellido = 
-		    getColumn("apellido", String.class, 
-		    		messageResources.getMessage("sirius.persona.apellido.label"), 80, getHeaderStyle(), getDetailStyle());
-		drb.addColumn(columnaApellido);
-
-		//Carga de columnas seleccionadas por el usuario
-		if (viewForm.getVerNumeroDocumento()){
-			
-			AbstractColumn columnaNumeroDocumento =
-			    getColumn("numeroDocumento", Integer.class, 
-			    	messageResources.getMessage("sirius.persona.numeroDocumento.label"), 80, getHeaderStyle(), getDetailStyle());
-			drb.addColumn(columnaNumeroDocumento);
-
-		}
-
-		if (viewForm.getVerCuit()){
-			AbstractColumn columnaCuit = 
-			    getColumn("cuit", String.class, 
-			    	messageResources.getMessage("sirius.persona.cuit.label"), 80, getHeaderStyle(), getDetailStyle());
-			drb.addColumn(columnaCuit);
-		}
-
-		if (viewForm.getVerFechaNacimiento()){
-			AbstractColumn columnaFechaNacimiento =
-			    getColumn("fechaNacimiento", Date.class, 
-			    	messageResources.getMessage("sirius.persona.fechaNacimiento.label"), 80, getHeaderStyle(), getDetailStyle());
-			columnaFechaNacimiento.setPattern(Constants.DEFAULT_DATE_FORMAT);
-	        drb.addColumn(columnaFechaNacimiento);
-		}
-
-		if (viewForm.getVerCBU()){
-			AbstractColumn columnaCbu = 
-			    getColumn("cbu", String.class, 
-			    	messageResources.getMessage("sirius.persona.cbu.label"), 80, getHeaderStyle(), getDetailStyle());
-			drb.addColumn(columnaCbu);
-		}
-		
-		if (viewForm.getVerProfesion()){
-			AbstractColumn columnaProfesion =
-			    getColumn("profesion", String.class, 
-			    	messageResources.getMessage("sirius.persona.profesion.label"), 80, getHeaderStyle(), getDetailStyle());
-			drb.addColumn(columnaProfesion);
-		}
-
-		if (viewForm.getVerFuncion()){
-			AbstractColumn columnaFuncion = 
-			    getColumn("funcion", String.class, 
-			    	messageResources.getMessage("sirius.persona.funcion.label"), 80, getHeaderStyle(), getDetailStyle());
-			drb.addColumn(columnaFuncion);
-		}
-
-		if (viewForm.getVerEmail()){
-			AbstractColumn columnaEmail = 
-			    getColumn("email", String.class, 
-			    	messageResources.getMessage("sirius.persona.email.label"), 140, getHeaderStyle(), getDetailStyle());
-			drb.addColumn(columnaEmail);
-		}
-
-		if (viewForm.getVerTelefono()){
-			AbstractColumn columnaTelefono =
-			    getColumn("telefono", String.class, 
-			    	messageResources.getMessage("sirius.persona.telefono.label"), 80, getHeaderStyle(), getDetailStyle());
-			drb.addColumn(columnaTelefono);
-		}
-		
-		if (viewForm.getVerRelacionContractual()){
-			AbstractColumn columnaRelacionContractual =
-			    getColumn("relacionContractual.descripcion", String.class, 
-			    	messageResources.getMessage("sirius.persona.relacionContractual.label"), 80, getHeaderStyle(), getDetailStyle());
-			drb.addColumn(columnaRelacionContractual);
-		}
-
-		DynamicReport dr = drb.build(); //Build the report
-		
+		DynamicReport dr = drb.build();
 		JRDataSource ds = new JRBeanCollectionDataSource(result);
 		JasperPrint jasperPrint = DynamicJasperHelper.generateJasperPrint(dr, new ClassicLayoutManager(), ds);
 
-		String reportType = viewForm.getFormatoReporte();
-
-		this.generateReport(request, response, reportType, jasperPrint, Constants.REPORTE_PERSONAS);
-
-		return mapping.findForward("null");
+		Integer reportType = Utils.parseInteger(viewForm.getFormatoReporte());
+		this.generateReport(request, response, reportType, jasperPrint);
+		return null;
 	}
 
+	private void addColumns(DynamicReportBuilder drb, ReportePersonaForm viewForm) throws ColumnBuilderException {
+		//Carga columnas por defecto
+		AbstractColumn columnaNombre = getColumn("nombre", String.class, Utils.getMessage("sirius.persona.nombre.label"), 80, getHeaderStyle(), getDetailStyle());
+		drb.addColumn(columnaNombre);
+		AbstractColumn columnaApellido = getColumn("apellido", String.class, Utils.getMessage("sirius.persona.apellido.label"), 80, getHeaderStyle(), getDetailStyle());
+		drb.addColumn(columnaApellido);
+
+		//Carga de columnas seleccionadas por el usuario
+		if (viewForm.getVerNumeroDocumento()) {
+			AbstractColumn columnaNumeroDocumento = getColumn("numeroDocumento", Integer.class, Utils.getMessage("sirius.persona.numeroDocumento.label"), 80, getHeaderStyle(), getDetailStyle());
+			drb.addColumn(columnaNumeroDocumento);
+		}
+		if (viewForm.getVerCuit()) {
+			AbstractColumn columnaCuit = getColumn("cuit", String.class, Utils.getMessage("sirius.persona.cuit.label"), 80, getHeaderStyle(), getDetailStyle());
+			drb.addColumn(columnaCuit);
+		}
+		if (viewForm.getVerFechaNacimiento()) {
+			AbstractColumn columnaFechaNacimiento = getColumn("fechaNacimiento", Date.class, Utils.getMessage("sirius.persona.fechaNacimiento.label"), 80, getHeaderStyle(), getDetailStyle());
+			columnaFechaNacimiento.setPattern(Constants.DEFAULT_DATE_FORMAT);
+	        drb.addColumn(columnaFechaNacimiento);
+		}
+		if (viewForm.getVerCBU()) {
+			AbstractColumn columnaCbu = getColumn("cbu", String.class, Utils.getMessage("sirius.persona.cbu.label"), 80, getHeaderStyle(), getDetailStyle());
+			drb.addColumn(columnaCbu);
+		}
+		if (viewForm.getVerProfesion()) {
+			AbstractColumn columnaProfesion = getColumn("profesion", String.class, Utils.getMessage("sirius.persona.profesion.label"), 80, getHeaderStyle(), getDetailStyle());
+			drb.addColumn(columnaProfesion);
+		}
+		if (viewForm.getVerFuncion()) {
+			AbstractColumn columnaFuncion = getColumn("funcion", String.class, Utils.getMessage("sirius.persona.funcion.label"), 80, getHeaderStyle(), getDetailStyle());
+			drb.addColumn(columnaFuncion);
+		}
+		if (viewForm.getVerEmail()) {
+			AbstractColumn columnaEmail = getColumn("email", String.class, Utils.getMessage("sirius.persona.email.label"), 140, getHeaderStyle(), getDetailStyle());
+			drb.addColumn(columnaEmail);
+		}
+		if (viewForm.getVerTelefono()) {
+			AbstractColumn columnaTelefono = getColumn("telefono", String.class, Utils.getMessage("sirius.persona.telefono.label"), 80, getHeaderStyle(), getDetailStyle());
+			drb.addColumn(columnaTelefono);
+		}
+		if (viewForm.getVerRelacionContractual()) {
+			AbstractColumn columnaRelacionContractual = getColumn("relacionContractual.descripcion", String.class, Utils.getMessage("sirius.persona.relacionContractual.label"), 80, getHeaderStyle(), getDetailStyle());
+			drb.addColumn(columnaRelacionContractual);
+		}
+	}
 
 	public PersonaFilter createFilter(ReportePersonaForm form) {
 		PersonaFilter filter = new PersonaFilter();
@@ -209,6 +167,14 @@ public class ReportePersonaAction extends ReporteAction{
 		}
 		return filter;
 	}
-	
 
+	@Override
+	protected String getFileName() {
+		return FILENAME;
+	}
+
+	public void setPersonaService(PersonaService personaService) {
+		this.personaService = personaService;
+	}
+	
 }

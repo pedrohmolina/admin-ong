@@ -1,7 +1,10 @@
 package com.antares.sirius.service;
 
+import java.util.Collection;
+
 import com.antares.commons.service.BusinessEntityService;
 import com.antares.sirius.model.ObjetivoEspecifico;
+import com.antares.sirius.model.Proyecto;
 
 /**
  * Servicio que contiene la lógica de negocio de la entidad ObjetivoEspecifico.
@@ -20,5 +23,13 @@ public interface ObjetivoEspecificoService extends BusinessEntityService<Objetiv
 	 * @return
 	 */
 	boolean isNombreRepetido(String nombre, Integer id);
+
+	/**
+	 * Devuelve todos los objetivos especificos pertenecientes al proyecto
+	 * 
+	 * @param proyecto proyecto
+	 * @return
+	 */
+	Collection<ObjetivoEspecifico> findAllByProyecto(Proyecto proyecto);
 
 }

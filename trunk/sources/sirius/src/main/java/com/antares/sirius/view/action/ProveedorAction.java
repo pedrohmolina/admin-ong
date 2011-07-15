@@ -29,7 +29,7 @@ public class ProveedorAction extends BaseAction<Proveedor, ProveedorForm, Provee
 		filter.setEmail(form.getFiltroEmail());
 
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdTipoProveedor())) {
-			tipoProveedorService.findById(Integer.parseInt(form.getFiltroIdTipoProveedor()));
+			tipoProveedorService.findById(Utils.parseInteger(form.getFiltroIdTipoProveedor()));
 		}
 		return filter;
 	}
@@ -46,7 +46,7 @@ public class ProveedorAction extends BaseAction<Proveedor, ProveedorForm, Provee
 		entity.setEmail(form.getEmail());
 		entity.setObservaciones(form.getObservaciones());
 
-		TipoProveedor tipoProveedor = tipoProveedorService.findById(Integer.parseInt(form.getIdTipoProveedor()));
+		TipoProveedor tipoProveedor = tipoProveedorService.findById(Utils.parseInteger(form.getIdTipoProveedor()));
 		entity.setTipoProveedor(tipoProveedor);
 	}
 

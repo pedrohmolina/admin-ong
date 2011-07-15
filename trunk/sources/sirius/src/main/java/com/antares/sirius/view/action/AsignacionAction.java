@@ -39,27 +39,27 @@ public class AsignacionAction extends BaseAction<Asignacion, AsignacionForm, Asi
 	public AsignacionFilter createFilter(AsignacionForm form) {
 		AsignacionFilter filter = new AsignacionFilter();
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdActividad())) {
-			filter.setActividad(actividadService.findById(Integer.parseInt(form.getFiltroIdActividad())));
+			filter.setActividad(actividadService.findById(Utils.parseInteger(form.getFiltroIdActividad())));
 		} else if (Utils.isNotNullNorEmpty(form.getFiltroIdProyecto())) {
-			filter.setProyecto(proyectoService.findById(Integer.parseInt(form.getFiltroIdProyecto())));
+			filter.setProyecto(proyectoService.findById(Utils.parseInteger(form.getFiltroIdProyecto())));
 		}
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdPersona())) {
-			filter.setPersona(personaService.findById(Integer.parseInt(form.getFiltroIdPersona())));
+			filter.setPersona(personaService.findById(Utils.parseInteger(form.getFiltroIdPersona())));
 		}
 		return filter;
 	}
 
 	@Override
 	public void updateEntity(Asignacion entity, AsignacionForm form) {
-		entity.setCantidad(Integer.parseInt(form.getCantidad()));
+		entity.setCantidad(Utils.parseInteger(form.getCantidad()));
 		if (Utils.isNotNullNorEmpty(form.getIdTipoAsignacion())) {
-			entity.setTipoAsignacion(tipoAsignacionService.findById(Integer.parseInt(form.getIdTipoAsignacion())));
+			entity.setTipoAsignacion(tipoAsignacionService.findById(Utils.parseInteger(form.getIdTipoAsignacion())));
 		}
 		if (Utils.isNotNullNorEmpty(form.getIdActividad())) {
-			entity.setActividad(actividadService.findById(Integer.parseInt(form.getIdActividad())));
+			entity.setActividad(actividadService.findById(Utils.parseInteger(form.getIdActividad())));
 		}
 		if (Utils.isNotNullNorEmpty(form.getIdPersona())) {
-			entity.setPersona(personaService.findById(Integer.parseInt(form.getIdPersona())));
+			entity.setPersona(personaService.findById(Utils.parseInteger(form.getIdPersona())));
 		}
 	}
 
@@ -74,9 +74,9 @@ public class AsignacionAction extends BaseAction<Asignacion, AsignacionForm, Asi
 	@Override
 	protected ActionErrors validate(AsignacionForm form) {
 		ActionErrors errors = new ActionErrors();
-		Actividad actividad = actividadService.findById(Integer.parseInt(form.getIdActividad()));
-		Persona persona = personaService.findById(Integer.parseInt(form.getIdPersona()));
-		TipoAsignacion tipoAsignacion = tipoAsignacionService.findById(Integer.parseInt(form.getIdTipoAsignacion()));
+		Actividad actividad = actividadService.findById(Utils.parseInteger(form.getIdActividad()));
+		Persona persona = personaService.findById(Utils.parseInteger(form.getIdPersona()));
+		TipoAsignacion tipoAsignacion = tipoAsignacionService.findById(Utils.parseInteger(form.getIdTipoAsignacion()));
 		if (service.isAsignacionRepetida(form.getId(), actividad, persona, tipoAsignacion)) {
 			errors.add("error", new ActionMessage("errors.asignacion"));
 		}
@@ -88,8 +88,8 @@ public class AsignacionAction extends BaseAction<Asignacion, AsignacionForm, Asi
 		
 		String id =(String) request.getParameter("idProyecto");
 		Collection<Actividad> lista = null;
-		if (!"".equals(id)) {
-			Proyecto proyecto = proyectoService.findById(Integer.parseInt(id));
+		if (Utils.isNotNullNorEmpty(id)) {
+			Proyecto proyecto = proyectoService.findById(Utils.parseInteger(id));
 			lista = actividadService.findAllByProyecto(proyecto);
 		} else {
 			lista = actividadService.findAll();

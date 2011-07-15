@@ -4,10 +4,9 @@ import java.util.Collection;
 
 import org.apache.struts.action.ActionForm;
 
+import com.antares.commons.enums.FormatoReporteEnum;
 import com.antares.sirius.model.EstadoFinanciador;
 import com.antares.sirius.model.Financiador;
-import com.antares.sirius.model.FormatoReporte;
-import com.antares.sirius.model.Proveedor;
 import com.antares.sirius.model.TipoFinanciador;
 
 /**
@@ -20,7 +19,7 @@ import com.antares.sirius.model.TipoFinanciador;
 @SuppressWarnings("serial")
 public class ReporteFinanciadorForm extends ActionForm{
 
-	private Collection<FormatoReporte> formatosReporte;
+	private Collection<FormatoReporteEnum> formatosReporte;
 	private String formatoReporte;
 
 	//Filtros
@@ -50,7 +49,175 @@ public class ReporteFinanciadorForm extends ActionForm{
 	private Boolean verEmail;
 	private Boolean verObservaciones;
 	
-	
+	public String getFormatoReporte() {
+		return formatoReporte;
+	}
+
+	public void setFormatoReporte(String formatoReporte) {
+		this.formatoReporte = formatoReporte;
+	}
+
+	public Collection<FormatoReporteEnum> getFormatosReporte() {
+		return formatosReporte;
+	}
+
+	public void setFormatosReporte(Collection<FormatoReporteEnum> formatosReporte) {
+		this.formatosReporte = formatosReporte;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getCuit() {
+		return cuit;
+	}
+
+	public void setCuit(String cuit) {
+		this.cuit = cuit;
+	}
+
+	public String getCbu() {
+		return cbu;
+	}
+
+	public void setCbu(String cbu) {
+		this.cbu = cbu;
+	}
+
+	public String getIdEstadoFinanciador() {
+		return idEstadoFinanciador;
+	}
+
+	public void setIdEstadoFinanciador(String idEstadoFinanciador) {
+		this.idEstadoFinanciador = idEstadoFinanciador;
+	}
+
+	public String getIdTipoFinanciador() {
+		return idTipoFinanciador;
+	}
+
+	public void setIdTipoFinanciador(String idTipoFinanciador) {
+		this.idTipoFinanciador = idTipoFinanciador;
+	}
+
+	public Collection<EstadoFinanciador> getEstadosFinanciador() {
+		return estadosFinanciador;
+	}
+
+	public void setEstadosFinanciador(
+			Collection<EstadoFinanciador> estadosFinanciador) {
+		this.estadosFinanciador = estadosFinanciador;
+	}
+
+	public Collection<TipoFinanciador> getTiposFinanciador() {
+		return tiposFinanciador;
+	}
+
+	public void setTiposFinanciador(Collection<TipoFinanciador> tiposFinanciador) {
+		this.tiposFinanciador = tiposFinanciador;
+	}
+
+	public String getLabelEstadoFinanciador() {
+		return labelEstadoFinanciador;
+	}
+
+	public void setLabelEstadoFinanciador(String labelEstadoFinanciador) {
+		this.labelEstadoFinanciador = labelEstadoFinanciador;
+	}
+
+	public String getLabelTipoFinanciador() {
+		return labelTipoFinanciador;
+	}
+
+	public void setLabelTipoFinanciador(String labelTipoFinanciador) {
+		this.labelTipoFinanciador = labelTipoFinanciador;
+	}
+
+	public Collection<Financiador> getResult() {
+		return result;
+	}
+
+	public void setResult(Collection<Financiador> result) {
+		this.result = result;
+	}
+
+	public Boolean getVerTipoFinanciador() {
+		return verTipoFinanciador;
+	}
+
+	public void setVerTipoFinanciador(Boolean verTipoFinanciador) {
+		this.verTipoFinanciador = verTipoFinanciador;
+	}
+
+	public Boolean getVerEstadoFinanciador() {
+		return verEstadoFinanciador;
+	}
+
+	public void setVerEstadoFinanciador(Boolean verEstadoFinanciador) {
+		this.verEstadoFinanciador = verEstadoFinanciador;
+	}
+
+	public Boolean getVerCuit() {
+		return verCuit;
+	}
+
+	public void setVerCuit(Boolean verCuit) {
+		this.verCuit = verCuit;
+	}
+
+	public Boolean getVerCBU() {
+		return verCBU;
+	}
+
+	public void setVerCBU(Boolean verCBU) {
+		this.verCBU = verCBU;
+	}
+
+	public Boolean getVerContacto() {
+		return verContacto;
+	}
+
+	public void setVerContacto(Boolean verContacto) {
+		this.verContacto = verContacto;
+	}
+
+	public Boolean getVerDireccion() {
+		return verDireccion;
+	}
+
+	public void setVerDireccion(Boolean verDireccion) {
+		this.verDireccion = verDireccion;
+	}
+
+	public Boolean getVerTelefono() {
+		return verTelefono;
+	}
+
+	public void setVerTelefono(Boolean verTelefono) {
+		this.verTelefono = verTelefono;
+	}
+
+	public Boolean getVerEmail() {
+		return verEmail;
+	}
+
+	public void setVerEmail(Boolean verEmail) {
+		this.verEmail = verEmail;
+	}
+
+	public Boolean getVerObservaciones() {
+		return verObservaciones;
+	}
+
+	public void setVerObservaciones(Boolean verObservaciones) {
+		this.verObservaciones = verObservaciones;
+	}
+
 	public void initialize() {
 		this.nombre = "";
 		this.cuit = "";
@@ -68,7 +235,6 @@ public class ReporteFinanciadorForm extends ActionForm{
 		this.verTelefono = false;
 		this.verEmail = false;
 		this.verObservaciones = false;
-
 	}
 
 	public void initializeForm() {
@@ -88,7 +254,6 @@ public class ReporteFinanciadorForm extends ActionForm{
 		this.verTelefono = false;
 		this.verEmail = false;
 		this.verObservaciones = false;
-
 	}
 
 	public void initializeForm(Financiador entity) {
@@ -99,295 +264,6 @@ public class ReporteFinanciadorForm extends ActionForm{
 		this.idTipoFinanciador = entity.getTipoFinanciador().getId().toString();
 		this.labelEstadoFinanciador = entity.getEstadoFinanciador().getDescripcion();
 		this.labelTipoFinanciador = entity.getTipoFinanciador().getDescripcion();
-
 	}
-
-	
-	public String getFormatoReporte() {
-		return formatoReporte;
-	}
-
-	public void setFormatoReporte(String formatoReporte) {
-		this.formatoReporte = formatoReporte;
-	}
-
-	public Collection<FormatoReporte> getFormatosReporte() {
-		return formatosReporte;
-	}
-
-	public void setFormatosReporte(Collection<FormatoReporte> formatosReporte) {
-		this.formatosReporte = formatosReporte;
-	}
-
-	/**
-	 * @return the nombre
-	 */
-	public String getNombre() {
-		return nombre;
-	}
-
-	/**
-	 * @param nombre the nombre to set
-	 */
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	/**
-	 * @return the cuit
-	 */
-	public String getCuit() {
-		return cuit;
-	}
-
-	/**
-	 * @param cuit the cuit to set
-	 */
-	public void setCuit(String cuit) {
-		this.cuit = cuit;
-	}
-
-	/**
-	 * @return the cbu
-	 */
-	public String getCbu() {
-		return cbu;
-	}
-
-	/**
-	 * @param cbu the cbu to set
-	 */
-	public void setCbu(String cbu) {
-		this.cbu = cbu;
-	}
-
-	/**
-	 * @return the idEstadoFinanciador
-	 */
-	public String getIdEstadoFinanciador() {
-		return idEstadoFinanciador;
-	}
-
-	/**
-	 * @param idEstadoFinanciador the idEstadoFinanciador to set
-	 */
-	public void setIdEstadoFinanciador(String idEstadoFinanciador) {
-		this.idEstadoFinanciador = idEstadoFinanciador;
-	}
-
-	/**
-	 * @return the idTipoFinanciador
-	 */
-	public String getIdTipoFinanciador() {
-		return idTipoFinanciador;
-	}
-
-	/**
-	 * @param idTipoFinanciador the idTipoFinanciador to set
-	 */
-	public void setIdTipoFinanciador(String idTipoFinanciador) {
-		this.idTipoFinanciador = idTipoFinanciador;
-	}
-
-	/**
-	 * @return the estadosFinanciador
-	 */
-	public Collection<EstadoFinanciador> getEstadosFinanciador() {
-		return estadosFinanciador;
-	}
-
-	/**
-	 * @param estadosFinanciador the estadosFinanciador to set
-	 */
-	public void setEstadosFinanciador(
-			Collection<EstadoFinanciador> estadosFinanciador) {
-		this.estadosFinanciador = estadosFinanciador;
-	}
-
-	/**
-	 * @return the tiposFinanciador
-	 */
-	public Collection<TipoFinanciador> getTiposFinanciador() {
-		return tiposFinanciador;
-	}
-
-	/**
-	 * @param tiposFinanciador the tiposFinanciador to set
-	 */
-	public void setTiposFinanciador(Collection<TipoFinanciador> tiposFinanciador) {
-		this.tiposFinanciador = tiposFinanciador;
-	}
-
-	
-	/**
-	 * @return the labelEstadoFinanciador
-	 */
-	public String getLabelEstadoFinanciador() {
-		return labelEstadoFinanciador;
-	}
-
-	/**
-	 * @param labelEstadoFinanciador the labelEstadoFinanciador to set
-	 */
-	public void setLabelEstadoFinanciador(String labelEstadoFinanciador) {
-		this.labelEstadoFinanciador = labelEstadoFinanciador;
-	}
-
-	/**
-	 * @return the labelTipoFinanciador
-	 */
-	public String getLabelTipoFinanciador() {
-		return labelTipoFinanciador;
-	}
-
-	/**
-	 * @param labelTipoFinanciador the labelTipoFinanciador to set
-	 */
-	public void setLabelTipoFinanciador(String labelTipoFinanciador) {
-		this.labelTipoFinanciador = labelTipoFinanciador;
-	}
-
-	
-	/**
-	 * @return the result
-	 */
-	public Collection<Financiador> getResult() {
-		return result;
-	}
-
-	/**
-	 * @param result the result to set
-	 */
-	public void setResult(Collection<Financiador> result) {
-		this.result = result;
-	}
-
-	/**
-	 * @return the verTipoFinanciador
-	 */
-	public Boolean getVerTipoFinanciador() {
-		return verTipoFinanciador;
-	}
-
-	/**
-	 * @param verTipoFinanciador the verTipoFinanciador to set
-	 */
-	public void setVerTipoFinanciador(Boolean verTipoFinanciador) {
-		this.verTipoFinanciador = verTipoFinanciador;
-	}
-
-	/**
-	 * @return the verEstadoFinanciador
-	 */
-	public Boolean getVerEstadoFinanciador() {
-		return verEstadoFinanciador;
-	}
-
-	/**
-	 * @param verEstadoFinanciador the verEstadoFinanciador to set
-	 */
-	public void setVerEstadoFinanciador(Boolean verEstadoFinanciador) {
-		this.verEstadoFinanciador = verEstadoFinanciador;
-	}
-
-	/**
-	 * @return the verCuit
-	 */
-	public Boolean getVerCuit() {
-		return verCuit;
-	}
-
-	/**
-	 * @param verCuit the verCuit to set
-	 */
-	public void setVerCuit(Boolean verCuit) {
-		this.verCuit = verCuit;
-	}
-
-	/**
-	 * @return the verCBU
-	 */
-	public Boolean getVerCBU() {
-		return verCBU;
-	}
-
-	/**
-	 * @param verCBU the verCBU to set
-	 */
-	public void setVerCBU(Boolean verCBU) {
-		this.verCBU = verCBU;
-	}
-
-	/**
-	 * @return the verContacto
-	 */
-	public Boolean getVerContacto() {
-		return verContacto;
-	}
-
-	/**
-	 * @param verContacto the verContacto to set
-	 */
-	public void setVerContacto(Boolean verContacto) {
-		this.verContacto = verContacto;
-	}
-
-	/**
-	 * @return the verDireccion
-	 */
-	public Boolean getVerDireccion() {
-		return verDireccion;
-	}
-
-	/**
-	 * @param verDireccion the verDireccion to set
-	 */
-	public void setVerDireccion(Boolean verDireccion) {
-		this.verDireccion = verDireccion;
-	}
-
-	/**
-	 * @return the verTelefono
-	 */
-	public Boolean getVerTelefono() {
-		return verTelefono;
-	}
-
-	/**
-	 * @param verTelefono the verTelefono to set
-	 */
-	public void setVerTelefono(Boolean verTelefono) {
-		this.verTelefono = verTelefono;
-	}
-
-	/**
-	 * @return the verEmail
-	 */
-	public Boolean getVerEmail() {
-		return verEmail;
-	}
-
-	/**
-	 * @param verEmail the verEmail to set
-	 */
-	public void setVerEmail(Boolean verEmail) {
-		this.verEmail = verEmail;
-	}
-
-	/**
-	 * @return the verObservaciones
-	 */
-	public Boolean getVerObservaciones() {
-		return verObservaciones;
-	}
-
-	/**
-	 * @param verObservaciones the verObservaciones to set
-	 */
-	public void setVerObservaciones(Boolean verObservaciones) {
-		this.verObservaciones = verObservaciones;
-	}
-
-	
 
 }

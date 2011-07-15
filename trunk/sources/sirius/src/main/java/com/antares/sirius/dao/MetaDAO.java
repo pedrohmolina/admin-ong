@@ -1,7 +1,10 @@
 package com.antares.sirius.dao;
 
+import java.util.Collection;
+
 import com.antares.commons.dao.BusinessEntityDAO;
 import com.antares.sirius.model.Meta;
+import com.antares.sirius.model.Proyecto;
 
 /**
  * DAO para administrar la persistencia de la entidad Meta
@@ -19,5 +22,13 @@ public interface MetaDAO extends BusinessEntityDAO<Meta> {
 	 * @return
 	 */
 	Meta findByNombre(String nombre);
+
+	/**
+	 * Devuelve todas las metas pertenecientes al proyecto
+	 * 
+	 * @param proyecto proyecto
+	 * @return
+	 */
+	Collection<Meta> findAllByProyecto(Proyecto proyecto);
 
 }

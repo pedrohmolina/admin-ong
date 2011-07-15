@@ -1,21 +1,42 @@
 package com.antares.sirius.view.action;
 
-import java.awt.Color;
+import static ar.com.fdvs.dj.domain.AutoText.ALIGNMENT_RIGHT;
+import static ar.com.fdvs.dj.domain.AutoText.AUTOTEXT_PAGE_X_SLASH_Y;
+import static ar.com.fdvs.dj.domain.AutoText.POSITION_FOOTER;
+import static ar.com.fdvs.dj.domain.ImageBanner.ALIGN_RIGHT;
+import static ar.com.fdvs.dj.domain.constants.Border.NO_BORDER;
+import static ar.com.fdvs.dj.domain.constants.Border.PEN_2_POINT;
+import static ar.com.fdvs.dj.domain.constants.Border.THIN;
+import static ar.com.fdvs.dj.domain.constants.Font.VERDANA_MEDIUM;
+import static ar.com.fdvs.dj.domain.constants.Font.VERDANA_MEDIUM_BOLD;
+import static ar.com.fdvs.dj.domain.constants.Font._FONT_TIMES_NEW_ROMAN;
+import static ar.com.fdvs.dj.domain.constants.Font._FONT_VERDANA;
+import static ar.com.fdvs.dj.domain.constants.HorizontalAlign.CENTER;
+import static ar.com.fdvs.dj.domain.constants.Transparency.OPAQUE;
+import static ar.com.fdvs.dj.domain.constants.VerticalAlign.MIDDLE;
+import static com.antares.sirius.base.Constants.ANTARES_LOGO;
+import static java.awt.Color.BLACK;
+import static java.awt.Color.DARK_GRAY;
+import static java.awt.Color.GRAY;
+import static java.awt.Color.LIGHT_GRAY;
+import static java.awt.Color.WHITE;
+import static net.sf.jasperreports.engine.JRExporterParameter.JASPER_PRINT;
+import static net.sf.jasperreports.engine.JRExporterParameter.OUTPUT_STREAM;
+import static net.sf.jasperreports.engine.export.JRHtmlExporterParameter.IMAGES_URI;
+
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRExporter;
-import net.sf.jasperreports.engine.JRExporterParameter;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.export.JRCsvExporter;
 import net.sf.jasperreports.engine.export.JRHtmlExporter;
-import net.sf.jasperreports.engine.export.JRHtmlExporterParameter;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.export.JRRtfExporter;
 import net.sf.jasperreports.engine.export.JRXlsExporter;
@@ -24,24 +45,30 @@ import net.sf.json.JSONObject;
 
 import org.apache.struts.actions.DispatchAction;
 
-import ar.com.fdvs.dj.domain.AutoText;
-import ar.com.fdvs.dj.domain.ImageBanner;
+import ar.com.fdvs.dj.domain.DJCrosstabColumn;
 import ar.com.fdvs.dj.domain.Style;
 import ar.com.fdvs.dj.domain.builders.ColumnBuilder;
 import ar.com.fdvs.dj.domain.builders.ColumnBuilderException;
+import ar.com.fdvs.dj.domain.builders.CrosstabColumnBuilder;
 import ar.com.fdvs.dj.domain.builders.DynamicReportBuilder;
 import ar.com.fdvs.dj.domain.builders.StyleBuilder;
-import ar.com.fdvs.dj.domain.constants.Border;
 import ar.com.fdvs.dj.domain.constants.Font;
-import ar.com.fdvs.dj.domain.constants.HorizontalAlign;
 import ar.com.fdvs.dj.domain.constants.Page;
-import ar.com.fdvs.dj.domain.constants.Transparency;
-import ar.com.fdvs.dj.domain.constants.VerticalAlign;
 import ar.com.fdvs.dj.domain.entities.columns.AbstractColumn;
 
-import com.antares.sirius.base.Constants;
+import com.antares.commons.enums.FormatoReporteEnum;
 
-public class ReporteAction extends DispatchAction {
+/**
+ * Controlador abstracto del que heredan los controladores de reportes 
+ * 
+ * @version 1.0.0 Created by Pablo Delfino
+ * @author <a href:mailto:pnicdelfino@gmail.com>Pablo Delfino</a>
+
+ * @version 2.0.0 Created 12/07/2011 by Julian Martinez
+ * @author <a href:mailto:otakon@gmail.com>Julian Martinez</a>
+ *
+ */
+public abstract class ReporteAction extends DispatchAction {
 	
 	
 	/**
@@ -53,191 +80,181 @@ public class ReporteAction extends DispatchAction {
 	 * @param jasperPrint
 	 * @throws Exception
 	 */
-	public void generateReport(HttpServletRequest request, HttpServletResponse response, String reportType, JasperPrint jasperPrint, String fileName) throws Exception {
+	protected void generateReport(HttpServletRequest request, HttpServletResponse response, Integer reportType, JasperPrint jasperPrint) throws Exception {
 		
 		OutputStream ouputStream = response.getOutputStream();
 		JRExporter exporter = null;
 		
-		if( Constants.FORMATO_REPORTE_PDF.equalsIgnoreCase(reportType) )
-		{
-		    response.setContentType("application/pdf");
-		    response.setHeader("Content-Disposition", "attachment; filename="+fileName
-		    		+"."+Constants.FORMATO_REPORTE_PDF);
-		    
-		    exporter = new JRPdfExporter();
-		    exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
-		    exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, ouputStream);
-		}
-		else if( Constants.FORMATO_REPORTE_RTF.equalsIgnoreCase(reportType) )
-		{
-		    response.setContentType("application/rtf");
-		    response.setHeader("Content-Disposition", "attachment; filename="+fileName
-		    		+"."+Constants.FORMATO_REPORTE_RTF);
-
-		    exporter = new JRRtfExporter();
-		    exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
-		    exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, ouputStream);
-		}
-		else if( Constants.FORMATO_REPORTE_HTM.equalsIgnoreCase(reportType) )
-		{
-		    exporter = new JRHtmlExporter();
-		    request.getSession().setAttribute(ImageServlet.DEFAULT_JASPER_PRINT_SESSION_ATTRIBUTE, jasperPrint);
-		    exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
-		    exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, ouputStream);
-		    // gonna set url pattern given for Image servlet with a reponse parameter <url-pattern>/image</url-pattern>
-		    exporter.setParameter(JRHtmlExporterParameter.IMAGES_URI,"image?image=");
-		   // exporter.exportReport();
-		}
-		else if( Constants.FORMATO_REPORTE_XLS.equalsIgnoreCase(reportType) )
-		{
-		    response.setContentType("application/xls");
-		    response.setHeader("Content-Disposition", "attachment; filename="+fileName
-		    		+"."+Constants.FORMATO_REPORTE_XLS);
-
-		    exporter = new JRXlsExporter();
-		    exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
-		    exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, ouputStream);
-		}
-		else if( Constants.FORMATO_REPORTE_CSV.equalsIgnoreCase(reportType) )
-		{
-		    response.setContentType("application/csv");
-		    response.setHeader("Content-Disposition", "attachment; filename="+fileName
-		    		+"."+Constants.FORMATO_REPORTE_CSV);
-
-		    exporter = new JRCsvExporter();
-		    exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
-		    exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, ouputStream);
+		FormatoReporteEnum formatoReporte = FormatoReporteEnum.findById(reportType);
+		switch (formatoReporte) {
+			case PDF:
+				setContentHeader(response, getFileName(), formatoReporte.getExtension());
+			    exporter = new JRPdfExporter();
+			    exporter.setParameter(JASPER_PRINT, jasperPrint);
+			    exporter.setParameter(OUTPUT_STREAM, ouputStream);
+				break;
+			case RTF:
+				setContentHeader(response, getFileName(), formatoReporte.getExtension());
+			    exporter = new JRRtfExporter();
+			    exporter.setParameter(JASPER_PRINT, jasperPrint);
+			    exporter.setParameter(OUTPUT_STREAM, ouputStream);
+				break;
+			case HTM:
+			    exporter = new JRHtmlExporter();
+			    request.getSession().setAttribute(ImageServlet.DEFAULT_JASPER_PRINT_SESSION_ATTRIBUTE, jasperPrint);
+			    exporter.setParameter(JASPER_PRINT, jasperPrint);
+			    exporter.setParameter(OUTPUT_STREAM, ouputStream);
+			    exporter.setParameter(IMAGES_URI,"image?image=");
+				break;
+			case XLS:
+				setContentHeader(response, getFileName(), formatoReporte.getExtension());
+			    exporter = new JRXlsExporter();
+			    exporter.setParameter(JASPER_PRINT, jasperPrint);
+			    exporter.setParameter(OUTPUT_STREAM, ouputStream);
+				break;
+			case CSV:
+				setContentHeader(response, getFileName(), formatoReporte.getExtension());
+			    exporter = new JRCsvExporter();
+			    exporter.setParameter(JASPER_PRINT, jasperPrint);
+			    exporter.setParameter(OUTPUT_STREAM, ouputStream);
+				break;
+			default: break;
 		}
 
-		try
-		{
+		try {
 		    exporter.exportReport();
-		}
-		catch (JRException e)
-		{
-		    throw new ServletException(e);
-		}
-		finally
-		{
-		    if (ouputStream != null)
-		    {
-		        try
-		        {
+		} finally {
+		    if (ouputStream != null) {
+		        try {
 		            ouputStream.close();
-		        }
-		        catch (IOException ex)
-		        {
+		        } catch (IOException ex) {
 		        }
 		    }
 		}
 	}
 
-	public static DynamicReportBuilder getDynamicReport(String title, String subtitle, String reportName){
+	protected void setContentHeader(HttpServletResponse response, String fileName, String format) {
+	    response.setContentType("application/" + format);
+	    response.setHeader("Content-Disposition", "attachment; filename=" + fileName + "." + format);
+	}
+
+	protected DynamicReportBuilder getDynamicReport(String title, String subtitle, String reportName) {
 		
 		DynamicReportBuilder drb = new DynamicReportBuilder();
-		drb.setTitle(title)	
-		        .setSubtitle(subtitle)
-		        .setReportName(reportName);		
+		drb.setTitle(title);	
+		drb.setSubtitle(subtitle);
+		drb.setReportName(reportName);		
 	
    		Style oddRowStyle = new Style();
-  		oddRowStyle.setBorder(Border.NO_BORDER); oddRowStyle.setBackgroundColor(Color.LIGHT_GRAY);oddRowStyle.setTransparency(Transparency.OPAQUE);
+  		oddRowStyle.setBorder(NO_BORDER); oddRowStyle.setBackgroundColor(LIGHT_GRAY);oddRowStyle.setTransparency(OPAQUE);
 		Integer margin = new Integer(15);
-		Style atStyle2 = new StyleBuilder(true).setFont(new Font(9, Font._FONT_TIMES_NEW_ROMAN, false, true, false)).setTextColor(Color.BLACK).build();
-		drb.addAutoText(AutoText.AUTOTEXT_PAGE_X_SLASH_Y, AutoText.POSITION_FOOTER, AutoText.ALIGNMENT_RIGHT,30,30,atStyle2);
+		Style atStyle2 = new StyleBuilder(true).setFont(new Font(9, _FONT_TIMES_NEW_ROMAN, false, true, false)).setTextColor(BLACK).build();
+		drb.addAutoText(AUTOTEXT_PAGE_X_SLASH_Y, POSITION_FOOTER, ALIGNMENT_RIGHT,30,30,atStyle2);
 		drb.setPageSizeAndOrientation(Page.Page_A4_Landscape());
 		drb.setUseFullPageWidth(true); 
 
-		drb.setTitleStyle(getTitleStyle())
-			.setDefaultStyles(getTitleStyle(), getSubtitleStyle(), getHeaderStyle(), getDetailStyle())
-			.setDetailHeight(new Integer(15))
-			.setLeftMargin(margin)
-			.setRightMargin(margin)
-			.setTopMargin(margin)
-			.setBottomMargin(margin)
-			.setPrintBackgroundOnOddRows(true)
-			.setOddRowBackgroundStyle(oddRowStyle)
-			.addFirstPageImageBanner(Constants.ANTARES_LOGO, new Integer(90), new Integer(20), ImageBanner.ALIGN_RIGHT);
-		  ;
+		drb.setTitleStyle(getTitleStyle());
+		drb.setDefaultStyles(getTitleStyle(), getSubtitleStyle(), getHeaderStyle(), getDetailStyle());
+		drb.setDetailHeight(new Integer(15));
+		drb.setLeftMargin(margin);
+		drb.setRightMargin(margin);
+		drb.setTopMargin(margin);
+		drb.setBottomMargin(margin);
+		drb.setPrintBackgroundOnOddRows(true);
+		drb.setOddRowBackgroundStyle(oddRowStyle);
+		drb.addFirstPageImageBanner(ANTARES_LOGO, new Integer(90), new Integer(20), ALIGN_RIGHT);
 		  
 		return drb;
 	}
 	
-	public static Style getHeaderStyle(){
+	protected Style getHeaderStyle() {
 		Style headerStyle = new Style();
-  		headerStyle.setFont(Font.VERDANA_MEDIUM_BOLD);
-  		headerStyle.setBorderBottom(Border.PEN_2_POINT);
-  		headerStyle.setHorizontalAlign(HorizontalAlign.CENTER);
-  		headerStyle.setVerticalAlign(VerticalAlign.MIDDLE);
-  		headerStyle.setBackgroundColor(Color.DARK_GRAY);
-  		headerStyle.setTextColor(Color.WHITE);
-  		headerStyle.setTransparency(Transparency.OPAQUE);
+  		headerStyle.setFont(VERDANA_MEDIUM_BOLD);
+  		headerStyle.setBorderBottom(PEN_2_POINT);
+  		headerStyle.setHorizontalAlign(CENTER);
+  		headerStyle.setVerticalAlign(MIDDLE);
+  		headerStyle.setBackgroundColor(DARK_GRAY);
+  		headerStyle.setTextColor(WHITE);
+  		headerStyle.setTransparency(OPAQUE);
 		return headerStyle;
 	}
 
-	public static Style getTitleStyle(){
+	protected Style getTitleStyle() {
 		Style titleStyle = new Style();
-		titleStyle.setFont(new Font(18,Font._FONT_VERDANA,true));
-		titleStyle.setHorizontalAlign(HorizontalAlign.CENTER);
+		titleStyle.setFont(new Font(18,_FONT_VERDANA,true));
+		titleStyle.setHorizontalAlign(CENTER);
 		return titleStyle;
 	}
 
-	public static Style getSubtitleStyle(){
+	protected Style getSubtitleStyle() {
 		Style titleStyle = new Style();
-		titleStyle.setFont(new Font(16,Font._FONT_VERDANA,true));
+		titleStyle.setFont(new Font(16,_FONT_VERDANA,true));
 		return titleStyle;
 	}
 
-	public static Style getDetailStyle(){
+	protected Style getDetailStyle() {
 		Style detailStyle = new Style();
- 		detailStyle.setFont(new Font(9,Font._FONT_VERDANA,false));
-  		detailStyle.setHorizontalAlign(HorizontalAlign.CENTER);
-  		detailStyle.setBorderBottom(Border.THIN);
+ 		detailStyle.setFont(new Font(9,_FONT_VERDANA,false));
+  		detailStyle.setHorizontalAlign(CENTER);
+  		detailStyle.setBorderBottom(THIN);
 		return detailStyle;
 	}
 
-	public static Style getColHeaderStyle(){
-	
-		return new StyleBuilder(false)
-		.setFont(Font.VERDANA_MEDIUM_BOLD)
-		.setBorderBottom(Border.PEN_2_POINT)
-		.setHorizontalAlign(HorizontalAlign.CENTER)
-		.setVerticalAlign(VerticalAlign.MIDDLE)
-		.setBackgroundColor(Color.DARK_GRAY)
-		.setTextColor(Color.WHITE)
-		.setTransparency(Transparency.OPAQUE)
-		.build();
+	protected Style getColHeaderStyle() {
+		StyleBuilder sb = new StyleBuilder(false);
+		sb.setFont(VERDANA_MEDIUM_BOLD);
+		sb.setBorderBottom(PEN_2_POINT);
+		sb.setHorizontalAlign(CENTER);
+		sb.setVerticalAlign(MIDDLE);
+		sb.setBackgroundColor(DARK_GRAY);
+		sb.setTextColor(WHITE);
+		sb.setTransparency(OPAQUE);
+		return sb.build();
 	}
 
-	public static Style getTotalStyle(){
-		return new StyleBuilder(false).setPattern("#,###.##")
-		.setHorizontalAlign(HorizontalAlign.CENTER)
-		.setFont(Font.VERDANA_MEDIUM_BOLD)
-		.setBorderBottom(Border.PEN_2_POINT)
-		.setVerticalAlign(VerticalAlign.MIDDLE)
-		.setBackgroundColor(Color.GRAY)
-		.setTextColor(Color.BLACK)
-		.setTransparency(Transparency.OPAQUE)
-		.build();
+	protected Style getTotalStyle() {
+		StyleBuilder sb = new StyleBuilder(false);
+		sb.setPattern("#,###.##");
+		sb.setHorizontalAlign(CENTER);
+		sb.setFont(VERDANA_MEDIUM_BOLD);
+		sb.setBorderBottom(PEN_2_POINT);
+		sb.setVerticalAlign(MIDDLE);
+		sb.setBackgroundColor(GRAY);
+		sb.setTextColor(BLACK);
+		sb.setTransparency(OPAQUE);
+		return sb.build();
 	}
 	
-	public static Style getMeasureStyle(){
-		return new StyleBuilder(false).setPattern("#,###.##")
-		.setHorizontalAlign(HorizontalAlign.CENTER)
-		.setFont(Font.VERDANA_MEDIUM)
-		.setBackgroundColor(Color.WHITE)
-		.setTextColor(Color.BLACK)
-		.build();
+	protected static Style getMeasureStyle() {
+		StyleBuilder sb = new StyleBuilder(false);
+		sb.setPattern("#,###.##");
+		sb.setHorizontalAlign(CENTER);
+		sb.setFont(VERDANA_MEDIUM);
+		sb.setBackgroundColor(WHITE);
+		sb.setTextColor(BLACK);
+		return sb.build();
 	}
 	
-	public static AbstractColumn getColumn(String property, @SuppressWarnings("rawtypes") Class type,
-			String title, int width, Style headerStyle, Style detailStyle)
-			throws ColumnBuilderException {
+	@SuppressWarnings("unchecked") 
+	protected AbstractColumn getColumn(String property, Class type, String title, Integer width, Style headerStyle, Style detailStyle) throws ColumnBuilderException {
+		ColumnBuilder cb = ColumnBuilder.getNew();
+		cb.setColumnProperty(property, type.getName());
+		cb.setTitle(title);
+		cb.setWidth(width);
+		cb.setStyle(detailStyle);
+		cb.setHeaderStyle(headerStyle);
+		return cb.build();
+	}
 
-		AbstractColumn columnState = ColumnBuilder.getNew()
-			.setColumnProperty(property, type.getName()).setTitle(title).setWidth(Integer.valueOf(width))
-			.setStyle(detailStyle).setHeaderStyle(headerStyle).build();
-		
-		return columnState;
+	@SuppressWarnings("unchecked") 
+	protected DJCrosstabColumn getCrosstabColumn(String property, Class type, String title, Integer width, Style headerStyle, Style detailStyle) throws ColumnBuilderException {
+		CrosstabColumnBuilder cb = new CrosstabColumnBuilder();
+		cb.setProperty(property, type.getName());
+		cb.setTitle(title);
+		cb.setWidth(width);
+//		cb.setStyle(detailStyle);
+		cb.setHeaderStyle(headerStyle);
+		return cb.build();
 	}
 
 	/**
@@ -254,5 +271,19 @@ public class ReporteAction extends DispatchAction {
 		response.getOutputStream().print(jsonMap.toString());
 	}
 
+	/**
+	 * Devuelve la lista de formatos posibles de salida para la generacion de los reportes
+
+	 * @return
+	 */
+	protected List<FormatoReporteEnum> getReportFormatList(){
+		List<FormatoReporteEnum> formatos = new ArrayList<FormatoReporteEnum>();
+		for (FormatoReporteEnum formatoReporteEnum : FormatoReporteEnum.values()) {
+			formatos.add(formatoReporteEnum);
+		}
+		return formatos;
+	}
+
+	protected abstract String getFileName();
 
 }

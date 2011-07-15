@@ -30,15 +30,15 @@ public abstract class GastoAction extends BaseAction<Gasto, GastoForm, GastoServ
 	@Override
 	public void updateEntity(Gasto entity, GastoForm form) {
 		entity.setFecha(Utils.parseDate(form.getFecha()));
-		entity.setRubro(rubroService.findById(Integer.parseInt(form.getIdRubro())));
-		entity.setOrigen(origenService.findById(Integer.parseInt(form.getIdOrigen())));
+		entity.setRubro(rubroService.findById(Utils.parseInteger(form.getIdRubro())));
+		entity.setOrigen(origenService.findById(Utils.parseInteger(form.getIdOrigen())));
 		entity.setImporte(Utils.parseDouble(form.getImporte()));
 		entity.setObservaciones(form.getObservaciones());
 
 		if (Utils.isNullOrEmpty(form.getIdPersona())) {
 			entity.setPersona(findPersona());
 		} else {
-			entity.setPersona(personaService.findById(Integer.parseInt(form.getIdPersona())));
+			entity.setPersona(personaService.findById(Utils.parseInteger(form.getIdPersona())));
 		}
 	}
 

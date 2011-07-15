@@ -13,6 +13,9 @@ import com.antares.commons.util.Utils;
 import com.antares.sirius.dao.ActividadDAO;
 import com.antares.sirius.filter.ActividadFilter;
 import com.antares.sirius.model.Actividad;
+import com.antares.sirius.model.Meta;
+import com.antares.sirius.model.ObjetivoEspecifico;
+import com.antares.sirius.model.ObjetivoGeneral;
 import com.antares.sirius.model.Proyecto;
 
 /**
@@ -37,6 +40,30 @@ public class ActividadDAOImpl extends BusinessEntityDAOImpl<Actividad> implement
 		crit.createAlias("meta.objetivoEspecifico", "objetivoEspecifico");
 		crit.createAlias("objetivoEspecifico.objetivoGeneral", "objetivoGeneral");
 		crit.add(Restrictions.eq("objetivoGeneral.proyecto", proyecto));
+		return crit.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	public Collection<Actividad> findAllByObjetivoGeneral(ObjetivoGeneral objetivoGeneral) {
+		Criteria crit = buildCriteria();
+		crit.createAlias("meta", "meta");
+		crit.createAlias("meta.objetivoEspecifico", "objetivoEspecifico");
+		crit.add(Restrictions.eq("objetivoEspecifico.objetivoGeneral", objetivoGeneral));
+		return crit.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	public Collection<Actividad> findAllByObjetivoEspecifico(ObjetivoEspecifico objetivoEspecifico) {
+		Criteria crit = buildCriteria();
+		crit.createAlias("meta", "meta");
+		crit.add(Restrictions.eq("meta.objetivoEspecifico", objetivoEspecifico));
+		return crit.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	public Collection<Actividad> findAllByMeta(Meta meta) {
+		Criteria crit = buildCriteria();
+		crit.add(Restrictions.eq("meta", meta));
 		return crit.list();
 	}
 

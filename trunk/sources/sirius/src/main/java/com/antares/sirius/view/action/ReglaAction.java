@@ -43,7 +43,7 @@ public class ReglaAction extends BaseAction<Regla, ReglaForm, ReglaService> impl
 	public ReglaFilter createFilter(ReglaForm form) {
 		ReglaFilter filter = new ReglaFilter();
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdUsuario())) {
-			filter.setUsuario(usuarioService.findById(Integer.parseInt(form.getFiltroIdUsuario())));
+			filter.setUsuario(usuarioService.findById(Utils.parseInteger(form.getFiltroIdUsuario())));
 		}
 		return filter;
 	}
@@ -51,13 +51,13 @@ public class ReglaAction extends BaseAction<Regla, ReglaForm, ReglaService> impl
 	@Override
 	public void updateEntity(Regla entity, ReglaForm form) {
 		if (Utils.isNotNullNorEmpty(form.getIdUsuario())) {
-			entity.setUsuario(usuarioService.findById(Integer.parseInt(form.getIdUsuario())));
+			entity.setUsuario(usuarioService.findById(Utils.parseInteger(form.getIdUsuario())));
 		}
 		if (Utils.isNotNullNorEmpty(form.getIdEntidad())) {
-			entity.setEntidad(entidadService.findById(Integer.parseInt(form.getIdEntidad())));
+			entity.setEntidad(entidadService.findById(Utils.parseInteger(form.getIdEntidad())));
 		}
 		if (Utils.isNotNullNorEmpty(form.getIdAtributo())) {
-			entity.setAtributo(atributoService.findById(Integer.parseInt(form.getIdAtributo())));
+			entity.setAtributo(atributoService.findById(Utils.parseInteger(form.getIdAtributo())));
 
 			PropertyType tipo = PropertyType.findById(entity.getAtributo().getTipoAtributo().getId());
 			if (PropertyType.TEXT.equals(tipo)) {
@@ -75,7 +75,7 @@ public class ReglaAction extends BaseAction<Regla, ReglaForm, ReglaService> impl
 			}
 		}
 		if (Utils.isNotNullNorEmpty(form.getIdOperador())) {
-			entity.setOperador(operadorService.findById(Integer.parseInt(form.getIdOperador())));
+			entity.setOperador(operadorService.findById(Utils.parseInteger(form.getIdOperador())));
 		}
 	}
 
@@ -121,7 +121,7 @@ public class ReglaAction extends BaseAction<Regla, ReglaForm, ReglaService> impl
 			throws Exception {
 	
 		String idEntidad =(String) request.getParameter("idEntidad");
-		Entidad entidad = entidadService.findById(Integer.parseInt(idEntidad));
+		Entidad entidad = entidadService.findById(Utils.parseInteger(idEntidad));
 		((ReglaForm)form).setAtributos(entidad.getAtributos());
 		Map<String, String> map = new HashMap<String, String>();
 		for (Atributo atributo : entidad.getAtributos()) {
@@ -136,7 +136,7 @@ public class ReglaAction extends BaseAction<Regla, ReglaForm, ReglaService> impl
 			throws Exception {
 		
 		String idAtributo =(String) request.getParameter("idAtributo");
-		Atributo atributo = atributoService.findById(Integer.parseInt(idAtributo));
+		Atributo atributo = atributoService.findById(Utils.parseInteger(idAtributo));
 		((ReglaForm)form).setOperadores(atributo.getTipoAtributo().getOperadores());
 		Map<String, String> map = new HashMap<String, String>();
 		for (Operador operador : atributo.getTipoAtributo().getOperadores()) {
@@ -151,7 +151,7 @@ public class ReglaAction extends BaseAction<Regla, ReglaForm, ReglaService> impl
 			throws Exception {
 		
 		String idAtributo =(String) request.getParameter("idAtributo");
-		Atributo atributo = atributoService.findById(Integer.parseInt(idAtributo));
+		Atributo atributo = atributoService.findById(Utils.parseInteger(idAtributo));
 
 		Map<String, String> map = new HashMap<String, String>();
 		Collection<PersistentObject> opciones = getValores(atributo);
@@ -172,7 +172,7 @@ public class ReglaAction extends BaseAction<Regla, ReglaForm, ReglaService> impl
 			throws Exception {
 		
 		String idAtributo =(String) request.getParameter("idAtributo");
-		Atributo atributo = atributoService.findById(Integer.parseInt(idAtributo));
+		Atributo atributo = atributoService.findById(Utils.parseInteger(idAtributo));
 
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("tipoAtributo", atributo.getTipoAtributo().getId().toString());

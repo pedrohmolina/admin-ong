@@ -175,6 +175,15 @@
 		<property name="proxyTargetClass" value="true" />
 	</bean>
 
+	<bean id="reglaService" parent="abstractTransactionManager" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" autowire="byName">
+		<property name="target">
+			<bean class="com.antares.sirius.service.impl.ReglaServiceImpl" autowire="byName">
+				<property name="dao" ref="reglaDAO" /> 
+			</bean>
+		</property>
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+	
 
 
 	<!-- Servicios de entidades que no se actualizan desde la aplicacion -->
@@ -272,18 +281,11 @@
 		<property name="dao" ref="entidadDAO" /> 
 	</bean>
 	
-	<bean id="reglaService" parent="abstractTransactionManager" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" autowire="byName">
-		<property name="target">
-			<bean class="com.antares.sirius.service.impl.ReglaServiceImpl" autowire="byName">
-				<property name="dao" ref="reglaDAO" /> 
-			</bean>
-		</property>
-		<property name="proxyTargetClass" value="true" />
-	</bean>
-	
 
 
 	<!-- Otros servicios -->
+	<bean id="finanzasService" class="com.antares.sirius.service.impl.FinanzasServiceImpl" autowire="byName" />
+	
 	<bean id="utilsService" class="com.antares.commons.util.Utils" autowire="byName" />
 	
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">

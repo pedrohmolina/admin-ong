@@ -21,7 +21,7 @@ public class ObjetivoEspecificoAction extends BaseAction<ObjetivoEspecifico, Obj
 		ObjetivoEspecificoFilter filter = new ObjetivoEspecificoFilter();
 		filter.setNombre(form.getFiltroNombre());
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdObjetivoGeneral())) {
-			filter.setObjetivoGeneral(objetivoGeneralService.findById(Integer.parseInt(form.getFiltroIdObjetivoGeneral())));
+			filter.setObjetivoGeneral(objetivoGeneralService.findById(Utils.parseInteger(form.getFiltroIdObjetivoGeneral())));
 		}
 		return filter;
 	}
@@ -30,9 +30,9 @@ public class ObjetivoEspecificoAction extends BaseAction<ObjetivoEspecifico, Obj
 	public void updateEntity(ObjetivoEspecifico entity, ObjetivoEspecificoForm form) {
 		entity.setNombre(form.getNombre());
 		entity.setDescripcion(form.getDescripcion());
-		entity.setPonderacion(Integer.parseInt(form.getPonderacion()));
+		entity.setPonderacion(Utils.parseInteger(form.getPonderacion()));
 		if (Utils.isNotNullNorEmpty(form.getIdObjetivoGeneral())) {
-			entity.setObjetivoGeneral(objetivoGeneralService.findById(Integer.parseInt(form.getIdObjetivoGeneral())));
+			entity.setObjetivoGeneral(objetivoGeneralService.findById(Utils.parseInteger(form.getIdObjetivoGeneral())));
 		}
 	}
 
@@ -44,8 +44,8 @@ public class ObjetivoEspecificoAction extends BaseAction<ObjetivoEspecifico, Obj
 	@Override
 	protected ActionErrors validate(ObjetivoEspecificoForm form) {
 		ActionErrors errors = new ActionErrors();
-		ObjetivoGeneral objetivoGeneral = objetivoGeneralService.findById(Integer.parseInt(form.getIdObjetivoGeneral()));
-		if (Utils.excedePonderacion(Integer.parseInt(form.getPonderacion()), objetivoGeneral.getObjetivosEspecificos(), form.getId())) {
+		ObjetivoGeneral objetivoGeneral = objetivoGeneralService.findById(Utils.parseInteger(form.getIdObjetivoGeneral()));
+		if (Utils.excedePonderacion(Utils.parseInteger(form.getPonderacion()), objetivoGeneral.getObjetivosEspecificos(), form.getId())) {
 			errors.add("error", new ActionMessage("errors.ponderiacion", Utils.getMessage("sirius.objetivoEspecifico.objetivoGeneral.label")));
 		}
 		if (service.isNombreRepetido(form.getNombre(), form.getId())) {

@@ -1,5 +1,7 @@
 package com.antares.sirius.dao.impl;
 
+import java.util.Collection;
+
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
@@ -11,6 +13,7 @@ import com.antares.commons.util.Utils;
 import com.antares.sirius.dao.MetaDAO;
 import com.antares.sirius.filter.MetaFilter;
 import com.antares.sirius.model.Meta;
+import com.antares.sirius.model.Proyecto;
 
 /**
  * Implementacion de la interfaz MetaDAO.
@@ -25,6 +28,15 @@ public class MetaDAOImpl extends BusinessEntityDAOImpl<Meta> implements MetaDAO 
 		Criteria crit = buildCriteria();
 		crit.add(Restrictions.ilike("nombre", nombre, MatchMode.EXACT));
 		return (Meta)crit.uniqueResult();
+	}
+
+	@SuppressWarnings("unchecked")
+	public Collection<Meta> findAllByProyecto(Proyecto proyecto) {
+		Criteria crit = buildCriteria();
+		crit.createAlias("objetivoEspecifico", "objetivoEspecifico");
+		crit.createAlias("objetivoEspecifico.objetivoGeneral", "objetivoGeneral");
+		crit.add(Restrictions.eq("objetivoGeneral.proyecto", proyecto));
+		return crit.list();
 	}
 
 	@Override

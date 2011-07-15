@@ -15,6 +15,14 @@ import com.antares.sirius.model.Rubro;
 public interface RubroDAO extends BusinessEntityDAO<Rubro> {
 
 	/**
+	 * Devuelve los rubros a partir de sus ids
+	 * 
+	 * @param ids array de enteros con los ids
+	 * @return
+	 */
+	Collection<Rubro> findByIds(Integer[] ids);
+
+	/**
 	 * Devuelve un rubro a partir de su nombre (valor único)
 	 * 
 	 * @param nombre nombre a buscar

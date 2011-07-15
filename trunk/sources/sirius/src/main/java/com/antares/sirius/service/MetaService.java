@@ -1,7 +1,10 @@
 package com.antares.sirius.service;
 
+import java.util.Collection;
+
 import com.antares.commons.service.BusinessEntityService;
 import com.antares.sirius.model.Meta;
+import com.antares.sirius.model.Proyecto;
 
 /**
  * Servicio que contiene la lógica de negocio de la entidad Meta.
@@ -20,5 +23,13 @@ public interface MetaService extends BusinessEntityService<Meta> {
 	 * @return
 	 */
 	boolean isNombreRepetido(String nombre, Integer id);
+
+	/**
+	 * Devuelve todas las metas pertenecientes al proyecto
+	 * 
+	 * @param proyecto proyecto
+	 * @return
+	 */
+	Collection<Meta> findAllByProyecto(Proyecto proyecto);
 
 }

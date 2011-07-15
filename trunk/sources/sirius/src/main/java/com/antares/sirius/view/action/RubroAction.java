@@ -37,8 +37,8 @@ public class RubroAction extends BaseAction<Rubro, RubroForm, RubroService> {
 		
 		switch (form.getNivel()) {
 			case 1: break;
-			case 2: entity.setRubroPadre(service.findById(Integer.parseInt(form.getIdRubroNivelUno()))); break;
-			case 3: entity.setRubroPadre(service.findById(Integer.parseInt(form.getIdRubroNivelDos()))); break;
+			case 2: entity.setRubroPadre(service.findById(Utils.parseInteger(form.getIdRubroNivelUno()))); break;
+			case 3: entity.setRubroPadre(service.findById(Utils.parseInteger(form.getIdRubroNivelDos()))); break;
 		}
 	}
 
@@ -46,7 +46,7 @@ public class RubroAction extends BaseAction<Rubro, RubroForm, RubroService> {
 	protected void loadCollections(RubroForm form) {
 		form.setRubrosNivelUno(service.findPrimerNivel());
 		if (Utils.isNotNullNorEmpty(form.getIdRubroNivelUno())) {
-			form.setRubrosNivelDos(service.findHijos(Integer.parseInt(form.getIdRubroNivelUno())));
+			form.setRubrosNivelDos(service.findHijos(Utils.parseInteger(form.getIdRubroNivelUno())));
 		} else {
 			form.setRubrosNivelDos(new ArrayList<Rubro>());
 		}
@@ -92,7 +92,7 @@ public class RubroAction extends BaseAction<Rubro, RubroForm, RubroService> {
 			throws Exception {
 
 		String id =(String) request.getParameter("idRubro");
-		Collection<Rubro> lista = service.findHijos(Integer.parseInt(id));
+		Collection<Rubro> lista = service.findHijos(Utils.parseInteger(id));
 		Map<String, String> map = new HashMap<String, String>();
 		for (Rubro rubro : lista) {
 			map.put(new Integer(rubro.getId()).toString(), rubro.getNombre());

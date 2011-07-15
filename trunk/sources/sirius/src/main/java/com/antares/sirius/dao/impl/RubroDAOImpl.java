@@ -23,6 +23,13 @@ import com.antares.sirius.model.Rubro;
  */
 public class RubroDAOImpl extends BusinessEntityDAOImpl<Rubro> implements RubroDAO {
 
+	@SuppressWarnings("unchecked")
+	public Collection<Rubro> findByIds(Integer[] ids) {
+		Criteria crit = buildCriteria();
+		crit.add(Restrictions.in("id", ids));
+		return crit.list();
+	}
+
 	public Rubro findByNombre(String nombre) {
 		Criteria crit = buildCriteria();
 		crit.add(Restrictions.ilike("nombre", nombre, MatchMode.EXACT));

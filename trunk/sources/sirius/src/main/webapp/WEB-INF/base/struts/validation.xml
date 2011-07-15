@@ -464,7 +464,7 @@
 				<arg position="0" key="sirius.persona.tipoDocumento.label"/>
 			</field>
 			<field property="numeroDocumento" depends="required, integer">
-				<arg position="0" key="sirius.persona.nombre.label"/>
+				<arg position="0" key="sirius.persona.numeroDocumento.label"/>
 			</field>
 			<field property="cuit" depends="maxlength">
 				<arg position="0" key="sirius.persona.cuit.label"/>
@@ -862,7 +862,7 @@
 				<arg position="0" key="sirius.usuario.tipoDocumento.label"/>
 			</field>
 			<field property="numeroDocumento" depends="required, integer">
-				<arg position="0" key="sirius.usuario.nombre.label"/>
+				<arg position="0" key="sirius.usuario.numeroDocumento.label"/>
 			</field>
 			<field property="cuit" depends="maxlength">
 				<arg position="0" key="sirius.usuario.cuit.label"/>
@@ -1058,6 +1058,14 @@
 			</field>
 		</form>
 
+		<form name="reporteFinancieroForm">
+			<field property="idProyecto" depends="required">
+				<arg position="0" key="sirius.reportes.finanzas.proyecto.label"/>
+			</field>
+			<field property="tipoAgregacion" depends="required">
+				<arg position="0" key="sirius.reportes.finanzas.nivelAgregacion.label"/>
+			</field>
+		</form>
 	</formset>
 
 </form-validation>
