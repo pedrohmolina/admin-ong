@@ -2,10 +2,18 @@ package com.antares.sirius.service.impl;
 
 import static java.lang.Boolean.TRUE;
 
+import java.util.Collection;
+
 import com.antares.commons.service.impl.BusinessEntityServiceImpl;
 import com.antares.sirius.dao.GastoDAO;
+import com.antares.sirius.dto.MontoDTO;
+import com.antares.sirius.model.Actividad;
 import com.antares.sirius.model.Gasto;
+import com.antares.sirius.model.Meta;
+import com.antares.sirius.model.ObjetivoEspecifico;
+import com.antares.sirius.model.ObjetivoGeneral;
 import com.antares.sirius.model.Proyecto;
+import com.antares.sirius.model.Rubro;
 import com.antares.sirius.service.GastoService;
 import com.antares.sirius.service.ParametroService;
 import com.antares.sirius.service.ProyectoService;
@@ -54,6 +62,31 @@ public class GastoServiceImpl extends BusinessEntityServiceImpl<Gasto, GastoDAO>
 			isAgrupado = proyectoService.isAgrupado(proyecto);
 		}
 		return isAgrupado;
+	}
+
+	@Override
+	public Collection<MontoDTO> obtainMontosByActividadAndRubro(Actividad actividad, Rubro[] rubros) {
+		return dao.obtainMontosByActividadAndRubro(actividad, rubros);
+	}
+
+	@Override
+	public Collection<MontoDTO> obtainMontosByMetaAndRubro(Meta meta, Rubro[] rubros) {
+		return dao.obtainMontosByMetaAndRubro(meta, rubros);
+	}
+
+	@Override
+	public Collection<MontoDTO> obtainMontosByObjetivoEspecificoAndRubro(ObjetivoEspecifico objetivoEspecifico, Rubro[] rubros) {
+		return dao.obtainMontosByObjetivoEspecificoAndRubro(objetivoEspecifico, rubros);
+	}
+
+	@Override
+	public Collection<MontoDTO> obtainMontosByObjetivoGeneralAndRubro(ObjetivoGeneral objetivoGeneral, Rubro[] rubros) {
+		return dao.obtainMontosByObjetivoGeneralAndRubro(objetivoGeneral, rubros);
+	}
+
+	@Override
+	public Collection<MontoDTO> obtainMontosByProyectoAndRubro(Proyecto proyecto, Rubro[] rubros) {
+		return dao.obtainMontosByProyectoAndRubro(proyecto, rubros);
 	}
 
 	public void setProyectoService(ProyectoService proyectoService) {

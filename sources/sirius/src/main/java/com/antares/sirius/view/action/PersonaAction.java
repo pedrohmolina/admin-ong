@@ -26,7 +26,7 @@ public class PersonaAction extends BaseAction<Persona, PersonaForm, PersonaServi
 			filter.setNumeroDocumento(Utils.parseInteger(form.getFiltroNumeroDocumento()));
 		}
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdRelacionContractual())) {
-			filter.setRelacionContractual(relacionContractualService.findById(Integer.parseInt(form.getFiltroIdRelacionContractual())));
+			filter.setRelacionContractual(relacionContractualService.findById(Utils.parseInteger(form.getFiltroIdRelacionContractual())));
 		}
 		return filter;
 	}
@@ -36,7 +36,7 @@ public class PersonaAction extends BaseAction<Persona, PersonaForm, PersonaServi
 		entity.setApellido(form.getApellido());
 		entity.setNombre(form.getNombre());
 		entity.setSegundoNombre(form.getSegundoNombre());
-		entity.setNumeroDocumento(Integer.parseInt(form.getNumeroDocumento()));
+		entity.setNumeroDocumento(Utils.parseInteger(form.getNumeroDocumento()));
 		entity.setCuit(form.getCuit());
 		entity.setCbu(form.getCbu());
 		entity.setNacionalidad(form.getNacionalidad());
@@ -48,12 +48,12 @@ public class PersonaAction extends BaseAction<Persona, PersonaForm, PersonaServi
 		entity.setEmail(form.getEmail());
 		entity.setFuncion(form.getFuncion());
 		entity.setObservaciones(form.getObservaciones());
-		entity.setTipoDocumento(tipoDocumentoService.findById(Integer.parseInt(form.getIdTipoDocumento())));
-		entity.setRelacionContractual(relacionContractualService.findById(Integer.parseInt(form.getIdRelacionContractual())));
-		entity.setFormaPago(formaPagoService.findById(Integer.parseInt(form.getIdFormaPago())));
+		entity.setTipoDocumento(tipoDocumentoService.findById(Utils.parseInteger(form.getIdTipoDocumento())));
+		entity.setRelacionContractual(relacionContractualService.findById(Utils.parseInteger(form.getIdRelacionContractual())));
+		entity.setFormaPago(formaPagoService.findById(Utils.parseInteger(form.getIdFormaPago())));
 		
 		if (Utils.isNotNullNorEmpty(form.getIdPersonaFactura())) {
-			entity.setPersonaFactura(service.findById(Integer.parseInt(form.getIdPersonaFactura())));
+			entity.setPersonaFactura(service.findById(Utils.parseInteger(form.getIdPersonaFactura())));
 		} else {
 			entity.setPersonaFactura(null);
 		}

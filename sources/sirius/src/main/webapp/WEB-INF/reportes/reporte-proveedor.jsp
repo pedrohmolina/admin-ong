@@ -59,7 +59,7 @@ function confirmarAccion(mensaje) {
 		<c:if test="${not empty requestScope['notShowMessage']}">
 			<display:setProperty name="basic.msg.empty_list"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablaTitulo"><tr><td align="center"></td></tr></table></display:setProperty>
 		</c:if>
-	
+
 		<display:column sortable="true" property="nombre" 						titleKey="sirius.proveedor.nombre.label" />
 		<display:column sortable="true" property="tipoProveedor.descripcion" 	titleKey="sirius.proveedor.tipoProveedor.label" />
 		<display:column sortable="true" property="cuit" 						titleKey="sirius.proveedor.cuit.label" />
@@ -105,7 +105,7 @@ function confirmarAccion(mensaje) {
 		<p>
 		<label for="formatosReporte"><bean:message key="sirius.reportes.formatoSalida" />:</label>
 		<html:select property="formatoReporte">
-			<html:optionsCollection name="reporteProveedorForm" property="formatosReporte" label="descripcion" value="descripcion"/>
+			<html:optionsCollection name="reporteProveedorForm" property="formatosReporte" label="descripcion" value="id"/>
 		</html:select>
 		<div class="boton">
 			<a href="#" onclick="reporteProveedorForm.submit();"><bean:message key="sirius.reportes.generar" /></a>

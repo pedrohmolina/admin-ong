@@ -2,7 +2,6 @@ package com.antares.sirius.view.form;
 
 import java.util.Collection;
 
-import com.antares.commons.util.Utils;
 import com.antares.commons.view.form.AbstractForm;
 import com.antares.sirius.model.Actividad;
 import com.antares.sirius.model.Financiador;

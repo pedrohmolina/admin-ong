@@ -21,7 +21,7 @@ public class ObjetivoGeneralAction extends BaseAction<ObjetivoGeneral, ObjetivoG
 		ObjetivoGeneralFilter filter = new ObjetivoGeneralFilter();
 		filter.setNombre(form.getFiltroNombre());
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdProyecto())) {
-			filter.setProyecto(proyectoService.findById(Integer.parseInt(form.getFiltroIdProyecto())));
+			filter.setProyecto(proyectoService.findById(Utils.parseInteger(form.getFiltroIdProyecto())));
 		}
 		return filter;
 	}
@@ -30,9 +30,9 @@ public class ObjetivoGeneralAction extends BaseAction<ObjetivoGeneral, ObjetivoG
 	public void updateEntity(ObjetivoGeneral entity, ObjetivoGeneralForm form) {
 		entity.setNombre(form.getNombre());
 		entity.setDescripcion(form.getDescripcion());
-		entity.setPonderacion(Integer.parseInt(form.getPonderacion()));
+		entity.setPonderacion(Utils.parseInteger(form.getPonderacion()));
 		if (Utils.isNotNullNorEmpty(form.getIdProyecto())) {
-			entity.setProyecto(proyectoService.findById(Integer.parseInt(form.getIdProyecto())));
+			entity.setProyecto(proyectoService.findById(Utils.parseInteger(form.getIdProyecto())));
 		}
 	}
 
@@ -44,8 +44,8 @@ public class ObjetivoGeneralAction extends BaseAction<ObjetivoGeneral, ObjetivoG
 	@Override
 	protected ActionErrors validate(ObjetivoGeneralForm form) {
 		ActionErrors errors = new ActionErrors();
-		Proyecto proyecto = proyectoService.findById(Integer.parseInt(form.getIdProyecto()));
-		if (Utils.excedePonderacion(Integer.parseInt(form.getPonderacion()), proyecto.getObjetivosGenerales(), form.getId())) {
+		Proyecto proyecto = proyectoService.findById(Utils.parseInteger(form.getIdProyecto()));
+		if (Utils.excedePonderacion(Utils.parseInteger(form.getPonderacion()), proyecto.getObjetivosGenerales(), form.getId())) {
 			errors.add("error", new ActionMessage("errors.ponderiacion", Utils.getMessage("sirius.objetivoGeneral.proyecto.label")));
 		}
 		if (service.isNombreRepetido(form.getNombre(), form.getId())) {

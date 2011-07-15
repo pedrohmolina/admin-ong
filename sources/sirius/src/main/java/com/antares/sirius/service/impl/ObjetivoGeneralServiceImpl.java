@@ -1,8 +1,11 @@
 package com.antares.sirius.service.impl;
 
+import java.util.Collection;
+
 import com.antares.commons.service.impl.BusinessEntityServiceImpl;
 import com.antares.sirius.dao.ObjetivoGeneralDAO;
 import com.antares.sirius.model.ObjetivoGeneral;
+import com.antares.sirius.model.Proyecto;
 import com.antares.sirius.service.ObjetivoGeneralService;
 
 /**
@@ -21,6 +24,10 @@ public class ObjetivoGeneralServiceImpl extends BusinessEntityServiceImpl<Objeti
 			isNombreRepetido = !entity.getId().equals(id);
 		}
 		return isNombreRepetido;
+	}
+
+	public Collection<ObjetivoGeneral> findAllByProyecto(Proyecto proyecto) {
+		return dao.findAllByProyecto(proyecto);
 	}
 
 }

@@ -1,7 +1,10 @@
 package com.antares.sirius.dao;
 
+import java.util.Collection;
+
 import com.antares.commons.dao.BusinessEntityDAO;
 import com.antares.sirius.model.ObjetivoGeneral;
+import com.antares.sirius.model.Proyecto;
 
 /**
  * DAO para administrar la persistencia de la entidad ObjetivoGeneral
@@ -19,5 +22,13 @@ public interface ObjetivoGeneralDAO extends BusinessEntityDAO<ObjetivoGeneral> {
 	 * @return
 	 */
 	ObjetivoGeneral findByNombre(String nombre);
+
+	/**
+	 * Devuelve todos los objetivos generales pertenecientes al proyecto
+	 * 
+	 * @param proyecto proyecto
+	 * @return
+	 */
+	Collection<ObjetivoGeneral> findAllByProyecto(Proyecto proyecto);
 
 }

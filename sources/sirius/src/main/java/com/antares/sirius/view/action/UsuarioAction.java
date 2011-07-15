@@ -45,7 +45,7 @@ public class UsuarioAction extends BaseAction<Usuario, UsuarioForm, UsuarioServi
 			filter.setNumeroDocumento(Utils.parseInteger(form.getFiltroNumeroDocumento()));
 		}
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdRelacionContractual())) {
-			filter.setRelacionContractual(relacionContractualService.findById(Integer.parseInt(form.getFiltroIdRelacionContractual())));
+			filter.setRelacionContractual(relacionContractualService.findById(Utils.parseInteger(form.getFiltroIdRelacionContractual())));
 		}
 		return filter;
 	}
@@ -61,7 +61,7 @@ public class UsuarioAction extends BaseAction<Usuario, UsuarioForm, UsuarioServi
 		entity.getPersona().setApellido(form.getApellido());
 		entity.getPersona().setNombre(form.getNombre());
 		entity.getPersona().setSegundoNombre(form.getSegundoNombre());
-		entity.getPersona().setNumeroDocumento(Integer.parseInt(form.getNumeroDocumento()));
+		entity.getPersona().setNumeroDocumento(Utils.parseInteger(form.getNumeroDocumento()));
 		entity.getPersona().setCuit(form.getCuit());
 		entity.getPersona().setCbu(form.getCbu());
 		entity.getPersona().setNacionalidad(form.getNacionalidad());
@@ -73,17 +73,17 @@ public class UsuarioAction extends BaseAction<Usuario, UsuarioForm, UsuarioServi
 		entity.getPersona().setEmail(form.getEmail());
 		entity.getPersona().setFuncion(form.getFuncion());
 		entity.getPersona().setObservaciones(form.getObservaciones());
-		entity.getPersona().setTipoDocumento(tipoDocumentoService.findById(Integer.parseInt(form.getIdTipoDocumento())));
-		entity.getPersona().setRelacionContractual(relacionContractualService.findById(Integer.parseInt(form.getIdRelacionContractual())));
-		entity.getPersona().setFormaPago(formaPagoService.findById(Integer.parseInt(form.getIdFormaPago())));
+		entity.getPersona().setTipoDocumento(tipoDocumentoService.findById(Utils.parseInteger(form.getIdTipoDocumento())));
+		entity.getPersona().setRelacionContractual(relacionContractualService.findById(Utils.parseInteger(form.getIdRelacionContractual())));
+		entity.getPersona().setFormaPago(formaPagoService.findById(Utils.parseInteger(form.getIdFormaPago())));
 		
 		if (Utils.isNotNullNorEmpty(form.getIdPersonaFactura())) {
-			entity.getPersona().setPersonaFactura(personaService.findById(Integer.parseInt(form.getIdPersonaFactura())));
+			entity.getPersona().setPersonaFactura(personaService.findById(Utils.parseInteger(form.getIdPersonaFactura())));
 		}
 
 		// Datos de usuario
 		entity.setUsername(form.getUsername());
-		entity.setPerfil(perfilService.findById(Integer.parseInt(form.getIdPerfil())));
+		entity.setPerfil(perfilService.findById(Utils.parseInteger(form.getIdPerfil())));
 
 		if (form.getAction().equals(CREATE)) {
 			//TODO deberia quedar asi, pero actualmente la seguridad no funciona con username+pass
@@ -143,7 +143,7 @@ public class UsuarioAction extends BaseAction<Usuario, UsuarioForm, UsuarioServi
 					//TODO deberia quedar asi, pero actualmente la seguridad no funciona con username+pass
 //					usuario.setPassword(Utils.encode(viewForm.getUsername() + viewForm.getPassword()));
 					usuario.setPassword(Utils.encode(viewForm.getPassword()));
-					usuario.setPerfil(perfilService.findById(Integer.parseInt(viewForm.getIdPerfil())));
+					usuario.setPerfil(perfilService.findById(Utils.parseInteger(viewForm.getIdPerfil())));
 					service.save(usuario);
 	
 					persona.setUsuario(usuario);

@@ -15,6 +15,14 @@ import com.antares.sirius.model.Rubro;
 public interface RubroService extends BusinessEntityService<Rubro> {
 
 	/**
+	 * Devuelve los rubros a partir de sus ids. Si el array de ids es null, devuelve todos los rubros.
+	 * 
+	 * @param ids
+	 * @return
+	 */
+	Collection<Rubro> findByIds(Integer[] ids);
+
+	/**
 	 * Valida que el nombre no este repetido otra entidad con distinto id
 	 * 
 	 * @param nombre nombre a validar

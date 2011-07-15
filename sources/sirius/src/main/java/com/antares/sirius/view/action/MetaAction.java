@@ -21,7 +21,7 @@ public class MetaAction extends BaseAction<Meta, MetaForm, MetaService> {
 		MetaFilter filter = new MetaFilter();
 		filter.setNombre(form.getFiltroNombre());
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdObjetivoEspecifico())) {
-			filter.setObjetivoEspecifico(objetivoEspecificoService.findById(Integer.parseInt(form.getFiltroIdObjetivoEspecifico())));
+			filter.setObjetivoEspecifico(objetivoEspecificoService.findById(Utils.parseInteger(form.getFiltroIdObjetivoEspecifico())));
 		}
 		return filter;
 	}
@@ -30,9 +30,9 @@ public class MetaAction extends BaseAction<Meta, MetaForm, MetaService> {
 	public void updateEntity(Meta entity, MetaForm form) {
 		entity.setNombre(form.getNombre());
 		entity.setDescripcion(form.getDescripcion());
-		entity.setPonderacion(Integer.parseInt(form.getPonderacion()));
+		entity.setPonderacion(Utils.parseInteger(form.getPonderacion()));
 		if (Utils.isNotNullNorEmpty(form.getIdObjetivoEspecifico())) {
-			entity.setObjetivoEspecifico(objetivoEspecificoService.findById(Integer.parseInt(form.getIdObjetivoEspecifico())));
+			entity.setObjetivoEspecifico(objetivoEspecificoService.findById(Utils.parseInteger(form.getIdObjetivoEspecifico())));
 		}
 	}
 
@@ -44,8 +44,8 @@ public class MetaAction extends BaseAction<Meta, MetaForm, MetaService> {
 	@Override
 	protected ActionErrors validate(MetaForm form) {
 		ActionErrors errors = new ActionErrors();
-		ObjetivoEspecifico objetivoEspecifico = objetivoEspecificoService.findById(Integer.parseInt(form.getIdObjetivoEspecifico()));
-		if (Utils.excedePonderacion(Integer.parseInt(form.getPonderacion()), objetivoEspecifico.getMetas(), form.getId())) {
+		ObjetivoEspecifico objetivoEspecifico = objetivoEspecificoService.findById(Utils.parseInteger(form.getIdObjetivoEspecifico()));
+		if (Utils.excedePonderacion(Utils.parseInteger(form.getPonderacion()), objetivoEspecifico.getMetas(), form.getId())) {
 			errors.add("error", new ActionMessage("errors.ponderiacion", Utils.getMessage("sirius.meta.objetivoEspecifico.label")));
 		}
 		if (service.isNombreRepetido(form.getNombre(), form.getId())) {

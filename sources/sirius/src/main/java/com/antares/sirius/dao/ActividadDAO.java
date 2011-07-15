@@ -4,6 +4,9 @@ import java.util.Collection;
 
 import com.antares.commons.dao.BusinessEntityDAO;
 import com.antares.sirius.model.Actividad;
+import com.antares.sirius.model.Meta;
+import com.antares.sirius.model.ObjetivoEspecifico;
+import com.antares.sirius.model.ObjetivoGeneral;
 import com.antares.sirius.model.Proyecto;
 
 public interface ActividadDAO extends BusinessEntityDAO<Actividad> {
@@ -23,5 +26,29 @@ public interface ActividadDAO extends BusinessEntityDAO<Actividad> {
 	 * @return
 	 */
 	Collection<Actividad> findAllByProyecto(Proyecto proyecto);
+
+	/**
+	 * Devuelve todas las actividades pertenecientes al objetivo general
+	 * 
+	 * @param objetivoGeneral objetivo general
+	 * @return
+	 */
+	Collection<Actividad> findAllByObjetivoGeneral(ObjetivoGeneral objetivoGeneral);
+
+	/**
+	 * Devuelve todas las actividades pertenecientes al objetivo especifico
+	 * 
+	 * @param objetivoEspecifico objetivo especifico
+	 * @return
+	 */
+	Collection<Actividad> findAllByObjetivoEspecifico(ObjetivoEspecifico objetivoEspecifico);
+
+	/**
+	 * Devuelve todas las actividades pertenecientes a la meta
+	 * 
+	 * @param meta meta
+	 * @return
+	 */
+	Collection<Actividad> findAllByMeta(Meta meta);
 
 }

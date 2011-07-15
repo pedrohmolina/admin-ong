@@ -232,8 +232,9 @@
 		<property name="metaService" 						ref="metaService" />
 		<property name="actividadService" 					ref="actividadService" />	
 		<property name="rubroService" 						ref="rubroService" />	
-		<property name="presupuestoService" 				ref="presupuestoService" />	
+		<property name="finanzasService" 					ref="finanzasService" />	
 	</bean>
 	<bean name="/reportes/reporte-financiero"				parent="reporteFinancieroAction" singleton="false" />
+	<bean name="/reportes/reporte-financiero-validate"		parent="reporteFinancieroAction" singleton="false" />
 	
 </beans>

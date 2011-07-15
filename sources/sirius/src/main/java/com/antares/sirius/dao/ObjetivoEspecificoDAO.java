@@ -1,7 +1,10 @@
 package com.antares.sirius.dao;
 
+import java.util.Collection;
+
 import com.antares.commons.dao.BusinessEntityDAO;
 import com.antares.sirius.model.ObjetivoEspecifico;
+import com.antares.sirius.model.Proyecto;
 
 /**
  * DAO para administrar la persistencia de la entidad ObjetivoEspecifico
@@ -19,5 +22,13 @@ public interface ObjetivoEspecificoDAO extends BusinessEntityDAO<ObjetivoEspecif
 	 * @return
 	 */
 	ObjetivoEspecifico findByNombre(String nombre);
+
+	/**
+	 * Devuelve todos los objetivos especificos pertenecientes al proyecto
+	 * 
+	 * @param proyecto proyecto
+	 * @return
+	 */
+	Collection<ObjetivoEspecifico> findAllByProyecto(Proyecto proyecto);
 
 }

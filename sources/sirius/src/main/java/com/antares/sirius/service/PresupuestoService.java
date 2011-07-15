@@ -1,8 +1,14 @@
 package com.antares.sirius.service;
 
+import java.util.Collection;
+
 import com.antares.commons.service.BaseService;
+import com.antares.sirius.dto.MontoDTO;
 import com.antares.sirius.dto.PresupuestoDTO;
 import com.antares.sirius.model.Actividad;
+import com.antares.sirius.model.Meta;
+import com.antares.sirius.model.ObjetivoEspecifico;
+import com.antares.sirius.model.ObjetivoGeneral;
 import com.antares.sirius.model.Presupuesto;
 import com.antares.sirius.model.Proyecto;
 import com.antares.sirius.model.Rubro;
@@ -50,15 +56,50 @@ public interface PresupuestoService extends BaseService<Presupuesto> {
 	 * @param monto monto del nuevo presupuesto
 	 */
 	void addPresupuestoProyecto(PresupuestoDTO presupuestos, Rubro rubro, Double monto);
-	
+
 	/**
-	 * Devuelve el presupuesto correspondiente a una actividad y un rubro especifico
-	 * @param actividad
-	 * @param rubro
-	 * @return presupuesto
+	 * Devuelve los presupuestos correspondientes a actividades de un proyecto para los rubros elegidos
+	 * 
+	 * @param proyecto
+	 * @param rubros ids de los rubros
+	 * @return
 	 */
-	Presupuesto findPresupuestoByActividadRubro(Actividad actividad, Rubro rubro);
-	
-	
+	Collection<MontoDTO> obtainMontosByProyectoAndRubro(Proyecto proyecto, Rubro[] rubros);
+
+	/**
+	 * Devuelve los presupuestos correspondientes a actividades de un objetivo general para los rubros elegidos
+	 * 
+	 * @param objetivoGeneral objetivo general
+	 * @param rubros ids de los rubros
+	 * @return
+	 */
+	Collection<MontoDTO> obtainMontosByObjetivoGeneralAndRubro(ObjetivoGeneral objetivoGeneral, Rubro[] rubros);
+
+	/**
+	 * Devuelve los presupuestos correspondientes a actividades de un objetivo especifico para los rubros elegidos
+	 * 
+	 * @param objetivoEspecifico objetivo especifico
+	 * @param rubros ids de los rubros
+	 * @return
+	 */
+	Collection<MontoDTO> obtainMontosByObjetivoEspecificoAndRubro(ObjetivoEspecifico objetivoEspecifico, Rubro[] rubros);
+
+	/**
+	 * Devuelve los presupuestos correspondientes a actividades de una meta para los rubros elegidos
+	 * 
+	 * @param meta meta
+	 * @param rubros ids de los rubros
+	 * @return
+	 */
+	Collection<MontoDTO> obtainMontosByMetaAndRubro(Meta meta, Rubro[] rubros);
+
+	/**
+	 * Devuelve los presupuestos correspondientes a una actividad para los rubros elegidos
+	 * 
+	 * @param actividad actividad
+	 * @param rubros ids de los rubros
+	 * @return
+	 */
+	Collection<MontoDTO> obtainMontosByActividadAndRubro(Actividad actividad, Rubro[] rubros);
 
 }

@@ -31,19 +31,19 @@ public class IngresoAction extends BaseAction<Ingreso, IngresoForm, IngresoServi
 		IngresoFilter filter = new IngresoFilter();
 		filter.setFecha(Utils.parseDate(form.getFiltroFecha()));
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdTipoIngreso())) {
-			filter.setTipoIngreso(tipoIngresoService.findById(Integer.parseInt(form.getFiltroIdTipoIngreso())));
+			filter.setTipoIngreso(tipoIngresoService.findById(Utils.parseInteger(form.getFiltroIdTipoIngreso())));
 		}
 		return filter;
 	}
 
 	@Override
 	public void updateEntity(Ingreso entity, IngresoForm form) {
-		entity.setTipoIngreso(tipoIngresoService.findById(Integer.parseInt(form.getIdTipoIngreso())));
+		entity.setTipoIngreso(tipoIngresoService.findById(Utils.parseInteger(form.getIdTipoIngreso())));
 		entity.setMonto(Utils.parseDouble(form.getMonto()));
 		entity.setFecha(Utils.parseDate(form.getFecha()));
 		entity.setDescripcion(form.getDescripcion());
 		if (tipoIngresoService.isIdFinanciacion(form.getIdTipoIngreso()) && Utils.isNotNullNorEmpty(form.getIdFinanciador())) {
-			entity.setFinanciador(financiadorService.findById(Integer.parseInt(form.getIdFinanciador())));
+			entity.setFinanciador(financiadorService.findById(Utils.parseInteger(form.getIdFinanciador())));
 		} else {
 			entity.setFinanciador(null);
 		}

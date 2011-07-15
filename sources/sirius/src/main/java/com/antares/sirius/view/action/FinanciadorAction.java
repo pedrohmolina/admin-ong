@@ -32,10 +32,10 @@ public class FinanciadorAction extends BaseAction<Financiador, FinanciadorForm, 
 		filter.setEmail(form.getFiltroEmail());
 
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdEstadoFinanciador())) {
-			estadoFinanciadorService.findById(Integer.parseInt(form.getFiltroIdEstadoFinanciador()));
+			estadoFinanciadorService.findById(Utils.parseInteger(form.getFiltroIdEstadoFinanciador()));
 		}
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdTipoFinanciador())) {
-			tipoFinanciadorService.findById(Integer.parseInt(form.getFiltroIdTipoFinanciador()));
+			tipoFinanciadorService.findById(Utils.parseInteger(form.getFiltroIdTipoFinanciador()));
 		}
 		return filter;
 	}
@@ -52,9 +52,9 @@ public class FinanciadorAction extends BaseAction<Financiador, FinanciadorForm, 
 		entity.setEmail(form.getEmail());
 		entity.setObservaciones(form.getObservaciones());
 
-		EstadoFinanciador estadoFinanciador = estadoFinanciadorService.findById(Integer.parseInt(form.getIdEstadoFinanciador()));
+		EstadoFinanciador estadoFinanciador = estadoFinanciadorService.findById(Utils.parseInteger(form.getIdEstadoFinanciador()));
 		entity.setEstadoFinanciador(estadoFinanciador);
-		TipoFinanciador tipoFinanciador = tipoFinanciadorService.findById(Integer.parseInt(form.getIdTipoFinanciador()));
+		TipoFinanciador tipoFinanciador = tipoFinanciadorService.findById(Utils.parseInteger(form.getIdTipoFinanciador()));
 		entity.setTipoFinanciador(tipoFinanciador);
 	}
 

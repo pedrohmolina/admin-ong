@@ -47,16 +47,16 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 		filter.setFechaInicio(Utils.parseDate(form.getFiltroFechaInicio()));
 		filter.setFechaFin(Utils.parseDate(form.getFiltroFechaFin()));
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdFinanciador())) {
-			filter.setFinanciador(financiadorService.findById(Integer.parseInt(form.getFiltroIdFinanciador())));
+			filter.setFinanciador(financiadorService.findById(Utils.parseInteger(form.getFiltroIdFinanciador())));
 		}
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdResponsable())) {
-			filter.setResponsable(personaService.findById(Integer.parseInt(form.getFiltroIdResponsable())));
+			filter.setResponsable(personaService.findById(Utils.parseInteger(form.getFiltroIdResponsable())));
 		}
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdCoordinador())) {
-			filter.setCoordinador(personaService.findById(Integer.parseInt(form.getFiltroIdCoordinador())));
+			filter.setCoordinador(personaService.findById(Utils.parseInteger(form.getFiltroIdCoordinador())));
 		}
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdAreaTematica())) {
-			filter.setAreaTematica(areaTematicaService.findById(Integer.parseInt(form.getFiltroIdAreaTematica())));
+			filter.setAreaTematica(areaTematicaService.findById(Utils.parseInteger(form.getFiltroIdAreaTematica())));
 		}
 		return filter;
 	}
@@ -72,11 +72,11 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 		entity.setBeneficiariosIndirectos(form.getBeneficiariosIndirectos());
 		entity.setPresupuestoTotal(Utils.parseDouble(form.getPresupuestoTotal()));
 
-		Financiador financiador = financiadorService.findById(Integer.parseInt(form.getIdFinanciador()));
+		Financiador financiador = financiadorService.findById(Utils.parseInteger(form.getIdFinanciador()));
 		entity.setFinanciador(financiador);
-		Persona responsable = personaService.findById(Integer.parseInt(form.getIdResponsable()));
+		Persona responsable = personaService.findById(Utils.parseInteger(form.getIdResponsable()));
 		entity.setResponsable(responsable);
-		TipoAgrupamiento tipoAgrupamiento = tipoAgrupamientoService.findById(Integer.parseInt(form.getIdTipoAgrupamiento()));
+		TipoAgrupamiento tipoAgrupamiento = tipoAgrupamientoService.findById(Utils.parseInteger(form.getIdTipoAgrupamiento()));
 		entity.setTipoAgrupamiento(tipoAgrupamiento);
 		updateCoordinadores(entity, form.getIdCoordinadores());
 		updateAreasTematicas(entity, form.getIdAreaTematica());
@@ -174,7 +174,7 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 		ActionForward forward;
 		try {
 			if (Utils.isNotNullNorEmpty(strId) && Utils.isNotNullNorEmpty(strIdEstado)) {
-				Proyecto proyecto = service.findById(Integer.parseInt(strId));
+				Proyecto proyecto = service.findById(Utils.parseInteger(strId));
 				Integer idEstado = new Integer(strIdEstado);
 					service.saveCambioEstado(proyecto, idEstado);
 			}

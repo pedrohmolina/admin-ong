@@ -13,6 +13,7 @@ import java.sql.Blob;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -163,6 +164,27 @@ public class Utils {
 	}
 
 	/**
+	 * Parsea el array de números enteros, en caso de no poder parsearlo, no lo agrega al array de resultado
+	 * 
+	 * @param intsStr array de enteros a parsear
+	 * @return array con los enteros parseados
+	 */
+	public static Integer[] parseInteger(String[] intsStr) {
+		Integer[] integers = null;
+		if (intsStr != null) {
+			Collection<Integer> colInt = new ArrayList<Integer>();
+			for (String intStr : intsStr) {
+				Integer integer = Utils.parseInteger(intStr);
+				if (integer != null) {
+					colInt.add(integer);
+				}
+			}
+			integers = (Integer[])colInt.toArray();
+		}
+		return integers;
+	}
+
+	/**
 	 * Calcula el porcentaje de un numero en un total. Si el total es 0, se devuelve 0
 	 * 
 	 * @param num numero cuyo porcentaje se quiere calcular
@@ -177,14 +199,35 @@ public class Utils {
 		return porcentaje;
 	}
 
+	/**
+	 * Evalua si el string que recibe por parametro es null o un strint vacio
+	 * 
+	 * @param str string a evaluar
+	 * @return
+	 */
 	public static boolean isNullOrEmpty(String str) {
 		return str == null || str.length() == 0;
 	}
 
+	/**
+	 * Evalua si el string que recibe por parametro no es null ni es un strint vacio
+	 * 
+	 * @param str string a evaluar
+	 * @return
+	 */
 	public static boolean isNotNullNorEmpty(String str) {
 		return str != null && str.length() > 0;
 	}
 
+	/**
+	 * Evalua si una ponderacion nueva, sumada a las existentes, provoca que se exceda del 100%
+	 * 
+	 * @param nuevaPonderacion nueva ponderacion a evaluar
+	 * @param ponderables lista de elementos ponderables
+	 * @param idPonderacionEditada id del ponderable que se esta editando, en caso de ser un alta en vez de una edicion se debe 
+	 * 			ingresar como null 
+	 * @return
+	 */
 	public static boolean excedePonderacion(Integer nuevaPonderacion, Collection<? extends Ponderable> ponderables, Integer idPonderacionEditada) {
 		Integer ponderacion = 0;
 		for (Ponderable ponderable : ponderables) {

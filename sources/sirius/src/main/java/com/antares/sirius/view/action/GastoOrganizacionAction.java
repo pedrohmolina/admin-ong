@@ -14,7 +14,7 @@ public class GastoOrganizacionAction extends GastoAction {
 		filter.setTipoGasto(tipoGastoService.findTipoGastoOrganizacion());
 		filter.setFecha(Utils.parseDate(form.getFiltroFecha()));
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdRubro())) {
-			filter.setRubro(rubroService.findById(Integer.parseInt(form.getFiltroIdRubro())));
+			filter.setRubro(rubroService.findById(Utils.parseInteger(form.getFiltroIdRubro())));
 		}
 		return filter;
 	}
@@ -23,8 +23,8 @@ public class GastoOrganizacionAction extends GastoAction {
 	public void updateEntity(Gasto entity, GastoForm form) {
 		entity.setTipoGasto(tipoGastoService.findTipoGastoOrganizacion());
 		super.updateEntity(entity, form);
-		entity.setProveedor(proveedorService.findById(Integer.parseInt(form.getIdProveedor())));
-		entity.setTipoComprobante(tipoComprobanteService.findById(Integer.parseInt(form.getIdTipoComprobante())));
+		entity.setProveedor(proveedorService.findById(Utils.parseInteger(form.getIdProveedor())));
+		entity.setTipoComprobante(tipoComprobanteService.findById(Utils.parseInteger(form.getIdTipoComprobante())));
 		entity.setNumeroComprobante(form.getNumeroComprobante());
 	}
 

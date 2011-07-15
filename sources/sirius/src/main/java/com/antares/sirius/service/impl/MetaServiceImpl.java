@@ -1,8 +1,11 @@
 package com.antares.sirius.service.impl;
 
+import java.util.Collection;
+
 import com.antares.commons.service.impl.BusinessEntityServiceImpl;
 import com.antares.sirius.dao.MetaDAO;
 import com.antares.sirius.model.Meta;
+import com.antares.sirius.model.Proyecto;
 import com.antares.sirius.service.MetaService;
 
 /**
@@ -21,6 +24,10 @@ public class MetaServiceImpl extends BusinessEntityServiceImpl<Meta, MetaDAO> im
 			isNombreRepetido = !entity.getId().equals(id);
 		}
 		return isNombreRepetido;
+	}
+
+	public Collection<Meta> findAllByProyecto(Proyecto proyecto) {
+		return dao.findAllByProyecto(proyecto);
 	}
 
 }

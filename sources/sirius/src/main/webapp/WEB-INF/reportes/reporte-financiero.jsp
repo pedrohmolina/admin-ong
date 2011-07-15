@@ -10,136 +10,116 @@
 <%@ taglib uri="/WEB-INF/tlds/c.tld" prefix="c"%>
 
 <script>
-function limpiarFiltro(){
-	hacerSubmit('reportes/reporte-financiero.do?method=initForm');
+$(document).ready(function() {
+	changeProyecto();
+})
+
+function changeProyecto() {
+	$("#divAgregacion input").attr("checked", false);
+
+	$("#idAgregacion").attr("disabled", true);
+ 	$("#idAgregacion").removeOption(/^[^-]/i);
+ 	$("#idAgregacion").val("");
+
+	if ($("#proyecto").val() == "") {
+		$("#divAgregacion input").attr("disabled", true);
+	} else {
+		$("#divAgregacion input").attr("disabled", false);
+		$("#radioProyecto").attr("checked", true);
+	}
 }
 
-function confirmarAccion(mensaje) {
-	return confirm(mensaje);
-}
-
-function cargarComboObjetivoGeneral(select, destinationCombo){
- 	$("#" + destinationCombo).removeOption(/^[^-]/i);
- 	$("#" + destinationCombo).val("");
-
- 	var selectedOption = $(select).val();
-	url = "<c:url value='/reportes/reporte-financiero.do?method=cargarComboObjetivoGeneral' />";
-	$("#" + destinationCombo).ajaxAddOption(url, {idProyecto:selectedOption}, false);
-}
-
-function cargarComboObjetivoEspecifico(select, destinationCombo){
- 	$("#" + destinationCombo).removeOption(/^[^-]/i);
- 	$("#" + destinationCombo).val("");
-
- 	var selectedOption = $(select).val();
-	url = "<c:url value='/reportes/reporte-financiero.do?method=cargarComboObjetivoEspecifico' />";
-	$("#" + destinationCombo).ajaxAddOption(url, {idObjetivoGeneral:selectedOption}, false);
-}
-
-function cargarComboMeta(select, destinationCombo){
- 	$("#" + destinationCombo).removeOption(/^[^-]/i);
- 	$("#" + destinationCombo).val("");
-
- 	var selectedOption = $(select).val();
-	url = "<c:url value='/reportes/reporte-financiero.do?method=cargarComboMeta' />";
-	$("#" + destinationCombo).ajaxAddOption(url, {idObjetivoEspecifico:selectedOption}, false);
-}
-
-function cargarComboActividad(select, destinationCombo){
- 	$("#" + destinationCombo).removeOption(/^[^-]/i);
- 	$("#" + destinationCombo).val("");
-
- 	var selectedOption = $(select).val();
-	url = "<c:url value='/asignacion/asignacion-query.do?method=cargarComboActividad' />";
-	$("#" + destinationCombo).ajaxAddOption(url, {idMeta:selectedOption}, false);
+function cargarCombo(method){
+	$("#idAgregacion").attr("disabled", false);
+ 	$("#idAgregacion").removeOption(/^[^-]/i);
+ 	$("#idAgregacion").val("");
+ 	if (method != '') {
+	 	var selectedOption = $("#proyecto").val();
+		url = "<c:url value='/reportes/reporte-financiero.do?method=' />" + method;
+		$("#idAgregacion").ajaxAddOption(url, {idProyecto:selectedOption}, false);
+	} else {
+		$("#idAgregacion").attr("disabled", true);
+	}
 }
 
 </script>
 
 <div class="form">
-	<html:form action="/reportes/reporte-financiero.do?method=generarReporteFinanciero">
+	<html:form action="/reportes/reporte-financiero-validate.do?method=generarReporteFinanciero">
 	
 	<div style="float:left; width: 100%;">
-	<p>
-		<h2>Nivel</h2>
-		
-			<p>		
-			<label for="filtroIdProyecto"><bean:message key="sirius.asignacion.proyecto.label" />&nbsp;:</label>
-			<html:select property="filtroIdProyecto" styleId="proyecto" onchange="cargarComboObjetivoGeneral(this, 'objetivoGeneral');">
-				<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
-				<html:optionsCollection name="reporteFinancieroForm" property="proyectos" label="nombre" value="id"/>
-			</html:select>
-			</p><br><p>
-			
-			<label for="idObjetivoGeneral"><bean:message key="sirius.objetivoEspecifico.objetivoGeneral.label" />&nbsp;:</label>
-			<html:select property="idObjetivoGeneral" styleId="objetivoGeneral" onchange="cargarComboObjetivoEspecifico(this, 'objetivoEspecifico');">
-				<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
-				<html:optionsCollection name="reporteFinancieroForm" property="objetivosGenerales" label="nombre" value="id"/>
-			</html:select>
-			</p><br><p>
-
-			<label for="idObjetivoEspecifico"><bean:message key="sirius.meta.objetivoEspecifico.label" />&nbsp;:</label>
-			<html:select property="idObjetivoEspecifico" styleId="objetivoEspecifico" onchange="cargarComboMeta(this, 'meta');">
-				<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
-				<html:optionsCollection name="reporteFinancieroForm" property="objetivosEspecificos" label="nombre" value="id"/>
-			</html:select>
-			</p><br><p>
-			
-			<label for="idMeta"><bean:message key="sirius.actividad.meta.label" />&nbsp;:</label>
-			<html:select property="idMeta" styleId="meta" onchange="cargarComboActividad(this, 'actividad');">
-				<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
-				<html:optionsCollection name="reporteFinancieroForm" property="metas" label="nombre" value="id"/>
-			</html:select>
-			</p><br><p>
-			
-			<label for="filtroIdActividad"><bean:message key="sirius.asignacion.actividad.label" />&nbsp;:</label>
-			<html:select property="filtroIdActividad" styleId="actividad">
-				<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
-				<html:optionsCollection name="reporteFinancieroForm" property="actividades" label="nombre" value="id"/>
-			</html:select>
-			</p><br><p>
-
-		
-	</p><br><p>
-	</div>
-	
-	<div style="float:left; width: 100%;">
-	<p>
-		<h2>Rubros</h2>
 		<p>		
-			<label for="seleccionRubro"><bean:message key="sirius.reportes.finanzas.rubros" />&nbsp;:</label>
-			<html:select multiple="multiple" style="height: 100px" property="rubrosSeleccionados">
-				<html:optionsCollection name="reporteFinancieroForm" property="rubros" label="nombre" value="id"/>
-			</html:select>
+		<label for="filtroIdProyecto"><bean:message key="sirius.reportes.finanzas.proyecto.label" />&nbsp;:</label>
+		<html:select property="idProyecto" styleId="proyecto" onchange="changeProyecto();">
+			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
+			<html:optionsCollection name="reporteFinancieroForm" property="proyectos" label="nombre" value="id"/>
+		</html:select>
+		</p><br>
+	</div>
+
+	<div style="float:left; width: 100%;" id="divAgregacion">
+		<h2><bean:message key="sirius.reportes.finanzas.nivelAgregacion.label"/></h2>
+		<p>
+		<label for="tipoAgregacion"><bean:message key="sirius.reportes.finanzas.proyecto.label"/> :</label>
+		<html:radio property="tipoAgregacion" value="PROYECTO" styleId="radioProyecto" style="width:20px" onclick="cargarCombo('');" />
 		</p><br><p>
-	</p><br><p>
+		<label for="tipoAgregacion"><bean:message key="sirius.reportes.finanzas.objetivoGeneral.label"/> :</label>
+		<html:radio property="tipoAgregacion" value="OBJETIVO_GENERAL" style="width:20px" onclick="cargarCombo('cargarComboObjetivoGeneral');" />
+		</p><br><p>
+		<label for="tipoAgregacion"><bean:message key="sirius.reportes.finanzas.objetivoEspecifico.label" /> :</label>
+		<html:radio property="tipoAgregacion" value="OBJETIVO_ESPECIFICO" style="width:20px" onclick="cargarCombo('cargarComboObjetivoEspecifico');" />
+		</p><br><p>
+		<label for="tipoAgregacion"><bean:message key="sirius.reportes.finanzas.meta.label" /> :</label>
+		<html:radio property="tipoAgregacion" value="META" style="width:20px" onclick="cargarCombo('cargarComboMeta');" />
+		</p><br><p>
+		<label for="tipoAgregacion"><bean:message key="sirius.reportes.finanzas.actividad.label" /> :</label>
+		<html:radio property="tipoAgregacion" value="ACTIVIDAD" style="width:20px" onclick="cargarCombo('cargarComboActividad');" />
+		</p><br><p>
+		<label for="idAgregacion"><bean:message key="sirius.reportes.finanzas.seleccione.label" />&nbsp;:</label>
+		<html:select property="idAgregacion" styleId="idAgregacion">
+		</html:select>
+		</p><br>
+	</div>
+
+	<div style="float:left; width: 100%;">
+		<h2><bean:message key="sirius.reportes.finanzas.rubros.label" /></h2>
+		<p>		
+		<label for="rubrosSeleccionados"><bean:message key="sirius.reportes.finanzas.rubros.label" />&nbsp;:</label>
+		<html:select multiple="multiple" style="height: 100px" property="rubrosSeleccionados">
+			<html:optionsCollection name="reporteFinancieroForm" property="rubros" label="nombre" value="id"/>
+		</html:select>
+		</p><br>
 	</div>
 		
-	<div style="float:left; width: 100%;">
-	
-		<h2>Informacion</h2>
-
-			<p>
-				<label for="tipoVisualizacion"><bean:message key="sirius.reportes.finanzas.porcentual"/> :</label>
-				<html:radio property="tipoVisualizacion" value="porcentual" style="width:20px"/>
-			</p><br><p>
-				<label for="tipoVisualizacion"><bean:message key="sirius.reportes.finanzas.montos" /> :</label>
-				<html:radio property="tipoVisualizacion" value="montos" style="width:20px" />
-			</p><br>
+	<div style="float:left;width: 100%;">
+		<h2><bean:message key="sirius.reportes.finanzas.columnas.label" /></h2>
+		<p>
+		<label for="verPresupuestado"><bean:message key="sirius.reportes.finanzas.presupuestado.label" />:</label>
+		<html:checkbox property="verPresupuestado" value="true" />
+		<html:hidden property="verPresupuestado" value="false" />
+		</p><br><p>
+		<label for="verGastado"><bean:message key="sirius.reportes.finanzas.gastado.label" />:</label>
+		<html:checkbox property="verGastado" value="true" />
+		<html:hidden property="verGastado" value="false" />
+		</p><br><p>
+		<label for="verDiferencia"><bean:message key="sirius.reportes.finanzas.diferencia.label" />:</label>
+		<html:checkbox property="verDiferencia" value="true" />
+		<html:hidden property="verDiferencia" value="false" />
+		</p><br>
 	</div>
 
 	<div style="float: left; width: 100%;">
 		<p>
 		<label for="formatosReporte"><bean:message key="sirius.reportes.formatoSalida" />:</label>
 		<html:select property="formatoReporte">
-			<html:optionsCollection name="reporteFinancieroForm" property="formatosReporte" label="descripcion" value="descripcion"/>
+			<html:optionsCollection name="reporteFinancieroForm" property="formatosReporte" label="descripcion" value="id"/>
 		</html:select>
+		</p><br><p>
 		<div class="boton">
 			<a href="#" onclick="reporteFinancieroForm.submit();"><bean:message key="sirius.reportes.generar" /></a>
 		</div>
-		<br>
+		</p><br>
 	</div>
-	
 	
 	</html:form>
 

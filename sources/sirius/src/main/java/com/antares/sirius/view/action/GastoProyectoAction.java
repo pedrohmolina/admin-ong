@@ -29,7 +29,7 @@ public class GastoProyectoAction extends GastoAction {
 		GastoFilter filter = new GastoFilter();
 		filter.setTipoGasto(tipoGastoService.findTipoGastoProyecto());
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdProyecto())) {
-			filter.setProyecto(proyectoService.findById(Integer.parseInt(form.getFiltroIdProyecto())));
+			filter.setProyecto(proyectoService.findById(Utils.parseInteger(form.getFiltroIdProyecto())));
 		}
 		return filter;
 	}
@@ -38,10 +38,10 @@ public class GastoProyectoAction extends GastoAction {
 	public void updateEntity(Gasto entity, GastoForm form) {
 		entity.setTipoGasto(tipoGastoService.findTipoGastoProyecto());
 		super.updateEntity(entity, form);
-		entity.setProyecto(proyectoService.findById(Integer.parseInt(form.getIdProyecto())));
+		entity.setProyecto(proyectoService.findById(Utils.parseInteger(form.getIdProyecto())));
 		if (proyectoService.isIndividual(entity.getProyecto())) {
-			entity.setProveedor(proveedorService.findById(Integer.parseInt(form.getIdProveedor())));
-			entity.setTipoComprobante(tipoComprobanteService.findById(Integer.parseInt(form.getIdTipoComprobante())));
+			entity.setProveedor(proveedorService.findById(Utils.parseInteger(form.getIdProveedor())));
+			entity.setTipoComprobante(tipoComprobanteService.findById(Utils.parseInteger(form.getIdTipoComprobante())));
 			entity.setNumeroComprobante(form.getNumeroComprobante());
 		} else {
 			entity.setProveedor(null);
@@ -65,7 +65,7 @@ public class GastoProyectoAction extends GastoAction {
 	@Override
 	protected ActionErrors validate(GastoForm form) {
 		ActionErrors errors = new ActionErrors();
-		Proyecto proyecto = proyectoService.findById(Integer.parseInt(form.getIdProyecto()));
+		Proyecto proyecto = proyectoService.findById(Utils.parseInteger(form.getIdProyecto()));
 		if (proyectoService.isIndividual(proyecto)) {
 			if (Utils.isNullOrEmpty(form.getIdProveedor())) {
 				errors.add("error", new ActionMessage("errors.required", Utils.getMessage("sirius.gasto.proveedor.label")));

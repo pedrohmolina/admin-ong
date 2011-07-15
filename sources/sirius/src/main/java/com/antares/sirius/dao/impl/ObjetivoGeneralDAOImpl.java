@@ -1,5 +1,7 @@
 package com.antares.sirius.dao.impl;
 
+import java.util.Collection;
+
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
@@ -11,6 +13,7 @@ import com.antares.commons.util.Utils;
 import com.antares.sirius.dao.ObjetivoGeneralDAO;
 import com.antares.sirius.filter.ObjetivoGeneralFilter;
 import com.antares.sirius.model.ObjetivoGeneral;
+import com.antares.sirius.model.Proyecto;
 
 /**
  * Implementacion de la interfaz ObjetivoGeneralDAO.
@@ -25,6 +28,13 @@ public class ObjetivoGeneralDAOImpl extends BusinessEntityDAOImpl<ObjetivoGenera
 		Criteria crit = buildCriteria();
 		crit.add(Restrictions.ilike("nombre", nombre, MatchMode.EXACT));
 		return (ObjetivoGeneral)crit.uniqueResult();
+	}
+
+	@SuppressWarnings("unchecked")
+	public Collection<ObjetivoGeneral> findAllByProyecto(Proyecto proyecto) {
+		Criteria crit = buildCriteria();
+		crit.add(Restrictions.eq("proyecto", proyecto));
+		return crit.list();
 	}
 
 	@Override

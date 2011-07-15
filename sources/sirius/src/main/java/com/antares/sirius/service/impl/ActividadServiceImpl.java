@@ -6,6 +6,9 @@ import com.antares.commons.service.impl.BusinessEntityServiceImpl;
 import com.antares.sirius.dao.ActividadDAO;
 import com.antares.sirius.model.Actividad;
 import com.antares.sirius.model.EstadoActividad;
+import com.antares.sirius.model.Meta;
+import com.antares.sirius.model.ObjetivoEspecifico;
+import com.antares.sirius.model.ObjetivoGeneral;
 import com.antares.sirius.model.Proyecto;
 import com.antares.sirius.service.ActividadService;
 import com.antares.sirius.service.ParametroService;
@@ -54,6 +57,18 @@ public class ActividadServiceImpl extends BusinessEntityServiceImpl<Actividad, A
 
 	public Collection<Actividad> findAllByProyecto(Proyecto proyecto) {
 		return dao.findAllByProyecto(proyecto);
+	}
+
+	public Collection<Actividad> findAllByObjetivoGeneral(ObjetivoGeneral objetivoGeneral) {
+		return dao.findAllByObjetivoGeneral(objetivoGeneral);
+	}
+
+	public Collection<Actividad> findAllByObjetivoEspecifico(ObjetivoEspecifico objetivoEspecifico) {
+		return dao.findAllByObjetivoEspecifico(objetivoEspecifico);
+	}
+
+	public Collection<Actividad> findAllByMeta(Meta meta) {
+		return dao.findAllByMeta(meta);
 	}
 
 	public void setParametroService(ParametroService parametroService) {

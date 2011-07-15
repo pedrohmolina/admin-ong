@@ -575,10 +575,15 @@
 		<action path="/reportes/reporte-financiero" name="reporteFinancieroForm" parameter="method" 
 				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
 			<forward name="init" 			   		   path=".reporteFinanciero" />
-			<forward name="generarReporteFinanciero"   path=".reporteFinanciero" />
 		</action>
 		<!-- Fin de actions de reportes -->
 	
+		<action path="/reportes/reporte-financiero-validate" name="reporteFinancieroForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/reportes/reporte-financiero.do?method=initForm">
+			<forward name="generarReporteFinanciero"   path=".reporteFinanciero" />
+		</action>
+
 	</action-mappings>
 	<controller maxFileSize="2048M" nocache="true" />
 

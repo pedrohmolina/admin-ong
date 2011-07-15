@@ -37,7 +37,7 @@ public class ActividadAction extends BaseAction<Actividad, ActividadForm, Activi
 		ActividadFilter filter = new ActividadFilter();
 		filter.setNombre(form.getFiltroNombre());
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdMeta())) {
-			filter.setMeta(metaService.findById(Integer.parseInt(form.getFiltroIdMeta())));
+			filter.setMeta(metaService.findById(Utils.parseInteger(form.getFiltroIdMeta())));
 		}
 		return filter;
 	}
@@ -48,12 +48,12 @@ public class ActividadAction extends BaseAction<Actividad, ActividadForm, Activi
 		entity.setFechaInicio(Utils.parseDate(form.getFechaInicio()));
 		entity.setFechaFin(Utils.parseDate(form.getFechaFin()));
 		entity.setObservaciones(form.getObservaciones());
-		entity.setPonderacion(Integer.parseInt(form.getPonderacion()));
+		entity.setPonderacion(Utils.parseInteger(form.getPonderacion()));
 		if (Utils.isNotNullNorEmpty(form.getIdMeta())) {
-			entity.setMeta(metaService.findById(Integer.parseInt(form.getIdMeta())));
+			entity.setMeta(metaService.findById(Utils.parseInteger(form.getIdMeta())));
 		}
 		if (Utils.isNotNullNorEmpty(form.getIdFinanciador())) {
-			entity.setFinanciador(financiadorService.findById(Integer.parseInt(form.getIdFinanciador())));
+			entity.setFinanciador(financiadorService.findById(Utils.parseInteger(form.getIdFinanciador())));
 		}
 
 		if (entity.getEstadoActividad() == null) {
@@ -85,8 +85,8 @@ public class ActividadAction extends BaseAction<Actividad, ActividadForm, Activi
 	@Override
 	protected ActionErrors validate(ActividadForm form) {
 		ActionErrors errors = new ActionErrors();
-		Meta meta = metaService.findById(Integer.parseInt(form.getIdMeta()));
-		if (Utils.excedePonderacion(Integer.parseInt(form.getPonderacion()), meta.getActividades(), form.getId())) {
+		Meta meta = metaService.findById(Utils.parseInteger(form.getIdMeta()));
+		if (Utils.excedePonderacion(Utils.parseInteger(form.getPonderacion()), meta.getActividades(), form.getId())) {
 			errors.add("error", new ActionMessage("errors.ponderiacion", Utils.getMessage("sirius.actividad.meta.label")));
 		}
 		if (service.isNombreRepetido(form.getNombre(), form.getId())) {
@@ -113,7 +113,7 @@ public class ActividadAction extends BaseAction<Actividad, ActividadForm, Activi
 			throws Exception {
 		
 		String idMeta =(String) request.getParameter("idMeta");
-		Meta meta = metaService.findById(Integer.parseInt(idMeta));
+		Meta meta = metaService.findById(Utils.parseInteger(idMeta));
 		Financiador financiador = meta.getObjetivoEspecifico().getObjetivoGeneral().getProyecto().getFinanciador();
 		Map<String, String> map = new HashMap<String, String>();
 		if (financiador != null) {
@@ -130,7 +130,7 @@ public class ActividadAction extends BaseAction<Actividad, ActividadForm, Activi
 		String strIdEstado = request.getParameter("idEstado");
 		try {
 			if (Utils.isNotNullNorEmpty(strId) && Utils.isNotNullNorEmpty(strIdEstado)) {
-				Actividad actividad = service.findById(Integer.parseInt(strId));
+				Actividad actividad = service.findById(Utils.parseInteger(strId));
 				if (actividad != null) {
 					Integer idEstado = new Integer(strIdEstado);
 					service.saveCambioEstado(actividad, idEstado);
