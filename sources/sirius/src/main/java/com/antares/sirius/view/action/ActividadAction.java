@@ -102,10 +102,6 @@ public class ActividadAction extends BaseAction<Actividad, ActividadForm, Activi
 				}));
 			}
 		}
-		/*
-		 * TODO faltaria validar que la suma de los presupuestos de las actividades de la misma meta 
-		 * no excedan el presupuesto asignado a dicha meta y que dicho presupuesto sea mayor a cero. 
-		 */
 		return errors;
 	}
 

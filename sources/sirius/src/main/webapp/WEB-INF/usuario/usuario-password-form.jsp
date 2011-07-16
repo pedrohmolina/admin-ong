@@ -44,7 +44,7 @@
 		<html:password property="password" />
 		</p><br><p>
 		<label for="password2"><bean:message key="sirius.usuario.password2.label" />(*)&nbsp;:</label>
-		<html:password property="password2" onKeyPress="return submitenter(this,event)" />
+		<html:password property="password2" onkeypress="return submitenter(this,event)" />
 		</p><br>
 	</div>
 	
@@ -55,6 +55,7 @@
 		<a href="#" onclick="usuarioPasswordForm.submit();" tabindex="17"><bean:message key="antares.base.aceptar.label" /></a>
 		<a href="<c:url value="//base/home_init.do"/>"><bean:message key="antares.base.cancelar.label" /></a>
 	</div>
+	<div style="clear:both; padding:5px 0 0 0;"></div>
 </html:form>
 
 </div>

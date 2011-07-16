@@ -11,7 +11,7 @@ public class MD5Encoder implements PasswordEncoder {
 	 * @see org.acegisecurity.providers.encoding.PasswordEncoder#encodePassword(java.lang.String, java.lang.Object)
 	 */
 	public String encodePassword(String rawPass, Object salt) throws DataAccessException {
-		return Utils.encode(rawPass);
+		return Utils.encode(salt.toString() + "-" + rawPass);
 	}
 
 	/* (non-Javadoc)

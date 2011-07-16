@@ -70,17 +70,16 @@
 	<action-mappings>
 		<action path="/public/login" parameter=".login" type="org.apache.struts.actions.ForwardAction" />
 		<action path="/public/message" parameter=".message" type="org.apache.struts.actions.ForwardAction" />
-		<action path="/public/menu_xml" parameter="/common/menu-xml.jsp" type="org.apache.struts.actions.ForwardAction" />
+
 		<action path="/public/logout" type="org.springframework.web.struts.DelegatingActionProxy">
 			<forward name="success" path=".logout" />
 		</action>
+
 		<action path="/errors/400" parameter=".400" type="org.apache.struts.actions.ForwardAction" />
 		<action path="/errors/403" parameter=".403" type="org.apache.struts.actions.ForwardAction" />
 		<action path="/errors/404" parameter=".404" type="org.apache.struts.actions.ForwardAction" />
 		<action path="/errors/500" parameter=".500" type="org.apache.struts.actions.ForwardAction" />
-		<action path="/public/menu" parameter="/common/menu-xml.jsp" type="org.apache.struts.actions.ForwardAction" />
 
-		<action path="/base/acercade" parameter=".acercade" type="org.apache.struts.actions.ForwardAction" />
 		<action path="/base/home_init" name="homeForm" scope="request" 
 				type="org.springframework.web.struts.DelegatingActionProxy" validate="false">
 			<forward name="adminHome" path=".adminHome" />
