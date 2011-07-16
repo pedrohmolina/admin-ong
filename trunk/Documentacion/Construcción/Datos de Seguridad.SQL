@@ -305,7 +305,7 @@ insert into perfilrol (idPerfil, idRol) values (1, 21);
 
 -- Datos para crear un usuario default para administrardor admin/admin
 insert into persona (id, apellido, nombre, segundoNombre, idTipoDocumento, numeroDocumento, cuit, cbu, nacionalidad, fechaNacimiento, profesion, direccion, telefono, celular, email, funcion, idRelacionContractual, idFormaPago, idPersonaFactura, observaciones, activo) values (1, 'Otakon', 'Otakon', '', 1, 29319345, '', '', '', null, '', '', '', '', '', '', 1, 1, null, '', '1');
-insert into usuario (id, idPersona, username, password, idPerfil, activo, bloqueado) values (1, 1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, '1', '0');
+insert into usuario (id, idPersona, username, password, idPerfil, activo, bloqueado) values (1, 1, 'admin', '32ff9ee7e841b26a966870c144fdcaec', 1, '1', '0');
 
 
 
