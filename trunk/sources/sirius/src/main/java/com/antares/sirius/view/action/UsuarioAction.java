@@ -86,9 +86,7 @@ public class UsuarioAction extends BaseAction<Usuario, UsuarioForm, UsuarioServi
 		entity.setPerfil(perfilService.findById(Utils.parseInteger(form.getIdPerfil())));
 
 		if (form.getAction().equals(CREATE)) {
-			//TODO deberia quedar asi, pero actualmente la seguridad no funciona con username+pass
-//			entity.setPassword(Utils.encode(form.getUsername() + form.getPassword()));
-			entity.setPassword(Utils.encode(form.getPassword()));
+			entity.setPassword(Utils.encode(form.getUsername() + "-" + form.getPassword()));
 		}
 	}
 
@@ -140,9 +138,7 @@ public class UsuarioAction extends BaseAction<Usuario, UsuarioForm, UsuarioServi
 					usuario.setPersona(persona);
 					usuario.setUsername(viewForm.getUsername());
 
-					//TODO deberia quedar asi, pero actualmente la seguridad no funciona con username+pass
-//					usuario.setPassword(Utils.encode(viewForm.getUsername() + viewForm.getPassword()));
-					usuario.setPassword(Utils.encode(viewForm.getPassword()));
+					usuario.setPassword(Utils.encode(viewForm.getUsername() + "-" + viewForm.getPassword()));
 					usuario.setPerfil(perfilService.findById(Utils.parseInteger(viewForm.getIdPerfil())));
 					service.save(usuario);
 	
@@ -215,10 +211,7 @@ public class UsuarioAction extends BaseAction<Usuario, UsuarioForm, UsuarioServi
 			ActionErrors errors = validatePassword(Utils.getUsername(), viewForm.getPasswordActual());
 			if (errors.isEmpty()) {
 				Usuario usuario = service.findByUsername(Utils.getUsername());
-
-				//TODO deberia quedar asi, pero actualmente la seguridad no funciona con username+pass
-//				usuario.setPassword(Utils.encode(usuario.getUsername() + viewForm.getPassword()));
-				usuario.setPassword(Utils.encode(viewForm.getPassword()));
+				usuario.setPassword(Utils.encode(usuario.getUsername() + "-" + viewForm.getPassword()));
 				service.save(usuario);
 			} else {
 				saveErrors(request, errors);
@@ -233,10 +226,7 @@ public class UsuarioAction extends BaseAction<Usuario, UsuarioForm, UsuarioServi
 	private ActionErrors validatePassword(String username, String password) {
 		ActionErrors errors = new ActionErrors();
 		Usuario usuario = service.findByUsername(username);
-
-		//TODO deberia quedar asi, pero actualmente la seguridad no funciona con username+pass
-//		if (!usuario.getPassword().equals(Utils.encode(usuario.getUsername() + password))) {
-		if (!usuario.getPassword().equals(Utils.encode(password))) {
+		if (!usuario.getPassword().equals(Utils.encode(usuario.getUsername() + "-" + password))) {
 			errors.add("error", new ActionMessage("errors.invalidPasswordActual"));
 		}
 		return errors;

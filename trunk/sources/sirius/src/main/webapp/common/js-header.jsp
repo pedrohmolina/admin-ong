@@ -20,7 +20,7 @@
 	}
 	
 	$(function() {
-		$( ".datepicker" ).datepicker({ 
+		$(".datepicker").datepicker({ 
 			dateFormat: 'dd/mm/yy',
 			showOn: "button",
 			buttonImage: "../img/calendar.png",
@@ -28,7 +28,12 @@
 		});
 	});
 	
-	
-
+	function hideShow(idDiv) {
+		if ($("#" + idDiv).css("display") == 'none') {
+			$("#" + idDiv).css("display", 'inline');
+		} else {
+			$("#" + idDiv).css("display", 'none');
+		}
+	}
 
 </script>

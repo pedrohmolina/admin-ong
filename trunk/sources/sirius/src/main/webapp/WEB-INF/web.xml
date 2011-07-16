@@ -90,7 +90,7 @@
 	<servlet>
 		<servlet-name>action</servlet-name>
 		<servlet-class>
-			org.apache.struts.action.ActionServlet
+			com.antares.sirius.base.servlet.AcegiActionServlet
 		</servlet-class>
 		<init-param>
 			<param-name>config</param-name>

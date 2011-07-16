@@ -77,6 +77,9 @@
 		<property name="passwordEncoder">
 			<ref bean="passwordEncoder"/>
 		</property>
+		<property name="saltSource">
+		    <bean class="com.antares.commons.security.SaltSourceImpl" />
+		</property>
 		<property name="hideUserNotFoundExceptions" value="false"/>
 	</bean>
 
