@@ -179,7 +179,7 @@ public class Utils {
 					colInt.add(integer);
 				}
 			}
-			integers = (Integer[])colInt.toArray();
+			integers = colInt.toArray(new Integer[0]);
 		}
 		return integers;
 	}
