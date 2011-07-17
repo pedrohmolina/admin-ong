@@ -25,7 +25,7 @@ public class CustomValidationRoutines {
 	public static boolean validatePositiveDouble(Object bean, ValidatorAction va, Field field, ActionMessages errors, HttpServletRequest req) {
 		String strValue = ValidatorUtils.getValueAsString(bean, field.getProperty());
 
-		if (strValue != null) {
+		if (Utils.isNotNullNorEmpty(strValue)) {
 			Double value = Utils.parseDouble(strValue);
 			if (value == null || value.doubleValue() < 0) {
 				errors.add("error", new ActionMessage("errors.positiveDouble", Utils.getMessage(field.getArg(0).getKey())));
