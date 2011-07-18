@@ -8,6 +8,7 @@ import org.apache.commons.validator.util.ValidatorUtils;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 
+import com.antares.commons.util.Cuit;
 import com.antares.commons.util.Utils;
 
 public class CustomValidationRoutines {
@@ -24,7 +25,6 @@ public class CustomValidationRoutines {
 	 */
 	public static boolean validatePositiveDouble(Object bean, ValidatorAction va, Field field, ActionMessages errors, HttpServletRequest req) {
 		String strValue = ValidatorUtils.getValueAsString(bean, field.getProperty());
-
 		if (Utils.isNotNullNorEmpty(strValue)) {
 			Double value = Utils.parseDouble(strValue);
 			if (value == null || value.doubleValue() < 0) {
@@ -35,4 +35,22 @@ public class CustomValidationRoutines {
 		return true;
 	}
 
+	/**
+	 * Validacion para CUITs
+	 * 
+	 * @param bean
+	 * @param va
+	 * @param field
+	 * @param errors
+	 * @param req
+	 * @return
+	 */
+	public static boolean validateCuit(Object bean, ValidatorAction va, Field field, ActionMessages errors, HttpServletRequest req) {
+		String cuit = ValidatorUtils.getValueAsString(bean, field.getProperty());
+		if (Utils.isNotNullNorEmpty(cuit) && !Cuit.validar(cuit)) {
+			errors.add("error", new ActionMessage("errors.cuit", Utils.getMessage(field.getArg(0).getKey())));
+			return false;
+		}
+		return true;
+	}
 }
