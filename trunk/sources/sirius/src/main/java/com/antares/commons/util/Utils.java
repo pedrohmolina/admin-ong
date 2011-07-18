@@ -13,7 +13,6 @@ import java.sql.Blob;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -161,27 +160,6 @@ public class Utils {
 			// Si no se puede formatear, devuelvo null
 		}
 		return integer;
-	}
-
-	/**
-	 * Parsea el array de números enteros, en caso de no poder parsearlo, no lo agrega al array de resultado
-	 * 
-	 * @param intsStr array de enteros a parsear
-	 * @return array con los enteros parseados
-	 */
-	public static Integer[] parseInteger(String[] intsStr) {
-		Integer[] integers = null;
-		if (intsStr != null) {
-			Collection<Integer> colInt = new ArrayList<Integer>();
-			for (String intStr : intsStr) {
-				Integer integer = Utils.parseInteger(intStr);
-				if (integer != null) {
-					colInt.add(integer);
-				}
-			}
-			integers = colInt.toArray(new Integer[0]);
-		}
-		return integers;
 	}
 
 	/**

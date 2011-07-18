@@ -117,8 +117,8 @@ public class ReporteFinancieroAction extends ReporteAction {
 	 */
 	public ActionForward generarReporteFinanciero(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ReporteFinancieroForm reporteForm = (ReporteFinancieroForm)form;
-		Integer[] idRubros = Utils.parseInteger(reporteForm.getRubrosSeleccionados());
-		Collection<Rubro> rubros = rubroService.findByIds(idRubros);
+		Collection<Rubro> rubros = findRubros(reporteForm.getRubrosSeleccionados());
+
 		Proyecto proyecto = proyectoService.findById(Utils.parseInteger(reporteForm.getIdProyecto()));
 		FinanzasDTO finanzas = getFinanzas(reporteForm, proyecto, rubros.toArray(new Rubro[0]));
 
@@ -136,6 +136,18 @@ public class ReporteFinancieroAction extends ReporteAction {
 		return null;
 	}
 
+	private Collection<Rubro> findRubros(Integer[] idRubros) {
+		Collection<Rubro> rubros = null;
+
+		// Es es porque, por defecto, el array siempre contiene el id 0 (que no corresponde a ningun rubro)
+		// Se hizo asi para que siempre se submitee un valor, porque si no se selecciona ninguno, quedan los valores que estaban en la sesion
+		if (idRubros.length == 1) {
+			rubros = rubroService.findPrimerNivel();
+		} else {
+			rubros = rubroService.findByIds(idRubros);
+		}
+		return rubros;
+	}
 	/*
 	 * Agrega las columnas necesarias al reporte
 	 */

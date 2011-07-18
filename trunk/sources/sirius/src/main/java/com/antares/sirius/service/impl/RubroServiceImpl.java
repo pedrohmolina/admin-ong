@@ -17,13 +17,7 @@ import com.antares.sirius.service.RubroService;
 public class RubroServiceImpl extends BusinessEntityServiceImpl<Rubro, RubroDAO> implements RubroService {
 
 	public Collection<Rubro> findByIds(Integer[] ids) {
-		Collection<Rubro> rubros;
-		if (ids == null) {
-			rubros = dao.findAll();
-		} else {
-			rubros = dao.findByIds(ids);
-		}
-		return rubros;
+		return dao.findByIds(ids);
 	}
 
 	public boolean isNombreRepetido(String nombre, Integer id) {
