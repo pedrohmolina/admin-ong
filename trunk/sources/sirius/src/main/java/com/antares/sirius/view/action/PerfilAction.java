@@ -36,7 +36,9 @@ public class PerfilAction extends BaseAction<Perfil, PerfilForm, PerfilService> 
 		}
 		if (form.getIdRoles() != null) {
 			for (Integer idRol : form.getIdRoles()) {
-				entity.getRoles().add(rolService.findById(idRol));
+				if (idRol > 0) {
+					entity.getRoles().add(rolService.findById(idRol));
+				}
 			}
 		}
 	}

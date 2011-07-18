@@ -20,16 +20,19 @@
 		<html:textarea property="descripcion" rows="5" readonly="true" />
 		</p><br><p>
 		<label for="idRoles"><bean:message key="sirius.perfil.roles.label" />&nbsp;:</label>
+		</p>
 		<br />
 		<br />
 		<logic:iterate id="rol" name="perfilForm" property="roles">
-			<html:multibox property="idRoles" disabled="true">
+			<p>
+			<html:multibox property="idRoles" style="width:20px" disabled="true">
 				<bean:write name="rol" property="id"/> 
 			</html:multibox> 
-			<bean:write name="rol" property="nombre"/>
+			<label><bean:write name="rol" property="nombre"/></label>
+			</p>
 			<br />
 		</logic:iterate>
-		 </p><br>
+		<br>
 	</div>
 
 	<div style="clear: both;" class="errores">

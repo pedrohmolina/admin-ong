@@ -27,7 +27,7 @@
 		</menu:submenu>
 	</authz:authorize>
 
-	<authz:authorize ifAllGranted="ENTIDAD_PROYECTO-LISTADO, ENTIDAD_OBJETIVO_GENERAL-LISTADO, ENTIDAD_OBJETIVO_ESPECIFICO-LISTADO, ENTIDAD_META-LISTADO, ENTIDAD_ACTIVIDAD-LISTADO, ENTIDAD_ASIGNACION-LISTADO">
+	<authz:authorize ifAnyGranted="ENTIDAD_PROYECTO-LISTADO, ENTIDAD_OBJETIVO_GENERAL-LISTADO, ENTIDAD_OBJETIVO_ESPECIFICO-LISTADO, ENTIDAD_META-LISTADO, ENTIDAD_ACTIVIDAD-LISTADO, ENTIDAD_ASIGNACION-LISTADO">
 		<menu:submenu top="true" labelKey="sirius.menu.proyecto.label" style="border-right: solid 1px;border-color: #B11116;">
 			<authz:authorize ifAllGranted="ENTIDAD_PROYECTO-LISTADO">
 				<menu:item labelKey="sirius.proyecto.label"><c:url value="/proyecto/proyecto-query.do?method=initQuery"/></menu:item>
@@ -50,7 +50,7 @@
 		</menu:submenu>
 	</authz:authorize>
 
-	<authz:authorize ifAllGranted="ENTIDAD_GASTO_ORGANIZACION-LISTADO, ENTIDAD_GASTO_PROYECTO-LISTADO, ENTIDAD_GASTO_ACTIVIDAD-LISTADO, ENTIDAD_GASTO_ACTIVIDAD-ALTA, ENTIDAD_GASTO_ACTIVIDAD-HISTORICO">
+	<authz:authorize ifAnyGranted="ENTIDAD_GASTO_ORGANIZACION-LISTADO, ENTIDAD_GASTO_PROYECTO-LISTADO, ENTIDAD_GASTO_ACTIVIDAD-LISTADO, ENTIDAD_GASTO_ACTIVIDAD-ALTA, ENTIDAD_GASTO_ACTIVIDAD-HISTORICO">
 		<menu:submenu top="true" labelKey="sirius.menu.gastos.label" style="border-right: solid 1px;border-color: #B11116;">
 			<authz:authorize ifAllGranted="ENTIDAD_GASTO_ORGANIZACION-LISTADO">
 				<menu:item labelKey="sirius.gasto.gastoOrganizacion.label"><c:url value="/gasto/gasto-organizacion-query.do?method=initQuery"/></menu:item>
@@ -70,7 +70,7 @@
 		</menu:submenu>
 	</authz:authorize>
 
- 	<authz:authorize ifAllGranted="ENTIDAD_REPORTE_PERSONA-EJECUTAR, ENTIDAD_REPORTE_FINANCIADOR-EJECUTAR, ENTIDAD_REPORTE_PROVEEDOR-EJECUTAR, ENTIDAD_REPORTE_FINANZAS-EJECUTAR">
+ 	<authz:authorize ifAnyGranted="ENTIDAD_REPORTE_PERSONA-EJECUTAR, ENTIDAD_REPORTE_FINANCIADOR-EJECUTAR, ENTIDAD_REPORTE_PROVEEDOR-EJECUTAR, ENTIDAD_REPORTE_FINANZAS-EJECUTAR">
 		<menu:submenu top="true" labelKey="sirius.menu.reportes.label" style="border-right: solid 1px;border-color: #B11116;">
 			<authz:authorize ifAllGranted="ENTIDAD_REPORTE_PERSONA-EJECUTAR">
 				<menu:item style="width: 160px;" labelKey="sirius.reporte.personas.label"><c:url value="/reportes/reporte-persona.do?method=initForm"/></menu:item>

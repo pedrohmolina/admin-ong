@@ -96,15 +96,15 @@ function cargarCombo(method){
 		<h2><bean:message key="sirius.reportes.finanzas.columnas.label" /></h2>
 		<p>
 		<label for="verPresupuestado"><bean:message key="sirius.reportes.finanzas.presupuestado.label" />:</label>
-		<html:checkbox property="verPresupuestado" value="true" />
+		<html:checkbox property="verPresupuestado" value="true" style="width:20px" />
 		<html:hidden property="verPresupuestado" value="false" />
 		</p><br><p>
 		<label for="verGastado"><bean:message key="sirius.reportes.finanzas.gastado.label" />:</label>
-		<html:checkbox property="verGastado" value="true" />
+		<html:checkbox property="verGastado" value="true" style="width:20px" />
 		<html:hidden property="verGastado" value="false" />
 		</p><br><p>
 		<label for="verDiferencia"><bean:message key="sirius.reportes.finanzas.diferencia.label" />:</label>
-		<html:checkbox property="verDiferencia" value="true" />
+		<html:checkbox property="verDiferencia" value="true" style="width:20px" />
 		<html:hidden property="verDiferencia" value="false" />
 		</p><br>
 	</div>

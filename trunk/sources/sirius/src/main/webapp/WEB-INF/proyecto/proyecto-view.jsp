@@ -29,7 +29,7 @@
 		<html:text property="ubicacion" readonly="true" />
 		</p><br><p>
 		<label for="idCoordinadores"><bean:message key="sirius.proyecto.coordinadores.label" />&nbsp;:</label>
-		<html:select property="idCoordinadores" multiple="true">
+		<html:select property="idCoordinadores" multiple="true" style="height: 100px">
 			<html:optionsCollection name="proyectoForm" property="coordinadores" label="nombreYApellido" value="id"/>
 		</html:select>
 		</p><br><p>
@@ -49,12 +49,12 @@
 		<html:text property="presupuestoTotal" readonly="true" />
 		</p><br><p>
 		<label for="idAreaTematica"><bean:message key="sirius.proyecto.areasTematicas.label" />&nbsp;:</label>
-		<html:select property="idAreaTematica" multiple="true">
+		<html:select property="idAreaTematica" multiple="true" style="height: 100px">
 			<html:optionsCollection name="proyectoForm" property="areasTematicas" label="descripcion" value="id"/>
 		</html:select>
 		</p><br><p>
 		<logic:iterate id="tipoAgrupamiento" name="proyectoForm" property="tiposAgrupamiento">
-			<html-el:radio property="idTipoAgrupamiento" value="${tipoAgrupamiento.id}" disabled="true"/>
+			<html-el:radio property="idTipoAgrupamiento" value="${tipoAgrupamiento.id}" disabled="true" style="width: 20px"/>
 			<bean:write name="tipoAgrupamiento" property="descripcion" />
 			</p><br><p>
 		</logic:iterate>

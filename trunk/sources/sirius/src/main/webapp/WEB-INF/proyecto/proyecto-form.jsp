@@ -58,7 +58,7 @@
 		<html:text property="presupuestoTotal" />
 		</p><br><p>
 		<label for="idAreaTematica"><bean:message key="sirius.proyecto.areasTematicas.label" />(*)&nbsp;:</label>
-		<html:select property="idAreaTematica" multiple="true">
+		<html:select property="idAreaTematica" multiple="true" style="height: 100px">
 			<html:optionsCollection name="proyectoForm" property="areasTematicas" label="descripcion" value="id"/>
 		</html:select>
 		</p><br>
@@ -66,7 +66,7 @@
 			<p>
 			<label><bean:write name="tipoAgrupamiento" property="descripcion" /> :</label>
 			<logic:equal name="proyectoForm" property="action.descripcion" value="create">
-				<html-el:radio property="idTipoAgrupamiento" value="${tipoAgrupamiento.id}" style="width: 20px"/>
+				<html-el:radio property="idTipoAgrupamiento" value="${tipoAgrupamiento.id}" style="width: 20px" />
 			</logic:equal>
 			<logic:equal name="proyectoForm" property="action.descripcion" value="update">
 				<html-el:radio property="idTipoAgrupamiento" value="${tipoAgrupamiento.id}" disabled="true" style="width: 20px"/>
