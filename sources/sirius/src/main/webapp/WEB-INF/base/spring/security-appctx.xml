@@ -28,25 +28,152 @@
         <property name="accessDecisionManager" ref="accessDecisionManager"/>
          <property name="objectDefinitionSource">
             <value>
+            	/base/home_init.do.*=APLICACION-LOGIN
+            	
+                /actividad/(.*)initCreate.*=ENTIDAD_ACTIVIDAD-ALTA
+                /actividad/(.*)view.*=ENTIDAD_ACTIVIDAD-DETALLE
+                /actividad/(.*)initUpdate.*=ENTIDAD_ACTIVIDAD-MODIFICACION
+                /actividad/(.*)remove.*=ENTIDAD_ACTIVIDAD-BAJA
+                /actividad/(.*)cambiarEstado.*=ENTIDAD_ACTIVIDAD-CAMBIAR_ESTADO
+                /actividad/(.*)save.*=ENTIDAD_ACTIVIDAD-ALTA, ENTIDAD_ACTIVIDAD-MODIFICACION
                 /actividad/.*=ENTIDAD_ACTIVIDAD-LISTADO
+
+                /asignacion/(.*)initCreate.*=ENTIDAD_ASIGNACION-ALTA
+                /asignacion/(.*)view.*=ENTIDAD_ASIGNACION-DETALLE
+                /asignacion/(.*)initUpdate.*=ENTIDAD_ASIGNACION-MODIFICACION
+                /asignacion/(.*)remove.*=ENTIDAD_ASIGNACION-BAJA
+                /asignacion/(.*)save.*=ENTIDAD_ASIGNACION-ALTA, ENTIDAD_ASIGNACION-MODIFICACION
                 /asignacion/.*=ENTIDAD_ASIGNACION-LISTADO
+
+                /financiador/(.*)initCreate.*=ENTIDAD_FINANCIADOR-ALTA
+                /financiador/(.*)view.*=ENTIDAD_FINANCIADOR-DETALLE
+                /financiador/(.*)initUpdate.*=ENTIDAD_FINANCIADOR-MODIFICACION
+                /financiador/(.*)remove.*=ENTIDAD_FINANCIADOR-BAJA
+                /financiador/(.*)save.*=ENTIDAD_FINANCIADOR-ALTA, ENTIDAD_FINANCIADOR-MODIFICACION
                 /financiador/.*=ENTIDAD_FINANCIADOR-LISTADO
+
+				/gasto/gasto-actividad(.*)initList.*=ENTIDAD_GASTO_ACTIVIDAD-HISTORICO
+                /gasto/gasto-actividad(.*)initCreate.*=ENTIDAD_GASTO_ACTIVIDAD-ALTA
+                /gasto/gasto-actividad(.*)view.*=ENTIDAD_GASTO_ACTIVIDAD-DETALLE
+                /gasto/gasto-actividad(.*)initUpdate.*=ENTIDAD_GASTO_ACTIVIDAD-MODIFICACION
+                /gasto/gasto-actividad(.*)remove.*=ENTIDAD_GASTO_ACTIVIDAD-BAJA
+                /gasto/gasto-actividad(.*)save.*=ENTIDAD_GASTO_ACTIVIDAD-ALTA, ENTIDAD_GASTO_ACTIVIDAD-MODIFICACION
+                /gasto/gasto-actividad(.*)confirmar.*=ENTIDAD_ACTIVIDAD-CONFIRMAR
                 /gasto/gasto-actividad.*=ENTIDAD_GASTO_ACTIVIDAD-LISTADO
+
+                /gasto/gasto-organizacion(.*)initCreate.*=ENTIDAD_GASTO_ORGANIZACION-ALTA
+                /gasto/gasto-organizacion(.*)view.*=ENTIDAD_GASTO_ORGANIZACION-DETALLE
+                /gasto/gasto-organizacion(.*)initUpdate.*=ENTIDAD_GASTO_ORGANIZACION-MODIFICACION
+                /gasto/gasto-organizacion(.*)remove.*=ENTIDAD_GASTO_ORGANIZACION-BAJA
+                /gasto/gasto-organizacion(.*)save.*=ENTIDAD_GASTO_ORGANIZACION-ALTA, ENTIDAD_GASTO_ORGANIZACION-MODIFICACION
                 /gasto/gasto-organizacion.*=ENTIDAD_GASTO_ORGANIZACION-LISTADO
+
+                /gasto/gasto-proyecto(.*)initCreate.*=ENTIDAD_GASTO_PROYECTO-ALTA
+                /gasto/gasto-proyecto(.*)view.*=ENTIDAD_GASTO_PROYECTO-DETALLE
+                /gasto/gasto-proyecto(.*)initUpdate.*=ENTIDAD_GASTO_PROYECTO-MODIFICACION
+                /gasto/gasto-proyecto(.*)remove.*=ENTIDAD_GASTO_PROYECTO-BAJA
+                /gasto/gasto-proyecto(.*)save.*=ENTIDAD_GASTO_PROYECTO-ALTA, ENTIDAD_GASTO_PROYECTO-MODIFICACION
                 /gasto/gasto-proyecto.*=ENTIDAD_GASTO_PROYECTO-LISTADO
+
+                /ingreso/(.*)initCreate.*=ENTIDAD_INGRESO-ALTA
+                /ingreso/(.*)view.*=ENTIDAD_INGRESO-DETALLE
+                /ingreso/(.*)initUpdate.*=ENTIDAD_INGRESO-MODIFICACION
+                /ingreso/(.*)remove.*=ENTIDAD_INGRESO-BAJA
+                /ingreso/(.*)save.*=ENTIDAD_INGRESO-ALTA, ENTIDAD_INGRESO-MODIFICACION
                 /ingreso/.*=ENTIDAD_INGRESO-LISTADO
+
+                /meta/(.*)initCreate.*=ENTIDAD_META-ALTA
+                /meta/(.*)view.*=ENTIDAD_META-DETALLE
+                /meta/(.*)initUpdate.*=ENTIDAD_META-MODIFICACION
+                /meta/(.*)remove.*=ENTIDAD_META-BAJA
+                /meta/(.*)save.*=ENTIDAD_META-ALTA, ENTIDAD_META-MODIFICACION
                 /meta/.*=ENTIDAD_META-LISTADO
+
+                /objetivo-especifico/(.*)initCreate.*=ENTIDAD_OBJETIVO_ESPECIFICO-ALTA
+                /objetivo-especifico/(.*)view.*=ENTIDAD_OBJETIVO_ESPECIFICO-DETALLE
+                /objetivo-especifico/(.*)initUpdate.*=ENTIDAD_OBJETIVO_ESPECIFICO-MODIFICACION
+                /objetivo-especifico/(.*)remove.*=ENTIDAD_OBJETIVO_ESPECIFICO-BAJA
+                /objetivo-especifico/(.*)save.*=ENTIDAD_OBJETIVO_ESPECIFICO-ALTA, ENTIDAD_OBJETIVO_ESPECIFICO-MODIFICACION
                 /objetivo-especifico/.*=ENTIDAD_OBJETIVO_ESPECIFICO-LISTADO
+
+                /objetivo-general/(.*)initCreate.*=ENTIDAD_OBJETIVO_GENERAL-ALTA
+                /objetivo-general/(.*)view.*=ENTIDAD_OBJETIVO_GENERAL-DETALLE
+                /objetivo-general/(.*)initUpdate.*=ENTIDAD_OBJETIVO_GENERAL-MODIFICACION
+                /objetivo-general/(.*)remove.*=ENTIDAD_OBJETIVO_GENERAL-BAJA
+                /objetivo-general/(.*)save.*=ENTIDAD_OBJETIVO_GENERAL-ALTA, ENTIDAD_OBJETIVO_GENERAL-MODIFICACION
                 /objetivo-general/.*=ENTIDAD_OBJETIVO_GENERAL-LISTADO
+
+                /perfil/(.*)initCreate.*=ENTIDAD_PERFIL-ALTA
+                /perfil/(.*)view.*=ENTIDAD_PERFIL-DETALLE
+                /perfil/(.*)initUpdate.*=ENTIDAD_PERFIL-MODIFICACION
+                /perfil/(.*)remove.*=ENTIDAD_PERFIL-BAJA
+                /perfil/(.*)save.*=ENTIDAD_PERFIL-ALTA, ENTIDAD_PERFIL-MODIFICACION
                 /perfil/.*=ENTIDAD_PERFIL-LISTADO
+
+                /persona/(.*)initCreate.*=ENTIDAD_PERSONA-ALTA
+                /persona/(.*)view.*=ENTIDAD_PERSONA-DETALLE
+                /persona/(.*)initUpdate.*=ENTIDAD_PERSONA-MODIFICACION
+                /persona/(.*)remove.*=ENTIDAD_PERSONA-BAJA
+                /persona/(.*)save.*=ENTIDAD_PERSONA-ALTA, ENTIDAD_PERSONA-MODIFICACION
                 /persona/.*=ENTIDAD_PERSONA-LISTADO
+
+                /proveedor/(.*)initCreate.*=ENTIDAD_PROVEEDOR-ALTA
+                /proveedor/(.*)view.*=ENTIDAD_PROVEEDOR-DETALLE
+                /proveedor/(.*)initUpdate.*=ENTIDAD_PROVEEDOR-MODIFICACION
+                /proveedor/(.*)remove.*=ENTIDAD_PROVEEDOR-BAJA
+                /proveedor/(.*)save.*=ENTIDAD_PROVEEDOR-ALTA, ENTIDAD_PROVEEDOR-MODIFICACION
                 /proveedor/.*=ENTIDAD_PROVEEDOR-LISTADO
+
+                /proyecto/(.*)initCreate.*=ENTIDAD_PROYECTO-ALTA
+                /proyecto/(.*)view.*=ENTIDAD_PROYECTO-DETALLE
+                /proyecto/(.*)initUpdate.*=ENTIDAD_PROYECTO-MODIFICACION
+                /proyecto/(.*)remove.*=ENTIDAD_PROYECTO-BAJA
+                /proyecto/(.*)save.*=ENTIDAD_PROYECTO-ALTA, ENTIDAD_PROYECTO-MODIFICACION
+                /proyecto/(.*)cambiarEstado.*=ENTIDAD_PROYECTO-CAMBIAR_ESTADO
+                /proyecto/presupuesto.*=ENTIDAD_PROYECTO-ADMINISTRAR_PRESUPUESTO
                 /proyecto/.*=ENTIDAD_PROYECTO-LISTADO
+
+                /regla/(.*)initCreate.*=ENTIDAD_REGLA-ALTA
+                /regla/(.*)view.*=ENTIDAD_REGLA-DETALLE
+                /regla/(.*)initUpdate.*=ENTIDAD_REGLA-MODIFICACION
+                /regla/(.*)remove.*=ENTIDAD_REGLA-BAJA
+                /regla/(.*)save.*=ENTIDAD_REGLA-ALTA, ENTIDAD_REGLA-MODIFICACION
                 /regla/.*=ENTIDAD_REGLA-LISTADO
+
+                /relacion-contractual/(.*)initCreate.*=ENTIDAD_RELACION_CONTRACTUAL-ALTA
+                /relacion-contractual/(.*)view.*=ENTIDAD_RELACION_CONTRACTUAL-DETALLE
+                /relacion-contractual/(.*)initUpdate.*=ENTIDAD_RELACION_CONTRACTUAL-MODIFICACION
+                /relacion-contractual/(.*)remove.*=ENTIDAD_RELACION_CONTRACTUAL-BAJA
+                /relacion-contractual/(.*)save.*=ENTIDAD_RELACION_CONTRACTUAL-ALTA, ENTIDAD_RELACION_CONTRACTUAL-MODIFICACION
                 /relacion-contractual/.*=ENTIDAD_RELACION_CONTRACTUAL-LISTADO
+
+                /rol/(.*)initCreate.*=ENTIDAD_ROL-ALTA
+                /rol/(.*)view.*=ENTIDAD_ROL-DETALLE
+                /rol/(.*)initUpdate.*=ENTIDAD_ROL-MODIFICACION
+                /rol/(.*)remove.*=ENTIDAD_ROL-BAJA
+                /rol/(.*)save.*=ENTIDAD_ROL-ALTA, ENTIDAD_ROL-MODIFICACION
                 /rol/.*=ENTIDAD_ROL-LISTADO
+
+                /rubro/(.*)initCreate.*=ENTIDAD_RUBRO-ALTA
+                /rubro/(.*)view.*=ENTIDAD_RUBRO-DETALLE
+                /rubro/(.*)initUpdate.*=ENTIDAD_RUBRO-MODIFICACION
+                /rubro/(.*)remove.*=ENTIDAD_RUBRO-BAJA
+                /rubro/(.*)save.*=ENTIDAD_RUBRO-ALTA, ENTIDAD_RUBRO-MODIFICACION
                 /rubro/.*=ENTIDAD_RUBRO-LISTADO
+
+                /usuario/usuario-password.*=APLICACION-LOGIN
+                /usuario/(.*)initCreate.*=ENTIDAD_USUARIO-ALTA
+                /usuario/(.*)view.*=ENTIDAD_USUARIO-DETALLE
+                /usuario/(.*)initUpdate.*=ENTIDAD_USUARIO-MODIFICACION
+                /usuario/(.*)bloquear.*=ENTIDAD_USUARIO-BLOQUEAR
+                /usuario/(.*)desbloquear.*=ENTIDAD_USUARIO-DESBLOQUEAR
+                /usuario/(.*)save.*=ENTIDAD_USUARIO-ALTA, ENTIDAD_USUARIO-MODIFICACION
                 /usuario/.*=ENTIDAD_USUARIO-LISTADO
+
+				/reportes/reporte-persona.*=ENTIDAD_REPORTE_PERSONA-EJECUTAR 
+				/reportes/reporte-financiador.*=ENTIDAD_REPORTE_FINANCIADOR-EJECUTAR 
+				/reportes/reporte-proveedor.*=ENTIDAD_REPORTE_PROVEEDOR-EJECUTAR 
+				/reportes/reporte-financiero.*=ENTIDAD_REPORTE_FINANZAS-EJECUTAR 
             </value>
         </property>
     </bean>
@@ -114,7 +241,7 @@
 
     <bean id="anonymousProcessingFilter" class="org.acegisecurity.providers.anonymous.AnonymousProcessingFilter">
         <property name="key" value="anonymous"/>
-        <property name="userAttribute" value="anonymous,MOSTRAR-OPCIONES_PUBLICAS"/>
+        <property name="userAttribute" value="anonymous,OPCIONES_PUBLICAS-MOSTRAR"/>
     </bean>
 
     <bean id="exceptionTranslationFilter" class="org.acegisecurity.ui.ExceptionTranslationFilter">

@@ -26,6 +26,12 @@ input {
 	vertical-align: top;
 }
 
+textarea {
+	font-family: Arial;
+	color: #7C7C7C;
+	vertical-align: top;
+}
+
 select {
 	font-family: Arial;
 	color: #7C7C7C;
@@ -306,6 +312,12 @@ table tbody a {
 	border: 1px solid #D3D3D3;
 	width: 140px;
 	height: 20px;
+}
+
+.form textarea {
+	border: 1px solid #D3D3D3;
+	width: 300px;
+	height: 100px;
 }
 
 .form select {
