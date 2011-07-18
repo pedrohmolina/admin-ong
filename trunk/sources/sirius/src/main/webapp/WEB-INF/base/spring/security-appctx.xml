@@ -174,6 +174,12 @@
 				/reportes/reporte-financiador.*=ENTIDAD_REPORTE_FINANCIADOR-EJECUTAR 
 				/reportes/reporte-proveedor.*=ENTIDAD_REPORTE_PROVEEDOR-EJECUTAR 
 				/reportes/reporte-financiero.*=ENTIDAD_REPORTE_FINANZAS-EJECUTAR 
+
+                /css/.*=OPCIONES_PUBLICAS-MOSTRAR, APLICACION-LOGIN
+                /scripts/.*=OPCIONES_PUBLICAS-MOSTRAR, APLICACION-LOGIN
+                /img/.*=OPCIONES_PUBLICAS-MOSTRAR, APLICACION-LOGIN
+                /public/.*=OPCIONES_PUBLICAS-MOSTRAR, APLICACION-LOGIN
+                /.*=APLICACION-LOGIN
             </value>
         </property>
     </bean>
