@@ -110,7 +110,7 @@
 					<var-value>255</var-value>
 				</var>
 			</field>
-			<field property="cuit" depends="maxlength">
+			<field property="cuit" depends="maxlength, cuit">
 				<arg position="0" key="sirius.financiador.cuit.label"/>
 				<arg position="1" key="${var:maxlength}" resource="false" />
 				<var>
@@ -466,7 +466,7 @@
 			<field property="numeroDocumento" depends="required, integer">
 				<arg position="0" key="sirius.persona.numeroDocumento.label"/>
 			</field>
-			<field property="cuit" depends="maxlength">
+			<field property="cuit" depends="maxlength, cuit">
 				<arg position="0" key="sirius.persona.cuit.label"/>
 				<arg position="1" key="${var:maxlength}" resource="false" />
 				<var>
@@ -578,7 +578,7 @@
 					<var-value>255</var-value>
 				</var>
 			</field>
-			<field property="cuit" depends="maxlength">
+			<field property="cuit" depends="maxlength, cuit">
 				<arg position="0" key="sirius.proveedor.cuit.label"/>
 				<arg position="1" key="${var:maxlength}" resource="false" />
 				<var>
@@ -864,7 +864,7 @@
 			<field property="numeroDocumento" depends="required, integer">
 				<arg position="0" key="sirius.usuario.numeroDocumento.label"/>
 			</field>
-			<field property="cuit" depends="maxlength">
+			<field property="cuit" depends="maxlength, cuit">
 				<arg position="0" key="sirius.usuario.cuit.label"/>
 				<arg position="1" key="${var:maxlength}" resource="false" />
 				<var>
