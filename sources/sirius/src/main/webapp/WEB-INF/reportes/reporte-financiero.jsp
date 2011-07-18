@@ -85,9 +85,10 @@ function cargarCombo(method){
 		<h2><bean:message key="sirius.reportes.finanzas.rubros.label" /></h2>
 		<p>		
 		<label for="rubrosSeleccionados"><bean:message key="sirius.reportes.finanzas.rubros.label" />&nbsp;:</label>
-		<html:select multiple="multiple" style="height: 100px" property="rubrosSeleccionados">
+		<html:select property="rubrosSeleccionados" multiple="true" style="height: 100px">
 			<html:optionsCollection name="reporteFinancieroForm" property="rubros" label="nombre" value="id"/>
 		</html:select>
+		<html:hidden property="rubrosSeleccionados" value="0" />
 		</p><br>
 	</div>
 		

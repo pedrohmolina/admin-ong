@@ -32,7 +32,7 @@ public class ReporteFinancieroForm extends ValidatorForm {
 	private String idProyecto;
 	private String idAgregacion;
 	
-	private String[] rubrosSeleccionados;
+	private Integer[] rubrosSeleccionados;
 	
 	private String tipoAgregacion;
 	
@@ -73,11 +73,11 @@ public class ReporteFinancieroForm extends ValidatorForm {
 		this.formatoReporte = formatoReporte;
 	}
 
-	public String[] getRubrosSeleccionados() {
+	public Integer[] getRubrosSeleccionados() {
 		return rubrosSeleccionados;
 	}
 
-	public void setRubrosSeleccionados(String[] rubrosSeleccionados) {
+	public void setRubrosSeleccionados(Integer[] rubrosSeleccionados) {
 		this.rubrosSeleccionados = rubrosSeleccionados;
 	}
 	

@@ -15,7 +15,7 @@ import com.antares.sirius.model.Rubro;
 public interface RubroService extends BusinessEntityService<Rubro> {
 
 	/**
-	 * Devuelve los rubros a partir de sus ids. Si el array de ids es null, devuelve todos los rubros.
+	 * Devuelve los rubros a partir de sus ids.
 	 * 
 	 * @param ids
 	 * @return

@@ -31,9 +31,10 @@
 		<html:text property="ubicacion" />
 		</p><br><p>
 		<label for="idCoordinadores"><bean:message key="sirius.proyecto.coordinadores.label" />&nbsp;:</label>
-		<html:select property="idCoordinadores" multiple="true">
+		<html:select property="idCoordinadores" multiple="true" style="height: 100px">
 			<html:optionsCollection name="proyectoForm" property="coordinadores" label="nombreYApellido" value="id"/>
 		</html:select>
+		<html:hidden property="idCoordinadores" value="0" />
 		</p><br><p>
 		<label for="idResponsable"><bean:message key="sirius.proyecto.responsable.label" />(*)&nbsp;:</label>
 		<html:select property="idResponsable">
