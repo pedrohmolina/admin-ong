@@ -51,6 +51,9 @@ public class UsuarioServiceImpl extends BusinessEntityServiceImpl<Usuario, Usuar
 		if (usuario == null || usuario.getBloqueado()) {
 			throw new UsernameNotFoundException("User not found.");
 		}
+
+		// Esto es para que cargue las authorities dentro de si mismo y no depende de los mapeos lazy
+		usuario.getAuthorities();
 		return usuario;
 	}
 

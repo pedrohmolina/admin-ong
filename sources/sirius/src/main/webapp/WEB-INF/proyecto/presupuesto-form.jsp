@@ -20,8 +20,7 @@
 	</div>
 	<div class="presupuesto">
 		<p>
-
-		<label for="nombre"><bean:message key="sirius.proyecto.presupuestoTotal.label" />&nbsp;:</label>
+		<label for="nombre"><bean:message key="sirius.proyecto.presupuestoTotalDisponible.label" />&nbsp;:</label>
 		<label id="presupuestoDisponible">&nbsp;</label>
 		</p><br>
 	</div>

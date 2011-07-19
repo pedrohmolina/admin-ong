@@ -45,6 +45,7 @@ public class PresupuestoAction extends DispatchAction {
 	public ActionForward show(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) 
 			throws Exception {
 		
+		ActionForward forward = mapping.findForward("restrictedAccess");
 		DynaActionForm dyna = (DynaActionForm)form; 
 		dyna.set("presupuestos", null);
 
@@ -52,17 +53,19 @@ public class PresupuestoAction extends DispatchAction {
 		if (Utils.isNotNullNorEmpty(idProyectoStr)) {
 			Integer idProyecto = Utils.parseInteger(idProyectoStr);
 			Proyecto proyecto = proyectoService.findById(idProyecto);
-			List<Actividad> actividades = (List<Actividad>)actividadService.findAllByProyecto(proyecto);
-			List<Rubro> rubros = (List<Rubro>)rubroService.findPrimerNivel();
-
-			dyna.set("idProyecto", idProyecto);
-			dyna.set("nombreProyecto", proyecto.getNombre());
-			dyna.set("actividades", actividades);
-			dyna.set("rubros", rubros);
-			dyna.set("nombresColumnas", nombresColumnas(rubros));
+			if (proyecto != null && proyecto.isActivo()) {
+				List<Actividad> actividades = (List<Actividad>)actividadService.findAllByProyecto(proyecto);
+				List<Rubro> rubros = (List<Rubro>)rubroService.findPrimerNivel();
+	
+				dyna.set("idProyecto", idProyecto);
+				dyna.set("nombreProyecto", proyecto.getNombre());
+				dyna.set("actividades", actividades);
+				dyna.set("rubros", rubros);
+				dyna.set("nombresColumnas", nombresColumnas(rubros));
+				forward = mapping.findForward("show");
+			}
 		}
-		
-		return mapping.findForward("show");
+		return forward;
 	}
 
 	/**
@@ -83,17 +86,19 @@ public class PresupuestoAction extends DispatchAction {
 		Integer idProyecto = (Integer)dyna.get("idProyecto");
 		Proyecto proyecto = proyectoService.findById(idProyecto);
 
-		List<Rubro> rubros = (List<Rubro>)dyna.get("rubros");
-		List<Actividad> actividades = (List<Actividad>)dyna.get("actividades");
+		if (proyecto != null && proyecto.isActivo()) {
+			List<Rubro> rubros = (List<Rubro>)dyna.get("rubros");
+			List<Actividad> actividades = (List<Actividad>)dyna.get("actividades");
 
-		PresupuestoDTO presupuestos = (PresupuestoDTO)dyna.get("presupuestos");
-		if (presupuestos == null) {
-			presupuestos = presupuestoService.findAllByProyecto(proyecto);
-			dyna.set("presupuestos", presupuestos);
+			PresupuestoDTO presupuestos = (PresupuestoDTO)dyna.get("presupuestos");
+			if (presupuestos == null) {
+				presupuestos = presupuestoService.findAllByProyecto(proyecto);
+				dyna.set("presupuestos", presupuestos);
+			}
+
+			JQGridContainer grid = buildJQGrid(rubros, actividades, presupuestos);
+			sendJSON(grid, response);
 		}
-
-		JQGridContainer grid = buildJQGrid(rubros, actividades, presupuestos);
-		sendJSON(grid, response);
 		return null;
 	}
 
@@ -142,13 +147,19 @@ public class PresupuestoAction extends DispatchAction {
 	public ActionForward save(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) 
 			throws Exception {
 		
+		ActionForward forward = mapping.findForward("restrictedAccess");
 		DynaActionForm dyna = (DynaActionForm)form;
 		PresupuestoDTO presupuestos = (PresupuestoDTO)dyna.get("presupuestos");
 		if (presupuestos != null) {
-			presupuestoService.saveAll(presupuestos);
+			// Esto es para revalidar que el usuario tenga permisos para ver el proyecto y que no haya sido dado de baja
+			Proyecto proyecto = proyectoService.findById(presupuestos.getProyecto().getId());
+			if (proyecto != null && proyecto.isActivo()) {
+				presupuestoService.saveAll(presupuestos);
+				forward = mapping.findForward("success"); 
+			}
 		}
 
-		return mapping.findForward("success");
+		return forward;
 	}
 
 	/**

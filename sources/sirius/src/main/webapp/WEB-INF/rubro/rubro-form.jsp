@@ -57,26 +57,28 @@
 
 		<logic:equal name="rubroForm" property="nivel" value="3">
 			<logic:equal name="rubroForm" property="action.descripcion" value="update">
+				<p>
 				<label for="idRubroNivelUno"><bean:message key="sirius.rubro.rubroNivelUno.label" />&nbsp;:</label>
 				<html:text property="labelRubroNivelUno" readonly="true" />
-				<br />
+				</p><br /><p>
 				<label for="idRubroNivelDos"><bean:message key="sirius.rubro.rubroNivelDos.label" />&nbsp;:</label>
 				<html:text property="labelRubroNivelDos" readonly="true" />
-				<br />
+				</p><br />
 			</logic:equal>
 			<logic:notEqual name="rubroForm" property="action.descripcion" value="update">
+				<p>
 				<label for="idRubroNivelUno"><bean:message key="sirius.rubro.rubroNivelUno.label" />(*)&nbsp;:</label>
 				<html:select property="idRubroNivelUno" styleId="rubroNivelUno" onchange="cargarComboSubrubros(this, 'rubroNivelDos')">
 					<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 					<html:optionsCollection name="rubroForm" property="rubrosNivelUno" label="nombre" value="id"/>
 				</html:select>
-				<br />
+				</p><br /><p>
 				<label for="idRubroNivelDos"><bean:message key="sirius.rubro.rubroNivelDos.label" />(*)&nbsp;:</label>
 				<html:select property="idRubroNivelDos" styleId="rubroNivelDos">
 					<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 					<html:optionsCollection name="rubroForm" property="rubrosNivelDos" label="nombre" value="id"/>
 				</html:select>
-				<br />
+				</p><br />
 			</logic:notEqual>
 		</logic:equal>
 	</div>

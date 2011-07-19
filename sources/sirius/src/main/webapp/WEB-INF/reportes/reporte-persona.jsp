@@ -25,7 +25,7 @@ function confirmarAccion(mensaje) {
 
 	<div style="float:left; width: 100%;">
 		<p>
-		<h2>Filtros</h2>
+		<h2><bean:message key="sirius.reportes.filtros" /></h2>
 		</p><p>
 		<label for="apellido"><bean:message key="sirius.persona.apellido.label" />:</label>
 		<html:text property="apellido" />
@@ -55,7 +55,7 @@ function confirmarAccion(mensaje) {
 
 	<div style="float: left; width: 100%;">
 	<p>	
-	<h2>Vista Previa Resultados</h2>
+	<h2><bean:message key="sirius.reportes.vistaPreviaResultados" /></h2>
 	<display-el:table export="false" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.reportePersonaForm.result" id="item"
 		requestURI="/reportes/reporte-persona.do" sort="list" >
 
@@ -74,8 +74,7 @@ function confirmarAccion(mensaje) {
 
 	<div style="float:left; width: 100%;">
 	<p>	
-		<h2>Columnas</h2>
-
+		<h2><bean:message key="sirius.reportes.columnas" /></h2>
 		<p>
 			<label for="numeroDocumento"><bean:message key="sirius.persona.numeroDocumento.label" />:</label>
 			<html:checkbox property="verNumeroDocumento" value="true" style="width:20px" />

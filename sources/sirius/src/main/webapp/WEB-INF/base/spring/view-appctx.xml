@@ -8,233 +8,153 @@
 
 	<bean name="/public/logout" class="com.antares.commons.view.action.LogoutAction" singleton="false" />
 	
-	<bean name="actividadAction" class="com.antares.sirius.view.action.ActividadAction" autowire="byName" >
-		<property name="service" 					ref="actividadService" />
-		<property name="metaService" 				ref="metaService" />
-		<property name="financiadorService" 		ref="financiadorService" />
-		<property name="estadoActividadService" 	ref="estadoActividadService" />
+	<bean name="actividadAction" class="com.antares.sirius.view.action.ActividadAction" autowire="byName">
+		<property name="service" ref="actividadService" />
 	</bean>
-	<bean name="/actividad/actividad-query" 		parent="actividadAction" singleton="false" />
-	<bean name="/actividad/actividad-form" 			parent="actividadAction" singleton="false" />
-	<bean name="/actividad/actividad-form-validate" parent="actividadAction" singleton="false" />
+	<bean name="/actividad/actividad-query" 		parent="actividadAction" singleton="false" autowire="byName" />
+	<bean name="/actividad/actividad-form" 			parent="actividadAction" singleton="false" autowire="byName" />
+	<bean name="/actividad/actividad-form-validate" parent="actividadAction" singleton="false" autowire="byName" />
 
-	<bean name="asignacionAction" class="com.antares.sirius.view.action.AsignacionAction" autowire="byName" >
-		<property name="service" 				ref="asignacionService" />
-		<property name="tipoAsignacionService" 	ref="tipoAsignacionService" />
-		<property name="personaService" 		ref="personaService" />
-		<property name="proyectoService" 		ref="proyectoService" />
-		<property name="actividadService" 		ref="actividadService" />
+	<bean name="asignacionAction" class="com.antares.sirius.view.action.AsignacionAction">
+		<property name="service" ref="asignacionService" />
 	</bean>
-	<bean name="/asignacion/asignacion-query" 			parent="asignacionAction" singleton="false" />
-	<bean name="/asignacion/asignacion-form" 			parent="asignacionAction" singleton="false" />
-	<bean name="/asignacion/asignacion-form-validate" 	parent="asignacionAction" singleton="false" />
+	<bean name="/asignacion/asignacion-query" 			parent="asignacionAction" singleton="false" autowire="byName" />
+	<bean name="/asignacion/asignacion-form" 			parent="asignacionAction" singleton="false" autowire="byName" />
+	<bean name="/asignacion/asignacion-form-validate" 	parent="asignacionAction" singleton="false" autowire="byName" />
 
-	<bean name="financiadorAction" class="com.antares.sirius.view.action.FinanciadorAction" autowire="byName" >
-		<property name="service" 					ref="financiadorService" />
-		<property name="estadoFinanciadorService" 	ref="estadoFinanciadorService" />
-		<property name="tipoFinanciadorService" 	ref="tipoFinanciadorService" />
+	<bean name="financiadorAction" class="com.antares.sirius.view.action.FinanciadorAction">
+		<property name="service" ref="financiadorService" />
 	</bean>
-	<bean name="/financiador/financiador-query" 		parent="financiadorAction" singleton="false" />
-	<bean name="/financiador/financiador-form" 			parent="financiadorAction" singleton="false" />
-	<bean name="/financiador/financiador-form-validate" parent="financiadorAction" singleton="false" />
+	<bean name="/financiador/financiador-query" 		parent="financiadorAction" singleton="false" autowire="byName" />
+	<bean name="/financiador/financiador-form" 			parent="financiadorAction" singleton="false" autowire="byName" />
+	<bean name="/financiador/financiador-form-validate" parent="financiadorAction" singleton="false" autowire="byName" />
 
-	<bean name="gastoActividadAction" class="com.antares.sirius.view.action.GastoActividadAction" autowire="byName" >
-		<property name="service" 					ref="gastoService" />
-		<property name="rubroService" 				ref="rubroService" />
-		<property name="origenService" 				ref="origenService" />
-		<property name="proveedorService" 			ref="proveedorService" />
-		<property name="tipoComprobanteService" 	ref="tipoComprobanteService" />
-		<property name="tipoGastoService" 			ref="tipoGastoService" />
-		<property name="personaService" 			ref="personaService" />
-		<property name="usuarioService" 			ref="usuarioService" />
-		<property name="proyectoService" 			ref="proyectoService" />
-		<property name="actividadService" 			ref="actividadService" />
+	<bean name="gastoActividadAction" class="com.antares.sirius.view.action.GastoActividadAction">
+		<property name="service" ref="gastoService" />
 	</bean>
-	<bean name="/gasto/gasto-actividad-query" 			parent="gastoActividadAction" singleton="false" />
-	<bean name="/gasto/gasto-actividad-form" 			parent="gastoActividadAction" singleton="false" />
-	<bean name="/gasto/gasto-actividad-form-validate" 	parent="gastoActividadAction" singleton="false" />
-	<bean name="/gasto/gasto-actividad-list" 			parent="gastoActividadAction" singleton="false" />
+	<bean name="/gasto/gasto-actividad-query" 			parent="gastoActividadAction" singleton="false" autowire="byName" />
+	<bean name="/gasto/gasto-actividad-form" 			parent="gastoActividadAction" singleton="false" autowire="byName" />
+	<bean name="/gasto/gasto-actividad-form-validate" 	parent="gastoActividadAction" singleton="false" autowire="byName" />
+	<bean name="/gasto/gasto-actividad-list" 			parent="gastoActividadAction" singleton="false" autowire="byName" />
 
-	<bean name="gastoOrganizacionAction" class="com.antares.sirius.view.action.GastoOrganizacionAction" autowire="byName" >
-		<property name="service" 					ref="gastoService" />
-		<property name="rubroService" 				ref="rubroService" />
-		<property name="origenService" 				ref="origenService" />
-		<property name="proveedorService" 			ref="proveedorService" />
-		<property name="tipoComprobanteService" 	ref="tipoComprobanteService" />
-		<property name="tipoGastoService" 			ref="tipoGastoService" />
-		<property name="personaService" 			ref="personaService" />
-		<property name="usuarioService" 			ref="usuarioService" />
+	<bean name="gastoOrganizacionAction" class="com.antares.sirius.view.action.GastoOrganizacionAction">
+		<property name="service" ref="gastoService" />
 	</bean>
-	<bean name="/gasto/gasto-organizacion-query" 			parent="gastoOrganizacionAction" singleton="false" />
-	<bean name="/gasto/gasto-organizacion-form" 			parent="gastoOrganizacionAction" singleton="false" />
-	<bean name="/gasto/gasto-organizacion-form-validate" 	parent="gastoOrganizacionAction" singleton="false" />
+	<bean name="/gasto/gasto-organizacion-query" 			parent="gastoOrganizacionAction" singleton="false" autowire="byName" />
+	<bean name="/gasto/gasto-organizacion-form" 			parent="gastoOrganizacionAction" singleton="false" autowire="byName" />
+	<bean name="/gasto/gasto-organizacion-form-validate" 	parent="gastoOrganizacionAction" singleton="false" autowire="byName" />
 
-	<bean name="gastoProyectoAction" class="com.antares.sirius.view.action.GastoProyectoAction" autowire="byName" >
-		<property name="service" 					ref="gastoService" />
-		<property name="rubroService" 				ref="rubroService" />
-		<property name="origenService" 				ref="origenService" />
-		<property name="proveedorService" 			ref="proveedorService" />
-		<property name="tipoComprobanteService" 	ref="tipoComprobanteService" />
-		<property name="tipoGastoService" 			ref="tipoGastoService" />
-		<property name="personaService" 			ref="personaService" />
-		<property name="usuarioService" 			ref="usuarioService" />
-		<property name="proyectoService" 			ref="proyectoService" />
+	<bean name="gastoProyectoAction" class="com.antares.sirius.view.action.GastoProyectoAction">
+		<property name="service" ref="gastoService" />
 	</bean>
-	<bean name="/gasto/gasto-proyecto-query" 			parent="gastoProyectoAction" singleton="false" />
-	<bean name="/gasto/gasto-proyecto-form" 			parent="gastoProyectoAction" singleton="false" />
-	<bean name="/gasto/gasto-proyecto-form-validate" 	parent="gastoProyectoAction" singleton="false" />
+	<bean name="/gasto/gasto-proyecto-query" 			parent="gastoProyectoAction" singleton="false" autowire="byName" />
+	<bean name="/gasto/gasto-proyecto-form" 			parent="gastoProyectoAction" singleton="false" autowire="byName" />
+	<bean name="/gasto/gasto-proyecto-form-validate" 	parent="gastoProyectoAction" singleton="false" autowire="byName" />
 
 	<bean name="ingresoAction" class="com.antares.sirius.view.action.IngresoAction" autowire="byName">
 		<property name="service" ref="ingresoService" />
-		<property name="tipoIngresoService" 	ref="tipoIngresoService" />
-		<property name="financiadorService" 	ref="financiadorService" />
 	</bean>
-	<bean name="/ingreso/ingreso-query" 		parent="ingresoAction" singleton="false" />
-	<bean name="/ingreso/ingreso-form" 			parent="ingresoAction" singleton="false" />
-	<bean name="/ingreso/ingreso-form-validate" parent="ingresoAction" singleton="false" />
+	<bean name="/ingreso/ingreso-query" 		parent="ingresoAction" singleton="false" autowire="byName" />
+	<bean name="/ingreso/ingreso-form" 			parent="ingresoAction" singleton="false" autowire="byName" />
+	<bean name="/ingreso/ingreso-form-validate" parent="ingresoAction" singleton="false" autowire="byName" />
 
-	<bean name="metaAction" class="com.antares.sirius.view.action.MetaAction" autowire="byName">
-		<property name="service" 					ref="metaService" />
-		<property name="objetivoEspecificoService" 	ref="objetivoEspecificoService" />
+	<bean name="metaAction" class="com.antares.sirius.view.action.MetaAction">
+		<property name="service" ref="metaService" />
 	</bean>
-	<bean name="/meta/meta-query" 			parent="metaAction" singleton="false" />
-	<bean name="/meta/meta-form" 			parent="metaAction" singleton="false" />
-	<bean name="/meta/meta-form-validate" 	parent="metaAction" singleton="false" />
+	<bean name="/meta/meta-query" 			parent="metaAction" singleton="false" autowire="byName" />
+	<bean name="/meta/meta-form" 			parent="metaAction" singleton="false" autowire="byName" />
+	<bean name="/meta/meta-form-validate" 	parent="metaAction" singleton="false" autowire="byName" />
 
-	<bean name="objetivoEspecificoAction" class="com.antares.sirius.view.action.ObjetivoEspecificoAction" autowire="byName">
-		<property name="service" 					ref="objetivoEspecificoService" />
-		<property name="objetivoGeneralService" 	ref="objetivoGeneralService" />
+	<bean name="objetivoEspecificoAction" class="com.antares.sirius.view.action.ObjetivoEspecificoAction">
+		<property name="service" ref="objetivoEspecificoService" />
 	</bean>
-	<bean name="/objetivo-especifico/objetivo-especifico-query" 		parent="objetivoEspecificoAction" singleton="false" />
-	<bean name="/objetivo-especifico/objetivo-especifico-form" 			parent="objetivoEspecificoAction" singleton="false" />
-	<bean name="/objetivo-especifico/objetivo-especifico-form-validate" parent="objetivoEspecificoAction" singleton="false" />
+	<bean name="/objetivo-especifico/objetivo-especifico-query" 		parent="objetivoEspecificoAction" singleton="false" autowire="byName" />
+	<bean name="/objetivo-especifico/objetivo-especifico-form" 			parent="objetivoEspecificoAction" singleton="false" autowire="byName" />
+	<bean name="/objetivo-especifico/objetivo-especifico-form-validate" parent="objetivoEspecificoAction" singleton="false" autowire="byName" />
 
-	<bean name="objetivoGeneralAction" class="com.antares.sirius.view.action.ObjetivoGeneralAction" autowire="byName">
-		<property name="service" 			ref="objetivoGeneralService" />
-		<property name="proyectoService" 	ref="proyectoService" />
+	<bean name="objetivoGeneralAction" class="com.antares.sirius.view.action.ObjetivoGeneralAction">
+		<property name="service" ref="objetivoGeneralService" />
 	</bean>
-	<bean name="/objetivo-general/objetivo-general-query" 			parent="objetivoGeneralAction" singleton="false" />
-	<bean name="/objetivo-general/objetivo-general-form" 			parent="objetivoGeneralAction" singleton="false" />
-	<bean name="/objetivo-general/objetivo-general-form-validate" 	parent="objetivoGeneralAction" singleton="false" />
+	<bean name="/objetivo-general/objetivo-general-query" 			parent="objetivoGeneralAction" singleton="false" autowire="byName" />
+	<bean name="/objetivo-general/objetivo-general-form" 			parent="objetivoGeneralAction" singleton="false" autowire="byName" />
+	<bean name="/objetivo-general/objetivo-general-form-validate" 	parent="objetivoGeneralAction" singleton="false" autowire="byName" />
 
-	<bean name="perfilAction" class="com.antares.sirius.view.action.PerfilAction" autowire="byName">
-		<property name="service" 		ref="perfilService" />
-		<property name="rolService" 	ref="rolService" />
+	<bean name="perfilAction" class="com.antares.sirius.view.action.PerfilAction">
+		<property name="service" ref="perfilService" />
 	</bean>
-	<bean name="/perfil/perfil-query" 			parent="perfilAction" singleton="false" />
-	<bean name="/perfil/perfil-form" 			parent="perfilAction" singleton="false" />
-	<bean name="/perfil/perfil-form-validate" 	parent="perfilAction" singleton="false" />
+	<bean name="/perfil/perfil-query" 			parent="perfilAction" singleton="false" autowire="byName" />
+	<bean name="/perfil/perfil-form" 			parent="perfilAction" singleton="false" autowire="byName" />
+	<bean name="/perfil/perfil-form-validate" 	parent="perfilAction" singleton="false" autowire="byName" />
 
-	<bean name="personaAction" class="com.antares.sirius.view.action.PersonaAction" autowire="byName">
-		<property name="service" 						ref="personaService" />
-		<property name="tipoDocumentoService" 			ref="tipoDocumentoService" />
-		<property name="relacionContractualService" 	ref="relacionContractualService" />
-		<property name="formaPagoService" 				ref="formaPagoService" />
+	<bean name="personaAction" class="com.antares.sirius.view.action.PersonaAction">
+		<property name="service" ref="personaService" />
 	</bean>
-	<bean name="/persona/persona-query" 			parent="personaAction" singleton="false" />
-	<bean name="/persona/persona-form" 				parent="personaAction" singleton="false" />
-	<bean name="/persona/persona-form-validate" 	parent="personaAction" singleton="false" />
+	<bean name="/persona/persona-query" 			parent="personaAction" singleton="false" autowire="byName" />
+	<bean name="/persona/persona-form" 				parent="personaAction" singleton="false" autowire="byName" />
+	<bean name="/persona/persona-form-validate" 	parent="personaAction" singleton="false" autowire="byName" />
 
-	<bean name="proveedorAction" class="com.antares.sirius.view.action.ProveedorAction" autowire="byName">
-		<property name="service" 				ref="proveedorService" />
-		<property name="tipoProveedorService" 	ref="tipoProveedorService" />
+	<bean name="proveedorAction" class="com.antares.sirius.view.action.ProveedorAction">
+		<property name="service" ref="proveedorService" />
 	</bean>
-	<bean name="/proveedor/proveedor-query" 		parent="proveedorAction" singleton="false" />
-	<bean name="/proveedor/proveedor-form" 			parent="proveedorAction" singleton="false" />
-	<bean name="/proveedor/proveedor-form-validate" parent="proveedorAction" singleton="false" />
+	<bean name="/proveedor/proveedor-query" 		parent="proveedorAction" singleton="false" autowire="byName" />
+	<bean name="/proveedor/proveedor-form" 			parent="proveedorAction" singleton="false" autowire="byName" />
+	<bean name="/proveedor/proveedor-form-validate" parent="proveedorAction" singleton="false" autowire="byName" />
 
-	<bean name="proyectoAction" class="com.antares.sirius.view.action.ProyectoAction" autowire="byName">
-		<property name="service" 					ref="proyectoService" />
-		<property name="estadoProyectoService" 		ref="estadoProyectoService" />
-		<property name="personaService" 			ref="personaService" />
-		<property name="financiadorService" 		ref="financiadorService" />
-		<property name="areaTematicaService" 		ref="areaTematicaService" />
-		<property name="tipoAgrupamientoService" 	ref="tipoAgrupamientoService" />
+	<bean name="proyectoAction" class="com.antares.sirius.view.action.ProyectoAction">
+		<property name="service" ref="proyectoService" />
 	</bean>
-	<bean name="/proyecto/proyecto-query" 			parent="proyectoAction" singleton="false" />
-	<bean name="/proyecto/proyecto-form" 			parent="proyectoAction" singleton="false" />
-	<bean name="/proyecto/proyecto-form-validate" 	parent="proyectoAction" singleton="false" />
+	<bean name="/proyecto/proyecto-query" 			parent="proyectoAction" singleton="false" autowire="byName" />
+	<bean name="/proyecto/proyecto-form" 			parent="proyectoAction" singleton="false" autowire="byName" />
+	<bean name="/proyecto/proyecto-form-validate" 	parent="proyectoAction" singleton="false" autowire="byName" />
 
-	<bean name="relacionContractualAction" class="com.antares.sirius.view.action.RelacionContractualAction" autowire="byName">
+	<bean name="relacionContractualAction" class="com.antares.sirius.view.action.RelacionContractualAction">
 		<property name="service" ref="relacionContractualService" />
 	</bean>
-	<bean name="/relacion-contractual/relacion-contractual-query" 			parent="relacionContractualAction" singleton="false" />
-	<bean name="/relacion-contractual/relacion-contractual-form" 			parent="relacionContractualAction" singleton="false" />
-	<bean name="/relacion-contractual/relacion-contractual-form-validate" 	parent="relacionContractualAction" singleton="false" />
+	<bean name="/relacion-contractual/relacion-contractual-query" 			parent="relacionContractualAction" singleton="false" autowire="byName" />
+	<bean name="/relacion-contractual/relacion-contractual-form" 			parent="relacionContractualAction" singleton="false" autowire="byName" />
+	<bean name="/relacion-contractual/relacion-contractual-form-validate" 	parent="relacionContractualAction" singleton="false" autowire="byName" />
 
-	<bean name="reglaAction" class="com.antares.sirius.view.action.ReglaAction" autowire="byName">
-		<property name="service" 				ref="reglaService" />
-		<property name="usuarioService" 		ref="usuarioService" />
-		<property name="entidadService" 		ref="entidadService" />
-		<property name="atributoService" 		ref="atributoService" />
-		<property name="operadorService" 		ref="operadorService" />
+	<bean name="reglaAction" class="com.antares.sirius.view.action.ReglaAction">
+		<property name="service" ref="reglaService" />
 	</bean>
-	<bean name="/regla/regla-query" 		parent="reglaAction" singleton="false" />
-	<bean name="/regla/regla-form" 			parent="reglaAction" singleton="false" />
-	<bean name="/regla/regla-form-validate" parent="reglaAction" singleton="false" />
+	<bean name="/regla/regla-query" 		parent="reglaAction" singleton="false" autowire="byName" />
+	<bean name="/regla/regla-form" 			parent="reglaAction" singleton="false" autowire="byName" />
+	<bean name="/regla/regla-form-validate" parent="reglaAction" singleton="false" autowire="byName" />
 
-	<bean name="rolAction" class="com.antares.sirius.view.action.RolAction" autowire="byName">
-		<property name="service" 		ref="rolService" />
-		<property name="accesoService" 	ref="accesoService" />
+	<bean name="rolAction" class="com.antares.sirius.view.action.RolAction">
+		<property name="service" ref="rolService" />
 	</bean>
-	<bean name="/rol/rol-query" 		parent="rolAction" singleton="false" />
-	<bean name="/rol/rol-form" 			parent="rolAction" singleton="false" />
-	<bean name="/rol/rol-form-validate" parent="rolAction" singleton="false" />
+	<bean name="/rol/rol-query" 		parent="rolAction" singleton="false" autowire="byName" />
+	<bean name="/rol/rol-form" 			parent="rolAction" singleton="false" autowire="byName" />
+	<bean name="/rol/rol-form-validate" parent="rolAction" singleton="false" autowire="byName" />
 
-	<bean name="rubroAction" class="com.antares.sirius.view.action.RubroAction" autowire="byName">
+	<bean name="rubroAction" class="com.antares.sirius.view.action.RubroAction">
 		<property name="service" ref="rubroService" />
 	</bean>
-	<bean name="/rubro/rubro-query" 		parent="rubroAction" singleton="false" />
-	<bean name="/rubro/rubro-form" 			parent="rubroAction" singleton="false" />
-	<bean name="/rubro/rubro-form-validate" parent="rubroAction" singleton="false" />
+	<bean name="/rubro/rubro-query" 		parent="rubroAction" singleton="false" autowire="byName" />
+	<bean name="/rubro/rubro-form" 			parent="rubroAction" singleton="false" autowire="byName" />
+	<bean name="/rubro/rubro-form-validate" parent="rubroAction" singleton="false" autowire="byName" />
 
-	<bean name="usuarioAction" class="com.antares.sirius.view.action.UsuarioAction" autowire="byName">
-		<property name="service" 						ref="usuarioService" />
-		<property name="personaService" 				ref="personaService" />
-		<property name="perfilService" 					ref="perfilService" />
-		<property name="tipoDocumentoService" 			ref="tipoDocumentoService" />
-		<property name="relacionContractualService" 	ref="relacionContractualService" />
-		<property name="formaPagoService" 				ref="formaPagoService" />
+	<bean name="usuarioAction" class="com.antares.sirius.view.action.UsuarioAction">
+		<property name="service" ref="usuarioService" />
 	</bean>
-	<bean name="/usuario/usuario-query" 					parent="usuarioAction" singleton="false" />
-	<bean name="/usuario/usuario-form" 						parent="usuarioAction" singleton="false" />
-	<bean name="/usuario/usuario-form-validate" 			parent="usuarioAction" singleton="false" />
-	<bean name="/usuario/usuario-persona-form" 				parent="usuarioAction" singleton="false" />
-	<bean name="/usuario/usuario-persona-form-validate" 	parent="usuarioAction" singleton="false" />
-	<bean name="/usuario/usuario-password-form" 			parent="usuarioAction" singleton="false" />
-	<bean name="/usuario/usuario-password-form-validate" 	parent="usuarioAction" singleton="false" />
+	<bean name="/usuario/usuario-query" 					parent="usuarioAction" singleton="false" autowire="byName" />
+	<bean name="/usuario/usuario-form" 						parent="usuarioAction" singleton="false" autowire="byName" />
+	<bean name="/usuario/usuario-form-validate" 			parent="usuarioAction" singleton="false" autowire="byName" />
+	<bean name="/usuario/usuario-persona-form" 				parent="usuarioAction" singleton="false" autowire="byName" />
+	<bean name="/usuario/usuario-persona-form-validate" 	parent="usuarioAction" singleton="false" autowire="byName" />
+	<bean name="/usuario/usuario-password-form" 			parent="usuarioAction" singleton="false" autowire="byName" />
+	<bean name="/usuario/usuario-password-form-validate" 	parent="usuarioAction" singleton="false" autowire="byName" />
 
-	<bean name="/archivo/archivo" class="com.antares.sirius.view.action.ArchivoAction" autowire="byName">
-		<property name="archivoService" 				ref="archivoService" />
-	</bean>
+	<bean name="/archivo/archivo" class="com.antares.sirius.view.action.ArchivoAction" autowire="byName" />
 
 	<bean name="/proyecto/presupuesto-form" class="com.antares.sirius.view.action.PresupuestoAction" autowire="byName" />
 
-	<bean name="reportePersonaAction" class="com.antares.sirius.view.action.ReportePersonaAction" autowire="byName">
-		<property name="personaService" 				ref="personaService" />
-	</bean>
-	<bean name="/reportes/reporte-persona" 				parent="reportePersonaAction" singleton="false" />
-	
-	<bean name="reporteFinanciadorAction" class="com.antares.sirius.view.action.ReporteFinanciadorAction" autowire="byName">
-		<property name="financiadorService" 				ref="financiadorService" />
-	</bean>
-	<bean name="/reportes/reporte-financiador" 				parent="reporteFinanciadorAction" singleton="false" />
+	<bean name="/reportes/reporte-persona" 		class="com.antares.sirius.view.action.ReportePersonaAction" 	singleton="false" autowire="byName" />
+	<bean name="/reportes/reporte-financiador" 	class="com.antares.sirius.view.action.ReporteFinanciadorAction" singleton="false" autowire="byName"/>
+	<bean name="/reportes/reporte-proveedor" 	class="com.antares.sirius.view.action.ReporteProveedorAction" 	singleton="false" autowire="byName" />
 
-	<bean name="reporteProveedorAction" class="com.antares.sirius.view.action.ReporteProveedorAction" autowire="byName">
-		<property name="proveedorService" 					ref="proveedorService" />
-	</bean>
-	<bean name="/reportes/reporte-proveedor"				parent="reporteProveedorAction" singleton="false" />
-
-	<bean name="reporteFinancieroAction" class="com.antares.sirius.view.action.ReporteFinancieroAction" autowire="byName">
-		<property name="proyectoService" 					ref="proyectoService" />
-		<property name="objetivoGeneralService" 			ref="objetivoGeneralService" />
-		<property name="objetivoEspecificoService" 			ref="objetivoEspecificoService" />
-		<property name="metaService" 						ref="metaService" />
-		<property name="actividadService" 					ref="actividadService" />	
-		<property name="rubroService" 						ref="rubroService" />	
-		<property name="finanzasService" 					ref="finanzasService" />	
-	</bean>
-	<bean name="/reportes/reporte-financiero"				parent="reporteFinancieroAction" singleton="false" />
-	<bean name="/reportes/reporte-financiero-validate"		parent="reporteFinancieroAction" singleton="false" />
+	<bean name="/reportes/reporte-financiero"			class="com.antares.sirius.view.action.ReporteFinancieroAction" singleton="false" autowire="byName" />
+	<bean name="/reportes/reporte-financiero-validate"	class="com.antares.sirius.view.action.ReporteFinancieroAction" singleton="false" autowire="byName" />
 	
 </beans>

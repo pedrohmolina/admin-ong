@@ -114,7 +114,7 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 	}
 
 	private void updateArchivo(Proyecto entity, FormFile formFile) {
-		if (formFile != null) {
+		if (formFile != null && formFile.getFileSize() > 0) {
 			Blob contenido = Utils.createBlob(formFile);
 			if (contenido != null) {
 				if (entity.getArchivo() == null) {

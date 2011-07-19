@@ -20,8 +20,7 @@
 	<bean id="actividadService" parent="abstractTransactionManager" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" autowire="byName">
 		<property name="target">
 			<bean class="com.antares.sirius.service.impl.ActividadServiceImpl" autowire="byName">
-				<property name="dao" 				ref="actividadDAO" /> 
-				<property name="parametroService" 	ref="parametroService" /> 
+				<property name="dao" ref="actividadDAO" /> 
 			</bean>
 		</property>
 		<property name="proxyTargetClass" value="true" />
@@ -48,9 +47,7 @@
 	<bean id="gastoService" parent="abstractTransactionManager" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" autowire="byName">
 		<property name="target">
 			<bean class="com.antares.sirius.service.impl.GastoServiceImpl" autowire="byName">
-				<property name="dao" 				ref="gastoDAO" /> 
-				<property name="parametroService" 	ref="parametroService" /> 
-				<property name="proyectoService" 	ref="proyectoService" /> 
+				<property name="dao" ref="gastoDAO" /> 
 			</bean>
 		</property>
 		<property name="proxyTargetClass" value="true" />
@@ -122,8 +119,7 @@
 	<bean id="proyectoService" parent="abstractTransactionManager" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" autowire="byName">
 		<property name="target">
 			<bean class="com.antares.sirius.service.impl.ProyectoServiceImpl" autowire="byName">
-				<property name="dao" 				ref="proyectoDAO" /> 
-				<property name="parametroService" 	ref="parametroService" /> 
+				<property name="dao" ref="proyectoDAO" /> 
 			</bean>
 		</property>
 		<property name="proxyTargetClass" value="true" />
@@ -168,8 +164,7 @@
 	<bean id="presupuestoService" parent="abstractTransactionManager" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" autowire="byName">
 		<property name="target">
 			<bean class="com.antares.sirius.service.impl.PresupuestoServiceImpl" autowire="byName">
-				<property name="dao" 						ref="presupuestoDAO" /> 
-				<property name="tipoPresupuestoService" 	ref="tipoPresupuestoService" /> 
+				<property name="dao" ref="presupuestoDAO" /> 
 			</bean>
 		</property>
 		<property name="proxyTargetClass" value="true" />
@@ -201,7 +196,6 @@
 	
 	<bean id="estadoActividadService" class="com.antares.sirius.service.impl.EstadoActividadServiceImpl" autowire="byName">
 		<property name="dao" ref="estadoActividadDAO" /> 
-		<property name="parametroService" ref="parametroService" /> 
 	</bean>
 
 	<bean id="estadoFinanciadorService" class="com.antares.sirius.service.impl.EstadoFinanciadorServiceImpl" autowire="byName">
@@ -209,8 +203,7 @@
 	</bean>
 
 	<bean id="estadoProyectoService" class="com.antares.sirius.service.impl.EstadoProyectoServiceImpl" autowire="byName">
-		<property name="dao" 				ref="estadoProyectoDAO" /> 
-		<property name="parametroService" 	ref="parametroService" /> 
+		<property name="dao" ref="estadoProyectoDAO" /> 
 	</bean>
 
 	<bean id="formaPagoService" class="com.antares.sirius.service.impl.FormaPagoServiceImpl" autowire="byName">
@@ -242,22 +235,19 @@
 	</bean>
 	
 	<bean id="tipoFinanciadorService" class="com.antares.sirius.service.impl.TipoFinanciadorServiceImpl" autowire="byName">
-		<property name="dao" 				ref="tipoFinanciadorDAO" /> 
+		<property name="dao" ref="tipoFinanciadorDAO" /> 
 	</bean>
 	
 	<bean id="tipoGastoService" class="com.antares.sirius.service.impl.TipoGastoServiceImpl" autowire="byName">
-		<property name="dao" 				ref="tipoGastoDAO" /> 
-		<property name="parametroService" 	ref="parametroService" /> 
+		<property name="dao" ref="tipoGastoDAO" /> 
 	</bean>
 	
 	<bean id="tipoIngresoService" class="com.antares.sirius.service.impl.TipoIngresoServiceImpl" autowire="byName">
-		<property name="dao" 				ref="tipoIngresoDAO" /> 
-		<property name="parametroService" 	ref="parametroService" /> 
+		<property name="dao" ref="tipoIngresoDAO" /> 
 	</bean>
 	
 	<bean id="tipoPresupuestoService" class="com.antares.sirius.service.impl.TipoPresupuestoServiceImpl" autowire="byName">
-		<property name="dao" 				ref="tipoPresupuestoDAO" /> 
-		<property name="parametroService" 	ref="parametroService" /> 
+		<property name="dao" ref="tipoPresupuestoDAO" /> 
 	</bean>
 	
 	<bean id="tipoProveedorService" class="com.antares.sirius.service.impl.TipoProveedorServiceImpl" autowire="byName">
