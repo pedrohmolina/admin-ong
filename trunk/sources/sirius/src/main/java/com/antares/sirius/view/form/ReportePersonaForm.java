@@ -187,6 +187,7 @@ public class ReportePersonaForm extends ActionForm{
 	}
 	
 	public void initialize() {
+		this.result = null;
 		this.apellido = "";
 		this.nombre = "";
 		this.numeroDocumento = "";

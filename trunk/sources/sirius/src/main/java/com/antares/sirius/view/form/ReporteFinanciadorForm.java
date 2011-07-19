@@ -219,6 +219,7 @@ public class ReporteFinanciadorForm extends ActionForm{
 	}
 
 	public void initialize() {
+		this.result = null;
 		this.nombre = "";
 		this.cuit = "";
 		this.cbu = "";

@@ -375,6 +375,7 @@ public class GastoForm extends AbstractForm<Gasto> {
 	public void initialize() {
 		this.id = null;
 		this.result = null;
+		this.actividades = null;
 		this.idPersona = "";
 		this.fecha = "";
 		this.observaciones = "";
@@ -407,6 +408,7 @@ public class GastoForm extends AbstractForm<Gasto> {
 	@Override
 	public void initializeForm() {
 		this.id = null;
+		this.actividades = null;
 		this.idPersona = "";
 		this.fecha = "";
 		this.observaciones = "";

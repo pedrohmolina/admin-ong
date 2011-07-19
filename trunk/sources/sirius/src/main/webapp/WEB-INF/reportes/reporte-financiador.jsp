@@ -24,7 +24,7 @@ function confirmarAccion(mensaje) {
 	<html:form action="/reportes/reporte-financiador.do?method=generarReporteFinanciador">
 	
 	<div style="float:left; width: 100%;">
-		<h2>Filtros</h2>
+		<h2><bean:message key="sirius.reportes.filtros" /></h2>
 		<p>
 		<label for="nombre"><bean:message key="sirius.financiador.nombre.label" />:</label>
 		<html:text property="nombre" />
@@ -51,7 +51,7 @@ function confirmarAccion(mensaje) {
 
 	<div style="float: left; width: 100%;">
 	<p>	
-	<h2>Vista Previa Resultados</h2>
+	<h2><bean:message key="sirius.reportes.vistaPreviaResultados" /></h2>
 	<display-el:table export="false" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.reporteFinanciadorForm.result" id="item"
 		requestURI="/reportes/reporte-financiador.do" sort="list" >
 
@@ -72,8 +72,7 @@ function confirmarAccion(mensaje) {
 
 	<div style="float:left;width: 100%;">
 	<p>	
-		<h2>Columnas</h2>
-		
+		<h2><bean:message key="sirius.reportes.columnas" /></h2>
 		<p>
 			<label for="tipoFinanciador"><bean:message key="sirius.financiador.tipoFinanciador.label" />:</label>
 			<html:checkbox property="verTipoFinanciador" value="true" style="width:20px" />

@@ -52,12 +52,14 @@
 		<html:select property="idAreaTematica" multiple="true" style="height: 100px">
 			<html:optionsCollection name="proyectoForm" property="areasTematicas" label="descripcion" value="id"/>
 		</html:select>
-		</p><br><p>
+		</p><br>
 		<logic:iterate id="tipoAgrupamiento" name="proyectoForm" property="tiposAgrupamiento">
+			<p>
+			<label><bean:write name="tipoAgrupamiento" property="descripcion" /></label>
 			<html-el:radio property="idTipoAgrupamiento" value="${tipoAgrupamiento.id}" disabled="true" style="width: 20px"/>
-			<bean:write name="tipoAgrupamiento" property="descripcion" />
-			</p><br><p>
+			</p>
 		</logic:iterate>
+		<br><p>
 		<logic:notEmpty name="proyectoForm" property="hashArchivo">
 			</p><br><p>
 			<label><bean:message key="sirius.proyecto.archivo.label" />&nbsp;:</label>

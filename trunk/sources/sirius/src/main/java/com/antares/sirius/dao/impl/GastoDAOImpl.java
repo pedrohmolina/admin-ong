@@ -67,9 +67,8 @@ public class GastoDAOImpl extends BusinessEntityDAOImpl<Gasto> implements GastoD
 			crit.createAlias("actividad.meta", "meta");
 			crit.createAlias("meta.objetivoEspecifico", "objetivoEspecifico");
 			crit.createAlias("objetivoEspecifico.objetivoGeneral", "objetivoGeneral");
-			crit.add(Restrictions.eq("objetivoGeneral.proyecto", entityFilter.getProyecto()));
+			crit.add(Restrictions.eq("objetivoGeneral.proyecto", entityFilter.getProyectoActividad()));
 		}
-		
 	}
 
 	@Override

@@ -183,7 +183,7 @@ public abstract class BaseAction<T extends BusinessObject, V extends AbstractFor
 		boolean loaded = false;
 		Integer id = new Integer(request.getParameter("id"));
 		T entity = service.findById(id);
-		if (entity != null) {
+		if (entity != null && entity.isActivo()) {
 			viewForm.initializeForm(entity);
 			postLoadEntity(entity, viewForm);
 			loadCollections(viewForm);
@@ -215,7 +215,7 @@ public abstract class BaseAction<T extends BusinessObject, V extends AbstractFor
 					forward = mapping.findForward("success");
 				} else if (viewForm.getAction().equals(UPDATE)) {
 					T entity = service.findById(viewForm.getId());
-					if (entity != null) {
+					if (entity != null && entity.isActivo()) {
 						updateEntity(entity, viewForm);
 						service.update(entity);
 						forward = mapping.findForward("success");
