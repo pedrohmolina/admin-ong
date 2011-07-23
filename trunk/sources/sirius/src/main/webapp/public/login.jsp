@@ -41,11 +41,18 @@
 		<label for="j_password"><bean:message key="sirius.usuario.password.label"/>:</label><input type="password" onKeyPress="return submitenter(this,event)"  name="j_password" id="j_password"  maxlength="12">
 		<br><br>
 	</div>
-	
-	<div style="clear:both; padding:5px 0 0 0;">
+	<div style="clear:both; padding:5px 0 0 0;"></div>
+	<div class="boton">
+		<a href="#" onclick="document.forms[0].submit()"><bean:message key="antares.base.aceptar.label" /></a>
+	</div>
+	<div style="clear:both; padding:5px 0 0 0;"></div>
+		<div class="errores" >
 	<logic:present parameter="error">
-		<h3 style="text-align: center; font-size: small;"><bean:message key="security.login.loginproblem"/></h3>
-		<h3 style="text-align: center;">
+		<ul>
+		<li>
+		<bean:message key="security.login.loginproblem"/>		
+		</li>
+		<li>
 		<c:choose>
 			<c:when test="${sessionScope['ACEGI_SECURITY_LAST_EXCEPTION'].class.name == 'org.acegisecurity.BadCredentialsException'}">
 				<bean:message key="security.login.badCredentials"/>
@@ -61,13 +68,12 @@
 				<bean:message key="security.login.errorUnknown"/>
 			</c:otherwise>
 		</c:choose>
-		</h3>
+		</li>
+		</ul>
 		<%-- if (true) throw new RuntimeException(); --%>
 	</logic:present>
 	</div>
-	<div class="boton">
-		<a href="#" onclick="document.forms[0].submit()"><bean:message key="antares.base.aceptar.label" /></a>
-	</div>
+	
 	<div style="clear:both; padding:5px 0 0 0;"></div>
 </form>
 

@@ -355,6 +355,10 @@ table tbody a {
 	color: red;
 }
 
+.error_login {
+	top: 500px;
+}
+
 .presupuesto{
 	float: right;
 	margin: 10px 10px 10px 10px;
