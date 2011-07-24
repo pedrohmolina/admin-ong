@@ -103,7 +103,7 @@
 			<html:optionsCollection name="usuarioForm" property="formasPago" label="descripcion" value="id"/>
 		</html:select>
 		</p><br><p>
-		<label for="idPersonaFactura"><bean:message key="sirius.usuario.personaFactura.label" />(*)&nbsp;:</label>
+		<label for="idPersonaFactura"><bean:message key="sirius.usuario.personaFactura.label" />&nbsp;:</label>
 		<html:select property="idPersonaFactura">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="usuarioForm" property="personasFactura" label="nombreYApellido" value="id"/>
