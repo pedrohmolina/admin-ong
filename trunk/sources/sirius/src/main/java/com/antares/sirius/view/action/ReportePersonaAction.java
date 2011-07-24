@@ -126,30 +126,34 @@ public class ReportePersonaAction extends ReporteAction {
 			AbstractColumn columnaCuit = getColumn("cuit", String.class, Utils.getMessage("sirius.persona.cuit.label"), 80, getHeaderStyle(), getDetailStyle());
 			drb.addColumn(columnaCuit);
 		}
+		if (viewForm.getVerCBU()) {
+			AbstractColumn columnaCbu = getColumn("cbu", String.class, Utils.getMessage("sirius.persona.cbu.label"), 80, getHeaderStyle(), getDetailStyle());
+			drb.addColumn(columnaCbu);
+		}
 		if (viewForm.getVerFechaNacimiento()) {
 			AbstractColumn columnaFechaNacimiento = getColumn("fechaNacimiento", Date.class, Utils.getMessage("sirius.persona.fechaNacimiento.label"), 80, getHeaderStyle(), getDetailStyle());
 			columnaFechaNacimiento.setPattern(Constants.DEFAULT_DATE_FORMAT);
 	        drb.addColumn(columnaFechaNacimiento);
 		}
-		if (viewForm.getVerCBU()) {
-			AbstractColumn columnaCbu = getColumn("cbu", String.class, Utils.getMessage("sirius.persona.cbu.label"), 80, getHeaderStyle(), getDetailStyle());
-			drb.addColumn(columnaCbu);
+		if (viewForm.getVerDireccion()) {
+			AbstractColumn columnaDireccion = getColumn("direccion", String.class, Utils.getMessage("sirius.persona.direccion.label"), 80, getHeaderStyle(), getDetailStyle());
+			drb.addColumn(columnaDireccion);
 		}
 		if (viewForm.getVerProfesion()) {
 			AbstractColumn columnaProfesion = getColumn("profesion", String.class, Utils.getMessage("sirius.persona.profesion.label"), 80, getHeaderStyle(), getDetailStyle());
 			drb.addColumn(columnaProfesion);
 		}
-		if (viewForm.getVerFuncion()) {
-			AbstractColumn columnaFuncion = getColumn("funcion", String.class, Utils.getMessage("sirius.persona.funcion.label"), 80, getHeaderStyle(), getDetailStyle());
-			drb.addColumn(columnaFuncion);
+		if (viewForm.getVerTelefono()) {
+			AbstractColumn columnaTelefono = getColumn("telefono", String.class, Utils.getMessage("sirius.persona.telefono.label"), 80, getHeaderStyle(), getDetailStyle());
+			drb.addColumn(columnaTelefono);
 		}
 		if (viewForm.getVerEmail()) {
 			AbstractColumn columnaEmail = getColumn("email", String.class, Utils.getMessage("sirius.persona.email.label"), 140, getHeaderStyle(), getDetailStyle());
 			drb.addColumn(columnaEmail);
 		}
-		if (viewForm.getVerTelefono()) {
-			AbstractColumn columnaTelefono = getColumn("telefono", String.class, Utils.getMessage("sirius.persona.telefono.label"), 80, getHeaderStyle(), getDetailStyle());
-			drb.addColumn(columnaTelefono);
+		if (viewForm.getVerFuncion()) {
+			AbstractColumn columnaFuncion = getColumn("funcion", String.class, Utils.getMessage("sirius.persona.funcion.label"), 80, getHeaderStyle(), getDetailStyle());
+			drb.addColumn(columnaFuncion);
 		}
 		if (viewForm.getVerRelacionContractual()) {
 			AbstractColumn columnaRelacionContractual = getColumn("relacionContractual.descripcion", String.class, Utils.getMessage("sirius.persona.relacionContractual.label"), 80, getHeaderStyle(), getDetailStyle());
