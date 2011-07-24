@@ -97,6 +97,7 @@ public class RubroAction extends BaseAction<Rubro, RubroForm, RubroService> {
 		for (Rubro rubro : lista) {
 			map.put(new Integer(rubro.getId()).toString(), rubro.getNombre());
 		}
+		((RubroForm)form).setRubrosNivelDos(lista);
 
 		sendJSON(response, map);
 		return null;
