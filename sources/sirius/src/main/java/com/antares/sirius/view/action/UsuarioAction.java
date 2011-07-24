@@ -201,6 +201,11 @@ public class UsuarioAction extends BaseAction<Usuario, UsuarioForm, UsuarioServi
 	public ActionForward initCambiarPassword(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		UsuarioPasswordForm viewForm = (UsuarioPasswordForm)form;
 		viewForm.initializeForm();
+
+		//TODO habria que revisar si el usuario tiene permisos para modificar la contraseña de otros usuarios
+		if (Utils.isNotNullNorEmpty(request.getParameter("id"))) {
+			viewForm.setId(new Integer(request.getParameter("id")));
+		}
 		return mapping.findForward("form");
 	}
 
@@ -208,9 +213,9 @@ public class UsuarioAction extends BaseAction<Usuario, UsuarioForm, UsuarioServi
 		UsuarioPasswordForm viewForm = (UsuarioPasswordForm)form;
 		ActionForward forward = mapping.findForward("success");
 		try {
-			ActionErrors errors = validatePassword(Utils.getUsername(), viewForm.getPasswordActual());
+			Usuario usuario = findUsuario(viewForm);
+			ActionErrors errors = validatePassword(usuario.getUsername(), viewForm.getPasswordActual());
 			if (errors.isEmpty()) {
-				Usuario usuario = service.findByUsername(Utils.getUsername());
 				usuario.setPassword(Utils.encode(usuario.getUsername() + "-" + viewForm.getPassword()));
 				service.save(usuario);
 			} else {
@@ -230,6 +235,16 @@ public class UsuarioAction extends BaseAction<Usuario, UsuarioForm, UsuarioServi
 			errors.add("error", new ActionMessage("errors.invalidPasswordActual"));
 		}
 		return errors;
+	}
+
+	private Usuario findUsuario(UsuarioPasswordForm viewForm) {
+		Usuario usuario;
+		if (viewForm.getId() != null) {
+			usuario = service.findById(viewForm.getId());
+		} else {
+			usuario = service.findByUsername(Utils.getUsername());
+		}
+		return usuario;
 	}
 
 	public void setRelacionContractualService(RelacionContractualService relacionContractualService) {

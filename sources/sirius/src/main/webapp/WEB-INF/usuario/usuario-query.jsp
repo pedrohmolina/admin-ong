@@ -98,6 +98,10 @@ function confirmarAccion(mensaje) {
 						src="<c:url value="/img/enable_user.gif"/>" onclick="return confirmarAccion('Est&aacute; seguro que desea desbloquear el usuario <bean:write name="item" property="username"/>?')" /></a>
 				</logic:equal>
 			</authz:authorize>
+			<authz:authorize ifAllGranted="ENTIDAD_USUARIO-CAMBIAR_PASSWORD">
+				<a href="<c:url value="/usuario/usuario-password-form.do?method=initCambiarPassword&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Cambiar Contrase&ntilde;a" title="Cambiar Contrase&ntilde;a"
+					src="<c:url value="/img/key.png"/>" /></a>
+			</authz:authorize>
 		</display:column>
 	</display-el:table>
 </div>

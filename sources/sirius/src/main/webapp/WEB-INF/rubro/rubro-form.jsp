@@ -12,7 +12,7 @@
 
 <script>
 
-	function cargarComboSubrubros(select, destinationCombo){
+	function cargarComboSubrubros(select, destinationCombo) {
 	 	$("#" + destinationCombo).removeOption(/^[^-]/i);
 	 	$("#" + destinationCombo).val("");
 
@@ -22,7 +22,7 @@
 	 		$("#" + destinationCombo).ajaxAddOption(url, {idRubro:selectedOption}, false);
 	 	}
 	}
-	
+
 </script>
 
 <div class="form">
