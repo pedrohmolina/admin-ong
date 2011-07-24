@@ -54,6 +54,13 @@ public class PersonaDAOImpl extends BusinessEntityDAOImpl<Persona> implements Pe
 		return crit.list();
 	}
 
+	public Persona findByNombreApellido(String nombre, String apellido) {
+		Criteria crit = buildCriteria();
+		crit.add(Restrictions.ilike("nombre", nombre, MatchMode.EXACT));
+		crit.add(Restrictions.ilike("apellido", apellido, MatchMode.EXACT));
+		return (Persona)crit.uniqueResult();
+	}
+
 	@Override
 	protected void addOrder(Criteria crit) {
 		crit.addOrder(Order.asc("apellido"));

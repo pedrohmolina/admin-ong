@@ -15,4 +15,13 @@ public interface PersonaDAO extends BusinessEntityDAO<Persona> {
 	 */
 	Collection<Persona> findAllOthers(Integer id);
 
+	/**
+	 * Devuelve la persona a partir de su nombre y apellido
+	 * 
+	 * @param nombre de la persona
+	 * @param apellido de la persona
+	 * @return
+	 */
+	Persona findByNombreApellido(String nombre, String apellido);
+
 }

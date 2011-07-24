@@ -22,4 +22,14 @@ public interface PersonaService extends BusinessEntityService<Persona> {
 	 */
 	Collection<Persona> findAllOthers(Integer id);
 
+	/**
+	 * Valida que el nombre y apellido no esten repetidos en otra entidad con distinto id
+	 * 
+	 * @param nombre nombre a validar
+	 * @param apellido apellido a validar
+	 * @param id id de la entidad actual
+	 * @return
+	 */
+	boolean isNombreApellidoRepetido(String nombre, String apellido, Integer id);
+
 }
