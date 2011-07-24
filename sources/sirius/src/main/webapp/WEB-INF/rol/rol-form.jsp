@@ -16,7 +16,7 @@
 	<div style="float:left;">
 		<p>
 		<label for="nombre"><bean:message key="sirius.rol.nombre.label" />(*)&nbsp;:</label>
-		<html:text maxlength="20" property="nombre"></html:text>
+		<html:text maxlength="255" property="nombre"></html:text>
 		</p><br><p>
 		<label for="descripcion"><bean:message key="sirius.rol.descripcion.label" />(*)&nbsp;:</label>
 		<html:textarea property="descripcion" rows="5" />
