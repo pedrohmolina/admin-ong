@@ -16,6 +16,15 @@ import com.antares.sirius.service.PersonaService;
  */
 public class PersonaServiceImpl extends BusinessEntityServiceImpl<Persona, PersonaDAO> implements PersonaService {
 
+	public boolean isNombreApellidoRepetido(String nombre, String apellido, Integer id) {
+		boolean isNombreRepetido = false;
+		Persona entity = dao.findByNombreApellido(nombre, apellido);
+		if (entity != null) {
+			isNombreRepetido = !entity.getId().equals(id);
+		}
+		return isNombreRepetido;
+	}
+
 	public Collection<Persona> findAllOthers(Integer id) {
 		return dao.findAllOthers(id);
 	}

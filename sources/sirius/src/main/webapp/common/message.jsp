@@ -3,15 +3,21 @@
 <%@ taglib uri="/WEB-INF/tlds/struts-html.tld" prefix="html" %>
 <%@ taglib uri="/WEB-INF/tlds/struts-logic.tld" prefix="logic" %>
 
-<h3 class="info">
-	<html:messages id="msg" message="true">
-		<bean:write filter="false" name="msg"/><br>
-	</html:messages>
-	<logic:notPresent name="org.apache.struts.action.ACTION_MESSAGE" scope="session">
-		La &uacute;ltima operaci&oacute;n se realiz&oacute; con &eacute;xito.
-	</logic:notPresent>
-</h3>
-<c:remove var="org.apache.struts.action.ACTION_MESSAGE" scope="session"/>
-
-<h3 class="info"><a href="<c:url value="/base/home_init.do"/>">Aceptar</a></h3>
+<div class="form">
+	<h2 class="info">
+		<html:messages id="msg" message="true">
+			<bean:write filter="false" name="msg"/><br>
+		</html:messages>
+		<logic:notPresent name="org.apache.struts.action.ACTION_MESSAGE" scope="session">
+			<bean:message key="antares.base.defaultMessage.label" />
+		</logic:notPresent>
+	</h2>
+	<c:remove var="org.apache.struts.action.ACTION_MESSAGE" scope="session"/>
+	
+	<div style="float: left; width: 100%;">
+		<div class="boton">
+			<a href="<c:url value="/base/home_init.do"/>"><bean:message key="antares.base.aceptar.label" /></a>
+		</div>
+	</div>
+</div>
 

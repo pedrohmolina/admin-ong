@@ -1,5 +1,8 @@
 package com.antares.sirius.view.action;
 
+import org.apache.struts.action.ActionErrors;
+import org.apache.struts.action.ActionMessage;
+
 import com.antares.commons.util.Utils;
 import com.antares.commons.view.action.BaseAction;
 import com.antares.sirius.filter.PersonaFilter;
@@ -75,6 +78,19 @@ public class PersonaAction extends BaseAction<Persona, PersonaForm, PersonaServi
 		if (entity.getPersonaFactura() != null && !entity.getPersonaFactura().isActivo()) {
 			form.getPersonasFactura().add(entity.getPersonaFactura());
 		}
+	}
+
+	@Override
+	protected ActionErrors validate(PersonaForm form) {
+		return validateNombreApellidoRepetido(form.getNombre(), form.getApellido(), form.getId());
+	}
+
+	private ActionErrors validateNombreApellidoRepetido(String nombre, String apellido, Integer id) {
+		ActionErrors errors = new ActionErrors();
+		if (service.isNombreApellidoRepetido(nombre, apellido, id)) {
+			errors.add("error", new ActionMessage("errors.unique", Utils.getMessage("sirius.persona.apellidoYNombre.label")));
+		}
+		return errors;
 	}
 
 	public void setRelacionContractualService(RelacionContractualService relacionContractualService) {
