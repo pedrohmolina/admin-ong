@@ -129,7 +129,7 @@ public class PresupuestoAction extends DispatchAction {
 				Double monto = Utils.parseDouble(montoStr);
 	
 				// Si el monto ingresado es 0, se debe eliminar el presupuesto del DTO
-				if (monto.doubleValue() == 0D) {
+				if (monto != null && monto.doubleValue() == 0D) {
 					monto = null;
 				}
 	
