@@ -29,7 +29,7 @@ public abstract class GenericDAOImpl<T extends PersistentObject> extends Hiberna
 	}
 
 	/**
-	 * @see com.antares.sirius.service.GenericDAO #findById(Serializable)
+	 * @see com.antares.sirius.dao.GenericDAO #findById(Serializable)
 	 * {@inheritDoc}
 	 */
 	public T findById(Serializable id) {
@@ -37,7 +37,7 @@ public abstract class GenericDAOImpl<T extends PersistentObject> extends Hiberna
 	}
 
 	/**
-	 * @see com.antares.sirius.service.GenericDAO #findAll()
+	 * @see com.antares.sirius.dao.GenericDAO #findAll()
 	 * {@inheritDoc}
 	 */
 	public Collection<T> findAll() {
@@ -45,7 +45,7 @@ public abstract class GenericDAOImpl<T extends PersistentObject> extends Hiberna
 	}
 
 	/**
-	 * @see com.antares.sirius.service.GenericDAO #save(T)
+	 * @see com.antares.sirius.dao.GenericDAO #save(T)
 	 * {@inheritDoc}
 	 */
 	public void save(T entity) {
@@ -53,7 +53,7 @@ public abstract class GenericDAOImpl<T extends PersistentObject> extends Hiberna
 	}
 
 	/**
-	 * @see com.antares.sirius.service.GenericDAO #update(T)
+	 * @see com.antares.sirius.dao.GenericDAO #update(T)
 	 * {@inheritDoc}
 	 */
 	public void update(T entity) {
@@ -61,7 +61,7 @@ public abstract class GenericDAOImpl<T extends PersistentObject> extends Hiberna
 	}
 
 	/**
-	 * @see com.antares.sirius.service.GenericDAO #delete(T)
+	 * @see com.antares.sirius.dao.GenericDAO #delete(T)
 	 * {@inheritDoc}
 	 */
 	public void delete(T entity) {

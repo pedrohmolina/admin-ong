@@ -1,5 +1,8 @@
 package com.antares.sirius.view.form;
 
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
+
 import java.util.Collection;
 
 import org.apache.struts.action.ActionForm;
@@ -37,10 +40,10 @@ public class ReportePersonaForm extends ActionForm{
 	private Boolean verFechaNacimiento;
 	private Boolean verProfesion;
 	private Boolean verDireccion;
-	private Boolean verTelefono;
+	private Boolean verTelefono = TRUE;
 	private Boolean verEmail;
 	private Boolean verFuncion;
-	private Boolean verRelacionContractual;
+	private Boolean verRelacionContractual = TRUE;
 	
 	public String getFormatoReporte() {
 		return formatoReporte;
@@ -193,16 +196,16 @@ public class ReportePersonaForm extends ActionForm{
 		this.numeroDocumento = "";
 		this.cuit = "";
 		this.nacionalidad = "";
-		this.verNumeroDocumento = false;
-		this.verCuit = false;
-		this.verCBU = false;
-		this.verFechaNacimiento = false;
-		this.verProfesion = false;
-		this.verDireccion = false;
-		this.verTelefono = false;
-		this.verEmail = false;
-		this.verFuncion = false;
-		this.verRelacionContractual = false;
+		this.verNumeroDocumento = TRUE;
+		this.verCuit = FALSE;
+		this.verCBU = FALSE;
+		this.verFechaNacimiento = FALSE;
+		this.verProfesion = FALSE;
+		this.verDireccion = FALSE;
+		this.verTelefono = TRUE;
+		this.verEmail = FALSE;
+		this.verFuncion = FALSE;
+		this.verRelacionContractual = TRUE;
 	}
 
 	public void initializeForm() {
@@ -211,16 +214,16 @@ public class ReportePersonaForm extends ActionForm{
 		this.numeroDocumento = "";
 		this.cuit = "";
 		this.nacionalidad = "";
-		this.verNumeroDocumento = false;
-		this.verCuit = false;
-		this.verCBU = false;
-		this.verFechaNacimiento = false;
-		this.verProfesion = false;
-		this.verDireccion = false;
-		this.verTelefono = false;
-		this.verEmail = false;
-		this.verFuncion = false;
-		this.verRelacionContractual = false;
+		this.verNumeroDocumento = TRUE;
+		this.verCuit = FALSE;
+		this.verCBU = FALSE;
+		this.verFechaNacimiento = FALSE;
+		this.verProfesion = FALSE;
+		this.verDireccion = FALSE;
+		this.verTelefono = TRUE;
+		this.verEmail = FALSE;
+		this.verFuncion = FALSE;
+		this.verRelacionContractual = TRUE;
 	}
 
 	public void initializeForm(Persona entity) {

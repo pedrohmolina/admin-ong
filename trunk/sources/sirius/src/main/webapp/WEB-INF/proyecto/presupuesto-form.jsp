@@ -58,8 +58,8 @@
 				    	edittype: 'text'
 				    },
 				</logic:iterate>
-				{name: '% TOTAL', index: '% TOTAL', align: "right", sortable: false, width: 40},
-				{name: 'TOTAL', index: 'TOTAL', align: "right", sortable: false, width: 40}
+				{name: '% TOTAL', index: '% TOTAL', align: "right", sortable: false, width: 60, classes: 'total'},
+				{name: 'TOTAL', index: 'TOTAL', align: "right", sortable: false, width: 60, classes: 'total'}
 			],			
 			cellurl: '<c:url value="/proyecto/presupuesto-form.do"/>?method=updateData',
 			afterSaveCell: afterSave,
@@ -85,6 +85,7 @@
 				if (j >= cells.length - 2) {
 					var cell = $(cells[j]);
 					cell.addClass('not-editable-cell');
+					cell.addClass('total');
 				}
 			}
 		} 
