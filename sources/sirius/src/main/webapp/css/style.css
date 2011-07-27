@@ -328,6 +328,10 @@ table tbody a {
 	height: 20px;
 }
 
+div a {
+	color: #11627D;
+}
+
 .boton a {
 	border: solid 1px #D2D1D6;
 	text-decoration: none;
@@ -377,6 +381,10 @@ table tbody a {
 
 .textrojo{
 	color: red;
+}
+
+.total{
+	background-color: #E0E0E0;
 }
 
 .home{

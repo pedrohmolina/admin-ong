@@ -1,5 +1,8 @@
 package com.antares.sirius.view.form;
 
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
+
 import java.util.Collection;
 
 import org.apache.struts.action.ActionForm;
@@ -227,15 +230,15 @@ public class ReporteFinanciadorForm extends ActionForm{
 		this.idTipoFinanciador = "";
 		this.labelEstadoFinanciador = "";
 		this.labelTipoFinanciador = "";
-		this.verTipoFinanciador = false;
-		this.verEstadoFinanciador = false;
-		this.verCuit = false;
-		this.verCBU = false;
-		this.verContacto = false;
-		this.verDireccion = false;
-		this.verTelefono = false;
-		this.verEmail = false;
-		this.verObservaciones = false;
+		this.verTipoFinanciador = TRUE;
+		this.verEstadoFinanciador = TRUE;
+		this.verCuit = FALSE;
+		this.verCBU = FALSE;
+		this.verContacto = FALSE;
+		this.verDireccion = TRUE;
+		this.verTelefono = TRUE;
+		this.verEmail = FALSE;
+		this.verObservaciones = FALSE;
 	}
 
 	public void initializeForm() {
@@ -246,15 +249,15 @@ public class ReporteFinanciadorForm extends ActionForm{
 		this.idTipoFinanciador = "";
 		this.labelEstadoFinanciador = "";
 		this.labelTipoFinanciador = "";
-		this.verTipoFinanciador = false;
-		this.verEstadoFinanciador = false;
-		this.verCuit = false;
-		this.verCBU = false;
-		this.verContacto = false;
-		this.verDireccion = false;
-		this.verTelefono = false;
-		this.verEmail = false;
-		this.verObservaciones = false;
+		this.verTipoFinanciador = TRUE;
+		this.verEstadoFinanciador = TRUE;
+		this.verCuit = FALSE;
+		this.verCBU = FALSE;
+		this.verContacto = FALSE;
+		this.verDireccion = TRUE;
+		this.verTelefono = TRUE;
+		this.verEmail = FALSE;
+		this.verObservaciones = FALSE;
 	}
 
 	public void initializeForm(Financiador entity) {

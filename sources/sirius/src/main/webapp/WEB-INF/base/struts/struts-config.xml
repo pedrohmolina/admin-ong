@@ -63,7 +63,7 @@
 
 	<!-- ================= Global Forward Definitions ================== -->
 	<global-forwards>
-		<forward name="restrictedAccess" path=".restrictedAccess" />
+		<forward name="restrictedAccess" path="/errors/403.do" />
 	</global-forwards>
 
 	<!-- ================= Action Mapping Definitions ================== -->

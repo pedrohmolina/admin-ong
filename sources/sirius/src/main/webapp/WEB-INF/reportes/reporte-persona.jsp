@@ -74,50 +74,50 @@ function confirmarAccion(mensaje) {
 
 	<div style="float:left; width: 100%;">
 	<p>	
-		<h2><bean:message key="sirius.reportes.columnas" /></h2>
-		<p>
-			<label for="numeroDocumento"><bean:message key="sirius.persona.numeroDocumento.label" />:</label>
-			<html:checkbox property="verNumeroDocumento" value="true" style="width:20px" />
-			<html:hidden property="verNumeroDocumento" value="false" />
-		</p><br><p>
-			<label for="cuit"><bean:message key="sirius.persona.cuit.label" />:</label>
-			<html:checkbox property="verCuit" value="true" style="width:20px" />
-			<html:hidden property="verCuit" value="false" />
-		</p><br><p>
-			<label for="cbu"><bean:message key="sirius.persona.cbu.label" />:</label>
-			<html:checkbox property="verCBU" value="true" style="width:20px" />
-			<html:hidden property="verCBU" value="false" />
-		</p><br><p>
-			<label for="fechaNacimiento"><bean:message key="sirius.persona.fechaNacimiento.label" />:</label>
-			<html:checkbox property="verFechaNacimiento" value="true" style="width:20px" />
-			<html:hidden property="verFechaNacimiento" value="false" />
-		</p><br><p>
-			<label for="profesion"><bean:message key="sirius.persona.profesion.label" />:</label>
-			<html:checkbox property="verProfesion" value="true" style="width:20px" />
-			<html:hidden property="verProfesion" value="false" />
-		</p><br><p>
-			<label for="direccion"><bean:message key="sirius.persona.direccion.label" />:</label>
-			<html:checkbox property="verDireccion" value="true" style="width:20px" />
-			<html:hidden property="verDireccion" value="false" />
-		</p><br><p>
-			<label for="telefono"><bean:message key="sirius.persona.telefono.label" />:</label>
-			<html:checkbox property="verTelefono" value="true" style="width:20px" />
-			<html:hidden property="verTelefono" value="false" />
-		</p><br><p>
-			<label for="email"><bean:message key="sirius.persona.email.label" />:</label>
-			<html:checkbox property="verEmail" value="true" style="width:20px" />
-			<html:hidden property="verEmail" value="false" />
-		</p><br><p>
-			<label for="funcion"><bean:message key="sirius.persona.funcion.label" />:</label>
-			<html:checkbox property="verFuncion" value="true" style="width:20px" />
-			<html:hidden property="verFuncion" value="false" />
-		</p><br><p>
-			<label for="relacionContractual"><bean:message key="sirius.persona.relacionContractual.label" />:</label>
-			<html:checkbox property="verRelacionContractual" value="true" style="width:20px" />
-			<html:hidden property="verRelacionContractual" value="false" />
-		</p><br>
-		</table>
-		<br>
+		<h2 onclick="hideShow('divColumnas')"><bean:message key="sirius.reportes.columnas" /></h2>
+		<div id="divColumnas">
+			<p>
+				<label for="numeroDocumento"><bean:message key="sirius.persona.numeroDocumento.label" />:</label>
+				<html:checkbox property="verNumeroDocumento" value="true" style="width:20px" />
+				<html:hidden property="verNumeroDocumento" value="false" />
+			</p><br><p>
+				<label for="cuit"><bean:message key="sirius.persona.cuit.label" />:</label>
+				<html:checkbox property="verCuit" value="true" style="width:20px" />
+				<html:hidden property="verCuit" value="false" />
+			</p><br><p>
+				<label for="cbu"><bean:message key="sirius.persona.cbu.label" />:</label>
+				<html:checkbox property="verCBU" value="true" style="width:20px" />
+				<html:hidden property="verCBU" value="false" />
+			</p><br><p>
+				<label for="fechaNacimiento"><bean:message key="sirius.persona.fechaNacimiento.label" />:</label>
+				<html:checkbox property="verFechaNacimiento" value="true" style="width:20px" />
+				<html:hidden property="verFechaNacimiento" value="false" />
+			</p><br><p>
+				<label for="profesion"><bean:message key="sirius.persona.profesion.label" />:</label>
+				<html:checkbox property="verProfesion" value="true" style="width:20px" />
+				<html:hidden property="verProfesion" value="false" />
+			</p><br><p>
+				<label for="direccion"><bean:message key="sirius.persona.direccion.label" />:</label>
+				<html:checkbox property="verDireccion" value="true" style="width:20px" />
+				<html:hidden property="verDireccion" value="false" />
+			</p><br><p>
+				<label for="telefono"><bean:message key="sirius.persona.telefono.label" />:</label>
+				<html:checkbox property="verTelefono" value="true" style="width:20px" />
+				<html:hidden property="verTelefono" value="false" />
+			</p><br><p>
+				<label for="email"><bean:message key="sirius.persona.email.label" />:</label>
+				<html:checkbox property="verEmail" value="true" style="width:20px" />
+				<html:hidden property="verEmail" value="false" />
+			</p><br><p>
+				<label for="funcion"><bean:message key="sirius.persona.funcion.label" />:</label>
+				<html:checkbox property="verFuncion" value="true" style="width:20px" />
+				<html:hidden property="verFuncion" value="false" />
+			</p><br><p>
+				<label for="relacionContractual"><bean:message key="sirius.persona.relacionContractual.label" />:</label>
+				<html:checkbox property="verRelacionContractual" value="true" style="width:20px" />
+				<html:hidden property="verRelacionContractual" value="false" />
+			</p><br>
+		</div>
 	</div>
 
 	<div style="float: left; width: 100%;">

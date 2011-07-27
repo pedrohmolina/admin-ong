@@ -173,7 +173,7 @@
 		<div id="divValorFecha">
 			<p>
 			<label for="valorFecha"><bean:message key="sirius.regla.valor.label" />(*)&nbsp;:</label>
-			<html:text property="valorFecha" styleId="valorFecha" />Calendario
+			<html:text property="valorFecha" styleId="valorFecha" styleClass="datepicker" />
 			</p><br>
 		</div>
 		<div id="divValorCombo">

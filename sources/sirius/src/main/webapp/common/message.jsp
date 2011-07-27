@@ -19,5 +19,6 @@
 			<a href="<c:url value="/base/home_init.do"/>"><bean:message key="antares.base.aceptar.label" /></a>
 		</div>
 	</div>
+	<div style="clear:both; padding:5px 0 0 0;"></div>
 </div>
 

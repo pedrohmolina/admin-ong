@@ -72,44 +72,46 @@ function confirmarAccion(mensaje) {
 
 	<div style="float:left;width: 100%;">
 	<p>	
-		<h2><bean:message key="sirius.reportes.columnas" /></h2>
-		<p>
-			<label for="tipoFinanciador"><bean:message key="sirius.financiador.tipoFinanciador.label" />:</label>
-			<html:checkbox property="verTipoFinanciador" value="true" style="width:20px" />
-			<html:hidden property="verTipoFinanciador" value="false" />
-		</p><br><p>
-			<label for="cuit"><bean:message key="sirius.financiador.cuit.label" />:</label>
-			<html:checkbox property="verCuit" value="true" style="width:20px" />
-			<html:hidden property="verCuit" value="false" />
-		</p><br><p>
-			<label for="cbu"><bean:message key="sirius.financiador.cbu.label" />:</label>
-			<html:checkbox property="verCBU" value="true" style="width:20px" />
-			<html:hidden property="verCBU" value="false" />
-		</p><br><p>
-			<label for="contacto"><bean:message key="sirius.financiador.contacto.label" />:</label>
-			<html:checkbox property="verContacto" value="true" style="width:20px" />
-			<html:hidden property="verContacto" value="false" />
-		</p><br><p>
-			<label for="observaciones"><bean:message key="sirius.financiador.observaciones.label" />:</label>
-			<html:checkbox property="verObservaciones" value="true" style="width:20px" />
-			<html:hidden property="verObservaciones" value="false" />
-		</p><br><p>
-			<label for="direccion"><bean:message key="sirius.financiador.direccion.label" />:</label>
-			<html:checkbox property="verDireccion" value="true" style="width:20px" />
-			<html:hidden property="verDireccion" value="false" />
-		</p><br><p>
-			<label for="telefono"><bean:message key="sirius.financiador.telefono.label" />:</label>
-			<html:checkbox property="verTelefono" value="true" style="width:20px" />
-			<html:hidden property="verTelefono" value="false" />
-		</p><br><p>
-			<label for="email"><bean:message key="sirius.financiador.email.label" />:</label>
-			<html:checkbox property="verEmail" value="true" style="width:20px" />
-			<html:hidden property="verEmail" value="false" />
-		</p><br><p>
-			<label for="estadoFinanciador"><bean:message key="sirius.financiador.estadoFinanciador.label" />:</label>
-			<html:checkbox property="verEstadoFinanciador" value="true" style="width:20px" />
-			<html:hidden property="verEstadoFinanciador" value="false" />
-		</p><br>
+		<h2 onclick="hideShow('divColumnas')"><bean:message key="sirius.reportes.columnas" /></h2>
+		<div id="divColumnas">
+			<p>
+				<label for="tipoFinanciador"><bean:message key="sirius.financiador.tipoFinanciador.label" />:</label>
+				<html:checkbox property="verTipoFinanciador" value="true" style="width:20px" />
+				<html:hidden property="verTipoFinanciador" value="false" />
+			</p><br><p>
+				<label for="cuit"><bean:message key="sirius.financiador.cuit.label" />:</label>
+				<html:checkbox property="verCuit" value="true" style="width:20px" />
+				<html:hidden property="verCuit" value="false" />
+			</p><br><p>
+				<label for="cbu"><bean:message key="sirius.financiador.cbu.label" />:</label>
+				<html:checkbox property="verCBU" value="true" style="width:20px" />
+				<html:hidden property="verCBU" value="false" />
+			</p><br><p>
+				<label for="contacto"><bean:message key="sirius.financiador.contacto.label" />:</label>
+				<html:checkbox property="verContacto" value="true" style="width:20px" />
+				<html:hidden property="verContacto" value="false" />
+			</p><br><p>
+				<label for="observaciones"><bean:message key="sirius.financiador.observaciones.label" />:</label>
+				<html:checkbox property="verObservaciones" value="true" style="width:20px" />
+				<html:hidden property="verObservaciones" value="false" />
+			</p><br><p>
+				<label for="direccion"><bean:message key="sirius.financiador.direccion.label" />:</label>
+				<html:checkbox property="verDireccion" value="true" style="width:20px" />
+				<html:hidden property="verDireccion" value="false" />
+			</p><br><p>
+				<label for="telefono"><bean:message key="sirius.financiador.telefono.label" />:</label>
+				<html:checkbox property="verTelefono" value="true" style="width:20px" />
+				<html:hidden property="verTelefono" value="false" />
+			</p><br><p>
+				<label for="email"><bean:message key="sirius.financiador.email.label" />:</label>
+				<html:checkbox property="verEmail" value="true" style="width:20px" />
+				<html:hidden property="verEmail" value="false" />
+			</p><br><p>
+				<label for="estadoFinanciador"><bean:message key="sirius.financiador.estadoFinanciador.label" />:</label>
+				<html:checkbox property="verEstadoFinanciador" value="true" style="width:20px" />
+				<html:hidden property="verEstadoFinanciador" value="false" />
+			</p><br>
+		</div>
 	</div>
 
 
