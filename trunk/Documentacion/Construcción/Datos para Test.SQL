@@ -61,8 +61,10 @@ INSERT INTO `gasto` (`id`, `idProyecto`, `idActividad`, `fecha`, `idRubro`, `idO
 
 update usuario set password = '32ff9ee7e841b26a966870c144fdcaec' where id = 1 and username = 'admin';
 
-
-
+-- Juli Script 24-07
+insert into accion (id, descripcion) values (13, 'CAMBIAR_PASSWORD');
+insert into acceso (id, idRecurso, idAccion) values (112, 22, 13);
+insert into rolacceso (idRol, idAcceso) values (19, 112);
 
 
 
