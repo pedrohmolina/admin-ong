@@ -228,7 +228,7 @@ public class UsuarioAction extends BaseAction<Usuario, UsuarioForm, UsuarioServi
 		}
 		
 		if (viewForm.getId() != null) {
-			//Se está modificando la contraseña desde el ABM de usuarios, la pantalla de mensaje debe poder 
+			// Se está modificando la contraseña desde el ABM de usuarios, la pantalla de mensaje debe poder 
 			// direccionar a la busqueda anterior
 			request.setAttribute("backUrl", "/usuario/usuario-query.do?method=lastQuery");
 		}
