@@ -16,7 +16,12 @@
 	
 	<div style="float: left; width: 100%;">
 		<div class="boton">
-			<a href="<c:url value="/base/home_init.do"/>"><bean:message key="antares.base.aceptar.label" /></a>
+			<logic:notPresent name="backUrl" scope="request">
+				<a href="<c:url value="/base/home_init.do"/>"><bean:message key="antares.base.aceptar.label" /></a>
+			</logic:notPresent>
+			<logic:present name="backUrl" scope="request">
+				<a href="<c:url value="${requestScope['backUrl']}"/>"><bean:message key="antares.base.aceptar.label" /></a>
+			</logic:present>
 		</div>
 	</div>
 	<div style="clear:both; padding:5px 0 0 0;"></div>

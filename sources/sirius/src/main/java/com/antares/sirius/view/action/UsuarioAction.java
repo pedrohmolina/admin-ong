@@ -205,6 +205,7 @@ public class UsuarioAction extends BaseAction<Usuario, UsuarioForm, UsuarioServi
 		//TODO habria que revisar si el usuario tiene permisos para modificar la contraseña de otros usuarios
 		if (Utils.isNotNullNorEmpty(request.getParameter("id"))) {
 			viewForm.setId(new Integer(request.getParameter("id")));
+			request.setAttribute("backUrl", "/usuario/usuario-query.do?method=lastQuery");
 		}
 		return mapping.findForward("form");
 	}
@@ -224,6 +225,12 @@ public class UsuarioAction extends BaseAction<Usuario, UsuarioForm, UsuarioServi
 			}
 		} catch (RestrictedAccessException e) {
 			forward = mapping.findForward("restrictedAccess"); 
+		}
+		
+		if (viewForm.getId() != null) {
+			//Se está modificando la contraseña desde el ABM de usuarios, la pantalla de mensaje debe poder 
+			// direccionar a la busqueda anterior
+			request.setAttribute("backUrl", "/usuario/usuario-query.do?method=lastQuery");
 		}
 		return forward;
 	}

@@ -53,7 +53,12 @@
 	</div>
 	<div class="boton">
 		<a href="#" onclick="usuarioPasswordForm.submit();" tabindex="17"><bean:message key="antares.base.aceptar.label" /></a>
-		<a href="<c:url value="//base/home_init.do"/>"><bean:message key="antares.base.cancelar.label" /></a>
+		<logic:notPresent name="backUrl" scope="request">
+			<a href="<c:url value="/base/home_init.do"/>"><bean:message key="antares.base.cancelar.label" /></a>
+		</logic:notPresent>
+		<logic:present name="backUrl" scope="request">
+			<a href="<c:url value="${requestScope['backUrl']}"/>"><bean:message key="antares.base.cancelar.label" /></a>
+		</logic:present>
 	</div>
 	<div style="clear:both; padding:5px 0 0 0;"></div>
 </html:form>
