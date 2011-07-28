@@ -12,6 +12,7 @@ import java.security.MessageDigest;
 import java.sql.Blob;
 import java.text.DecimalFormat;
 import java.text.ParseException;
+import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
@@ -115,12 +116,14 @@ public class Utils {
 	 */
 	public static Double parseDouble(String doubleStr) {
 		Double doubleNum = null;
-		try {
-			if (isNotNullNorEmpty(doubleStr)) {
-				doubleNum = DECIMAL_FORMAT.parse(doubleStr).doubleValue();
+		if (isNotNullNorEmpty(doubleStr)) {
+			ParsePosition parsePosition = new ParsePosition(0);
+			Number num = DECIMAL_FORMAT.parse(doubleStr, parsePosition);
+			
+			if (parsePosition.getIndex() == doubleStr.length()) {
+				// Si no se pudo parsear completo, devuelvo null
+				doubleNum = num.doubleValue();
 			}
-		} catch (ParseException e) {
-			// Si no se puede formatear, devuelvo null
 		}
 		return doubleNum;
 	}
