@@ -212,6 +212,31 @@ label {
 	float: left;
 }
 
+p {
+	color: #7C7C7C;
+	margin-left: 15px;
+	margin-right: 5px;
+}
+
+#masInfo {
+	color: #7C7C7C;
+	margin-left: 15px;
+	margin-right: 5px;
+}
+
+#masInfo input {
+	margin-left: 30px;
+	margin-right: 5px;	
+	border: 1px solid #D3D3D3;
+}
+
+#masInfo textarea {
+	margin-left: 30px;
+	margin-right: 5px;	
+	border: 1px solid #D3D3D3;
+}
+
+
 table {
 	border: 1px solid #D2D1D6;
 	font-size: small;
