@@ -87,8 +87,8 @@ function confirmarAccion(mensaje) {
 	
 		<display:column sortable="true" property="nombre" 							titleKey="sirius.proyecto.nombre.label" />
 		<display:column sortable="true" property="responsable.nombreYApellido" 		titleKey="sirius.proyecto.responsable.label" />
-		<display:column sortable="true" property="fechaInicio" 						titleKey="sirius.proyecto.fechaInicio.label" />
-		<display:column sortable="true" property="fechaFin" 						titleKey="sirius.proyecto.fechaFin.label" />
+		<display:column sortable="true" property="fechaInicio" 						titleKey="sirius.proyecto.fechaInicio.label" 	format="{0,date,dd/MM/yyyy}" />
+		<display:column sortable="true" property="fechaFin" 						titleKey="sirius.proyecto.fechaFin.label" 		format="{0,date,dd/MM/yyyy}" />
 		<display:column sortable="true" property="financiador.nombre" 				titleKey="sirius.proyecto.financiador.label" />
 		<display:column sortable="true" property="estadoProyecto.descripcion" 		titleKey="sirius.proyecto.estadoProyecto.label" />
 
