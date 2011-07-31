@@ -72,6 +72,7 @@ public abstract class BaseAction<T extends BusinessObject, V extends AbstractFor
 	public ActionForward query(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		V viewForm = (V)form;
 		Filter<T> filter = createFilter(viewForm);
+		loadCollections(viewForm);
 		viewForm.setResult(service.findByFilter(filter));
 		return mapping.findForward("query");
 	}
@@ -88,6 +89,8 @@ public abstract class BaseAction<T extends BusinessObject, V extends AbstractFor
 	 */
 	@SuppressWarnings("unchecked")
 	public ActionForward lastQuery(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		V viewForm = (V)form;
+		loadCollections(viewForm);
 		return mapping.findForward("query");
 	}
 
@@ -145,6 +148,8 @@ public abstract class BaseAction<T extends BusinessObject, V extends AbstractFor
 	 */
 	@SuppressWarnings("unchecked")
 	public ActionForward initForm(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		V viewForm = (V)form;
+		loadCollections(viewForm);
 		return mapping.findForward("form");
 	}
 
