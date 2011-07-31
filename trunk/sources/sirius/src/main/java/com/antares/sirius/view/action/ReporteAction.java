@@ -22,7 +22,6 @@ import static java.awt.Color.LIGHT_GRAY;
 import static java.awt.Color.WHITE;
 import static net.sf.jasperreports.engine.JRExporterParameter.JASPER_PRINT;
 import static net.sf.jasperreports.engine.JRExporterParameter.OUTPUT_STREAM;
-import static net.sf.jasperreports.engine.export.JRHtmlExporterParameter.IMAGES_URI;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -36,11 +35,9 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.jasperreports.engine.JRExporter;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.export.JRCsvExporter;
-import net.sf.jasperreports.engine.export.JRHtmlExporter;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.export.JRRtfExporter;
 import net.sf.jasperreports.engine.export.JRXlsExporter;
-import net.sf.jasperreports.j2ee.servlets.ImageServlet;
 import net.sf.json.JSONObject;
 
 import org.apache.struts.actions.DispatchAction;
@@ -98,13 +95,6 @@ public abstract class ReporteAction extends DispatchAction {
 			    exporter = new JRRtfExporter();
 			    exporter.setParameter(JASPER_PRINT, jasperPrint);
 			    exporter.setParameter(OUTPUT_STREAM, ouputStream);
-				break;
-			case HTM:
-			    exporter = new JRHtmlExporter();
-			    request.getSession().setAttribute(ImageServlet.DEFAULT_JASPER_PRINT_SESSION_ATTRIBUTE, jasperPrint);
-			    exporter.setParameter(JASPER_PRINT, jasperPrint);
-			    exporter.setParameter(OUTPUT_STREAM, ouputStream);
-			    exporter.setParameter(IMAGES_URI,"image?image=");
 				break;
 			case XLS:
 				setContentHeader(response, getFileName(), formatoReporte.getExtension());
