@@ -4,8 +4,7 @@ public enum FormatoReporteEnum {
 	PDF(1, "PDF", "pdf"),
 	XLS(2, "XLS", "xls"),
 	CSV(3, "CSV", "csv"),
-	HTM(4, "HTM", "htm"),
-	RTF(5, "RTF", "rtf");
+	RTF(4, "RTF", "rtf");
 	
 	protected Integer id;
 	private String descripcion;
