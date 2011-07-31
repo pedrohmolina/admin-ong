@@ -1,7 +1,7 @@
 package com.antares.sirius.view.action;
 
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -96,7 +96,7 @@ public class AsignacionAction extends BaseAction<Asignacion, AsignacionForm, Asi
 		}
 		((AsignacionForm)form).setActividades(lista);
 
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, String> map = new LinkedHashMap<String, String>();
 		for (Actividad actividad : lista) {
 			map.put(new Integer(actividad.getId()).toString(), actividad.getNombre());
 		}

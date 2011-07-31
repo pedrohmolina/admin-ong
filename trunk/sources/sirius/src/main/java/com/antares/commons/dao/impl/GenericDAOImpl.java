@@ -68,6 +68,13 @@ public abstract class GenericDAOImpl<T extends PersistentObject> extends Hiberna
 		getHibernateTemplate().delete(entity);
 	}
 
+	protected Criteria buildCriteria() {
+		Criteria crit = getSession().createCriteria(persistentClass);
+		crit.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		addOrder(crit);
+		return crit;
+	}
+
 	protected void addOrder(Criteria crit) {
 		
 	}

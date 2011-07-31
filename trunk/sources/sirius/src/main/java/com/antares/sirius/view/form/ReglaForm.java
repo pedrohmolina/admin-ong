@@ -234,7 +234,7 @@ public class ReglaForm extends AbstractForm<Regla> {
 		this.idAtributo = entity.getAtributo().getId().toString();
 		this.idOperador = entity.getOperador().getId().toString();
 		this.labelUsuario = entity.getUsuario().getUsername();
-		this.labelEntidad = entity.getEntidad().getDescripcion();
+		this.labelEntidad = Utils.getMessage(entity.getEntidad().getDescripcion());
 		this.labelAtributo = Utils.getMessage(entity.getAtributo().getDescripcion());
 		this.labelOperador = entity.getOperador().getDescripcion();
 		this.labelValor = entity.getValorDescripcion();

@@ -2,7 +2,7 @@ package com.antares.sirius.view.action;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -93,7 +93,7 @@ public class RubroAction extends BaseAction<Rubro, RubroForm, RubroService> {
 
 		String id =(String) request.getParameter("idRubro");
 		Collection<Rubro> lista = service.findHijos(Utils.parseInteger(id));
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, String> map = new LinkedHashMap<String, String>();
 		for (Rubro rubro : lista) {
 			map.put(new Integer(rubro.getId()).toString(), rubro.getNombre());
 		}
