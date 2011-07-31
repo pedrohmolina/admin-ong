@@ -110,12 +110,16 @@
 					<var-value>255</var-value>
 				</var>
 			</field>
-			<field property="cuit" depends="maxlength, cuit">
+			<field property="cuit" depends="maxlength, mask, cuit">
 				<arg position="0" key="sirius.financiador.cuit.label"/>
 				<arg position="1" key="${var:maxlength}" resource="false" />
 				<var>
 					<var-name>maxlength</var-name>
 					<var-value>20</var-value>
+				</var>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^\d{2}\-\d{8}\-\d{1}$</var-value>
 				</var>
 			</field>
 			<field property="cbu" depends="maxlength">
@@ -466,12 +470,16 @@
 			<field property="numeroDocumento" depends="required, integer">
 				<arg position="0" key="sirius.persona.numeroDocumento.label"/>
 			</field>
-			<field property="cuit" depends="maxlength, cuit">
+			<field property="cuit" depends="maxlength, mask, cuit">
 				<arg position="0" key="sirius.persona.cuit.label"/>
 				<arg position="1" key="${var:maxlength}" resource="false" />
 				<var>
 					<var-name>maxlength</var-name>
 					<var-value>20</var-value>
+				</var>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^\d{2}\-\d{8}\-\d{1}$</var-value>
 				</var>
 			</field>
 			<field property="cbu" depends="maxlength">
@@ -578,12 +586,16 @@
 					<var-value>255</var-value>
 				</var>
 			</field>
-			<field property="cuit" depends="maxlength, cuit">
+			<field property="cuit" depends="maxlength, mask, cuit">
 				<arg position="0" key="sirius.proveedor.cuit.label"/>
 				<arg position="1" key="${var:maxlength}" resource="false" />
 				<var>
 					<var-name>maxlength</var-name>
 					<var-value>20</var-value>
+				</var>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^\d{2}\-\d{8}\-\d{1}$</var-value>
 				</var>
 			</field>
 			<field property="cbu" depends="maxlength">
@@ -864,12 +876,16 @@
 			<field property="numeroDocumento" depends="required, integer">
 				<arg position="0" key="sirius.usuario.numeroDocumento.label"/>
 			</field>
-			<field property="cuit" depends="maxlength, cuit">
+			<field property="cuit" depends="maxlength, mask, cuit">
 				<arg position="0" key="sirius.usuario.cuit.label"/>
 				<arg position="1" key="${var:maxlength}" resource="false" />
 				<var>
 					<var-name>maxlength</var-name>
 					<var-value>20</var-value>
+				</var>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^\d{2}\-\d{8}\-\d{1}$</var-value>
 				</var>
 			</field>
 			<field property="cbu" depends="maxlength">
