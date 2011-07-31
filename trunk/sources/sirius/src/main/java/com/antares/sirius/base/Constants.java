@@ -13,4 +13,5 @@ public interface Constants {
 	String DEFAULT_DECIMAL_FORMAT = "#0.00";
 
 	String ANTARES_LOGO = "/reports/Antares.jpg";
+	String SIRIUS_LOGO = "/reports/Sirius.png";
 }

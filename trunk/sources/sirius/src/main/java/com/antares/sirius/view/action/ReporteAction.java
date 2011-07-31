@@ -4,6 +4,7 @@ import static ar.com.fdvs.dj.domain.AutoText.ALIGNMENT_RIGHT;
 import static ar.com.fdvs.dj.domain.AutoText.AUTOTEXT_PAGE_X_SLASH_Y;
 import static ar.com.fdvs.dj.domain.AutoText.POSITION_FOOTER;
 import static ar.com.fdvs.dj.domain.ImageBanner.ALIGN_RIGHT;
+import static ar.com.fdvs.dj.domain.ImageBanner.ALIGN_LEFT;
 import static ar.com.fdvs.dj.domain.constants.Border.NO_BORDER;
 import static ar.com.fdvs.dj.domain.constants.Border.PEN_2_POINT;
 import static ar.com.fdvs.dj.domain.constants.Border.THIN;
@@ -15,6 +16,7 @@ import static ar.com.fdvs.dj.domain.constants.HorizontalAlign.CENTER;
 import static ar.com.fdvs.dj.domain.constants.Transparency.OPAQUE;
 import static ar.com.fdvs.dj.domain.constants.VerticalAlign.MIDDLE;
 import static com.antares.sirius.base.Constants.ANTARES_LOGO;
+import static com.antares.sirius.base.Constants.SIRIUS_LOGO;
 import static java.awt.Color.BLACK;
 import static java.awt.Color.DARK_GRAY;
 import static java.awt.Color.GRAY;
@@ -152,8 +154,8 @@ public abstract class ReporteAction extends DispatchAction {
 		drb.setBottomMargin(margin);
 		drb.setPrintBackgroundOnOddRows(true);
 		drb.setOddRowBackgroundStyle(oddRowStyle);
-		drb.addFirstPageImageBanner(ANTARES_LOGO, new Integer(90), new Integer(20), ALIGN_RIGHT);
-		  
+		drb.addFirstPageImageBanner(ANTARES_LOGO, new Integer(90), new Integer(20), ALIGN_LEFT);
+		drb.addFirstPageImageBanner(SIRIUS_LOGO, new Integer(120), new Integer(50), ALIGN_RIGHT);  
 		return drb;
 	}
 	
