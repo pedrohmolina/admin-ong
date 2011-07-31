@@ -43,10 +43,8 @@ public abstract class BusinessEntityDAOImpl<T extends BusinessObject> extends Ge
 	}
 
 	protected Criteria buildCriteria() {
-		Criteria crit = getSession().createCriteria(persistentClass);
-		crit.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		Criteria crit = super.buildCriteria();
 		addLogicConstraint(crit);
-		addOrder(crit);
 		return crit;
 	}
 

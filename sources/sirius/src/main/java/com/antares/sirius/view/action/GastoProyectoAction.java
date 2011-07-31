@@ -1,6 +1,6 @@
 package com.antares.sirius.view.action;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -84,7 +84,7 @@ public class GastoProyectoAction extends GastoAction {
 			throws Exception {
 		
 		String idProyecto =(String) request.getParameter("idProyecto");
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, String> map = new LinkedHashMap<String, String>();
 		if (Utils.isNotNullNorEmpty(idProyecto)) {
 			Proyecto proyecto = proyectoService.findById(Utils.parseInteger(idProyecto));
 			map.put("isIndividual", proyectoService.isIndividual(proyecto) ? "true" : "false");

@@ -5,7 +5,7 @@ import static com.antares.commons.enums.ActionEnum.UPDATE;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -163,7 +163,7 @@ public class GastoActividadAction extends GastoAction {
 		Proyecto proyecto = proyectoService.findById(Utils.parseInteger(id));
 		Collection<Actividad> lista = actividadService.findAllByProyecto(proyecto);
 		((GastoForm)form).setActividades(lista);
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, String> map = new LinkedHashMap<String, String>();
 		for (Actividad actividad : lista) {
 			map.put(new Integer(actividad.getId()).toString(), actividad.getNombre());
 		}
@@ -176,7 +176,7 @@ public class GastoActividadAction extends GastoAction {
 			throws Exception {
 		
 		String idProyecto =(String) request.getParameter("idProyecto");
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, String> map = new LinkedHashMap<String, String>();
 		if (Utils.isNotNullNorEmpty(idProyecto)) {
 			Proyecto proyecto = proyectoService.findById(Utils.parseInteger(idProyecto));
 			map.put("isIndividual", proyectoService.isIndividual(proyecto) ? "true" : "false");
@@ -192,7 +192,7 @@ public class GastoActividadAction extends GastoAction {
 			throws Exception {
 		
 		String idProyecto =(String) request.getParameter("idProyecto");
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, String> map = new LinkedHashMap<String, String>();
 		if (Utils.isNotNullNorEmpty(idProyecto)) {
 			Proyecto proyecto = proyectoService.findById(Utils.parseInteger(idProyecto));
 			map.put("isAgrupado", proyectoService.isAgrupado(proyecto) ? "true" : "false");

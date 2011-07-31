@@ -2,7 +2,7 @@ package com.antares.sirius.view.action;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -97,7 +97,7 @@ public class ReglaAction extends BaseAction<Regla, ReglaForm, ReglaService> impl
 	@Override
 	protected void postLoadEntity(Regla entity, ReglaForm viewForm) {
 		if (entity.getAtributo() != null) {
-			viewForm.setAtributos(entity.getAtributo().getEntidad().getAtributos());
+			viewForm.getAtributos().addAll(entity.getAtributo().getEntidad().getAtributos());
 
 			PropertyType tipo = PropertyType.findById(entity.getAtributo().getTipoAtributo().getId());
 			if (PropertyType.TEXT.equals(tipo)) {
@@ -112,7 +112,7 @@ public class ReglaAction extends BaseAction<Regla, ReglaForm, ReglaService> impl
 			}
 
 			if (entity.getOperador() != null) {
-				viewForm.setOperadores(entity.getOperador().getTipoAtributo().getOperadores());
+				viewForm.getOperadores().addAll(entity.getOperador().getTipoAtributo().getOperadores());
 			}
 		}
 	}
@@ -122,8 +122,8 @@ public class ReglaAction extends BaseAction<Regla, ReglaForm, ReglaService> impl
 	
 		String idEntidad =(String) request.getParameter("idEntidad");
 		Entidad entidad = entidadService.findById(Utils.parseInteger(idEntidad));
-		((ReglaForm)form).setAtributos(entidad.getAtributos());
-		Map<String, String> map = new HashMap<String, String>();
+		((ReglaForm)form).getAtributos().addAll(entidad.getAtributos());
+		Map<String, String> map = new LinkedHashMap<String, String>();
 		for (Atributo atributo : entidad.getAtributos()) {
 			map.put(new Integer(atributo.getId()).toString(), Utils.getMessage(atributo.getDescripcion()));
 		}
@@ -137,8 +137,8 @@ public class ReglaAction extends BaseAction<Regla, ReglaForm, ReglaService> impl
 		
 		String idAtributo =(String) request.getParameter("idAtributo");
 		Atributo atributo = atributoService.findById(Utils.parseInteger(idAtributo));
-		((ReglaForm)form).setOperadores(atributo.getTipoAtributo().getOperadores());
-		Map<String, String> map = new HashMap<String, String>();
+		((ReglaForm)form).getOperadores().addAll(atributo.getTipoAtributo().getOperadores());
+		Map<String, String> map = new LinkedHashMap<String, String>();
 		for (Operador operador : atributo.getTipoAtributo().getOperadores()) {
 			map.put(new Integer(operador.getId()).toString(), operador.getDescripcion());
 		}
@@ -153,7 +153,7 @@ public class ReglaAction extends BaseAction<Regla, ReglaForm, ReglaService> impl
 		String idAtributo =(String) request.getParameter("idAtributo");
 		Atributo atributo = atributoService.findById(Utils.parseInteger(idAtributo));
 
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, String> map = new LinkedHashMap<String, String>();
 		Collection<PersistentObject> opciones = getValores(atributo);
 		if (!opciones.isEmpty()) {
 			((ReglaForm)form).setValores(opciones);
@@ -174,7 +174,7 @@ public class ReglaAction extends BaseAction<Regla, ReglaForm, ReglaService> impl
 		String idAtributo =(String) request.getParameter("idAtributo");
 		Atributo atributo = atributoService.findById(Utils.parseInteger(idAtributo));
 
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, String> map = new LinkedHashMap<String, String>();
 		map.put("tipoAtributo", atributo.getTipoAtributo().getId().toString());
 		
 		sendJSON(response, map);
