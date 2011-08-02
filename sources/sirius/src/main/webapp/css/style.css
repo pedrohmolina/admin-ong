@@ -3,6 +3,7 @@
 	margin: 0px;
 	padding: 0px;
 	outline: 0;
+	
 }
 
 /* AZUL = 0A607E */
@@ -321,6 +322,7 @@ table tbody a {
 /*Filtros de Busqueda*/
 .form {
 	line-height: 10px;
+	
 }
 
 .form label {
@@ -343,6 +345,7 @@ table tbody a {
 	border: 1px solid #D3D3D3;
 	width: 300px;
 	height: 100px;
+	font-size: 13px;
 }
 
 .form select {
@@ -415,4 +418,14 @@ div a {
 .home{
 	padding-top: 70px;
 	height: 400px;
+}
+
+.exportlinks{
+	color: #7C7C7C;
+	font-size: 15px;
+	font-style: normal;
+	font-weight: lighter;
+	margin-left: 15px;
+	margin-right: 5px;
+	width: 400px;
 }
