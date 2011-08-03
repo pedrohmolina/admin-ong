@@ -55,7 +55,9 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 	private String filtroIdAreaTematica;
 	
 	private String labelResponsable;
+	private String labelCoordinadores;
 	private String labelFinanciador;
+	private String labelAreasTematicas;
 
 	public String getNombre() {
 		return nombre;
@@ -305,6 +307,22 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 		this.presupuestoTotal = presupuestoTotal;
 	}
 
+	public String getLabelCoordinadores() {
+		return labelCoordinadores;
+	}
+
+	public void setLabelCoordinadores(String labelCoordinadores) {
+		this.labelCoordinadores = labelCoordinadores;
+	}
+
+	public String getLabelAreasTematicas() {
+		return labelAreasTematicas;
+	}
+
+	public void setLabelAreasTematicas(String labelAreasTematicas) {
+		this.labelAreasTematicas = labelAreasTematicas;
+	}
+
 	@Override
 	public void initialize() {
 		this.id = null;
@@ -331,7 +349,9 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 		this.filtroIdFinanciador = "";
 		this.filtroIdAreaTematica = "";
 		this.labelResponsable = "";
+		this.labelCoordinadores = "";
 		this.labelFinanciador = "";
+		this.labelAreasTematicas = "";
 		this.archivo = null;
 		this.nombreArchivo = "";
 		this.hashArchivo = "";
@@ -355,7 +375,9 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 		this.idAreaTematica = null;
 		this.idTipoAgrupamiento = "";
 		this.labelResponsable = "";
+		this.labelCoordinadores = "";
 		this.labelFinanciador = "";
+		this.labelAreasTematicas = "";
 		this.archivo = null;
 		this.nombreArchivo = "";
 		this.hashArchivo = "";
@@ -380,14 +402,20 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 
 		int cantCoordinadores = entity.getCoordinadores().size();
 		this.idCoordinadores = new Integer[cantCoordinadores];
+		this.labelCoordinadores = "";
 		for (Persona coordinador : entity.getCoordinadores()) {
 			this.idCoordinadores[--cantCoordinadores] = coordinador.getId();
+			this.labelCoordinadores += coordinador.getNombreYApellido() + "\n";
 		}
+
 		int cantAreas = entity.getAreasTematicas().size();
 		this.idAreaTematica = new Integer[cantAreas];
+		this.labelAreasTematicas = "";
 		for (AreaTematica area : entity.getAreasTematicas()) {
 			this.idAreaTematica[--cantAreas] = area.getId();
+			this.labelAreasTematicas += area.getDescripcion() + "\n";
 		}
+
 		this.idTipoAgrupamiento = entity.getTipoAgrupamiento().getId().toString();
 
 		if (entity.getArchivo() != null) {
