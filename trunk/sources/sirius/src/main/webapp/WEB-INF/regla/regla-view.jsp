@@ -11,7 +11,6 @@
 
 <div class="form">
 <html:form action="/regla/regla-query.do?method=query">
-	<h1>Datos</h1>
 	<div style="float:left;">
 		<p>
 		<label for="labelUsuario"><bean:message key="sirius.regla.usuario.label" />&nbsp;:</label>
