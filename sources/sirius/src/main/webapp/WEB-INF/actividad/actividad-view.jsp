@@ -14,7 +14,7 @@
 		<h1>Datos</h1>
 		<div class="bb"><div></div></div>
 	</div>
-</div>x
+</div>
 <div class="form">
 <html:form action="/actividad/actividad-query.do?method=query">
 	<div style="float: left;">

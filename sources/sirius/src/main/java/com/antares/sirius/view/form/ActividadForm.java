@@ -2,6 +2,7 @@ package com.antares.sirius.view.form;
 
 import java.util.Collection;
 
+import com.antares.commons.util.Utils;
 import com.antares.commons.view.form.AbstractForm;
 import com.antares.sirius.model.Actividad;
 import com.antares.sirius.model.Financiador;
@@ -25,7 +26,7 @@ public class ActividadForm extends AbstractForm<Actividad> {
 	private String fechaFin;
 	private String idMeta;
 	private String idFinanciador;
-	private Integer completitud;
+	private String completitud;
 	private Collection<Meta> metas;
 	private Collection<Financiador> financiadores;
 
@@ -142,11 +143,11 @@ public class ActividadForm extends AbstractForm<Actividad> {
 		this.labelFinanciador = labelFinanciador;
 	}
 
-	public Integer getCompletitud() {
+	public String getCompletitud() {
 		return completitud;
 	}
 
-	public void setCompletitud(Integer completitud) {
+	public void setCompletitud(String completitud) {
 		this.completitud = completitud;
 	}
 
@@ -173,7 +174,9 @@ public class ActividadForm extends AbstractForm<Actividad> {
 		this.nombre = "";
 		this.ponderacion = "";
 		this.observaciones = "";
-		this.completitud = 0;
+		this.fechaInicio = "";
+		this.fechaFin = "";
+		this.completitud = "0";
 		this.idMeta = "";
 		this.idFinanciador = "";
 		this.filtroNombre = "";
@@ -191,7 +194,9 @@ public class ActividadForm extends AbstractForm<Actividad> {
 		this.nombre = "";
 		this.ponderacion = "";
 		this.observaciones = "";
-		this.completitud = 0;
+		this.fechaInicio = "";
+		this.fechaFin = "";
+		this.completitud = "0";
 		this.idMeta = "";
 		this.idFinanciador = "";
 		this.labelMeta = "";
@@ -207,7 +212,9 @@ public class ActividadForm extends AbstractForm<Actividad> {
 		this.nombre = entity.getNombre();
 		this.ponderacion = entity.getPonderacion().toString();
 		this.observaciones = entity.getObservaciones();
-		this.completitud = entity.getCompletitud().intValue();
+		this.fechaInicio = Utils.formatDate(entity.getFechaInicio());
+		this.fechaFin = Utils.formatDate(entity.getFechaFin());
+		this.completitud = new Integer(entity.getCompletitud().intValue()).toString();
 		this.idMeta = entity.getMeta().getId().toString();
 		this.idFinanciador = entity.getFinanciador().getId().toString();
 		this.labelMeta = entity.getMeta().getNombre();
