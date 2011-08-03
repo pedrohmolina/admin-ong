@@ -337,7 +337,7 @@ table tbody a {
 
 .form input {
 	border: 1px solid #D3D3D3;
-	width: 140px;
+	width: 200px;
 	height: 20px;
 }
 
@@ -351,7 +351,7 @@ table tbody a {
 .form select {
 	border-style: none;
 	border: 1px solid #D3D3D3;
-	width: 140px;
+	width: 200px;
 	text-align: center;
 	height: 20px;
 }
