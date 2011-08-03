@@ -3,7 +3,6 @@
 	margin: 0px;
 	padding: 0px;
 	outline: 0;
-	
 }
 
 /* AZUL = 0A607E */
@@ -166,7 +165,7 @@ div.ui-datepicker {
 	border-color: #C8C8C8;
 }
 
-.img-foot{
+.img-foot {
 	height: 50px;
 	background-image: url("../img/slogo.png");
 	background-repeat: no-repeat;
@@ -227,16 +226,15 @@ p {
 
 #masInfo input {
 	margin-left: 30px;
-	margin-right: 5px;	
+	margin-right: 5px;
 	border: 1px solid #D3D3D3;
 }
 
 #masInfo textarea {
 	margin-left: 30px;
-	margin-right: 5px;	
+	margin-right: 5px;
 	border: 1px solid #D3D3D3;
 }
-
 
 table {
 	border: 1px solid #D2D1D6;
@@ -259,9 +257,7 @@ table thead a {
 	border: none;
 	text-decoration: none;
 	color: #FFFFFF;
-	
 	background-color: #0D5772;
-	
 }
 
 table thead {
@@ -272,7 +268,6 @@ table thead {
 }
 
 table tbody a {
-	
 	font-size: 7px;
 }
 
@@ -318,11 +313,9 @@ table tbody a {
 	text-decoration: underline;
 }
 
-
 /*Filtros de Busqueda*/
 .form {
 	line-height: 10px;
-	
 }
 
 .form label {
@@ -331,14 +324,18 @@ table tbody a {
 	padding-top: 5px;
 }
 
-.table label{
-	width:50px; 
+.table label {
+	width: 50px;
 }
 
 .form input {
 	border: 1px solid #D3D3D3;
 	width: 200px;
 	height: 20px;
+}
+
+.form .datepicker {
+	width: 100px;
 }
 
 .form textarea {
@@ -376,7 +373,7 @@ div a {
 }
 
 /*errores*/
-.errores ul{
+.errores ul {
 	border: red 1px solid;
 	margin: 10px 5px 5px 10px;
 	padding: 10px;
@@ -391,36 +388,36 @@ div a {
 	top: 500px;
 }
 
-.presupuesto{
+.presupuesto {
 	float: right;
 	margin: 10px 10px 10px 10px;
 	border: 2px solid #D3D3D3;
 	padding: 3px 5px 5px 5px;
 }
 
-.presupuesto label{
+.presupuesto label {
 	width: 170px;
 	text-align: rigth;
 }
 
-#presupuestoDisponible{
+#presupuestoDisponible {
 	width: 80px;
 }
 
-.textrojo{
+.textrojo {
 	color: red;
 }
 
-.total{
+.total {
 	background-color: #E0E0E0;
 }
 
-.home{
+.home {
 	padding-top: 70px;
 	height: 400px;
 }
 
-.exportlinks{
+.exportlinks {
 	color: #7C7C7C;
 	font-size: 15px;
 	font-style: normal;
@@ -430,7 +427,6 @@ div a {
 	width: 400px;
 }
 
-.error{
+.error {
 	color: red;
-	
 }
