@@ -60,7 +60,7 @@ public class ActividadAction extends BaseAction<Actividad, ActividadForm, Activi
 			entity.setEstadoActividad(estadoActividadService.findDefault());
 			entity.setCompletitud(0D);
 		} else if (service.isActualizarCompletitud(entity)) {
-			entity.setCompletitud(form.getCompletitud().doubleValue());
+			entity.setCompletitud(Utils.parseDouble(form.getCompletitud()));
 		}
 	}
 
