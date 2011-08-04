@@ -4,6 +4,7 @@ import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMessage;
 
 import com.antares.commons.util.Utils;
+import com.antares.commons.validation.CustomValidationRoutines;
 import com.antares.commons.view.action.BaseAction;
 import com.antares.sirius.filter.MetaFilter;
 import com.antares.sirius.model.Meta;
@@ -45,9 +46,9 @@ public class MetaAction extends BaseAction<Meta, MetaForm, MetaService> {
 	protected ActionErrors validate(MetaForm form) {
 		ActionErrors errors = new ActionErrors();
 		ObjetivoEspecifico objetivoEspecifico = objetivoEspecificoService.findById(Utils.parseInteger(form.getIdObjetivoEspecifico()));
-		if (Utils.excedePonderacion(Utils.parseInteger(form.getPonderacion()), objetivoEspecifico.getMetas(), form.getId())) {
-			errors.add("error", new ActionMessage("errors.ponderiacion", Utils.getMessage("sirius.meta.objetivoEspecifico.label")));
-		}
+		Integer ponderacionTotal = objetivoEspecifico.ponderacionTotal(form.getId());
+		Integer nuevaPonderacion = Utils.parseInteger(form.getPonderacion());
+		CustomValidationRoutines.validatePonderacion(ponderacionTotal, nuevaPonderacion, errors, "sirius.meta.objetivoEspecifico.label");
 		if (service.isNombreRepetido(form.getNombre(), form.getId())) {
 			errors.add("error", new ActionMessage("errors.unique", Utils.getMessage("sirius.meta.nombre.label")));
 		}

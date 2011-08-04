@@ -14,7 +14,6 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
-import java.util.Collection;
 import java.util.Date;
 
 import org.acegisecurity.Authentication;
@@ -25,7 +24,6 @@ import org.hibernate.Hibernate;
 import org.springframework.context.MessageSource;
 
 import com.antares.sirius.model.PersistentObject;
-import com.antares.sirius.model.Ponderable;
 import com.google.gson.Gson;
 
 public class Utils {
@@ -198,25 +196,6 @@ public class Utils {
 	 */
 	public static boolean isNotNullNorEmpty(String str) {
 		return str != null && str.trim().length() > 0;
-	}
-
-	/**
-	 * Evalua si una ponderacion nueva, sumada a las existentes, provoca que se exceda del 100%
-	 * 
-	 * @param nuevaPonderacion nueva ponderacion a evaluar
-	 * @param ponderables lista de elementos ponderables
-	 * @param idPonderacionEditada id del ponderable que se esta editando, en caso de ser un alta en vez de una edicion se debe 
-	 * 			ingresar como null 
-	 * @return
-	 */
-	public static boolean excedePonderacion(Integer nuevaPonderacion, Collection<? extends Ponderable> ponderables, Integer idPonderacionEditada) {
-		Integer ponderacion = 0;
-		for (Ponderable ponderable : ponderables) {
-			if (ponderable.isActivo() && (!ponderable.getId().equals(idPonderacionEditada))) {
-				ponderacion += ponderable.getPonderacion();
-			}
-		}
-		return ponderacion + nuevaPonderacion > 100;
 	}
 
 	/**

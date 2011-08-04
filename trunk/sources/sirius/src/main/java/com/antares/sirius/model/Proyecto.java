@@ -207,4 +207,14 @@ public class Proyecto extends BusinessObject {
 		}
 	}
 
+	public Integer ponderacionTotal(Integer idPonderacionEditada) {
+		Integer ponderacion = 0;
+		for (Ponderable ponderable : this.objetivosGenerales) {
+			if (ponderable.isActivo() && (!ponderable.getId().equals(idPonderacionEditada))) {
+				ponderacion += ponderable.getPonderacion();
+			}
+		}
+		return ponderacion;
+	}
+
 }

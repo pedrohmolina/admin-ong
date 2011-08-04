@@ -15,6 +15,7 @@ import org.apache.struts.action.ActionMessage;
 
 import com.antares.commons.exception.RestrictedAccessException;
 import com.antares.commons.util.Utils;
+import com.antares.commons.validation.CustomValidationRoutines;
 import com.antares.commons.view.action.BaseAction;
 import com.antares.sirius.filter.ActividadFilter;
 import com.antares.sirius.model.Actividad;
@@ -90,9 +91,9 @@ public class ActividadAction extends BaseAction<Actividad, ActividadForm, Activi
 	protected ActionErrors validate(ActividadForm form) {
 		ActionErrors errors = new ActionErrors();
 		Meta meta = metaService.findById(Utils.parseInteger(form.getIdMeta()));
-		if (Utils.excedePonderacion(Utils.parseInteger(form.getPonderacion()), meta.getActividades(), form.getId())) {
-			errors.add("error", new ActionMessage("errors.ponderiacion", Utils.getMessage("sirius.actividad.meta.label")));
-		}
+		Integer ponderacionTotal = meta.ponderacionTotal(form.getId());
+		Integer nuevaPonderacion = Utils.parseInteger(form.getPonderacion());
+		CustomValidationRoutines.validatePonderacion(ponderacionTotal, nuevaPonderacion, errors, "sirius.actividad.meta.label");
 		if (service.isNombreRepetido(form.getNombre(), form.getId())) {
 			errors.add("error", new ActionMessage("errors.unique", Utils.getMessage("sirius.actividad.nombre.label")));
 		}
