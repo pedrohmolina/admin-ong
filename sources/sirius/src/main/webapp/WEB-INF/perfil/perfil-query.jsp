@@ -47,7 +47,7 @@ function confirmarAccion(mensaje) {
 		<html:errors />
 	</div>
 
-	<h1>Resultado de la Búsqueda</h1>
+	<h1><bean:message key="antares.base.result.label" /></h1>
 	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.perfilForm.result" id="item"
 		requestURI="/perfil/perfil-query.do" sort="list" >
 

@@ -94,7 +94,7 @@ function initReferencia(id) {
 		<html:errors />
 	</div>
 
-	<h1>Resultado de la Búsqueda</h1>
+	<h1><bean:message key="antares.base.result.label" /></h1>
 	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.gastoActividadForm.result" id="item"
 		requestURI="/gasto/gasto-actividad-query.do" sort="list" >
 
