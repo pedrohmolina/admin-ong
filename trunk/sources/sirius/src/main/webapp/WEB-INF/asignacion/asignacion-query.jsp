@@ -71,7 +71,7 @@ function cargarComboActividad(select, destinationCombo){
 		<html:errors />
 	</div>
 
-	<h1>Resultado de la Búsqueda</h1>
+	<h1><bean:message key="antares.base.result.label" /></h1>
 	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.asignacionForm.result" id="item"
 		requestURI="/asignacion/asignacion-query.do" sort="list">
 
