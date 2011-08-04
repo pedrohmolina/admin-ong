@@ -16,6 +16,8 @@ public class PersonaFilter extends Filter<Persona> {
 
 	private String apellido;
 	private String nombre;
+	private String cuit;
+	private Integer numeroDocumento;
 	private RelacionContractual relacionContractual;
 
 	public String getApellido() {
@@ -35,6 +37,18 @@ public class PersonaFilter extends Filter<Persona> {
 	}
 	public void setRelacionContractual(RelacionContractual relacionContractual) {
 		this.relacionContractual = relacionContractual;
+	}
+	public String getCuit() {
+		return cuit;
+	}
+	public void setCuit(String cuit) {
+		this.cuit = cuit;
+	}
+	public Integer getNumeroDocumento() {
+		return numeroDocumento;
+	}
+	public void setNumeroDocumento(Integer numeroDocumento) {
+		this.numeroDocumento = numeroDocumento;
 	}
 	
 }

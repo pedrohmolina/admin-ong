@@ -40,10 +40,10 @@ function confirmarAccion(mensaje) {
 		</html:select>
 		</p><br><p>
 		<label for="filtroIdAreaTematica"><bean:message key="sirius.proyecto.areasTematicas.label" />:</label>
-		<html:select property="filtroIdAreaTematica">
-			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
+		<html:select property="filtroIdAreaTematica" multiple="true" style="height: 100px">
 			<html:optionsCollection name="proyectoForm" property="areasTematicas" label="descripcion" value="id"/>
 		</html:select>
+		<html:hidden property="filtroIdAreaTematica" value="0" />
 		</p><br><p>
 		<label for="filtroIdEstadoProyecto"><bean:message key="sirius.proyecto.estadoProyecto.label" />:</label>
 		<html:select property="filtroIdEstadoProyecto">

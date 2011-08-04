@@ -28,7 +28,6 @@ public class ReportePersonaForm extends ActionForm{
 	private String nombre;
 	private String numeroDocumento;
 	private String cuit;
-	private String nacionalidad;
 	
 	//Lista previa de resultados
 	private Collection<Persona> result;
@@ -83,14 +82,6 @@ public class ReportePersonaForm extends ActionForm{
 
 	public void setNumeroDocumento(String numeroDocumento) {
 		this.numeroDocumento = numeroDocumento;
-	}
-
-	public String getNacionalidad() {
-		return nacionalidad;
-	}
-
-	public void setNacionalidad(String nacionalidad) {
-		this.nacionalidad = nacionalidad;
 	}
 
 	public String getCuit() {
@@ -195,7 +186,6 @@ public class ReportePersonaForm extends ActionForm{
 		this.nombre = "";
 		this.numeroDocumento = "";
 		this.cuit = "";
-		this.nacionalidad = "";
 		this.verNumeroDocumento = TRUE;
 		this.verCuit = FALSE;
 		this.verCBU = FALSE;
@@ -213,7 +203,6 @@ public class ReportePersonaForm extends ActionForm{
 		this.nombre = "";
 		this.numeroDocumento = "";
 		this.cuit = "";
-		this.nacionalidad = "";
 		this.verNumeroDocumento = TRUE;
 		this.verCuit = FALSE;
 		this.verCBU = FALSE;
@@ -231,7 +220,6 @@ public class ReportePersonaForm extends ActionForm{
 		this.nombre = entity.getNombre();
 		this.numeroDocumento = entity.getNumeroDocumento().toString();
 		this.cuit = entity.getCbu();
-		this.nacionalidad = entity.getNacionalidad();
 	}
 	
 }

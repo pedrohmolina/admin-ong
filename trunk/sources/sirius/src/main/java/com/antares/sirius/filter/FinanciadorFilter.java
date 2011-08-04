@@ -16,6 +16,8 @@ import com.antares.sirius.model.TipoFinanciador;
 public class FinanciadorFilter extends Filter<Financiador> {
 
 	private String nombre;
+	private String cuit;
+	private String cbu;
 	private EstadoFinanciador estadoFinanciador;
 	private TipoFinanciador tipoFinanciador;
 
@@ -36,6 +38,18 @@ public class FinanciadorFilter extends Filter<Financiador> {
 	}
 	public void setTipoFinanciador(TipoFinanciador tipoFinanciador) {
 		this.tipoFinanciador = tipoFinanciador;
+	}
+	public String getCuit() {
+		return cuit;
+	}
+	public void setCuit(String cuit) {
+		this.cuit = cuit;
+	}
+	public String getCbu() {
+		return cbu;
+	}
+	public void setCbu(String cbu) {
+		this.cbu = cbu;
 	}
 	
 }

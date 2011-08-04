@@ -1,6 +1,7 @@
 package com.antares.sirius.view.action;
 
 import java.sql.Blob;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 
@@ -27,6 +28,7 @@ import com.antares.sirius.model.TipoAgrupamiento;
 import com.antares.sirius.service.AreaTematicaService;
 import com.antares.sirius.service.EstadoProyectoService;
 import com.antares.sirius.service.FinanciadorService;
+import com.antares.sirius.service.GastoService;
 import com.antares.sirius.service.PersonaService;
 import com.antares.sirius.service.ProyectoService;
 import com.antares.sirius.service.TipoAgrupamientoService;
@@ -39,6 +41,7 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 	private AreaTematicaService areaTematicaService;
 	private EstadoProyectoService estadoProyectoService;
 	private TipoAgrupamientoService tipoAgrupamientoService;
+	private GastoService gastoService;
 
 	@Override
 	public ProyectoFilter createFilter(ProyectoForm form) {
@@ -49,9 +52,14 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdFinanciador())) {
 			filter.setFinanciador(financiadorService.findById(Utils.parseInteger(form.getFiltroIdFinanciador())));
 		}
-		if (Utils.isNotNullNorEmpty(form.getFiltroIdAreaTematica())) {
-			filter.setAreaTematica(areaTematicaService.findById(Utils.parseInteger(form.getFiltroIdAreaTematica())));
+
+		filter.setIdsAreasTematicas(new ArrayList<Integer>());
+		for (Integer idAreaTematica : form.getFiltroIdAreaTematica()) {
+			if (idAreaTematica != 0) {
+				filter.getIdsAreasTematicas().add(idAreaTematica);
+			}
 		}
+
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdEstadoProyecto())) {
 			filter.setEstadoProyecto(estadoProyectoService.findById(Utils.parseInteger(form.getFiltroIdEstadoProyecto())));
 		}
@@ -106,7 +114,9 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 			entity.getAreasTematicas().clear();
 		}
 		for (Integer idAreaTematica : areasTematicas) {
-			entity.getAreasTematicas().add(areaTematicaService.findById(idAreaTematica));
+			if (idAreaTematica > 0) {
+				entity.getAreasTematicas().add(areaTematicaService.findById(idAreaTematica));
+			}
 		}
 	}
 
@@ -147,6 +157,12 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 				form.getCoordinadores().add(persona);
 			}
 		}
+	}
+
+	@Override
+	protected void postLoadEntity(Proyecto entity, ProyectoForm viewForm) {
+		boolean isAgrupamientoModificable = !gastoService.existenGastosProyecto(entity);
+		viewForm.setModificarAgrupamiento(isAgrupamientoModificable);
 	}
 
 	@Override
@@ -203,6 +219,10 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 
 	public void setTipoAgrupamientoService(TipoAgrupamientoService tipoAgrupamientoService) {
 		this.tipoAgrupamientoService = tipoAgrupamientoService;
+	}
+
+	public void setGastoService(GastoService gastoService) {
+		this.gastoService = gastoService;
 	}
 
 }
