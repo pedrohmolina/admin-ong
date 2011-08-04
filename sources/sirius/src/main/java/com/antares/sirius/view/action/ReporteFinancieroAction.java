@@ -28,7 +28,6 @@ import org.apache.struts.util.MessageResources;
 
 import ar.com.fdvs.dj.core.DynamicJasperHelper;
 import ar.com.fdvs.dj.core.layout.ClassicLayoutManager;
-import ar.com.fdvs.dj.domain.DJCalculation;
 import ar.com.fdvs.dj.domain.DJCrosstab;
 import ar.com.fdvs.dj.domain.DynamicReport;
 import ar.com.fdvs.dj.domain.builders.ColumnBuilderException;
@@ -36,13 +35,9 @@ import ar.com.fdvs.dj.domain.builders.CrosstabBuilder;
 import ar.com.fdvs.dj.domain.builders.CrosstabColumnBuilder;
 import ar.com.fdvs.dj.domain.builders.CrosstabRowBuilder;
 import ar.com.fdvs.dj.domain.builders.DynamicReportBuilder;
-import ar.com.fdvs.dj.domain.builders.GroupBuilder;
 import ar.com.fdvs.dj.domain.builders.StyleBuilder;
 import ar.com.fdvs.dj.domain.constants.Border;
-import ar.com.fdvs.dj.domain.constants.GroupLayout;
-import ar.com.fdvs.dj.domain.entities.DJGroup;
 import ar.com.fdvs.dj.domain.entities.columns.AbstractColumn;
-import ar.com.fdvs.dj.domain.entities.columns.PropertyColumn;
 
 import com.antares.commons.enums.TipoAgregacionEnum;
 import com.antares.commons.util.Utils;
@@ -164,28 +159,18 @@ public class ReporteFinancieroAction extends ReporteAction {
 		String tituloDiferencia = Utils.getMessage("sirius.reportes.finanzas.diferencia.label"); 
 
 		for (Rubro rubro : rubros) {
-			AbstractColumn columnaRubro = getColumn(rubro.getId().toString(), Integer.class, "Rubro", 80, getHeaderStyle(), getDetailStyle());
-			GroupBuilder gb = new GroupBuilder();
-			gb.setCriteriaColumn((PropertyColumn)columnaRubro);
-			gb.setGroupLayout(GroupLayout.VALUE_IN_HEADER_WITH_HEADERS); 
-
 			if (reporteForm.getVerPresupuestado()) {
 				AbstractColumn columnaPresupuestado = getColumn(rubro.getId() + SUFIJO_PRESUPUESTADO, Double.class, tituloPresupuestado, 80, getHeaderStyle(), getDetailStyle());
 				drb.addColumn(columnaPresupuestado);
-				gb.addFooterVariable(columnaPresupuestado, DJCalculation.SUM, getHeaderStyle());
 			}
 			if (reporteForm.getVerGastado()) {
 				AbstractColumn columnaGastado = getColumn(rubro.getId() + SUFIJO_GASTADO, Double.class, tituloGastado, 80, getHeaderStyle(), getDetailStyle());
 				drb.addColumn(columnaGastado);
-				gb.addFooterVariable(columnaGastado, DJCalculation.SUM, getHeaderStyle());
 			}
 			if (reporteForm.getVerDiferencia()) {
 				AbstractColumn columnaDif = getColumn(rubro.getId() + SUFIJO_DIFERENCIA, Double.class, tituloDiferencia, 80, getHeaderStyle(), getDetailStyle());
 				drb.addColumn(columnaDif);
-				gb.addFooterVariable(columnaDif, DJCalculation.SUM, getHeaderStyle());
 			}
-
-			drb.addGroup(gb.build());
 		}
 	}
 
@@ -200,7 +185,6 @@ public class ReporteFinancieroAction extends ReporteAction {
 			for (Rubro rubro : rubros) {
 				MontoDTO monto = finanzas.get(persistentObject.getId(), rubro.getId());
 				map.put(COL_DESCRIPCION, Utils.getPropertyValue(persistentObject, "nombre").toString());
-				map.put(rubro.getId().toString(), rubro.getId());
 				if (monto != null) {
 					if (reporteForm.getVerPresupuestado()) {
 						map.put(rubro.getId().toString() + SUFIJO_PRESUPUESTADO, monto.getMontoPresupuestado());
