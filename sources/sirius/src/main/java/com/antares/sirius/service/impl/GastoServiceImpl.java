@@ -65,6 +65,16 @@ public class GastoServiceImpl extends BusinessEntityServiceImpl<Gasto, GastoDAO>
 	}
 
 	@Override
+	public Collection<Gasto> findAllByProyecto(Proyecto proyecto) {
+		return dao.findAllByProyecto(proyecto);
+	}
+
+	@Override
+	public boolean existenGastosProyecto(Proyecto proyecto) {
+		return dao.existenGastosProyecto(proyecto);
+	}
+
+	@Override
 	public Collection<MontoDTO> obtainMontosByActividadAndRubro(Actividad actividad, Rubro[] rubros) {
 		return dao.obtainMontosByActividadAndRubro(actividad, rubros);
 	}

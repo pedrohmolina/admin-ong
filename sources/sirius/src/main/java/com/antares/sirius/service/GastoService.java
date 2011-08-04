@@ -45,6 +45,22 @@ public interface GastoService extends BusinessEntityService<Gasto> {
 	boolean isAgrupado(Gasto gasto);
 
 	/**
+	 * Devuelve todos los gasto del proyecto, tanto a nivel actividad como a nivel proyecto
+	 * 
+	 * @param proyecto proyecto
+	 * @return
+	 */
+	Collection<Gasto> findAllByProyecto(Proyecto proyecto);
+
+	/**
+	 * Determina si existen gastos para un proyecto dado, tanto a nivel actividad como a nivel proyecto
+	 * 
+	 * @param proyecto proyecto
+	 * @return
+	 */
+	boolean existenGastosProyecto(Proyecto proyecto);
+
+	/**
 	 * Devuelve los gastos correspondientes a actividades de un proyecto para los rubros elegidos
 	 * 
 	 * @param proyecto proyecto

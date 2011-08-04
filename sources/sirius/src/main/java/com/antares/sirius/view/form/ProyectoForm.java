@@ -47,13 +47,14 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 	private FormFile archivo;
 	private String nombreArchivo;
 	private String hashArchivo;
+	private boolean modificarAgrupamiento;
 
 	private String filtroNombre;
 	private String filtroFechaInicio;
 	private String filtroFechaFin;
 	private String filtroIdFinanciador;
 	private String filtroIdEstadoProyecto;
-	private String filtroIdAreaTematica;
+	private Integer[] filtroIdAreaTematica;
 	
 	private String labelResponsable;
 	private String labelCoordinadores;
@@ -220,11 +221,11 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 		this.filtroIdFinanciador = filtroIdFinanciador;
 	}
 
-	public String getFiltroIdAreaTematica() {
+	public Integer[] getFiltroIdAreaTematica() {
 		return filtroIdAreaTematica;
 	}
 
-	public void setFiltroIdAreaTematica(String filtroIdAreaTematica) {
+	public void setFiltroIdAreaTematica(Integer[] filtroIdAreaTematica) {
 		this.filtroIdAreaTematica = filtroIdAreaTematica;
 	}
 
@@ -324,6 +325,14 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 		this.estadosProyecto = estadosProyecto;
 	}
 
+	public boolean isModificarAgrupamiento() {
+		return modificarAgrupamiento;
+	}
+
+	public void setModificarAgrupamiento(boolean modificarAgrupamiento) {
+		this.modificarAgrupamiento = modificarAgrupamiento;
+	}
+
 	@Override
 	public void initialize() {
 		this.id = null;
@@ -347,7 +356,7 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 		this.filtroFechaFin = "";
 		this.filtroIdFinanciador = "";
 		this.filtroIdEstadoProyecto = "";
-		this.filtroIdAreaTematica = "";
+		this.filtroIdAreaTematica = null;
 		this.labelResponsable = "";
 		this.labelCoordinadores = "";
 		this.labelFinanciador = "";

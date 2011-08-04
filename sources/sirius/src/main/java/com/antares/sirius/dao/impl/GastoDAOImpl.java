@@ -3,6 +3,7 @@ package com.antares.sirius.dao.impl;
 import java.util.Collection;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
@@ -63,6 +64,28 @@ public class GastoDAOImpl extends BusinessEntityDAOImpl<Gasto> implements GastoD
 			crit.createAlias("objetivoEspecifico.objetivoGeneral", "objetivoGeneral");
 			crit.add(Restrictions.eq("objetivoGeneral.proyecto", entityFilter.getProyectoActividad()));
 		}
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public Collection<Gasto> findAllByProyecto(Proyecto proyecto) {
+		Criteria crit = buildCriteria();
+		crit.createAlias("actividad", "actividad");
+		crit.createAlias("actividad.meta", "meta");
+		crit.createAlias("meta.objetivoEspecifico", "objetivoEspecifico");
+		crit.createAlias("objetivoEspecifico.objetivoGeneral", "objetivoGeneral");
+
+		Disjunction disjuntion = Restrictions.disjunction();
+		disjuntion.add(Restrictions.eq("objetivoGeneral.proyecto", proyecto));
+		disjuntion.add(Restrictions.eq("proyecto", proyecto));
+		crit.add(disjuntion);
+		
+		return (Collection<Gasto>)crit.list();
+	}
+
+	@Override
+	public boolean existenGastosProyecto(Proyecto proyecto) {
+		return findAllByProyecto(proyecto).size() > 0;
 	}
 
 	@Override

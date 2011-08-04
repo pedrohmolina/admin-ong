@@ -42,8 +42,8 @@ public class ProyectoDAOImpl extends BusinessEntityDAOImpl<Proyecto> implements 
 		if (entityFilter.getFinanciador() != null) {
 			crit.add(Restrictions.eq("financiador", entityFilter.getFinanciador()));
 		}
-		if (entityFilter.getAreaTematica() != null) {
-			crit.createCriteria("areasTematicas").add(Restrictions.eq("id", entityFilter.getAreaTematica().getId()));
+		if (!entityFilter.getIdsAreasTematicas().isEmpty()) {
+			crit.createCriteria("areasTematicas").add(Restrictions.in("id", entityFilter.getIdsAreasTematicas()));
 		}
 		if (entityFilter.getEstadoProyecto() != null) {
 			crit.add(Restrictions.eq("estadoProyecto", entityFilter.getEstadoProyecto()));
