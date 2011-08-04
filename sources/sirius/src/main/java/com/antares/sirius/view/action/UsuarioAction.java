@@ -38,14 +38,9 @@ public class UsuarioAction extends BaseAction<Usuario, UsuarioForm, UsuarioServi
 	@Override
 	public UsuarioFilter createFilter(UsuarioForm form) {
 		UsuarioFilter filter = new UsuarioFilter();
-		filter.setApellido(form.getFiltroApellido());
-		filter.setNombre(form.getFiltroNombre());
-		filter.setCuit(form.getFiltroCuit());
-		if (Utils.isNotNullNorEmpty(form.getFiltroNumeroDocumento())) {
-			filter.setNumeroDocumento(Utils.parseInteger(form.getFiltroNumeroDocumento()));
-		}
-		if (Utils.isNotNullNorEmpty(form.getFiltroIdRelacionContractual())) {
-			filter.setRelacionContractual(relacionContractualService.findById(Utils.parseInteger(form.getFiltroIdRelacionContractual())));
+		filter.setUsername(form.getFiltroUsername());
+		if (Utils.isNotNullNorEmpty(form.getFiltroIdPerfil())) {
+			filter.setPerfil(perfilService.findById(Utils.parseInteger(form.getFiltroIdPerfil())));
 		}
 		return filter;
 	}

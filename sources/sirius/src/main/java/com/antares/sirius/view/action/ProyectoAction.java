@@ -49,14 +49,11 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdFinanciador())) {
 			filter.setFinanciador(financiadorService.findById(Utils.parseInteger(form.getFiltroIdFinanciador())));
 		}
-		if (Utils.isNotNullNorEmpty(form.getFiltroIdResponsable())) {
-			filter.setResponsable(personaService.findById(Utils.parseInteger(form.getFiltroIdResponsable())));
-		}
-		if (Utils.isNotNullNorEmpty(form.getFiltroIdCoordinador())) {
-			filter.setCoordinador(personaService.findById(Utils.parseInteger(form.getFiltroIdCoordinador())));
-		}
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdAreaTematica())) {
 			filter.setAreaTematica(areaTematicaService.findById(Utils.parseInteger(form.getFiltroIdAreaTematica())));
+		}
+		if (Utils.isNotNullNorEmpty(form.getFiltroIdEstadoProyecto())) {
+			filter.setEstadoProyecto(estadoProyectoService.findById(Utils.parseInteger(form.getFiltroIdEstadoProyecto())));
 		}
 		return filter;
 	}
@@ -134,6 +131,7 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 		form.setFinanciadores(financiadorService.findAll());
 		form.setAreasTematicas(areaTematicaService.findAll());
 		form.setTiposAgrupamiento(tipoAgrupamientoService.findAll());
+		form.setEstadosProyecto(estadoProyectoService.findAll());
 	}
 
 	@Override

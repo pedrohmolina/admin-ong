@@ -76,6 +76,9 @@ public class ActividadDAOImpl extends BusinessEntityDAOImpl<Actividad> implement
 		if (entityFilter.getMeta() != null) {
 			crit.add(Restrictions.eq("meta", entityFilter.getMeta()));
 		}
+		if (entityFilter.getEstadoActividad() != null) {
+			crit.add(Restrictions.eq("estadoActividad", entityFilter.getEstadoActividad()));
+		}
 	}
 
 	@Override

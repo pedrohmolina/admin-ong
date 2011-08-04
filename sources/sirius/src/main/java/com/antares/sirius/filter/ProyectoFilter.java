@@ -4,8 +4,8 @@ import java.util.Date;
 
 import com.antares.commons.filter.Filter;
 import com.antares.sirius.model.AreaTematica;
+import com.antares.sirius.model.EstadoProyecto;
 import com.antares.sirius.model.Financiador;
-import com.antares.sirius.model.Persona;
 import com.antares.sirius.model.Proyecto;
 
 /**
@@ -21,8 +21,7 @@ public class ProyectoFilter extends Filter<Proyecto> {
 	private String nombre;
 	private Date fechaInicio;
 	private Date fechaFin;
-	private Persona responsable;
-	private Persona coordinador;
+	private EstadoProyecto estadoProyecto;
 	private Financiador financiador;
 	private AreaTematica areaTematica;
 
@@ -44,12 +43,6 @@ public class ProyectoFilter extends Filter<Proyecto> {
 	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
 	}
-	public Persona getResponsable() {
-		return responsable;
-	}
-	public void setResponsable(Persona responsable) {
-		this.responsable = responsable;
-	}
 	public Financiador getFinanciador() {
 		return financiador;
 	}
@@ -62,11 +55,11 @@ public class ProyectoFilter extends Filter<Proyecto> {
 	public void setAreaTematica(AreaTematica areaTematica) {
 		this.areaTematica = areaTematica;
 	}
-	public Persona getCoordinador() {
-		return coordinador;
+	public EstadoProyecto getEstadoProyecto() {
+		return estadoProyecto;
 	}
-	public void setCoordinador(Persona coordinador) {
-		this.coordinador = coordinador;
+	public void setEstadoProyecto(EstadoProyecto estadoProyecto) {
+		this.estadoProyecto = estadoProyecto;
 	}
 	
 }

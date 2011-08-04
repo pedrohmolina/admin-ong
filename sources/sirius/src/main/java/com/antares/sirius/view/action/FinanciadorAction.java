@@ -23,19 +23,12 @@ public class FinanciadorAction extends BaseAction<Financiador, FinanciadorForm, 
 	public FinanciadorFilter createFilter(FinanciadorForm form) {
 		FinanciadorFilter filter = new FinanciadorFilter();
 		filter.setNombre(form.getFiltroNombre());
-		filter.setCuit(form.getFiltroCuit());
-		filter.setCbu(form.getFiltroCbu());
-		filter.setDireccion(form.getFiltroDireccion());
-		filter.setTelefono(form.getFiltroTelefono());
-		filter.setContacto(form.getFiltroContacto());
-		filter.setCelular(form.getFiltroCelular());
-		filter.setEmail(form.getFiltroEmail());
 
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdEstadoFinanciador())) {
-			estadoFinanciadorService.findById(Utils.parseInteger(form.getFiltroIdEstadoFinanciador()));
+			filter.setEstadoFinanciador(estadoFinanciadorService.findById(Utils.parseInteger(form.getFiltroIdEstadoFinanciador())));
 		}
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdTipoFinanciador())) {
-			tipoFinanciadorService.findById(Utils.parseInteger(form.getFiltroIdTipoFinanciador()));
+			filter.setTipoFinanciador(tipoFinanciadorService.findById(Utils.parseInteger(form.getFiltroIdTipoFinanciador())));
 		}
 		return filter;
 	}

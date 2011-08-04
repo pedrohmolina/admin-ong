@@ -24,10 +24,6 @@ public class PersonaAction extends BaseAction<Persona, PersonaForm, PersonaServi
 		PersonaFilter filter = new PersonaFilter();
 		filter.setApellido(form.getFiltroApellido());
 		filter.setNombre(form.getFiltroNombre());
-		filter.setCuit(form.getFiltroCuit());
-		if (Utils.isNotNullNorEmpty(form.getFiltroNumeroDocumento())) {
-			filter.setNumeroDocumento(Utils.parseInteger(form.getFiltroNumeroDocumento()));
-		}
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdRelacionContractual())) {
 			filter.setRelacionContractual(relacionContractualService.findById(Utils.parseInteger(form.getFiltroIdRelacionContractual())));
 		}

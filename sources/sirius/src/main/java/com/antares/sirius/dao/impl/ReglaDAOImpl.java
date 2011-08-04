@@ -7,7 +7,9 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import com.antares.commons.dao.impl.BusinessEntityDAOImpl;
+import com.antares.commons.filter.Filter;
 import com.antares.sirius.dao.ReglaDAO;
+import com.antares.sirius.filter.ReglaFilter;
 import com.antares.sirius.model.Entidad;
 import com.antares.sirius.model.Regla;
 
@@ -20,6 +22,19 @@ import com.antares.sirius.model.Regla;
  */
 public class ReglaDAOImpl extends BusinessEntityDAOImpl<Regla> implements ReglaDAO {
 	
+	@Override
+	protected void addFilter(Criteria crit, Filter<Regla> filter) {
+		ReglaFilter entityFilter = (ReglaFilter)filter;
+		if (entityFilter.getUsuario() != null) {
+			crit.add(Restrictions.eq("usuario", entityFilter.getUsuario()));
+		}
+	}
+
+	@Override
+	protected void addOrder(Criteria crit) {
+		crit.addOrder(Order.desc("usuario"));
+	}
+
 	@SuppressWarnings("unchecked")
 	public Collection<Regla> findByUsernameAndEntidad(String username, Entidad entidad) {
 		Criteria crit = getSession().createCriteria(persistentClass);
@@ -30,11 +45,6 @@ public class ReglaDAOImpl extends BusinessEntityDAOImpl<Regla> implements ReglaD
 		crit.add(Restrictions.eq("entidad", entidad));
 		addOrder(crit);
 		return (Collection<Regla>)crit.list();
-	}
-
-	@Override
-	protected void addOrder(Criteria crit) {
-		crit.addOrder(Order.desc("usuario"));
 	}
 
 }

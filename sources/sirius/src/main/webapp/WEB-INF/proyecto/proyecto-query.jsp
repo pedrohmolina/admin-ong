@@ -33,18 +33,6 @@ function confirmarAccion(mensaje) {
 		<label for="filtroFechaFin"><bean:message key="sirius.proyecto.fechaFin.label" />:</label>
 		<html:text property="filtroFechaFin" styleClass="datepicker"/>
 		</p><br><p>
-		<label for="filtroIdResponsable"><bean:message key="sirius.proyecto.responsable.label" />:</label>
-		<html:select property="filtroIdResponsable">
-			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
-			<html:optionsCollection name="proyectoForm" property="responsables" label="nombreYApellido" value="id"/>
-		</html:select>
-		</p><br><p>
-		<label for="filtroIdCoordinador"><bean:message key="sirius.proyecto.coordinador.label" />:</label>
-		<html:select property="filtroIdCoordinador">
-			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
-			<html:optionsCollection name="proyectoForm" property="coordinadores" label="nombreYApellido" value="id"/>
-		</html:select>
-		</p><br><p>
 		<label for="filtroIdFinanciador"><bean:message key="sirius.proyecto.financiador.label" />:</label>
 		<html:select property="filtroIdFinanciador">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
@@ -55,6 +43,12 @@ function confirmarAccion(mensaje) {
 		<html:select property="filtroIdAreaTematica">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="proyectoForm" property="areasTematicas" label="descripcion" value="id"/>
+		</html:select>
+		</p><br><p>
+		<label for="filtroIdEstadoProyecto"><bean:message key="sirius.proyecto.estadoProyecto.label" />:</label>
+		<html:select property="filtroIdEstadoProyecto">
+			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
+			<html:optionsCollection name="proyectoForm" property="estadosProyecto" label="descripcion" value="id"/>
 		</html:select>
 		</p><br>
 	</div>
@@ -86,7 +80,6 @@ function confirmarAccion(mensaje) {
 		</c:if>
 	
 		<display:column sortable="true" property="nombre" 							titleKey="sirius.proyecto.nombre.label" />
-		<display:column sortable="true" property="responsable.nombreYApellido" 		titleKey="sirius.proyecto.responsable.label" />
 		<display:column sortable="true" property="fechaInicio" 						titleKey="sirius.proyecto.fechaInicio.label" 	format="{0,date,dd/MM/yyyy}" />
 		<display:column sortable="true" property="fechaFin" 						titleKey="sirius.proyecto.fechaFin.label" 		format="{0,date,dd/MM/yyyy}" />
 		<display:column sortable="true" property="financiador.nombre" 				titleKey="sirius.proyecto.financiador.label" />

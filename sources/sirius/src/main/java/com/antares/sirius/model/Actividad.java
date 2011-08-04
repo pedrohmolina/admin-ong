@@ -1,5 +1,7 @@
 package com.antares.sirius.model;
 
+import static javax.persistence.FetchType.LAZY;
+
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -11,7 +13,7 @@ import javax.persistence.ManyToOne;
 @SuppressWarnings("serial")
 public class Actividad extends Ponderable {
 
-	@ManyToOne
+	@ManyToOne(fetch = LAZY)
 	@JoinColumns(@JoinColumn(name = "idMeta"))
 	private Meta meta;
 

@@ -61,9 +61,11 @@ function confirmarAccion(mensaje) {
 			<display:setProperty name="basic.msg.empty_list"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablaTitulo"><tr><td align="center"></td></tr></table></display:setProperty>
 		</c:if>
 
-		<display:column sortable="true" property="nombre" 		titleKey="sirius.objetivoEspecifico.nombre.label" />
-		<display:column sortable="true" property="ponderacion" 	titleKey="sirius.objetivoEspecifico.ponderacion.label" />
-		<display:column sortable="true" property="completitud" 	titleKey="sirius.objetivoEspecifico.completitud.label" />
+		<display:column sortable="true" property="objetivoGeneral.proyecto.nombre" 		titleKey="sirius.objetivoEspecifico.proyecto.label" />
+		<display:column sortable="true" property="objetivoGeneral.nombre" 				titleKey="sirius.objetivoEspecifico.objetivoGeneral.label" />
+		<display:column sortable="true" property="nombre" 								titleKey="sirius.objetivoEspecifico.nombre.label" />
+		<display:column sortable="true" property="ponderacion" 							titleKey="sirius.objetivoEspecifico.ponderacion.label" />
+		<display:column sortable="true" property="completitud" 							titleKey="sirius.objetivoEspecifico.completitud.label" />
 
 		<display:column title="Acciones" media="html">
 			<authz:authorize ifAllGranted="ENTIDAD_OBJETIVO_ESPECIFICO-DETALLE">

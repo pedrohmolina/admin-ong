@@ -5,9 +5,7 @@ import java.util.Date;
 import com.antares.commons.filter.Filter;
 import com.antares.sirius.model.Actividad;
 import com.antares.sirius.model.Gasto;
-import com.antares.sirius.model.Origen;
 import com.antares.sirius.model.Persona;
-import com.antares.sirius.model.Proveedor;
 import com.antares.sirius.model.Proyecto;
 import com.antares.sirius.model.Rubro;
 import com.antares.sirius.model.TipoGasto;
@@ -28,8 +26,6 @@ public class GastoFilter extends Filter<Gasto> {
 	private Actividad actividad;
 	private Persona persona;
 	private Rubro rubro;
-	private Origen origen;
-	private Proveedor proveedor;
 	private Date fecha;
 	private Date fechaDesde;
 	private Date fechaHasta;
@@ -57,18 +53,6 @@ public class GastoFilter extends Filter<Gasto> {
 	}
 	public void setRubro(Rubro rubro) {
 		this.rubro = rubro;
-	}
-	public Origen getOrigen() {
-		return origen;
-	}
-	public void setOrigen(Origen origen) {
-		this.origen = origen;
-	}
-	public Proveedor getProveedor() {
-		return proveedor;
-	}
-	public void setProveedor(Proveedor proveedor) {
-		this.proveedor = proveedor;
 	}
 	public Date getFecha() {
 		return fecha;

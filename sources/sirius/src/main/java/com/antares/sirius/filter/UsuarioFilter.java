@@ -1,7 +1,7 @@
 package com.antares.sirius.filter;
 
 import com.antares.commons.filter.Filter;
-import com.antares.sirius.model.RelacionContractual;
+import com.antares.sirius.model.Perfil;
 import com.antares.sirius.model.Usuario;
 
 /**
@@ -14,41 +14,20 @@ import com.antares.sirius.model.Usuario;
  */
 public class UsuarioFilter extends Filter<Usuario> {
 
-	private String apellido;
-	private String nombre;
-	private String cuit;
-	private Integer numeroDocumento;
-	private RelacionContractual relacionContractual;
+	private String username;
+	private Perfil perfil;
 
-	public String getApellido() {
-		return apellido;
+	public String getUsername() {
+		return username;
 	}
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
+	public void setUsername(String username) {
+		this.username = username;
 	}
-	public String getNombre() {
-		return nombre;
+	public Perfil getPerfil() {
+		return perfil;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	public String getCuit() {
-		return cuit;
-	}
-	public void setCuit(String cuit) {
-		this.cuit = cuit;
-	}
-	public Integer getNumeroDocumento() {
-		return numeroDocumento;
-	}
-	public void setNumeroDocumento(Integer numeroDocumento) {
-		this.numeroDocumento = numeroDocumento;
-	}
-	public RelacionContractual getRelacionContractual() {
-		return relacionContractual;
-	}
-	public void setRelacionContractual(RelacionContractual relacionContractual) {
-		this.relacionContractual = relacionContractual;
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
 	}
 	
 }
