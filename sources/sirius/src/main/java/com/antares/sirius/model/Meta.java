@@ -68,8 +68,8 @@ public class Meta extends Ponderable {
 	}
 
 	@Override
-	public Double getCompletitud() {
-		return calcularCompletitud(this.actividades).doubleValue();
+	public Collection<? extends Ponderable> getPonderables() {
+		return this.actividades;
 	}
 
 }

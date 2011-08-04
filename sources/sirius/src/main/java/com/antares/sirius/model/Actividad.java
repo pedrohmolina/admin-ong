@@ -2,6 +2,8 @@ package com.antares.sirius.model;
 
 import static javax.persistence.FetchType.LAZY;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -97,6 +99,11 @@ public class Actividad extends Ponderable {
 
 	public Proyecto getProyecto() {
 		return meta.getObjetivoEspecifico().getObjetivoGeneral().getProyecto();
+	}
+
+	@Override
+	public Collection<? extends Ponderable> getPonderables() {
+		return new ArrayList<Ponderable>();
 	}
 
 }

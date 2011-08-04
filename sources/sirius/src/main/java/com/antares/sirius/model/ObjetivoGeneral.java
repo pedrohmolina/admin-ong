@@ -68,8 +68,8 @@ public class ObjetivoGeneral extends Ponderable {
 	}
 
 	@Override
-	public Double getCompletitud() {
-		return calcularCompletitud(this.objetivosEspecificos).doubleValue();
+	public Collection<? extends Ponderable> getPonderables() {
+		return this.objetivosEspecificos;
 	}
 
 }

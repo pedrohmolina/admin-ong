@@ -4,6 +4,7 @@ import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMessage;
 
 import com.antares.commons.util.Utils;
+import com.antares.commons.validation.CustomValidationRoutines;
 import com.antares.commons.view.action.BaseAction;
 import com.antares.sirius.filter.ObjetivoGeneralFilter;
 import com.antares.sirius.model.ObjetivoGeneral;
@@ -45,9 +46,9 @@ public class ObjetivoGeneralAction extends BaseAction<ObjetivoGeneral, ObjetivoG
 	protected ActionErrors validate(ObjetivoGeneralForm form) {
 		ActionErrors errors = new ActionErrors();
 		Proyecto proyecto = proyectoService.findById(Utils.parseInteger(form.getIdProyecto()));
-		if (Utils.excedePonderacion(Utils.parseInteger(form.getPonderacion()), proyecto.getObjetivosGenerales(), form.getId())) {
-			errors.add("error", new ActionMessage("errors.ponderiacion", Utils.getMessage("sirius.objetivoGeneral.proyecto.label")));
-		}
+		Integer ponderacionTotal = proyecto.ponderacionTotal(form.getId());
+		Integer nuevaPonderacion = Utils.parseInteger(form.getPonderacion());
+		CustomValidationRoutines.validatePonderacion(ponderacionTotal, nuevaPonderacion, errors, "sirius.objetivoGeneral.proyecto.label");
 		if (service.isNombreRepetido(form.getNombre(), form.getId())) {
 			errors.add("error", new ActionMessage("errors.unique", Utils.getMessage("sirius.objetivoGeneral.nombre.label")));
 		}

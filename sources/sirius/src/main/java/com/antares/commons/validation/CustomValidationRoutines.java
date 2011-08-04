@@ -53,4 +53,23 @@ public class CustomValidationRoutines {
 		}
 		return true;
 	}
+
+	/**
+	 * Evalua si una ponderacion nueva, sumada a las existentes, provoca que se exceda del 100%
+	 * 
+	 * @param ponderacionTotal ponderacion total del resto de elementos del mismo nivel
+	 * @param nuevaPonderacion poderacion a ingresar
+	 * @param errors
+	 * @param messageKey
+	 * @return
+	 */
+	public static boolean validatePonderacion(Integer ponderacionTotal, Integer nuevaPonderacion, ActionMessages errors, String messageKey) {
+		if (ponderacionTotal + nuevaPonderacion > 100) {
+			Integer diff = Math.abs(100 - (ponderacionTotal + nuevaPonderacion));
+			errors.add("error", new ActionMessage("errors.ponderiacion", Utils.getMessage(messageKey), diff));
+			return false;
+		}
+		return true;
+	}
+
 }
