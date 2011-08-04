@@ -76,18 +76,6 @@ function initReferencia(id) {
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="gastoActividadForm" property="rubros" label="nombre" value="id"/>
 		</html:select>
-		</p><br><p>
-		<label for="filtroIdOrigen"><bean:message key="sirius.gasto.origen.label" />:</label>
-		<html:select property="filtroIdOrigen">
-			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
-			<html:optionsCollection name="gastoActividadForm" property="origenes" label="descripcion" value="id"/>
-		</html:select>
-		</p><br><p>
-		<label for="filtroIdProveedor"><bean:message key="sirius.gasto.proveedor.label" />:</label>
-		<html:select property="filtroIdProveedor">
-			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
-			<html:optionsCollection name="gastoActividadForm" property="proveedores" label="nombre" value="id"/>
-		</html:select>
 		</p><br>
 	</div>
 
@@ -119,7 +107,6 @@ function initReferencia(id) {
 		<display:column sortable="true" property="persona.nombreYApellido" 		titleKey="sirius.gasto.persona.label" />
 		<display:column sortable="true" property="fecha" 						titleKey="sirius.gasto.fecha.label"  	format="{0,date,dd/MM/yyyy}" />
 		<display:column sortable="true" property="rubro.nombre" 				titleKey="sirius.gasto.rubro.label" />
-		<display:column sortable="true" property="proveedor.nombre" 			titleKey="sirius.gasto.proveedor.label" />
 		<display:column sortable="true" property="importe" 						titleKey="sirius.gasto.importe.label" />
 
 		<display:column title="Acciones" media="html">

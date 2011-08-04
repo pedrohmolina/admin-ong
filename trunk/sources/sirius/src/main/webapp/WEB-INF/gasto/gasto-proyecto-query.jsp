@@ -29,6 +29,15 @@ function confirmarAccion(mensaje) {
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="gastoProyectoForm" property="proyectos" label="nombre" value="id"/>
 		</html:select>
+		</p><br><p>
+		<label for="filtroFecha"><bean:message key="sirius.gasto.fecha.label" />:</label>
+		<html:text property="filtroFecha" styleClass="datepicker"/>
+		</p><br><p>
+		<label for="filtroIdRubro"><bean:message key="sirius.gasto.rubro.label" />:</label>
+		<html:select property="filtroIdRubro">
+			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
+			<html:optionsCollection name="gastoProyectoForm" property="rubros" label="nombre" value="id"/>
+		</html:select>
 		</p><br>
 	</div>
 
@@ -61,7 +70,6 @@ function confirmarAccion(mensaje) {
 		<display:column sortable="true" property="proyecto.nombre" 			titleKey="sirius.gasto.proyecto.label" />
 		<display:column sortable="true" property="fecha" 					titleKey="sirius.gasto.fecha.label"  	format="{0,date,dd/MM/yyyy}" />
 		<display:column sortable="true" property="rubro.nombre" 			titleKey="sirius.gasto.rubro.label" />
-		<display:column sortable="true" property="proveedor.nombre" 		titleKey="sirius.gasto.proveedor.label" />
 		<display:column sortable="true" property="importe" 					titleKey="sirius.gasto.importe.label" />
 
 		<display:column title="Acciones" media="html">

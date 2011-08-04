@@ -46,8 +46,6 @@ public class PersonaForm extends AbstractForm<Persona> {
 
 	private String filtroApellido;
 	private String filtroNombre;
-	private String filtroNumeroDocumento;
-	private String filtroCuit;
 	private String filtroIdRelacionContractual;
 
 	private String labelTipoDocumento;
@@ -239,22 +237,6 @@ public class PersonaForm extends AbstractForm<Persona> {
 		this.filtroNombre = filtroNombre;
 	}
 
-	public String getFiltroNumeroDocumento() {
-		return filtroNumeroDocumento;
-	}
-
-	public void setFiltroNumeroDocumento(String filtroNumeroDocumento) {
-		this.filtroNumeroDocumento = filtroNumeroDocumento;
-	}
-
-	public String getFiltroCuit() {
-		return filtroCuit;
-	}
-
-	public void setFiltroCuit(String filtroCuit) {
-		this.filtroCuit = filtroCuit;
-	}
-
 	public String getFiltroIdRelacionContractual() {
 		return filtroIdRelacionContractual;
 	}
@@ -332,8 +314,6 @@ public class PersonaForm extends AbstractForm<Persona> {
 		this.observaciones = "";
 		this.filtroApellido = "";
 		this.filtroNombre = "";
-		this.filtroNumeroDocumento = "";
-		this.filtroCuit = "";
 		this.filtroIdRelacionContractual = "";
 		this.idTipoDocumento = "";
 		this.idRelacionContractual = "";

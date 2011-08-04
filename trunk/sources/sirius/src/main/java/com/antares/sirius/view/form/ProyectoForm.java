@@ -7,6 +7,7 @@ import org.apache.struts.upload.FormFile;
 import com.antares.commons.util.Utils;
 import com.antares.commons.view.form.AbstractForm;
 import com.antares.sirius.model.AreaTematica;
+import com.antares.sirius.model.EstadoProyecto;
 import com.antares.sirius.model.Financiador;
 import com.antares.sirius.model.Persona;
 import com.antares.sirius.model.Proyecto;
@@ -42,6 +43,7 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 	private Collection<Financiador> financiadores;
 	private Collection<AreaTematica> areasTematicas;
 	private Collection<TipoAgrupamiento> tiposAgrupamiento;
+	private Collection<EstadoProyecto> estadosProyecto;
 	private FormFile archivo;
 	private String nombreArchivo;
 	private String hashArchivo;
@@ -49,9 +51,8 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 	private String filtroNombre;
 	private String filtroFechaInicio;
 	private String filtroFechaFin;
-	private String filtroIdResponsable;
-	private String filtroIdCoordinador;
 	private String filtroIdFinanciador;
+	private String filtroIdEstadoProyecto;
 	private String filtroIdAreaTematica;
 	
 	private String labelResponsable;
@@ -211,14 +212,6 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 		this.filtroFechaFin = filtroFechaFin;
 	}
 
-	public String getFiltroIdResponsable() {
-		return filtroIdResponsable;
-	}
-
-	public void setFiltroIdResponsable(String filtroIdResponsable) {
-		this.filtroIdResponsable = filtroIdResponsable;
-	}
-
 	public String getFiltroIdFinanciador() {
 		return filtroIdFinanciador;
 	}
@@ -291,14 +284,6 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 		this.hashArchivo = hashArchivo;
 	}
 
-	public String getFiltroIdCoordinador() {
-		return filtroIdCoordinador;
-	}
-
-	public void setFiltroIdCoordinador(String filtroIdCoordinador) {
-		this.filtroIdCoordinador = filtroIdCoordinador;
-	}
-
 	public String getPresupuestoTotal() {
 		return presupuestoTotal;
 	}
@@ -323,6 +308,22 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 		this.labelAreasTematicas = labelAreasTematicas;
 	}
 
+	public String getFiltroIdEstadoProyecto() {
+		return filtroIdEstadoProyecto;
+	}
+
+	public void setFiltroIdEstadoProyecto(String filtroIdEstadoProyecto) {
+		this.filtroIdEstadoProyecto = filtroIdEstadoProyecto;
+	}
+
+	public Collection<EstadoProyecto> getEstadosProyecto() {
+		return estadosProyecto;
+	}
+
+	public void setEstadosProyecto(Collection<EstadoProyecto> estadosProyecto) {
+		this.estadosProyecto = estadosProyecto;
+	}
+
 	@Override
 	public void initialize() {
 		this.id = null;
@@ -344,9 +345,8 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 		this.filtroNombre = "";
 		this.filtroFechaInicio = "";
 		this.filtroFechaFin = "";
-		this.filtroIdResponsable = "";
-		this.filtroIdCoordinador = "";
 		this.filtroIdFinanciador = "";
+		this.filtroIdEstadoProyecto = "";
 		this.filtroIdAreaTematica = "";
 		this.labelResponsable = "";
 		this.labelCoordinadores = "";
@@ -370,7 +370,7 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 		this.beneficiariosDirectos = "";
 		this.beneficiariosIndirectos = "";
 		this.idFinanciador = "";
-		this.presupuestoTotal = "";
+		this.presupuestoTotal = Utils.formatDouble(0D);
 		this.resumen = "";
 		this.idAreaTematica = null;
 		this.idTipoAgrupamiento = "";

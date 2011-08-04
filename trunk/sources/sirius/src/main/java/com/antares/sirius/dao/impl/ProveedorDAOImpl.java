@@ -36,27 +36,6 @@ public class ProveedorDAOImpl extends BusinessEntityDAOImpl<Proveedor> implement
 		if (entityFilter.getTipoProveedor() != null) {
 			crit.add(Restrictions.eq("tipoProveedor", entityFilter.getTipoProveedor()));
 		}
-		if (Utils.isNotNullNorEmpty(entityFilter.getCuit())) {
-			crit.add(Restrictions.eq("cuit", entityFilter.getCuit()));
-		}
-		if (Utils.isNotNullNorEmpty(entityFilter.getCbu())) {
-			crit.add(Restrictions.eq("cbu", entityFilter.getCbu()));
-		}
-		if (Utils.isNotNullNorEmpty(entityFilter.getTelefono())) {
-			crit.add(Restrictions.eq("telefono", entityFilter.getTelefono()));
-		}
-		if (Utils.isNotNullNorEmpty(entityFilter.getDireccion())) {
-			crit.add(Restrictions.ilike("direccion", entityFilter.getDireccion(), MatchMode.EXACT));
-		}
-		if (Utils.isNotNullNorEmpty(entityFilter.getContacto())) {
-			crit.add(Restrictions.ilike("contacto", entityFilter.getContacto(), MatchMode.ANYWHERE));
-		}
-		if (Utils.isNotNullNorEmpty(entityFilter.getCelular())) {
-			crit.add(Restrictions.ilike("celular", entityFilter.getCelular(), MatchMode.EXACT));
-		}
-		if (Utils.isNotNullNorEmpty(entityFilter.getEmail())) {
-			crit.add(Restrictions.ilike("email", entityFilter.getEmail(), MatchMode.EXACT));
-		}
 	}
 
 	@Override

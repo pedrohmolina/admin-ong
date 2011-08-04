@@ -24,22 +24,13 @@ function confirmarAccion(mensaje) {
 	<html:form action="/usuario/usuario-query.do?method=query">
 	<div style="float:left; width: 100%;">
 		<p>
-		<label for="filtroApellido"><bean:message key="sirius.usuario.apellido.label" />:</label>
-		<html:text property="filtroApellido" />
+		<label for="filtroUsername"><bean:message key="sirius.usuario.username.label" />:</label>
+		<html:text property="filtroUsername" />
 		</p><br><p>
-		<label for="filtroNombre"><bean:message key="sirius.usuario.nombre.label" />:</label>
-		<html:text property="filtroNombre" />
-		</p><br><p>
-		<label for="filtroCuit"><bean:message key="sirius.usuario.cuit.label" />:</label>
-		<html:text property="filtroCuit" />
-		</p><br><p>
-		<label for="filtroNumeroDocumento"><bean:message key="sirius.usuario.numeroDocumento.label" />:</label>
-		<html:text property="filtroNumeroDocumento" />
-		</p><br><p>
-		<label for="filtroIdRelacionContractual"><bean:message key="sirius.usuario.relacionContractual.label" />:</label>
-		<html:select property="filtroIdRelacionContractual">
+		<label for="filtroIdPerfil"><bean:message key="sirius.usuario.relacionContractual.label" />:</label>
+		<html:select property="filtroIdPerfil">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
-			<html:optionsCollection name="usuarioForm" property="relacionesContractuales" label="descripcion" value="id"/>
+			<html:optionsCollection name="usuarioForm" property="perfiles" label="nombre" value="id"/>
 		</html:select>
 		</p><br>
 	</div>
@@ -74,8 +65,6 @@ function confirmarAccion(mensaje) {
 		<display:column sortable="true" property="perfil.nombre" 						titleKey="sirius.usuario.perfil.label" />
 		<display:column sortable="true" property="persona.apellido" 					titleKey="sirius.usuario.apellido.label" />
 		<display:column sortable="true" property="persona.nombre" 						titleKey="sirius.usuario.nombre.label" />
-		<display:column sortable="true" property="persona.tipoDocumento.descripcion"	titleKey="sirius.usuario.tipoDocumento.label" />
-		<display:column sortable="true" property="persona.numeroDocumento" 				titleKey="sirius.usuario.numeroDocumento.label" />
 
 		<display:column title="Acciones" media="html">
 			<authz:authorize ifAllGranted="ENTIDAD_USUARIO-DETALLE">

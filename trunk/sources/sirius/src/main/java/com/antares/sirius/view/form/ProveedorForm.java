@@ -30,13 +30,6 @@ public class ProveedorForm extends AbstractForm<Proveedor> {
 	private Collection<TipoProveedor> tiposProveedor;
 
 	private String filtroNombre;
-	private String filtroCuit;
-	private String filtroCbu;
-	private String filtroDireccion;
-	private String filtroTelefono;
-	private String filtroContacto;
-	private String filtroCelular;
-	private String filtroEmail;
 	private String filtroIdTipoProveedor;
 	
 	private String labelTipoProveedor;
@@ -137,62 +130,6 @@ public class ProveedorForm extends AbstractForm<Proveedor> {
 		this.filtroNombre = filtroNombre;
 	}
 
-	public String getFiltroCuit() {
-		return filtroCuit;
-	}
-
-	public void setFiltroCuit(String filtroCuit) {
-		this.filtroCuit = filtroCuit;
-	}
-
-	public String getFiltroCbu() {
-		return filtroCbu;
-	}
-
-	public void setFiltroCbu(String filtroCbu) {
-		this.filtroCbu = filtroCbu;
-	}
-
-	public String getFiltroDireccion() {
-		return filtroDireccion;
-	}
-
-	public void setFiltroDireccion(String filtroDireccion) {
-		this.filtroDireccion = filtroDireccion;
-	}
-
-	public String getFiltroTelefono() {
-		return filtroTelefono;
-	}
-
-	public void setFiltroTelefono(String filtroTelefono) {
-		this.filtroTelefono = filtroTelefono;
-	}
-
-	public String getFiltroContacto() {
-		return filtroContacto;
-	}
-
-	public void setFiltroContacto(String filtroContacto) {
-		this.filtroContacto = filtroContacto;
-	}
-
-	public String getFiltroCelular() {
-		return filtroCelular;
-	}
-
-	public void setFiltroCelular(String filtroCelular) {
-		this.filtroCelular = filtroCelular;
-	}
-
-	public String getFiltroEmail() {
-		return filtroEmail;
-	}
-
-	public void setFiltroEmail(String filtroEmail) {
-		this.filtroEmail = filtroEmail;
-	}
-
 	public String getFiltroIdTipoProveedor() {
 		return filtroIdTipoProveedor;
 	}
@@ -224,13 +161,6 @@ public class ProveedorForm extends AbstractForm<Proveedor> {
 		this.observaciones = "";
 		this.idTipoProveedor = "";
 		this.filtroNombre = "";
-		this.filtroCuit = "";
-		this.filtroCbu = "";
-		this.filtroDireccion = "";
-		this.filtroTelefono = "";
-		this.filtroContacto = "";
-		this.filtroCelular = "";
-		this.filtroEmail = "";
 		this.filtroIdTipoProveedor = "";
 		this.labelTipoProveedor = "";
 	}

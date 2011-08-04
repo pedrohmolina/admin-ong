@@ -5,6 +5,7 @@ import java.util.Collection;
 import com.antares.commons.util.Utils;
 import com.antares.commons.view.form.AbstractForm;
 import com.antares.sirius.model.Actividad;
+import com.antares.sirius.model.EstadoActividad;
 import com.antares.sirius.model.Financiador;
 import com.antares.sirius.model.Meta;
 
@@ -28,9 +29,11 @@ public class ActividadForm extends AbstractForm<Actividad> {
 	private String idFinanciador;
 	private String completitud;
 	private Collection<Meta> metas;
+	private Collection<EstadoActividad> estadosActividad;
 	private Collection<Financiador> financiadores;
 
 	private String filtroIdMeta;
+	private String filtroIdEstadoActividad;
 	private String filtroNombre;
 
 	private String labelMeta;
@@ -167,6 +170,22 @@ public class ActividadForm extends AbstractForm<Actividad> {
 		this.actualizarCompletitud = actualizarCompletitud;
 	}
 
+	public String getFiltroIdEstadoActividad() {
+		return filtroIdEstadoActividad;
+	}
+
+	public void setFiltroIdEstadoActividad(String filtroIdEstadoActividad) {
+		this.filtroIdEstadoActividad = filtroIdEstadoActividad;
+	}
+
+	public Collection<EstadoActividad> getEstadosActividad() {
+		return estadosActividad;
+	}
+
+	public void setEstadosActividad(Collection<EstadoActividad> estadosActividad) {
+		this.estadosActividad = estadosActividad;
+	}
+
 	@Override
 	public void initialize() {
 		this.id = null;
@@ -180,6 +199,7 @@ public class ActividadForm extends AbstractForm<Actividad> {
 		this.idMeta = "";
 		this.idFinanciador = "";
 		this.filtroNombre = "";
+		this.filtroIdEstadoActividad = "";
 		this.filtroIdMeta = "";
 		this.labelMeta = "";
 		this.labelFinanciador = "";

@@ -30,12 +30,6 @@ function confirmarAccion(mensaje) {
 		<label for="filtroNombre"><bean:message key="sirius.persona.nombre.label" />:</label>
 		<html:text property="filtroNombre" />
 		</p><br><p>
-		<label for="filtroCuit"><bean:message key="sirius.persona.cuit.label" />:</label>
-		<html:text property="filtroCuit" />
-		</p><br><p>
-		<label for="filtroNumeroDocumento"><bean:message key="sirius.persona.numeroDocumento.label" />:</label>
-		<html:text property="filtroNumeroDocumento" />
-		</p><br><p>
 		<label for="filtroIdRelacionContractual"><bean:message key="sirius.persona.relacionContractual.label" />:</label>
 		<html:select property="filtroIdRelacionContractual">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
@@ -74,6 +68,7 @@ function confirmarAccion(mensaje) {
 		<display:column sortable="true" property="nombre" 						titleKey="sirius.persona.nombre.label" />
 		<display:column sortable="true" property="tipoDocumento.descripcion"	titleKey="sirius.persona.tipoDocumento.label" />
 		<display:column sortable="true" property="numeroDocumento" 				titleKey="sirius.persona.numeroDocumento.label" />
+		<display:column sortable="true" property="relacionContractual.nombre" 	titleKey="sirius.persona.relacionContractual.label" />
 
 		<display:column title="Acciones" media="html">
 			<authz:authorize ifAllGranted="ENTIDAD_PERSONA-DETALLE">

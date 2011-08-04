@@ -31,6 +31,12 @@ function confirmarAccion(mensaje) {
 		</p><br><p>
 		<label for="filtroNombre"><bean:message key="sirius.actividad.nombre.label" />:</label>
 		<html:text maxlength="255" property="filtroNombre"></html:text>
+		</p><br><p>
+		<label for="filtroIdEstadoActividad"><bean:message key="sirius.actividad.estadoActividad.label" />:</label>
+		<html:select property="filtroIdEstadoActividad">
+			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
+			<html:optionsCollection name="actividadForm" property="estadosActividad" label="descripcion" value="id"/>
+		</html:select>
 		</p><br>
 	</div>
 
@@ -60,12 +66,14 @@ function confirmarAccion(mensaje) {
 			<display:setProperty name="basic.msg.empty_list"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablaTitulo"><tr><td align="center"></td></tr></table></display:setProperty>
 		</c:if>
 
-		<display:column sortable="true" property="nombre" 						titleKey="sirius.actividad.nombre.label" />
-		<display:column sortable="true" property="fechaInicio" 					titleKey="sirius.actividad.fechaInicio.label"  	format="{0,date,dd/MM/yyyy}" />
-		<display:column sortable="true" property="fechaFin" 					titleKey="sirius.actividad.fechaFin.label"  	format="{0,date,dd/MM/yyyy}" />
-		<display:column sortable="true" property="ponderacion" 					titleKey="sirius.actividad.ponderacion.label" />
-		<display:column sortable="true" property="completitud" 					titleKey="sirius.actividad.completitud.label" />
-		<display:column sortable="true" property="estadoActividad.descripcion" 	titleKey="sirius.actividad.estadoActividad.label" />
+		<display:column sortable="true" property="meta.objetivoEspecifico.objetivoGeneral.proyecto.nombre" 		titleKey="sirius.actividad.proyecto.label" />
+		<display:column sortable="true" property="meta.nombre" 													titleKey="sirius.actividad.meta.label" />
+		<display:column sortable="true" property="nombre" 														titleKey="sirius.actividad.nombre.label" />
+		<display:column sortable="true" property="fechaInicio" 													titleKey="sirius.actividad.fechaInicio.label"  	format="{0,date,dd/MM/yyyy}" />
+		<display:column sortable="true" property="fechaFin" 													titleKey="sirius.actividad.fechaFin.label"  	format="{0,date,dd/MM/yyyy}" />
+		<display:column sortable="true" property="ponderacion" 													titleKey="sirius.actividad.ponderacion.label" />
+		<display:column sortable="true" property="completitud" 													titleKey="sirius.actividad.completitud.label" />
+		<display:column sortable="true" property="estadoActividad.descripcion" 									titleKey="sirius.actividad.estadoActividad.label" />
 
 		<display:column title="Acciones" media="html">
 			<authz:authorize ifAllGranted="ENTIDAD_ACTIVIDAD-DETALLE">

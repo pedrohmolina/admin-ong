@@ -51,11 +51,7 @@ public class UsuarioForm extends AbstractForm<Usuario> {
 	private Collection<Persona> personasFactura;
 	private Collection<Perfil> perfiles;
 
-	private String filtroApellido;
-	private String filtroNombre;
-	private String filtroNumeroDocumento;
-	private String filtroCuit;
-	private String filtroIdRelacionContractual;
+	private String filtroUsername;
 	private String filtroIdPerfil;
 
 	private String labelTipoDocumento;
@@ -232,46 +228,6 @@ public class UsuarioForm extends AbstractForm<Usuario> {
 		this.idFormaPago = idFormaPago;
 	}
 
-	public String getFiltroApellido() {
-		return filtroApellido;
-	}
-
-	public void setFiltroApellido(String filtroApellido) {
-		this.filtroApellido = filtroApellido;
-	}
-
-	public String getFiltroNombre() {
-		return filtroNombre;
-	}
-
-	public void setFiltroNombre(String filtroNombre) {
-		this.filtroNombre = filtroNombre;
-	}
-
-	public String getFiltroNumeroDocumento() {
-		return filtroNumeroDocumento;
-	}
-
-	public void setFiltroNumeroDocumento(String filtroNumeroDocumento) {
-		this.filtroNumeroDocumento = filtroNumeroDocumento;
-	}
-
-	public String getFiltroCuit() {
-		return filtroCuit;
-	}
-
-	public void setFiltroCuit(String filtroCuit) {
-		this.filtroCuit = filtroCuit;
-	}
-
-	public String getFiltroIdRelacionContractual() {
-		return filtroIdRelacionContractual;
-	}
-
-	public void setFiltroIdRelacionContractual(String filtroIdRelacionContractual) {
-		this.filtroIdRelacionContractual = filtroIdRelacionContractual;
-	}
-
 	public String getLabelTipoDocumento() {
 		return labelTipoDocumento;
 	}
@@ -376,6 +332,14 @@ public class UsuarioForm extends AbstractForm<Usuario> {
 		this.labelPerfil = labelPerfil;
 	}
 
+	public String getFiltroUsername() {
+		return filtroUsername;
+	}
+
+	public void setFiltroUsername(String filtroUsername) {
+		this.filtroUsername = filtroUsername;
+	}
+
 	@Override
 	public void initialize() {
 		this.id = null;
@@ -403,11 +367,7 @@ public class UsuarioForm extends AbstractForm<Usuario> {
 		this.idFormaPago = "";
 		this.idPersonaFactura = "";
 		this.idPerfil = "";
-		this.filtroApellido = "";
-		this.filtroNombre = "";
-		this.filtroNumeroDocumento = "";
-		this.filtroCuit = "";
-		this.filtroIdRelacionContractual = "";
+		this.filtroUsername = "";
 		this.filtroIdPerfil = "";
 		this.labelTipoDocumento = "";
 		this.labelRelacionContractual = "";

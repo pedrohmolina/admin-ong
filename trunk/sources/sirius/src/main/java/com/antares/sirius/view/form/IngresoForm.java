@@ -142,7 +142,7 @@ public class IngresoForm extends AbstractForm<Ingreso> {
 	@Override
 	public void initializeForm() {
 		this.id = null;
-		this.monto = "";
+		this.monto = Utils.formatDouble(0D);
 		this.fecha = "";
 		this.descripcion = "";
 		this.idTipoIngreso = "";

@@ -39,17 +39,14 @@ public class ProyectoDAOImpl extends BusinessEntityDAOImpl<Proyecto> implements 
 		if (entityFilter.getFechaFin() != null) {
 			crit.add(Restrictions.eq("fechaFin", entityFilter.getFechaFin()));
 		}
-		if (entityFilter.getResponsable() != null) {
-			crit.add(Restrictions.eq("responsable", entityFilter.getResponsable()));
-		}
-		if (entityFilter.getCoordinador() != null) {
-			crit.createCriteria("coordinadores").add(Restrictions.eq("id", entityFilter.getCoordinador().getId()));
-		}
 		if (entityFilter.getFinanciador() != null) {
 			crit.add(Restrictions.eq("financiador", entityFilter.getFinanciador()));
 		}
 		if (entityFilter.getAreaTematica() != null) {
-			crit.add(Restrictions.eq("fechaFin", entityFilter.getAreaTematica()));
+			crit.createCriteria("areasTematicas").add(Restrictions.eq("id", entityFilter.getAreaTematica().getId()));
+		}
+		if (entityFilter.getEstadoProyecto() != null) {
+			crit.add(Restrictions.eq("estadoProyecto", entityFilter.getEstadoProyecto()));
 		}
 	}
 

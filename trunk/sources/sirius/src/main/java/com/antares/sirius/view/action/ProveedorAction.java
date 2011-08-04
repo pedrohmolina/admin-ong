@@ -20,16 +20,9 @@ public class ProveedorAction extends BaseAction<Proveedor, ProveedorForm, Provee
 	public ProveedorFilter createFilter(ProveedorForm form) {
 		ProveedorFilter filter = new ProveedorFilter();
 		filter.setNombre(form.getFiltroNombre());
-		filter.setCuit(form.getFiltroCuit());
-		filter.setCbu(form.getFiltroCbu());
-		filter.setDireccion(form.getFiltroDireccion());
-		filter.setTelefono(form.getFiltroTelefono());
-		filter.setContacto(form.getFiltroContacto());
-		filter.setCelular(form.getFiltroCelular());
-		filter.setEmail(form.getFiltroEmail());
 
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdTipoProveedor())) {
-			tipoProveedorService.findById(Utils.parseInteger(form.getFiltroIdTipoProveedor()));
+			filter.setTipoProveedor(tipoProveedorService.findById(Utils.parseInteger(form.getFiltroIdTipoProveedor())));
 		}
 		return filter;
 	}

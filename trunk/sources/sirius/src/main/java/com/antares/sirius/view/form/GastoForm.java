@@ -46,8 +46,6 @@ public class GastoForm extends AbstractForm<Gasto> {
 
 	private String filtroIdPersona;
 	private String filtroIdRubro;
-	private String filtroIdOrigen;
-	private String filtroIdProveedor;
 	private String filtroFecha;
 	private String filtroFechaDesde;
 	private String filtroFechaHasta;
@@ -185,22 +183,6 @@ public class GastoForm extends AbstractForm<Gasto> {
 
 	public void setFiltroIdRubro(String filtroIdRubro) {
 		this.filtroIdRubro = filtroIdRubro;
-	}
-
-	public String getFiltroIdOrigen() {
-		return filtroIdOrigen;
-	}
-
-	public void setFiltroIdOrigen(String filtroIdOrigen) {
-		this.filtroIdOrigen = filtroIdOrigen;
-	}
-
-	public String getFiltroIdProveedor() {
-		return filtroIdProveedor;
-	}
-
-	public void setFiltroIdProveedor(String filtroIdProveedor) {
-		this.filtroIdProveedor = filtroIdProveedor;
 	}
 
 	public String getFiltroFecha() {
@@ -390,8 +372,6 @@ public class GastoForm extends AbstractForm<Gasto> {
 		this.idActividad = "";
 		this.filtroIdPersona = "";
 		this.filtroIdRubro = "";
-		this.filtroIdOrigen = "";
-		this.filtroIdProveedor = "";
 		this.filtroIdProyecto = "";
 		this.filtroIdActividad = "";
 		this.filtroFecha = "";
@@ -412,7 +392,7 @@ public class GastoForm extends AbstractForm<Gasto> {
 		this.idPersona = "";
 		this.fecha = "";
 		this.observaciones = "";
-		this.importe = "";
+		this.importe = Utils.formatDouble(0D);
 		this.numeroComprobante = "";
 		this.paquete = "";
 		this.idRubro = "";

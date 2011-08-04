@@ -1,5 +1,7 @@
 package com.antares.sirius.model;
 
+import static javax.persistence.FetchType.LAZY;
+
 import java.util.Collection;
 
 import javax.persistence.CascadeType;
@@ -13,7 +15,7 @@ import javax.persistence.OneToMany;
 @SuppressWarnings("serial")
 public class ObjetivoGeneral extends Ponderable {
 
-	@ManyToOne
+	@ManyToOne(fetch = LAZY)
 	@JoinColumns(@JoinColumn(name = "idProyecto"))
 	private Proyecto proyecto;
 

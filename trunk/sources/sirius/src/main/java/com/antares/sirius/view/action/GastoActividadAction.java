@@ -50,12 +50,6 @@ public class GastoActividadAction extends GastoAction {
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdRubro())) {
 			filter.setRubro(rubroService.findById(Utils.parseInteger(form.getFiltroIdRubro())));
 		}
-		if (Utils.isNotNullNorEmpty(form.getFiltroIdOrigen())) {
-			filter.setOrigen(origenService.findById(Utils.parseInteger(form.getFiltroIdOrigen())));
-		}
-		if (Utils.isNotNullNorEmpty(form.getFiltroIdProveedor())) {
-			filter.setProveedor(proveedorService.findById(Utils.parseInteger(form.getFiltroIdProveedor())));
-		}
 		return filter;
 	}
 

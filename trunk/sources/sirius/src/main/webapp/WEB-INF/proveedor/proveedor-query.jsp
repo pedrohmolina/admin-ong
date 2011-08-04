@@ -32,27 +32,6 @@ function confirmarAccion(mensaje) {
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="proveedorForm" property="tiposProveedor" label="descripcion" value="id"/>
 		</html:select>
-		</p><br><p>
-		<label for="filtroCuit"><bean:message key="sirius.proveedor.cuit.label" />:</label>
-		<html:text property="filtroCuit" />
-		</p><br><p>
-		<label for="filtroCbu"><bean:message key="sirius.proveedor.cbu.label" />:</label>
-		<html:text property="filtroCbu" />
-		</p><br><p>
-		<label for="filtroTelefono"><bean:message key="sirius.proveedor.telefono.label" />:</label>
-		<html:text property="filtroTelefono" />
-		</p><br><p>
-		<label for="filtroDireccion"><bean:message key="sirius.proveedor.direccion.label" />:</label>
-		<html:text property="filtroDireccion" />
-		</p><br><p>
-		<label for="filtroContacto"><bean:message key="sirius.proveedor.contacto.label" />:</label>
-		<html:text property="filtroContacto" />
-		</p><br><p>
-		<label for="filtroCelular"><bean:message key="sirius.proveedor.celular.label" />:</label>
-		<html:text property="filtroCelular" />
-		</p><br><p>
-		<label for="filtroEmail"><bean:message key="sirius.proveedor.email.label" />:</label>
-		<html:text property="filtroEmail" />
 		</p><br>
 	</div>
 
@@ -84,9 +63,6 @@ function confirmarAccion(mensaje) {
 	
 		<display:column sortable="true" property="nombre" 							titleKey="sirius.proveedor.nombre.label" />
 		<display:column sortable="true" property="tipoProveedor.descripcion" 		titleKey="sirius.proveedor.tipoProveedor.label" />
-		<display:column sortable="true" property="contacto" 						titleKey="sirius.proveedor.contacto.label" />
-		<display:column sortable="true" property="direccion" 						titleKey="sirius.proveedor.direccion.label" />
-		<display:column sortable="true" property="telefono" 						titleKey="sirius.proveedor.telefono.label" />
 
 		<display:column title="Acciones" media="html">
 			<authz:authorize ifAllGranted="ENTIDAD_PROVEEDOR-DETALLE">

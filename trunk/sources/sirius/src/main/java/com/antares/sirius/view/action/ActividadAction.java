@@ -39,6 +39,9 @@ public class ActividadAction extends BaseAction<Actividad, ActividadForm, Activi
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdMeta())) {
 			filter.setMeta(metaService.findById(Utils.parseInteger(form.getFiltroIdMeta())));
 		}
+		if (Utils.isNotNullNorEmpty(form.getFiltroIdEstadoActividad())) {
+			filter.setEstadoActividad(estadoActividadService.findById(Utils.parseInteger(form.getFiltroIdEstadoActividad())));
+		}
 		return filter;
 	}
 
@@ -73,6 +76,7 @@ public class ActividadAction extends BaseAction<Actividad, ActividadForm, Activi
 	protected void loadCollections(ActividadForm form) {
 		form.setMetas(metaService.findAll());
 		form.setFinanciadores(financiadorService.findAll());
+		form.setEstadosActividad(estadoActividadService.findAll());
 	}
 
 	@Override

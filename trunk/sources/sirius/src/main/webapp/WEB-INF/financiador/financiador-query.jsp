@@ -33,27 +33,6 @@ function confirmarAccion(mensaje) {
 			<html:optionsCollection name="financiadorForm" property="tiposFinanciador" label="descripcion" value="id"/>
 		</html:select>
 		</p><br><p>
-		<label for="filtroCuit"><bean:message key="sirius.financiador.cuit.label" />:</label>
-		<html:text property="filtroCuit" />
-		</p><br><p>
-		<label for="filtroCbu"><bean:message key="sirius.financiador.cbu.label" />:</label>
-		<html:text property="filtroCbu" />
-		</p><br><p>
-		<label for="filtroTelefono"><bean:message key="sirius.financiador.telefono.label" />:</label>
-		<html:text property="filtroTelefono" />
-		</p><br><p>
-		<label for="filtroDireccion"><bean:message key="sirius.financiador.direccion.label" />:</label>
-		<html:text property="filtroDireccion" />
-		</p><br><p>
-		<label for="filtroContacto"><bean:message key="sirius.financiador.contacto.label" />:</label>
-		<html:text property="filtroContacto" />
-		</p><br><p>
-		<label for="filtroCelular"><bean:message key="sirius.financiador.celular.label" />:</label>
-		<html:text property="filtroCelular" />
-		</p><br><p>
-		<label for="filtroEmail"><bean:message key="sirius.financiador.email.label" />:</label>
-		<html:text property="filtroEmail" />
-		</p><br><p>
 		<label for="filtroIdEstadoFinanciador"><bean:message key="sirius.financiador.estadoFinanciador.label" />:</label>
 		<html:select property="filtroIdEstadoFinanciador">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
@@ -91,9 +70,6 @@ function confirmarAccion(mensaje) {
 		<display:column sortable="true" property="nombre" 							titleKey="sirius.financiador.nombre.label" />
 		<display:column sortable="true" property="tipoFinanciador.descripcion" 		titleKey="sirius.financiador.tipoFinanciador.label" />
 		<display:column sortable="true" property="estadoFinanciador.descripcion" 	titleKey="sirius.financiador.estadoFinanciador.label" />
-		<display:column sortable="true" property="contacto" 						titleKey="sirius.financiador.contacto.label" />
-		<display:column sortable="true" property="direccion" 						titleKey="sirius.financiador.direccion.label" />
-		<display:column sortable="true" property="telefono" 						titleKey="sirius.financiador.telefono.label" />
 
 		<display:column title="Acciones" media="html">
 			<authz:authorize ifAllGranted="ENTIDAD_FINANCIADOR-DETALLE">

@@ -32,12 +32,6 @@ public class PersonaDAOImpl extends BusinessEntityDAOImpl<Persona> implements Pe
 		if (Utils.isNotNullNorEmpty(entityFilter.getNombre())) {
 			crit.add(Restrictions.ilike("nombre", entityFilter.getNombre(), MatchMode.ANYWHERE));
 		}
-		if (Utils.isNotNullNorEmpty(entityFilter.getCuit())) {
-			crit.add(Restrictions.ilike("cuit", entityFilter.getCuit(), MatchMode.ANYWHERE));
-		}
-		if (entityFilter.getNumeroDocumento() != null) {
-			crit.add(Restrictions.eq("numeroDocumento", entityFilter.getNumeroDocumento()));
-		}
 		if (entityFilter.getRelacionContractual() != null) {
 			crit.add(Restrictions.eq("relacionContractual", entityFilter.getRelacionContractual()));
 		}
