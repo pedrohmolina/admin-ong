@@ -189,6 +189,9 @@
     <bean id="authenticationManager" class="org.acegisecurity.providers.ProviderManager">
         <property name="providers">
             <list>
+				<!--
+				<ref local="ldapAuthenticationProvider" />
+                -->
                 <ref local="daoAuthenticationProvider"/>
                 <ref local="anonymousAuthenticationProvider"/>
                 <ref local="rememberMeAuthenticationProvider"/>
@@ -196,6 +199,51 @@
         </property>
 		<property name="sessionController"><ref bean="concurrentSessionController"/></property>
     </bean>
+
+	<!-- Autenticacion por LDAP -->
+	<bean id="ldapAuthenticationProvider" class="org.acegisecurity.providers.ldap.LdapAuthenticationProvider">
+		<constructor-arg><ref local="authenticator"/></constructor-arg>
+		<constructor-arg><ref local="populator"/></constructor-arg>
+	</bean>
+
+	<bean id="authenticator" class="org.acegisecurity.providers.ldap.authenticator.BindAuthenticator">
+		<constructor-arg><ref local="initialDirContextFactory"/></constructor-arg>
+		<property name="userDnPatterns">
+			<list>
+				<value>uid={0},dc=org</value>
+			</list>
+		</property>
+		<property name="userSearch"><ref local="userSearch"/></property>
+	</bean>
+
+                
+	<bean id="userSearch" class="org.acegisecurity.ldap.search.FilterBasedLdapUserSearch">
+		<constructor-arg>
+			<value>dc=org</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>(uid={0})</value>
+		</constructor-arg>
+		<constructor-arg>
+			<ref local="initialDirContextFactory" />
+		</constructor-arg>
+		<property name="searchSubtree">
+			<value>true</value>
+		</property>
+	</bean>
+
+	<bean id="populator" class="com.antares.commons.security.DbAuthoritiesPopulatorImpl" autowire="byName" />
+
+	<bean id="initialDirContextFactory" class="org.acegisecurity.ldap.DefaultInitialDirContextFactory">
+		<constructor-arg value="ldap://192.168.132.128:389/"/>
+		<property name="managerDn">
+			<value>uid=sirius</value>
+		</property>
+		<property name="managerPassword">
+			<value>Antares1</value>
+		</property>
+	</bean>
+	<!-- Fin Autenticacion por LDAP -->
 
 	<bean id="concurrentSessionController" class="org.acegisecurity.concurrent.ConcurrentSessionControllerImpl">
 		<property name="maximumSessions"><value>3</value></property>

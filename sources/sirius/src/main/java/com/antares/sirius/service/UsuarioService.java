@@ -1,5 +1,7 @@
 package com.antares.sirius.service;
 
+import org.acegisecurity.userdetails.UserDetailsService;
+
 import com.antares.commons.service.BusinessEntityService;
 import com.antares.sirius.model.Usuario;
 
@@ -10,7 +12,7 @@ import com.antares.sirius.model.Usuario;
  * @author <a href:mailto:otakon@gmail.com>Julian Martinez</a>
  *
  */
-public interface UsuarioService extends BusinessEntityService<Usuario> {
+public interface UsuarioService extends BusinessEntityService<Usuario>, UserDetailsService {
 
 	/**
 	 * Valida que el nombre no este repetido otra entidad con distinto id

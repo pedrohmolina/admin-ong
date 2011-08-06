@@ -4,7 +4,6 @@ import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
 import org.acegisecurity.userdetails.UserDetails;
-import org.acegisecurity.userdetails.UserDetailsService;
 import org.acegisecurity.userdetails.UsernameNotFoundException;
 import org.springframework.dao.DataAccessException;
 
@@ -20,7 +19,7 @@ import com.antares.sirius.service.UsuarioService;
  * @author <a href:mailto:otakon@gmail.com> Julian Martinez </a>
  *
  */
-public class UsuarioServiceImpl extends BusinessEntityServiceImpl<Usuario, UsuarioDAO> implements UsuarioService, UserDetailsService {
+public class UsuarioServiceImpl extends BusinessEntityServiceImpl<Usuario, UsuarioDAO> implements UsuarioService {
 
 	public boolean isNombreRepetido(String username, Integer id) {
 		boolean isNombreRepetido = false;
