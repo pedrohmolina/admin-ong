@@ -422,6 +422,18 @@
                        javax.servlet.http.HttpServletRequest"
                    depends=""
                    msg="errors.cuit"/>
+
+        <validator name="daterange"
+                   classname="com.antares.commons.validation.CustomValidationRoutines"
+                   method="validateDaterange"
+                   methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       javax.servlet.http.HttpServletRequest"
+                   depends=""
+                   msg="errors.datesrangeinvalid"/>
+
         <!--
           This simply allows struts to include the validateUtilities into a page, it should
           not be used as a validation rule.
