@@ -1,7 +1,6 @@
 package com.antares.commons.validation;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -100,12 +99,12 @@ public class CustomValidationRoutines {
     }   
 
     private static boolean isValidDateRange(String beginDate, String endDate) {   
-        // Convert both dates into their calendar objects.   
-        Calendar begin = new GregorianCalendar();   
-        Calendar end = new GregorianCalendar();   
-        begin.setTime(Utils.parseDate(beginDate));   
-        end.setTime(Utils.parseDate(endDate));   
-        return !end.before(begin);
+        Date begin = Utils.parseDate(beginDate);
+        Date end = Utils.parseDate(endDate);
+        if (begin != null && end != null) {
+        	return !end.before(begin);
+        }
+        return true;
     }
     
 }
