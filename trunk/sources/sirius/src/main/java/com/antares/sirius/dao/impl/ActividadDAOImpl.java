@@ -29,7 +29,7 @@ public class ActividadDAOImpl extends BusinessEntityDAOImpl<Actividad> implement
 	
 	public Actividad findByNombre(String nombre) {
 		Criteria crit = buildCriteria();
-		crit.add(Restrictions.ilike("nombre", nombre, MatchMode.EXACT));
+		crit.add(ilike("nombre", nombre, MatchMode.EXACT));
 		return (Actividad)crit.uniqueResult();
 	}
 
@@ -71,7 +71,7 @@ public class ActividadDAOImpl extends BusinessEntityDAOImpl<Actividad> implement
 	protected void addFilter(Criteria crit, Filter<Actividad> filter) {
 		ActividadFilter entityFilter = (ActividadFilter)filter;
 		if (Utils.isNotNullNorEmpty(entityFilter.getNombre())) {
-			crit.add(Restrictions.ilike("nombre", entityFilter.getNombre(), MatchMode.ANYWHERE));
+			crit.add(ilike("nombre", entityFilter.getNombre(), MatchMode.ANYWHERE));
 		}
 		if (entityFilter.getMeta() != null) {
 			crit.add(Restrictions.eq("meta", entityFilter.getMeta()));

@@ -23,7 +23,7 @@ public class FinanciadorDAOImpl extends BusinessEntityDAOImpl<Financiador> imple
 	
 	public Financiador findByNombre(String nombre) {
 		Criteria crit = buildCriteria();
-		crit.add(Restrictions.ilike("nombre", nombre, MatchMode.EXACT));
+		crit.add(ilike("nombre", nombre, MatchMode.EXACT));
 		return (Financiador)crit.uniqueResult();
 	}
 
@@ -31,7 +31,7 @@ public class FinanciadorDAOImpl extends BusinessEntityDAOImpl<Financiador> imple
 	protected void addFilter(Criteria crit, Filter<Financiador> filter) {
 		FinanciadorFilter entityFilter = (FinanciadorFilter)filter;
 		if (Utils.isNotNullNorEmpty(entityFilter.getNombre())) {
-			crit.add(Restrictions.ilike("nombre", entityFilter.getNombre(), MatchMode.ANYWHERE));
+			crit.add(ilike("nombre", entityFilter.getNombre(), MatchMode.ANYWHERE));
 		}
 		if (entityFilter.getTipoFinanciador() != null) {
 			crit.add(Restrictions.eq("tipoFinanciador", entityFilter.getTipoFinanciador()));

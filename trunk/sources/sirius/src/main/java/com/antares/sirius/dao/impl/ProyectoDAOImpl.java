@@ -23,7 +23,7 @@ public class ProyectoDAOImpl extends BusinessEntityDAOImpl<Proyecto> implements 
 	
 	public Proyecto findByNombre(String nombre) {
 		Criteria crit = buildCriteria();
-		crit.add(Restrictions.ilike("nombre", nombre, MatchMode.EXACT));
+		crit.add(ilike("nombre", nombre, MatchMode.EXACT));
 		return (Proyecto)crit.uniqueResult();
 	}
 
@@ -31,7 +31,7 @@ public class ProyectoDAOImpl extends BusinessEntityDAOImpl<Proyecto> implements 
 	protected void addFilter(Criteria crit, Filter<Proyecto> filter) {
 		ProyectoFilter entityFilter = (ProyectoFilter)filter;
 		if (Utils.isNotNullNorEmpty(entityFilter.getNombre())) {
-			crit.add(Restrictions.ilike("nombre", entityFilter.getNombre(), MatchMode.ANYWHERE));
+			crit.add(ilike("nombre", entityFilter.getNombre(), MatchMode.ANYWHERE));
 		}
 		if (entityFilter.getFechaInicio() != null) {
 			crit.add(Restrictions.eq("fechaInicio", entityFilter.getFechaInicio()));

@@ -3,7 +3,6 @@ package com.antares.sirius.dao.impl;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Restrictions;
 
 import com.antares.commons.dao.impl.BusinessEntityDAOImpl;
 import com.antares.commons.filter.Filter;
@@ -23,7 +22,7 @@ public class RolDAOImpl extends BusinessEntityDAOImpl<Rol> implements RolDAO {
 	
 	public Rol findByNombre(String nombre) {
 		Criteria crit = buildCriteria();
-		crit.add(Restrictions.ilike("nombre", nombre, MatchMode.EXACT));
+		crit.add(ilike("nombre", nombre, MatchMode.EXACT));
 		return (Rol)crit.uniqueResult();
 	}
 
@@ -31,7 +30,7 @@ public class RolDAOImpl extends BusinessEntityDAOImpl<Rol> implements RolDAO {
 	protected void addFilter(Criteria crit, Filter<Rol> filter) {
 		RolFilter entityFilter = (RolFilter)filter;
 		if (Utils.isNotNullNorEmpty(entityFilter.getNombre())) {
-			crit.add(Restrictions.ilike("nombre", entityFilter.getNombre(), MatchMode.ANYWHERE));
+			crit.add(ilike("nombre", entityFilter.getNombre(), MatchMode.ANYWHERE));
 		}
 	}
 

@@ -27,10 +27,10 @@ public class PersonaDAOImpl extends BusinessEntityDAOImpl<Persona> implements Pe
 	protected void addFilter(Criteria crit, Filter<Persona> filter) {
 		PersonaFilter entityFilter = (PersonaFilter)filter;
 		if (Utils.isNotNullNorEmpty(entityFilter.getApellido())) {
-			crit.add(Restrictions.ilike("apellido", entityFilter.getApellido(), MatchMode.ANYWHERE));
+			crit.add(ilike("apellido", entityFilter.getApellido(), MatchMode.ANYWHERE));
 		}
 		if (Utils.isNotNullNorEmpty(entityFilter.getNombre())) {
-			crit.add(Restrictions.ilike("nombre", entityFilter.getNombre(), MatchMode.ANYWHERE));
+			crit.add(ilike("nombre", entityFilter.getNombre(), MatchMode.ANYWHERE));
 		}
 		if (entityFilter.getRelacionContractual() != null) {
 			crit.add(Restrictions.eq("relacionContractual", entityFilter.getRelacionContractual()));
@@ -50,8 +50,8 @@ public class PersonaDAOImpl extends BusinessEntityDAOImpl<Persona> implements Pe
 
 	public Persona findByNombreApellido(String nombre, String apellido) {
 		Criteria crit = buildCriteria();
-		crit.add(Restrictions.ilike("nombre", nombre, MatchMode.EXACT));
-		crit.add(Restrictions.ilike("apellido", apellido, MatchMode.EXACT));
+		crit.add(ilike("nombre", nombre, MatchMode.EXACT));
+		crit.add(ilike("apellido", apellido, MatchMode.EXACT));
 		return (Persona)crit.uniqueResult();
 	}
 

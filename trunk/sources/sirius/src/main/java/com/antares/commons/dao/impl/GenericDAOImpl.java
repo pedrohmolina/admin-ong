@@ -6,8 +6,12 @@ import java.util.Collection;
 
 import org.apache.poi.hssf.record.formula.functions.T;
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.MatchMode;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
+import com.antares.commons.criterion.IlikeExpression;
+import com.antares.commons.criterion.LikeExpression;
 import com.antares.commons.dao.GenericDAO;
 import com.antares.sirius.model.PersistentObject;
 
@@ -78,4 +82,29 @@ public abstract class GenericDAOImpl<T extends PersistentObject> extends Hiberna
 	protected void addOrder(Criteria crit) {
 		
 	}
+
+	public static Criterion like(String propertyName, Object value) {     
+		return new LikeExpression(propertyName, value); 
+	}
+	
+	public static Criterion like(String propertyName, String value, MatchMode matchMode) {     
+		return new LikeExpression(propertyName, value, matchMode); 
+	}
+
+	public static Criterion like(String propertyName, String value, Character escapeChar) {     
+		return new LikeExpression(propertyName, value, escapeChar); 
+	}
+
+	public static Criterion ilike(String propertyName, Object value) {     
+		return new IlikeExpression(propertyName, value); 
+	}
+	
+	public static Criterion ilike(String propertyName, String value, MatchMode matchMode) {     
+		return new IlikeExpression(propertyName, value, matchMode); 
+	}
+	
+	public static Criterion ilike(String propertyName, String value, Character escapeChar) {     
+		return new IlikeExpression(propertyName, value, escapeChar);
+	}
+
 }
