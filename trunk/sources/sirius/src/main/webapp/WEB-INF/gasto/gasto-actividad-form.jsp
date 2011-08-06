@@ -9,7 +9,6 @@
 <%@ taglib uri="/WEB-INF/tlds/displaytag-el.tld" prefix="display-el"%>
 <%@ taglib uri="/WEB-INF/tlds/c.tld" prefix="c"%>
 <%@ taglib uri="/WEB-INF/tlds/authz.tld" prefix="authz"%>
-
 <script>
 $(document).ready(function() {
 	changeProyecto();
@@ -62,7 +61,6 @@ function cargarComboActividad(select, destinationCombo) {
 <div class="form">
 <html:form action="/gasto/gasto-actividad-form-validate.do?method=save"
 	styleId="abmForm">
-
 	<div style="float:left;">
 		<p>
 		<label for="idProyecto"><bean:message key="sirius.gasto.proyecto.label" />(*)&nbsp;:</label>
@@ -162,8 +160,4 @@ function cargarComboActividad(select, destinationCombo) {
 	</div>
 	<div style="clear:both; padding:5px 0 0 0;"></div>
 </html:form>
-
 </div>
-
-<script type="text/javascript">	
-</script>

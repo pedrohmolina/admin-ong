@@ -15,6 +15,7 @@
 <meta http-equiv="Cache-control" content="no-cache"/>
 <meta http-equiv="Cache" content="no-cache"/>
 <meta http-equiv="Expires" content="thu, 01 Jan 1998 12:00:00 GMT"/>
+<link rel="stylesheet" type="text/css" href="../css/style.css" />
 <title>
 		<c:if test="${empty requestScope['title']}">
 			<c:set var="titulo">
