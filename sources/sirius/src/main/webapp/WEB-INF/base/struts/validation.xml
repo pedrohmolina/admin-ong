@@ -76,6 +76,9 @@
 			</field>
 		</form>
 
+		<form name="actividadQuery">
+		</form>
+
 		<form name="asignacionForm">
 			<field property="idActividad" depends="required">
 				<arg position="0" key="sirius.asignacion.actividad.label"/>
@@ -99,6 +102,9 @@
 					<var-value>999</var-value>
 				</var>
 			</field>
+		</form>
+
+		<form name="asignacionQuery">
 		</form>
 
 		<form name="financiadorForm">
@@ -186,6 +192,9 @@
 			</field>
 		</form>
 
+		<form name="financiadorQuery">
+		</form>
+
 		<form name="gastoActividadForm">
 			<field property="idProyecto" depends="required">
 				<arg position="0" key="sirius.gasto.proyecto.label"/>
@@ -208,6 +217,23 @@
 			</field>
 			<field property="importe" depends="required, positiveDouble">
 				<arg position="0" key="sirius.gasto.importe.label"/>
+			</field>
+		</form>
+
+		<form name="gastoActividadQuery">
+			<field property="filtroFechaDesde" depends="date">
+				<arg position="0" key="sirius.gasto.fechaDesde.label"/>
+				<var>
+					<var-name>datePattern</var-name>
+					<var-value>dd/MM/yyyy</var-value>
+				</var>
+			</field>
+			<field property="filtroFechaHasta" depends="date">
+				<arg position="0" key="sirius.gasto.fechaHasta.label"/>
+				<var>
+					<var-name>datePattern</var-name>
+					<var-value>dd/MM/yyyy</var-value>
+				</var>
 			</field>
 		</form>
 
@@ -239,6 +265,23 @@
 			</field>
 		</form>
 
+		<form name="gastoOrganizacionQuery">
+			<field property="filtroFechaDesde" depends="date">
+				<arg position="0" key="sirius.gasto.fechaDesde.label"/>
+				<var>
+					<var-name>datePattern</var-name>
+					<var-value>dd/MM/yyyy</var-value>
+				</var>
+			</field>
+			<field property="filtroFechaHasta" depends="date">
+				<arg position="0" key="sirius.gasto.fechaHasta.label"/>
+				<var>
+					<var-name>datePattern</var-name>
+					<var-value>dd/MM/yyyy</var-value>
+				</var>
+			</field>
+		</form>
+
 		<form name="gastoProyectoForm">
 			<field property="idProyecto" depends="required">
 				<arg position="0" key="sirius.gasto.proyecto.label"/>
@@ -258,6 +301,23 @@
 			</field>
 			<field property="importe" depends="required, positiveDouble">
 				<arg position="0" key="sirius.gasto.importe.label"/>
+			</field>
+		</form>
+
+		<form name="gastoProyectoQuery">
+			<field property="filtroFechaDesde" depends="date">
+				<arg position="0" key="sirius.gasto.fechaDesde.label"/>
+				<var>
+					<var-name>datePattern</var-name>
+					<var-value>dd/MM/yyyy</var-value>
+				</var>
+			</field>
+			<field property="filtroFechaHasta" depends="date">
+				<arg position="0" key="sirius.gasto.fechaHasta.label"/>
+				<var>
+					<var-name>datePattern</var-name>
+					<var-value>dd/MM/yyyy</var-value>
+				</var>
 			</field>
 		</form>
 
@@ -281,6 +341,23 @@
 				<var>
 					<var-name>maxlength</var-name>
 					<var-value>2000</var-value>
+				</var>
+			</field>
+		</form>
+
+		<form name="ingresoQuery">
+			<field property="filtroFechaDesde" depends="date">
+				<arg position="0" key="sirius.gasto.fechaDesde.label"/>
+				<var>
+					<var-name>datePattern</var-name>
+					<var-value>dd/MM/yyyy</var-value>
+				</var>
+			</field>
+			<field property="filtroFechaHasta" depends="date">
+				<arg position="0" key="sirius.gasto.fechaHasta.label"/>
+				<var>
+					<var-name>datePattern</var-name>
+					<var-value>dd/MM/yyyy</var-value>
 				</var>
 			</field>
 		</form>
@@ -330,6 +407,9 @@
 			</field>
 		</form>
 
+		<form name="metaQuery">
+		</form>
+
 		<form name="objetivoEspecificoForm">
 			<field property="nombre" depends="required, minlength, maxlength">
 				<arg position="0" key="sirius.objetivoEspecifico.nombre.label"/>
@@ -373,6 +453,9 @@
 					<var-value>100</var-value>
 				</var>
 			</field>
+		</form>
+
+		<form name="objetivoEspecificoQuery">
 		</form>
 
 		<form name="objetivoGeneralForm">
@@ -420,6 +503,9 @@
 			</field>
 		</form>
 
+		<form name="objetivoGeneralQuery">
+		</form>
+
 		<form name="perfilForm">
 			<field property="nombre" depends="required, maxlength">
 				<arg position="0" key="sirius.perfil.nombre.label"/>
@@ -437,6 +523,9 @@
 					<var-value>255</var-value>
 				</var>
 			</field>
+		</form>
+
+		<form name="perfilQuery">
 		</form>
 
 		<form name="personaForm">
@@ -577,6 +666,9 @@
 			</field>
 		</form>
 
+		<form name="personaQuery">
+		</form>
+
 		<form name="proveedorForm">
 			<field property="nombre" depends="required, maxlength">
 				<arg position="0" key="sirius.proveedor.nombre.label"/>
@@ -657,6 +749,9 @@
 			<field property="idTipoProveedor" depends="required">
 				<arg position="0" key="sirius.proveedor.tipoProveedor.label"/>
 			</field>
+		</form>
+
+		<form name="proveedorQuery">
 		</form>
 
 		<form name="proyectoForm">
@@ -741,6 +836,23 @@
 			</field>
 		</form>
 
+		<form name="proyectoQuery">
+			<field property="filtroFechaInicio" depends="date">
+				<arg position="0" key="sirius.proyecto.fechaInicio.label"/>
+				<var>
+					<var-name>datePattern</var-name>
+					<var-value>dd/MM/yyyy</var-value>
+				</var>
+			</field>
+			<field property="filtroFechaFin" depends="date">
+				<arg position="0" key="sirius.proyecto.fechaFin.label"/>
+				<var>
+					<var-name>datePattern</var-name>
+					<var-value>dd/MM/yyyy</var-value>
+				</var>
+			</field>
+		</form>
+
 		<form name="relacionContractualForm">
 			<field property="nombre" depends="required, maxlength">
 				<arg position="0" key="sirius.relacionContractual.nombre.label"/>
@@ -760,6 +872,9 @@
 			</field>
 		</form>
 
+		<form name="relacionContractualQuery">
+		</form>
+
 		<form name="rolForm">
 			<field property="nombre" depends="required, maxlength">
 				<arg position="0" key="sirius.rol.nombre.label"/>
@@ -777,6 +892,9 @@
 					<var-value>255</var-value>
 				</var>
 			</field>
+		</form>
+
+		<form name="rolQuery">
 		</form>
 
 		<form name="rubroForm">
@@ -810,6 +928,9 @@
 					<var-value>(((nivel == 1) or (nivel == 2)) or (*this* != null))</var-value>
 				</var>
  			</field>
+		</form>
+
+		<form name="rubroQuery">
 		</form>
 
 		<form name="usuarioForm">
@@ -975,6 +1096,9 @@
 			</field>
 		</form>
 
+		<form name="usuarioQuery">
+		</form>
+
 		<form name="usuarioPersonaForm">
 			<field property="username" depends="required, maxlength">
 				<arg position="0" key="sirius.usuario.username.label"/>
@@ -1072,6 +1196,9 @@
 					<var-value>dd/MM/yyyy</var-value>
 				</var>
 			</field>
+		</form>
+
+		<form name="reglaQuery">
 		</form>
 
 		<form name="reporteFinancieroForm">

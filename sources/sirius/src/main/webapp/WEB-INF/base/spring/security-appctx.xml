@@ -58,7 +58,7 @@
                 /gasto/gasto-actividad(.*)initUpdate.*=ENTIDAD_GASTO_ACTIVIDAD-MODIFICACION
                 /gasto/gasto-actividad(.*)remove.*=ENTIDAD_GASTO_ACTIVIDAD-BAJA
                 /gasto/gasto-actividad(.*)save.*=ENTIDAD_GASTO_ACTIVIDAD-ALTA, ENTIDAD_GASTO_ACTIVIDAD-MODIFICACION
-                /gasto/gasto-actividad(.*)confirmar.*=ENTIDAD_ACTIVIDAD-CONFIRMAR
+                /gasto/gasto-actividad(.*)confirmar.*=ENTIDAD_GASTO_ACTIVIDAD-CONFIRMAR
                 /gasto/gasto-actividad.*=ENTIDAD_GASTO_ACTIVIDAD-LISTADO, ENTIDAD_GASTO_ACTIVIDAD-ALTA 
 
                 /gasto/gasto-organizacion(.*)initCreate.*=ENTIDAD_GASTO_ORGANIZACION-ALTA

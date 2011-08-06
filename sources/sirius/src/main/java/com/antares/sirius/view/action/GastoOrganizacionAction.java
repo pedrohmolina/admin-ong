@@ -12,7 +12,8 @@ public class GastoOrganizacionAction extends GastoAction {
 	protected Filter<Gasto> createFilter(GastoForm form) {
 		GastoFilter filter = new GastoFilter();
 		filter.setTipoGasto(tipoGastoService.findTipoGastoOrganizacion());
-		filter.setFecha(Utils.parseDate(form.getFiltroFecha()));
+		filter.setFechaDesde(Utils.parseDate(form.getFiltroFechaDesde()));
+		filter.setFechaHasta(Utils.parseDate(form.getFiltroFechaHasta()));
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdRubro())) {
 			filter.setRubro(rubroService.findById(Utils.parseInteger(form.getFiltroIdRubro())));
 		}

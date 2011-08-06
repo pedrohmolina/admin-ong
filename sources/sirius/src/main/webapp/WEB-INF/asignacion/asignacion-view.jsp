@@ -10,7 +10,7 @@
 <%@ taglib uri="/WEB-INF/tlds/c.tld" prefix="c"%>
 
 <div class="form">
-<html:form action="/asignacion/asignacion-query.do?method=query">
+<html:form action="/asignacion/asignacion-form.do?method=view">
 	<div style="float:left;">
 		<p>
 		<label for="idActividad"><bean:message key="sirius.asignacion.actividad.label" />(*)&nbsp;:</label>

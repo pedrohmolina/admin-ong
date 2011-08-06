@@ -21,7 +21,7 @@ function confirmarAccion(mensaje) {
 </script>
 
 <div class="form">
-	<html:form action="/usuario/usuario-query.do?method=query">
+	<html:form action="/usuario/usuario-query-validate.do?method=query">
 	<div style="float:left; width: 100%;">
 		<p>
 		<label for="filtroUsername"><bean:message key="sirius.usuario.username.label" />:</label>
@@ -30,7 +30,7 @@ function confirmarAccion(mensaje) {
 		<label for="filtroIdPerfil"><bean:message key="sirius.usuario.relacionContractual.label" />:</label>
 		<html:select property="filtroIdPerfil">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
-			<html:optionsCollection name="usuarioForm" property="perfiles" label="nombre" value="id"/>
+			<html:optionsCollection name="usuarioQuery" property="perfiles" label="nombre" value="id"/>
 		</html:select>
 		</p><br>
 	</div>
@@ -39,7 +39,7 @@ function confirmarAccion(mensaje) {
 		<div class="boton">
 			<a href="#" onclick="javascript:limpiarFiltro();"><bean:message key="antares.base.limpiarfiltro.label"/></a>
 			<authz:authorize ifAllGranted="ENTIDAD_USUARIO-LISTADO">
-				<a href="#" onclick="usuarioForm.submit();"><bean:message key="antares.base.buscar.label" /></a>
+				<a href="#" onclick="usuarioQuery.submit();"><bean:message key="antares.base.buscar.label" /></a>
 			</authz:authorize>
 			<authz:authorize ifAllGranted="ENTIDAD_USUARIO-ALTA">
 				<a href="#" onclick="return hacerSubmit('usuario/usuario-form.do?method=initCreate');"><bean:message key="antares.base.nuevo.label" /></a>
@@ -54,7 +54,7 @@ function confirmarAccion(mensaje) {
 	</div>
 
 	<h1><bean:message key="antares.base.result.label" /></h1>
-	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.usuarioForm.result" id="item"
+	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.usuarioQuery.result" id="item"
 		requestURI="/usuario/usuario-query.do" sort="list" >
 
 		<c:if test="${not empty requestScope['notShowMessage']}">

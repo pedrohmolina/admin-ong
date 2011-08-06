@@ -16,7 +16,7 @@ function confirmarAccion(mensaje) {
 </script>
 
 <div class="form">
-	<html:form action="/gasto/gasto-actividad-list.do?method=list">
+	<html:form action="/gasto/gasto-actividad-list-validate.do?method=list">
 	<div style="float:left; width: 100%;">
 		<p>
 		<label for="filtroFechaDesde"><bean:message key="sirius.gasto.fechaDesde.label" />:</label>
@@ -29,7 +29,7 @@ function confirmarAccion(mensaje) {
 
 	<div style="float: left; width: 100%;">
 		<div class="boton">
-			<a href="#" onclick="gastoActividadForm.submit();"><bean:message key="antares.base.buscar.label" /></a>
+			<a href="#" onclick="gastoActividadQuery.submit();"><bean:message key="antares.base.buscar.label" /></a>
 		</div>
 	</div>
 	
@@ -40,7 +40,7 @@ function confirmarAccion(mensaje) {
 	</div>
 
 	<h1><bean:message key="antares.base.result.label" /></h1>
-	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.gastoActividadForm.result" id="item"
+	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.gastoActividadQuery.result" id="item"
 		requestURI="/gasto/gasto-actividad-list.do" sort="list" >
 
 		<c:if test="${not empty requestScope['notShowMessage']}">

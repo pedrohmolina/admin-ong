@@ -21,7 +21,7 @@ function confirmarAccion(mensaje) {
 </script>
 
 <div class="form">
-	<html:form action="/rol/rol-query.do?method=query">
+	<html:form action="/rol/rol-query-validate.do?method=query">
 	<div style="float:left; width: 100%;">
 		<p>
 		<label for="nombre"><bean:message key="sirius.rol.nombre.label" />:</label>
@@ -34,7 +34,7 @@ function confirmarAccion(mensaje) {
 		<div class="boton">
 			<a href="#" onclick="javascript:limpiarFiltro();"><bean:message key="antares.base.limpiarfiltro.label"/></a>
 			<authz:authorize ifAllGranted="ENTIDAD_ROL-LISTADO">
-				<a href="#" onclick="rolForm.submit();"><bean:message key="antares.base.buscar.label" /></a>
+				<a href="#" onclick="rolQuery.submit();"><bean:message key="antares.base.buscar.label" /></a>
 			</authz:authorize>
 			<authz:authorize ifAllGranted="ENTIDAD_ROL-ALTA">
 				<a href="#" onclick="return hacerSubmit('rol/rol-form.do?method=initCreate');"><bean:message key="antares.base.nuevo.label" /></a>
@@ -49,7 +49,7 @@ function confirmarAccion(mensaje) {
 	</div>
 
 	<h1><bean:message key="antares.base.result.label" /></h1>
-	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.rolForm.result" id="item"
+	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.rolQuery.result" id="item"
 		requestURI="/rol/rol-query.do" sort="list" >
 
 		<c:if test="${not empty requestScope['notShowMessage']}">

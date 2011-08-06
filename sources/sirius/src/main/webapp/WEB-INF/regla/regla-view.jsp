@@ -10,7 +10,7 @@
 <%@ taglib uri="/WEB-INF/tlds/c.tld" prefix="c"%>
 
 <div class="form">
-<html:form action="/regla/regla-query.do?method=query">
+<html:form action="/regla/regla-form.do?method=view">
 	<div style="float:left;">
 		<p>
 		<label for="labelUsuario"><bean:message key="sirius.regla.usuario.label" />&nbsp;:</label>

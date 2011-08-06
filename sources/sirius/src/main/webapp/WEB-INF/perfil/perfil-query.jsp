@@ -21,7 +21,7 @@ function confirmarAccion(mensaje) {
 </script>
 
 <div class="form">
-	<html:form action="/perfil/perfil-query.do?method=query">
+	<html:form action="/perfil/perfil-query-validate.do?method=query">
 	<div style="float:left; width: 100%;">
 		<p>
 		<label for="nombre"><bean:message key="sirius.perfil.nombre.label" />:</label>
@@ -33,7 +33,7 @@ function confirmarAccion(mensaje) {
 		<div class="boton">
 			<a href="#" onclick="javascript:limpiarFiltro();"><bean:message key="antares.base.limpiarfiltro.label"/></a>
 			<authz:authorize ifAllGranted="ENTIDAD_PERFIL-LISTADO">
-				<a href="#" onclick="perfilForm.submit();"><bean:message key="antares.base.buscar.label" /></a>
+				<a href="#" onclick="perfilQuery.submit();"><bean:message key="antares.base.buscar.label" /></a>
 			</authz:authorize>
 			<authz:authorize ifAllGranted="ENTIDAD_PERFIL-ALTA">
 				<a href="#" onclick="return hacerSubmit('perfil/perfil-form.do?method=initCreate');"><bean:message key="antares.base.nuevo.label" /></a>
@@ -48,7 +48,7 @@ function confirmarAccion(mensaje) {
 	</div>
 
 	<h1><bean:message key="antares.base.result.label" /></h1>
-	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.perfilForm.result" id="item"
+	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.perfilQuery.result" id="item"
 		requestURI="/perfil/perfil-query.do" sort="list" >
 
 		<c:if test="${not empty requestScope['notShowMessage']}">

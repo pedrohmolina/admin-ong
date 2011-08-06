@@ -9,7 +9,7 @@
 <%@ taglib uri="/WEB-INF/tlds/displaytag-el.tld" prefix="display-el"%>
 <%@ taglib uri="/WEB-INF/tlds/c.tld" prefix="c"%>
 <div class="form">
-<html:form action="/usuario/usuario-query.do?method=query">
+<html:form action="/usuario/usuario-form.do?method=view">
 	<div style="float:left;">
 		<p>
 		<label for="username"><bean:message key="sirius.usuario.username.label" />&nbsp;:</label>

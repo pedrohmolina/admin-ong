@@ -46,7 +46,6 @@ public class GastoForm extends AbstractForm<Gasto> {
 
 	private String filtroIdPersona;
 	private String filtroIdRubro;
-	private String filtroFecha;
 	private String filtroFechaDesde;
 	private String filtroFechaHasta;
 	private String filtroIdProyecto;
@@ -183,14 +182,6 @@ public class GastoForm extends AbstractForm<Gasto> {
 
 	public void setFiltroIdRubro(String filtroIdRubro) {
 		this.filtroIdRubro = filtroIdRubro;
-	}
-
-	public String getFiltroFecha() {
-		return filtroFecha;
-	}
-
-	public void setFiltroFecha(String filtroFecha) {
-		this.filtroFecha = filtroFecha;
 	}
 
 	public String getLabelRubro() {
@@ -374,7 +365,6 @@ public class GastoForm extends AbstractForm<Gasto> {
 		this.filtroIdRubro = "";
 		this.filtroIdProyecto = "";
 		this.filtroIdActividad = "";
-		this.filtroFecha = "";
 		this.filtroFechaDesde = "";
 		this.filtroFechaHasta = "";
 		this.labelRubro = "";

@@ -10,7 +10,7 @@
 <%@ taglib uri="/WEB-INF/tlds/c.tld" prefix="c"%>
 
 <div class="form">
-<html:form action="/relacion-contractual/relacion-contractual-query.do?method=query">
+<html:form action="/relacion-contractual/relacion-contractual-form.do?method=view">
 	<div style="float:left;">
 		<p>
 		<label for="nombre"><bean:message key="sirius.relacionContractual.nombre.label" />&nbsp;:</label>

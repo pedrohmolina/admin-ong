@@ -21,7 +21,7 @@ function confirmarAccion(mensaje) {
 </script>
 
 <div class="form">
-	<html:form action="/relacion-contractual/relacion-contractual-query.do?method=query">
+	<html:form action="/relacion-contractual/relacion-contractual-query-validate.do?method=query">
 	<div style="float:left; width: 100%;">
 		<p>
 		<label for="filtroNombre"><bean:message key="sirius.relacionContractual.nombre.label" />:</label>
@@ -33,7 +33,7 @@ function confirmarAccion(mensaje) {
 		<div class="boton">
 			<a href="#" onclick="javascript:limpiarFiltro();"><bean:message key="antares.base.limpiarfiltro.label"/></a>
 			<authz:authorize ifAllGranted="ENTIDAD_RELACION_CONTRACTUAL-LISTADO">
-				<a href="#" onclick="relacionContractualForm.submit();"><bean:message key="antares.base.buscar.label" /></a>
+				<a href="#" onclick="relacionContractualQuery.submit();"><bean:message key="antares.base.buscar.label" /></a>
 			</authz:authorize>
 			<authz:authorize ifAllGranted="ENTIDAD_RELACION_CONTRACTUAL-ALTA">
 				<a href="#" onclick="return hacerSubmit('relacion-contractual/relacion-contractual-form.do?method=initCreate');"><bean:message key="antares.base.nuevo.label" /></a>
@@ -48,7 +48,7 @@ function confirmarAccion(mensaje) {
 	</div>
 
 	<h1><bean:message key="antares.base.result.label" /></h1>
-	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.relacionContractualForm.result" id="item"
+	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.relacionContractualQuery.result" id="item"
 		requestURI="/relacion-contractual/relacion-contractual-query.do" sort="list" >
 
 		<c:if test="${not empty requestScope['notShowMessage']}">

@@ -20,13 +20,13 @@ function confirmarAccion(mensaje) {
 </script>
 
 <div class="form">
-	<html:form action="/actividad/actividad-query.do?method=query">
+	<html:form action="/actividad/actividad-query-validate.do?method=query">
 	<div style="float:left; width:100%;">
 		<p>
 		<label for="filtroIdMeta"><bean:message key="sirius.actividad.meta.label" />&nbsp;:</label>
 		<html:select property="filtroIdMeta">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
-			<html:optionsCollection name="actividadForm" property="metas" label="nombre" value="id"/>
+			<html:optionsCollection name="actividadQuery" property="metas" label="nombre" value="id"/>
 		</html:select>
 		</p><br><p>
 		<label for="filtroNombre"><bean:message key="sirius.actividad.nombre.label" />:</label>
@@ -35,7 +35,7 @@ function confirmarAccion(mensaje) {
 		<label for="filtroIdEstadoActividad"><bean:message key="sirius.actividad.estadoActividad.label" />:</label>
 		<html:select property="filtroIdEstadoActividad">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
-			<html:optionsCollection name="actividadForm" property="estadosActividad" label="descripcion" value="id"/>
+			<html:optionsCollection name="actividadQuery" property="estadosActividad" label="descripcion" value="id"/>
 		</html:select>
 		</p><br>
 	</div>
@@ -44,7 +44,7 @@ function confirmarAccion(mensaje) {
 		<div class="boton">
 			<a href="#" onclick="javascript:limpiarFiltro();"><bean:message key="antares.base.limpiarfiltro.label" /></a>
 			<authz:authorize ifAllGranted="ENTIDAD_ACTIVIDAD-LISTADO">
-				<a href="#" onclick="actividadForm.submit();"><bean:message key="antares.base.buscar.label" /></a>
+				<a href="#" onclick="actividadQuery.submit();"><bean:message key="antares.base.buscar.label" /></a>
 			</authz:authorize>
 			<authz:authorize ifAllGranted="ENTIDAD_ACTIVIDAD-ALTA">
 				<a href="#" onclick="return hacerSubmit('actividad/actividad-form.do?method=initCreate');"><bean:message key="antares.base.nuevo.label" /></a>
@@ -59,7 +59,7 @@ function confirmarAccion(mensaje) {
 	</div>
 
 	<h1><bean:message key="antares.base.result.label" /></h1>
-	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.actividadForm.result" id="item"
+	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.actividadQuery.result" id="item"
 		requestURI="/actividad/actividad-query.do" sort="list">
 
 		<c:if test="${not empty requestScope['notShowMessage']}">

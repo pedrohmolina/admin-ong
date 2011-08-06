@@ -47,34 +47,37 @@ function initReferencia(id) {
 </script>
 
 <div class="form">
-	<html:form action="/gasto/gasto-actividad-query.do?method=query">
+	<html:form action="/gasto/gasto-actividad-query-validate.do?method=query">
 	<div style="float:left; width: 100%;">
 		<p>
 		<label for="filtroIdProyecto"><bean:message key="sirius.gasto.proyecto.label" />:</label>
 		<html:select property="filtroIdProyecto" styleId="proyecto" onchange="cargarComboActividad(this, 'actividad')">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
-			<html:optionsCollection name="gastoActividadForm" property="proyectos" label="nombre" value="id"/>
+			<html:optionsCollection name="gastoActividadQuery" property="proyectos" label="nombre" value="id"/>
 		</html:select>
 		</p><br><p>
 		<label for="filtroIdActividad"><bean:message key="sirius.gasto.actividad.label" />:</label>
 		<html:select property="filtroIdActividad" styleId="actividad">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
-			<html:optionsCollection name="gastoActividadForm" property="actividades" label="nombre" value="id"/>
+			<html:optionsCollection name="gastoActividadQuery" property="actividades" label="nombre" value="id"/>
 		</html:select>
 		</p><br><p>
 		<label for="filtroIdPersona"><bean:message key="sirius.gasto.persona.label" />:</label>
 		<html:select property="filtroIdPersona">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
-			<html:optionsCollection name="gastoActividadForm" property="personas" label="nombreYApellido" value="id"/>
+			<html:optionsCollection name="gastoActividadQuery" property="personas" label="nombreYApellido" value="id"/>
 		</html:select>
 		</p><br><p>
-		<label for="filtroFecha"><bean:message key="sirius.gasto.fecha.label" />:</label>
-		<html:text property="filtroFecha" styleClass="datepicker"/>
+		<label for="filtroFechaDesde"><bean:message key="sirius.gasto.fechaDesde.label" />:</label>
+		<html:text property="filtroFechaDesde" styleClass="datepicker"/>
+		</p><br><p>
+		<label for="filtroFechaHasta"><bean:message key="sirius.gasto.fechaHasta.label" />:</label>
+		<html:text property="filtroFechaHasta" styleClass="datepicker"/>
 		</p><br><p>
 		<label for="filtroIdRubro"><bean:message key="sirius.gasto.rubro.label" />:</label>
 		<html:select property="filtroIdRubro">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
-			<html:optionsCollection name="gastoActividadForm" property="rubros" label="nombre" value="id"/>
+			<html:optionsCollection name="gastoActividadQuery" property="rubros" label="nombre" value="id"/>
 		</html:select>
 		</p><br>
 	</div>
@@ -83,7 +86,7 @@ function initReferencia(id) {
 		<div class="boton">
 			<a href="#" onclick="javascript:limpiarFiltro();"><bean:message key="antares.base.limpiarfiltro.label"/></a>
 			<authz:authorize ifAllGranted="ENTIDAD_GASTO_ACTIVIDAD-LISTADO">
-				<a href="#" onclick="gastoActividadForm.submit();"><bean:message key="antares.base.buscar.label" /></a>
+				<a href="#" onclick="gastoActividadQuery.submit();"><bean:message key="antares.base.buscar.label" /></a>
 			</authz:authorize>
 		</div>
 	</div>
@@ -95,7 +98,7 @@ function initReferencia(id) {
 	</div>
 
 	<h1><bean:message key="antares.base.result.label" /></h1>
-	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.gastoActividadForm.result" id="item"
+	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.gastoActividadQuery.result" id="item"
 		requestURI="/gasto/gasto-actividad-query.do" sort="list" >
 
 		<c:if test="${not empty requestScope['notShowMessage']}">

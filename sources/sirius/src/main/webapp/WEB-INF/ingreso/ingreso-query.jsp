@@ -20,16 +20,19 @@ function confirmarAccion(mensaje) {
 </script>
 
 <div class="form">
-	<html:form action="/ingreso/ingreso-query.do?method=query">
+	<html:form action="/ingreso/ingreso-query-validate.do?method=query">
 	<div style="float: left; width: 100%;">
 		<p>
-		<label for="filtroFecha"><bean:message key="sirius.ingreso.fecha.label" />:</label>
-		<html:text property="filtroFecha" styleClass="datepicker"/>
+		<label for="filtroFechaDesde"><bean:message key="sirius.ingreso.fechaDesde.label" />:</label>
+		<html:text property="filtroFechaDesde" styleClass="datepicker"/>
+		</p><br><p>
+		<label for="filtroFechaHasta"><bean:message key="sirius.ingreso.fechaHasta.label" />:</label>
+		<html:text property="filtroFechaHasta" styleClass="datepicker"/>
 		</p><br><p>
 		<label for="filtroIdTipoIngreso"><bean:message key="sirius.ingreso.tipoIngreso.label" />:</label>
 		<html:select property="filtroIdTipoIngreso">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
-			<html:optionsCollection name="ingresoForm" property="tiposIngreso" label="descripcion" value="id"/>
+			<html:optionsCollection name="ingresoQuery" property="tiposIngreso" label="descripcion" value="id"/>
 		</html:select>
 		</p>
 		<br>
@@ -39,7 +42,7 @@ function confirmarAccion(mensaje) {
 		<div class="boton">
 			<a href="#" onclick="javascript:limpiarFiltro();"><bean:message key="antares.base.limpiarfiltro.label"/></a>
 			<authz:authorize ifAllGranted="ENTIDAD_INGRESO-LISTADO">
-				<a href="#" onclick="ingresoForm.submit();"><bean:message key="antares.base.buscar.label" /></a>
+				<a href="#" onclick="ingresoQuery.submit();"><bean:message key="antares.base.buscar.label" /></a>
 			</authz:authorize>
 			<authz:authorize ifAllGranted="ENTIDAD_INGRESO-ALTA">
 				<a href="#" onclick="return hacerSubmit('ingreso/ingreso-form.do?method=initCreate');"><bean:message key="antares.base.nuevo.label" /></a>
@@ -54,7 +57,7 @@ function confirmarAccion(mensaje) {
 	</div>
 
 	<h1><bean:message key="antares.base.result.label" /></h1>
-	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.ingresoForm.result" id="item"
+	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.ingresoQuery.result" id="item"
 		requestURI="/ingreso/ingreso-query.do" sort="list" >
 
 		<c:if test="${not empty requestScope['notShowMessage']}">

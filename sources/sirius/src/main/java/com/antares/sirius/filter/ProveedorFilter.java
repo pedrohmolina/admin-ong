@@ -15,6 +15,8 @@ import com.antares.sirius.model.TipoProveedor;
 public class ProveedorFilter extends Filter<Proveedor> {
 
 	private String nombre;
+	private String cuit;
+	private String cbu;
 	private TipoProveedor tipoProveedor;
 
 	public String getNombre() {
@@ -28,6 +30,18 @@ public class ProveedorFilter extends Filter<Proveedor> {
 	}
 	public void setTipoProveedor(TipoProveedor tipoProveedor) {
 		this.tipoProveedor = tipoProveedor;
+	}
+	public String getCuit() {
+		return cuit;
+	}
+	public void setCuit(String cuit) {
+		this.cuit = cuit;
+	}
+	public String getCbu() {
+		return cbu;
+	}
+	public void setCbu(String cbu) {
+		this.cbu = cbu;
 	}
 	
 }
