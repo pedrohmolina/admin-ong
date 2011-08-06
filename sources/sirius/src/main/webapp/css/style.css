@@ -30,6 +30,7 @@ textarea {
 	font-family: Arial;
 	color: #7C7C7C;
 	vertical-align: top;
+	resize: none;
 }
 
 select {
@@ -234,6 +235,7 @@ p {
 	margin-left: 30px;
 	margin-right: 5px;
 	border: 1px solid #D3D3D3;
+	resize: none;
 }
 
 table {
@@ -251,6 +253,7 @@ table th {
 
 table td {
 	border-width: 0px;
+	text-align: left;
 }
 
 table thead a {
@@ -343,6 +346,7 @@ table tbody a {
 	width: 300px;
 	height: 100px;
 	font-size: 13px;
+	resize: none;
 }
 
 .form select {
