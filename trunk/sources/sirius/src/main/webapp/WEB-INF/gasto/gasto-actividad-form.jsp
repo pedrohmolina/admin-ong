@@ -138,11 +138,12 @@ function cargarComboActividad(select, destinationCombo) {
 		</logic:equal>
 
 		<authz:authorize ifAllGranted="ENTIDAD_GASTO_ACTIVIDAD-LISTADO">
+			<p>
 			<label for="idPersona"><bean:message key="sirius.gasto.persona.label" />(*)&nbsp;:</label>
 			<html:select property="idPersona">
 				<html:optionsCollection name="gastoActividadForm" property="personas" label="nombreYApellido" value="id"/>
 			</html:select>
-			<br>
+			</p><br>
 		</authz:authorize>
 	</div>
 

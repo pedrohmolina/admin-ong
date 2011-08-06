@@ -10,7 +10,7 @@
 <%@ taglib uri="/WEB-INF/tlds/c.tld" prefix="c"%>
 
 <div class="form">
-<html:form action="/objetivo-especifico/objetivo-especifico-query.do?method=query">
+<html:form action="/objetivo-especifico/objetivo-especifico-form.do?method=view">
 	<div style="float:left;">
 		<p>
 		<label for="labelObjetivoGeneral"><bean:message key="sirius.objetivoEspecifico.objetivoGeneral.label" />&nbsp;:</label>

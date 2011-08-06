@@ -141,7 +141,7 @@ public class UsuarioAction extends BaseAction<Usuario, UsuarioForm, UsuarioServi
 					personaService.save(persona);
 				} else {
 					saveErrors(request, errors);
-					forward = mapping.findForward("error"); 
+					forward = mapping.getInputForward(); 
 				}
 			}
 			if (forward == null) {

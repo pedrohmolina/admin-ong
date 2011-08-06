@@ -122,7 +122,7 @@ public class ReglaAction extends BaseAction<Regla, ReglaForm, ReglaService> impl
 	
 		String idEntidad =(String) request.getParameter("idEntidad");
 		Entidad entidad = entidadService.findById(Utils.parseInteger(idEntidad));
-		((ReglaForm)form).getAtributos().addAll(entidad.getAtributos());
+		((ReglaForm)form).setAtributos(entidad.getAtributos());
 		Map<String, String> map = new LinkedHashMap<String, String>();
 		for (Atributo atributo : entidad.getAtributos()) {
 			map.put(new Integer(atributo.getId()).toString(), Utils.getMessage(atributo.getDescripcion()));
@@ -137,7 +137,7 @@ public class ReglaAction extends BaseAction<Regla, ReglaForm, ReglaService> impl
 		
 		String idAtributo =(String) request.getParameter("idAtributo");
 		Atributo atributo = atributoService.findById(Utils.parseInteger(idAtributo));
-		((ReglaForm)form).getOperadores().addAll(atributo.getTipoAtributo().getOperadores());
+		((ReglaForm)form).setOperadores(atributo.getTipoAtributo().getOperadores());
 		Map<String, String> map = new LinkedHashMap<String, String>();
 		for (Operador operador : atributo.getTipoAtributo().getOperadores()) {
 			map.put(new Integer(operador.getId()).toString(), operador.getDescripcion());

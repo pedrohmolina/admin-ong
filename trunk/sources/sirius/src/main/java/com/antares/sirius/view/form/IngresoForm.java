@@ -28,7 +28,8 @@ public class IngresoForm extends AbstractForm<Ingreso> {
 	private Collection<TipoIngreso> tiposIngreso;
 	private Collection<Financiador> financiadores;
 
-	private String filtroFecha;
+	private String filtroFechaDesde;
+	private String filtroFechaHasta;
 	private String filtroIdTipoIngreso;
 
 	private String labelTipoIngreso;
@@ -90,14 +91,6 @@ public class IngresoForm extends AbstractForm<Ingreso> {
 		this.financiadores = financiadores;
 	}
 
-	public String getFiltroFecha() {
-		return filtroFecha;
-	}
-
-	public void setFiltroFecha(String filtroFecha) {
-		this.filtroFecha = filtroFecha;
-	}
-
 	public String getFiltroIdTipoIngreso() {
 		return filtroIdTipoIngreso;
 	}
@@ -122,6 +115,22 @@ public class IngresoForm extends AbstractForm<Ingreso> {
 		this.labelFinanciador = labelFinanciador;
 	}
 
+	public String getFiltroFechaHasta() {
+		return filtroFechaHasta;
+	}
+
+	public void setFiltroFechaHasta(String filtroFechaHasta) {
+		this.filtroFechaHasta = filtroFechaHasta;
+	}
+
+	public String getFiltroFechaDesde() {
+		return filtroFechaDesde;
+	}
+
+	public void setFiltroFechaDesde(String filtroFechaDesde) {
+		this.filtroFechaDesde = filtroFechaDesde;
+	}
+
 	@Override
 	public void initialize() {
 		this.id = null;
@@ -133,7 +142,8 @@ public class IngresoForm extends AbstractForm<Ingreso> {
 		this.idFinanciador = "";
 		this.tiposIngreso = null;
 		this.financiadores = null;
-		this.filtroFecha = "";
+		this.filtroFechaDesde = "";
+		this.filtroFechaHasta = "";
 		this.filtroIdTipoIngreso = "";
 		this.labelTipoIngreso = "";
 		this.labelFinanciador = "";

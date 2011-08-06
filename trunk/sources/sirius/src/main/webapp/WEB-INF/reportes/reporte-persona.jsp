@@ -67,6 +67,7 @@ function confirmarAccion(mensaje) {
 		<display:column sortable="true" property="nombre" 						titleKey="sirius.persona.nombre.label" />
 		<display:column sortable="true" property="tipoDocumento.descripcion"	titleKey="sirius.persona.tipoDocumento.label" />
 		<display:column sortable="true" property="numeroDocumento" 				titleKey="sirius.persona.numeroDocumento.label" />
+		<display:column sortable="true" property="cuit" 						titleKey="sirius.proveedor.cuit.label" />
 
 	</display-el:table>
 	<br>	

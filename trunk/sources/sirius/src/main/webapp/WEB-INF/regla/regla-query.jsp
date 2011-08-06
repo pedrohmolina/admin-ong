@@ -21,13 +21,13 @@ function confirmarAccion(mensaje) {
 </script>
 
 <div class="form">
-	<html:form action="/regla/regla-query.do?method=query">
+	<html:form action="/regla/regla-query-validate.do?method=query">
 	<div style="float:left; width: 100%;">
 		<p>
 		<label for="filtroIdUsuario"><bean:message key="sirius.regla.usuario.label" />:</label>
 		<html:select property="filtroIdUsuario">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
-			<html:optionsCollection name="reglaForm" property="usuarios" label="username" value="id"/>
+			<html:optionsCollection name="reglaQuery" property="usuarios" label="username" value="id"/>
 		</html:select>
 		</p><br>
 	</div>
@@ -36,7 +36,7 @@ function confirmarAccion(mensaje) {
 		<div class="boton">
 			<a href="#" onclick="javascript:limpiarFiltro();"><bean:message key="antares.base.limpiarfiltro.label"/></a>
 			<authz:authorize ifAllGranted="ENTIDAD_REGLA-LISTADO">
-				<a href="#" onclick="reglaForm.submit();"><bean:message key="antares.base.buscar.label" /></a>
+				<a href="#" onclick="reglaQuery.submit();"><bean:message key="antares.base.buscar.label" /></a>
 			</authz:authorize>
 			<authz:authorize ifAllGranted="ENTIDAD_REGLA-ALTA">
 				<a href="#" onclick="return hacerSubmit('regla/regla-form.do?method=initCreate');"><bean:message key="antares.base.nuevo.label" /></a>
@@ -51,7 +51,7 @@ function confirmarAccion(mensaje) {
 	</div>
 
 	<h1><bean:message key="antares.base.result.label" /></h1>
-	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.reglaForm.result" id="item"
+	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.reglaQuery.result" id="item"
 		requestURI="/regla/regla-query.do" sort="list" >
 
 		<c:if test="${not empty requestScope['notShowMessage']}">

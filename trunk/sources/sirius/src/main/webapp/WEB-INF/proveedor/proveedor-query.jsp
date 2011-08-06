@@ -21,7 +21,7 @@ function confirmarAccion(mensaje) {
 </script>
 
 <div class="form">
-	<html:form action="/proveedor/proveedor-query.do?method=query">
+	<html:form action="/proveedor/proveedor-query-validate.do?method=query">
 	<div style="float:left; width: 100%;">
 		<p>
 		<label for="filtroNombre"><bean:message key="sirius.proveedor.nombre.label" />:</label>
@@ -30,7 +30,7 @@ function confirmarAccion(mensaje) {
 		<label for="filtroIdTipoProveedor"><bean:message key="sirius.proveedor.tipoProveedor.label" />:</label>
 		<html:select property="filtroIdTipoProveedor">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
-			<html:optionsCollection name="proveedorForm" property="tiposProveedor" label="descripcion" value="id"/>
+			<html:optionsCollection name="proveedorQuery" property="tiposProveedor" label="descripcion" value="id"/>
 		</html:select>
 		</p><br>
 	</div>
@@ -39,7 +39,7 @@ function confirmarAccion(mensaje) {
 		<div class="boton">
 			<a href="#" onclick="javascript:limpiarFiltro();"><bean:message key="antares.base.limpiarfiltro.label"/></a>
 			<authz:authorize ifAllGranted="ENTIDAD_PROVEEDOR-LISTADO">
-				<a href="#" onclick="proveedorForm.submit();"><bean:message key="antares.base.buscar.label" /></a>
+				<a href="#" onclick="proveedorQuery.submit();"><bean:message key="antares.base.buscar.label" /></a>
 			</authz:authorize>
 			<authz:authorize ifAllGranted="ENTIDAD_PROVEEDOR-ALTA">
 				<a href="#" onclick="return hacerSubmit('proveedor/proveedor-form.do?method=initCreate');"><bean:message key="antares.base.nuevo.label" /></a>
@@ -54,7 +54,7 @@ function confirmarAccion(mensaje) {
 	</div>
 
 	<h1><bean:message key="antares.base.result.label" /></h1>
-	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.proveedorForm.result" id="item"
+	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.proveedorQuery.result" id="item"
 		requestURI="/proveedor/proveedor-query.do" sort="list" >
 
 		<c:if test="${not empty requestScope['notShowMessage']}">

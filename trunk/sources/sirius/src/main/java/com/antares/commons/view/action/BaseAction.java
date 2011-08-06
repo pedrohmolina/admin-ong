@@ -78,6 +78,26 @@ public abstract class BaseAction<T extends BusinessObject, V extends AbstractFor
 	}
 
 	/**
+	 * Realiza un forward directo a la pantalla de query.
+	 * 
+	 * @param mapping
+	 * @param form
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
+	public ActionForward showQuery(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		V viewForm = (V)form;
+		loadCollections(viewForm);
+		if (!getErrors(request).isEmpty()) {
+			viewForm.setResult(null);
+		}
+		return mapping.findForward("query");
+	}
+
+	/**
 	 * Realiza la consulta y devuelve la pantalla con el resultado.
 	 * 
 	 * @param mapping
@@ -147,7 +167,7 @@ public abstract class BaseAction<T extends BusinessObject, V extends AbstractFor
 	 * @throws Exception
 	 */
 	@SuppressWarnings("unchecked")
-	public ActionForward initForm(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ActionForward showForm(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		V viewForm = (V)form;
 		loadCollections(viewForm);
 		return mapping.findForward("form");
@@ -190,8 +210,8 @@ public abstract class BaseAction<T extends BusinessObject, V extends AbstractFor
 		T entity = service.findById(id);
 		if (entity != null && entity.isActivo()) {
 			viewForm.initializeForm(entity);
-			postLoadEntity(entity, viewForm);
 			loadCollections(viewForm);
+			postLoadEntity(entity, viewForm);
 			completeCollections(entity, viewForm);
 			loaded = true;
 		}
@@ -217,13 +237,13 @@ public abstract class BaseAction<T extends BusinessObject, V extends AbstractFor
 			try {
 				if (viewForm.getAction().equals(CREATE)) {
 					service.save(createEntity(viewForm));
-					forward = mapping.findForward("success");
+					forward = mapping.findForward("successCreate");
 				} else if (viewForm.getAction().equals(UPDATE)) {
 					T entity = service.findById(viewForm.getId());
 					if (entity != null && entity.isActivo()) {
 						updateEntity(entity, viewForm);
 						service.update(entity);
-						forward = mapping.findForward("success");
+						forward = mapping.findForward("successUpdate");
 					} else {
 						forward = mapping.findForward("restrictedAccess"); 
 					}
@@ -235,7 +255,7 @@ public abstract class BaseAction<T extends BusinessObject, V extends AbstractFor
 			}
 		} else {
 			saveErrors(request, errors);
-			forward = mapping.findForward("error"); 
+			forward = mapping.getInputForward(); 
 		}
 		return forward;
 	}
@@ -256,7 +276,8 @@ public abstract class BaseAction<T extends BusinessObject, V extends AbstractFor
 		T entity = service.findById(id);
 		if (entity != null) {
 			service.delete(entity);
-			forward = mapping.findForward("success");
+//			forward = mapping.findForward("success");
+			forward = query(mapping, form, request, response);
 		} else {
 			forward = mapping.findForward("restrictedAccess"); 
 		}

@@ -36,14 +36,11 @@ public class GastoDAOImpl extends BusinessEntityDAOImpl<Gasto> implements GastoD
 	protected void addFilter(Criteria crit, Filter<Gasto> filter) {
 		GastoFilter entityFilter = (GastoFilter)filter;
 		crit.add(Restrictions.eq("tipoGasto", entityFilter.getTipoGasto()));
-		if (entityFilter.getFecha() != null) {
-			crit.add(Restrictions.eq("fecha", entityFilter.getFecha()));
-		}
 		if (entityFilter.getFechaDesde() != null) {
-			crit.add(Restrictions.gt("fecha", entityFilter.getFechaDesde()));
+			crit.add(Restrictions.ge("fecha", entityFilter.getFechaDesde()));
 		}
 		if (entityFilter.getFechaHasta() != null) {
-			crit.add(Restrictions.lt("fecha", entityFilter.getFechaHasta()));
+			crit.add(Restrictions.le("fecha", entityFilter.getFechaHasta()));
 		}
 		if (entityFilter.getRubro() != null) {
 			crit.add(Restrictions.eq("rubro", entityFilter.getRubro()));

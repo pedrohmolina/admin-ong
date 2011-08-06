@@ -26,7 +26,6 @@ public class GastoFilter extends Filter<Gasto> {
 	private Actividad actividad;
 	private Persona persona;
 	private Rubro rubro;
-	private Date fecha;
 	private Date fechaDesde;
 	private Date fechaHasta;
 
@@ -53,12 +52,6 @@ public class GastoFilter extends Filter<Gasto> {
 	}
 	public void setRubro(Rubro rubro) {
 		this.rubro = rubro;
-	}
-	public Date getFecha() {
-		return fecha;
-	}
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
 	}
 	public TipoGasto getTipoGasto() {
 		return tipoGasto;

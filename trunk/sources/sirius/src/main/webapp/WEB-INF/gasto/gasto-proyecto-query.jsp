@@ -21,22 +21,25 @@ function confirmarAccion(mensaje) {
 </script>
 
 <div class="form">
-	<html:form action="/gasto/gasto-proyecto-query.do?method=query">
+	<html:form action="/gasto/gasto-proyecto-query-validate.do?method=query">
 	<div style="float:left; width: 100%;">
 		<p>
 		<label for="filtroIdProyecto"><bean:message key="sirius.gasto.proyecto.label" />:</label>
 		<html:select property="filtroIdProyecto">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
-			<html:optionsCollection name="gastoProyectoForm" property="proyectos" label="nombre" value="id"/>
+			<html:optionsCollection name="gastoProyectoQuery" property="proyectos" label="nombre" value="id"/>
 		</html:select>
 		</p><br><p>
-		<label for="filtroFecha"><bean:message key="sirius.gasto.fecha.label" />:</label>
-		<html:text property="filtroFecha" styleClass="datepicker"/>
+		<label for="filtroFechaDesde"><bean:message key="sirius.gasto.fechaDesde.label" />:</label>
+		<html:text property="filtroFechaDesde" styleClass="datepicker"/>
+		</p><br><p>
+		<label for="filtroFechaHasta"><bean:message key="sirius.gasto.fechaHasta.label" />:</label>
+		<html:text property="filtroFechaHasta" styleClass="datepicker"/>
 		</p><br><p>
 		<label for="filtroIdRubro"><bean:message key="sirius.gasto.rubro.label" />:</label>
 		<html:select property="filtroIdRubro">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
-			<html:optionsCollection name="gastoProyectoForm" property="rubros" label="nombre" value="id"/>
+			<html:optionsCollection name="gastoProyectoQuery" property="rubros" label="nombre" value="id"/>
 		</html:select>
 		</p><br>
 	</div>
@@ -45,7 +48,7 @@ function confirmarAccion(mensaje) {
 		<div class="boton">
 			<a href="#" onclick="javascript:limpiarFiltro();"><bean:message key="antares.base.limpiarfiltro.label"/></a>
 			<authz:authorize ifAllGranted="ENTIDAD_GASTO_PROYECTO-LISTADO">
-				<a href="#" onclick="gastoProyectoForm.submit();"><bean:message key="antares.base.buscar.label" /></a>
+				<a href="#" onclick="gastoProyectoQuery.submit();"><bean:message key="antares.base.buscar.label" /></a>
 			</authz:authorize>
 			<authz:authorize ifAllGranted="ENTIDAD_GASTO_PROYECTO-ALTA">
 				<a href="#" onclick="return hacerSubmit('gasto/gasto-proyecto-form.do?method=initCreate');"><bean:message key="antares.base.nuevo.label" /></a>
@@ -60,7 +63,7 @@ function confirmarAccion(mensaje) {
 	</div>
 
 	<h1><bean:message key="antares.base.result.label" /></h1>
-	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.gastoProyectoForm.result" id="item"
+	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.gastoProyectoQuery.result" id="item"
 		requestURI="/gasto/gasto-proyecto-query.do" sort="list">
 
 		<c:if test="${not empty requestScope['notShowMessage']}">

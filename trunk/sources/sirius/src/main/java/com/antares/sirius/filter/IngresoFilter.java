@@ -16,14 +16,21 @@ import com.antares.sirius.model.TipoIngreso;
  */
 public class IngresoFilter extends Filter<Ingreso> {
 
-	private Date fecha;
+	private Date fechaDesde;
+	private Date fechaHasta;
 	private TipoIngreso tipoIngreso;
 
-	public Date getFecha() {
-		return fecha;
+	public Date getFechaDesde() {
+		return fechaDesde;
 	}
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
+	public void setFechaDesde(Date fechaDesde) {
+		this.fechaDesde = fechaDesde;
+	}
+	public Date getFechaHasta() {
+		return fechaHasta;
+	}
+	public void setFechaHasta(Date fechaHasta) {
+		this.fechaHasta = fechaHasta;
 	}
 	public TipoIngreso getTipoIngreso() {
 		return tipoIngreso;

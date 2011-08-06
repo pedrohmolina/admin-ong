@@ -21,13 +21,13 @@ function confirmarAccion(mensaje) {
 </script>
 
 <div class="form">
-	<html:form action="/meta/meta-query.do?method=query">
+	<html:form action="/meta/meta-query-validate.do?method=query">
 	<div style="float:left; width: 100%;">
 		<p>
 		<label for="filtroIdObjetivoEspecifico"><bean:message key="sirius.meta.objetivoEspecifico.label" />&nbsp;:</label>
 		<html:select property="filtroIdObjetivoEspecifico">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
-			<html:optionsCollection name="metaForm" property="objetivosEspecificos" label="nombre" value="id"/>
+			<html:optionsCollection name="metaQuery" property="objetivosEspecificos" label="nombre" value="id"/>
 		</html:select>
 		</p><br><p>
 		<label for="filtroNombre"><bean:message key="sirius.meta.nombre.label" />:</label>
@@ -39,7 +39,7 @@ function confirmarAccion(mensaje) {
 		<div class="boton">
 			<a href="#" onclick="javascript:limpiarFiltro();"><bean:message key="antares.base.limpiarfiltro.label"/></a>
 			<authz:authorize ifAllGranted="ENTIDAD_META-LISTADO">
-				<a href="#" onclick="metaForm.submit();"><bean:message key="antares.base.buscar.label" /></a>
+				<a href="#" onclick="metaQuery.submit();"><bean:message key="antares.base.buscar.label" /></a>
 			</authz:authorize>
 			<authz:authorize ifAllGranted="ENTIDAD_META-ALTA">
 				<a href="#" onclick="return hacerSubmit('meta/meta-form.do?method=initCreate');"><bean:message key="antares.base.nuevo.label" /></a>
@@ -54,7 +54,7 @@ function confirmarAccion(mensaje) {
 	</div>
 
 	<h1><bean:message key="antares.base.result.label" /></h1>
-	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.metaForm.result" id="item"
+	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.metaQuery.result" id="item"
 		requestURI="/meta/meta-query.do" sort="list" >
 
 		<c:if test="${not empty requestScope['notShowMessage']}">

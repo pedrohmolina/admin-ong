@@ -29,7 +29,8 @@ public class IngresoAction extends BaseAction<Ingreso, IngresoForm, IngresoServi
 	@Override
 	public IngresoFilter createFilter(IngresoForm form) {
 		IngresoFilter filter = new IngresoFilter();
-		filter.setFecha(Utils.parseDate(form.getFiltroFecha()));
+		filter.setFechaDesde(Utils.parseDate(form.getFiltroFechaDesde()));
+		filter.setFechaHasta(Utils.parseDate(form.getFiltroFechaHasta()));
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdTipoIngreso())) {
 			filter.setTipoIngreso(tipoIngresoService.findById(Utils.parseInteger(form.getFiltroIdTipoIngreso())));
 		}

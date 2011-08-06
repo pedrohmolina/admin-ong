@@ -21,7 +21,7 @@ function confirmarAccion(mensaje) {
 </script>
 
 <div class="form">
-	<html:form action="/proyecto/proyecto-query.do?method=query">
+	<html:form action="/proyecto/proyecto-query-validate.do?method=query">
 	<div style="float:left; width: 100%;">
 		<p>
 		<label for="filtroNombre"><bean:message key="sirius.proyecto.nombre.label" />:</label>
@@ -36,19 +36,19 @@ function confirmarAccion(mensaje) {
 		<label for="filtroIdFinanciador"><bean:message key="sirius.proyecto.financiador.label" />:</label>
 		<html:select property="filtroIdFinanciador">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
-			<html:optionsCollection name="proyectoForm" property="financiadores" label="nombre" value="id"/>
+			<html:optionsCollection name="proyectoQuery" property="financiadores" label="nombre" value="id"/>
 		</html:select>
 		</p><br><p>
 		<label for="filtroIdAreaTematica"><bean:message key="sirius.proyecto.areasTematicas.label" />:</label>
 		<html:select property="filtroIdAreaTematica" multiple="true" style="height: 100px">
-			<html:optionsCollection name="proyectoForm" property="areasTematicas" label="descripcion" value="id"/>
+			<html:optionsCollection name="proyectoQuery" property="areasTematicas" label="descripcion" value="id"/>
 		</html:select>
 		<html:hidden property="filtroIdAreaTematica" value="0" />
 		</p><br><p>
 		<label for="filtroIdEstadoProyecto"><bean:message key="sirius.proyecto.estadoProyecto.label" />:</label>
 		<html:select property="filtroIdEstadoProyecto">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
-			<html:optionsCollection name="proyectoForm" property="estadosProyecto" label="descripcion" value="id"/>
+			<html:optionsCollection name="proyectoQuery" property="estadosProyecto" label="descripcion" value="id"/>
 		</html:select>
 		</p><br>
 	</div>
@@ -57,7 +57,7 @@ function confirmarAccion(mensaje) {
 		<div class="boton">
 			<a href="#" onclick="javascript:limpiarFiltro();"><bean:message key="antares.base.limpiarfiltro.label"/></a>
 			<authz:authorize ifAllGranted="ENTIDAD_PROYECTO-LISTADO">
-				<a href="#" onclick="proyectoForm.submit();"><bean:message key="antares.base.buscar.label" /></a>
+				<a href="#" onclick="proyectoQuery.submit();"><bean:message key="antares.base.buscar.label" /></a>
 			</authz:authorize>
 			<authz:authorize ifAllGranted="ENTIDAD_PROYECTO-ALTA">
 				<a href="#" onclick="return hacerSubmit('proyecto/proyecto-form.do?method=initCreate');"><bean:message key="antares.base.nuevo.label" /></a>
@@ -72,7 +72,7 @@ function confirmarAccion(mensaje) {
 	</div>
 
 	<h1><bean:message key="antares.base.result.label" /></h1>
-	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.proyectoForm.result" id="item"
+	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.proyectoQuery.result" id="item"
 		requestURI="/proyecto/proyecto-query.do" sort="list" >
 
 		<c:if test="${not empty requestScope['notShowMessage']}">

@@ -1,8 +1,5 @@
 package com.antares.sirius.view.action;
 
-import static com.antares.commons.enums.ActionEnum.CREATE;
-import static com.antares.commons.enums.ActionEnum.UPDATE;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashMap;
@@ -46,7 +43,8 @@ public class GastoActividadAction extends GastoAction {
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdPersona())) {
 			filter.setPersona(personaService.findById(Utils.parseInteger(form.getFiltroIdPersona())));
 		}
-		filter.setFecha(Utils.parseDate(form.getFiltroFecha()));
+		filter.setFechaDesde(Utils.parseDate(form.getFiltroFechaDesde()));
+		filter.setFechaHasta(Utils.parseDate(form.getFiltroFechaHasta()));
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdRubro())) {
 			filter.setRubro(rubroService.findById(Utils.parseInteger(form.getFiltroIdRubro())));
 		}
@@ -74,17 +72,6 @@ public class GastoActividadAction extends GastoAction {
 		} else {
 			entity.setPaquete(null);
 		}
-	}
-
-	@Override
-	public ActionForward save(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ActionForward forward = super.save(mapping, form, request, response);
-		if (((GastoForm)form).getAction().equals(CREATE)) {
-			forward = mapping.findForward("successCreate");
-		} else if (((GastoForm)form).getAction().equals(UPDATE)) {
-			forward = mapping.findForward("successEdit");
-		}
-		return forward;
 	}
 
 	@Override
@@ -140,7 +127,7 @@ public class GastoActividadAction extends GastoAction {
 		try {
 			if (entity != null) {
 				service.ejecutarConfirmacion(entity);
-				forward = mapping.findForward("success");
+				forward = query(mapping, form, request, response);
 			} else {
 				forward = mapping.findForward("restrictedAccess"); 
 			}
@@ -246,7 +233,7 @@ public class GastoActividadAction extends GastoAction {
 			if (entity != null) {
 				entity.setReferencia(null);
 				service.save(entity);
-				forward = mapping.findForward("success");
+				forward = query(mapping, form, request, response);
 			} else {
 				forward = mapping.findForward("restrictedAccess"); 
 			}
@@ -264,6 +251,14 @@ public class GastoActividadAction extends GastoAction {
 		filter.setPersona(findPersona());
 		Collection<Gasto> result = service.findByFilter(filter);
 		gastoForm.setResult(result);
+		return mapping.findForward("query");
+	}
+
+	public ActionForward showList(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		GastoForm viewForm = (GastoForm)form;
+		if (!getErrors(request).isEmpty()) {
+			viewForm.setResult(null);
+		}
 		return mapping.findForward("query");
 	}
 

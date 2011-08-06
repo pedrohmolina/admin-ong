@@ -21,7 +21,7 @@ function confirmarAccion(mensaje) {
 </script>
 
 <div class="form">
-	<html:form action="/rubro/rubro-query.do?method=query">
+	<html:form action="/rubro/rubro-query-validate.do?method=query">
 	<div style="float:left; width: 100%;">
 		<p>
 		<label for="filtroNombre"><bean:message key="sirius.rubro.nombre.label" />:</label>
@@ -33,7 +33,7 @@ function confirmarAccion(mensaje) {
 		<div class="boton">
 			<a href="#" onclick="javascript:limpiarFiltro();"><bean:message key="antares.base.limpiarfiltro.label"/></a>
 			<authz:authorize ifAllGranted="ENTIDAD_RUBRO-LISTADO">
-				<a href="#" onclick="rubroForm.submit();"><bean:message key="antares.base.buscar.label" /></a>
+				<a href="#" onclick="rubroQuery.submit();"><bean:message key="antares.base.buscar.label" /></a>
 			</authz:authorize>
 			<authz:authorize ifAllGranted="ENTIDAD_RUBRO-ALTA">
 				<a href="#" onclick="return hacerSubmit('rubro/rubro-form.do?method=initCreateNivelUno');"><bean:message key="sirius.rubro.nuevo.nivelUno.label" /></a>
@@ -50,7 +50,7 @@ function confirmarAccion(mensaje) {
 	</div>
 
 	<h1><bean:message key="antares.base.result.label" /></h1>
-	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.rubroForm.result" id="item"
+	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.rubroQuery.result" id="item"
 		requestURI="/rubro/rubro-query.do" sort="list" >
 
 		<c:if test="${not empty requestScope['notShowMessage']}">

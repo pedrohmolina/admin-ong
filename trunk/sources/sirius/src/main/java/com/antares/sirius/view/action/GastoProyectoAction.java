@@ -31,7 +31,8 @@ public class GastoProyectoAction extends GastoAction {
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdProyecto())) {
 			filter.setProyecto(proyectoService.findById(Utils.parseInteger(form.getFiltroIdProyecto())));
 		}
-		filter.setFecha(Utils.parseDate(form.getFiltroFecha()));
+		filter.setFechaDesde(Utils.parseDate(form.getFiltroFechaDesde()));
+		filter.setFechaHasta(Utils.parseDate(form.getFiltroFechaHasta()));
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdRubro())) {
 			filter.setRubro(rubroService.findById(Utils.parseInteger(form.getFiltroIdRubro())));
 		}

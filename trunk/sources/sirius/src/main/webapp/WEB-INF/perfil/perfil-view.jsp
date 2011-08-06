@@ -10,7 +10,7 @@
 <%@ taglib uri="/WEB-INF/tlds/c.tld" prefix="c"%>
 
 <div class="form">
-<html:form action="/perfil/perfil-query.do?method=query">
+<html:form action="/perfil/perfil-form.do?method=view">
 	<div style="float:left;">
 		<p>
 		<label for="firstName"><bean:message key="sirius.perfil.nombre.label" />&nbsp;</label>

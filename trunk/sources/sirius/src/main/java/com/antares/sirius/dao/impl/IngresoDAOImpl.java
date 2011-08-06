@@ -25,8 +25,11 @@ public class IngresoDAOImpl extends BusinessEntityDAOImpl<Ingreso> implements In
 		if (entityFilter.getTipoIngreso() != null) {
 			crit.add(Restrictions.eq("tipoIngreso", entityFilter.getTipoIngreso()));
 		}
-		if (entityFilter.getFecha() != null) {
-			crit.add(Restrictions.eq("fecha", entityFilter.getFecha()));
+		if (entityFilter.getFechaDesde() != null) {
+			crit.add(Restrictions.ge("fecha", entityFilter.getFechaDesde()));
+		}
+		if (entityFilter.getFechaHasta() != null) {
+			crit.add(Restrictions.le("fecha", entityFilter.getFechaHasta()));
 		}
 	}
 
