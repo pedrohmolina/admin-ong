@@ -59,7 +59,7 @@ function confirmarAccion(mensaje) {
 		<display:column sortable="true" property="nombre" 		titleKey="sirius.rol.nombre.label" />
 		<display:column sortable="true" property="descripcion" 	titleKey="sirius.rol.descripcion.label" />
 
-		<display:column title="Acciones" media="html">
+		<display:column title="Acciones" media="html" style="text-align: center">
 			<authz:authorize ifAllGranted="ENTIDAD_ROL-DETALLE">
 				<a href="<c:url value="/rol/rol-form.do?method=view&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Visualizar" title="Visualizar"
 					src="<c:url value="/img/icon.lupa.gif"/>" /></a>

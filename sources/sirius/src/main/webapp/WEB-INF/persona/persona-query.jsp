@@ -66,11 +66,11 @@ function confirmarAccion(mensaje) {
 	
 		<display:column sortable="true" property="apellido" 					titleKey="sirius.persona.apellido.label" />
 		<display:column sortable="true" property="nombre" 						titleKey="sirius.persona.nombre.label" />
-		<display:column sortable="true" property="tipoDocumento.descripcion"	titleKey="sirius.persona.tipoDocumento.label" />
-		<display:column sortable="true" property="numeroDocumento" 				titleKey="sirius.persona.numeroDocumento.label" />
 		<display:column sortable="true" property="relacionContractual.nombre" 	titleKey="sirius.persona.relacionContractual.label" />
+		<display:column sortable="true" property="tipoDocumento.descripcion"	titleKey="sirius.persona.tipoDocumento.label"  style="text-align: center; width: 150px"/>
+		<display:column sortable="true" property="numeroDocumento" 				titleKey="sirius.persona.numeroDocumento.label"  style="text-align: right; width: 130px"/>
 
-		<display:column title="Acciones" media="html">
+		<display:column title="Acciones" media="html" style="text-align: center">
 			<authz:authorize ifAllGranted="ENTIDAD_PERSONA-DETALLE">
 				<a href="<c:url value="/persona/persona-form.do?method=view&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Visualizar" title="Visualizar"
 					src="<c:url value="/img/icon.lupa.gif"/>" /></a>

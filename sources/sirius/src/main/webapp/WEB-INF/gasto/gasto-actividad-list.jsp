@@ -49,8 +49,8 @@ function confirmarAccion(mensaje) {
 	
 		<display:column sortable="true" property="actividad.proyecto.nombre" 	titleKey="sirius.gasto.proyecto.label" />
 		<display:column sortable="true" property="actividad.nombre" 			titleKey="sirius.gasto.actividad.label" />
-		<display:column sortable="true" property="fecha" 						titleKey="sirius.gasto.fecha.label"  	format="{0,date,dd/MM/yyyy}" />
+		<display:column sortable="true" property="fecha" 						titleKey="sirius.gasto.fecha.label"  	format="{0,date,dd/MM/yyyy}"  style="text-align: center"/>
 		<display:column sortable="true" property="rubro.nombre" 				titleKey="sirius.gasto.rubro.label" />
-		<display:column sortable="true" property="importe" 						titleKey="sirius.gasto.importe.label" />
+		<display:column sortable="true" property="importe" 						titleKey="sirius.gasto.importe.label" style="text-align: right"/>
 	</display-el:table>
 </div>

@@ -66,7 +66,7 @@ function confirmarAccion(mensaje) {
 			</logic:notEmpty>
 		</display:column>
 
-		<display:column title="Acciones" media="html">
+		<display:column title="Acciones" media="html" style="text-align: center">
 			<authz:authorize ifAllGranted="ENTIDAD_RUBRO-DETALLE">
 				<a href="<c:url value="/rubro/rubro-form.do?method=view&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Visualizar" title="Visualizar"
 					src="<c:url value="/img/icon.lupa.gif"/>" /></a>
