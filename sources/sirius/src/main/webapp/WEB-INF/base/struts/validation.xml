@@ -228,11 +228,15 @@
 					<var-value>dd/MM/yyyy</var-value>
 				</var>
 			</field>
-			<field property="filtroFechaHasta" depends="date">
+			<field property="filtroFechaHasta" depends="date, daterange">
 				<arg position="0" key="sirius.gasto.fechaHasta.label"/>
 				<var>
 					<var-name>datePattern</var-name>
 					<var-value>dd/MM/yyyy</var-value>
+				</var>
+				<var>
+					<var-name>beginDateField</var-name>   
+					<var-value>filtroFechaDesde</var-value> 
 				</var>
 			</field>
 		</form>
@@ -273,11 +277,15 @@
 					<var-value>dd/MM/yyyy</var-value>
 				</var>
 			</field>
-			<field property="filtroFechaHasta" depends="date">
+			<field property="filtroFechaHasta" depends="date, daterange">
 				<arg position="0" key="sirius.gasto.fechaHasta.label"/>
 				<var>
 					<var-name>datePattern</var-name>
 					<var-value>dd/MM/yyyy</var-value>
+				</var>
+				<var>
+					<var-name>beginDateField</var-name>   
+					<var-value>filtroFechaDesde</var-value> 
 				</var>
 			</field>
 		</form>
@@ -312,11 +320,15 @@
 					<var-value>dd/MM/yyyy</var-value>
 				</var>
 			</field>
-			<field property="filtroFechaHasta" depends="date">
+			<field property="filtroFechaHasta" depends="date, daterange">
 				<arg position="0" key="sirius.gasto.fechaHasta.label"/>
 				<var>
 					<var-name>datePattern</var-name>
 					<var-value>dd/MM/yyyy</var-value>
+				</var>
+				<var>
+					<var-name>beginDateField</var-name>   
+					<var-value>filtroFechaDesde</var-value> 
 				</var>
 			</field>
 		</form>
@@ -353,11 +365,15 @@
 					<var-value>dd/MM/yyyy</var-value>
 				</var>
 			</field>
-			<field property="filtroFechaHasta" depends="date">
+			<field property="filtroFechaHasta" depends="date, daterange">
 				<arg position="0" key="sirius.gasto.fechaHasta.label"/>
 				<var>
 					<var-name>datePattern</var-name>
 					<var-value>dd/MM/yyyy</var-value>
+				</var>
+				<var>
+					<var-name>beginDateField</var-name>   
+					<var-value>filtroFechaDesde</var-value> 
 				</var>
 			</field>
 		</form>
@@ -844,11 +860,15 @@
 					<var-value>dd/MM/yyyy</var-value>
 				</var>
 			</field>
-			<field property="filtroFechaFin" depends="date">
+			<field property="filtroFechaFin" depends="date, daterange">
 				<arg position="0" key="sirius.proyecto.fechaFin.label"/>
 				<var>
 					<var-name>datePattern</var-name>
 					<var-value>dd/MM/yyyy</var-value>
+				</var>
+				<var>
+					<var-name>beginDateField</var-name>   
+					<var-value>filtroFechaInicio</var-value> 
 				</var>
 			</field>
 		</form>
