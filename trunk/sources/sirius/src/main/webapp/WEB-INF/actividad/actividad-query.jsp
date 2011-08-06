@@ -69,13 +69,13 @@ function confirmarAccion(mensaje) {
 		<display:column sortable="true" property="meta.objetivoEspecifico.objetivoGeneral.proyecto.nombre" 		titleKey="sirius.actividad.proyecto.label" />
 		<display:column sortable="true" property="meta.nombre" 													titleKey="sirius.actividad.meta.label" />
 		<display:column sortable="true" property="nombre" 														titleKey="sirius.actividad.nombre.label" />
-		<display:column sortable="true" property="fechaInicio" 													titleKey="sirius.actividad.fechaInicio.label"  	format="{0,date,dd/MM/yyyy}" />
-		<display:column sortable="true" property="fechaFin" 													titleKey="sirius.actividad.fechaFin.label"  	format="{0,date,dd/MM/yyyy}" />
-		<display:column sortable="true" property="ponderacion" 													titleKey="sirius.actividad.ponderacion.label" />
-		<display:column sortable="true" property="completitud" 													titleKey="sirius.actividad.completitud.label" />
-		<display:column sortable="true" property="estadoActividad.descripcion" 									titleKey="sirius.actividad.estadoActividad.label" />
+		<display:column sortable="true" property="fechaInicio" 													titleKey="sirius.actividad.fechaInicio.label"  	format="{0,date,dd/MM/yyyy}" style="text-align: center"/>
+		<display:column sortable="true" property="fechaFin" 													titleKey="sirius.actividad.fechaFin.label"  	format="{0,date,dd/MM/yyyy}" style="text-align: center"/>
+		<display:column sortable="true" property="ponderacion" 													titleKey="sirius.actividad.ponderacion.label"  style="text-align: right"/>
+		<display:column sortable="true" property="completitud" 													titleKey="sirius.actividad.completitud.label"  style="text-align: right"/>
+		<display:column sortable="true" property="estadoActividad.descripcion" 									titleKey="sirius.actividad.estadoActividad.label" style="text-align: center"/>
 
-		<display:column title="Acciones" media="html">
+		<display:column title="Acciones" media="html" style="text-align: center">
 			<authz:authorize ifAllGranted="ENTIDAD_ACTIVIDAD-DETALLE">
 				<a href="<c:url value="/actividad/actividad-form.do?method=view&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Visualizar" title="Visualizar"
 					src="<c:url value="/img/icon.lupa.gif"/>" /></a>

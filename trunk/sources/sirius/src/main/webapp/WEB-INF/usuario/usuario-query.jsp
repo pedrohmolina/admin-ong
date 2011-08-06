@@ -66,7 +66,7 @@ function confirmarAccion(mensaje) {
 		<display:column sortable="true" property="persona.apellido" 					titleKey="sirius.usuario.apellido.label" />
 		<display:column sortable="true" property="persona.nombre" 						titleKey="sirius.usuario.nombre.label" />
 
-		<display:column title="Acciones" media="html">
+		<display:column title="Acciones" media="html" style="text-align: center">
 			<authz:authorize ifAllGranted="ENTIDAD_USUARIO-DETALLE">
 				<a href="<c:url value="/usuario/usuario-form.do?method=view&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Visualizar" title="Visualizar"
 					src="<c:url value="/img/icon.lupa.gif"/>" /></a>

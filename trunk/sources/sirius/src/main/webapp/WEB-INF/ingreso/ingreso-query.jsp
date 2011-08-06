@@ -65,18 +65,18 @@ function confirmarAccion(mensaje) {
 		</c:if>
 	
 		<display:column sortable="true" property="tipoIngreso.descripcion" 	titleKey="sirius.ingreso.tipoIngreso.label" />
-		<display:column sortable="true" property="fecha" 					titleKey="sirius.ingreso.fecha.label" format="{0,date,dd/MM/yyyy}" />
+		<display:column sortable="true" property="fecha" 					titleKey="sirius.ingreso.fecha.label" format="{0,date,dd/MM/yyyy}"  style="text-align: center"/>
 
 		<display:column sortable="true" 									titleKey="sirius.ingreso.financiador.label">
-			<logic:empty name="item" property="financiador">&nbsp;-&nbsp;</logic:empty>
+			<logic:empty name="item" property="financiador">&nbsp;</logic:empty>
 			<logic:notEmpty name="item" property="financiador">
 				<bean:write name="item" property="financiador.nombre" />
 			</logic:notEmpty>
 		</display:column>
 
-		<display:column sortable="true" property="monto" 					titleKey="sirius.ingreso.monto.label" />
+		<display:column sortable="true" property="monto" 					titleKey="sirius.ingreso.monto.label"  style="text-align: right"/>
 
-		<display:column title="Acciones" media="html">
+		<display:column title="Acciones" media="html" style="text-align: center">
 			<authz:authorize ifAllGranted="ENTIDAD_INGRESO-DETALLE">
 				<a href="<c:url value="/ingreso/ingreso-form.do?method=view&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Visualizar" title="Visualizar"
 					src="<c:url value="/img/icon.lupa.gif"/>" /></a>

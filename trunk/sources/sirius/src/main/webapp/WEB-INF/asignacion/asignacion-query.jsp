@@ -82,9 +82,9 @@ function cargarComboActividad(select, destinationCombo){
 		<display:column sortable="true" property="actividad.nombre" 			titleKey="sirius.asignacion.actividad.label" />
 		<display:column sortable="true" property="persona.nombreYApellido" 		titleKey="sirius.asignacion.persona.label" />
 		<display:column sortable="true" property="tipoAsignacion.descripcion" 	titleKey="sirius.asignacion.tipoAsignacion.label" />
-		<display:column sortable="true" property="cantidad" 					titleKey="sirius.asignacion.cantidad.label" />
+		<display:column sortable="true" property="cantidad" 					titleKey="sirius.asignacion.cantidad.label"  style="text-align: right"/>
 
-		<display:column title="Acciones" media="html">
+		<display:column title="Acciones" media="html" style="text-align: center">
 			<authz:authorize ifAllGranted="ENTIDAD_ASIGNACION-DETALLE">
 				<a href="<c:url value="/asignacion/asignacion-form.do?method=view&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Visualizar" title="Visualizar"
 					src="<c:url value="/img/icon.lupa.gif"/>" /></a>

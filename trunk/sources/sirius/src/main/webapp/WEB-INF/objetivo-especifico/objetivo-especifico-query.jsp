@@ -64,10 +64,10 @@ function confirmarAccion(mensaje) {
 		<display:column sortable="true" property="objetivoGeneral.proyecto.nombre" 		titleKey="sirius.objetivoEspecifico.proyecto.label" />
 		<display:column sortable="true" property="objetivoGeneral.nombre" 				titleKey="sirius.objetivoEspecifico.objetivoGeneral.label" />
 		<display:column sortable="true" property="nombre" 								titleKey="sirius.objetivoEspecifico.nombre.label" />
-		<display:column sortable="true" property="ponderacion" 							titleKey="sirius.objetivoEspecifico.ponderacion.label" />
-		<display:column sortable="true" property="completitud" 							titleKey="sirius.objetivoEspecifico.completitud.label" />
+		<display:column sortable="true" property="ponderacion" 							titleKey="sirius.objetivoEspecifico.ponderacion.label" style="text-align: right"/>
+		<display:column sortable="true" property="completitud" 							titleKey="sirius.objetivoEspecifico.completitud.label" style="text-align: right"/>
 
-		<display:column title="Acciones" media="html">
+		<display:column title="Acciones" media="html" style="text-align: center">
 			<authz:authorize ifAllGranted="ENTIDAD_OBJETIVO_ESPECIFICO-DETALLE">
 				<a href="<c:url value="/objetivo-especifico/objetivo-especifico-form.do?method=view&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Visualizar" title="Visualizar"
 					src="<c:url value="/img/icon.lupa.gif"/>" /></a>

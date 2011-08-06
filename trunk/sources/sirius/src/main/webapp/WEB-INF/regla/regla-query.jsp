@@ -68,7 +68,7 @@ function confirmarAccion(mensaje) {
 		<display:column sortable="true" property="operador.descripcion" 	titleKey="sirius.regla.operador.label" />
 		<display:column sortable="true" property="valorDescripcion" 		titleKey="sirius.regla.valor.label" />
 
-		<display:column title="Acciones" media="html">
+		<display:column title="Acciones" media="html" style="text-align: center">
 			<authz:authorize ifAllGranted="ENTIDAD_REGLA-DETALLE">
 				<a href="<c:url value="/regla/regla-form.do?method=view&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Visualizar" title="Visualizar"
 					src="<c:url value="/img/icon.lupa.gif"/>" /></a>
