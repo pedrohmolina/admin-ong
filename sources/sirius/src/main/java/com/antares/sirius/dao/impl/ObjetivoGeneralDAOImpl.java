@@ -26,7 +26,7 @@ public class ObjetivoGeneralDAOImpl extends BusinessEntityDAOImpl<ObjetivoGenera
 	
 	public ObjetivoGeneral findByNombre(String nombre) {
 		Criteria crit = buildCriteria();
-		crit.add(Restrictions.ilike("nombre", nombre, MatchMode.EXACT));
+		crit.add(ilike("nombre", nombre, MatchMode.EXACT));
 		return (ObjetivoGeneral)crit.uniqueResult();
 	}
 
@@ -41,7 +41,7 @@ public class ObjetivoGeneralDAOImpl extends BusinessEntityDAOImpl<ObjetivoGenera
 	protected void addFilter(Criteria crit, Filter<ObjetivoGeneral> filter) {
 		ObjetivoGeneralFilter entityFilter = (ObjetivoGeneralFilter)filter;
 		if (Utils.isNotNullNorEmpty(entityFilter.getNombre())) {
-			crit.add(Restrictions.ilike("nombre", entityFilter.getNombre(), MatchMode.ANYWHERE));
+			crit.add(ilike("nombre", entityFilter.getNombre(), MatchMode.ANYWHERE));
 		}
 		if (entityFilter.getProyecto() != null) {
 			crit.add(Restrictions.eq("proyecto", entityFilter.getProyecto()));

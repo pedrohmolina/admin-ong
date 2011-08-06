@@ -3,7 +3,6 @@ package com.antares.sirius.dao.impl;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Restrictions;
 
 import com.antares.commons.dao.impl.BusinessEntityDAOImpl;
 import com.antares.commons.filter.Filter;
@@ -23,7 +22,7 @@ public class RelacionContractualDAOImpl extends BusinessEntityDAOImpl<RelacionCo
 	
 	public RelacionContractual findByNombre(String nombre) {
 		Criteria crit = buildCriteria();
-		crit.add(Restrictions.ilike("nombre", nombre, MatchMode.EXACT));
+		crit.add(ilike("nombre", nombre, MatchMode.EXACT));
 		return (RelacionContractual)crit.uniqueResult();
 	}
 
@@ -31,7 +30,7 @@ public class RelacionContractualDAOImpl extends BusinessEntityDAOImpl<RelacionCo
 	protected void addFilter(Criteria crit, Filter<RelacionContractual> filter) {
 		RelacionContractualFilter entityFilter = (RelacionContractualFilter)filter;
 		if (Utils.isNotNullNorEmpty(entityFilter.getNombre())) {
-			crit.add(Restrictions.ilike("nombre", entityFilter.getNombre(), MatchMode.ANYWHERE));
+			crit.add(ilike("nombre", entityFilter.getNombre(), MatchMode.ANYWHERE));
 		}
 	}
 

@@ -23,7 +23,7 @@ public class ProveedorDAOImpl extends BusinessEntityDAOImpl<Proveedor> implement
 	
 	public Proveedor findByNombre(String nombre) {
 		Criteria crit = buildCriteria();
-		crit.add(Restrictions.ilike("nombre", nombre, MatchMode.EXACT));
+		crit.add(ilike("nombre", nombre, MatchMode.EXACT));
 		return (Proveedor)crit.uniqueResult();
 	}
 
@@ -31,7 +31,7 @@ public class ProveedorDAOImpl extends BusinessEntityDAOImpl<Proveedor> implement
 	protected void addFilter(Criteria crit, Filter<Proveedor> filter) {
 		ProveedorFilter entityFilter = (ProveedorFilter)filter;
 		if (Utils.isNotNullNorEmpty(entityFilter.getNombre())) {
-			crit.add(Restrictions.ilike("nombre", entityFilter.getNombre(), MatchMode.ANYWHERE));
+			crit.add(ilike("nombre", entityFilter.getNombre(), MatchMode.ANYWHERE));
 		}
 		if (entityFilter.getTipoProveedor() != null) {
 			crit.add(Restrictions.eq("tipoProveedor", entityFilter.getTipoProveedor()));

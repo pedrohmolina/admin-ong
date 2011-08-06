@@ -26,7 +26,7 @@ public class MetaDAOImpl extends BusinessEntityDAOImpl<Meta> implements MetaDAO 
 	
 	public Meta findByNombre(String nombre) {
 		Criteria crit = buildCriteria();
-		crit.add(Restrictions.ilike("nombre", nombre, MatchMode.EXACT));
+		crit.add(ilike("nombre", nombre, MatchMode.EXACT));
 		return (Meta)crit.uniqueResult();
 	}
 
@@ -43,7 +43,7 @@ public class MetaDAOImpl extends BusinessEntityDAOImpl<Meta> implements MetaDAO 
 	protected void addFilter(Criteria crit, Filter<Meta> filter) {
 		MetaFilter entityFilter = (MetaFilter)filter;
 		if (Utils.isNotNullNorEmpty(entityFilter.getNombre())) {
-			crit.add(Restrictions.ilike("nombre", entityFilter.getNombre(), MatchMode.ANYWHERE));
+			crit.add(ilike("nombre", entityFilter.getNombre(), MatchMode.ANYWHERE));
 		}
 		if (entityFilter.getObjetivoEspecifico() != null) {
 			crit.add(Restrictions.eq("objetivoEspecifico", entityFilter.getObjetivoEspecifico()));

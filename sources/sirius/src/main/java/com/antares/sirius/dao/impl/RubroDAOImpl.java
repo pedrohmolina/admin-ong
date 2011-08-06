@@ -32,7 +32,7 @@ public class RubroDAOImpl extends BusinessEntityDAOImpl<Rubro> implements RubroD
 
 	public Rubro findByNombre(String nombre) {
 		Criteria crit = buildCriteria();
-		crit.add(Restrictions.ilike("nombre", nombre, MatchMode.EXACT));
+		crit.add(ilike("nombre", nombre, MatchMode.EXACT));
 		return (Rubro)crit.uniqueResult();
 	}
 
@@ -54,7 +54,7 @@ public class RubroDAOImpl extends BusinessEntityDAOImpl<Rubro> implements RubroD
 	protected void addFilter(Criteria crit, Filter<Rubro> filter) {
 		RubroFilter entityFilter = (RubroFilter)filter;
 		if (Utils.isNotNullNorEmpty(entityFilter.getNombre())) {
-			crit.add(Restrictions.ilike("nombre", entityFilter.getNombre(), MatchMode.ANYWHERE));
+			crit.add(ilike("nombre", entityFilter.getNombre(), MatchMode.ANYWHERE));
 		}
 	}
 
