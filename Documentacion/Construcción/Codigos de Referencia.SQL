@@ -17,10 +17,11 @@ INSERT INTO estadofinanciador (id,descripcion) VALUES (2,'Inactivo');
 INSERT INTO estadofinanciador (id,descripcion) VALUES (3,'Potencial');
 
 --  Estado Proyecto
-INSERT INTO estadoproyecto (id,descripcion) VALUES (1,'Idea');
-INSERT INTO estadoproyecto (id,descripcion) VALUES (2,'Diseño');
-INSERT INTO estadoproyecto (id,descripcion) VALUES (3,'Ejecución');
-INSERT INTO estadoproyecto (id,descripcion) VALUES (4,'Evaluación');
+INSERT INTO estadoproyecto (id,idEstadoAnterior,descripcion) VALUES (1,null,'Idea');
+INSERT INTO estadoproyecto (id,idEstadoAnterior,descripcion) VALUES (2,1,'Diseño');
+INSERT INTO estadoproyecto (id,idEstadoAnterior,descripcion) VALUES (3,2,'Evaluación');
+INSERT INTO estadoproyecto (id,idEstadoAnterior,descripcion) VALUES (4,3,'Ejecución');
+INSERT INTO estadoproyecto (id,idEstadoAnterior,descripcion) VALUES (5,5,'Finalizado');
 
 --  Tipo Ingreso
 INSERT INTO tipoingreso (id,descripcion) VALUES (1,'Donación');
