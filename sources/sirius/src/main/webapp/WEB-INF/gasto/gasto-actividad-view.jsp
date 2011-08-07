@@ -27,25 +27,41 @@
 		</p><br><p>
 		<label for="labelOrigen"><bean:message key="sirius.gasto.origen.label" />:</label>
 		<html:text property="labelOrigen" readonly="true" />
-		</p><br><p>
-		<label for="labelProveedor"><bean:message key="sirius.gasto.proveedor.label" />:</label>
-		<html:text property="labelProveedor" readonly="true" />
-		</p><br><p>
-		<label for="labelTipoComprobante"><bean:message key="sirius.gasto.tipoComprobante.label" />:</label>
-		<html:text property="labelTipoComprobante" readonly="true" />
-		</p><br><p>
+		</p><br>
+		<logic:equal name="gastoActividadForm" property="individual" value="true">
+			<p>
+			<label for="labelProveedor"><bean:message key="sirius.gasto.proveedor.label" />:</label>
+			<html:text property="labelProveedor" readonly="true" />
+			</p><br><p>
+			<label for="labelTipoComprobante"><bean:message key="sirius.gasto.tipoComprobante.label" />:</label>
+			<html:text property="labelTipoComprobante" readonly="true" />
+			</p><br>
+		</logic:equal>
+		<p>
 		<label for="observaciones"><bean:message key="sirius.gasto.observaciones.label" />:</label>
 		<html:textarea property="observaciones" rows="5" readonly="true" />
 		</p><br><p>
 		<label for="importe"><bean:message key="sirius.gasto.importe.label" />:</label>
 		<html:text property="importe" readonly="true" />
-		</p><br><p>
-		<label for="numeroComprobante"><bean:message key="sirius.gasto.numeroComprobante.label" />:</label>
-		<html:text property="numeroComprobante" readonly="true" />
-		</p><br><p>
-		<label for="paquete"><bean:message key="sirius.gasto.paquete.label" />(*)&nbsp;:</label>
-		<html:text property="paquete" readonly="true" />
 		</p><br>
+		<logic:equal name="gastoActividadForm" property="individual" value="true">
+			<p>
+			<label for="numeroComprobante"><bean:message key="sirius.gasto.numeroComprobante.label" />:</label>
+			<html:text property="numeroComprobante" readonly="true" />
+			</p><br>
+		</logic:equal>
+		<logic:equal name="gastoActividadForm" property="agrupado" value="true">
+			<p>
+			<label for="paquete"><bean:message key="sirius.gasto.paquete.label" />(*)&nbsp;:</label>
+			<html:text property="paquete" readonly="true" />
+			</p><br>
+		</logic:equal>
+		<authz:authorize ifAllGranted="ENTIDAD_GASTO_ACTIVIDAD-LISTADO">
+			<p>
+			<label for="idPersona"><bean:message key="sirius.gasto.persona.label" />(*)&nbsp;:</label>
+			<html:text property="labelPersona" readonly="true" />
+			</p><br>
+		</authz:authorize>
 	</div>
 
 	<div style="clear: both;" class="errores">
