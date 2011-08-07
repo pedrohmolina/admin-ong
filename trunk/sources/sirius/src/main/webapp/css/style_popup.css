@@ -1,6 +1,5 @@
-/*Sirius Style*/
 * {
-	margin: 0px;
+	margin: 5px;
 	padding: 0px;
 	outline: 0;
 }
@@ -20,18 +19,66 @@ html {
 	border-color: #C8C8C8;
 }
 
-input {
-	font-family: Arial;
-	color: #7C7C7C;
-	vertical-align: top;
-}
-
 textarea {
 	font-family: Arial;
 	color: #7C7C7C;
 	vertical-align: top;
 	resize: none;
 }
+label {
+	color: #7C7C7C;
+	font-size: 15px;
+	font-style: normal;
+	font-weight: lighter;
+	margin-left: 15px;
+	margin-right: 5px;
+	width: auto;
+	float: left;
+}
+
+.form {
+	line-height: 10px;
+}
+
+.form label {
+	text-align: right;
+	padding-right: 5px;
+	padding-top: 5px;
+}
+
+.form textarea {
+	border: 1px solid #D3D3D3;
+	width: 300px;
+	height: 100px;
+	font-size: 13px;
+	resize: none;
+}
+
+div a {
+	color: #11627D;
+}
+
+.boton a {
+	border: solid 1px #D2D1D6;
+	text-decoration: none;
+	margin: 10px;
+	padding: 7px;
+	float: right;
+	border-color: #11627D;
+	color: #11627D;
+}
+
+.boton a:HOVER {
+	border-color: #D71A21;
+	color: #D71A21;
+}
+/*
+input {
+	font-family: Arial;
+	color: #7C7C7C;
+	vertical-align: top;
+}
+
 
 select {
 	font-family: Arial;
@@ -59,7 +106,7 @@ div.ui-datepicker {
 	border-color: #C8C8C8;
 }
 
-/*MENU*/
+/*MENU
 .menu-container {
 	position: relative;
 	background-color: #FEFEFE;
@@ -147,7 +194,7 @@ div.ui-datepicker {
 	position: relative;
 }
 
-/*END MENU*/
+/*END MENU
 .body-container {
 	border: 1px solid;
 	border-color: #C8C8C8;
@@ -202,16 +249,7 @@ h2 {
 	padding-left: 10px;
 }
 
-label {
-	color: #7C7C7C;
-	font-size: 15px;
-	font-style: normal;
-	font-weight: lighter;
-	margin-left: 15px;
-	margin-right: 5px;
-	width: 400px;
-	float: left;
-}
+
 
 p {
 	color: #7C7C7C;
@@ -316,17 +354,8 @@ table tbody a {
 	font-weight: bold;
 	text-decoration: underline;
 }
+/*Filtros de Busqueda
 
-/*Filtros de Busqueda*/
-.form {
-	line-height: 10px;
-}
-
-.form label {
-	text-align: right;
-	padding-right: 5px;
-	padding-top: 5px;
-}
 
 .table label {
 	width: 50px;
@@ -342,13 +371,7 @@ table tbody a {
 	width: 100px;
 }
 
-.form textarea {
-	border: 1px solid #D3D3D3;
-	width: 300px;
-	height: 100px;
-	font-size: 13px;
-	resize: none;
-}
+
 
 .form select {
 	border-style: none;
@@ -358,26 +381,9 @@ table tbody a {
 	height: 20px;
 }
 
-div a {
-	color: #11627D;
-}
 
-.boton a {
-	border: solid 1px #D2D1D6;
-	text-decoration: none;
-	margin: 10px;
-	padding: 7px;
-	float: right;
-	border-color: #11627D;
-	color: #11627D;
-}
 
-.boton a:HOVER {
-	border-color: #D71A21;
-	color: #D71A21;
-}
-
-/*errores*/
+/*errores
 .errores ul {
 	border: red 1px solid;
 	margin: 10px 5px 5px 10px;
@@ -435,3 +441,4 @@ div a {
 .error {
 	color: red;
 }
+*/

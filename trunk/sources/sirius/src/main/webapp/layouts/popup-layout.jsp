@@ -15,7 +15,7 @@
 <meta http-equiv="Cache-control" content="no-cache"/>
 <meta http-equiv="Cache" content="no-cache"/>
 <meta http-equiv="Expires" content="thu, 01 Jan 1998 12:00:00 GMT"/>
-<link rel="stylesheet" type="text/css" href="../css/style.css" />
+<link rel="stylesheet" type="text/css" href="../css/style_popup.css" />
 <title>
 		<c:if test="${empty requestScope['title']}">
 			<c:set var="titulo">
@@ -40,11 +40,13 @@
 <body onload="return winOnLoad()">
 	
 	<div id=contenedor style="text-align: left;">
-		<div class="textoInterior3" style="width: 98%;">
+		<div class="body" style="width: 98%;">
 			<div id="main-form" class="form" style="height: 95%;">
 				<tiles:insert attribute="body"/>
 			</div>
+			<div style="clear:both; padding:5px 0 0 0;"></div>
 		</div>
+		
 	</div>
 		
 	<div style="display: none;">

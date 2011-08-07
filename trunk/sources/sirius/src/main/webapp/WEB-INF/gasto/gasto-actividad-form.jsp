@@ -57,7 +57,6 @@ function cargarComboActividad(select, destinationCombo) {
 	}
 }
 </script>
-
 <div class="form">
 <html:form action="/gasto/gasto-actividad-form-validate.do?method=save"
 	styleId="abmForm">
@@ -161,3 +160,4 @@ function cargarComboActividad(select, destinationCombo) {
 	<div style="clear:both; padding:5px 0 0 0;"></div>
 </html:form>
 </div>
+
