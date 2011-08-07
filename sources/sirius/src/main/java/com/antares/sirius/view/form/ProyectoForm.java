@@ -54,7 +54,6 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 	private String filtroFechaInicioHasta;
 	private String filtroIdFinanciador;
 	private String filtroIdEstadoProyecto;
-	private Integer[] filtroIdAreaTematica;
 	
 	private String labelResponsable;
 	private String labelCoordinadores;
@@ -205,14 +204,6 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 		this.filtroIdFinanciador = filtroIdFinanciador;
 	}
 
-	public Integer[] getFiltroIdAreaTematica() {
-		return filtroIdAreaTematica;
-	}
-
-	public void setFiltroIdAreaTematica(Integer[] filtroIdAreaTematica) {
-		this.filtroIdAreaTematica = filtroIdAreaTematica;
-	}
-
 	public String getLabelResponsable() {
 		return labelResponsable;
 	}
@@ -356,7 +347,6 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 		this.filtroFechaInicioHasta = "";
 		this.filtroIdFinanciador = "";
 		this.filtroIdEstadoProyecto = "";
-		this.filtroIdAreaTematica = null;
 		this.labelResponsable = "";
 		this.labelCoordinadores = "";
 		this.labelFinanciador = "";

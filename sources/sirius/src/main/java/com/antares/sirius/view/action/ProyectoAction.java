@@ -1,7 +1,6 @@
 package com.antares.sirius.view.action;
 
 import java.sql.Blob;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 
@@ -51,13 +50,6 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 		filter.setFechaInicioHasta(Utils.parseDate(form.getFiltroFechaInicioHasta()));
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdFinanciador())) {
 			filter.setFinanciador(financiadorService.findById(Utils.parseInteger(form.getFiltroIdFinanciador())));
-		}
-
-		filter.setIdsAreasTematicas(new ArrayList<Integer>());
-		for (Integer idAreaTematica : form.getFiltroIdAreaTematica()) {
-			if (idAreaTematica != 0) {
-				filter.getIdsAreasTematicas().add(idAreaTematica);
-			}
 		}
 
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdEstadoProyecto())) {
