@@ -190,8 +190,8 @@
         <property name="providers">
             <list>
 				<!--
-				<ref local="ldapAuthenticationProvider" />
-                -->
+				<ref local="ldapAuthenticationProvider" />				
+				-->
                 <ref local="daoAuthenticationProvider"/>
                 <ref local="anonymousAuthenticationProvider"/>
                 <ref local="rememberMeAuthenticationProvider"/>
@@ -210,7 +210,7 @@
 		<constructor-arg><ref local="initialDirContextFactory"/></constructor-arg>
 		<property name="userDnPatterns">
 			<list>
-				<value>uid={0},dc=org</value>
+				<value>CN={0},OU=org,OU=Domain Controllers,DC=pablitenpc,DC=local</value>
 			</list>
 		</property>
 		<property name="userSearch"><ref local="userSearch"/></property>
@@ -219,7 +219,7 @@
                 
 	<bean id="userSearch" class="org.acegisecurity.ldap.search.FilterBasedLdapUserSearch">
 		<constructor-arg>
-			<value>dc=org</value>
+			<value>CN=admin,OU=org,OU=Domain Controllers,DC=pablitenpc,DC=local</value>
 		</constructor-arg>
 		<constructor-arg>
 			<value>(uid={0})</value>
@@ -235,9 +235,9 @@
 	<bean id="populator" class="com.antares.commons.security.DbAuthoritiesPopulatorImpl" autowire="byName" />
 
 	<bean id="initialDirContextFactory" class="org.acegisecurity.ldap.DefaultInitialDirContextFactory">
-		<constructor-arg value="ldap://192.168.132.128:389/"/>
+		<constructor-arg value="ldap://192.168.1.105:389/"/>
 		<property name="managerDn">
-			<value>uid=sirius</value>
+			<value>uid=admin</value>
 		</property>
 		<property name="managerPassword">
 			<value>Antares1</value>
