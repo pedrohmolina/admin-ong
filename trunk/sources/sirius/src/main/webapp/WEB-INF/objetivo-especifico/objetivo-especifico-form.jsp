@@ -30,7 +30,7 @@
 		<html:text maxlength="255" property="nombre" />
 		</p><br><p>
 		<label for="ponderacion"><bean:message key="sirius.objetivoEspecifico.ponderacion.label" />(*)&nbsp;:</label>
-		<html:text maxlength="3" property="ponderacion" />
+		<html:text maxlength="3" property="ponderacion"  styleClass="tres" />
 		</p><br><p>
 		<label for="descripcion"><bean:message key="sirius.objetivoEspecifico.descripcion.label" />(*)&nbsp;:</label>
 		<html:textarea property="descripcion" rows="5" />

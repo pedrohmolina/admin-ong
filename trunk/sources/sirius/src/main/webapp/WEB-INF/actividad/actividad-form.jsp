@@ -48,13 +48,13 @@
 		</p><br>
 		<p>
 		<label for="ponderacion"><bean:message key="sirius.actividad.ponderacion.label" />(*)&nbsp;:</label>
-		<html:text maxlength="3" property="ponderacion" />
+		<html:text maxlength="3" property="ponderacion" styleClass="tres" />
 		</p><br>
 		<logic:equal name="actividadForm" property="action.descripcion" value="update">
 			<p>
 			<label for="completitud"><bean:message key="sirius.actividad.completitud.label" />(*)&nbsp;:</label>
 			<logic:equal name="actividadForm" property="actualizarCompletitud" value="true">
-				<html:text maxlength="3" property="completitud" />
+				<html:text maxlength="3" property="completitud" styleClass="tres" />
 			</logic:equal>
 			<logic:notEqual name="actividadForm" property="actualizarCompletitud" value="true">
 				<html:text property="completitud" readonly="true"/>

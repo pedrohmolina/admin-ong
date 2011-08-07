@@ -20,7 +20,7 @@
 		<html:text maxlength="255" property="nombre" readonly="true" />
 		</p><br><p>
 		<label for="ponderacion"><bean:message key="sirius.meta.ponderacion.label" />&nbsp;:</label>
-		<html:text maxlength="3" property="ponderacion" readonly="true" />
+		<html:text maxlength="3" property="ponderacion" readonly="true"  styleClass="tres" />
 		</p><br><p>
 		<label for="descripcion"><bean:message key="sirius.meta.descripcion.label" />&nbsp;:</label>
 		<html:textarea property="descripcion" rows="5" readonly="true" />

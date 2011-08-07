@@ -23,7 +23,7 @@
 		<html:text property="ponderacion" readonly="true" />
 		</p><br><p>
 		<label for="completitud"><bean:message key="sirius.actividad.completitud.label" />&nbsp;:</label>
-		<html:text maxlength="3" property="completitud" readonly="true" />
+		<html:text maxlength="3" property="completitud" readonly="true"  styleClass="tres" />
 		</p><br><p>
 		<label for="fechaInicio"><bean:message key="sirius.actividad.fechaInicio.label" />&nbsp;:</label>
 		<html:text property="fechaInicio" readonly="true" />
