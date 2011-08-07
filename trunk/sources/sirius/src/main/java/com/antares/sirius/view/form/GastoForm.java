@@ -57,6 +57,7 @@ public class GastoForm extends AbstractForm<Gasto> {
 	private String labelTipoComprobante;
 	private String labelProyecto;
 	private String labelActividad;
+	private String labelPersona;
 
 	private boolean individual;
 	private boolean agrupado;
@@ -344,6 +345,14 @@ public class GastoForm extends AbstractForm<Gasto> {
 		this.filtroFechaHasta = filtroFechaHasta;
 	}
 
+	public String getLabelPersona() {
+		return labelPersona;
+	}
+
+	public void setLabelPersona(String labelPersona) {
+		this.labelPersona = labelPersona;
+	}
+
 	@Override
 	public void initialize() {
 		this.id = null;
@@ -373,6 +382,7 @@ public class GastoForm extends AbstractForm<Gasto> {
 		this.labelTipoComprobante = "";
 		this.labelProyecto = "";
 		this.labelActividad = "";
+		this.labelPersona = "";
 	}
 
 	@Override
@@ -397,6 +407,7 @@ public class GastoForm extends AbstractForm<Gasto> {
 		this.labelTipoComprobante = "";
 		this.labelProyecto = "";
 		this.labelActividad = "";
+		this.labelPersona = "";
 	}
 
 	@Override
@@ -440,6 +451,7 @@ public class GastoForm extends AbstractForm<Gasto> {
 			this.labelProyecto = entity.getActividad().getProyecto().getNombre();
 			this.labelActividad = entity.getActividad().getNombre();
 		}
+		this.labelPersona = entity.getPersona().getNombreYApellido();
 	}
 
 }
