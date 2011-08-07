@@ -1,5 +1,7 @@
 package com.antares.sirius.view.form;
 
+import static java.lang.Boolean.TRUE;
+
 import java.util.Collection;
 
 import org.apache.struts.upload.FormFile;
@@ -354,6 +356,7 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 		this.archivo = null;
 		this.nombreArchivo = "";
 		this.hashArchivo = "";
+		this.modificarAgrupamiento = TRUE; 
 	}
 
 	@Override
@@ -380,6 +383,7 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 		this.archivo = null;
 		this.nombreArchivo = "";
 		this.hashArchivo = "";
+		this.modificarAgrupamiento = TRUE; 
 	}
 
 	@Override
@@ -424,6 +428,7 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 			this.nombreArchivo = "";
 			this.hashArchivo = "";
 		}
+		this.modificarAgrupamiento = TRUE; 
 	}
 
 }
