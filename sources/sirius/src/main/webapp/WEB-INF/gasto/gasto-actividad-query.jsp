@@ -38,8 +38,8 @@ function initReferencia(id) {
                  ", menubar = 'no'" +
                  ", scrollbars = 'no'" +
                  ", resizable = 'no'" +
-                 ", width= 1000" +
-                 ", height = 200" +
+                 ", width= 550" +
+                 ", height = 300" +
                  ", left = 200" +
                  ", top = 200";
      var ventana = window.open(url,"",options); 

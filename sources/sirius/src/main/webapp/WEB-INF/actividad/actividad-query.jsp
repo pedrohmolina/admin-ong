@@ -93,7 +93,7 @@ function confirmarAccion(mensaje) {
 					<a href="<c:url value="/actividad/actividad-query.do?method=cambiarEstado&id="/><bean:write name="item" property="id"/>&idEstado=<bean:write name="estado" property="id"/>"><img border="0" 
 						alt="Pasar a estado <bean:write name="estado" property="descripcion"/>" 
 						title="Pasar a estado <bean:write name="estado" property="descripcion"/>"
-						src="<c:url value="/img/icoEstados.gif"/>" /></a>
+						src="<c:url value="/img/arrow_refresh.png"/>" /></a>
 				</logic:iterate>
 			</authz:authorize>
 		</display:column>
