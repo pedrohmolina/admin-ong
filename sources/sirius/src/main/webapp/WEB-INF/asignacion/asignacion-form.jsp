@@ -64,7 +64,7 @@ function cargarComboActividad(select, destinationCombo){
 		</html:select>
 		</p><br><p>
 		<label for="nombre"><bean:message key="sirius.asignacion.cantidad.label" />(*)&nbsp;:</label>
-		<html:text maxlength="3" property="cantidad" />
+		<html:text maxlength="3" property="cantidad"  styleClass="tres" />
 		</p><br>
 	</div>
 	

@@ -31,7 +31,7 @@
 	<div style="float:left;">
 		<p>
 		<label for="nombre"><bean:message key="sirius.rubro.nombre.label" />(*)&nbsp;:</label>
-		<html:text maxlength="16" property="nombre" />
+		<html:text maxlength="16" property="nombre" styleClass="dieciseis" />
 		</p><br><p>
 		<label for="descripcion"><bean:message key="sirius.rubro.descripcion.label" />(*)&nbsp;:</label>
 		<html:textarea property="descripcion" rows="5" />
