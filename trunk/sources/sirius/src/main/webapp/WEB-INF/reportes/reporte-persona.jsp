@@ -45,36 +45,17 @@ function confirmarAccion(mensaje) {
 	<div style="float: left; width: 100%;">
 	<p>
 		<div class="boton">
-			<a href="#" onclick="javascript:limpiarFiltro();"><bean:message key="antares.base.limpiarfiltro.label"/></a>
+			<a href="#" onclick="limpiarFiltro();"><bean:message key="antares.base.limpiarfiltro.label"/></a>
 			<a href="#" onclick="return hacerSubmit('/reportes/reporte-persona.do?method=verResultados');"><bean:message key="sirius.reportes.vistaPrevia" /></a>
+			<a href="#" onclick="hideShow('divColumnas');"><bean:message key="antares.base.personalizarColumnas.label"/></a>
 		</div>
 	<br>	
 	</div>
 
-	<div style="float: left; width: 100%;">
+	<div id="divColumnas" style="float: left; width: 100%; display: none">
 	<p>	
-	<h2><bean:message key="sirius.reportes.vistaPreviaResultados" /></h2>
-	<display-el:table export="false" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.reportePersonaForm.result" id="item"
-		requestURI="/reportes/reporte-persona.do" sort="list" >
-
-		<c:if test="${not empty requestScope['notShowMessage']}">
-			<display:setProperty name="basic.msg.empty_list"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablaTitulo"><tr><td align="center"></td></tr></table></display:setProperty>
-		</c:if>
-
-		<display:column sortable="true" property="apellido" 					titleKey="sirius.persona.apellido.label" />
-		<display:column sortable="true" property="nombre" 						titleKey="sirius.persona.nombre.label" />
-		<display:column sortable="true" property="relacionContractual.nombre" 	titleKey="sirius.persona.relacionContractual.label" />
-		<display:column sortable="true" property="tipoDocumento.descripcion"	titleKey="sirius.persona.tipoDocumento.label"  style="text-align: center; width: 150px"/>
-		<display:column sortable="true" property="numeroDocumento" 				titleKey="sirius.persona.numeroDocumento.label"  style="text-align: right; width: 130px"/>
-
-	</display-el:table>
-	<br>	
-	</div>
-
-	<div style="float:left; width: 100%;">
-	<p>	
-		<h2 onclick="hideShow('divColumnas')"><bean:message key="sirius.reportes.columnas" /></h2>
-		<div id="divColumnas">
+		<h2><bean:message key="sirius.reportes.columnas" /></h2>
+		<div>
 			<p>
 				<label for="numeroDocumento"><bean:message key="sirius.persona.numeroDocumento.label" />:</label>
 				<html:checkbox property="verNumeroDocumento" value="true" style="width:20px" />
@@ -117,6 +98,26 @@ function confirmarAccion(mensaje) {
 				<html:hidden property="verRelacionContractual" value="false" />
 			</p><br>
 		</div>
+	</div>
+
+	<div style="float: left; width: 100%;">
+	<p>	
+	<h2><bean:message key="sirius.reportes.vistaPreviaResultados" /></h2>
+	<display-el:table export="false" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.reportePersonaForm.result" id="item"
+		requestURI="/reportes/reporte-persona.do" sort="list" >
+
+		<c:if test="${not empty requestScope['notShowMessage']}">
+			<display:setProperty name="basic.msg.empty_list"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablaTitulo"><tr><td align="center"></td></tr></table></display:setProperty>
+		</c:if>
+
+		<display:column sortable="true" property="apellido" 					titleKey="sirius.persona.apellido.label" />
+		<display:column sortable="true" property="nombre" 						titleKey="sirius.persona.nombre.label" />
+		<display:column sortable="true" property="relacionContractual.nombre" 	titleKey="sirius.persona.relacionContractual.label" />
+		<display:column sortable="true" property="tipoDocumento.descripcion"	titleKey="sirius.persona.tipoDocumento.label"  style="text-align: center; width: 150px"/>
+		<display:column sortable="true" property="numeroDocumento" 				titleKey="sirius.persona.numeroDocumento.label"  style="text-align: right; width: 130px"/>
+
+	</display-el:table>
+	<br>	
 	</div>
 
 	<div style="float: left; width: 100%;">

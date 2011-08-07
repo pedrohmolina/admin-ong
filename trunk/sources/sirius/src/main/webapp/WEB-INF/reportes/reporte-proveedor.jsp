@@ -45,32 +45,15 @@ function confirmarAccion(mensaje) {
 		<div class="boton">
 			<a href="#" onclick="javascript:limpiarFiltro();"><bean:message key="antares.base.limpiarfiltro.label"/></a>
 			<a href="#" onclick="return hacerSubmit('/reportes/reporte-proveedor.do?method=verResultados');"><bean:message key="sirius.reportes.vistaPrevia" /></a>
+			<a href="#" onclick="hideShow('divColumnas');"><bean:message key="antares.base.personalizarColumnas.label"/></a>
 		</div>
 	</p><br>	
 	</div>
 
-
-	<div style="float: left; width: 100%;">
+	<div id="divColumnas" style="float: left; width: 100%; display: none">
 	<p>	
-	<h2><bean:message key="sirius.reportes.vistaPreviaResultados" /></h2>
-	<display-el:table export="false" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.reporteProveedorForm.result" id="item"
-		requestURI="/reportes/reporte-proveedor.do" sort="list" >
-
-		<c:if test="${not empty requestScope['notShowMessage']}">
-			<display:setProperty name="basic.msg.empty_list"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablaTitulo"><tr><td align="center"></td></tr></table></display:setProperty>
-		</c:if>
-
-		<display:column sortable="true" property="nombre" 							titleKey="sirius.proveedor.nombre.label" />
-		<display:column sortable="true" property="tipoProveedor.descripcion" 		titleKey="sirius.proveedor.tipoProveedor.label" />
-
-	</display-el:table>
-	</p><br>	
-	</div>
-
-	<div style="float:left;">
-	<p>	
-		<h2 onclick="hideShow('divColumnas')"><bean:message key="sirius.reportes.columnas" /></h2>
-		<div id="divColumnas">
+		<h2><bean:message key="sirius.reportes.columnas" /></h2>
+		<div>
 			<p>
 				<label for="verTipoProveedor"><bean:message key="sirius.proveedor.tipoProveedor.label" />:</label>
 				<html:checkbox property="verTipoProveedor" value="true" style="width:20px" />
@@ -105,6 +88,23 @@ function confirmarAccion(mensaje) {
 				<html:hidden property="verEmail" value="false" />
 			</p><br>
 		</div>
+	</div>
+
+	<div style="float: left; width: 100%;">
+	<p>	
+	<h2><bean:message key="sirius.reportes.vistaPreviaResultados" /></h2>
+	<display-el:table export="false" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.reporteProveedorForm.result" id="item"
+		requestURI="/reportes/reporte-proveedor.do" sort="list" >
+
+		<c:if test="${not empty requestScope['notShowMessage']}">
+			<display:setProperty name="basic.msg.empty_list"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablaTitulo"><tr><td align="center"></td></tr></table></display:setProperty>
+		</c:if>
+
+		<display:column sortable="true" property="nombre" 							titleKey="sirius.proveedor.nombre.label" />
+		<display:column sortable="true" property="tipoProveedor.descripcion" 		titleKey="sirius.proveedor.tipoProveedor.label" />
+
+	</display-el:table>
+	</p><br>	
 	</div>
 
 	<div style="float: left; width: 100%;">

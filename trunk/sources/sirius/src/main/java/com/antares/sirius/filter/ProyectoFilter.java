@@ -1,6 +1,5 @@
 package com.antares.sirius.filter;
 
-import java.util.Collection;
 import java.util.Date;
 
 import com.antares.commons.filter.Filter;
@@ -23,7 +22,6 @@ public class ProyectoFilter extends Filter<Proyecto> {
 	private Date fechaInicioHasta;
 	private EstadoProyecto estadoProyecto;
 	private Financiador financiador;
-	private Collection<Integer> idsAreasTematicas;
 
 	public String getNombre() {
 		return nombre;
@@ -36,12 +34,6 @@ public class ProyectoFilter extends Filter<Proyecto> {
 	}
 	public void setFinanciador(Financiador financiador) {
 		this.financiador = financiador;
-	}
-	public Collection<Integer> getIdsAreasTematicas() {
-		return idsAreasTematicas;
-	}
-	public void setIdsAreasTematicas(Collection<Integer> idsAreasTematicas) {
-		this.idsAreasTematicas = idsAreasTematicas;
 	}
 	public EstadoProyecto getEstadoProyecto() {
 		return estadoProyecto;
