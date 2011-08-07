@@ -33,11 +33,11 @@ public class ProyectoDAOImpl extends BusinessEntityDAOImpl<Proyecto> implements 
 		if (Utils.isNotNullNorEmpty(entityFilter.getNombre())) {
 			crit.add(ilike("nombre", entityFilter.getNombre(), MatchMode.ANYWHERE));
 		}
-		if (entityFilter.getFechaInicio() != null) {
-			crit.add(Restrictions.eq("fechaInicio", entityFilter.getFechaInicio()));
+		if (entityFilter.getFechaInicioDesde() != null) {
+			crit.add(Restrictions.ge("fechaInicio", entityFilter.getFechaInicioDesde()));
 		}
-		if (entityFilter.getFechaFin() != null) {
-			crit.add(Restrictions.eq("fechaFin", entityFilter.getFechaFin()));
+		if (entityFilter.getFechaInicioHasta() != null) {
+			crit.add(Restrictions.le("fechaInicio", entityFilter.getFechaInicioHasta()));
 		}
 		if (entityFilter.getFinanciador() != null) {
 			crit.add(Restrictions.eq("financiador", entityFilter.getFinanciador()));

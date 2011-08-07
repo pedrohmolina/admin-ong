@@ -47,8 +47,8 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 	public ProyectoFilter createFilter(ProyectoForm form) {
 		ProyectoFilter filter = new ProyectoFilter();
 		filter.setNombre(form.getFiltroNombre());
-		filter.setFechaInicio(Utils.parseDate(form.getFiltroFechaInicio()));
-		filter.setFechaFin(Utils.parseDate(form.getFiltroFechaFin()));
+		filter.setFechaInicioDesde(Utils.parseDate(form.getFiltroFechaInicioDesde()));
+		filter.setFechaInicioHasta(Utils.parseDate(form.getFiltroFechaInicioHasta()));
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdFinanciador())) {
 			filter.setFinanciador(financiadorService.findById(Utils.parseInteger(form.getFiltroIdFinanciador())));
 		}

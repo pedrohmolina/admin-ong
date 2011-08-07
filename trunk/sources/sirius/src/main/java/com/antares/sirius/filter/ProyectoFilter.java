@@ -19,8 +19,8 @@ import com.antares.sirius.model.Proyecto;
 public class ProyectoFilter extends Filter<Proyecto> {
 
 	private String nombre;
-	private Date fechaInicio;
-	private Date fechaFin;
+	private Date fechaInicioDesde;
+	private Date fechaInicioHasta;
 	private EstadoProyecto estadoProyecto;
 	private Financiador financiador;
 	private Collection<Integer> idsAreasTematicas;
@@ -30,18 +30,6 @@ public class ProyectoFilter extends Filter<Proyecto> {
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-	public Date getFechaInicio() {
-		return fechaInicio;
-	}
-	public void setFechaInicio(Date fechaInicio) {
-		this.fechaInicio = fechaInicio;
-	}
-	public Date getFechaFin() {
-		return fechaFin;
-	}
-	public void setFechaFin(Date fechaFin) {
-		this.fechaFin = fechaFin;
 	}
 	public Financiador getFinanciador() {
 		return financiador;
@@ -60,6 +48,18 @@ public class ProyectoFilter extends Filter<Proyecto> {
 	}
 	public void setEstadoProyecto(EstadoProyecto estadoProyecto) {
 		this.estadoProyecto = estadoProyecto;
+	}
+	public Date getFechaInicioDesde() {
+		return fechaInicioDesde;
+	}
+	public void setFechaInicioDesde(Date fechaInicioDesde) {
+		this.fechaInicioDesde = fechaInicioDesde;
+	}
+	public Date getFechaInicioHasta() {
+		return fechaInicioHasta;
+	}
+	public void setFechaInicioHasta(Date fechaInicioHasta) {
+		this.fechaInicioHasta = fechaInicioHasta;
 	}
 	
 }

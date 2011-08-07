@@ -9,6 +9,7 @@ import org.apache.struts.action.ActionForm;
 
 import com.antares.commons.enums.FormatoReporteEnum;
 import com.antares.sirius.model.Persona;
+import com.antares.sirius.model.RelacionContractual;
 
 /**
  * Formulario que contendra los filtros a partir de los cuales se generara el reporte de Personas.
@@ -18,7 +19,7 @@ import com.antares.sirius.model.Persona;
  *
  */
 @SuppressWarnings("serial")
-public class ReportePersonaForm extends ActionForm{
+public class ReportePersonaForm extends ActionForm {
 
 	private Collection<FormatoReporteEnum> formatosReporte;
 	private String formatoReporte;
@@ -26,9 +27,10 @@ public class ReportePersonaForm extends ActionForm{
 	//Filtros 
 	private String apellido;
 	private String nombre;
-	private String numeroDocumento;
-	private String cuit;
+	private String idRelacionContractual;
 	
+	private Collection<RelacionContractual> relacionesContractuales;
+
 	//Lista previa de resultados
 	private Collection<Persona> result;
 	
@@ -74,22 +76,6 @@ public class ReportePersonaForm extends ActionForm{
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public String getNumeroDocumento() {
-		return numeroDocumento;
-	}
-
-	public void setNumeroDocumento(String numeroDocumento) {
-		this.numeroDocumento = numeroDocumento;
-	}
-
-	public String getCuit() {
-		return cuit;
-	}
-
-	public void setCuit(String cuit) {
-		this.cuit = cuit;
 	}
 
 	public Boolean getVerNumeroDocumento() {
@@ -180,12 +166,27 @@ public class ReportePersonaForm extends ActionForm{
 		this.result = result;
 	}
 	
+	public String getIdRelacionContractual() {
+		return idRelacionContractual;
+	}
+
+	public void setIdRelacionContractual(String idRelacionContractual) {
+		this.idRelacionContractual = idRelacionContractual;
+	}
+	
+	public Collection<RelacionContractual> getRelacionesContractuales() {
+		return relacionesContractuales;
+	}
+
+	public void setRelacionesContractuales(Collection<RelacionContractual> relacionesContractuales) {
+		this.relacionesContractuales = relacionesContractuales;
+	}
+
 	public void initialize() {
 		this.result = null;
 		this.apellido = "";
 		this.nombre = "";
-		this.numeroDocumento = "";
-		this.cuit = "";
+		this.idRelacionContractual = "";
 		this.verNumeroDocumento = TRUE;
 		this.verCuit = FALSE;
 		this.verCBU = FALSE;
@@ -201,8 +202,7 @@ public class ReportePersonaForm extends ActionForm{
 	public void initializeForm() {
 		this.apellido = "";
 		this.nombre = "";
-		this.numeroDocumento = "";
-		this.cuit = "";
+		this.idRelacionContractual = "";
 		this.verNumeroDocumento = TRUE;
 		this.verCuit = FALSE;
 		this.verCBU = FALSE;
@@ -218,8 +218,7 @@ public class ReportePersonaForm extends ActionForm{
 	public void initializeForm(Persona entity) {
 		this.apellido = entity.getApellido();
 		this.nombre = entity.getNombre();
-		this.numeroDocumento = entity.getNumeroDocumento().toString();
-		this.cuit = entity.getCbu();
+		this.idRelacionContractual = entity.getRelacionContractual().getId().toString();
 	}
-	
+
 }

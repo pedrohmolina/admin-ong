@@ -29,11 +29,17 @@ function confirmarAccion(mensaje) {
 		<label for="nombre"><bean:message key="sirius.financiador.nombre.label" />:</label>
 		<html:text property="nombre" />
 		</p><br><p>
-		<label for="cuit"><bean:message key="sirius.financiador.cuit.label" />:</label>
-		<html:text property="cuit" />
+		<label for="idTipoFinanciador"><bean:message key="sirius.financiador.tipoFinanciador.label" />:</label>
+		<html:select property="idTipoFinanciador">
+			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
+			<html:optionsCollection name="reporteFinanciadorForm" property="tiposFinanciador" label="descripcion" value="id"/>
+		</html:select>
 		</p><br><p>
-		<label for="cbu"><bean:message key="sirius.financiador.cbu.label" />:</label>
-		<html:text property="cbu" />
+		<label for="idEstadoFinanciador"><bean:message key="sirius.financiador.estadoFinanciador.label" />:</label>
+		<html:select property="idEstadoFinanciador">
+			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
+			<html:optionsCollection name="reporteFinanciadorForm" property="estadosFinanciador" label="descripcion" value="id"/>
+		</html:select>
 		</p><br>
 	</div>
 
@@ -61,10 +67,7 @@ function confirmarAccion(mensaje) {
 	
 		<display:column sortable="true" property="nombre" 							titleKey="sirius.financiador.nombre.label" />
 		<display:column sortable="true" property="tipoFinanciador.descripcion" 		titleKey="sirius.financiador.tipoFinanciador.label" />
-		<display:column sortable="true" property="estadoFinanciador.descripcion" 	titleKey="sirius.financiador.estadoFinanciador.label" />
-		<display:column sortable="true" property="cuit" 							titleKey="sirius.financiador.cuit.label" />
-		<display:column sortable="true" property="cbu"								titleKey="sirius.financiador.cbu.label" />
-		<display:column sortable="true" property="direccion"	 					titleKey="sirius.financiador.direccion.label" />
+		<display:column sortable="true" property="estadoFinanciador.descripcion" 	titleKey="sirius.financiador.estadoFinanciador.label" style="text-align: center" />
 
 	</display-el:table>
 	<br>	

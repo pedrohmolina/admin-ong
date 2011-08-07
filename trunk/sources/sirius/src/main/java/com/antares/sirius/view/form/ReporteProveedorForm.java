@@ -26,10 +26,7 @@ public class ReporteProveedorForm extends ActionForm{
 
 	//Filtros
 	private String nombre;
-	private String cuit;
-	private String cbu;
 	private String idTipoProveedor;
-	private String labelTipoProveedor;
 	
 	private Collection<TipoProveedor> tiposProveedor;
 	
@@ -70,22 +67,6 @@ public class ReporteProveedorForm extends ActionForm{
 		this.nombre = nombre;
 	}
 
-	public String getCuit() {
-		return cuit;
-	}
-
-	public void setCuit(String cuit) {
-		this.cuit = cuit;
-	}
-
-	public String getCbu() {
-		return cbu;
-	}
-
-	public void setCbu(String cbu) {
-		this.cbu = cbu;
-	}
-
 	public String getIdTipoProveedor() {
 		return idTipoProveedor;
 	}
@@ -102,14 +83,6 @@ public class ReporteProveedorForm extends ActionForm{
 		this.tiposProveedor = tiposProveedor;
 	}
 
-	public String getLabelTipoProveedor() {
-		return labelTipoProveedor;
-	}
-
-	public void setLabelTipoProveedor(String labelTipoProveedor) {
-		this.labelTipoProveedor = labelTipoProveedor;
-	}
-	
 	public Collection<Proveedor> getResult() {
 		return result;
 	}
@@ -185,10 +158,7 @@ public class ReporteProveedorForm extends ActionForm{
 	public void initialize() {
 		this.result = null;
 		this.nombre = "";
-		this.cuit = "";
-		this.cbu = "";
 		this.idTipoProveedor = "";
-		this.labelTipoProveedor = "";
 		this.verTipoProveedor = TRUE;
 		this.verCuit = FALSE;
 		this.verCBU = FALSE;
@@ -201,10 +171,7 @@ public class ReporteProveedorForm extends ActionForm{
 
 	public void initializeForm() {
 		this.nombre = "";
-		this.cuit = "";
-		this.cbu = "";
 		this.idTipoProveedor = "";
-		this.labelTipoProveedor = "";
 		this.verTipoProveedor = TRUE;
 		this.verCuit = FALSE;
 		this.verCBU = FALSE;
@@ -217,10 +184,7 @@ public class ReporteProveedorForm extends ActionForm{
 
 	public void initializeForm(Proveedor entity) {
 		this.nombre = entity.getNombre();
-		this.cuit = entity.getCuit();
-		this.cbu = entity.getCbu();
 		this.idTipoProveedor = entity.getTipoProveedor().getId().toString();
-		this.labelTipoProveedor = entity.getTipoProveedor().getDescripcion();
 	}
 
 }

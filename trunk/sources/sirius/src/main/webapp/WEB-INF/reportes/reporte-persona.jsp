@@ -25,19 +25,17 @@ function confirmarAccion(mensaje) {
 
 	<div style="float:left; width: 100%;">
 		<p>
-		<h2><bean:message key="sirius.reportes.filtros" /></h2>
-		</p><p>
 		<label for="apellido"><bean:message key="sirius.persona.apellido.label" />:</label>
 		<html:text property="apellido" />
 		</p><br><p>
 		<label for="nombre"><bean:message key="sirius.persona.nombre.label" />:</label>
 		<html:text property="nombre" />
 		</p><br><p>
-		<label for="cuit"><bean:message key="sirius.persona.cuit.label" />:</label>
-		<html:text property="cuit" />
-		</p><br><p>
-		<label for="numeroDocumento"><bean:message key="sirius.persona.numeroDocumento.label" />:</label>
-		<html:text property="numeroDocumento" />
+		<label for="idRelacionContractual"><bean:message key="sirius.persona.relacionContractual.label" />:</label>
+		<html:select property="idRelacionContractual">
+			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
+			<html:optionsCollection name="reportePersonaForm" property="relacionesContractuales" label="descripcion" value="id"/>
+		</html:select>
 		</p><br>
 	</div>
 
@@ -65,9 +63,9 @@ function confirmarAccion(mensaje) {
 
 		<display:column sortable="true" property="apellido" 					titleKey="sirius.persona.apellido.label" />
 		<display:column sortable="true" property="nombre" 						titleKey="sirius.persona.nombre.label" />
-		<display:column sortable="true" property="tipoDocumento.descripcion"	titleKey="sirius.persona.tipoDocumento.label" />
-		<display:column sortable="true" property="numeroDocumento" 				titleKey="sirius.persona.numeroDocumento.label" />
-		<display:column sortable="true" property="cuit" 						titleKey="sirius.proveedor.cuit.label" />
+		<display:column sortable="true" property="relacionContractual.nombre" 	titleKey="sirius.persona.relacionContractual.label" />
+		<display:column sortable="true" property="tipoDocumento.descripcion"	titleKey="sirius.persona.tipoDocumento.label"  style="text-align: center; width: 150px"/>
+		<display:column sortable="true" property="numeroDocumento" 				titleKey="sirius.persona.numeroDocumento.label"  style="text-align: right; width: 130px"/>
 
 	</display-el:table>
 	<br>	

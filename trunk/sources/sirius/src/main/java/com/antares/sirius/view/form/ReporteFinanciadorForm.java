@@ -27,8 +27,6 @@ public class ReporteFinanciadorForm extends ActionForm{
 
 	//Filtros
 	private String nombre;
-	private String cuit;
-	private String cbu;
 	private String idEstadoFinanciador;
 	private String idTipoFinanciador;
 
@@ -74,22 +72,6 @@ public class ReporteFinanciadorForm extends ActionForm{
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public String getCuit() {
-		return cuit;
-	}
-
-	public void setCuit(String cuit) {
-		this.cuit = cuit;
-	}
-
-	public String getCbu() {
-		return cbu;
-	}
-
-	public void setCbu(String cbu) {
-		this.cbu = cbu;
 	}
 
 	public String getIdEstadoFinanciador() {
@@ -224,8 +206,6 @@ public class ReporteFinanciadorForm extends ActionForm{
 	public void initialize() {
 		this.result = null;
 		this.nombre = "";
-		this.cuit = "";
-		this.cbu = "";
 		this.idEstadoFinanciador = "";
 		this.idTipoFinanciador = "";
 		this.labelEstadoFinanciador = "";
@@ -243,8 +223,6 @@ public class ReporteFinanciadorForm extends ActionForm{
 
 	public void initializeForm() {
 		this.nombre = "";
-		this.cuit = "";
-		this.cbu = "";
 		this.idEstadoFinanciador = "";
 		this.idTipoFinanciador = "";
 		this.labelEstadoFinanciador = "";
@@ -262,8 +240,6 @@ public class ReporteFinanciadorForm extends ActionForm{
 
 	public void initializeForm(Financiador entity) {
 		this.nombre = entity.getNombre();
-		this.cuit = entity.getCuit();
-		this.cbu = entity.getCbu();
 		this.idEstadoFinanciador = entity.getEstadoFinanciador().getId().toString();
 		this.idTipoFinanciador = entity.getTipoFinanciador().getId().toString();
 		this.labelEstadoFinanciador = entity.getEstadoFinanciador().getDescripcion();

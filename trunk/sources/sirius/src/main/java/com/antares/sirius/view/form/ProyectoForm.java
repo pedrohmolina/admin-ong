@@ -50,8 +50,8 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 	private boolean modificarAgrupamiento;
 
 	private String filtroNombre;
-	private String filtroFechaInicio;
-	private String filtroFechaFin;
+	private String filtroFechaInicioDesde;
+	private String filtroFechaInicioHasta;
 	private String filtroIdFinanciador;
 	private String filtroIdEstadoProyecto;
 	private Integer[] filtroIdAreaTematica;
@@ -197,22 +197,6 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 		this.filtroNombre = filtroNombre;
 	}
 
-	public String getFiltroFechaInicio() {
-		return filtroFechaInicio;
-	}
-
-	public void setFiltroFechaInicio(String filtroFechaInicio) {
-		this.filtroFechaInicio = filtroFechaInicio;
-	}
-
-	public String getFiltroFechaFin() {
-		return filtroFechaFin;
-	}
-
-	public void setFiltroFechaFin(String filtroFechaFin) {
-		this.filtroFechaFin = filtroFechaFin;
-	}
-
 	public String getFiltroIdFinanciador() {
 		return filtroIdFinanciador;
 	}
@@ -333,6 +317,22 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 		this.modificarAgrupamiento = modificarAgrupamiento;
 	}
 
+	public String getFiltroFechaInicioDesde() {
+		return filtroFechaInicioDesde;
+	}
+
+	public void setFiltroFechaInicioDesde(String filtroFechaInicioDesde) {
+		this.filtroFechaInicioDesde = filtroFechaInicioDesde;
+	}
+
+	public String getFiltroFechaInicioHasta() {
+		return filtroFechaInicioHasta;
+	}
+
+	public void setFiltroFechaInicioHasta(String filtroFechaInicioHasta) {
+		this.filtroFechaInicioHasta = filtroFechaInicioHasta;
+	}
+
 	@Override
 	public void initialize() {
 		this.id = null;
@@ -352,8 +352,8 @@ public class ProyectoForm extends AbstractForm<Proyecto> {
 		this.idAreaTematica = null;
 		this.idTipoAgrupamiento = "";
 		this.filtroNombre = "";
-		this.filtroFechaInicio = "";
-		this.filtroFechaFin = "";
+		this.filtroFechaInicioDesde = "";
+		this.filtroFechaInicioHasta = "";
 		this.filtroIdFinanciador = "";
 		this.filtroIdEstadoProyecto = "";
 		this.filtroIdAreaTematica = null;
