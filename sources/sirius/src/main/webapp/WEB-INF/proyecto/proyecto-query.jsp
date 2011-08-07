@@ -27,11 +27,11 @@ function confirmarAccion(mensaje) {
 		<label for="filtroNombre"><bean:message key="sirius.proyecto.nombre.label" />:</label>
 		<html:text property="filtroNombre" />
 		</p><br><p>
-		<label for="filtroFechaInicio"><bean:message key="sirius.proyecto.fechaInicio.label" />:</label>
-		<html:text property="filtroFechaInicio"  styleClass="datepicker"/>
+		<label for="filtroFechaInicioDesde"><bean:message key="sirius.proyecto.fechaInicioDesde.label" />:</label>
+		<html:text property="filtroFechaInicioDesde"  styleClass="datepicker"/>
 		</p><br><p>
-		<label for="filtroFechaFin"><bean:message key="sirius.proyecto.fechaFin.label" />:</label>
-		<html:text property="filtroFechaFin" styleClass="datepicker"/>
+		<label for="filtroFechaInicioHasta"><bean:message key="sirius.proyecto.fechaInicioHasta.label" />:</label>
+		<html:text property="filtroFechaInicioHasta" styleClass="datepicker"/>
 		</p><br><p>
 		<label for="filtroIdFinanciador"><bean:message key="sirius.proyecto.financiador.label" />:</label>
 		<html:select property="filtroIdFinanciador">

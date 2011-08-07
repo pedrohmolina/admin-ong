@@ -24,17 +24,17 @@ function confirmarAccion(mensaje) {
 	<html:form action="/reportes/reporte-proveedor.do?method=generarReporteProveedor">
 	
 	<div style="float:left; width: 100%;">
-		<p>
 		<h2><bean:message key="sirius.reportes.filtros" /></h2>
+		<p>
 		<label for="nombre"><bean:message key="sirius.proveedor.nombre.label" />:</label>
 		<html:text property="nombre" />
 		</p><br><p>
-		<label for="cuit"><bean:message key="sirius.proveedor.cuit.label" />:</label>
-		<html:text property="cuit" />
-		</p><br><p>
-		<label for="cbu"><bean:message key="sirius.proveedor.cbu.label" />:</label>
-		<html:text property="cbu" />
-		</p><br><p>
+		<label for="idTipoProveedor"><bean:message key="sirius.proveedor.tipoProveedor.label" />:</label>
+		<html:select property="idTipoProveedor">
+			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
+			<html:optionsCollection name="reporteProveedorForm" property="tiposProveedor" label="descripcion" value="id"/>
+		</html:select>
+		</p><br>
 	</div>
 
 	<br>
@@ -60,11 +60,8 @@ function confirmarAccion(mensaje) {
 			<display:setProperty name="basic.msg.empty_list"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablaTitulo"><tr><td align="center"></td></tr></table></display:setProperty>
 		</c:if>
 
-		<display:column sortable="true" property="nombre" 						titleKey="sirius.proveedor.nombre.label" />
-		<display:column sortable="true" property="tipoProveedor.descripcion" 	titleKey="sirius.proveedor.tipoProveedor.label" />
-		<display:column sortable="true" property="cuit" 						titleKey="sirius.proveedor.cuit.label" />
-		<display:column sortable="true" property="cbu"							titleKey="sirius.proveedor.cbu.label" />
-		<display:column sortable="true" property="direccion"	 				titleKey="sirius.proveedor.direccion.label" />
+		<display:column sortable="true" property="nombre" 							titleKey="sirius.proveedor.nombre.label" />
+		<display:column sortable="true" property="tipoProveedor.descripcion" 		titleKey="sirius.proveedor.tipoProveedor.label" />
 
 	</display-el:table>
 	</p><br>	

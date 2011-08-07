@@ -853,14 +853,14 @@
 		</form>
 
 		<form name="proyectoQuery">
-			<field property="filtroFechaInicio" depends="date">
+			<field property="filtroFechaInicioDesde" depends="date">
 				<arg position="0" key="sirius.proyecto.fechaInicio.label"/>
 				<var>
 					<var-name>datePattern</var-name>
 					<var-value>dd/MM/yyyy</var-value>
 				</var>
 			</field>
-			<field property="filtroFechaFin" depends="date, daterange">
+			<field property="filtroFechaInicioDesde" depends="date, daterange">
 				<arg position="0" key="sirius.proyecto.fechaFin.label"/>
 				<var>
 					<var-name>datePattern</var-name>
@@ -868,7 +868,7 @@
 				</var>
 				<var>
 					<var-name>beginDateField</var-name>   
-					<var-value>filtroFechaInicio</var-value> 
+					<var-value>filtroFechaInicioDesde</var-value> 
 				</var>
 			</field>
 		</form>

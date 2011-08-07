@@ -26,7 +26,9 @@ import ar.com.fdvs.dj.domain.entities.columns.AbstractColumn;
 import com.antares.commons.util.Utils;
 import com.antares.sirius.filter.FinanciadorFilter;
 import com.antares.sirius.model.Financiador;
+import com.antares.sirius.service.EstadoFinanciadorService;
 import com.antares.sirius.service.FinanciadorService;
+import com.antares.sirius.service.TipoFinanciadorService;
 import com.antares.sirius.view.form.ReporteFinanciadorForm;
 
 /**
@@ -44,6 +46,8 @@ public class ReporteFinanciadorAction extends ReporteAction {
 	private static final String FILENAME = "ReporteFinanciadores";
 
 	private FinanciadorService financiadorService;
+	private EstadoFinanciadorService estadoFinanciadorService;
+	private TipoFinanciadorService tipoFinanciadorService;
 
 	/**
 	 * Inicializa la pantalla de consulta.
@@ -60,6 +64,7 @@ public class ReporteFinanciadorAction extends ReporteAction {
 		ReporteFinanciadorForm viewForm = (ReporteFinanciadorForm)form;
 		viewForm.initialize();
 		viewForm.setFormatosReporte(getReportFormatList());
+		loadCollections(viewForm);
 		return mapping.findForward("init");
 	}
 
@@ -78,6 +83,7 @@ public class ReporteFinanciadorAction extends ReporteAction {
 		FinanciadorFilter filter = this.createFilter(viewForm);
 		Collection<Financiador> result = financiadorService.findByFilter(filter);
 		viewForm.setResult(result);
+		loadCollections(viewForm);
 		return mapping.findForward("verResultados");
 	}
 	
@@ -156,9 +162,18 @@ public class ReporteFinanciadorAction extends ReporteAction {
 	public FinanciadorFilter createFilter(ReporteFinanciadorForm form) {
 		FinanciadorFilter filter = new FinanciadorFilter();
 		filter.setNombre(form.getNombre());
-		filter.setCuit(form.getCuit());
-		filter.setCbu(form.getCbu());
+		if (Utils.isNotNullNorEmpty(form.getIdEstadoFinanciador())) {
+			filter.setEstadoFinanciador(estadoFinanciadorService.findById(Utils.parseInteger(form.getIdEstadoFinanciador())));
+		}
+		if (Utils.isNotNullNorEmpty(form.getIdTipoFinanciador())) {
+			filter.setTipoFinanciador(tipoFinanciadorService.findById(Utils.parseInteger(form.getIdTipoFinanciador())));
+		}
 		return filter;
+	}
+
+	protected void loadCollections(ReporteFinanciadorForm form) {
+		form.setEstadosFinanciador(estadoFinanciadorService.findAll());		
+		form.setTiposFinanciador(tipoFinanciadorService.findAll());		
 	}
 
 	@Override
@@ -168,6 +183,14 @@ public class ReporteFinanciadorAction extends ReporteAction {
 
 	public void setFinanciadorService(FinanciadorService financiadorService) {
 		this.financiadorService = financiadorService;
+	}
+
+	public void setEstadoFinanciadorService(EstadoFinanciadorService estadoFinanciadorService) {
+		this.estadoFinanciadorService = estadoFinanciadorService;
+	}
+
+	public void setTipoFinanciadorService(TipoFinanciadorService tipoFinanciadorService) {
+		this.tipoFinanciadorService = tipoFinanciadorService;
 	}
 
 }

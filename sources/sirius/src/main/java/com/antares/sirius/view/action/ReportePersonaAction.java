@@ -29,6 +29,7 @@ import com.antares.sirius.base.Constants;
 import com.antares.sirius.filter.PersonaFilter;
 import com.antares.sirius.model.Persona;
 import com.antares.sirius.service.PersonaService;
+import com.antares.sirius.service.RelacionContractualService;
 import com.antares.sirius.view.form.ReportePersonaForm;
 
 /**
@@ -45,6 +46,7 @@ public class ReportePersonaAction extends ReporteAction {
 
 	private static final String FILENAME = "ReportePersonas";
 	private PersonaService personaService;
+	private RelacionContractualService relacionContractualService;
 	
 	/**
 	 * Inicializa la pantalla de consulta.
@@ -60,7 +62,7 @@ public class ReportePersonaAction extends ReporteAction {
 	public ActionForward initForm(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ReportePersonaForm viewForm = (ReportePersonaForm)form;
 		viewForm.initialize();
-		viewForm.setFormatosReporte(getReportFormatList());
+		loadCollections(viewForm);
 		return mapping.findForward("init");
 	}
 	
@@ -79,6 +81,7 @@ public class ReportePersonaAction extends ReporteAction {
 		PersonaFilter filter = this.createFilter(viewForm);
 		Collection<Persona> result = personaService.findByFilter(filter);
 		viewForm.setResult(result);
+		loadCollections(viewForm);
 		return mapping.findForward("verResultados");
 	}	
 	
@@ -165,11 +168,15 @@ public class ReportePersonaAction extends ReporteAction {
 		PersonaFilter filter = new PersonaFilter();
 		filter.setApellido(form.getApellido());
 		filter.setNombre(form.getNombre());
-		filter.setCuit(form.getCuit());
-		if (form.getNumeroDocumento()!=null && !form.getNumeroDocumento().equals("")){
-			filter.setNumeroDocumento(new Integer(form.getNumeroDocumento()));
+		if (Utils.isNotNullNorEmpty(form.getIdRelacionContractual())) {
+			filter.setRelacionContractual(relacionContractualService.findById(Utils.parseInteger(form.getIdRelacionContractual())));
 		}
 		return filter;
+	}
+
+	protected void loadCollections(ReportePersonaForm form) {
+		form.setRelacionesContractuales(relacionContractualService.findAll());
+		form.setFormatosReporte(getReportFormatList());
 	}
 
 	@Override
@@ -179,6 +186,10 @@ public class ReportePersonaAction extends ReporteAction {
 
 	public void setPersonaService(PersonaService personaService) {
 		this.personaService = personaService;
+	}
+
+	public void setRelacionContractualService(RelacionContractualService relacionContractualService) {
+		this.relacionContractualService = relacionContractualService;
 	}
 	
 }

@@ -27,6 +27,7 @@ import com.antares.commons.util.Utils;
 import com.antares.sirius.filter.ProveedorFilter;
 import com.antares.sirius.model.Proveedor;
 import com.antares.sirius.service.ProveedorService;
+import com.antares.sirius.service.TipoProveedorService;
 import com.antares.sirius.view.form.ReporteProveedorForm;
 
 /**
@@ -44,6 +45,7 @@ public class ReporteProveedorAction extends ReporteAction {
 	private static final String FILENAME = "ReporteProveedores";
 
 	private ProveedorService proveedorService;
+	private TipoProveedorService tipoProveedorService;
 	
 	/**
 	 * Inicializa la pantalla de consulta.
@@ -60,6 +62,7 @@ public class ReporteProveedorAction extends ReporteAction {
 		ReporteProveedorForm viewForm = (ReporteProveedorForm)form;
 		viewForm.initialize();
 		viewForm.setFormatosReporte(getReportFormatList());
+		loadCollections(viewForm);
 		return mapping.findForward("init");
 	}
 
@@ -78,6 +81,7 @@ public class ReporteProveedorAction extends ReporteAction {
 		ProveedorFilter filter = this.createFilter(viewForm);
 		Collection<Proveedor> result = proveedorService.findByFilter(filter);
 		viewForm.setResult(result);
+		loadCollections(viewForm);
 		return mapping.findForward("verResultados");
 	}
 	
@@ -152,9 +156,15 @@ public class ReporteProveedorAction extends ReporteAction {
 	public ProveedorFilter createFilter(ReporteProveedorForm form) {
 		ProveedorFilter filter = new ProveedorFilter();
 		filter.setNombre(form.getNombre());
-		filter.setCuit(form.getCuit());
-		filter.setCbu(form.getCbu());
+
+		if (Utils.isNotNullNorEmpty(form.getIdTipoProveedor())) {
+			filter.setTipoProveedor(tipoProveedorService.findById(Utils.parseInteger(form.getIdTipoProveedor())));
+		}
 		return filter;
+	}
+
+	protected void loadCollections(ReporteProveedorForm form) {
+		form.setTiposProveedor(tipoProveedorService.findAll());		
 	}
 
 	@Override
@@ -164,6 +174,10 @@ public class ReporteProveedorAction extends ReporteAction {
 
 	public void setProveedorService(ProveedorService proveedorService) {
 		this.proveedorService = proveedorService;
+	}
+
+	public void setTipoProveedorService(TipoProveedorService tipoProveedorService) {
+		this.tipoProveedorService = tipoProveedorService;
 	}
 	
 }
