@@ -79,6 +79,7 @@ function cargarComboActividad(select, destinationCombo){
 			<display:setProperty name="basic.msg.empty_list"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablaTitulo"><tr><td align="center"></td></tr></table></display:setProperty>
 		</c:if>
 
+		<display:column sortable="true" property="actividad.meta.objetivoEspecifico.objetivoGeneral.proyecto.nombre" 		titleKey="sirius.actividad.proyecto.label" />
 		<display:column sortable="true" property="actividad.nombre" 			titleKey="sirius.asignacion.actividad.label" />
 		<display:column sortable="true" property="persona.nombreYApellido" 		titleKey="sirius.asignacion.persona.label" />
 		<display:column sortable="true" property="tipoAsignacion.descripcion" 	titleKey="sirius.asignacion.tipoAsignacion.label" />
