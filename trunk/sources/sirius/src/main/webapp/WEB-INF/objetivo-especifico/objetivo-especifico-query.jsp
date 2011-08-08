@@ -64,8 +64,8 @@ function confirmarAccion(mensaje) {
 		<display:column sortable="true" property="objetivoGeneral.proyecto.nombre" 		titleKey="sirius.objetivoEspecifico.proyecto.label" />
 		<display:column sortable="true" property="objetivoGeneral.nombre" 				titleKey="sirius.objetivoEspecifico.objetivoGeneral.label" />
 		<display:column sortable="true" property="nombre" 								titleKey="sirius.objetivoEspecifico.nombre.label" />
-		<display:column sortable="true" property="ponderacion" 							titleKey="sirius.objetivoEspecifico.ponderacion.label" style="text-align: right"/>
-		<display:column sortable="true" property="completitud" 							titleKey="sirius.objetivoEspecifico.completitud.label" style="text-align: right"/>
+		<display:column sortable="true" property="ponderacion" 							titleKey="sirius.objetivoEspecifico.ponderacion.label" style="text-align: right" />
+		<display:column sortable="true" property="completitud" 							titleKey="sirius.objetivoEspecifico.completitud.label" style="text-align: right" decorator="com.antares.commons.view.decorator.DoubleDecorator" />
 
 		<display:column title="Acciones" media="html" style="text-align: center">
 			<authz:authorize ifAllGranted="ENTIDAD_OBJETIVO_ESPECIFICO-DETALLE">

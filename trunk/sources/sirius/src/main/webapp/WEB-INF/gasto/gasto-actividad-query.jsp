@@ -110,7 +110,7 @@ function initReferencia(id) {
 		<display:column sortable="true" property="persona.nombreYApellido" 		titleKey="sirius.gasto.persona.label" />
 		<display:column sortable="true" property="fecha" 						titleKey="sirius.gasto.fecha.label"  	format="{0,date,dd/MM/yyyy}"  style="text-align: center"/>
 		<display:column sortable="true" property="rubro.nombre" 				titleKey="sirius.gasto.rubro.label" />
-		<display:column sortable="true" property="importe" 						titleKey="sirius.gasto.importe.label"  style="text-align: right"/>
+		<display:column sortable="true" property="importe" 						titleKey="sirius.gasto.importe.label"  style="text-align: right" decorator="com.antares.commons.view.decorator.DoubleDecorator" />
 
 		<display:column title="Acciones" media="html" style="text-align: center">
 			<authz:authorize ifAllGranted="ENTIDAD_GASTO_ACTIVIDAD-DETALLE">

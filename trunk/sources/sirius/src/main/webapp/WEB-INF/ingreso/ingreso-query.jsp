@@ -74,7 +74,7 @@ function confirmarAccion(mensaje) {
 			</logic:notEmpty>
 		</display:column>
 
-		<display:column sortable="true" property="monto" 					titleKey="sirius.ingreso.monto.label"  style="text-align: right"/>
+		<display:column sortable="true" property="monto" 					titleKey="sirius.ingreso.monto.label"  style="text-align: right" decorator="com.antares.commons.view.decorator.DoubleDecorator" />
 
 		<display:column title="Acciones" media="html" style="text-align: center">
 			<authz:authorize ifAllGranted="ENTIDAD_INGRESO-DETALLE">
