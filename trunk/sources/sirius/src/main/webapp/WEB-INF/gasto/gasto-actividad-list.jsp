@@ -47,10 +47,10 @@ function confirmarAccion(mensaje) {
 			<display:setProperty name="basic.msg.empty_list"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablaTitulo"><tr><td align="center"></td></tr></table></display:setProperty>
 		</c:if>
 	
-		<display:column sortable="true" property="actividad.proyecto.nombre" 	titleKey="sirius.gasto.proyecto.label" />
-		<display:column sortable="true" property="actividad.nombre" 			titleKey="sirius.gasto.actividad.label" />
-		<display:column sortable="true" property="fecha" 						titleKey="sirius.gasto.fecha.label"  	format="{0,date,dd/MM/yyyy}"  style="text-align: center"/>
-		<display:column sortable="true" property="rubro.nombre" 				titleKey="sirius.gasto.rubro.label" />
+		<display:column sortable="true" property="actividad.proyecto.nombre" 	titleKey="sirius.gasto.proyecto.label" maxLength="30" />
+		<display:column sortable="true" property="actividad.nombre" 			titleKey="sirius.gasto.actividad.label" maxLength="30" />
+		<display:column sortable="true" property="fecha" 						titleKey="sirius.gasto.fecha.label" format="{0,date,dd/MM/yyyy}"  style="text-align: center"/>
+		<display:column sortable="true" property="rubro.nombre" 				titleKey="sirius.gasto.rubro.label" maxLength="30" />
 		<display:column sortable="true" property="importe" 						titleKey="sirius.gasto.importe.label" style="text-align: right" decorator="com.antares.commons.view.decorator.DoubleDecorator" />
 	</display-el:table>
 </div>

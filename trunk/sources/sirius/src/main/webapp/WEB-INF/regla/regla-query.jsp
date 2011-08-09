@@ -58,7 +58,7 @@ function confirmarAccion(mensaje) {
 			<display:setProperty name="basic.msg.empty_list"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablaTitulo"><tr><td align="center"></td></tr></table></display:setProperty>
 		</c:if>
 	
-		<display:column sortable="true" property="usuario.username" 		titleKey="sirius.regla.usuario.label" />
+		<display:column sortable="true" property="usuario.username" 		titleKey="sirius.regla.usuario.label" maxLength="30" />
 		<display:column sortable="true" titleKey="sirius.regla.entidad.label">
 			<bean-el:message key="${item.entidad.descripcion}"/>
 		</display:column>
@@ -66,7 +66,7 @@ function confirmarAccion(mensaje) {
 			<bean-el:message key="${item.atributo.descripcion}"/>
 		</display:column>
 		<display:column sortable="true" property="operador.descripcion" 	titleKey="sirius.regla.operador.label" />
-		<display:column sortable="true" property="valorDescripcion" 		titleKey="sirius.regla.valor.label" />
+		<display:column sortable="true" property="valorDescripcion" 		titleKey="sirius.regla.valor.label" maxLength="30" />
 
 		<display:column title="Acciones" media="html" style="text-align: center">
 			<authz:authorize ifAllGranted="ENTIDAD_REGLA-DETALLE">

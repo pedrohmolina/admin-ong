@@ -64,11 +64,11 @@ function confirmarAccion(mensaje) {
 			<display:setProperty name="basic.msg.empty_list"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablaTitulo"><tr><td align="center"></td></tr></table></display:setProperty>
 		</c:if>
 	
-		<display:column sortable="true" property="apellido" 					titleKey="sirius.persona.apellido.label" />
-		<display:column sortable="true" property="nombre" 						titleKey="sirius.persona.nombre.label" />
-		<display:column sortable="true" property="relacionContractual.nombre" 	titleKey="sirius.persona.relacionContractual.label" />
+		<display:column sortable="true" property="apellido" 					titleKey="sirius.persona.apellido.label" maxLength="30" />
+		<display:column sortable="true" property="nombre" 						titleKey="sirius.persona.nombre.label" maxLength="30" />
+		<display:column sortable="true" property="relacionContractual.nombre" 	titleKey="sirius.persona.relacionContractual.label" maxLength="30" />
 		<display:column sortable="true" property="tipoDocumento.descripcion"	titleKey="sirius.persona.tipoDocumento.label"  style="text-align: center; width: 150px"/>
-		<display:column sortable="true" property="numeroDocumento" 				titleKey="sirius.persona.numeroDocumento.label"  style="text-align: right; width: 130px"/>
+		<display:column sortable="true" property="numeroDocumento" 				titleKey="sirius.persona.numeroDocumento.label"  style="text-align: right; width: 130px" maxLength="10" />
 
 		<display:column title="Acciones" media="html" style="text-align: center">
 			<authz:authorize ifAllGranted="ENTIDAD_PERSONA-DETALLE">

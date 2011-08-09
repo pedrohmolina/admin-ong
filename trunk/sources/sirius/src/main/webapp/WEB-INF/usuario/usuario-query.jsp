@@ -61,10 +61,10 @@ function confirmarAccion(mensaje) {
 			<display:setProperty name="basic.msg.empty_list"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablaTitulo"><tr><td align="center"></td></tr></table></display:setProperty>
 		</c:if>
 	
-		<display:column sortable="true" property="username" 							titleKey="sirius.usuario.username.label" />
-		<display:column sortable="true" property="perfil.nombre" 						titleKey="sirius.usuario.perfil.label" />
-		<display:column sortable="true" property="persona.apellido" 					titleKey="sirius.usuario.apellido.label" />
-		<display:column sortable="true" property="persona.nombre" 						titleKey="sirius.usuario.nombre.label" />
+		<display:column sortable="true" property="username" 							titleKey="sirius.usuario.username.label" maxLength="30" />
+		<display:column sortable="true" property="perfil.nombre" 						titleKey="sirius.usuario.perfil.label" maxLength="30" />
+		<display:column sortable="true" property="persona.apellido" 					titleKey="sirius.usuario.apellido.label" maxLength="30" />
+		<display:column sortable="true" property="persona.nombre" 						titleKey="sirius.usuario.nombre.label" maxLength="30" />
 
 		<display:column title="Acciones" media="html" style="text-align: center">
 			<authz:authorize ifAllGranted="ENTIDAD_USUARIO-DETALLE">

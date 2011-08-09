@@ -57,10 +57,9 @@ function confirmarAccion(mensaje) {
 			<display:setProperty name="basic.msg.empty_list"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablaTitulo"><tr><td align="center"></td></tr></table></display:setProperty>
 		</c:if>
 
-		<display:column sortable="true" property="nombre" 		titleKey="sirius.rubro.nombre.label" />
-		<display:column sortable="true" property="descripcion" 	titleKey="sirius.rubro.descripcion.label" />
-		<display:column sortable="true" titleKey="sirius.rubro.rubroPadre.label">
-			<logic:empty name="item" property="rubroPadre">------</logic:empty>
+		<display:column sortable="true" property="nombre" 		titleKey="sirius.rubro.nombre.label" maxLength="30" />
+		<display:column sortable="true" property="descripcion" 	titleKey="sirius.rubro.descripcion.label" maxLength="30" />
+		<display:column sortable="true" titleKey="sirius.rubro.rubroPadre.label" maxLength="30">
 			<logic:notEmpty name="item" property="rubroPadre">
 				<bean:write name="item" property="rubroPadre.nombre" />
 			</logic:notEmpty>

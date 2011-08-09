@@ -67,8 +67,7 @@ function confirmarAccion(mensaje) {
 		<display:column sortable="true" property="tipoIngreso.descripcion" 	titleKey="sirius.ingreso.tipoIngreso.label" />
 		<display:column sortable="true" property="fecha" 					titleKey="sirius.ingreso.fecha.label" format="{0,date,dd/MM/yyyy}"  style="text-align: center"/>
 
-		<display:column sortable="true" 									titleKey="sirius.ingreso.financiador.label">
-			<logic:empty name="item" property="financiador">&nbsp;</logic:empty>
+		<display:column sortable="true" 									titleKey="sirius.ingreso.financiador.label" maxLength="30" >
 			<logic:notEmpty name="item" property="financiador">
 				<bean:write name="item" property="financiador.nombre" />
 			</logic:notEmpty>
