@@ -43,4 +43,11 @@ public interface UsuarioService extends BusinessEntityService<Usuario>, UserDeta
 	 */
 	void ejecutarDesbloqueo(Usuario entity);
 
+	/**
+	 * Verifica si el usuario tiene el acceso correspondiente
+	 * 
+	 * @param access acceso
+	 * @return
+	 */
+	boolean userHasAccess(String access);
 }

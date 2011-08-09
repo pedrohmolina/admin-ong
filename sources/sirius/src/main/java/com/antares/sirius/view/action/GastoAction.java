@@ -3,8 +3,6 @@ package com.antares.sirius.view.action;
 import com.antares.commons.util.Utils;
 import com.antares.commons.view.action.BaseAction;
 import com.antares.sirius.model.Gasto;
-import com.antares.sirius.model.Persona;
-import com.antares.sirius.model.Usuario;
 import com.antares.sirius.service.GastoService;
 import com.antares.sirius.service.OrigenService;
 import com.antares.sirius.service.ParametroService;
@@ -36,7 +34,7 @@ public abstract class GastoAction extends BaseAction<Gasto, GastoForm, GastoServ
 		entity.setObservaciones(form.getObservaciones());
 
 		if (Utils.isNullOrEmpty(form.getIdPersona())) {
-			entity.setPersona(findPersona());
+			entity.setPersona(personaService.findPersonaLogueada());
 		} else {
 			entity.setPersona(personaService.findById(Utils.parseInteger(form.getIdPersona())));
 		}
@@ -58,11 +56,6 @@ public abstract class GastoAction extends BaseAction<Gasto, GastoForm, GastoServ
 		if (entity.getProveedor() != null && !entity.getProveedor().isActivo()) {
 			form.getProveedores().add(entity.getProveedor());
 		}
-	}
-
-	protected Persona findPersona() {
-		Usuario usuario = usuarioService.findByUsername(Utils.getUsername());
-		return usuario.getPersona();
 	}
 
 	public void setRubroService(RubroService rubroService) {

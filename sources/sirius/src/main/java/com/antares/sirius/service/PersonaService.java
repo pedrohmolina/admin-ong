@@ -32,4 +32,10 @@ public interface PersonaService extends BusinessEntityService<Persona> {
 	 */
 	boolean isNombreApellidoRepetido(String nombre, String apellido, Integer id);
 
+	/**
+	 * Devuelve la persona actualmente logueada en el sistema.
+	 * 
+	 * @return persona actualmente logueada en el sistema.
+	 */
+	Persona findPersonaLogueada();
 }
