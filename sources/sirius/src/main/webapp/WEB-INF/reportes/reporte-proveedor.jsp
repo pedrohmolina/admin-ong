@@ -41,17 +41,50 @@ function confirmarAccion(mensaje) {
 	<br>
 	
 	<div style="float: left; width: 100%;">
-	<p>
+		<p>
 		<div class="boton">
 			<a href="#" onclick="javascript:limpiarFiltro();"><bean:message key="antares.base.limpiarfiltro.label"/></a>
 			<a href="#" onclick="return hacerSubmit('/reportes/reporte-proveedor.do?method=verResultados');"><bean:message key="sirius.reportes.vistaPrevia" /></a>
-			<a href="#" onclick="hideShow('divColumnas');"><bean:message key="antares.base.personalizarColumnas.label"/></a>
 		</div>
+		</p><br>	
+	</div>
+
+	<div style="float: left; width: 100%;">
+	<p>	
+	<h2><bean:message key="sirius.reportes.vistaPreviaResultados" /></h2>
+	<display-el:table export="false" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.reporteProveedorForm.result" id="item"
+		requestURI="/reportes/reporte-proveedor.do" sort="list" >
+
+		<c:if test="${not empty requestScope['notShowMessage']}">
+			<display:setProperty name="basic.msg.empty_list"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablaTitulo"><tr><td align="center"></td></tr></table></display:setProperty>
+		</c:if>
+
+		<display:column sortable="true" property="nombre" 							titleKey="sirius.proveedor.nombre.label" />
+		<display:column sortable="true" property="tipoProveedor.descripcion" 		titleKey="sirius.proveedor.tipoProveedor.label" />
+
+	</display-el:table>
 	</p><br>	
 	</div>
 
+	<div style="float: left; width: 100%;">
+		<p>
+		<label for="formatosReporte"><bean:message key="sirius.reportes.formatoSalida" />:</label>
+		<html:select property="formatoReporte">
+			<html:optionsCollection name="reporteProveedorForm" property="formatosReporte" label="descripcion" value="id"/>
+		</html:select>
+		</p><br>
+	</div>
+
+	<div style="float: left; width: 100%;">
+		<p>
+		<div class="boton">
+			<a href="#" onclick="reporteProveedorForm.submit();"><bean:message key="sirius.reportes.generar" /></a>
+			<a href="#" onclick="hideShow('divColumnas');"><bean:message key="antares.base.personalizarColumnas.label"/></a>
+		</div>
+		</p><br>	
+	</div>
+
 	<div id="divColumnas" style="float: left; width: 100%; display: none">
-	<p>	
 		<h2><bean:message key="sirius.reportes.columnas" /></h2>
 		<div>
 			<p>
@@ -88,35 +121,6 @@ function confirmarAccion(mensaje) {
 				<html:hidden property="verEmail" value="false" />
 			</p><br>
 		</div>
-	</div>
-
-	<div style="float: left; width: 100%;">
-	<p>	
-	<h2><bean:message key="sirius.reportes.vistaPreviaResultados" /></h2>
-	<display-el:table export="false" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.reporteProveedorForm.result" id="item"
-		requestURI="/reportes/reporte-proveedor.do" sort="list" >
-
-		<c:if test="${not empty requestScope['notShowMessage']}">
-			<display:setProperty name="basic.msg.empty_list"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablaTitulo"><tr><td align="center"></td></tr></table></display:setProperty>
-		</c:if>
-
-		<display:column sortable="true" property="nombre" 							titleKey="sirius.proveedor.nombre.label" />
-		<display:column sortable="true" property="tipoProveedor.descripcion" 		titleKey="sirius.proveedor.tipoProveedor.label" />
-
-	</display-el:table>
-	</p><br>	
-	</div>
-
-	<div style="float: left; width: 100%;">
-		<p>
-		<label for="formatosReporte"><bean:message key="sirius.reportes.formatoSalida" />:</label>
-		<html:select property="formatoReporte">
-			<html:optionsCollection name="reporteProveedorForm" property="formatosReporte" label="descripcion" value="id"/>
-		</html:select>
-		<div class="boton">
-			<a href="#" onclick="reporteProveedorForm.submit();"><bean:message key="sirius.reportes.generar" /></a>
-		</div>
-		</p><br>
 	</div>
 
 	</html:form>

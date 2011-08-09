@@ -131,6 +131,8 @@ public class PresupuestoAction extends DispatchAction {
 				// Si el monto ingresado es 0, se debe eliminar el presupuesto del DTO
 				if (monto != null && monto.doubleValue() == 0D) {
 					monto = null;
+				} else if (monto != null && monto >= 100000000D) {
+					monto = 99999999.99D;
 				}
 	
 				if (Utils.parseInteger(request.getParameter("id")) <= actividades.size()) {

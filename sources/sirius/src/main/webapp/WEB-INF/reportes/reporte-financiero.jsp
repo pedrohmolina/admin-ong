@@ -92,9 +92,28 @@ function cargarCombo(method){
 		</p><br>
 	</div>
 		
-	<div style="float:left;width: 100%;">
-		<h2 onclick="hideShow('divColumnas')"><bean:message key="sirius.reportes.columnas" /></h2>
-		<div id="divColumnas">
+	<div style="float: left; width: 100%;">
+		<p>
+		<label for="formatosReporte"><bean:message key="sirius.reportes.formatoSalida" />:</label>
+		<html:select property="formatoReporte">
+			<html:optionsCollection name="reporteFinancieroForm" property="formatosReporte" label="descripcion" value="id"/>
+		</html:select>
+		</p><br><p>
+		</p><br>
+	</div>
+	
+	<div style="float: left; width: 100%;">
+		<p>
+		<div class="boton">
+			<a href="#" onclick="reporteFinancieroForm.submit();"><bean:message key="sirius.reportes.generar" /></a>
+			<a href="#" onclick="hideShow('divColumnas');"><bean:message key="antares.base.personalizarColumnas.label"/></a>
+		</div>
+		</p><br>	
+	</div>
+
+	<div id="divColumnas" style="float: left; width: 100%; display: none">
+		<h2><bean:message key="sirius.reportes.columnas" /></h2>
+		<div>
 			<p>
 			<label for="verPresupuestado"><bean:message key="sirius.reportes.finanzas.presupuestado.label" />:</label>
 			<html:checkbox property="verPresupuestado" value="true" style="width:20px" />
@@ -111,19 +130,6 @@ function cargarCombo(method){
 		</div>
 	</div>
 
-	<div style="float: left; width: 100%;">
-		<p>
-		<label for="formatosReporte"><bean:message key="sirius.reportes.formatoSalida" />:</label>
-		<html:select property="formatoReporte">
-			<html:optionsCollection name="reporteFinancieroForm" property="formatosReporte" label="descripcion" value="id"/>
-		</html:select>
-		</p><br><p>
-		<div class="boton">
-			<a href="#" onclick="reporteFinancieroForm.submit();"><bean:message key="sirius.reportes.generar" /></a>
-		</div>
-		</p><br>
-	</div>
-	
 	</html:form>
 
 	<div style="clear: both;" class="errores">

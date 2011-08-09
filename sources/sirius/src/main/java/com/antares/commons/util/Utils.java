@@ -120,7 +120,8 @@ public class Utils {
 			
 			if (parsePosition.getIndex() == doubleStr.length()) {
 				// Si no se pudo parsear completo, devuelvo null
-				doubleNum = num.doubleValue();
+				BigDecimal bd = new BigDecimal(num.doubleValue()).setScale(2, RoundingMode.HALF_UP);
+				doubleNum = bd.doubleValue();
 			}
 		}
 		return doubleNum;

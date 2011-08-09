@@ -18,6 +18,8 @@ public class CustomValidationRoutines {
 
 	private static final String POSITIVE_DOUBLE_MSG_KEY = "errors.positiveDouble";   
 	private static final String CUIT_MSG_KEY = "errors.cuit";   
+	private static final String DOUBLE_MAX_VALUE = "doubleMaxValue";   
+	private static final String DOUBLE_MAX_VALUE_KEY = "errors.maxDouble";   
 	private static final String PONDERACION_MSG_KEY = "errors.ponderiacion";   
 	private static final String BEGIN_DATE_FIELD_NAME = "beginDateField";   
 	private static final String DATES_RANGE_INVALID_MSG_KEY = "errors.datesrangeinvalid";
@@ -39,6 +41,31 @@ public class CustomValidationRoutines {
 			if (value == null || value.doubleValue() < 0) {
 				errors.add(field.getKey(), new ActionMessage(POSITIVE_DOUBLE_MSG_KEY, Utils.getMessage(field.getArg(0).getKey())));
 				return false;
+			}
+		}
+		return true;
+	}
+
+    /**
+	 * Validacion de numeros reales mayores a cero
+	 * 
+	 * @param bean
+	 * @param va
+	 * @param field
+	 * @param errors
+	 * @param req
+	 * @return
+	 */
+	public static boolean validateDoubleMaxValue(Object bean, ValidatorAction va, Field field, ActionMessages errors, HttpServletRequest req) {
+		String strValue = ValidatorUtils.getValueAsString(bean, field.getProperty());
+		if (Utils.isNotNullNorEmpty(strValue)) {
+			Double value = Utils.parseDouble(strValue);
+	        Double maxValue = Utils.parseDouble(field.getVarValue(DOUBLE_MAX_VALUE));   
+			if (value != null && maxValue != null) {
+				if (value >= maxValue) {
+					errors.add(field.getKey(), new ActionMessage(DOUBLE_MAX_VALUE_KEY, Utils.getMessage(field.getArg(0).getKey()), Utils.formatDouble(maxValue)));
+					return false;
+				}
 			}
 		}
 		return true;
