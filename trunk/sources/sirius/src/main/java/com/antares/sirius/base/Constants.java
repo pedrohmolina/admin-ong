@@ -15,4 +15,5 @@ public interface Constants {
 	String ANTARES_LOGO = "/reports/Antares.jpg";
 	String SIRIUS_LOGO = "/reports/Sirius.png";
 
+	String ACCESO_ADMIN_GASTOS_ACTIVIDAD = "ENTIDAD_GASTO_ACTIVIDAD-LISTADO";
 }

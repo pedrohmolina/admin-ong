@@ -3,6 +3,9 @@ package com.antares.sirius.service.impl;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
+import org.acegisecurity.Authentication;
+import org.acegisecurity.GrantedAuthority;
+import org.acegisecurity.context.SecurityContextHolder;
 import org.acegisecurity.userdetails.UserDetails;
 import org.acegisecurity.userdetails.UsernameNotFoundException;
 import org.springframework.dao.DataAccessException;
@@ -54,6 +57,21 @@ public class UsuarioServiceImpl extends BusinessEntityServiceImpl<Usuario, Usuar
 		// Esto es para que cargue las authorities dentro de si mismo y no depende de los mapeos lazy
 		usuario.getAuthorities();
 		return usuario;
+	}
+
+	public boolean userHasAccess(String access) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth == null) {
+			return false;
+		}
+		GrantedAuthority[] azs = auth.getAuthorities();
+		for (int i = 0; i < azs.length; i++) {
+			GrantedAuthority ga = azs[i];
+			if (access.equals(ga.getAuthority())) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

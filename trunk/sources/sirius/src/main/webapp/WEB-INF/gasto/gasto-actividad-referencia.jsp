@@ -14,7 +14,7 @@
 
 $(document).ready(function(){
 	<logic:equal name="gastoActividadForm" property="updated" value="true" >
-		window.parent.opener.top.location.reload();
+		window.parent.opener.document.gastoActividadQuery.submit();
 		window.close();
 	</logic:equal>
 })

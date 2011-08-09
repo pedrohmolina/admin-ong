@@ -1,5 +1,7 @@
 package com.antares.sirius.view.action;
 
+import static com.antares.sirius.base.Constants.ACCESO_ADMIN_GASTOS_ACTIVIDAD;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashMap;
@@ -20,8 +22,10 @@ import com.antares.commons.util.Utils;
 import com.antares.sirius.filter.GastoFilter;
 import com.antares.sirius.model.Actividad;
 import com.antares.sirius.model.Gasto;
+import com.antares.sirius.model.Persona;
 import com.antares.sirius.model.Proyecto;
 import com.antares.sirius.service.ActividadService;
+import com.antares.sirius.service.AsignacionService;
 import com.antares.sirius.service.ProyectoService;
 import com.antares.sirius.view.form.GastoForm;
 
@@ -29,6 +33,7 @@ public class GastoActividadAction extends GastoAction {
 
 	protected ProyectoService proyectoService;
 	protected ActividadService actividadService;
+	protected AsignacionService asignacionService;
 
 	@Override
 	protected Filter<Gasto> createFilter(GastoForm form) {
@@ -78,21 +83,19 @@ public class GastoActividadAction extends GastoAction {
 	protected void loadCollections(GastoForm form) {
 		super.loadCollections(form);
 		form.setPersonas(personaService.findAll());
-		form.setProyectos(proyectoService.findAll());
+
+		form.setProyectos(getProyectos());
 		if (form.getActividades() == null) {
 			form.setActividades(new ArrayList<Actividad>());
 		}
 
 		if (Utils.isNullOrEmpty(form.getIdPersona())) {
-			form.setIdPersona(findPersona().getId().toString());
+			form.setIdPersona(personaService.findPersonaLogueada().getId().toString());
 		}
 	}
 
 	@Override
 	protected void postLoadEntity(Gasto entity, GastoForm viewForm) {
-		if (entity.getActividad() != null) {
-			viewForm.setActividades(actividadService.findAllByProyecto(entity.getActividad().getProyecto()));
-		}
 		viewForm.setIndividual(service.isIndividual(entity));
 		viewForm.setAgrupado(service.isAgrupado(entity));
 	}
@@ -142,10 +145,10 @@ public class GastoActividadAction extends GastoAction {
 		
 		String id =(String) request.getParameter("idProyecto");
 		Proyecto proyecto = proyectoService.findById(Utils.parseInteger(id));
-		Collection<Actividad> lista = actividadService.findAllByProyecto(proyecto);
-		((GastoForm)form).setActividades(lista);
+		Collection<Actividad> actividades = getActividades(proyecto);
+		((GastoForm)form).setActividades(actividades);
 		Map<String, String> map = new LinkedHashMap<String, String>();
-		for (Actividad actividad : lista) {
+		for (Actividad actividad : actividades) {
 			map.put(new Integer(actividad.getId()).toString(), actividad.getNombre());
 		}
 		
@@ -248,7 +251,7 @@ public class GastoActividadAction extends GastoAction {
 		gastoForm.initialize();
 		GastoFilter filter = new GastoFilter();
 		filter.setTipoGasto(tipoGastoService.findTipoGastoActividad());
-		filter.setPersona(findPersona());
+		filter.setPersona(personaService.findPersonaLogueada());
 		Collection<Gasto> result = service.findByFilter(filter);
 		gastoForm.setResult(result);
 		return mapping.findForward("query");
@@ -266,7 +269,7 @@ public class GastoActividadAction extends GastoAction {
 		GastoForm gastoForm = (GastoForm)form;
 		GastoFilter filter = new GastoFilter();
 		filter.setTipoGasto(tipoGastoService.findTipoGastoActividad());
-		filter.setPersona(findPersona());
+		filter.setPersona(personaService.findPersonaLogueada());
 		if (Utils.isNotNullNorEmpty(gastoForm.getFiltroFechaDesde())) {
 			filter.setFechaDesde(Utils.parseDate(gastoForm.getFiltroFechaDesde()));
 		}
@@ -278,12 +281,38 @@ public class GastoActividadAction extends GastoAction {
 		return mapping.findForward("query");
 	}
 
+	protected Collection<Proyecto> getProyectos() {
+		Collection<Proyecto> proyectos;
+		if (usuarioService.userHasAccess(ACCESO_ADMIN_GASTOS_ACTIVIDAD)) {
+			proyectos = proyectoService.findAll();
+		} else {
+			Persona persona = personaService.findPersonaLogueada();
+			proyectos = asignacionService.findProyectosAsignados(persona);
+		}
+		return proyectos;
+	}
+
+	protected Collection<Actividad> getActividades(Proyecto proyecto) {
+		Collection<Actividad> actividades;
+		if (usuarioService.userHasAccess(ACCESO_ADMIN_GASTOS_ACTIVIDAD)) {
+			actividades = actividadService.findAllByProyecto(proyecto);
+		} else {
+			Persona persona = personaService.findPersonaLogueada();
+			actividades = asignacionService.findActividadesAsignadas(persona, proyecto);
+		}
+		return actividades;
+	}
+
 	public void setProyectoService(ProyectoService proyectoService) {
 		this.proyectoService = proyectoService;
 	}
 
 	public void setActividadService(ActividadService actividadService) {
 		this.actividadService = actividadService;
+	}
+
+	public void setAsignacionService(AsignacionService asignacionService) {
+		this.asignacionService = asignacionService;
 	}
 
 }
