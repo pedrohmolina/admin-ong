@@ -65,7 +65,7 @@ function confirmarAccion(mensaje) {
 			<display:setProperty name="basic.msg.empty_list"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablaTitulo"><tr><td align="center"></td></tr></table></display:setProperty>
 		</c:if>
 	
-		<display:column sortable="true" property="nombre" 							titleKey="sirius.financiador.nombre.label" />
+		<display:column sortable="true" property="nombre" 							titleKey="sirius.financiador.nombre.label" maxLength="30" />
 		<display:column sortable="true" property="tipoFinanciador.descripcion" 		titleKey="sirius.financiador.tipoFinanciador.label" />
 		<display:column sortable="true" property="estadoFinanciador.descripcion" 	titleKey="sirius.financiador.estadoFinanciador.label" style="text-align: center" />
 

@@ -73,10 +73,10 @@ function confirmarAccion(mensaje) {
 			<display:setProperty name="basic.msg.empty_list"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablaTitulo"><tr><td align="center"></td></tr></table></display:setProperty>
 		</c:if>
 	
-		<display:column sortable="true" property="nombre" 							titleKey="sirius.proyecto.nombre.label" />
+		<display:column sortable="true" property="nombre" 							titleKey="sirius.proyecto.nombre.label" maxLength="30" />
 		<display:column sortable="true" property="fechaInicio" 						titleKey="sirius.proyecto.fechaInicio.label" 	format="{0,date,dd/MM/yyyy}" style="text-align: center"/>
 		<display:column sortable="true" property="fechaFin" 						titleKey="sirius.proyecto.fechaFin.label" 		format="{0,date,dd/MM/yyyy}" style="text-align: center"/>
-		<display:column sortable="true" property="financiador.nombre" 				titleKey="sirius.proyecto.financiador.label" />
+		<display:column sortable="true" property="financiador.nombre" 				titleKey="sirius.proyecto.financiador.label" maxLength="30" />
 		<display:column sortable="true" property="estadoProyecto.descripcion" 		titleKey="sirius.proyecto.estadoProyecto.label" style="text-align: center" />
 
 		<display:column title="Acciones" media="html" style="text-align: center">
