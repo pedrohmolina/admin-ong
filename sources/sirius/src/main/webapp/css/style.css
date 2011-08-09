@@ -45,6 +45,9 @@ select {
 	float: none;
 }
 
+.tablaTitulo td{
+	text-align: center;
+}
 div.ui-datepicker {
 	font-size: 10px;
 	margin-left: 0px;
@@ -254,6 +257,7 @@ table th {
 table td {
 	border-width: 0px;
 	text-align: left;
+	padding-left: 5px;
 }
 
 table thead a {
@@ -354,12 +358,17 @@ table tbody a {
 	border-style: none;
 	border: 1px solid #D3D3D3;
 	width: 200px;
-	text-align: center;
+	text-align: left;
 	height: 20px;
 }
 
 div a {
 	color: #11627D;
+}
+
+.a_error {
+	text-decoration: none;
+	font-weight: bold;
 }
 
 .boton a {
@@ -443,7 +452,6 @@ div a {
 .form .veinte {
 	width: 152px;
 }
-
 
 .form .dieciseis {
 	width: 130px;
