@@ -410,7 +410,18 @@
                        org.apache.struts.action.ActionMessages,
                        javax.servlet.http.HttpServletRequest"
                    depends=""
-                   msg="errors.url"/>
+                   msg="errors.positiveDouble"/>
+
+        <validator name="maxDouble"
+                   classname="com.antares.commons.validation.CustomValidationRoutines"
+                   method="validateDoubleMaxValue"
+                   methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       javax.servlet.http.HttpServletRequest"
+                   depends=""
+                   msg="errors.maxDouble"/>
 
         <validator name="cuit"
                    classname="com.antares.commons.validation.CustomValidationRoutines"
