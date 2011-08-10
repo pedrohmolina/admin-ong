@@ -1,6 +1,7 @@
 package com.antares.sirius.view.action;
 
 import static com.antares.commons.enums.ActionEnum.CREATE;
+import static com.antares.sirius.base.Constants.ACCESO_CAMBIO_PASSWORD;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +15,7 @@ import org.apache.struts.action.ActionMessage;
 import com.antares.commons.exception.RestrictedAccessException;
 import com.antares.commons.util.Utils;
 import com.antares.commons.view.action.BaseAction;
+import com.antares.sirius.base.Constants;
 import com.antares.sirius.filter.UsuarioFilter;
 import com.antares.sirius.model.Persona;
 import com.antares.sirius.model.Usuario;
@@ -210,13 +212,17 @@ public class UsuarioAction extends BaseAction<Usuario, UsuarioForm, UsuarioServi
 		ActionForward forward = mapping.findForward("success");
 		try {
 			Usuario usuario = findUsuario(viewForm);
-			ActionErrors errors = validatePassword(usuario.getUsername(), viewForm.getPasswordActual());
-			if (errors.isEmpty()) {
-				usuario.setPassword(Utils.encode(usuario.getUsername() + "-" + viewForm.getPassword()));
-				service.save(usuario);
+			if (usuario != null) {
+				ActionErrors errors = validatePassword(usuario.getUsername(), viewForm.getPasswordActual());
+				if (errors.isEmpty()) {
+					usuario.setPassword(Utils.encode(usuario.getUsername() + "-" + viewForm.getPassword()));
+					service.save(usuario);
+				} else {
+					saveErrors(request, errors);
+					forward = mapping.getInputForward(); 
+				}
 			} else {
-				saveErrors(request, errors);
-				forward = mapping.findForward("error"); 
+				forward = mapping.findForward("restrictedAccess"); 
 			}
 		} catch (RestrictedAccessException e) {
 			forward = mapping.findForward("restrictedAccess"); 
@@ -240,8 +246,8 @@ public class UsuarioAction extends BaseAction<Usuario, UsuarioForm, UsuarioServi
 	}
 
 	private Usuario findUsuario(UsuarioPasswordForm viewForm) {
-		Usuario usuario;
-		if (viewForm.getId() != null) {
+		Usuario usuario = null;
+		if (viewForm.getId() != null && service.userHasAccess(ACCESO_CAMBIO_PASSWORD)) {
 			usuario = service.findById(viewForm.getId());
 		} else {
 			usuario = service.findByUsername(Utils.getUsername());
