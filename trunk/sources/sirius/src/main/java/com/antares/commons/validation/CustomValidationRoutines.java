@@ -38,7 +38,7 @@ public class CustomValidationRoutines {
 		String strValue = ValidatorUtils.getValueAsString(bean, field.getProperty());
 		if (Utils.isNotNullNorEmpty(strValue)) {
 			Double value = Utils.parseDouble(strValue);
-			if (value == null || value.doubleValue() < 0) {
+			if (value == null || value.doubleValue() <= 0) {
 				errors.add(field.getKey(), new ActionMessage(POSITIVE_DOUBLE_MSG_KEY, Utils.getMessage(field.getArg(0).getKey())));
 				return false;
 			}
