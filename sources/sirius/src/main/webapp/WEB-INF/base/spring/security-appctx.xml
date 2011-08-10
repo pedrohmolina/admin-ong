@@ -161,7 +161,6 @@
                 /rubro/(.*)save.*=ENTIDAD_RUBRO-ALTA, ENTIDAD_RUBRO-MODIFICACION
                 /rubro/.*=ENTIDAD_RUBRO-LISTADO
 
-                /usuario/usuario-password(.*)id.*=ENTIDAD_USUARIO-CAMBIAR_PASSWORD
                 /usuario/usuario-password.*=APLICACION-LOGIN
                 /usuario/(.*)initCreate.*=ENTIDAD_USUARIO-ALTA
                 /usuario/(.*)view.*=ENTIDAD_USUARIO-DETALLE
