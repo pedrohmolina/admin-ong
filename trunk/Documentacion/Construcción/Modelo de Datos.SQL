@@ -102,7 +102,6 @@ CREATE TABLE actividad
 	activo BOOL NOT NULL COMMENT 'Señal para manejo de baja logica',
 	PRIMARY KEY (id),
 	UNIQUE UQ_actividad_id(id),
-	UNIQUE UQ_actividad_nombre(nombre),
 	KEY (idFinanciador),
 	KEY (idMeta),
 	KEY (idEstadoActividad)
@@ -246,7 +245,6 @@ CREATE TABLE proyecto
 	activo BOOL NOT NULL COMMENT 'Señal para manejo de baja logica',
 	PRIMARY KEY (id),
 	UNIQUE UQ_proyecto_id(id),
-	UNIQUE UQ_proyecto_nombre(nombre),
 	KEY (idEstadoProyecto),
 	KEY (idTipoAgrupamiento),
 	KEY (financiador),
@@ -352,7 +350,6 @@ CREATE TABLE financiador
 	observaciones VARCHAR(50) COMMENT 'Observaciones del Financiador',
 	activo BOOL NOT NULL COMMENT 'Señal para manejo de baja logica',
 	PRIMARY KEY (id),
-	UNIQUE UQ_financiador_nombre(nombre),
 	UNIQUE UQ_financiador_id(id),
 	KEY (idTipoFinanciador)
 ) 
@@ -466,7 +463,6 @@ CREATE TABLE rol
 	descripcion VARCHAR(255) NOT NULL COMMENT 'Descripcion del Rol',
 	activo BOOL NOT NULL COMMENT 'Señal para manejo de baja logica',
 	PRIMARY KEY (id),
-	UNIQUE UQ_rol_nombre(nombre)
 ) 
 ;
 
@@ -478,8 +474,6 @@ CREATE TABLE relacionContractual
 	descripcion VARCHAR(255) NOT NULL COMMENT 'Descripción de la Relación Contractual',
 	activo BOOL NOT NULL COMMENT 'Señal para manejo de baja logica',
 	PRIMARY KEY (id),
-	UNIQUE UQ_relacionContractual_nombre(nombre),
-	UNIQUE UQ_relacionContractual_descripcion(descripcion),
 	UNIQUE UQ_tipoContratacion_id(id)
 ) 
 ;
@@ -501,7 +495,6 @@ CREATE TABLE perfil
 	descripcion VARCHAR(255) NOT NULL COMMENT 'Descripcion del Perfil',
 	activo BOOL NOT NULL COMMENT 'Señal para manejo de baja logica',
 	PRIMARY KEY (id),
-	UNIQUE UQ_perfil_nombre(nombre)
 ) 
 ;
 
