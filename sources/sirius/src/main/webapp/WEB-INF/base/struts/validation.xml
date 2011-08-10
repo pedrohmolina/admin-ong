@@ -1171,8 +1171,13 @@
 		</form>
 
 		<form name="usuarioPasswordForm">
-			<field property="passwordActual" depends="required">
+			<field property="passwordActual" depends="validwhen">
 				<arg position="0" key="sirius.usuario.passwordActual.label"/>
+				<var>
+					<var-name>test</var-name>
+					<var-value>((usuarioPropio == 'false') or (*this* != null))</var-value>
+				</var>
+ 				<msg name="validwhen" key="errors.required"/>
 			</field>
 			<field property="password" depends="required, minlength, maxlength">
 				<arg position="0" key="sirius.usuario.password.label"/>

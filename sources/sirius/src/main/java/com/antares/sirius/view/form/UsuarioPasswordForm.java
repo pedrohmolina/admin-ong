@@ -17,6 +17,7 @@ public class UsuarioPasswordForm extends AbstractForm<Usuario> {
 	private String passwordActual;
 	private String password;
 	private String password2;
+	private boolean usuarioPropio;
 
 	public String getPasswordActual() {
 		return passwordActual;
@@ -48,6 +49,7 @@ public class UsuarioPasswordForm extends AbstractForm<Usuario> {
 		this.passwordActual = "";
 		this.password = "";
 		this.password2 = "";
+		this.usuarioPropio = true;
 	}
 
 	@Override
@@ -56,11 +58,20 @@ public class UsuarioPasswordForm extends AbstractForm<Usuario> {
 		this.passwordActual = "";
 		this.password = "";
 		this.password2 = "";
+		this.usuarioPropio = true;
 	}
 
 	@Override
 	public void initializeForm(Usuario entity) {
 		this.id = entity.getId();
+	}
+
+	public boolean isUsuarioPropio() {
+		return usuarioPropio;
+	}
+
+	public void setUsuarioPropio(boolean usuarioPropio) {
+		this.usuarioPropio = usuarioPropio;
 	}
 
 }

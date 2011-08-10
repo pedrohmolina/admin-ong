@@ -636,7 +636,7 @@
 
 		<action path="/usuario/usuario-password-form-validate" name="usuarioPasswordForm" parameter="method" 
 				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
-				input="/usuario/usuario-password-form.do?method=initCambiarPassword">
+				input="/usuario/usuario-password-form.do?method=showCambiarPassword">
 			<forward name="success" 	path="/public/message.do" />
 		</action>
 
