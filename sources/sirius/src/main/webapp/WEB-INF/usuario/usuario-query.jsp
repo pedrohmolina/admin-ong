@@ -27,7 +27,7 @@ function confirmarAccion(mensaje) {
 		<label for="filtroUsername"><bean:message key="sirius.usuario.username.label" />:</label>
 		<html:text property="filtroUsername" />
 		</p><br><p>
-		<label for="filtroIdPerfil"><bean:message key="sirius.usuario.relacionContractual.label" />:</label>
+		<label for="filtroIdPerfil"><bean:message key="sirius.usuario.perfil.label" />:</label>
 		<html:select property="filtroIdPerfil">
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="usuarioQuery" property="perfiles" label="nombre" value="id"/>
