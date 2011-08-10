@@ -37,9 +37,11 @@
 
 	<div style="float:left;">
 		<p>
-		<label for="passwordActual"><bean:message key="sirius.usuario.passwordActual.label" />(*)&nbsp;:</label>
-		<html:password property="passwordActual" />
-		</p><br><p>
+		<logic:equal name="usuarioPasswordForm" property="usuarioPropio" value="true">
+			<label for="passwordActual"><bean:message key="sirius.usuario.passwordActual.label" />(*)&nbsp;:</label>
+			<html:password property="passwordActual" />
+			</p><br><p>
+		</logic:equal>
 		<label for="password"><bean:message key="sirius.usuario.password.label" />(*)&nbsp;:</label>
 		<html:password property="password" />
 		</p><br><p>

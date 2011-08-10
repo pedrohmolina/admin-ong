@@ -198,11 +198,17 @@ public class UsuarioAction extends BaseAction<Usuario, UsuarioForm, UsuarioServi
 		UsuarioPasswordForm viewForm = (UsuarioPasswordForm)form;
 		viewForm.initializeForm();
 
-		//TODO habria que revisar si el usuario tiene permisos para modificar la contraseña de otros usuarios
 		if (Utils.isNotNullNorEmpty(request.getParameter("id"))) {
 			viewForm.setId(new Integer(request.getParameter("id")));
 			request.setAttribute("backUrl", "/usuario/usuario-query.do?method=lastQuery");
+
+			Usuario usuario = service.findById(viewForm.getId());
+			viewForm.setUsuarioPropio(Utils.getUsername().equals(usuario.getUsername()));
 		}
+		return mapping.findForward("form");
+	}
+
+	public ActionForward showCambiarPassword(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		return mapping.findForward("form");
 	}
 
@@ -212,7 +218,10 @@ public class UsuarioAction extends BaseAction<Usuario, UsuarioForm, UsuarioServi
 		try {
 			Usuario usuario = findUsuario(viewForm);
 			if (usuario != null) {
-				ActionErrors errors = validatePassword(usuario.getUsername(), viewForm.getPasswordActual());
+				ActionErrors errors = new ActionErrors();
+				if (viewForm.isUsuarioPropio()) {
+					errors = validatePassword(usuario.getUsername(), viewForm.getPasswordActual());
+				}
 				if (errors.isEmpty()) {
 					usuario.setPassword(Utils.encode(usuario.getUsername() + "-" + viewForm.getPassword()));
 					service.save(usuario);
