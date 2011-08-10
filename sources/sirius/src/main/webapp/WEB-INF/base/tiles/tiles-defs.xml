@@ -79,12 +79,12 @@
 	</definition>
 
 	<definition name=".abmAsignacionForm" extends="mainLayout">
-		<put name="title" value="Asignacion - Datos" />
+		<put name="title" value="Asignación - Datos" />
 		<put name="body" value="/WEB-INF/asignacion/asignacion-form.jsp" />
 	</definition>
 
 	<definition name=".abmAsignacionView" extends="mainLayout">
-		<put name="title" value="Asignacion - Datos" />
+		<put name="title" value="Asignación - Datos" />
 		<put name="body" value="/WEB-INF/asignacion/asignacion-view.jsp" />
 	</definition>
 
@@ -132,17 +132,17 @@
 
 	<!-- Gasto Organizacion -->
 	<definition name=".abmGastoOrganizacionQuery" extends="mainLayout">
-		<put name="title" value="Administración de Gastos Generales de Organizacion" />
+		<put name="title" value="Administración de Gastos Generales de Organización" />
 		<put name="body" value="/WEB-INF/gasto/gasto-organizacion-query.jsp" />
 	</definition>
 
 	<definition name=".abmGastoOrganizacionForm" extends="mainLayout">
-		<put name="title" value="Gasto General de Organizacion - Datos" />
+		<put name="title" value="Gasto General de Organización - Datos" />
 		<put name="body" value="/WEB-INF/gasto/gasto-organizacion-form.jsp" />
 	</definition>
 
 	<definition name=".abmGastoOrganizacionView" extends="mainLayout">
-		<put name="title" value="Gasto General de Organizacion - Datos" />
+		<put name="title" value="Gasto General de Organización - Datos" />
 		<put name="body" value="/WEB-INF/gasto/gasto-organizacion-view.jsp" />
 	</definition>
 
@@ -201,12 +201,12 @@
 	</definition>
 
 	<definition name=".abmObjetivoEspecificoForm" extends="mainLayout">
-		<put name="title" value="Objetivo Especifico - Datos" />
+		<put name="title" value="Objetivo Específico - Datos" />
 		<put name="body" value="/WEB-INF/objetivo-especifico/objetivo-especifico-form.jsp" />
 	</definition>
 
 	<definition name=".abmObjetivoEspecificoView" extends="mainLayout">
-		<put name="title" value="Objetivo Especifico - Datos" />
+		<put name="title" value="Objetivo Específico - Datos" />
 		<put name="body" value="/WEB-INF/objetivo-especifico/objetivo-especifico-view.jsp" />
 	</definition>
 
@@ -318,12 +318,12 @@
 	</definition>
 
 	<definition name=".abmRelacionContractualForm" extends="mainLayout">
-		<put name="title" value="Relacion Contractual - Datos" />
+		<put name="title" value="Relación Contractual - Datos" />
 		<put name="body" value="/WEB-INF/relacion-contractual/relacion-contractual-form.jsp" />
 	</definition>
 
 	<definition name=".abmRelacionContractualView" extends="mainLayout">
-		<put name="title" value="Relacion Contractual - Datos" />
+		<put name="title" value="Relación Contractual - Datos" />
 		<put name="body" value="/WEB-INF/relacion-contractual/relacion-contractual-view.jsp" />
 	</definition>
 
