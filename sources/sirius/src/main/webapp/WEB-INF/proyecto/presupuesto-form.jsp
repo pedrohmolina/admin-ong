@@ -25,6 +25,10 @@
 		</p><br>
 	</div>
 	<div style="clear:both; padding:5px 0 0 0;"></div>
+	<div align="left">
+		<label style="text-align:left"><bean:message key="sirius.proyecto.presupuestoMoneda.label" /></label>
+	</div>
+	<div style="clear:both; padding:5px 0 0 0;"></div>
 	<div class="boton">
 		<a href="#" onclick="aceptar();" tabindex="17"><bean:message key="antares.base.aceptar.label" /></a>
 		<a href="<c:url value="/proyecto/proyecto-query.do?method=lastQuery"/>"><bean:message key="antares.base.cancelar.label" /></a>
