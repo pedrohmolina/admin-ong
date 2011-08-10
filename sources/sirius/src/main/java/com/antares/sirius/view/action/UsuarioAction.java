@@ -15,7 +15,6 @@ import org.apache.struts.action.ActionMessage;
 import com.antares.commons.exception.RestrictedAccessException;
 import com.antares.commons.util.Utils;
 import com.antares.commons.view.action.BaseAction;
-import com.antares.sirius.base.Constants;
 import com.antares.sirius.filter.UsuarioFilter;
 import com.antares.sirius.model.Persona;
 import com.antares.sirius.model.Usuario;
