@@ -446,6 +446,7 @@ CREATE TABLE rubro
 (
 	id INT NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
 	idRubroPadre INT,
+	idRubroPrimerNivel INT NOT NULL,
 	nombre VARCHAR(16) NOT NULL,
 	descripcion VARCHAR(255) NOT NULL,
 	activo BOOL NOT NULL COMMENT 'Señal para manejo de baja logica',
