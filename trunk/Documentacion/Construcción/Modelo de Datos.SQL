@@ -463,7 +463,7 @@ CREATE TABLE rol
 	nombre VARCHAR(255) NOT NULL COMMENT 'Identificador único del Rol en el sistema',
 	descripcion VARCHAR(255) NOT NULL COMMENT 'Descripcion del Rol',
 	activo BOOL NOT NULL COMMENT 'Señal para manejo de baja logica',
-	PRIMARY KEY (id),
+	PRIMARY KEY (id)
 ) 
 ;
 
@@ -495,7 +495,7 @@ CREATE TABLE perfil
 	nombre VARCHAR(16) NOT NULL COMMENT 'Identificador único del Perfil en el sistema',
 	descripcion VARCHAR(255) NOT NULL COMMENT 'Descripcion del Perfil',
 	activo BOOL NOT NULL COMMENT 'Señal para manejo de baja logica',
-	PRIMARY KEY (id),
+	PRIMARY KEY (id)
 ) 
 ;
 
