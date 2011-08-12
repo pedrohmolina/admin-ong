@@ -51,6 +51,9 @@ public class GastoDAOImpl extends BusinessEntityDAOImpl<Gasto> implements GastoD
 		if (entityFilter.getProyecto() != null) {
 			crit.add(Restrictions.eq("proyecto", entityFilter.getProyecto()));
 		}
+		if (entityFilter.getConfirmado() != null) {
+			crit.add(Restrictions.eq("confirmado", entityFilter.getConfirmado()));
+		}
 
 		if (entityFilter.getActividad() != null) {
 			crit.add(Restrictions.eq("actividad", entityFilter.getActividad()));
@@ -94,7 +97,9 @@ public class GastoDAOImpl extends BusinessEntityDAOImpl<Gasto> implements GastoD
 		crit.createAlias("meta.objetivoEspecifico", "objetivoEspecifico");
 		crit.createAlias("objetivoEspecifico.objetivoGeneral", "objetivoGeneral");
 		crit.add(Restrictions.eq("objetivoGeneral.proyecto", proyecto));
-		crit.add(Restrictions.in("rubro", rubros));
+
+		crit.createAlias("rubro", "rubro");
+		crit.add(Restrictions.in("rubro.rubroPrimerNivel", rubros));
 
 		ProjectionList projection = Projections.projectionList();
 		projection.add(Projections.property("objetivoGeneral.id").as("id"));
@@ -116,7 +121,9 @@ public class GastoDAOImpl extends BusinessEntityDAOImpl<Gasto> implements GastoD
 		crit.createAlias("actividad.meta", "meta");
 		crit.createAlias("meta.objetivoEspecifico", "objetivoEspecifico");
 		crit.add(Restrictions.eq("objetivoEspecifico.objetivoGeneral", objetivoGeneral));
-		crit.add(Restrictions.in("rubro", rubros));
+
+		crit.createAlias("rubro", "rubro");
+		crit.add(Restrictions.in("rubro.rubroPrimerNivel", rubros));
 
 		ProjectionList projection = Projections.projectionList();
 		projection.add(Projections.property("objetivoEspecifico.id").as("id"));
@@ -137,7 +144,9 @@ public class GastoDAOImpl extends BusinessEntityDAOImpl<Gasto> implements GastoD
 		crit.createAlias("actividad", "actividad");
 		crit.createAlias("actividad.meta", "meta");
 		crit.add(Restrictions.eq("meta.objetivoEspecifico", objetivoEspecifico));
-		crit.add(Restrictions.in("rubro", rubros));
+
+		crit.createAlias("rubro", "rubro");
+		crit.add(Restrictions.in("rubro.rubroPrimerNivel", rubros));
 
 		ProjectionList projection = Projections.projectionList();
 		projection.add(Projections.property("meta.id").as("id"));
@@ -157,7 +166,9 @@ public class GastoDAOImpl extends BusinessEntityDAOImpl<Gasto> implements GastoD
 		Criteria crit = buildCriteria();
 		crit.createAlias("actividad", "actividad");
 		crit.add(Restrictions.eq("actividad.meta", meta));
-		crit.add(Restrictions.in("rubro", rubros));
+
+		crit.createAlias("rubro", "rubro");
+		crit.add(Restrictions.in("rubro.rubroPrimerNivel", rubros));
 
 		ProjectionList projection = Projections.projectionList();
 		projection.add(Projections.property("actividad.id").as("id"));
@@ -177,7 +188,9 @@ public class GastoDAOImpl extends BusinessEntityDAOImpl<Gasto> implements GastoD
 		Criteria crit = buildCriteria();
 		crit.createAlias("actividad", "actividad");
 		crit.add(Restrictions.eq("actividad", actividad));
-		crit.add(Restrictions.in("rubro", rubros));
+
+		crit.createAlias("rubro", "rubro");
+		crit.add(Restrictions.in("rubro.rubroPrimerNivel", rubros));
 
 		ProjectionList projection = Projections.projectionList();
 		projection.add(Projections.property("actividad.id").as("id"));

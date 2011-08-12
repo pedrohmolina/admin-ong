@@ -28,6 +28,7 @@ public class GastoFilter extends Filter<Gasto> {
 	private Rubro rubro;
 	private Date fechaDesde;
 	private Date fechaHasta;
+	private Boolean confirmado;
 
 	public Proyecto getProyecto() {
 		return proyecto;
@@ -76,6 +77,12 @@ public class GastoFilter extends Filter<Gasto> {
 	}
 	public void setFechaHasta(Date fechaHasta) {
 		this.fechaHasta = fechaHasta;
+	}
+	public Boolean getConfirmado() {
+		return confirmado;
+	}
+	public void setConfirmado(Boolean confirmado) {
+		this.confirmado = confirmado;
 	}
 
 }

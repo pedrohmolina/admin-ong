@@ -58,6 +58,11 @@
 	<bean name="/gasto/gasto-proyecto-form" 			parent="gastoProyectoAction" singleton="false" autowire="byName" />
 	<bean name="/gasto/gasto-proyecto-form-validate" 	parent="gastoProyectoAction" singleton="false" autowire="byName" />
 
+	<bean name="verificarGastoAction" class="com.antares.sirius.view.action.VerificarGastoAction">
+		<property name="service" ref="gastoService" />
+	</bean>
+	<bean name="/gasto/verificar-gasto-query" 			parent="verificarGastoAction" singleton="false" autowire="byName" />
+
 	<bean name="ingresoAction" class="com.antares.sirius.view.action.IngresoAction" autowire="byName">
 		<property name="service" ref="ingresoService" />
 	</bean>

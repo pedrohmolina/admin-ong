@@ -36,9 +36,14 @@ public class RubroAction extends BaseAction<Rubro, RubroForm, RubroService> {
 		entity.setDescripcion(form.getDescripcion());
 		
 		switch (form.getNivel()) {
-			case 1: break;
-			case 2: entity.setRubroPadre(service.findById(Utils.parseInteger(form.getIdRubroNivelUno()))); break;
-			case 3: entity.setRubroPadre(service.findById(Utils.parseInteger(form.getIdRubroNivelDos()))); break;
+			case 1: entity.setRubroPrimerNivel(entity); 
+				break;
+			case 2: entity.setRubroPadre(service.findById(Utils.parseInteger(form.getIdRubroNivelUno())));
+				entity.setRubroPrimerNivel(entity.getRubroPadre());
+				break;
+			case 3: entity.setRubroPadre(service.findById(Utils.parseInteger(form.getIdRubroNivelDos())));
+				entity.setRubroPrimerNivel(entity.getRubroPadre().getRubroPadre());
+				break;
 		}
 	}
 

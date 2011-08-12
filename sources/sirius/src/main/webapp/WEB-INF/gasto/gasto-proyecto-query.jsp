@@ -63,7 +63,7 @@ function confirmarAccion(mensaje) {
 	</div>
 
 	<h1><bean:message key="antares.base.result.label" /></h1>
-	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.gastoProyectoQuery.result" id="item"
+	<display-el:table export="true" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.gastoProyectoQuery.result" id="item"
 		requestURI="/gasto/gasto-proyecto-query.do" sort="list">
 
 		<c:if test="${not empty requestScope['notShowMessage']}">
