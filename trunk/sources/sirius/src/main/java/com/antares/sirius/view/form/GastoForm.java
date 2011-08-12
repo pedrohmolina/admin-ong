@@ -1,6 +1,8 @@
 package com.antares.sirius.view.form;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.antares.commons.util.Utils;
 import com.antares.commons.view.form.AbstractForm;
@@ -43,6 +45,7 @@ public class GastoForm extends AbstractForm<Gasto> {
 	private Collection<Proyecto> proyectos;
 	private Collection<Actividad> actividades;
 	private Collection<Persona> personas;
+	private Set<Integer> idGastos;
 
 	private String filtroIdPersona;
 	private String filtroIdRubro;
@@ -353,6 +356,14 @@ public class GastoForm extends AbstractForm<Gasto> {
 		this.labelPersona = labelPersona;
 	}
 
+	public Set<Integer> getIdGastos() {
+		return idGastos;
+	}
+
+	public void setIdGastos(Set<Integer> idGastos) {
+		this.idGastos = idGastos;
+	}
+
 	@Override
 	public void initialize() {
 		this.id = null;
@@ -383,6 +394,7 @@ public class GastoForm extends AbstractForm<Gasto> {
 		this.labelProyecto = "";
 		this.labelActividad = "";
 		this.labelPersona = "";
+		this.idGastos = new HashSet<Integer>();
 	}
 
 	@Override

@@ -162,6 +162,12 @@
 		<put name="body" value="/WEB-INF/gasto/gasto-proyecto-view.jsp" />
 	</definition>
 
+	<!-- Verificar Gasto -->
+	<definition name=".abmVerificarGastoQuery" extends="mainLayout">
+		<put name="title" value="Verificar Gastos" />
+		<put name="body" value="/WEB-INF/gasto/verificar-gasto-query.jsp" />
+	</definition>
+
 	<!-- Ingreso -->
 	<definition name=".abmIngresoQuery" extends="mainLayout">
 		<put name="title" value="Administración de Ingresos" />

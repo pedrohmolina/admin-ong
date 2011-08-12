@@ -18,6 +18,10 @@ public class Rubro extends BusinessObject {
 	private String descripcion;
 
 	@ManyToOne
+	@JoinColumns(@JoinColumn(name = "idRubroPrimerNivel"))
+	private Rubro rubroPrimerNivel;
+
+	@ManyToOne
 	@JoinColumns(@JoinColumn(name = "idRubroPadre"))
 	private Rubro rubroPadre;
 
@@ -64,6 +68,14 @@ public class Rubro extends BusinessObject {
 				rubro.setActivo(activo);
 			}
 		}
+	}
+
+	public Rubro getRubroPrimerNivel() {
+		return rubroPrimerNivel;
+	}
+
+	public void setRubroPrimerNivel(Rubro rubroPrimerNivel) {
+		this.rubroPrimerNivel = rubroPrimerNivel;
 	}
 
 }

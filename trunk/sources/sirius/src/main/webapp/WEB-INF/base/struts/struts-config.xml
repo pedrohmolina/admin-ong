@@ -32,6 +32,7 @@
 		<form-bean name="gastoOrganizacionQuery" 	type="com.antares.sirius.view.form.GastoForm" />
 		<form-bean name="gastoProyectoForm" 		type="com.antares.sirius.view.form.GastoForm" />
 		<form-bean name="gastoProyectoQuery" 		type="com.antares.sirius.view.form.GastoForm" />
+		<form-bean name="verificarGastoQuery" 		type="com.antares.sirius.view.form.GastoForm" />
 		<form-bean name="ingresoForm" 				type="com.antares.sirius.view.form.IngresoForm" />
 		<form-bean name="ingresoQuery" 				type="com.antares.sirius.view.form.IngresoForm" />
 		<form-bean name="metaForm" 					type="com.antares.sirius.view.form.MetaForm" />
@@ -274,6 +275,13 @@
 			<forward name="successUpdate" 	path="/gasto/gasto-proyecto-query.do?method=query" />
 		</action>
 		<!-- Fin de actions de gastos de proyecto -->
+
+		<!-- Actions de verificar gastos -->
+		<action path="/gasto/verificar-gasto-query" name="verificarGastoQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="query" 		path=".abmVerificarGastoQuery" />
+		</action>
+		<!-- Fin de actions de verificar gastos -->
 
 		<!-- Actions de ingresos -->
 		<action path="/ingreso/ingreso-query" name="ingresoQuery" parameter="method" 
