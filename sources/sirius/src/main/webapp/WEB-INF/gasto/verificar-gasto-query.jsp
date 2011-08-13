@@ -43,7 +43,7 @@ function changeProyecto(mensaje) {
 	</div>
 
 	<h1><bean:message key="antares.base.result.label" /></h1>
-	<display-el:table export="true" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.verificarGastoQuery.result" id="item"
+	<display-el:table export="true" defaultsort="3" defaultorder="descending" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.verificarGastoQuery.result" id="item"
 		requestURI="/gasto/verificar-gasto-query.do" sort="list" >
 
 		<c:if test="${not empty requestScope['notShowMessage']}">
@@ -68,12 +68,8 @@ function changeProyecto(mensaje) {
 		<display:column sortable="true" property="importe" 						titleKey="sirius.gasto.importe.label" style="text-align: right" decorator="com.antares.commons.view.decorator.DoubleDecorator" />
 
 		<display:column title="Acciones" media="html" style="text-align: center">
-			<authz:authorize ifAllGranted="ENTIDAD_GASTO_ACTIVIDAD-CONFIRMAR">
-				<logic:equal name="item" property="confirmado" value="false">
-					<a href="<c:url value="/gasto/verificar-gasto-query.do?method=confirmar&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Confirmar" title="Confirmar"
-						src="<c:url value="/img/tick.png"/>" onclick="return confirmarAccion('Est&aacute; seguro que desea confirmar el gasto?')" /></a>
-				</logic:equal>
-			</authz:authorize>
+			<a href="<c:url value="/gasto/verificar-gasto-query.do?method=confirmar&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Confirmar" title="Confirmar"
+				src="<c:url value="/img/tick.png"/>" onclick="return confirmarAccion('Est&aacute; seguro que desea confirmar el gasto?')" /></a>
 		</display:column>
 	</display-el:table>
 

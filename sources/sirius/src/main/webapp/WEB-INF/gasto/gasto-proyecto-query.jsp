@@ -88,6 +88,12 @@ function confirmarAccion(mensaje) {
 				<a href="<c:url value="/gasto/gasto-proyecto-query.do?method=remove&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Eliminar" title="Eliminar"
 					src="<c:url value="/img/icons/cross.png"/>" onclick="return confirmarAccion('Est&aacute; seguro que desea eliminar el registro?')" /></a>
 			</authz:authorize>
+			<authz:authorize ifAllGranted="ENTIDAD_GASTO_PROYECTO-CONFIRMAR">
+				<logic:equal name="item" property="confirmado" value="false">
+					<a href="<c:url value="/gasto/gasto-actividad-query.do?method=confirmar&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Confirmar" title="Confirmar"
+						src="<c:url value="/img/tick.png"/>" onclick="return confirmarAccion('Est&aacute; seguro que desea confirmar el gasto?')" /></a>
+				</logic:equal>
+			</authz:authorize>
 		</display:column>
 	</display-el:table>
 </div>

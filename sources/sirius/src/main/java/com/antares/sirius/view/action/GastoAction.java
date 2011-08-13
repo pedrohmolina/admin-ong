@@ -1,5 +1,13 @@
 package com.antares.sirius.view.action;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+
+import com.antares.commons.exception.RestrictedAccessException;
 import com.antares.commons.util.Utils;
 import com.antares.commons.view.action.BaseAction;
 import com.antares.sirius.model.Gasto;
@@ -56,6 +64,23 @@ public abstract class GastoAction extends BaseAction<Gasto, GastoForm, GastoServ
 		if (entity.getProveedor() != null && !entity.getProveedor().isActivo()) {
 			form.getProveedores().add(entity.getProveedor());
 		}
+	}
+
+	public ActionForward confirmar(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ActionForward forward;
+		Integer id = new Integer(request.getParameter("id"));
+		Gasto entity = service.findById(id);
+		try {
+			if (entity != null) {
+				service.ejecutarConfirmacion(entity);
+				forward = query(mapping, form, request, response);
+			} else {
+				forward = mapping.findForward("restrictedAccess"); 
+			}
+		} catch (RestrictedAccessException e) {
+			forward = mapping.findForward("restrictedAccess"); 
+		}
+		return forward;
 	}
 
 	public void setRubroService(RubroService rubroService) {

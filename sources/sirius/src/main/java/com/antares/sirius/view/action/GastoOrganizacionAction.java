@@ -1,5 +1,12 @@
 package com.antares.sirius.view.action;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+
 import com.antares.commons.filter.Filter;
 import com.antares.commons.util.Utils;
 import com.antares.sirius.filter.GastoFilter;
@@ -27,6 +34,10 @@ public class GastoOrganizacionAction extends GastoAction {
 		entity.setProveedor(proveedorService.findById(Utils.parseInteger(form.getIdProveedor())));
 		entity.setTipoComprobante(tipoComprobanteService.findById(Utils.parseInteger(form.getIdTipoComprobante())));
 		entity.setNumeroComprobante(form.getNumeroComprobante());
+	}
+
+	public ActionForward confirmar(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		return mapping.findForward("restrictedAccess");
 	}
 
 }

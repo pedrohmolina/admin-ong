@@ -1,6 +1,10 @@
 package com.antares.sirius.view.action;
 
+import static com.antares.sirius.base.Constants.ACCESO_CONFIRMAR_GASTOS_ACTIVIDAD;
+import static com.antares.sirius.base.Constants.ACCESO_CONFIRMAR_GASTOS_PROYECTO;
 import static java.lang.Boolean.TRUE;
+
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,24 +32,47 @@ public class VerificarGastoAction extends GastoAction {
 
 	@Override
 	public ActionForward query(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ActionForward forward = super.query(mapping, form, request, response);
 		GastoForm viewForm = (GastoForm)form;
+		viewForm.setResult(new ArrayList<Gasto>());
+		if (usuarioService.userHasAccess(ACCESO_CONFIRMAR_GASTOS_ACTIVIDAD)) {
+			viewForm.getResult().addAll(service.findByFilter(createFilterGastosActividad(viewForm)));
+		}
+		if (usuarioService.userHasAccess(ACCESO_CONFIRMAR_GASTOS_PROYECTO)) {
+			viewForm.getResult().addAll(service.findByFilter(createFilterGastosProyecto(viewForm)));
+		}
+
 		for (Gasto gasto : viewForm.getResult()) {
 			if (viewForm.getIdGastos().contains(gasto.getId())) {
 				gasto.setConfirmado(TRUE);
 			}
 		}
-		return forward;
+
+		loadCollections(viewForm);
+		return mapping.findForward("query");
 	}
 
 	@Override
 	protected Filter<Gasto> createFilter(GastoForm form) {
 		GastoFilter filter = new GastoFilter();
+		filter.setConfirmado(Boolean.FALSE);
+		return filter;
+	}
+
+	protected Filter<Gasto> createFilterGastosActividad(GastoForm form) {
+		GastoFilter filter = (GastoFilter)createFilter(form);
 		filter.setTipoGasto(tipoGastoService.findTipoGastoActividad());
 		if (Utils.isNotNullNorEmpty(form.getFiltroIdProyecto())) {
 			filter.setProyectoActividad(proyectoService.findById(Utils.parseInteger(form.getFiltroIdProyecto())));
 		}
-		filter.setConfirmado(Boolean.FALSE);
+		return filter;
+	}
+
+	protected Filter<Gasto> createFilterGastosProyecto(GastoForm form) {
+		GastoFilter filter = (GastoFilter)createFilter(form);
+		filter.setTipoGasto(tipoGastoService.findTipoGastoProyecto());
+		if (Utils.isNotNullNorEmpty(form.getFiltroIdProyecto())) {
+			filter.setProyecto(proyectoService.findById(Utils.parseInteger(form.getFiltroIdProyecto())));
+		}
 		return filter;
 	}
 
@@ -71,7 +98,10 @@ public class VerificarGastoAction extends GastoAction {
 		for (Integer id : viewForm.getIdGastos()) {
 			Gasto gasto = service.findById(id);
 			if (gasto != null) {
-				service.ejecutarConfirmacion(gasto);
+				if ((gasto.getActividad() != null && usuarioService.userHasAccess(ACCESO_CONFIRMAR_GASTOS_ACTIVIDAD)) 
+						|| (gasto.getProveedor() != null && usuarioService.userHasAccess(ACCESO_CONFIRMAR_GASTOS_PROYECTO))) {
+					service.ejecutarConfirmacion(gasto);
+				}
 			}
 		}
 		return query(mapping, form, request, response);
