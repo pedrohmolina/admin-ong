@@ -73,7 +73,10 @@
                 /gasto/gasto-proyecto(.*)initUpdate.*=ENTIDAD_GASTO_PROYECTO-MODIFICACION
                 /gasto/gasto-proyecto(.*)remove.*=ENTIDAD_GASTO_PROYECTO-BAJA
                 /gasto/gasto-proyecto(.*)save.*=ENTIDAD_GASTO_PROYECTO-ALTA, ENTIDAD_GASTO_PROYECTO-MODIFICACION
+                /gasto/gasto-proyecto(.*)confirmar.*=ENTIDAD_GASTO_PROYECTO-CONFIRMAR
                 /gasto/gasto-proyecto.*=ENTIDAD_GASTO_PROYECTO-LISTADO
+
+                /gasto/verificar-gasto.*=ENTIDAD_GASTO_ACTIVIDAD-CONFIRMAR, ENTIDAD_GASTO_PROYECTO-CONFIRMAR
 
                 /ingreso/(.*)initCreate.*=ENTIDAD_INGRESO-ALTA
                 /ingreso/(.*)view.*=ENTIDAD_INGRESO-DETALLE

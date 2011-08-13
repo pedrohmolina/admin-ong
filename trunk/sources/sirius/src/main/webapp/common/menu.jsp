@@ -67,7 +67,7 @@
 			<authz:authorize ifAllGranted="ENTIDAD_GASTO_ACTIVIDAD-HISTORICO">
 				<menu:item labelKey="sirius.gasto.gastoActividad.historial.label"><c:url value="/gasto/gasto-actividad-list.do?method=initList"/></menu:item>
 			</authz:authorize>
-			<authz:authorize ifAllGranted="ENTIDAD_GASTO_ORGANIZACION-LISTADO">
+			<authz:authorize ifAnyGranted="ENTIDAD_GASTO_ACTIVIDAD-CONFIRMAR, ENTIDAD_GASTO_PROYECTO-CONFIRMAR">
 				<menu:item labelKey="sirius.gasto.verificarGasto.label"><c:url value="/gasto/verificar-gasto-query.do?method=initQuery"/></menu:item>
 			</authz:authorize>
 		</menu:submenu>
