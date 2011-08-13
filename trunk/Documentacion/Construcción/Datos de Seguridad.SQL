@@ -147,6 +147,7 @@ insert into acceso (id, idRecurso, idAccion) values (109, 28, 10);
 insert into acceso (id, idRecurso, idAccion) values (110, 19, 11);
 insert into acceso (id, idRecurso, idAccion) values (111, 11, 12);
 insert into acceso (id, idRecurso, idAccion) values (112, 22, 13);
+insert into acceso (id, idRecurso, idAccion) values (113, 18, 7);
 
 insert into rol (id, nombre, descripcion, activo) values (1, 'Administrador de Financiadores', 'Acceso completo al ABM de Financiadores', '1');
 insert into rol (id, nombre, descripcion, activo) values (2, 'Administrador de Ingresos', 'Acceso completo al ABM de Ingresos', '1');
@@ -241,6 +242,7 @@ insert into rolacceso (idRol, idAcceso) values (14, 71);
 insert into rolacceso (idRol, idAcceso) values (14, 72);
 insert into rolacceso (idRol, idAcceso) values (14, 73);
 insert into rolacceso (idRol, idAcceso) values (14, 74);
+insert into rolacceso (idRol, idAcceso) values (14, 113);
 insert into rolacceso (idRol, idAcceso) values (15, 75);
 insert into rolacceso (idRol, idAcceso) values (15, 76);
 insert into rolacceso (idRol, idAcceso) values (15, 77);
