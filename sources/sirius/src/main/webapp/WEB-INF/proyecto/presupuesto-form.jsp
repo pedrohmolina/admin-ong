@@ -22,11 +22,8 @@
 		<p>
 		<label for="nombre"><bean:message key="sirius.proyecto.presupuestoTotalDisponible.label" />&nbsp;:</label>
 		<label id="presupuestoDisponible">&nbsp;</label>
+		<label><bean:message key="sirius.proyecto.presupuestoMoneda.label" /></label>
 		</p><br>
-	</div>
-	<div style="clear:both; padding:5px 0 0 0;"></div>
-	<div align="left">
-		<label style="text-align:left"><bean:message key="sirius.proyecto.presupuestoMoneda.label" /></label>
 	</div>
 	<div style="clear:both; padding:5px 0 0 0;"></div>
 	<div class="boton">
