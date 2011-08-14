@@ -8,11 +8,11 @@
 		<html:messages id="msg" message="true">
 			<bean:write filter="false" name="msg"/><br>
 		</html:messages>
-		<logic:notPresent name="org.apache.struts.action.ACTION_MESSAGE" scope="session">
+		<logic:notPresent name="org.apache.struts.action.ACTION_MESSAGE" scope="request">
 			<bean:message key="antares.base.defaultMessage.label" />
 		</logic:notPresent>
 	</h2>
-	<c:remove var="org.apache.struts.action.ACTION_MESSAGE" scope="session"/>
+	<c:remove var="org.apache.struts.action.ACTION_MESSAGE" scope="request"/>
 	
 	<div style="float: left; width: 100%;">
 		<div class="boton">

@@ -16,6 +16,8 @@ import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.ActionMessages;
 import org.apache.struts.actions.DispatchAction;
 
 import com.antares.commons.exception.RestrictedAccessException;
@@ -276,7 +278,6 @@ public abstract class BaseAction<T extends BusinessObject, V extends AbstractFor
 		T entity = service.findById(id);
 		if (entity != null) {
 			service.delete(entity);
-//			forward = mapping.findForward("success");
 			forward = query(mapping, form, request, response);
 		} else {
 			forward = mapping.findForward("restrictedAccess"); 
@@ -362,6 +363,31 @@ public abstract class BaseAction<T extends BusinessObject, V extends AbstractFor
 	protected ActionErrors validate(V form) {
 		// Por defecto, vacio. Se deberá redefinir en las clases hijas que requieran hacer validaciones extra
 		return new ActionErrors(); 
+	}
+
+	/**
+	 * Crea un forward a la pantalla de mensajes.
+	 * 
+	 * @param request request
+	 * @param mapping mapping
+	 * @param messageKey key del mensaje a mostrar
+	 * @param backUrl url de retorno
+	 * @return
+	 */
+	protected ActionForward sendMessage(HttpServletRequest request, ActionMapping mapping, String messageKey, String backUrl) {
+		if (messageKey != null) {
+			ActionMessages messages = new ActionMessages();
+			messages.add("message", new ActionMessage(messageKey));
+			saveMessages(request, messages);
+		}
+		if (backUrl != null) {
+			request.setAttribute("backUrl", backUrl);
+		}
+		return mapping.findForward("message");
+	}
+
+	protected ActionForward sendDefaultMessage(HttpServletRequest request, ActionMapping mapping) {
+		return sendMessage(request, mapping, null, null);
 	}
 
 	/**

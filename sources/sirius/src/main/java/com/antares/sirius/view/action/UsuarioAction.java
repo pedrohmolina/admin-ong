@@ -124,7 +124,7 @@ public class UsuarioAction extends BaseAction<Usuario, UsuarioForm, UsuarioServi
 
 	public ActionForward saveUsuarioPersona(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		UsuarioPersonaForm viewForm = (UsuarioPersonaForm)form;
-		ActionForward forward = null;
+		ActionForward forward = mapping.findForward("success");
 		try {
 			if (viewForm.getAction().equals(CREATE)) {
 				ActionErrors errors = validateNombreRepetido(viewForm.getUsername(), viewForm.getId());
@@ -144,9 +144,6 @@ public class UsuarioAction extends BaseAction<Usuario, UsuarioForm, UsuarioServi
 					saveErrors(request, errors);
 					forward = mapping.getInputForward(); 
 				}
-			}
-			if (forward == null) {
-				forward = mapping.findForward("success");
 			}
 		} catch (RestrictedAccessException e) {
 			forward = mapping.findForward("restrictedAccess"); 
@@ -214,7 +211,7 @@ public class UsuarioAction extends BaseAction<Usuario, UsuarioForm, UsuarioServi
 
 	public ActionForward savePassword(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		UsuarioPasswordForm viewForm = (UsuarioPasswordForm)form;
-		ActionForward forward = mapping.findForward("success");
+		ActionForward forward = sendDefaultMessage(request, mapping);
 		try {
 			Usuario usuario = findUsuario(viewForm);
 			if (usuario != null) {

@@ -45,6 +45,14 @@ public interface ActividadService extends BusinessEntityService<Actividad> {
 	public boolean isActualizarCompletitud(Actividad actividad);
 
 	/**
+	 * Determina si la actividad se encuentra suspendida
+	 * 
+	 * @param actividad
+	 * @return
+	 */
+	boolean isSuspendida(Actividad actividad);
+	
+	/**
 	 * Devuelve todas las actividades pertenecientes al proyecto
 	 * 
 	 * @param proyecto proyecto
@@ -52,6 +60,14 @@ public interface ActividadService extends BusinessEntityService<Actividad> {
 	 */
 	Collection<Actividad> findAllByProyecto(Proyecto proyecto);
 
+	/**
+	 * Devuelve todas las actividades no suspendidas pertenecientes al proyecto
+	 * 
+	 * @param proyecto proyecto
+	 * @return
+	 */
+	Collection<Actividad> findAllNoSuspendidasByProyecto(Proyecto proyecto);
+	
 	/**
 	 * Devuelve todas las actividades pertenecientes al objetivo general
 	 * 

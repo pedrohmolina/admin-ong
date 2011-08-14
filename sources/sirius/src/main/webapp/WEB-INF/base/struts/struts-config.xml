@@ -83,7 +83,8 @@
 
 	<!-- ================= Global Forward Definitions ================== -->
 	<global-forwards>
-		<forward name="restrictedAccess" path="/errors/403.do" />
+		<forward name="restrictedAccess" 	path="/errors/403.do" />
+		<forward name="message" 			path=".message" />
 	</global-forwards>
 
 	<!-- ================= Action Mapping Definitions ================== -->
@@ -645,7 +646,6 @@
 		<action path="/usuario/usuario-password-form-validate" name="usuarioPasswordForm" parameter="method" 
 				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
 				input="/usuario/usuario-password-form.do?method=showCambiarPassword">
-			<forward name="success" 	path="/public/message.do" />
 		</action>
 
 		<!-- Fin de actions de usuarios -->

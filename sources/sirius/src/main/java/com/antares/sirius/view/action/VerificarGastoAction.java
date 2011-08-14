@@ -82,7 +82,7 @@ public class VerificarGastoAction extends GastoAction {
 
 	@Override
 	protected void loadCollections(GastoForm form) {
-		form.setProyectos(proyectoService.findAll()); // TODO en realidad deberian ser los que estan en curso
+		form.setProyectos(proyectoService.findAllNoFinalizados());
 	}
 
 	public ActionForward confirmar(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {

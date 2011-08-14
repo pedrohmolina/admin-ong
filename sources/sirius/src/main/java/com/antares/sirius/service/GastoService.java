@@ -61,6 +61,70 @@ public interface GastoService extends BusinessEntityService<Gasto> {
 	boolean existenGastosProyecto(Proyecto proyecto);
 
 	/**
+	 * Devuelve todos los gastos de las actividades de un objetivo general
+	 * 
+	 * @param objetivoGeneral objetivo general
+	 * @return
+	 */
+	Collection<Gasto> findAllByObjetivoGeneral(ObjetivoGeneral objetivoGeneral);
+
+	/**
+	 * Determina si existen gastos para las actividades de un objetivo general
+	 * 
+	 * @param objetivoGeneral objetivo general
+	 * @return
+	 */
+	boolean existenGastosObjetivoGeneral(ObjetivoGeneral objetivoGeneral);
+
+	/**
+	 * Devuelve todos los gastos de las actividades de un objetivo especifico
+	 * 
+	 * @param objetivoEspecifico objetivo especifico
+	 * @return
+	 */
+	Collection<Gasto> findAllByObjetivoEspecifico(ObjetivoEspecifico objetivoEspecifico);
+
+	/**
+	 * Determina si existen gastos para las actividades de un objetivo especifico
+	 * 
+	 * @param objetivoEspecifico objetivo especifico
+	 * @return
+	 */
+	boolean existenGastosObjetivoEspecifico(ObjetivoEspecifico objetivoEspecifico);
+
+	/**
+	 * Devuelve todos los gastos de las actividades de una meta
+	 * 
+	 * @param meta meta
+	 * @return
+	 */
+	Collection<Gasto> findAllByMeta(Meta meta);
+
+	/**
+	 * Determina si existen gastos para las actividades de una meta
+	 * 
+	 * @param meta meta
+	 * @return
+	 */
+	boolean existenGastosMeta(Meta meta);
+
+	/**
+	 * Devuelve todos los gastos de la actividad
+	 * 
+	 * @param actividad actividad
+	 * @return
+	 */
+	Collection<Gasto> findAllByActividad(Actividad actividad);
+
+	/**
+	 * Determina si existen gastos para la actividad
+	 * 
+	 * @param actividad actividad
+	 * @return
+	 */
+	boolean existenGastosActividad(Actividad actividad);
+
+	/**
 	 * Devuelve los gastos correspondientes a actividades de un proyecto para los rubros elegidos
 	 * 
 	 * @param proyecto proyecto

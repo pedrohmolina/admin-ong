@@ -18,7 +18,7 @@ public class EstadoProyectoServiceImpl extends BaseServiceImpl<EstadoProyecto, E
 	private ParametroService parametroService;
 
 	public EstadoProyecto findDefault() {
-		Integer id = parametroService.findIdEstadoActividadLatente();
+		Integer id = parametroService.findIdEstadoProyectoIdea();
 		return dao.findById(id);
 	}
 

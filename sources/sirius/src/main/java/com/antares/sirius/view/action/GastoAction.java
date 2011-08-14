@@ -13,7 +13,6 @@ import com.antares.commons.view.action.BaseAction;
 import com.antares.sirius.model.Gasto;
 import com.antares.sirius.service.GastoService;
 import com.antares.sirius.service.OrigenService;
-import com.antares.sirius.service.ParametroService;
 import com.antares.sirius.service.PersonaService;
 import com.antares.sirius.service.ProveedorService;
 import com.antares.sirius.service.RubroService;
@@ -24,7 +23,6 @@ import com.antares.sirius.view.form.GastoForm;
 
 public abstract class GastoAction extends BaseAction<Gasto, GastoForm, GastoService> {
 
-	protected ParametroService parametroService;
 	protected RubroService rubroService;
 	protected OrigenService origenService;
 	protected ProveedorService proveedorService;
@@ -109,10 +107,6 @@ public abstract class GastoAction extends BaseAction<Gasto, GastoForm, GastoServ
 
 	public void setUsuarioService(UsuarioService usuarioService) {
 		this.usuarioService = usuarioService;
-	}
-
-	public void setParametroService(ParametroService parametroService) {
-		this.parametroService = parametroService;
 	}
 
 }

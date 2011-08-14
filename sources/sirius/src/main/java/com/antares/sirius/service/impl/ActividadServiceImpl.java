@@ -11,6 +11,7 @@ import com.antares.sirius.model.ObjetivoEspecifico;
 import com.antares.sirius.model.ObjetivoGeneral;
 import com.antares.sirius.model.Proyecto;
 import com.antares.sirius.service.ActividadService;
+import com.antares.sirius.service.EstadoActividadService;
 import com.antares.sirius.service.ParametroService;
 
 /**
@@ -23,6 +24,7 @@ import com.antares.sirius.service.ParametroService;
 public class ActividadServiceImpl extends BusinessEntityServiceImpl<Actividad, ActividadDAO> implements ActividadService {
 
 	private ParametroService parametroService;
+	private EstadoActividadService estadoActividadService;
 	
 	public boolean isNombreRepetido(String nombre, Integer id) {
 		boolean isNombreRepetido = false;
@@ -59,6 +61,16 @@ public class ActividadServiceImpl extends BusinessEntityServiceImpl<Actividad, A
 		return dao.findAllByProyecto(proyecto);
 	}
 
+	public boolean isSuspendida(Actividad actividad) {
+		Integer idEstadoSuspendida = parametroService.findIdEstadoActividadSuspendida();
+		return actividad.getEstadoActividad().getId().equals(idEstadoSuspendida);
+	}
+
+	public Collection<Actividad> findAllNoSuspendidasByProyecto(Proyecto proyecto) {
+		EstadoActividad estadoSuspendida = estadoActividadService.findById(parametroService.findIdEstadoActividadSuspendida());
+		return dao.findAllByProyectoExceptEstado(proyecto, estadoSuspendida);
+	}
+
 	public Collection<Actividad> findAllByObjetivoGeneral(ObjetivoGeneral objetivoGeneral) {
 		return dao.findAllByObjetivoGeneral(objetivoGeneral);
 	}
@@ -73,6 +85,10 @@ public class ActividadServiceImpl extends BusinessEntityServiceImpl<Actividad, A
 
 	public void setParametroService(ParametroService parametroService) {
 		this.parametroService = parametroService;
+	}
+
+	public void setEstadoActividadService(EstadoActividadService estadoActividadService) {
+		this.estadoActividadService = estadoActividadService;
 	}
 
 }

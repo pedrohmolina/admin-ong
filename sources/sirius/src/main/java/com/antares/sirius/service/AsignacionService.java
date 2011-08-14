@@ -30,7 +30,7 @@ public interface AsignacionService extends BusinessEntityService<Asignacion> {
 	boolean isAsignacionRepetida(Integer id, Actividad actividad, Persona persona, TipoAsignacion tipoAsignacion);
 
 	/**
-	 * Devuelve los proyectos que contienen actividades asignadas a la persona.
+	 * Devuelve los proyectos que contienen actividades asignadas a la persona que no se encuentren finalizados
 	 * 
 	 * @param persona persona
 	 * @return

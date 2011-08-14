@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import com.antares.commons.dao.BusinessEntityDAO;
 import com.antares.sirius.model.Actividad;
+import com.antares.sirius.model.EstadoActividad;
 import com.antares.sirius.model.Meta;
 import com.antares.sirius.model.ObjetivoEspecifico;
 import com.antares.sirius.model.ObjetivoGeneral;
@@ -26,6 +27,15 @@ public interface ActividadDAO extends BusinessEntityDAO<Actividad> {
 	 * @return
 	 */
 	Collection<Actividad> findAllByProyecto(Proyecto proyecto);
+
+	/**
+	 * Devuelve todas las actividades pertenecientes al proyecto excepto las que se encuentran en el estado indicado
+	 * 
+	 * @param proyecto proyecto
+	 * @param estadoActividad estado actividad
+	 * @return
+	 */
+	Collection<Actividad> findAllByProyectoExceptEstado(Proyecto proyecto, EstadoActividad estadoActividad);
 
 	/**
 	 * Devuelve todas las actividades pertenecientes al objetivo general

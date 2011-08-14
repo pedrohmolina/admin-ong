@@ -75,6 +75,46 @@ public class GastoServiceImpl extends BusinessEntityServiceImpl<Gasto, GastoDAO>
 	}
 
 	@Override
+	public Collection<Gasto> findAllByObjetivoGeneral(ObjetivoGeneral objetivoGeneral) {
+		return dao.findAllByObjetivoGeneral(objetivoGeneral);
+	}
+
+	@Override
+	public boolean existenGastosObjetivoGeneral(ObjetivoGeneral objetivoGeneral) {
+		return dao.existenGastosObjetivoGeneral(objetivoGeneral);
+	}
+
+	@Override
+	public Collection<Gasto> findAllByObjetivoEspecifico(ObjetivoEspecifico objetivoEspecifico) {
+		return dao.findAllByObjetivoEspecifico(objetivoEspecifico);
+	}
+
+	@Override
+	public boolean existenGastosObjetivoEspecifico(ObjetivoEspecifico objetivoEspecifico) {
+		return dao.existenGastosObjetivoEspecifico(objetivoEspecifico);
+	}
+
+	@Override
+	public Collection<Gasto> findAllByMeta(Meta meta) {
+		return dao.findAllByMeta(meta);
+	}
+
+	@Override
+	public boolean existenGastosMeta(Meta meta) {
+		return dao.existenGastosMeta(meta);
+	}
+
+	@Override
+	public Collection<Gasto> findAllByActividad(Actividad actividad) {
+		return dao.findAllByActividad(actividad);
+	}
+
+	@Override
+	public boolean existenGastosActividad(Actividad actividad) {
+		return dao.existenGastosActividad(actividad);
+	}
+
+	@Override
 	public Collection<MontoDTO> obtainMontosByActividadAndRubro(Actividad actividad, Rubro[] rubros) {
 		return dao.obtainMontosByActividadAndRubro(actividad, rubros);
 	}

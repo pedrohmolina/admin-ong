@@ -1,5 +1,7 @@
 package com.antares.sirius.dao.impl;
 
+import java.util.Collection;
+
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
@@ -10,6 +12,7 @@ import com.antares.commons.filter.Filter;
 import com.antares.commons.util.Utils;
 import com.antares.sirius.dao.ProyectoDAO;
 import com.antares.sirius.filter.ProyectoFilter;
+import com.antares.sirius.model.EstadoProyecto;
 import com.antares.sirius.model.Proyecto;
 
 /**
@@ -21,6 +24,20 @@ import com.antares.sirius.model.Proyecto;
  */
 public class ProyectoDAOImpl extends BusinessEntityDAOImpl<Proyecto> implements ProyectoDAO {
 	
+	@SuppressWarnings("unchecked")
+	public Collection<Proyecto> findAllByEstado(EstadoProyecto estadoProyecto) {
+		Criteria crit = buildCriteria();
+		crit.add(Restrictions.eq("estadoProyecto", estadoProyecto));
+		return crit.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	public Collection<Proyecto> findAllExceptEstado(EstadoProyecto estadoProyecto) {
+		Criteria crit = buildCriteria();
+		crit.add(Restrictions.ne("estadoProyecto", estadoProyecto));
+		return crit.list();
+	}
+
 	public Proyecto findByNombre(String nombre) {
 		Criteria crit = buildCriteria();
 		crit.add(ilike("nombre", nombre, MatchMode.EXACT));
