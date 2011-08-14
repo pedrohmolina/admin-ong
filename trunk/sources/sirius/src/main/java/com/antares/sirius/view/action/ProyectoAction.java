@@ -1,5 +1,7 @@
 package com.antares.sirius.view.action;
 
+import static com.antares.commons.enums.ActionEnum.UPDATE;
+
 import java.sql.Blob;
 import java.util.Date;
 import java.util.HashSet;
@@ -127,16 +129,32 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 	}
 
 	@Override
+	public ActionForward initUpdate(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ActionForward forward;
+		Integer id = new Integer(request.getParameter("id"));
+		Proyecto entity = service.findById(id);
+		if (entity != null && entity.isActivo() && service.isFinalizado(entity)) {
+			forward = sendMessage(request, mapping, "errors.ProyectoFinalizado", "/proyecto/proyecto-query.do?method=lastQuery");
+		} else {
+			forward = super.initUpdate(mapping, form, request, response);
+		}
+		
+		return forward;
+	}
+
+	@Override
 	public ActionForward remove(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward;
 		Integer id = new Integer(request.getParameter("id"));
 		Proyecto entity = service.findById(id);
 		if (entity != null) {
-			if (!gastoService.existenGastosProyecto(entity)) {
+			if (service.isFinalizado(entity)) {
+				forward = sendMessage(request, mapping, "errors.ProyectoFinalizado", "/proyecto/proyecto-query.do?method=lastQuery");
+			} else if (gastoService.existenGastosProyecto(entity)) {
+				forward = sendMessage(request, mapping, "errors.existenGastos", "/proyecto/proyecto-query.do?method=lastQuery");
+			} else {
 				service.delete(entity);
 				forward = query(mapping, form, request, response);
-			} else {
-				forward = sendMessage(request, mapping, "errors.existenGastos", "/proyecto/proyecto-query.do?method=lastQuery");
 			}
 		} else {
 			forward = mapping.findForward("restrictedAccess"); 
@@ -189,6 +207,11 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 						Utils.getMessage("sirius.proyecto.fechaInicio.label"),
 						Utils.getMessage("sirius.proyecto.fechaFin.label")
 				}));
+			}
+		}
+		if (UPDATE.equals(form.getAction())) {
+			if (service.isFinalizado(service.findById(form.getId()))) {
+				errors.add("error", new ActionMessage("errors.ProyectoFinalizado"));
 			}
 		}
 		return errors;

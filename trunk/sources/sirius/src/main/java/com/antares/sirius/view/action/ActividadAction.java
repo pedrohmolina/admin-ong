@@ -1,5 +1,7 @@
 package com.antares.sirius.view.action;
 
+import static com.antares.commons.enums.ActionEnum.UPDATE;
+
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -26,10 +28,12 @@ import com.antares.sirius.service.EstadoActividadService;
 import com.antares.sirius.service.FinanciadorService;
 import com.antares.sirius.service.GastoService;
 import com.antares.sirius.service.MetaService;
+import com.antares.sirius.service.ProyectoService;
 import com.antares.sirius.view.form.ActividadForm;
 
 public class ActividadAction extends BaseAction<Actividad, ActividadForm, ActividadService> {
 
+	private ProyectoService proyectoService;
 	private MetaService metaService;
 	private FinanciadorService financiadorService;
 	private EstadoActividadService estadoActividadService;
@@ -76,16 +80,32 @@ public class ActividadAction extends BaseAction<Actividad, ActividadForm, Activi
 	}
 
 	@Override
+	public ActionForward initUpdate(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ActionForward forward;
+		Integer id = new Integer(request.getParameter("id"));
+		Actividad entity = service.findById(id);
+		if (entity != null && entity.isActivo() && proyectoService.isFinalizado(entity.getProyecto())) {
+			forward = sendMessage(request, mapping, "errors.ProyectoFinalizado", "/actividad/actividad-query.do?method=lastQuery");
+		} else {
+			forward = super.initUpdate(mapping, form, request, response);
+		}
+		
+		return forward;
+	}
+
+	@Override
 	public ActionForward remove(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward;
 		Integer id = new Integer(request.getParameter("id"));
 		Actividad entity = service.findById(id);
 		if (entity != null) {
-			if (!gastoService.existenGastosActividad(entity)) {
+			if (proyectoService.isFinalizado(entity.getProyecto())) {
+				forward = sendMessage(request, mapping, "errors.ProyectoFinalizado", "/actividad/actividad-query.do?method=lastQuery");
+			} else if (gastoService.existenGastosActividad(entity)) {
+				forward = sendMessage(request, mapping, "errors.existenGastos", "/actividad/actividad-query.do?method=lastQuery");
+			} else {
 				service.delete(entity);
 				forward = query(mapping, form, request, response);
-			} else {
-				forward = sendMessage(request, mapping, "errors.existenGastos", "/actividad/actividad-query.do?method=lastQuery");
 			}
 		} else {
 			forward = mapping.findForward("restrictedAccess"); 
@@ -127,6 +147,12 @@ public class ActividadAction extends BaseAction<Actividad, ActividadForm, Activi
 				}));
 			}
 		}
+		if (UPDATE.equals(form.getAction())) {
+			Actividad entity = service.findById(form.getId());
+			if (entity != null && proyectoService.isFinalizado(entity.getProyecto())) {
+				errors.add("error", new ActionMessage("errors.ProyectoFinalizado"));
+			}
+		}
 		return errors;
 	}
 
@@ -135,7 +161,7 @@ public class ActividadAction extends BaseAction<Actividad, ActividadForm, Activi
 		
 		String idMeta =(String) request.getParameter("idMeta");
 		Meta meta = metaService.findById(Utils.parseInteger(idMeta));
-		Financiador financiador = meta.getObjetivoEspecifico().getObjetivoGeneral().getProyecto().getFinanciador();
+		Financiador financiador = meta.getProyecto().getFinanciador();
 		Map<String, String> map = new LinkedHashMap<String, String>();
 		if (financiador != null) {
 			map.put("idFinanciador", financiador.getId().toString());
@@ -180,6 +206,10 @@ public class ActividadAction extends BaseAction<Actividad, ActividadForm, Activi
 
 	public void setGastoService(GastoService gastoService) {
 		this.gastoService = gastoService;
+	}
+
+	public void setProyectoService(ProyectoService proyectoService) {
+		this.proyectoService = proyectoService;
 	}
 
 }

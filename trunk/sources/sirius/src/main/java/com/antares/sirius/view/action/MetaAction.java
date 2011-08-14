@@ -1,5 +1,7 @@
 package com.antares.sirius.view.action;
 
+import static com.antares.commons.enums.ActionEnum.UPDATE;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,10 +20,12 @@ import com.antares.sirius.model.ObjetivoEspecifico;
 import com.antares.sirius.service.GastoService;
 import com.antares.sirius.service.MetaService;
 import com.antares.sirius.service.ObjetivoEspecificoService;
+import com.antares.sirius.service.ProyectoService;
 import com.antares.sirius.view.form.MetaForm;
 
 public class MetaAction extends BaseAction<Meta, MetaForm, MetaService> {
 	
+	private ProyectoService proyectoService;
 	private ObjetivoEspecificoService objetivoEspecificoService;
 	private GastoService gastoService;
 
@@ -46,16 +50,32 @@ public class MetaAction extends BaseAction<Meta, MetaForm, MetaService> {
 	}
 
 	@Override
+	public ActionForward initUpdate(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ActionForward forward;
+		Integer id = new Integer(request.getParameter("id"));
+		Meta entity = service.findById(id);
+		if (entity != null && entity.isActivo() && proyectoService.isFinalizado(entity.getProyecto())) {
+			forward = sendMessage(request, mapping, "errors.ProyectoFinalizado", "/meta/meta-query.do?method=lastQuery");
+		} else {
+			forward = super.initUpdate(mapping, form, request, response);
+		}
+		
+		return forward;
+	}
+
+	@Override
 	public ActionForward remove(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward;
 		Integer id = new Integer(request.getParameter("id"));
 		Meta entity = service.findById(id);
 		if (entity != null) {
-			if (!gastoService.existenGastosMeta(entity)) {
+			if (proyectoService.isFinalizado(entity.getProyecto())) {
+				forward = sendMessage(request, mapping, "errors.ProyectoFinalizado", "/meta/meta-query.do?method=lastQuery");
+			} else if (gastoService.existenGastosMeta(entity)) {
+				forward = sendMessage(request, mapping, "errors.existenGastos", "/meta/meta-query.do?method=lastQuery");
+			} else {
 				service.delete(entity);
 				forward = query(mapping, form, request, response);
-			} else {
-				forward = sendMessage(request, mapping, "errors.existenGastos", "/meta/meta-query.do?method=lastQuery");
 			}
 		} else {
 			forward = mapping.findForward("restrictedAccess"); 
@@ -78,6 +98,12 @@ public class MetaAction extends BaseAction<Meta, MetaForm, MetaService> {
 		if (service.isNombreRepetido(form.getNombre(), form.getId())) {
 			errors.add("error", new ActionMessage("errors.unique", Utils.getMessage("sirius.meta.nombre.label")));
 		}
+		if (UPDATE.equals(form.getAction())) {
+			Meta entity = service.findById(form.getId());
+			if (entity != null && proyectoService.isFinalizado(entity.getProyecto())) {
+				errors.add("error", new ActionMessage("errors.ProyectoFinalizado"));
+			}
+		}
 		return errors;
 	}
 
@@ -87,6 +113,10 @@ public class MetaAction extends BaseAction<Meta, MetaForm, MetaService> {
 
 	public void setGastoService(GastoService gastoService) {
 		this.gastoService = gastoService;
+	}
+
+	public void setProyectoService(ProyectoService proyectoService) {
+		this.proyectoService = proyectoService;
 	}
 
 }

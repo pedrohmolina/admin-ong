@@ -67,6 +67,10 @@ public class Meta extends Ponderable {
 		}
 	}
 
+	public Proyecto getProyecto() {
+		return objetivoEspecifico.getObjetivoGeneral().getProyecto();
+	}
+
 	@Override
 	public Collection<? extends Ponderable> getPonderables() {
 		return this.actividades;

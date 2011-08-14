@@ -66,14 +66,14 @@ function confirmarAccion(mensaje) {
 			<display:setProperty name="basic.msg.empty_list"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablaTitulo"><tr><td align="center"></td></tr></table></display:setProperty>
 		</c:if>
 
-		<display:column sortable="true" property="meta.objetivoEspecifico.objetivoGeneral.proyecto.nombre" 		titleKey="sirius.actividad.proyecto.label" maxLength="30" />
-		<display:column sortable="true" property="meta.nombre" 													titleKey="sirius.actividad.meta.label" maxLength="30" />
-		<display:column sortable="true" property="nombre" 														titleKey="sirius.actividad.nombre.label" maxLength="30" />
-		<display:column sortable="true" property="fechaInicio" 													titleKey="sirius.actividad.fechaInicio.label"  	format="{0,date,dd/MM/yyyy}" style="text-align: center" />
-		<display:column sortable="true" property="fechaFin" 													titleKey="sirius.actividad.fechaFin.label"  	format="{0,date,dd/MM/yyyy}" style="text-align: center" />
-		<display:column sortable="true" property="ponderacion" 													titleKey="sirius.actividad.ponderacion.label"  style="text-align: right" />
-		<display:column sortable="true" property="completitud" 													titleKey="sirius.actividad.completitud.label"  style="text-align: right" decorator="com.antares.commons.view.decorator.DoubleDecorator" />
-		<display:column sortable="true" property="estadoActividad.descripcion" 									titleKey="sirius.actividad.estadoActividad.label" style="text-align: center"/>
+		<display:column sortable="true" property="proyecto.nombre" 				titleKey="sirius.actividad.proyecto.label" 			maxLength="30" />
+		<display:column sortable="true" property="meta.nombre" 					titleKey="sirius.actividad.meta.label" 				maxLength="30" />
+		<display:column sortable="true" property="nombre" 						titleKey="sirius.actividad.nombre.label" 			maxLength="30" />
+		<display:column sortable="true" property="fechaInicio" 					titleKey="sirius.actividad.fechaInicio.label"  		format="{0,date,dd/MM/yyyy}" 	style="text-align: center" />
+		<display:column sortable="true" property="fechaFin" 					titleKey="sirius.actividad.fechaFin.label"  		format="{0,date,dd/MM/yyyy}" 	style="text-align: center" />
+		<display:column sortable="true" property="ponderacion" 					titleKey="sirius.actividad.ponderacion.label"  		style="text-align: right" />
+		<display:column sortable="true" property="completitud" 					titleKey="sirius.actividad.completitud.label"  		style="text-align: right" 		decorator="com.antares.commons.view.decorator.DoubleDecorator" />
+		<display:column sortable="true" property="estadoActividad.descripcion" 	titleKey="sirius.actividad.estadoActividad.label" 	style="text-align: center"/>
 
 		<display:column title="Acciones" media="html" style="text-align: center">
 			<authz:authorize ifAllGranted="ENTIDAD_ACTIVIDAD-DETALLE">
