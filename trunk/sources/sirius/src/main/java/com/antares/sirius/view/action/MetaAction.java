@@ -1,6 +1,12 @@
 package com.antares.sirius.view.action;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.struts.action.ActionErrors;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 
 import com.antares.commons.util.Utils;
@@ -9,6 +15,7 @@ import com.antares.commons.view.action.BaseAction;
 import com.antares.sirius.filter.MetaFilter;
 import com.antares.sirius.model.Meta;
 import com.antares.sirius.model.ObjetivoEspecifico;
+import com.antares.sirius.service.GastoService;
 import com.antares.sirius.service.MetaService;
 import com.antares.sirius.service.ObjetivoEspecificoService;
 import com.antares.sirius.view.form.MetaForm;
@@ -16,6 +23,7 @@ import com.antares.sirius.view.form.MetaForm;
 public class MetaAction extends BaseAction<Meta, MetaForm, MetaService> {
 	
 	private ObjetivoEspecificoService objetivoEspecificoService;
+	private GastoService gastoService;
 
 	@Override
 	public MetaFilter createFilter(MetaForm form) {
@@ -38,6 +46,24 @@ public class MetaAction extends BaseAction<Meta, MetaForm, MetaService> {
 	}
 
 	@Override
+	public ActionForward remove(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ActionForward forward;
+		Integer id = new Integer(request.getParameter("id"));
+		Meta entity = service.findById(id);
+		if (entity != null) {
+			if (!gastoService.existenGastosMeta(entity)) {
+				service.delete(entity);
+				forward = query(mapping, form, request, response);
+			} else {
+				forward = sendMessage(request, mapping, "errors.existenGastos", "/meta/meta-query.do?method=lastQuery");
+			}
+		} else {
+			forward = mapping.findForward("restrictedAccess"); 
+		}
+		return forward;
+	}
+
+	@Override
 	protected void loadCollections(MetaForm form) {
 		form.setObjetivosEspecificos(objetivoEspecificoService.findAll());
 	}
@@ -57,6 +83,10 @@ public class MetaAction extends BaseAction<Meta, MetaForm, MetaService> {
 
 	public void setObjetivoEspecificoService(ObjetivoEspecificoService objetivoEspecificoService) {
 		this.objetivoEspecificoService = objetivoEspecificoService;
+	}
+
+	public void setGastoService(GastoService gastoService) {
+		this.gastoService = gastoService;
 	}
 
 }

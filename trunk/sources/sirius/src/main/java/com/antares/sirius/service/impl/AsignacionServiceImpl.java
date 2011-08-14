@@ -13,7 +13,9 @@ import com.antares.sirius.model.Asignacion;
 import com.antares.sirius.model.Persona;
 import com.antares.sirius.model.Proyecto;
 import com.antares.sirius.model.TipoAsignacion;
+import com.antares.sirius.service.ActividadService;
 import com.antares.sirius.service.AsignacionService;
+import com.antares.sirius.service.ProyectoService;
 
 /**
  * Implementacion de la interfaz AsignacionService.
@@ -24,6 +26,9 @@ import com.antares.sirius.service.AsignacionService;
  */
 public class AsignacionServiceImpl extends BusinessEntityServiceImpl<Asignacion, AsignacionDAO> implements AsignacionService {
 	
+	private ProyectoService proyectoService;
+	private ActividadService actividadService;
+
 	public boolean isAsignacionRepetida(Integer id, Actividad actividad, Persona persona, TipoAsignacion tipoAsignacion) {
 		boolean isAsignacionRepetida = false;
 		AsignacionFilter filter = new AsignacionFilter();
@@ -53,7 +58,10 @@ public class AsignacionServiceImpl extends BusinessEntityServiceImpl<Asignacion,
 			}
 		});
 		for (Asignacion asignacion : asignaciones) {
-			proyectos.add(asignacion.getActividad().getProyecto());
+			Proyecto proyecto = asignacion.getActividad().getProyecto();
+			if (!proyectoService.isFinalizado(proyecto)) {
+				proyectos.add(asignacion.getActividad().getProyecto());
+			}
 		}
 		return proyectos;
 	}
@@ -70,9 +78,20 @@ public class AsignacionServiceImpl extends BusinessEntityServiceImpl<Asignacion,
 			}
 		});
 		for (Asignacion asignacion : asignaciones) {
-			actividades.add(asignacion.getActividad());
+			Actividad actividad = asignacion.getActividad();
+			if (!proyectoService.isFinalizado(proyecto) && !actividadService.isSuspendida(actividad)) {
+				actividades.add(asignacion.getActividad());
+			}
 		}
 		return actividades;
+	}
+
+	public void setProyectoService(ProyectoService proyectoService) {
+		this.proyectoService = proyectoService;
+	}
+
+	public void setActividadService(ActividadService actividadService) {
+		this.actividadService = actividadService;
 	}
 
 }

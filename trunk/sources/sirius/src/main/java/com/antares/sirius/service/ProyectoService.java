@@ -1,5 +1,7 @@
 package com.antares.sirius.service;
 
+import java.util.Collection;
+
 import com.antares.commons.service.BusinessEntityService;
 import com.antares.sirius.model.Proyecto;
 
@@ -11,6 +13,21 @@ import com.antares.sirius.model.Proyecto;
  *
  */
 public interface ProyectoService extends BusinessEntityService<Proyecto> {
+
+	/**
+	 * Devuelve todos los proyectos todavia no finalizados
+	 * 
+	 * @return
+	 */
+	Collection<Proyecto> findAllNoFinalizados();
+
+	/**
+	 * Determina si el proyecto se encuentra finalizado
+	 * 
+	 * @param proyecto
+	 * @return
+	 */
+	boolean isFinalizado(Proyecto proyecto);
 
 	/**
 	 * Valida que el nombre no este repetido otra entidad con distinto id

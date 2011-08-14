@@ -36,6 +36,19 @@ public interface ParametroService extends BaseService<Parametro> {
 	Integer findIdEstadoProyectoIdea();
 
 	/**
+	 * Devuelve el id del estado de proyecto correspondiente a "Cierre"
+	 * 
+	 * @return
+	 */
+	Integer findIdEstadoProyectoCierre();
+
+	/**
+	 * Devuelve el id del estado de proyecto correspondiente a "Finalizado"
+	 * 
+	 * @return
+	 */
+	Integer findIdEstadoProyectoFinalizado();
+	/**
 	 * Devuelve el id del estado de actividad correspondiente a "Latente"
 	 * 
 	 * @return
@@ -49,6 +62,13 @@ public interface ParametroService extends BaseService<Parametro> {
 	 */
 	Integer findIdEstadoActividadProgreso();
 
+	/**
+	 * Devuelve el id del estado de actividad correspondiente a "Suspendida"
+	 * 
+	 * @return
+	 */
+	Integer findIdEstadoActividadSuspendida();
+	
 	/**
 	 * Devuelve el id del tipo de gasto correspondiente a gastos de actividades
 	 * 

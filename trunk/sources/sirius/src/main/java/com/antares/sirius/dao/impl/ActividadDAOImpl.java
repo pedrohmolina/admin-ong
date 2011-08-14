@@ -13,6 +13,7 @@ import com.antares.commons.util.Utils;
 import com.antares.sirius.dao.ActividadDAO;
 import com.antares.sirius.filter.ActividadFilter;
 import com.antares.sirius.model.Actividad;
+import com.antares.sirius.model.EstadoActividad;
 import com.antares.sirius.model.Meta;
 import com.antares.sirius.model.ObjetivoEspecifico;
 import com.antares.sirius.model.ObjetivoGeneral;
@@ -40,6 +41,17 @@ public class ActividadDAOImpl extends BusinessEntityDAOImpl<Actividad> implement
 		crit.createAlias("meta.objetivoEspecifico", "objetivoEspecifico");
 		crit.createAlias("objetivoEspecifico.objetivoGeneral", "objetivoGeneral");
 		crit.add(Restrictions.eq("objetivoGeneral.proyecto", proyecto));
+		return crit.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	public Collection<Actividad> findAllByProyectoExceptEstado(Proyecto proyecto, EstadoActividad estadoActividad) {
+		Criteria crit = buildCriteria();
+		crit.createAlias("meta", "meta");
+		crit.createAlias("meta.objetivoEspecifico", "objetivoEspecifico");
+		crit.createAlias("objetivoEspecifico.objetivoGeneral", "objetivoGeneral");
+		crit.add(Restrictions.eq("objetivoGeneral.proyecto", proyecto));
+		crit.add(Restrictions.ne("estadoActividad", estadoActividad));
 		return crit.list();
 	}
 

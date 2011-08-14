@@ -90,6 +90,64 @@ public class GastoDAOImpl extends BusinessEntityDAOImpl<Gasto> implements GastoD
 
 	@Override
 	@SuppressWarnings("unchecked")
+	public Collection<Gasto> findAllByObjetivoGeneral(ObjetivoGeneral objetivoGeneral) {
+		Criteria crit = buildCriteria();
+		crit.createAlias("actividad", "actividad");
+		crit.createAlias("actividad.meta", "meta");
+		crit.createAlias("meta.objetivoEspecifico", "objetivoEspecifico");
+		crit.add(Restrictions.eq("objetivoEspecifico.objetivoGeneral", objetivoGeneral));
+		return (Collection<Gasto>)crit.list();
+	}
+
+	@Override
+	public boolean existenGastosObjetivoGeneral(ObjetivoGeneral objetivoGeneral) {
+		return findAllByObjetivoGeneral(objetivoGeneral).size() > 0;
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public Collection<Gasto> findAllByObjetivoEspecifico(ObjetivoEspecifico objetivoEspecifico) {
+		Criteria crit = buildCriteria();
+		crit.createAlias("actividad", "actividad");
+		crit.createAlias("actividad.meta", "meta");
+		crit.add(Restrictions.eq("meta.objetivoEspecifico", objetivoEspecifico));
+		return (Collection<Gasto>)crit.list();
+	}
+
+	@Override
+	public boolean existenGastosObjetivoEspecifico(ObjetivoEspecifico objetivoEspecifico) {
+		return findAllByObjetivoEspecifico(objetivoEspecifico).size() > 0;
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public Collection<Gasto> findAllByMeta(Meta meta) {
+		Criteria crit = buildCriteria();
+		crit.createAlias("actividad", "actividad");
+		crit.add(Restrictions.eq("actividad.meta", meta));
+		return (Collection<Gasto>)crit.list();
+	}
+
+	@Override
+	public boolean existenGastosMeta(Meta meta) {
+		return findAllByMeta(meta).size() > 0;
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public Collection<Gasto> findAllByActividad(Actividad actividad) {
+		Criteria crit = buildCriteria();
+		crit.add(Restrictions.eq("actividad", actividad));
+		return (Collection<Gasto>)crit.list();
+	}
+
+	@Override
+	public boolean existenGastosActividad(Actividad actividad) {
+		return findAllByActividad(actividad).size() > 0;
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
 	public Collection<MontoDTO> obtainMontosByProyectoAndRubro(Proyecto proyecto, Rubro[] rubros) {
 		Criteria crit = buildCriteria();
 		crit.createAlias("actividad", "actividad");

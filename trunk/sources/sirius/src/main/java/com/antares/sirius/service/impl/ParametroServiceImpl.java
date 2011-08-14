@@ -2,6 +2,8 @@ package com.antares.sirius.service.impl;
 
 import static com.antares.commons.enums.ParametroEnum.ESTADO_ACTIVIDAD_LATENTE;
 import static com.antares.commons.enums.ParametroEnum.ESTADO_ACTIVIDAD_PROGRESO;
+import static com.antares.commons.enums.ParametroEnum.ESTADO_ACTIVIDAD_SUSPENDIDA;
+import static com.antares.commons.enums.ParametroEnum.ESTADO_PROYECTO_FINALIZADO;
 import static com.antares.commons.enums.ParametroEnum.ESTADO_PROYECTO_IDEA;
 import static com.antares.commons.enums.ParametroEnum.TIPO_AGRUPAMIENTO_AGRUPADO;
 import static com.antares.commons.enums.ParametroEnum.TIPO_AGRUPAMIENTO_INDIVIDUAL;
@@ -45,12 +47,24 @@ public class ParametroServiceImpl extends BaseServiceImpl<Parametro, ParametroDA
 		return Utils.parseInteger(findValueByEnum(ESTADO_PROYECTO_IDEA));
 	}
 
+	public Integer findIdEstadoProyectoCierre() {
+		return Utils.parseInteger(findValueByEnum(ParametroEnum.ESTADO_PROYECTO_CIERRE));
+	}
+
+	public Integer findIdEstadoProyectoFinalizado() {
+		return Utils.parseInteger(findValueByEnum(ESTADO_PROYECTO_FINALIZADO));
+	}
+
 	public Integer findIdEstadoActividadLatente() {
 		return Utils.parseInteger(findValueByEnum(ESTADO_ACTIVIDAD_LATENTE));
 	}
 
 	public Integer findIdEstadoActividadProgreso() {
 		return Utils.parseInteger(findValueByEnum(ESTADO_ACTIVIDAD_PROGRESO));
+	}
+
+	public Integer findIdEstadoActividadSuspendida() {
+		return Utils.parseInteger(findValueByEnum(ESTADO_ACTIVIDAD_SUSPENDIDA));
 	}
 
 	public Integer findIdTipoGastoActividad() {

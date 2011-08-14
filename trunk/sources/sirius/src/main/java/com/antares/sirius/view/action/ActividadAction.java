@@ -24,6 +24,7 @@ import com.antares.sirius.model.Meta;
 import com.antares.sirius.service.ActividadService;
 import com.antares.sirius.service.EstadoActividadService;
 import com.antares.sirius.service.FinanciadorService;
+import com.antares.sirius.service.GastoService;
 import com.antares.sirius.service.MetaService;
 import com.antares.sirius.view.form.ActividadForm;
 
@@ -32,6 +33,7 @@ public class ActividadAction extends BaseAction<Actividad, ActividadForm, Activi
 	private MetaService metaService;
 	private FinanciadorService financiadorService;
 	private EstadoActividadService estadoActividadService;
+	private GastoService gastoService;
 
 	@Override
 	public ActividadFilter createFilter(ActividadForm form) {
@@ -71,6 +73,24 @@ public class ActividadAction extends BaseAction<Actividad, ActividadForm, Activi
 	@Override
 	protected void postLoadEntity(Actividad entity, ActividadForm viewForm) {
 		viewForm.setActualizarCompletitud(service.isActualizarCompletitud(entity));
+	}
+
+	@Override
+	public ActionForward remove(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ActionForward forward;
+		Integer id = new Integer(request.getParameter("id"));
+		Actividad entity = service.findById(id);
+		if (entity != null) {
+			if (!gastoService.existenGastosActividad(entity)) {
+				service.delete(entity);
+				forward = query(mapping, form, request, response);
+			} else {
+				forward = sendMessage(request, mapping, "errors.existenGastos", "/actividad/actividad-query.do?method=lastQuery");
+			}
+		} else {
+			forward = mapping.findForward("restrictedAccess"); 
+		}
+		return forward;
 	}
 
 	@Override
@@ -156,6 +176,10 @@ public class ActividadAction extends BaseAction<Actividad, ActividadForm, Activi
 
 	public void setEstadoActividadService(EstadoActividadService estadoActividadService) {
 		this.estadoActividadService = estadoActividadService;
+	}
+
+	public void setGastoService(GastoService gastoService) {
+		this.gastoService = gastoService;
 	}
 
 }

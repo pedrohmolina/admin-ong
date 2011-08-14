@@ -20,6 +20,5 @@ public class AccesoDAOImpl extends GenericDAOImpl<Acceso> implements AccesoDAO {
 	protected void addOrder(Criteria crit) {
 		crit.addOrder(Order.asc("recurso"));
 		crit.addOrder(Order.asc("accion"));
-		//TODO revisar que esto funcione y si no deberia usar recurso.nombre
 	}
 }

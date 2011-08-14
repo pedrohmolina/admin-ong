@@ -127,6 +127,24 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 	}
 
 	@Override
+	public ActionForward remove(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ActionForward forward;
+		Integer id = new Integer(request.getParameter("id"));
+		Proyecto entity = service.findById(id);
+		if (entity != null) {
+			if (!gastoService.existenGastosProyecto(entity)) {
+				service.delete(entity);
+				forward = query(mapping, form, request, response);
+			} else {
+				forward = sendMessage(request, mapping, "errors.existenGastos", "/proyecto/proyecto-query.do?method=lastQuery");
+			}
+		} else {
+			forward = mapping.findForward("restrictedAccess"); 
+		}
+		return forward;
+	}
+
+	@Override
 	protected void loadCollections(ProyectoForm form) {
 		form.setResponsables(personaService.findAll());
 		form.setCoordinadores(personaService.findAll());
@@ -184,7 +202,7 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 			if (Utils.isNotNullNorEmpty(strId) && Utils.isNotNullNorEmpty(strIdEstado)) {
 				Proyecto proyecto = service.findById(Utils.parseInteger(strId));
 				Integer idEstado = new Integer(strIdEstado);
-					service.saveCambioEstado(proyecto, idEstado);
+				service.saveCambioEstado(proyecto, idEstado);
 			}
 			forward = query(mapping, form, request, response);
 		} catch (RestrictedAccessException e) {

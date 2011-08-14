@@ -1,5 +1,7 @@
 package com.antares.sirius.view.action;
 
+import static com.antares.commons.enums.ActionEnum.CREATE;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -58,7 +60,11 @@ public class GastoProyectoAction extends GastoAction {
 	@Override
 	protected void loadCollections(GastoForm form) {
 		super.loadCollections(form);
-		form.setProyectos(proyectoService.findAll());
+		if (CREATE.equals(form.getAction())) {
+			form.setProyectos(proyectoService.findAllNoFinalizados());
+		} else{
+			form.setProyectos(proyectoService.findAll());
+		}
 	}
 
 	@Override
@@ -71,7 +77,9 @@ public class GastoProyectoAction extends GastoAction {
 	protected ActionErrors validate(GastoForm form) {
 		ActionErrors errors = new ActionErrors();
 		Proyecto proyecto = proyectoService.findById(Utils.parseInteger(form.getIdProyecto()));
-		if (proyectoService.isIndividual(proyecto)) {
+		if (proyectoService.isFinalizado(proyecto)) {
+			errors.add("error", new ActionMessage("errors.ProyectoFinalizado"));
+		} else if (proyectoService.isIndividual(proyecto)) {
 			if (Utils.isNullOrEmpty(form.getIdProveedor())) {
 				errors.add("error", new ActionMessage("errors.required", Utils.getMessage("sirius.gasto.proveedor.label")));
 			}

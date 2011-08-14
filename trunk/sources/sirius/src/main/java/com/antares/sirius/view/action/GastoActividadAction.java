@@ -1,5 +1,6 @@
 package com.antares.sirius.view.action;
 
+import static com.antares.commons.enums.ActionEnum.CREATE;
 import static com.antares.sirius.base.Constants.ACCESO_ADMIN_GASTOS_ACTIVIDAD;
 
 import java.util.ArrayList;
@@ -84,7 +85,7 @@ public class GastoActividadAction extends GastoAction {
 		super.loadCollections(form);
 		form.setPersonas(personaService.findAll());
 
-		form.setProyectos(getProyectos());
+		form.setProyectos(getProyectos(form));
 		if (form.getActividades() == null) {
 			form.setActividades(new ArrayList<Actividad>());
 		}
@@ -104,7 +105,12 @@ public class GastoActividadAction extends GastoAction {
 	protected ActionErrors validate(GastoForm form) {
 		ActionErrors errors = new ActionErrors();
 		Actividad actividad = actividadService.findById(Utils.parseInteger(form.getIdActividad()));
-		if (proyectoService.isIndividual(actividad.getProyecto())) {
+		Proyecto proyecto = actividad.getProyecto();
+		if (proyectoService.isFinalizado(proyecto)) {
+			errors.add("error", new ActionMessage("errors.ProyectoFinalizado"));
+		} else if (actividadService.isSuspendida(actividad)) {
+			errors.add("error", new ActionMessage("errors.ActividadSuspendida"));
+		} else  if (proyectoService.isIndividual(proyecto)) {
 			if (Utils.isNullOrEmpty(form.getIdProveedor())) {
 				errors.add("error", new ActionMessage("errors.required", Utils.getMessage("sirius.gasto.proveedor.label")));
 			}
@@ -114,8 +120,7 @@ public class GastoActividadAction extends GastoAction {
 			if (Utils.isNullOrEmpty(form.getNumeroComprobante())) {
 				errors.add("error", new ActionMessage("errors.required", Utils.getMessage("sirius.gasto.numeroComprobante.label")));
 			}
-		}
-		if (proyectoService.isAgrupado(actividad.getProyecto())) {
+		} else if (proyectoService.isAgrupado(proyecto)) {
 			if (Utils.isNullOrEmpty(form.getPaquete())) {
 				errors.add("error", new ActionMessage("errors.required", Utils.getMessage("sirius.gasto.paquete.label")));
 			}
@@ -143,12 +148,12 @@ public class GastoActividadAction extends GastoAction {
 	public ActionForward cargarComboActividad(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) 
 			throws Exception {
 		
+		GastoForm gastoForm = (GastoForm)form;
 		String id =(String) request.getParameter("idProyecto");
 		Proyecto proyecto = proyectoService.findById(Utils.parseInteger(id));
-		Collection<Actividad> actividades = getActividades(proyecto);
-		((GastoForm)form).setActividades(actividades);
+		gastoForm.setActividades(getActividades(proyecto, gastoForm));
 		Map<String, String> map = new LinkedHashMap<String, String>();
-		for (Actividad actividad : actividades) {
+		for (Actividad actividad : gastoForm.getActividades()) {
 			map.put(new Integer(actividad.getId()).toString(), actividad.getNombre());
 		}
 		
@@ -281,24 +286,32 @@ public class GastoActividadAction extends GastoAction {
 		return mapping.findForward("query");
 	}
 
-	protected Collection<Proyecto> getProyectos() {
+	protected Collection<Proyecto> getProyectos(GastoForm form) {
 		Collection<Proyecto> proyectos;
-		if (usuarioService.userHasAccess(ACCESO_ADMIN_GASTOS_ACTIVIDAD)) {
+		if (CREATE.equals(form.getAction())) {
+			if (usuarioService.userHasAccess(ACCESO_ADMIN_GASTOS_ACTIVIDAD)) {
+				proyectos = proyectoService.findAllNoFinalizados();
+			} else {
+				Persona persona = personaService.findPersonaLogueada();
+				proyectos = asignacionService.findProyectosAsignados(persona);
+			}
+		} else{
 			proyectos = proyectoService.findAll();
-		} else {
-			Persona persona = personaService.findPersonaLogueada();
-			proyectos = asignacionService.findProyectosAsignados(persona);
 		}
 		return proyectos;
 	}
 
-	protected Collection<Actividad> getActividades(Proyecto proyecto) {
+	protected Collection<Actividad> getActividades(Proyecto proyecto, GastoForm form) {
 		Collection<Actividad> actividades;
-		if (usuarioService.userHasAccess(ACCESO_ADMIN_GASTOS_ACTIVIDAD)) {
+		if (CREATE.equals(form.getAction())) {
+			if (usuarioService.userHasAccess(ACCESO_ADMIN_GASTOS_ACTIVIDAD)) {
+				actividades = actividadService.findAllNoSuspendidasByProyecto(proyecto);
+			} else {
+				Persona persona = personaService.findPersonaLogueada();
+				actividades = asignacionService.findActividadesAsignadas(persona, proyecto);
+			}
+		} else{
 			actividades = actividadService.findAllByProyecto(proyecto);
-		} else {
-			Persona persona = personaService.findPersonaLogueada();
-			actividades = asignacionService.findActividadesAsignadas(persona, proyecto);
 		}
 		return actividades;
 	}
