@@ -29,7 +29,7 @@ public interface ProyectoDAO extends BusinessEntityDAO<Proyecto> {
 	 * @param estadoProyecto estado del proyecto
 	 * @return
 	 */
-	Collection<Proyecto> findAllExceptEstado(EstadoProyecto estadoProyecto);
+	Collection<Proyecto> findAllExceptEstados(EstadoProyecto ... estadoProyecto);
 
 	/**
 	 * Devuelve un proyecto a partir de su nombre (valor único)

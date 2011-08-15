@@ -24,12 +24,23 @@ public class ProyectoServiceImpl extends BusinessEntityServiceImpl<Proyecto, Pro
 
 	public Collection<Proyecto> findAllNoFinalizados() {
 		EstadoProyecto estadoFinalizado = estadoProyectoService.findById(parametroService.findIdEstadoProyectoFinalizado());
-		return dao.findAllExceptEstado(estadoFinalizado);
+		return dao.findAllExceptEstados(estadoFinalizado);
+	}
+
+	public Collection<Proyecto> findAllNoFinalizadosNiCierre() {
+		EstadoProyecto estadoFinalizado = estadoProyectoService.findById(parametroService.findIdEstadoProyectoFinalizado());
+		EstadoProyecto estadoCierre = estadoProyectoService.findById(parametroService.findIdEstadoProyectoCierre());
+		return dao.findAllExceptEstados(estadoFinalizado, estadoCierre);
 	}
 
 	public boolean isFinalizado(Proyecto proyecto) {
 		Integer idEstadoFinalizado = parametroService.findIdEstadoProyectoFinalizado();
 		return proyecto.getEstadoProyecto().getId().equals(idEstadoFinalizado);
+	}
+
+	public boolean isCierre(Proyecto proyecto) {
+		Integer idEstadoCierre = parametroService.findIdEstadoProyectoCierre();
+		return proyecto.getEstadoProyecto().getId().equals(idEstadoCierre);
 	}
 
 	public boolean isNombreRepetido(String nombre, Integer id) {
@@ -41,17 +52,20 @@ public class ProyectoServiceImpl extends BusinessEntityServiceImpl<Proyecto, Pro
 		return isNombreRepetido;
 	}
 
-	public void saveCambioEstado(Proyecto proyecto, Integer idEstado) {
-		EstadoProyecto nuevoEstado = null;
+	public boolean isTransicionValida(Proyecto proyecto, Integer idEstado) {
+		boolean isTransicionValida = false;
 		for (EstadoProyecto estado : proyecto.getEstadoProyecto().getProximosEstadosPosibles()) {
 			if (estado.getId().equals(idEstado)) {
-				nuevoEstado = estado;
+				isTransicionValida = true;
 			}
 		}
-		if (nuevoEstado != null) {
-			proyecto.setEstadoProyecto(nuevoEstado);
-			dao.save(proyecto);
-		}
+		return isTransicionValida;
+	}
+
+	public void saveCambioEstado(Proyecto proyecto, Integer idEstado) {
+		EstadoProyecto nuevoEstado = estadoProyectoService.findById(idEstado);
+		proyecto.setEstadoProyecto(nuevoEstado);
+		dao.save(proyecto);
 	}
 
 	public boolean isIndividual(Proyecto proyecto) {

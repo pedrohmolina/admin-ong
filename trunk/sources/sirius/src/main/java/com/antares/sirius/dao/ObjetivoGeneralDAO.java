@@ -3,6 +3,7 @@ package com.antares.sirius.dao;
 import java.util.Collection;
 
 import com.antares.commons.dao.BusinessEntityDAO;
+import com.antares.sirius.model.EstadoProyecto;
 import com.antares.sirius.model.ObjetivoGeneral;
 import com.antares.sirius.model.Proyecto;
 
@@ -30,5 +31,13 @@ public interface ObjetivoGeneralDAO extends BusinessEntityDAO<ObjetivoGeneral> {
 	 * @return
 	 */
 	Collection<ObjetivoGeneral> findAllByProyecto(Proyecto proyecto);
+
+	/**
+	 * Devuelve todos los objetivos generales de los proyectos que no se encuentren en los estados dados
+	 * 
+	 * @param estadoProyecto
+	 * @return
+	 */
+	Collection<ObjetivoGeneral> findAllExceptEstados(EstadoProyecto ... estadoProyecto);
 
 }

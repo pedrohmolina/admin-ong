@@ -3,6 +3,7 @@ package com.antares.sirius.dao;
 import java.util.Collection;
 
 import com.antares.commons.dao.BusinessEntityDAO;
+import com.antares.sirius.model.EstadoProyecto;
 import com.antares.sirius.model.Meta;
 import com.antares.sirius.model.Proyecto;
 
@@ -30,5 +31,13 @@ public interface MetaDAO extends BusinessEntityDAO<Meta> {
 	 * @return
 	 */
 	Collection<Meta> findAllByProyecto(Proyecto proyecto);
+
+	/**
+	 * Devuelve todas las metas de los proyectos que no se encuentren en los estados dados
+	 * 
+	 * @param estadoProyecto
+	 * @return
+	 */
+	Collection<Meta> findAllExceptEstados(EstadoProyecto ... estadoProyecto);
 
 }

@@ -12,6 +12,7 @@ import com.antares.commons.filter.Filter;
 import com.antares.commons.util.Utils;
 import com.antares.sirius.dao.ObjetivoGeneralDAO;
 import com.antares.sirius.filter.ObjetivoGeneralFilter;
+import com.antares.sirius.model.EstadoProyecto;
 import com.antares.sirius.model.ObjetivoGeneral;
 import com.antares.sirius.model.Proyecto;
 
@@ -34,6 +35,14 @@ public class ObjetivoGeneralDAOImpl extends BusinessEntityDAOImpl<ObjetivoGenera
 	public Collection<ObjetivoGeneral> findAllByProyecto(Proyecto proyecto) {
 		Criteria crit = buildCriteria();
 		crit.add(Restrictions.eq("proyecto", proyecto));
+		return crit.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	public Collection<ObjetivoGeneral> findAllExceptEstados(EstadoProyecto ... estadoProyecto) {
+		Criteria crit = buildCriteria();
+		crit.createAlias("proyecto", "proyecto");
+		crit.add(Restrictions.not(Restrictions.in("proyecto.estadoProyecto", estadoProyecto)));
 		return crit.list();
 	}
 

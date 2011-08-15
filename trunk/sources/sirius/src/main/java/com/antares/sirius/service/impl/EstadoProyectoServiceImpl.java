@@ -22,6 +22,11 @@ public class EstadoProyectoServiceImpl extends BaseServiceImpl<EstadoProyecto, E
 		return dao.findById(id);
 	}
 
+	public boolean isCierre(Integer idEstado) {
+		Integer idEstadoCierre = parametroService.findIdEstadoProyectoCierre();
+		return idEstado.equals(idEstadoCierre);
+	}
+
 	public void setParametroService(ParametroService parametroService) {
 		this.parametroService = parametroService;
 	}

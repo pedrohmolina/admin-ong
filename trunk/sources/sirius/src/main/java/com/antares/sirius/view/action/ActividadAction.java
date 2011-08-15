@@ -1,6 +1,6 @@
 package com.antares.sirius.view.action;
 
-import static com.antares.commons.enums.ActionEnum.UPDATE;
+import static com.antares.commons.enums.ActionEnum.CREATE;
 
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -85,7 +85,7 @@ public class ActividadAction extends BaseAction<Actividad, ActividadForm, Activi
 		Integer id = new Integer(request.getParameter("id"));
 		Actividad entity = service.findById(id);
 		if (entity != null && entity.isActivo() && proyectoService.isFinalizado(entity.getProyecto())) {
-			forward = sendMessage(request, mapping, "errors.ProyectoFinalizado", "/actividad/actividad-query.do?method=lastQuery");
+			forward = sendMessage(request, mapping, "errors.proyectoFinalizado", "/actividad/actividad-query.do?method=lastQuery");
 		} else {
 			forward = super.initUpdate(mapping, form, request, response);
 		}
@@ -100,7 +100,7 @@ public class ActividadAction extends BaseAction<Actividad, ActividadForm, Activi
 		Actividad entity = service.findById(id);
 		if (entity != null) {
 			if (proyectoService.isFinalizado(entity.getProyecto())) {
-				forward = sendMessage(request, mapping, "errors.ProyectoFinalizado", "/actividad/actividad-query.do?method=lastQuery");
+				forward = sendMessage(request, mapping, "errors.proyectoFinalizado", "/actividad/actividad-query.do?method=lastQuery");
 			} else if (gastoService.existenGastosActividad(entity)) {
 				forward = sendMessage(request, mapping, "errors.existenGastos", "/actividad/actividad-query.do?method=lastQuery");
 			} else {
@@ -115,9 +115,13 @@ public class ActividadAction extends BaseAction<Actividad, ActividadForm, Activi
 
 	@Override
 	protected void loadCollections(ActividadForm form) {
-		form.setMetas(metaService.findAll());
 		form.setFinanciadores(financiadorService.findAll());
 		form.setEstadosActividad(estadoActividadService.findAll());
+		if (CREATE.equals(form.getAction())) {
+			form.setMetas(metaService.findAllNoFinalizadosNiCierre());
+		} else {
+			form.setMetas(metaService.findAll());
+		}
 	}
 
 	@Override
@@ -147,10 +151,13 @@ public class ActividadAction extends BaseAction<Actividad, ActividadForm, Activi
 				}));
 			}
 		}
-		if (UPDATE.equals(form.getAction())) {
-			Actividad entity = service.findById(form.getId());
-			if (entity != null && proyectoService.isFinalizado(entity.getProyecto())) {
-				errors.add("error", new ActionMessage("errors.ProyectoFinalizado"));
+
+		if (proyectoService.isFinalizado(meta.getProyecto())) {
+			errors.add("error", new ActionMessage("errors.proyectoFinalizado"));
+		}
+		if (CREATE.equals(form.getAction())) {
+			if (proyectoService.isCierre(meta.getProyecto())) {
+				errors.add("error", new ActionMessage("errors.proyectoCierre"));
 			}
 		}
 		return errors;
@@ -172,7 +179,7 @@ public class ActividadAction extends BaseAction<Actividad, ActividadForm, Activi
 	}
 		
 	public ActionForward cambiarEstado(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ActionForward forward;
+		ActionForward forward = null;
 		String strId = request.getParameter("id");
 		String strIdEstado = request.getParameter("idEstado");
 		try {
@@ -180,14 +187,18 @@ public class ActividadAction extends BaseAction<Actividad, ActividadForm, Activi
 				Actividad actividad = service.findById(Utils.parseInteger(strId));
 				if (actividad != null) {
 					Integer idEstado = new Integer(strIdEstado);
-					service.saveCambioEstado(actividad, idEstado);
+					if (service.isTransicionValida(actividad, idEstado)) {
+						service.saveCambioEstado(actividad, idEstado);
+					}
 				} else {
 					forward = mapping.findForward("restrictedAccess"); 
 				}
 			}
-			forward = query(mapping, form, request, response);
 		} catch (RestrictedAccessException e) {
 			forward = mapping.findForward("restrictedAccess"); 
+		}
+		if (forward == null) {
+			forward = query(mapping, form, request, response);
 		}
 		return forward;
 	}

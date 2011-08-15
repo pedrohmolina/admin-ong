@@ -1,6 +1,6 @@
 package com.antares.sirius.view.action;
 
-import static com.antares.commons.enums.ActionEnum.UPDATE;
+import static com.antares.commons.enums.ActionEnum.CREATE;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -55,7 +55,7 @@ public class MetaAction extends BaseAction<Meta, MetaForm, MetaService> {
 		Integer id = new Integer(request.getParameter("id"));
 		Meta entity = service.findById(id);
 		if (entity != null && entity.isActivo() && proyectoService.isFinalizado(entity.getProyecto())) {
-			forward = sendMessage(request, mapping, "errors.ProyectoFinalizado", "/meta/meta-query.do?method=lastQuery");
+			forward = sendMessage(request, mapping, "errors.proyectoFinalizado", "/meta/meta-query.do?method=lastQuery");
 		} else {
 			forward = super.initUpdate(mapping, form, request, response);
 		}
@@ -70,7 +70,7 @@ public class MetaAction extends BaseAction<Meta, MetaForm, MetaService> {
 		Meta entity = service.findById(id);
 		if (entity != null) {
 			if (proyectoService.isFinalizado(entity.getProyecto())) {
-				forward = sendMessage(request, mapping, "errors.ProyectoFinalizado", "/meta/meta-query.do?method=lastQuery");
+				forward = sendMessage(request, mapping, "errors.proyectoFinalizado", "/meta/meta-query.do?method=lastQuery");
 			} else if (gastoService.existenGastosMeta(entity)) {
 				forward = sendMessage(request, mapping, "errors.existenGastos", "/meta/meta-query.do?method=lastQuery");
 			} else {
@@ -85,7 +85,11 @@ public class MetaAction extends BaseAction<Meta, MetaForm, MetaService> {
 
 	@Override
 	protected void loadCollections(MetaForm form) {
-		form.setObjetivosEspecificos(objetivoEspecificoService.findAll());
+		if (CREATE.equals(form.getAction())) {
+			form.setObjetivosEspecificos(objetivoEspecificoService.findAllNoFinalizadosNiCierre());
+		} else {
+			form.setObjetivosEspecificos(objetivoEspecificoService.findAll());
+		}
 	}
 
 	@Override
@@ -98,10 +102,13 @@ public class MetaAction extends BaseAction<Meta, MetaForm, MetaService> {
 		if (service.isNombreRepetido(form.getNombre(), form.getId())) {
 			errors.add("error", new ActionMessage("errors.unique", Utils.getMessage("sirius.meta.nombre.label")));
 		}
-		if (UPDATE.equals(form.getAction())) {
-			Meta entity = service.findById(form.getId());
-			if (entity != null && proyectoService.isFinalizado(entity.getProyecto())) {
-				errors.add("error", new ActionMessage("errors.ProyectoFinalizado"));
+
+		if (proyectoService.isFinalizado(objetivoEspecifico.getProyecto())) {
+			errors.add("error", new ActionMessage("errors.proyectoFinalizado"));
+		}
+		if (CREATE.equals(form.getAction())) {
+			if (proyectoService.isCierre(objetivoEspecifico.getProyecto())) {
+				errors.add("error", new ActionMessage("errors.proyectoCierre"));
 			}
 		}
 		return errors;
