@@ -97,6 +97,7 @@ CREATE TABLE actividad
 	observaciones TEXT COMMENT 'Observaciones generales de la Actividad',
 	fechaInicio DATE COMMENT 'Fecha que inicia la Actividad',
 	fechaFin DATE COMMENT 'Fecha que termina la Actividad',
+	fechaFinalizacion DATE COMMENT 'Fecha en que finalizó la actividad',
 	ponderacion DECIMAL(3) NOT NULL COMMENT 'Peso arbitrariamente asignado',
 	completitud DECIMAL(3) NOT NULL COMMENT 'Porcentaje en el que se ha completado la actividad',
 	activo BOOL NOT NULL COMMENT 'Señal para manejo de baja logica',
@@ -364,6 +365,21 @@ CREATE TABLE acceso
 	PRIMARY KEY (idRecurso, idAccion),
 	KEY (id),
 	UNIQUE UQ_rec_accion(idRecurso, idAccion)
+) 
+;
+
+
+CREATE TABLE notificacion
+(
+	id INT NOT NULL AUTO_INCREMENT,
+	idProyecto INT NULL,
+	fecha DATETIME,
+	mensaje VARCHAR(100) NOT NULL,
+	leido BOOL NOT NULL,
+	activo BOOL NOT NULL,
+	PRIMARY KEY (id),
+	UNIQUE UQ_notificacion_id(id),
+        CONSTRAINT FK_notificacion_proyecto FOREIGN KEY (idProyecto) REFERENCES proyecto(id),
 ) 
 ;
 
