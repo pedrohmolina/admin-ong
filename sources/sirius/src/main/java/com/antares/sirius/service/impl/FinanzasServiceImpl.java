@@ -1,5 +1,6 @@
 package com.antares.sirius.service.impl;
 
+import java.math.BigDecimal;
 import java.util.Collection;
 
 import com.antares.sirius.dto.FinanzasDTO;
@@ -102,13 +103,14 @@ public class FinanzasServiceImpl implements FinanzasService {
 			MontoDTO montoFinanzas = finanzas.get(monto.getId(), monto.getIdRubro());
 			if (montoFinanzas == null) {
 				montoFinanzas = new MontoDTO();
-				monto.setId(monto.getId());
-				monto.setIdRubro(monto.getIdRubro());
+				montoFinanzas.setId(monto.getId());
+				montoFinanzas.setIdRubro(monto.getIdRubro());
 				montoFinanzas.setMontoPresupuestado(0D);
-				finanzas.putMonto(monto);
+				finanzas.putMonto(montoFinanzas);
 			}
 			montoFinanzas.setMontoGastado(monto.getMontoGastado());
-			montoFinanzas.setMontoDif(montoFinanzas.getMontoPresupuestado() - montoFinanzas.getMontoGastado());
+			BigDecimal dif = new BigDecimal(montoFinanzas.getMontoPresupuestado()).subtract(new BigDecimal(montoFinanzas.getMontoGastado()));
+			montoFinanzas.setMontoDif(dif.doubleValue());
 		}
 	}
 

@@ -130,6 +130,10 @@ public class ReporteFinancieroForm extends ValidatorForm {
 	}
 
 	public void initialize() {
+		this.formatoReporte = "";
+		this.idProyecto = "";
+		this.idAgregacion = "";
+		this.rubrosSeleccionados = null;
 	}
 
 	public void initializeForm() {
