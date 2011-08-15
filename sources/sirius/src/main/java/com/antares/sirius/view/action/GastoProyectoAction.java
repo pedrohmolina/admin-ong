@@ -78,7 +78,7 @@ public class GastoProyectoAction extends GastoAction {
 		ActionErrors errors = new ActionErrors();
 		Proyecto proyecto = proyectoService.findById(Utils.parseInteger(form.getIdProyecto()));
 		if (proyectoService.isFinalizado(proyecto)) {
-			errors.add("error", new ActionMessage("errors.ProyectoFinalizado"));
+			errors.add("error", new ActionMessage("errors.proyectoFinalizado"));
 		} else if (proyectoService.isIndividual(proyecto)) {
 			if (Utils.isNullOrEmpty(form.getIdProveedor())) {
 				errors.add("error", new ActionMessage("errors.required", Utils.getMessage("sirius.gasto.proveedor.label")));

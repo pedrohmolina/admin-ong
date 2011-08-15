@@ -70,6 +70,20 @@ public interface ParametroService extends BaseService<Parametro> {
 	Integer findIdEstadoActividadSuspendida();
 	
 	/**
+	 * Devuelve el id del estado de actividad correspondiente a "Cancelada"
+	 * 
+	 * @return
+	 */
+	Integer findIdEstadoActividadCancelada();
+
+	/**
+	 * Devuelve el id del estado de actividad correspondiente a "Cumplida"
+	 * 
+	 * @return
+	 */
+	Integer findIdEstadoActividadCumplida();
+
+	/**
 	 * Devuelve el id del tipo de gasto correspondiente a gastos de actividades
 	 * 
 	 * @return

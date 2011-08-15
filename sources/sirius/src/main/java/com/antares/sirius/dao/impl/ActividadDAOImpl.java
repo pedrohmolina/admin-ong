@@ -14,6 +14,7 @@ import com.antares.sirius.dao.ActividadDAO;
 import com.antares.sirius.filter.ActividadFilter;
 import com.antares.sirius.model.Actividad;
 import com.antares.sirius.model.EstadoActividad;
+import com.antares.sirius.model.EstadoProyecto;
 import com.antares.sirius.model.Meta;
 import com.antares.sirius.model.ObjetivoEspecifico;
 import com.antares.sirius.model.ObjetivoGeneral;
@@ -35,6 +36,17 @@ public class ActividadDAOImpl extends BusinessEntityDAOImpl<Actividad> implement
 	}
 
 	@SuppressWarnings("unchecked")
+	public Collection<Actividad> findAllExceptEstados(EstadoProyecto ... estadoProyecto) {
+		Criteria crit = buildCriteria();
+		crit.createAlias("meta", "meta");
+		crit.createAlias("meta.objetivoEspecifico", "objetivoEspecifico");
+		crit.createAlias("objetivoEspecifico.objetivoGeneral", "objetivoGeneral");
+		crit.createAlias("objetivoGeneral.proyecto", "proyecto");
+		crit.add(Restrictions.not(Restrictions.in("proyecto.estadoProyecto", estadoProyecto)));
+		return crit.list();
+	}
+
+	@SuppressWarnings("unchecked")
 	public Collection<Actividad> findAllByProyecto(Proyecto proyecto) {
 		Criteria crit = buildCriteria();
 		crit.createAlias("meta", "meta");
@@ -45,13 +57,29 @@ public class ActividadDAOImpl extends BusinessEntityDAOImpl<Actividad> implement
 	}
 
 	@SuppressWarnings("unchecked")
-	public Collection<Actividad> findAllByProyectoExceptEstado(Proyecto proyecto, EstadoActividad estadoActividad) {
+	public Integer countByProyectoEstados(Proyecto proyecto, EstadoActividad ... estadoActividad) {
+		return findAllByProyectoEstados(proyecto, estadoActividad).size();
+	}
+
+	@SuppressWarnings("unchecked")
+	public Collection<Actividad> findAllByProyectoEstados(Proyecto proyecto, EstadoActividad ... estadoActividad) {
 		Criteria crit = buildCriteria();
 		crit.createAlias("meta", "meta");
 		crit.createAlias("meta.objetivoEspecifico", "objetivoEspecifico");
 		crit.createAlias("objetivoEspecifico.objetivoGeneral", "objetivoGeneral");
 		crit.add(Restrictions.eq("objetivoGeneral.proyecto", proyecto));
-		crit.add(Restrictions.ne("estadoActividad", estadoActividad));
+		crit.add(Restrictions.in("estadoActividad", estadoActividad));
+		return crit.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	public Collection<Actividad> findAllByProyectoExceptEstados(Proyecto proyecto, EstadoActividad ... estadoActividad) {
+		Criteria crit = buildCriteria();
+		crit.createAlias("meta", "meta");
+		crit.createAlias("meta.objetivoEspecifico", "objetivoEspecifico");
+		crit.createAlias("objetivoEspecifico.objetivoGeneral", "objetivoGeneral");
+		crit.add(Restrictions.eq("objetivoGeneral.proyecto", proyecto));
+		crit.add(Restrictions.not(Restrictions.in("estadoActividad", estadoActividad)));
 		return crit.list();
 	}
 

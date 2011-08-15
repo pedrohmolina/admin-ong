@@ -1,6 +1,6 @@
 package com.antares.sirius.view.action;
 
-import static com.antares.commons.enums.ActionEnum.UPDATE;
+import static com.antares.commons.enums.ActionEnum.CREATE;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -53,7 +53,7 @@ public class ObjetivoGeneralAction extends BaseAction<ObjetivoGeneral, ObjetivoG
 		Integer id = new Integer(request.getParameter("id"));
 		ObjetivoGeneral entity = service.findById(id);
 		if (entity != null && entity.isActivo() && proyectoService.isFinalizado(entity.getProyecto())) {
-			forward = sendMessage(request, mapping, "errors.ProyectoFinalizado", "/objetivo-general/objetivo-general-query.do?method=lastQuery");
+			forward = sendMessage(request, mapping, "errors.proyectoFinalizado", "/objetivo-general/objetivo-general-query.do?method=lastQuery");
 		} else {
 			forward = super.initUpdate(mapping, form, request, response);
 		}
@@ -68,7 +68,7 @@ public class ObjetivoGeneralAction extends BaseAction<ObjetivoGeneral, ObjetivoG
 		ObjetivoGeneral entity = service.findById(id);
 		if (entity != null) {
 			if (proyectoService.isFinalizado(entity.getProyecto())) {
-				forward = sendMessage(request, mapping, "errors.ProyectoFinalizado", "/objetivo-general/objetivo-general-query.do?method=lastQuery");
+				forward = sendMessage(request, mapping, "errors.proyectoFinalizado", "/objetivo-general/objetivo-general-query.do?method=lastQuery");
 			} else if (gastoService.existenGastosObjetivoGeneral(entity)) {
 				forward = sendMessage(request, mapping, "errors.existenGastos", "/objetivo-general/objetivo-general-query.do?method=lastQuery");
 			} else {
@@ -83,7 +83,11 @@ public class ObjetivoGeneralAction extends BaseAction<ObjetivoGeneral, ObjetivoG
 
 	@Override
 	protected void loadCollections(ObjetivoGeneralForm form) {
-		form.setProyectos(proyectoService.findAll());
+		if (CREATE.equals(form.getAction())) {
+			form.setProyectos(proyectoService.findAllNoFinalizadosNiCierre());
+		} else {
+			form.setProyectos(proyectoService.findAll());
+		}
 	}
 
 	@Override
@@ -96,10 +100,13 @@ public class ObjetivoGeneralAction extends BaseAction<ObjetivoGeneral, ObjetivoG
 		if (service.isNombreRepetido(form.getNombre(), form.getId())) {
 			errors.add("error", new ActionMessage("errors.unique", Utils.getMessage("sirius.objetivoGeneral.nombre.label")));
 		}
-		if (UPDATE.equals(form.getAction())) {
-			ObjetivoGeneral entity = service.findById(form.getId());
-			if (entity != null && proyectoService.isFinalizado(entity.getProyecto())) {
-				errors.add("error", new ActionMessage("errors.ProyectoFinalizado"));
+
+		if (proyectoService.isFinalizado(proyecto)) {
+			errors.add("error", new ActionMessage("errors.proyectoFinalizado"));
+		}
+		if (CREATE.equals(form.getAction())) {
+			if (proyectoService.isCierre(proyecto)) {
+				errors.add("error", new ActionMessage("errors.proyectoCierre"));
 			}
 		}
 		return errors;

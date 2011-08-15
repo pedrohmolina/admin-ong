@@ -19,5 +19,12 @@ public interface EstadoProyectoService extends BaseService<EstadoProyecto> {
 	 */
 	EstadoProyecto findDefault();
 
+	/**
+	 * Evalua si el estado cuyo id recibe por parametro es el estado de cierre
+	 * 
+	 * @param idEstado id del estado que se quiere evaluar
+	 * @return
+	 */
+	boolean isCierre(Integer idEstado);
 
 }

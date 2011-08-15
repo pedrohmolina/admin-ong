@@ -107,9 +107,9 @@ public class GastoActividadAction extends GastoAction {
 		Actividad actividad = actividadService.findById(Utils.parseInteger(form.getIdActividad()));
 		Proyecto proyecto = actividad.getProyecto();
 		if (proyectoService.isFinalizado(proyecto)) {
-			errors.add("error", new ActionMessage("errors.ProyectoFinalizado"));
+			errors.add("error", new ActionMessage("errors.proyectoFinalizado"));
 		} else if (actividadService.isSuspendida(actividad)) {
-			errors.add("error", new ActionMessage("errors.ActividadSuspendida"));
+			errors.add("error", new ActionMessage("errors.actividadSuspendida"));
 		} else  if (proyectoService.isIndividual(proyecto)) {
 			if (Utils.isNullOrEmpty(form.getIdProveedor())) {
 				errors.add("error", new ActionMessage("errors.required", Utils.getMessage("sirius.gasto.proveedor.label")));

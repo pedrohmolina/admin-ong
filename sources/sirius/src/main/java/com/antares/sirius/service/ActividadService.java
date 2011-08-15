@@ -28,10 +28,18 @@ public interface ActividadService extends BusinessEntityService<Actividad> {
 	boolean isNombreRepetido(String nombre, Integer id);
 
 	/**
-	 * Cambia el estado del proyecto al estado del id pasado por parametro. 
-	 * En caso que la transicion de estados no sea valida, no realiza ninguna modificacion sobre el proyecto
+	 * Evalua si la transicion de estados es válida
 	 * 
-	 * @param proyecto proyecto cuyo estado se quiere modificar
+	 * @param actividad actividad cuyo estado se quiere modificar
+	 * @param idEstado id del nuevo estado al que se quiere cambiar
+	 * @return
+	 */
+	boolean isTransicionValida(Actividad actividad, Integer idEstado);
+	
+	/**
+	 * Cambia el estado de la actividad al estado del id pasado por parametro. 
+	 * 
+	 * @param actividad actividad cuyo estado se quiere modificar
 	 * @param idEstado id del nuevo estado al que se quiere cambiar
 	 */
 	void saveCambioEstado(Actividad actividad, Integer idEstado);
@@ -53,6 +61,22 @@ public interface ActividadService extends BusinessEntityService<Actividad> {
 	boolean isSuspendida(Actividad actividad);
 	
 	/**
+	 * Determina si la actividad se encuentra cancelada
+	 * 
+	 * @param actividad
+	 * @return
+	 */
+	boolean isCancelada(Actividad actividad);
+	
+	/**
+	 * Determina si la actividad se encuentra cumplida
+	 * 
+	 * @param actividad
+	 * @return
+	 */
+	boolean isCumplida(Actividad actividad);
+	
+	/**
 	 * Devuelve todas las actividades pertenecientes al proyecto
 	 * 
 	 * @param proyecto proyecto
@@ -68,6 +92,13 @@ public interface ActividadService extends BusinessEntityService<Actividad> {
 	 */
 	Collection<Actividad> findAllNoSuspendidasByProyecto(Proyecto proyecto);
 	
+	/**
+	 * Devuelve todas las actividades correspondientes a los proyectos que no se encuentren finalizados.
+	 * 
+	 * @return
+	 */
+	Collection<Actividad> findAllNoFinalizados();
+
 	/**
 	 * Devuelve todas las actividades pertenecientes al objetivo general
 	 * 
@@ -92,4 +123,11 @@ public interface ActividadService extends BusinessEntityService<Actividad> {
 	 */
 	Collection<Actividad> findAllByMeta(Meta meta);
 
+	/**
+	 * Evalua si existen actividades que no se encuentren en un estado final (cumplidas o canceladas) para el proyecto.
+	 * 
+	 * @param proyecto
+	 * @return
+	 */
+	boolean existenActividadesNoFinalizadas(Proyecto proyecto);
 }

@@ -32,4 +32,12 @@ public interface MetaService extends BusinessEntityService<Meta> {
 	 */
 	Collection<Meta> findAllByProyecto(Proyecto proyecto);
 
+	/**
+	 * Devuelve todas las metas correspondientes a los proyectos que no se encuentren en cierre
+	 * ni hayan sido finalizados.
+	 * 
+	 * @return
+	 */
+	Collection<Meta> findAllNoFinalizadosNiCierre();
+
 }

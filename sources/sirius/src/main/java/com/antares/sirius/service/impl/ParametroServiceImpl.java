@@ -1,5 +1,7 @@
 package com.antares.sirius.service.impl;
 
+import static com.antares.commons.enums.ParametroEnum.ESTADO_ACTIVIDAD_CANCELADA;
+import static com.antares.commons.enums.ParametroEnum.ESTADO_ACTIVIDAD_CUMPLIDA;
 import static com.antares.commons.enums.ParametroEnum.ESTADO_ACTIVIDAD_LATENTE;
 import static com.antares.commons.enums.ParametroEnum.ESTADO_ACTIVIDAD_PROGRESO;
 import static com.antares.commons.enums.ParametroEnum.ESTADO_ACTIVIDAD_SUSPENDIDA;
@@ -65,6 +67,14 @@ public class ParametroServiceImpl extends BaseServiceImpl<Parametro, ParametroDA
 
 	public Integer findIdEstadoActividadSuspendida() {
 		return Utils.parseInteger(findValueByEnum(ESTADO_ACTIVIDAD_SUSPENDIDA));
+	}
+
+	public Integer findIdEstadoActividadCancelada() {
+		return Utils.parseInteger(findValueByEnum(ESTADO_ACTIVIDAD_CANCELADA));
+	}
+
+	public Integer findIdEstadoActividadCumplida() {
+		return Utils.parseInteger(findValueByEnum(ESTADO_ACTIVIDAD_CUMPLIDA));
 	}
 
 	public Integer findIdTipoGastoActividad() {

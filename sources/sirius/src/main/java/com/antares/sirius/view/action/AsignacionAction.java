@@ -1,5 +1,7 @@
 package com.antares.sirius.view.action;
 
+import static com.antares.commons.enums.ActionEnum.CREATE;
+
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -66,9 +68,14 @@ public class AsignacionAction extends BaseAction<Asignacion, AsignacionForm, Asi
 	@Override
 	protected void loadCollections(AsignacionForm form) {
 		form.setTiposAsignacion(tipoAsignacionService.findAll());
-		form.setProyectos(proyectoService.findAll());
-		form.setActividades(actividadService.findAll());
 		form.setPersonas(personaService.findAll());
+		if (CREATE.equals(form.getAction())) {
+			form.setProyectos(proyectoService.findAllNoFinalizados());
+			form.setActividades(actividadService.findAllNoFinalizados());
+		} else{
+			form.setProyectos(proyectoService.findAll());
+			form.setActividades(actividadService.findAll());
+		}
 	}
 
 	@Override
@@ -79,6 +86,14 @@ public class AsignacionAction extends BaseAction<Asignacion, AsignacionForm, Asi
 		TipoAsignacion tipoAsignacion = tipoAsignacionService.findById(Utils.parseInteger(form.getIdTipoAsignacion()));
 		if (service.isAsignacionRepetida(form.getId(), actividad, persona, tipoAsignacion)) {
 			errors.add("error", new ActionMessage("errors.asignacion"));
+		}
+
+		if (proyectoService.isFinalizado(actividad.getProyecto())) {
+			errors.add("error", new ActionMessage("errors.proyectoFinalizado"));
+		} else if (actividadService.isCancelada(actividad)) {
+			errors.add("error", new ActionMessage("errors.actividadCancelada"));
+		} else if (actividadService.isCumplida(actividad)) {
+			errors.add("error", new ActionMessage("errors.actividadCumplida"));
 		}
 		return errors;
 	}

@@ -32,9 +32,9 @@ public class ProyectoDAOImpl extends BusinessEntityDAOImpl<Proyecto> implements 
 	}
 
 	@SuppressWarnings("unchecked")
-	public Collection<Proyecto> findAllExceptEstado(EstadoProyecto estadoProyecto) {
+	public Collection<Proyecto> findAllExceptEstados(EstadoProyecto ... estadoProyecto) {
 		Criteria crit = buildCriteria();
-		crit.add(Restrictions.ne("estadoProyecto", estadoProyecto));
+		crit.add(Restrictions.not(Restrictions.in("estadoProyecto", estadoProyecto)));
 		return crit.list();
 	}
 

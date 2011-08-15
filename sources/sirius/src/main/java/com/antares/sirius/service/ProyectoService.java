@@ -22,12 +22,27 @@ public interface ProyectoService extends BusinessEntityService<Proyecto> {
 	Collection<Proyecto> findAllNoFinalizados();
 
 	/**
+	 * Devuelve todos los proyectos todavia no finalizados ni en cierre
+	 * 
+	 * @return
+	 */
+	Collection<Proyecto> findAllNoFinalizadosNiCierre();
+
+	/**
 	 * Determina si el proyecto se encuentra finalizado
 	 * 
 	 * @param proyecto
 	 * @return
 	 */
 	boolean isFinalizado(Proyecto proyecto);
+
+	/**
+	 * Determina si el proyecto se encuentra en cierre
+	 * 
+	 * @param proyecto
+	 * @return
+	 */
+	boolean isCierre(Proyecto proyecto);
 
 	/**
 	 * Valida que el nombre no este repetido otra entidad con distinto id
@@ -39,8 +54,16 @@ public interface ProyectoService extends BusinessEntityService<Proyecto> {
 	boolean isNombreRepetido(String nombre, Integer id);
 
 	/**
+	 * Evalua si la transicion de estados es válida
+	 * 
+	 * @param proyecto proyecto cuyo estado se quiere modificar
+	 * @param idEstado id del nuevo estado al que se quiere cambiar
+	 * @return
+	 */
+	boolean isTransicionValida(Proyecto proyecto, Integer idEstado);
+	
+	/**
 	 * Cambia el estado del proyecto al estado del id pasado por parametro. 
-	 * En caso que la transicion de estados no sea valida, no realiza ninguna modificacion sobre el proyecto
 	 * 
 	 * @param proyecto proyecto cuyo estado se quiere modificar
 	 * @param idEstado id del nuevo estado al que se quiere cambiar
@@ -62,4 +85,5 @@ public interface ProyectoService extends BusinessEntityService<Proyecto> {
 	 * @return
 	 */
 	boolean isAgrupado(Proyecto proyecto);
+
 }

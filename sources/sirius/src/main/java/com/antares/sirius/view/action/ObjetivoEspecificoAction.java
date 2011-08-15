@@ -1,6 +1,6 @@
 package com.antares.sirius.view.action;
 
-import static com.antares.commons.enums.ActionEnum.UPDATE;
+import static com.antares.commons.enums.ActionEnum.CREATE;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -55,7 +55,7 @@ public class ObjetivoEspecificoAction extends BaseAction<ObjetivoEspecifico, Obj
 		Integer id = new Integer(request.getParameter("id"));
 		ObjetivoEspecifico entity = service.findById(id);
 		if (entity != null && entity.isActivo() && proyectoService.isFinalizado(entity.getProyecto())) {
-			forward = sendMessage(request, mapping, "errors.ProyectoFinalizado", "/objetivo-especifico/objetivo-especifico-query.do?method=lastQuery");
+			forward = sendMessage(request, mapping, "errors.proyectoFinalizado", "/objetivo-especifico/objetivo-especifico-query.do?method=lastQuery");
 		} else {
 			forward = super.initUpdate(mapping, form, request, response);
 		}
@@ -70,7 +70,7 @@ public class ObjetivoEspecificoAction extends BaseAction<ObjetivoEspecifico, Obj
 		ObjetivoEspecifico entity = service.findById(id);
 		if (entity != null) {
 			if (proyectoService.isFinalizado(entity.getProyecto())) {
-				forward = sendMessage(request, mapping, "errors.ProyectoFinalizado", "/objetivo-especifico/objetivo-especifico-query.do?method=lastQuery");
+				forward = sendMessage(request, mapping, "errors.proyectoFinalizado", "/objetivo-especifico/objetivo-especifico-query.do?method=lastQuery");
 			} else if (gastoService.existenGastosObjetivoEspecifico(entity)) {
 				forward = sendMessage(request, mapping, "errors.existenGastos", "/objetivo-especifico/objetivo-especifico-query.do?method=lastQuery");
 			} else {
@@ -85,7 +85,11 @@ public class ObjetivoEspecificoAction extends BaseAction<ObjetivoEspecifico, Obj
 
 	@Override
 	protected void loadCollections(ObjetivoEspecificoForm form) {
-		form.setObjetivosGenerales(objetivoGeneralService.findAll());
+		if (CREATE.equals(form.getAction())) {
+			form.setObjetivosGenerales(objetivoGeneralService.findAllNoFinalizadosNiCierre());
+		} else {
+			form.setObjetivosGenerales(objetivoGeneralService.findAll());
+		}
 	}
 
 	@Override
@@ -98,10 +102,13 @@ public class ObjetivoEspecificoAction extends BaseAction<ObjetivoEspecifico, Obj
 		if (service.isNombreRepetido(form.getNombre(), form.getId())) {
 			errors.add("error", new ActionMessage("errors.unique", Utils.getMessage("sirius.objetivoEspecifico.nombre.label")));
 		}
-		if (UPDATE.equals(form.getAction())) {
-			ObjetivoEspecifico entity = service.findById(form.getId());
-			if (entity != null && proyectoService.isFinalizado(entity.getProyecto())) {
-				errors.add("error", new ActionMessage("errors.ProyectoFinalizado"));
+
+		if (proyectoService.isFinalizado(objetivoGeneral.getProyecto())) {
+			errors.add("error", new ActionMessage("errors.proyectoFinalizado"));
+		}
+		if (CREATE.equals(form.getAction())) {
+			if (proyectoService.isCierre(objetivoGeneral.getProyecto())) {
+				errors.add("error", new ActionMessage("errors.proyectoCierre"));
 			}
 		}
 		return errors;

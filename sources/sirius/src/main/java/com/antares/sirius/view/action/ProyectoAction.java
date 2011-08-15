@@ -26,6 +26,7 @@ import com.antares.sirius.model.Financiador;
 import com.antares.sirius.model.Persona;
 import com.antares.sirius.model.Proyecto;
 import com.antares.sirius.model.TipoAgrupamiento;
+import com.antares.sirius.service.ActividadService;
 import com.antares.sirius.service.AreaTematicaService;
 import com.antares.sirius.service.EstadoProyectoService;
 import com.antares.sirius.service.FinanciadorService;
@@ -43,6 +44,7 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 	private EstadoProyectoService estadoProyectoService;
 	private TipoAgrupamientoService tipoAgrupamientoService;
 	private GastoService gastoService;
+	private ActividadService actividadService;
 
 	@Override
 	public ProyectoFilter createFilter(ProyectoForm form) {
@@ -134,7 +136,7 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 		Integer id = new Integer(request.getParameter("id"));
 		Proyecto entity = service.findById(id);
 		if (entity != null && entity.isActivo() && service.isFinalizado(entity)) {
-			forward = sendMessage(request, mapping, "errors.ProyectoFinalizado", "/proyecto/proyecto-query.do?method=lastQuery");
+			forward = sendMessage(request, mapping, "errors.proyectoFinalizado", "/proyecto/proyecto-query.do?method=lastQuery");
 		} else {
 			forward = super.initUpdate(mapping, form, request, response);
 		}
@@ -149,7 +151,7 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 		Proyecto entity = service.findById(id);
 		if (entity != null) {
 			if (service.isFinalizado(entity)) {
-				forward = sendMessage(request, mapping, "errors.ProyectoFinalizado", "/proyecto/proyecto-query.do?method=lastQuery");
+				forward = sendMessage(request, mapping, "errors.proyectoFinalizado", "/proyecto/proyecto-query.do?method=lastQuery");
 			} else if (gastoService.existenGastosProyecto(entity)) {
 				forward = sendMessage(request, mapping, "errors.existenGastos", "/proyecto/proyecto-query.do?method=lastQuery");
 			} else {
@@ -211,7 +213,7 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 		}
 		if (UPDATE.equals(form.getAction())) {
 			if (service.isFinalizado(service.findById(form.getId()))) {
-				errors.add("error", new ActionMessage("errors.ProyectoFinalizado"));
+				errors.add("error", new ActionMessage("errors.proyectoFinalizado"));
 			}
 		}
 		return errors;
@@ -220,16 +222,28 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 	public ActionForward cambiarEstado(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String strId = request.getParameter("id");
 		String strIdEstado = request.getParameter("idEstado");
-		ActionForward forward;
+		ActionForward forward = null;
 		try {
 			if (Utils.isNotNullNorEmpty(strId) && Utils.isNotNullNorEmpty(strIdEstado)) {
 				Proyecto proyecto = service.findById(Utils.parseInteger(strId));
-				Integer idEstado = new Integer(strIdEstado);
-				service.saveCambioEstado(proyecto, idEstado);
+				if (proyecto != null) {
+					Integer idEstado = new Integer(strIdEstado);
+					if (service.isTransicionValida(proyecto, idEstado)) {
+						if (estadoProyectoService.isCierre(idEstado) && actividadService.existenActividadesNoFinalizadas(proyecto)) {
+							forward = sendMessage(request, mapping, "errors.proyectoCierre.actividadesNoFinalizadas", "/proyecto/proyecto-query.do?method=lastQuery");
+						} else {
+							service.saveCambioEstado(proyecto, idEstado);
+						}
+					}
+				} else {
+					forward = mapping.findForward("restrictedAccess"); 
+				}
 			}
-			forward = query(mapping, form, request, response);
 		} catch (RestrictedAccessException e) {
 			forward = mapping.findForward("restrictedAccess"); 
+		}
+		if (forward == null) {
+			forward = query(mapping, form, request, response);
 		}
 		return forward;
 	}
@@ -256,6 +270,10 @@ public class ProyectoAction extends BaseAction<Proyecto, ProyectoForm, ProyectoS
 
 	public void setGastoService(GastoService gastoService) {
 		this.gastoService = gastoService;
+	}
+
+	public void setActividadService(ActividadService actividadService) {
+		this.actividadService = actividadService;
 	}
 
 }

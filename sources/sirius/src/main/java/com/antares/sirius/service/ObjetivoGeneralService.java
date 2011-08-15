@@ -32,4 +32,12 @@ public interface ObjetivoGeneralService extends BusinessEntityService<ObjetivoGe
 	 */
 	Collection<ObjetivoGeneral> findAllByProyecto(Proyecto proyecto);
 
+	/**
+	 * Devuelve todos los objetivos generales correspondientes a los proyectos que no se encuentren en cierre
+	 * ni hayan sido finalizados.
+	 * 
+	 * @return
+	 */
+	Collection<ObjetivoGeneral> findAllNoFinalizadosNiCierre();
+
 }
