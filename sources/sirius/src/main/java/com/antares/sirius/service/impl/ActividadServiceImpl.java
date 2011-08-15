@@ -1,6 +1,7 @@
 package com.antares.sirius.service.impl;
 
 import java.util.Collection;
+import java.util.Date;
 
 import com.antares.commons.service.impl.BusinessEntityServiceImpl;
 import com.antares.sirius.dao.ActividadDAO;
@@ -51,6 +52,9 @@ public class ActividadServiceImpl extends BusinessEntityServiceImpl<Actividad, A
 	public void saveCambioEstado(Actividad actividad, Integer idEstado) {
 		EstadoActividad nuevoEstado = estadoActividadService.findById(idEstado);
 		actividad.setEstadoActividad(nuevoEstado);
+		if (idEstado.equals(parametroService.findIdEstadoActividadCancelada()) || idEstado.equals(parametroService.findIdEstadoActividadCumplida())) {
+			actividad.setFechaFinalizacion(new Date());
+		}
 		dao.save(actividad);
 	}
 

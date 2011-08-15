@@ -18,6 +18,8 @@ import net.sf.json.JSONObject;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.ActionMessages;
 import org.apache.struts.action.DynaActionForm;
 import org.apache.struts.actions.DispatchAction;
 
@@ -54,15 +56,19 @@ public class PresupuestoAction extends DispatchAction {
 			Integer idProyecto = Utils.parseInteger(idProyectoStr);
 			Proyecto proyecto = proyectoService.findById(idProyecto);
 			if (proyecto != null && proyecto.isActivo()) {
-				List<Actividad> actividades = (List<Actividad>)actividadService.findAllByProyecto(proyecto);
-				List<Rubro> rubros = (List<Rubro>)rubroService.findPrimerNivel();
-	
-				dyna.set("idProyecto", idProyecto);
-				dyna.set("nombreProyecto", proyecto.getNombre());
-				dyna.set("actividades", actividades);
-				dyna.set("rubros", rubros);
-				dyna.set("nombresColumnas", nombresColumnas(rubros));
-				forward = mapping.findForward("show");
+				if (!proyectoService.isFinalizado(proyecto)) {
+					List<Actividad> actividades = (List<Actividad>)actividadService.findAllByProyecto(proyecto);
+					List<Rubro> rubros = (List<Rubro>)rubroService.findPrimerNivel();
+		
+					dyna.set("idProyecto", idProyecto);
+					dyna.set("nombreProyecto", proyecto.getNombre());
+					dyna.set("actividades", actividades);
+					dyna.set("rubros", rubros);
+					dyna.set("nombresColumnas", nombresColumnas(rubros));
+					forward = mapping.findForward("show");
+				} else {
+					forward = sendMessage(request, mapping, "errors.proyectoFinalizado", "/proyecto/proyecto-query.do?method=lastQuery");
+				}
 			}
 		}
 		return forward;
@@ -156,8 +162,12 @@ public class PresupuestoAction extends DispatchAction {
 			// Esto es para revalidar que el usuario tenga permisos para ver el proyecto y que no haya sido dado de baja
 			Proyecto proyecto = proyectoService.findById(presupuestos.getProyecto().getId());
 			if (proyecto != null && proyecto.isActivo()) {
-				presupuestoService.saveAll(presupuestos);
-				forward = mapping.findForward("success"); 
+				if (!proyectoService.isFinalizado(proyecto)) {
+					presupuestoService.saveAll(presupuestos);
+					forward = mapping.findForward("success");
+				} else {
+					forward = sendMessage(request, mapping, "errors.proyectoFinalizado", "/proyecto/proyecto-query.do?method=lastQuery");
+				}
 			}
 		}
 
@@ -329,6 +339,18 @@ public class PresupuestoAction extends DispatchAction {
 		response.setContentType("text/html; charset=iso-8859-1");
 		response.getOutputStream().print(jsonMap.toString());
 		return null;
+	}
+
+	protected ActionForward sendMessage(HttpServletRequest request, ActionMapping mapping, String messageKey, String backUrl) {
+		if (messageKey != null) {
+			ActionMessages messages = new ActionMessages();
+			messages.add("message", new ActionMessage(messageKey));
+			saveMessages(request, messages);
+		}
+		if (backUrl != null) {
+			request.setAttribute("backUrl", backUrl);
+		}
+		return mapping.findForward("message");
 	}
 
 	public void setPresupuestoService(PresupuestoService presupuestoService) {

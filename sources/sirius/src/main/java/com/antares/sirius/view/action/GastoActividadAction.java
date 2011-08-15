@@ -110,6 +110,8 @@ public class GastoActividadAction extends GastoAction {
 			errors.add("error", new ActionMessage("errors.proyectoFinalizado"));
 		} else if (actividadService.isSuspendida(actividad)) {
 			errors.add("error", new ActionMessage("errors.actividadSuspendida"));
+		} else if (actividad.getFechaFinalizacion() != null && actividad.getFechaFinalizacion().before(Utils.parseDate(form.getFecha()))) {
+			errors.add("error", new ActionMessage("errors.fechaFinalizacion", Utils.getMessage("sirius.gasto.fecha.label"), Utils.formatDate(actividad.getFechaFinalizacion())));
 		} else  if (proyectoService.isIndividual(proyecto)) {
 			if (Utils.isNullOrEmpty(form.getIdProveedor())) {
 				errors.add("error", new ActionMessage("errors.required", Utils.getMessage("sirius.gasto.proveedor.label")));
