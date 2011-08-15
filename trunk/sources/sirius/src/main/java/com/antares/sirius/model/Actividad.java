@@ -31,6 +31,7 @@ public class Actividad extends Ponderable {
 	private String observaciones;
 	private Date fechaInicio;
 	private Date fechaFin;
+	private Date fechaFinalizacion;
 	private Double completitud;
 
 	public Meta getMeta() {
@@ -95,6 +96,14 @@ public class Actividad extends Ponderable {
 
 	public void setEstadoActividad(EstadoActividad estadoActividad) {
 		this.estadoActividad = estadoActividad;
+	}
+
+	public Date getFechaFinalizacion() {
+		return fechaFinalizacion;
+	}
+
+	public void setFechaFinalizacion(Date fechaFinalizacion) {
+		this.fechaFinalizacion = fechaFinalizacion;
 	}
 
 	public Proyecto getProyecto() {
