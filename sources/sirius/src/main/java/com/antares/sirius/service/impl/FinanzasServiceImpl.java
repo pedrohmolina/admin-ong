@@ -102,6 +102,7 @@ public class FinanzasServiceImpl implements FinanzasService {
 			MontoDTO montoFinanzas = finanzas.get(monto.getId(), monto.getIdRubro());
 			if (montoFinanzas == null) {
 				montoFinanzas = new MontoDTO();
+				montoFinanzas.setMontoPresupuestado(0D);
 				finanzas.putMonto(monto);
 			}
 			montoFinanzas.setMontoGastado(monto.getMontoGastado());
