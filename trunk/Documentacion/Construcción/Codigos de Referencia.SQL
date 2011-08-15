@@ -98,6 +98,8 @@ INSERT INTO parametro (id, nombre, valor, descripcion) VALUES (11, 'ID_TIPO_PRES
 INSERT INTO parametro (id, nombre, valor, descripcion) VALUES (12, 'ID_ESTADO_PROYECTO_FINALIZADO', '6', 'Id de la tabla estadoProyecto correspondiente al registro que representa el estado Finalizado');
 INSERT INTO parametro (id, nombre, valor, descripcion) VALUES (13, 'ID_ESTADO_ACTIVIDAD_SUSPENDIDA', '3', 'Id de la tabla estadoActividad correspondiente al registro que representa el estado Suspendida');
 INSERT INTO parametro (id, nombre, valor, descripcion) VALUES (14, 'ID_ESTADO_PROYECTO_CIERRE', '5', 'Id de la tabla estadoProyecto correspondiente al registro que representa el estado Cierre');
+INSERT INTO parametro (id, nombre, valor, descripcion) VALUES (15, 'ID_ESTADO_ACTIVIDAD_CANCELADA', '4', 'Id de la tabla estadoActividad correspondiente al registro que representa el estado Cancelada');
+INSERT INTO parametro (id, nombre, valor, descripcion) VALUES (16, 'ID_ESTADO_ACTIVIDAD_CUMPLIDA', '5', 'Id de la tabla estadoActividad correspondiente al registro que representa el estado Cumplida');
 
 -- Tipo de Agrupamiento
 INSERT INTO tipoagrupamiento (id,descripcion) VALUES (1,'Individual');
