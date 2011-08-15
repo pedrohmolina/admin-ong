@@ -20,7 +20,7 @@ import com.antares.sirius.model.TipoFinanciador;
  *
  */
 @SuppressWarnings("serial")
-public class ReporteFinanciadorForm extends ActionForm{
+public class ReporteFinanciadorForm extends ActionForm {
 
 	private Collection<FormatoReporteEnum> formatosReporte;
 	private String formatoReporte;
