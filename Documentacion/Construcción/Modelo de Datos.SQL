@@ -379,7 +379,7 @@ CREATE TABLE notificacion
 	activo BOOL NOT NULL,
 	PRIMARY KEY (id),
 	UNIQUE UQ_notificacion_id(id),
-        CONSTRAINT FK_notificacion_proyecto FOREIGN KEY (idProyecto) REFERENCES proyecto(id),
+        CONSTRAINT FK_notificacion_proyecto FOREIGN KEY (idProyecto) REFERENCES proyecto(id)
 ) 
 ;
 
