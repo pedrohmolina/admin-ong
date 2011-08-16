@@ -7,6 +7,7 @@ import java.util.Collection;
 import com.antares.commons.service.impl.BusinessEntityServiceImpl;
 import com.antares.sirius.dao.GastoDAO;
 import com.antares.sirius.dto.MontoDTO;
+import com.antares.sirius.filter.GastoFilter;
 import com.antares.sirius.model.Actividad;
 import com.antares.sirius.model.Gasto;
 import com.antares.sirius.model.Meta;
@@ -17,6 +18,7 @@ import com.antares.sirius.model.Rubro;
 import com.antares.sirius.service.GastoService;
 import com.antares.sirius.service.ParametroService;
 import com.antares.sirius.service.ProyectoService;
+import com.antares.sirius.service.TipoGastoService;
 
 /**
  * Implementacion de la interfaz GastoService.
@@ -27,6 +29,7 @@ import com.antares.sirius.service.ProyectoService;
  */
 public class GastoServiceImpl extends BusinessEntityServiceImpl<Gasto, GastoDAO> implements GastoService {
 
+	private TipoGastoService tipoGastoService;
 	private ParametroService parametroService;
 	private ProyectoService proyectoService;
 
@@ -139,12 +142,47 @@ public class GastoServiceImpl extends BusinessEntityServiceImpl<Gasto, GastoDAO>
 		return dao.obtainMontosByProyectoAndRubro(proyecto, rubros);
 	}
 
+	@Override
+	public Collection<Gasto> findAllGastosProyectoNoConfirmados() {
+		GastoFilter filter = new GastoFilter();
+		filter.setConfirmado(Boolean.FALSE);
+		filter.setTipoGasto(tipoGastoService.findTipoGastoProyecto());
+		findByFilter(filter);
+		return findByFilter(filter);
+	}
+
+	@Override
+	public Collection<Gasto> findAllGastosActividadNoConfirmados() {
+		GastoFilter filter = new GastoFilter();
+		filter.setConfirmado(Boolean.FALSE);
+		filter.setTipoGasto(tipoGastoService.findTipoGastoActividad());
+		findByFilter(filter);
+		return findByFilter(filter);
+	}
+
+	@Override
+	public boolean hayGastosSinConfirmar() {
+		return findAllGastosProyectoNoConfirmados().size() > 0 || findAllGastosActividadNoConfirmados().size() > 0;
+	}
+
+	public Double gastoProyecto(Proyecto proyecto, Rubro rubro) {
+		return dao.gastosProyecto(proyecto, rubro);
+	}
+
+	public Double gastoActividad(Actividad actividad, Rubro rubro) {
+		return dao.gastosActividad(actividad, rubro);
+	}
+
 	public void setProyectoService(ProyectoService proyectoService) {
 		this.proyectoService = proyectoService;
 	}
 
 	public void setParametroService(ParametroService parametroService) {
 		this.parametroService = parametroService;
+	}
+
+	public void setTipoGastoService(TipoGastoService tipoGastoService) {
+		this.tipoGastoService = tipoGastoService;
 	}
 
 }

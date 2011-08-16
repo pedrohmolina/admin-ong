@@ -1,5 +1,7 @@
 package com.antares.sirius.dao.impl;
 
+import java.util.Collection;
+
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
@@ -10,6 +12,7 @@ import com.antares.commons.filter.Filter;
 import com.antares.commons.util.Utils;
 import com.antares.sirius.dao.UsuarioDAO;
 import com.antares.sirius.filter.UsuarioFilter;
+import com.antares.sirius.model.Acceso;
 import com.antares.sirius.model.Usuario;
 
 /**
@@ -41,6 +44,14 @@ public class UsuarioDAOImpl extends BusinessEntityDAOImpl<Usuario> implements Us
 		Criteria crit = buildCriteria();
 		crit.add(ilike("username", username, MatchMode.EXACT));
 		return (Usuario)crit.uniqueResult();
+	}
+
+	@SuppressWarnings("unchecked")
+	public Collection<Usuario> usuariosByAcceso(Acceso acceso) {
+		Criteria crit = buildCriteria();
+		crit.createAlias("perfil", "perfil");
+		crit.createCriteria("perfil.roles").createCriteria("accesos").add(Restrictions.eq("id", acceso.getId()));
+		return (Collection<Usuario>)crit.list();
 	}
 
 }

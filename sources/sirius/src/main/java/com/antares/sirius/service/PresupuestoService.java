@@ -102,4 +102,22 @@ public interface PresupuestoService extends BaseService<Presupuesto> {
 	 */
 	Collection<MontoDTO> obtainMontosByActividadAndRubro(Actividad actividad, Rubro[] rubros);
 
+	/**
+	 * Devuelve el monto presupuestado para gastos de proyecto
+	 * 
+	 * @param proyecto proyecto
+	 * @param rubro rubro del presupuesto (opcional)
+	 * @return
+	 */
+	Double presupuestoProyecto(Proyecto proyecto, Rubro rubro);
+
+	/**
+	 * Devuelve el monto presupuestado para gastos de la actividad
+	 * 
+	 * @param actividad actividad
+	 * @param rubro rubro del presupuesto (opcional)
+	 * @return
+	 */
+	Double presupuestoActividad(Actividad actividad, Rubro rubro);
+
 }

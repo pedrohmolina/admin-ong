@@ -179,6 +179,24 @@ public class PresupuestoServiceImpl extends BaseServiceImpl<Presupuesto, Presupu
 		return dao.obtainMontosByProyectoAndRubro(proyecto, rubros);
 	}
 
+	public Double presupuestoProyecto(Proyecto proyecto, Rubro rubro) {
+		Double monto = 0D;
+		Presupuesto presupuesto = dao.findPresupuestoProyecto(proyecto, rubro);
+		if (presupuesto != null) {
+			monto = presupuesto.getMonto();
+		}
+		return monto;
+	}
+
+	public Double presupuestoActividad(Actividad actividad, Rubro rubro) {
+		Double monto = 0D;
+		Presupuesto presupuesto = dao.findPresupuestoActividad(actividad, rubro);
+		if (presupuesto != null) {
+			monto = presupuesto.getMonto();
+		}
+		return monto;
+	}
+
 	public void setTipoPresupuestoService(TipoPresupuestoService tipoPresupuestoService) {
 		this.tipoPresupuestoService = tipoPresupuestoService;
 	}

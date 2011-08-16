@@ -50,7 +50,7 @@
 		</menu:submenu>
 	</authz:authorize>
 
-	<authz:authorize ifAnyGranted="ENTIDAD_GASTO_ORGANIZACION-LISTADO, ENTIDAD_GASTO_PROYECTO-LISTADO, ENTIDAD_GASTO_ACTIVIDAD-LISTADO, ENTIDAD_GASTO_ACTIVIDAD-ALTA, ENTIDAD_GASTO_ACTIVIDAD-HISTORICO">
+	<authz:authorize ifAnyGranted="ENTIDAD_GASTO_ORGANIZACION-LISTADO, ENTIDAD_GASTO_PROYECTO-LISTADO, ENTIDAD_GASTO_ACTIVIDAD-LISTADO, ENTIDAD_GASTO_ACTIVIDAD-ALTA, ENTIDAD_GASTO_ACTIVIDAD-HISTORICO, ENTIDAD_GASTO_ACTIVIDAD-CONFIRMAR, ENTIDAD_GASTO_PROYECTO-CONFIRMAR">
 		<menu:submenu top="true" labelKey="sirius.menu.gastos.label" style="border-right: solid 1px;border-color: #B11116;">
 			<authz:authorize ifAllGranted="ENTIDAD_GASTO_ORGANIZACION-LISTADO">
 				<menu:item labelKey="sirius.gasto.gastoOrganizacion.label"><c:url value="/gasto/gasto-organizacion-query.do?method=initQuery"/></menu:item>
@@ -104,6 +104,7 @@
 			<menu:item labelKey="sirius.regla.label"><c:url value="/regla/regla-query.do?method=initQuery"/></menu:item>
 		</authz:authorize>
 		<menu:item labelKey="sirius.usuario.cambiarPassword.label"><c:url value="/usuario/usuario-password-form.do?method=initCambiarPassword"/></menu:item>
+		<menu:item labelKey="sirius.notificacion.label"><c:url value="/notificacion/notificacion-query.do?method=queryTodas"/></menu:item>
 		<menu:item label="Logout"><c:url value="/public/logout.do"/></menu:item>		
 	</menu:submenu>
 

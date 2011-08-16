@@ -162,6 +162,26 @@ public class PresupuestoDAOImpl extends GenericDAOImpl<Presupuesto> implements P
 		return (Collection<MontoDTO>)crit.list();
 	}
 
+	public Presupuesto findPresupuestoProyecto(Proyecto proyecto, Rubro rubro) {
+		Criteria crit = buildCriteria();
+		crit.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		crit.add(Restrictions.eq("proyecto", proyecto));
+		if (rubro != null) {
+			crit.add(Restrictions.eq("rubro", rubro));
+		}
+		return (Presupuesto)crit.uniqueResult();
+	}
+
+	public Presupuesto findPresupuestoActividad(Actividad actividad, Rubro rubro) {
+		Criteria crit = buildCriteria();
+		crit.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		crit.add(Restrictions.eq("actividad", actividad));
+		if (rubro != null) {
+			crit.add(Restrictions.eq("rubro", rubro));
+		}
+		return (Presupuesto)crit.uniqueResult();
+	}
+
 	@Override
 	public void save(Presupuesto presupuesto) {
 		if (presupuesto.getId() != null) {

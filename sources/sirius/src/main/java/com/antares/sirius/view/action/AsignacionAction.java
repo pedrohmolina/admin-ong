@@ -25,6 +25,7 @@ import com.antares.sirius.model.Proyecto;
 import com.antares.sirius.model.TipoAsignacion;
 import com.antares.sirius.service.ActividadService;
 import com.antares.sirius.service.AsignacionService;
+import com.antares.sirius.service.NotificacionService;
 import com.antares.sirius.service.PersonaService;
 import com.antares.sirius.service.ProyectoService;
 import com.antares.sirius.service.TipoAsignacionService;
@@ -36,6 +37,7 @@ public class AsignacionAction extends BaseAction<Asignacion, AsignacionForm, Asi
 	private ProyectoService proyectoService;
 	private ActividadService actividadService;
 	private PersonaService personaService;
+	private NotificacionService notificacionService;
 
 	@Override
 	public AsignacionFilter createFilter(AsignacionForm form) {
@@ -65,6 +67,41 @@ public class AsignacionAction extends BaseAction<Asignacion, AsignacionForm, Asi
 		}
 	}
 
+	@Override
+	public ActionForward save(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ActionForward forward = super.save(mapping, form, request, response);
+		AsignacionForm viewForm = (AsignacionForm)form;
+
+		// Si la creacion fue exitosa, se envia una notificacion
+		if (viewForm.getAction().equals(CREATE) && forward.equals(mapping.findForward("successCreate"))) {
+			Persona persona = personaService.findById(Utils.parseInteger(viewForm.getIdPersona()));
+			Actividad actividad = actividadService.findById(Utils.parseInteger(viewForm.getIdActividad()));
+			String msg = getResources(request).getMessage("sirius.notificacion.asignacion", actividad.getNombre(), actividad.getProyecto().getNombre());
+			notificacionService.ejecutarNotificacion(persona.getUsuario(), actividad.getProyecto(), msg);
+		}
+		return forward;
+	}
+	
+	@Override
+	public ActionForward remove(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ActionForward forward;
+		Integer id = new Integer(request.getParameter("id"));
+		Asignacion entity = service.findById(id);
+		if (entity != null) {
+			service.delete(entity);
+			
+			// Se envia una notificacion avisando que la persona ya no se encuentra asignada a la actividad
+			Actividad actividad = entity.getActividad();
+			String msg = getResources(request).getMessage("sirius.notificacion.desasignacion", actividad.getNombre(), actividad.getProyecto().getNombre());
+			notificacionService.ejecutarNotificacion(entity.getPersona().getUsuario(), actividad.getProyecto(), msg);
+
+			forward = query(mapping, form, request, response);
+		} else {
+			forward = mapping.findForward("restrictedAccess"); 
+		}
+		return forward;
+	}
+	
 	@Override
 	protected void loadCollections(AsignacionForm form) {
 		form.setTiposAsignacion(tipoAsignacionService.findAll());
@@ -134,6 +171,10 @@ public class AsignacionAction extends BaseAction<Asignacion, AsignacionForm, Asi
 
 	public void setProyectoService(ProyectoService proyectoService) {
 		this.proyectoService = proyectoService;
+	}
+
+	public void setNotificacionService(NotificacionService notificacionService) {
+		this.notificacionService = notificacionService;
 	}
 
 }

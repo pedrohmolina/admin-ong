@@ -200,6 +200,12 @@
 		<put name="body" value="/WEB-INF/meta/meta-view.jsp" />
 	</definition>
 
+	<!-- Notificacion -->
+	<definition name=".abmNotificacionQuery" extends="mainLayout">
+		<put name="title" value="Notificaciones" />
+		<put name="body" value="/WEB-INF/notificacion/notificacion-query.jsp" />
+	</definition>
+
 	<!-- Objetivo Especifico -->
 	<definition name=".abmObjetivoEspecificoQuery" extends="mainLayout">
 		<put name="title" value="Administración de Objetivos Especificos" />

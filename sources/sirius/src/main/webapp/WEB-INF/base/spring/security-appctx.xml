@@ -28,7 +28,7 @@
         <property name="accessDecisionManager" ref="accessDecisionManager"/>
          <property name="objectDefinitionSource">
             <value>
-            	/base/home_init.do.*=APLICACION-LOGIN
+            	/base/home-init.do.*=APLICACION-LOGIN
             	
                 /actividad/(.*)initCreate.*=ENTIDAD_ACTIVIDAD-ALTA
                 /actividad/(.*)view.*=ENTIDAD_ACTIVIDAD-DETALLE
@@ -291,9 +291,8 @@
     <bean id="authenticationProcessingFilter" class="org.acegisecurity.ui.webapp.AuthenticationProcessingFilter">
         <property name="authenticationManager" ref="authenticationManager"/>
         <property name="authenticationFailureUrl" value="/public/login.do?error=true"/>
-        <property name="defaultTargetUrl" value="/base/home_init.do"/><!--
-        <property name="alwaysUseDefaultTargetUrl" value="true"/>
-        --><property name="filterProcessesUrl" value="/j_security_check_acegi"/>
+        <property name="defaultTargetUrl" value="/base/home-init.do"/>
+        <property name="filterProcessesUrl" value="/j_security_check_acegi"/>
         <property name="rememberMeServices" ref="rememberMeServices"/>
     </bean>
 

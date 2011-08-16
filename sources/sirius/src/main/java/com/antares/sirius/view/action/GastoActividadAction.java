@@ -3,6 +3,7 @@ package com.antares.sirius.view.action;
 import static com.antares.commons.enums.ActionEnum.CREATE;
 import static com.antares.sirius.base.Constants.ACCESO_ADMIN_GASTOS_ACTIVIDAD;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashMap;
@@ -25,16 +26,21 @@ import com.antares.sirius.model.Actividad;
 import com.antares.sirius.model.Gasto;
 import com.antares.sirius.model.Persona;
 import com.antares.sirius.model.Proyecto;
+import com.antares.sirius.model.Rubro;
 import com.antares.sirius.service.ActividadService;
 import com.antares.sirius.service.AsignacionService;
+import com.antares.sirius.service.NotificacionService;
+import com.antares.sirius.service.PresupuestoService;
 import com.antares.sirius.service.ProyectoService;
 import com.antares.sirius.view.form.GastoForm;
 
 public class GastoActividadAction extends GastoAction {
 
-	protected ProyectoService proyectoService;
-	protected ActividadService actividadService;
-	protected AsignacionService asignacionService;
+	private ProyectoService proyectoService;
+	private ActividadService actividadService;
+	private AsignacionService asignacionService;
+	private PresupuestoService presupuestoService;
+	private NotificacionService notificacionService;
 
 	@Override
 	protected Filter<Gasto> createFilter(GastoForm form) {
@@ -80,6 +86,27 @@ public class GastoActividadAction extends GastoAction {
 		}
 	}
 
+	@Override
+	public ActionForward save(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ActionForward forward = super.save(mapping, form, request, response);
+		GastoForm viewForm = (GastoForm)form;
+
+		// Si la creacion fue exitosa, se envia una notificacion
+		if (viewForm.getAction().equals(CREATE) && forward.equals(mapping.findForward("successCreate"))) {
+			Rubro rubro = rubroService.findById(Utils.parseInteger(viewForm.getIdRubro())).getRubroPrimerNivel();
+			Actividad actividad = actividadService.findById(Utils.parseInteger(viewForm.getIdActividad()));
+			Double montoPresupuestado = presupuestoService.presupuestoActividad(actividad, rubro);
+			Double montoGastado = service.gastoActividad(actividad, rubro);
+			if (montoGastado > montoPresupuestado) {
+				Double diff = new BigDecimal(montoGastado).subtract(new BigDecimal(montoPresupuestado)).doubleValue();
+				String montoExcedido = Utils.formatDouble(diff);
+				String msg = getResources(request).getMessage("sirius.notificacion.gastoExcedido.actividad", actividad.getNombre(), actividad.getProyecto().getNombre(), rubro.getNombre(), montoExcedido);
+				notificacionService.ejecutarNotificacionGastoProyectoExcedido(actividad.getProyecto(), msg);
+			}
+		}
+		return forward;
+	}
+	
 	@Override
 	protected void loadCollections(GastoForm form) {
 		super.loadCollections(form);
@@ -328,6 +355,14 @@ public class GastoActividadAction extends GastoAction {
 
 	public void setAsignacionService(AsignacionService asignacionService) {
 		this.asignacionService = asignacionService;
+	}
+
+	public void setPresupuestoService(PresupuestoService presupuestoService) {
+		this.presupuestoService = presupuestoService;
+	}
+
+	public void setNotificacionService(NotificacionService notificacionService) {
+		this.notificacionService = notificacionService;
 	}
 
 }

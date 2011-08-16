@@ -263,6 +263,43 @@ public class GastoDAOImpl extends BusinessEntityDAOImpl<Gasto> implements GastoD
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
+	public Double gastosProyecto(Proyecto proyecto, Rubro rubro) {
+		Criteria crit = buildCriteria();
+		crit.add(Restrictions.eq("proyecto", proyecto));
+
+		if (rubro != null) {
+			crit.createAlias("rubro", "rubro");
+			crit.add(Restrictions.eq("rubro.rubroPrimerNivel", rubro));
+		}
+
+		ProjectionList projection = Projections.projectionList();
+		projection.add(Projections.sum("importe").as("montoGastado"));
+		crit.setProjection(projection);
+
+		return (Double)crit.uniqueResult();
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+
+	public Double gastosActividad(Actividad actividad, Rubro rubro) {
+		Criteria crit = buildCriteria();
+		crit.add(Restrictions.eq("actividad", actividad));
+
+		if (rubro != null) {
+			crit.createAlias("rubro", "rubro");
+			crit.add(Restrictions.eq("rubro.rubroPrimerNivel", rubro));
+		}
+
+		ProjectionList projection = Projections.projectionList();
+		projection.add(Projections.sum("importe").as("montoGastado"));
+		crit.setProjection(projection);
+
+		return (Double)crit.uniqueResult();
+	}
+
+	@Override
 	protected void addOrder(Criteria crit) {
 		crit.addOrder(Order.desc("fecha"));
 	}
