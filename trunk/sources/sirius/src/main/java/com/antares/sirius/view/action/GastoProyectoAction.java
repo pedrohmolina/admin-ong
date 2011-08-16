@@ -2,6 +2,7 @@ package com.antares.sirius.view.action;
 
 import static com.antares.commons.enums.ActionEnum.CREATE;
 
+import java.math.BigDecimal;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -19,12 +20,17 @@ import com.antares.commons.util.Utils;
 import com.antares.sirius.filter.GastoFilter;
 import com.antares.sirius.model.Gasto;
 import com.antares.sirius.model.Proyecto;
+import com.antares.sirius.model.Rubro;
+import com.antares.sirius.service.NotificacionService;
+import com.antares.sirius.service.PresupuestoService;
 import com.antares.sirius.service.ProyectoService;
 import com.antares.sirius.view.form.GastoForm;
 
 public class GastoProyectoAction extends GastoAction {
 
-	protected ProyectoService proyectoService;
+	private ProyectoService proyectoService;
+	private PresupuestoService presupuestoService;
+	private NotificacionService notificacionService;
 
 	@Override
 	protected Filter<Gasto> createFilter(GastoForm form) {
@@ -57,6 +63,27 @@ public class GastoProyectoAction extends GastoAction {
 		}
 	}
 
+	@Override
+	public ActionForward save(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ActionForward forward = super.save(mapping, form, request, response);
+		GastoForm viewForm = (GastoForm)form;
+
+		// Si la creacion fue exitosa, se envia una notificacion
+		if (viewForm.getAction().equals(CREATE) && forward.equals(mapping.findForward("successCreate"))) {
+			Rubro rubro = rubroService.findById(Utils.parseInteger(viewForm.getIdRubro())).getRubroPrimerNivel();
+			Proyecto proyecto = proyectoService.findById(Utils.parseInteger(viewForm.getIdProyecto()));
+			Double montoPresupuestado = presupuestoService.presupuestoProyecto(proyecto, rubro);
+			Double montoGastado = service.gastoProyecto(proyecto, rubro);
+			if (montoGastado > montoPresupuestado) {
+				Double diff = new BigDecimal(montoGastado).subtract(new BigDecimal(montoPresupuestado)).doubleValue();
+				String montoExcedido = Utils.formatDouble(diff);
+				String msg = getResources(request).getMessage("sirius.notificacion.gastoExcedido.proyecto", proyecto.getNombre(), rubro.getNombre(), montoExcedido);
+				notificacionService.ejecutarNotificacionGastoProyectoExcedido(proyecto, msg);
+			}
+		}
+		return forward;
+	}
+	
 	@Override
 	protected void loadCollections(GastoForm form) {
 		super.loadCollections(form);
@@ -111,6 +138,14 @@ public class GastoProyectoAction extends GastoAction {
 	
 	public void setProyectoService(ProyectoService proyectoService) {
 		this.proyectoService = proyectoService;
+	}
+
+	public void setPresupuestoService(PresupuestoService presupuestoService) {
+		this.presupuestoService = presupuestoService;
+	}
+
+	public void setNotificacionService(NotificacionService notificacionService) {
+		this.notificacionService = notificacionService;
 	}
 
 }

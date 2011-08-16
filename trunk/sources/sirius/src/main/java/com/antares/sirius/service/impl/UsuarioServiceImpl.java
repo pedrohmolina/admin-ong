@@ -3,6 +3,8 @@ package com.antares.sirius.service.impl;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
+import java.util.Collection;
+
 import org.acegisecurity.Authentication;
 import org.acegisecurity.GrantedAuthority;
 import org.acegisecurity.context.SecurityContextHolder;
@@ -12,6 +14,7 @@ import org.springframework.dao.DataAccessException;
 
 import com.antares.commons.service.impl.BusinessEntityServiceImpl;
 import com.antares.sirius.dao.UsuarioDAO;
+import com.antares.sirius.model.Acceso;
 import com.antares.sirius.model.Usuario;
 import com.antares.sirius.service.UsuarioService;
 
@@ -72,6 +75,11 @@ public class UsuarioServiceImpl extends BusinessEntityServiceImpl<Usuario, Usuar
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public Collection<Usuario> usuariosByAcceso(Acceso acceso) {
+		return dao.usuariosByAcceso(acceso);
 	}
 
 }

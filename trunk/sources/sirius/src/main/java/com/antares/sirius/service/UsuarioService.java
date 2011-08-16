@@ -1,8 +1,11 @@
 package com.antares.sirius.service;
 
+import java.util.Collection;
+
 import org.acegisecurity.userdetails.UserDetailsService;
 
 import com.antares.commons.service.BusinessEntityService;
+import com.antares.sirius.model.Acceso;
 import com.antares.sirius.model.Usuario;
 
 /**
@@ -50,4 +53,13 @@ public interface UsuarioService extends BusinessEntityService<Usuario>, UserDeta
 	 * @return
 	 */
 	boolean userHasAccess(String access);
+
+	/**
+	 * Devuelve todos los usuarios que poseed el acceso
+	 * 
+	 * @param acceso acceso deseado
+	 * @return
+	 */
+	Collection<Usuario> usuariosByAcceso(Acceso acceso);
+
 }

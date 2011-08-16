@@ -169,4 +169,43 @@ public interface GastoService extends BusinessEntityService<Gasto> {
 	 */
 	Collection<MontoDTO> obtainMontosByActividadAndRubro(Actividad actividad, Rubro[] rubros);
 
+	/**
+	 * Devuelve todos los gastos de proyecto no confirmados
+	 * 
+	 * @return
+	 */
+	Collection<Gasto> findAllGastosProyectoNoConfirmados();
+
+	/**
+	 * Devuelve todos los gastos de actividad no confirmados
+	 * 
+	 * @return
+	 */
+	Collection<Gasto> findAllGastosActividadNoConfirmados();
+
+	/**
+	 * Determina si existen gastos sin confirmar para todos los proyectos/actividades
+	 * 
+	 * @return
+	 */
+	boolean hayGastosSinConfirmar();
+
+	/**
+	 * Devuelve el monto total gastado para gastos de proyecto
+	 * 
+	 * @param proyecto proyecto
+	 * @param rubro rubro del presupuesto (opcional)
+	 * @return
+	 */
+	Double gastoProyecto(Proyecto proyecto, Rubro rubro);
+
+	/**
+	 * Devuelve el monto total gastado para gastos de la actividad
+	 * 
+	 * @param actividad actividad
+	 * @param rubro rubro del presupuesto (opcional)
+	 * @return
+	 */
+	Double gastoActividad(Actividad actividad, Rubro rubro);
+
 }

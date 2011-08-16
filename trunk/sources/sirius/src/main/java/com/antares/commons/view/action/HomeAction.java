@@ -9,17 +9,44 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 import com.antares.sirius.base.Constants;
+import com.antares.sirius.service.GastoService;
+import com.antares.sirius.service.NotificacionService;
+import com.antares.sirius.service.UsuarioService;
 
 public class HomeAction extends Action implements Constants {
+
+	private NotificacionService notificacionService;
+	private UsuarioService usuarioService;
+	private GastoService gastoService;
 
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		ActionForward result = null;
 
 		//En caso de redirigir a otra pantalla al loguearse, hacerlo desde acá
-		result = mapping.findForward("adminHome");
+		if (notificacionService.findAllNoLeidas().size() > 0) {
+			result = mapping.findForward("notificaciones");
+		} else if ((usuarioService.userHasAccess(ACCESO_CONFIRMAR_GASTOS_ACTIVIDAD) || usuarioService.userHasAccess(ACCESO_CONFIRMAR_GASTOS_PROYECTO))) {
+			if (gastoService.hayGastosSinConfirmar()) {
+				result = mapping.findForward("verificarGastos");
+			}
+		} else {
+			result = mapping.findForward("adminHome");
+		}
 
 		return result;
+	}
+
+	public void setNotificacionService(NotificacionService notificacionService) {
+		this.notificacionService = notificacionService;
+	}
+
+	public void setUsuarioService(UsuarioService usuarioService) {
+		this.usuarioService = usuarioService;
+	}
+
+	public void setGastoService(GastoService gastoService) {
+		this.gastoService = gastoService;
 	}
 
 }

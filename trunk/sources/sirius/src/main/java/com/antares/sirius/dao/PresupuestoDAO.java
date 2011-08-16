@@ -75,4 +75,22 @@ public interface PresupuestoDAO extends GenericDAO<Presupuesto> {
 	 */
 	Collection<MontoDTO> obtainMontosByActividadAndRubro(Actividad actividad, Rubro[] rubros);
 
+	/**
+	 * Devuelve el presupuesto para gastos de proyecto
+	 * 
+	 * @param proyecto proyecto
+	 * @param rubro rubro (opcional)
+	 * @return
+	 */
+	Presupuesto findPresupuestoProyecto(Proyecto proyecto, Rubro rubro);
+
+	/**
+	 * Devuelve el presupuesto para gastos de actividad
+	 * 
+	 * @param actividad actividad
+	 * @param rubro rubro (opcional)
+	 * @return
+	 */
+	Presupuesto findPresupuestoActividad(Actividad actividad, Rubro rubro);
+
 }

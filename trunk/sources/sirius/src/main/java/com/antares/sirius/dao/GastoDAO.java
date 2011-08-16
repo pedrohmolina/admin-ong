@@ -139,4 +139,21 @@ public interface GastoDAO extends BusinessEntityDAO<Gasto> {
 	 */
 	Collection<MontoDTO> obtainMontosByActividadAndRubro(Actividad actividad, Rubro[] rubros);
 
+	/**
+	 * Devuelve el monto total gastado en gastos de proyecto
+	 * 
+	 * @param proyecto proyecto
+	 * @param rubro rubro de primer nivel (opcional)
+	 * @return
+	 */
+	Double gastosProyecto(Proyecto proyecto, Rubro rubro);
+
+	/**
+	 * Devuelve el monto total gastado en gastos de proyecto
+	 * 
+	 * @param proyecto proyecto
+	 * @param rubro rubro de primer nivel (opcional)
+	 * @return
+	 */
+	Double gastosActividad(Actividad actividad, Rubro rubro);
 }

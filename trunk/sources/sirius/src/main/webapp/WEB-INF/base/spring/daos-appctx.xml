@@ -10,6 +10,7 @@
 	<bean id="gastoDAO" 				class="com.antares.sirius.dao.impl.GastoDAOImpl" 				autowire="byName" />
 	<bean id="ingresoDAO" 				class="com.antares.sirius.dao.impl.IngresoDAOImpl" 				autowire="byName" />
 	<bean id="metaDAO" 					class="com.antares.sirius.dao.impl.MetaDAOImpl" 				autowire="byName" />
+	<bean id="notificacionDAO" 			class="com.antares.sirius.dao.impl.NotificacionDAOImpl" 		autowire="byName" />
 	<bean id="objetivoEspecificoDAO" 	class="com.antares.sirius.dao.impl.ObjetivoEspecificoDAOImpl" 	autowire="byName" />
 	<bean id="objetivoGeneralDAO" 		class="com.antares.sirius.dao.impl.ObjetivoGeneralDAOImpl" 		autowire="byName" />
 	<bean id="perfilDAO" 				class="com.antares.sirius.dao.impl.PerfilDAOImpl" 				autowire="byName" />

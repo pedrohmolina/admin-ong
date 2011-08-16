@@ -4,7 +4,7 @@
 
 <beans>
 
-	<bean name="/base/home_init" 	class="com.antares.commons.view.action.HomeAction" singleton="false" />
+	<bean name="/base/home-init" 	class="com.antares.commons.view.action.HomeAction" singleton="false" autowire="byName" />
 
 	<bean name="/public/logout" class="com.antares.commons.view.action.LogoutAction" singleton="false" />
 	
@@ -78,6 +78,8 @@
 	<bean name="/meta/meta-query-validate" 	parent="metaAction" singleton="false" autowire="byName" />
 	<bean name="/meta/meta-form" 			parent="metaAction" singleton="false" autowire="byName" />
 	<bean name="/meta/meta-form-validate" 	parent="metaAction" singleton="false" autowire="byName" />
+
+	<bean name="/notificacion/notificacion-query" class="com.antares.sirius.view.action.NotificacionAction" singleton="false" autowire="byName" />
 
 	<bean name="objetivoEspecificoAction" class="com.antares.sirius.view.action.ObjetivoEspecificoAction">
 		<property name="service" ref="objetivoEspecificoService" />

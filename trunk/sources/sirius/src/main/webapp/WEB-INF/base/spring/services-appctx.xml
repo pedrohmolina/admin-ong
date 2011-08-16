@@ -62,6 +62,15 @@
 		<property name="proxyTargetClass" value="true" />
 	</bean>
 	
+	<bean id="notificacionService" parent="abstractTransactionManager" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" autowire="byName">
+		<property name="target">
+			<bean class="com.antares.sirius.service.impl.NotificacionServiceImpl" autowire="byName">
+				<property name="dao" ref="notificacionDAO" /> 
+			</bean>
+		</property>
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+	
 	<bean id="metaService" parent="abstractTransactionManager" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" autowire="byName">
 		<property name="target">
 			<bean class="com.antares.sirius.service.impl.MetaServiceImpl" autowire="byName">

@@ -17,7 +17,7 @@
 	<div style="float: left; width: 100%;">
 		<div class="boton">
 			<logic:notPresent name="backUrl" scope="request">
-				<a href="<c:url value="/base/home_init.do"/>"><bean:message key="antares.base.aceptar.label" /></a>
+				<a href="<c:url value="/base/home-init.do"/>"><bean:message key="antares.base.aceptar.label" /></a>
 			</logic:notPresent>
 			<logic:present name="backUrl" scope="request">
 				<a href="<c:url value="${requestScope['backUrl']}"/>"><bean:message key="antares.base.aceptar.label" /></a>

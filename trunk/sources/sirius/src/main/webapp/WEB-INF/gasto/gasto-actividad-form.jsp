@@ -151,7 +151,7 @@ function cargarComboActividad(select, destinationCombo) {
 	<div class="boton">
 		<a href="#" onclick="gastoActividadForm.submit();" tabindex="17"><bean:message key="antares.base.aceptar.label" /></a>
 		<logic:equal name="gastoActividadForm" property="action.descripcion" value="create">
-			<a href="<c:url value="/base/home_init.do"/>"><bean:message key="antares.base.cancelar.label" /></a>
+			<a href="<c:url value="/base/home-init.do"/>"><bean:message key="antares.base.cancelar.label" /></a>
 		</logic:equal>
 		<logic:equal name="gastoActividadForm" property="action.descripcion" value="update">
 			<a href="<c:url value="/gasto/gasto-actividad-query.do?method=lastQuery"/>"><bean:message key="antares.base.cancelar.label" /></a>
