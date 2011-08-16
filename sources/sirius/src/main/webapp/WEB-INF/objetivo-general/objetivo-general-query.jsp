@@ -57,10 +57,6 @@ function confirmarAccion(mensaje) {
 	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.objetivoGeneralQuery.result" id="item"
 		requestURI="/objetivo-general/objetivo-general-query.do" sort="list" >
 
-		<c:if test="${not empty requestScope['notShowMessage']}">
-			<display:setProperty name="basic.msg.empty_list"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablaTitulo"><tr><td align="center"></td></tr></table></display:setProperty>
-		</c:if>
-
 		<display:column sortable="true" property="proyecto.nombre" 		titleKey="sirius.objetivoGeneral.proyecto.label" maxLength="30" />
 		<display:column sortable="true" property="nombre" 				titleKey="sirius.objetivoGeneral.nombre.label" maxLength="30" />
 		<display:column sortable="true" property="ponderacion" 			titleKey="sirius.objetivoGeneral.ponderacion.label" style="text-align: right" />

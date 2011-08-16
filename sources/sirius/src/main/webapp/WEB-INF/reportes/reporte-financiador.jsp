@@ -61,10 +61,6 @@ function confirmarAccion(mensaje) {
 	<display-el:table export="false" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.reporteFinanciadorForm.result" id="item"
 		requestURI="/reportes/reporte-financiador.do" sort="list" >
 
-		<c:if test="${not empty requestScope['notShowMessage']}">
-			<display:setProperty name="basic.msg.empty_list"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablaTitulo"><tr><td align="center"></td></tr></table></display:setProperty>
-		</c:if>
-	
 		<display:column sortable="true" property="nombre" 							titleKey="sirius.financiador.nombre.label" maxLength="30" />
 		<display:column sortable="true" property="tipoFinanciador.descripcion" 		titleKey="sirius.financiador.tipoFinanciador.label" />
 		<display:column sortable="true" property="estadoFinanciador.descripcion" 	titleKey="sirius.financiador.estadoFinanciador.label" style="text-align: center" />

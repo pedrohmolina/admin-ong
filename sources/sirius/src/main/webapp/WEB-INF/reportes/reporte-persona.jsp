@@ -57,10 +57,6 @@ function confirmarAccion(mensaje) {
 	<display-el:table export="false" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.reportePersonaForm.result" id="item"
 		requestURI="/reportes/reporte-persona.do" sort="list" >
 
-		<c:if test="${not empty requestScope['notShowMessage']}">
-			<display:setProperty name="basic.msg.empty_list"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablaTitulo"><tr><td align="center"></td></tr></table></display:setProperty>
-		</c:if>
-
 		<display:column sortable="true" property="apellido" 					titleKey="sirius.persona.apellido.label" maxLength="30" />
 		<display:column sortable="true" property="nombre" 						titleKey="sirius.persona.nombre.label" maxLength="30" />
 		<display:column sortable="true" property="relacionContractual.nombre" 	titleKey="sirius.persona.relacionContractual.label" maxLength="30" />

@@ -46,10 +46,6 @@ function changeProyecto(mensaje) {
 	<display-el:table export="true" defaultsort="3" defaultorder="descending" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.verificarGastoQuery.result" id="item"
 		requestURI="/gasto/verificar-gasto-query.do" sort="list" >
 
-		<c:if test="${not empty requestScope['notShowMessage']}">
-			<display:setProperty name="basic.msg.empty_list"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablaTitulo"><tr><td align="center"></td></tr></table></display:setProperty>
-		</c:if>
-	
 		<display:column sortable="true" 										titleKey="sirius.gasto.proyecto.label" maxLength="50">
 			<logic:notEmpty name="item" property="proyecto">
 				<bean:write name="item" property="proyecto.nombre" />
