@@ -372,13 +372,15 @@ CREATE TABLE acceso
 CREATE TABLE notificacion
 (
 	id INT NOT NULL AUTO_INCREMENT,
+	idUsuario INT NOT NULL,
 	idProyecto INT NULL,
 	fecha DATETIME,
-	mensaje VARCHAR(100) NOT NULL,
-	leido BOOL NOT NULL,
+	mensaje VARCHAR(500) NOT NULL,
+	leida BOOL NOT NULL,
 	activo BOOL NOT NULL,
 	PRIMARY KEY (id),
 	UNIQUE UQ_notificacion_id(id),
+        CONSTRAINT FK_notificacion_usuario FOREIGN KEY (idUsuario) REFERENCES usuario(id),
         CONSTRAINT FK_notificacion_proyecto FOREIGN KEY (idProyecto) REFERENCES proyecto(id)
 ) 
 ;
