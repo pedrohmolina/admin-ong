@@ -51,10 +51,6 @@ function confirmarAccion(mensaje) {
 	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.relacionContractualQuery.result" id="item"
 		requestURI="/relacion-contractual/relacion-contractual-query.do" sort="list" >
 
-		<c:if test="${not empty requestScope['notShowMessage']}">
-			<display:setProperty name="basic.msg.empty_list"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablaTitulo"><tr><td align="center"></td></tr></table></display:setProperty>
-		</c:if>
-
 		<display:column sortable="true" property="nombre" 		titleKey="sirius.relacionContractual.nombre.label" maxLength="30" />
 		<display:column sortable="true" property="descripcion" 	titleKey="sirius.relacionContractual.descripcion.label" maxLength="30" />
 

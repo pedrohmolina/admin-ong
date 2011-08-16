@@ -29,9 +29,7 @@
 	<display-el:table export="true" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.notificacionQuery.result" id="item"
 		requestURI="/notificacion/notificacion-query.do" sort="list" >
 
-		<c:if test="${not empty requestScope['notShowMessage']}">
-			<display:setProperty name="sirius.notificacion.empty.label"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablaTitulo"><tr><td align="center"></td></tr></table></display:setProperty>
-		</c:if>
+		<display:setProperty name="basic.msg.empty_list"><table width\="100%"  border\="0" cellspacing\="0" cellpadding\="0" class\="tablaTitulo"><tr  height="40px"><td align\="center"><label class="emptylist"><bean:message key="sirius.notificacion.empty.label" /></label></td></tr></table></display:setProperty>
 	
 		<display:column sortable="true" property="fecha" 						titleKey="sirius.notificacion.fecha.label" format="{0,date,dd/MM/yyyy HH:mm}"  style="text-align: center"/>
 		<display:column sortable="true" property="proyecto.nombre"				titleKey="sirius.notificacion.proyecto.label" maxLength="50" />

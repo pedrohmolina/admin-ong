@@ -60,10 +60,6 @@ function confirmarAccion(mensaje) {
 	<display-el:table export="true" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.gastoOrganizacionQuery.result" id="item"
 		requestURI="/gasto/gasto-organizacion-query.do" sort="list" >
 
-		<c:if test="${not empty requestScope['notShowMessage']}">
-			<display:setProperty name="basic.msg.empty_list"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablaTitulo"><tr><td align="center"></td></tr></table></display:setProperty>
-		</c:if>
-	
 		<display:column sortable="true" property="fecha" 					titleKey="sirius.gasto.fecha.label"  	format="{0,date,dd/MM/yyyy}" />
 		<display:column sortable="true" property="rubro.nombre" 			titleKey="sirius.gasto.rubro.label" maxLength="30" />
 		<display:column sortable="true" property="importe" 					titleKey="sirius.gasto.importe.label"  style="text-align: right" decorator="com.antares.commons.view.decorator.DoubleDecorator" />

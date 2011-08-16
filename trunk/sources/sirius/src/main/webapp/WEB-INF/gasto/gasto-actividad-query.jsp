@@ -101,10 +101,6 @@ function initReferencia(id) {
 	<display-el:table export="true" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.gastoActividadQuery.result" id="item"
 		requestURI="/gasto/gasto-actividad-query.do" sort="list" >
 
-		<c:if test="${not empty requestScope['notShowMessage']}">
-			<display:setProperty name="basic.msg.empty_list"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablaTitulo"><tr><td align="center"></td></tr></table></display:setProperty>
-		</c:if>
-	
 		<display:column sortable="true" property="actividad.proyecto.nombre" 	titleKey="sirius.gasto.proyecto.label" maxLength="30" />
 		<display:column sortable="true" property="actividad.nombre" 			titleKey="sirius.gasto.actividad.label" maxLength="30" />
 		<display:column sortable="true" property="persona.nombreYApellido" 		titleKey="sirius.gasto.persona.label" maxLength="30" />

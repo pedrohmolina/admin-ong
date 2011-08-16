@@ -75,10 +75,6 @@ function cargarComboActividad(select, destinationCombo){
 	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.asignacionQuery.result" id="item"
 		requestURI="/asignacion/asignacion-query.do" sort="list">
 
-		<c:if test="${not empty requestScope['notShowMessage']}">
-			<display:setProperty name="basic.msg.empty_list"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablaTitulo"><tr><td align="center"></td></tr></table></display:setProperty>
-		</c:if>
-
 		<display:column sortable="true" property="actividad.meta.objetivoEspecifico.objetivoGeneral.proyecto.nombre" 		titleKey="sirius.actividad.proyecto.label" maxLength="30" />
 		<display:column sortable="true" property="actividad.nombre" 			titleKey="sirius.asignacion.actividad.label" maxLength="30" />
 		<display:column sortable="true" property="persona.nombreYApellido" 		titleKey="sirius.asignacion.persona.label" maxLength="30" />
