@@ -194,7 +194,8 @@
 				<!--
 				<ref local="ldapAuthenticationProvider" />				
 				-->
-                <ref local="daoAuthenticationProvider"/>
+				<ref local="daoAuthenticationProvider"/>
+                
                 <ref local="anonymousAuthenticationProvider"/>
                 <ref local="rememberMeAuthenticationProvider"/>
             </list>
@@ -237,7 +238,7 @@
 	<bean id="populator" class="com.antares.commons.security.DbAuthoritiesPopulatorImpl" autowire="byName" />
 
 	<bean id="initialDirContextFactory" class="org.acegisecurity.ldap.DefaultInitialDirContextFactory">
-		<constructor-arg value="ldap://192.168.1.105:389/"/>
+		<constructor-arg value="ldap://192.168.2.113:389/"/>
 		<property name="managerDn">
 			<value>uid=admin</value>
 		</property>

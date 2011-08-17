@@ -107,7 +107,7 @@ public class ActividadServiceImpl extends BusinessEntityServiceImpl<Actividad, A
 	public boolean existenActividadesNoFinalizadas(Proyecto proyecto) {
 		EstadoActividad estadoCancelada = estadoActividadService.findById(parametroService.findIdEstadoActividadCancelada());
 		EstadoActividad estadoCumplida = estadoActividadService.findById(parametroService.findIdEstadoActividadCumplida());
-		return dao.countByProyectoEstados(proyecto, estadoCancelada, estadoCumplida) > 0;
+		return dao.countByProyectoExceptEstados(proyecto, estadoCancelada, estadoCumplida) > 0;
 	}
 
 	public Collection<Actividad> findAllByMeta(Meta meta) {

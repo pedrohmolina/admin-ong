@@ -79,6 +79,11 @@
 			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
 			<html:optionsCollection name="actividadForm" property="financiadores" label="nombre" value="id"/>
 		</html:select>
+		<logic:notEmpty name="actividadForm" property="fechaFinalizacion" >
+			</p><br><p>
+			<label for="fechaFinalizacion"><bean:message key="sirius.actividad.fechaFinalizacion.label" />&nbsp;:</label>
+			<html:text property="fechaFinalizacion" readonly="true" />
+		</logic:notEmpty>
 		</p><br>
 	</div>
 	

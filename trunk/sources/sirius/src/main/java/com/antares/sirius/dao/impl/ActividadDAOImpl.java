@@ -56,9 +56,8 @@ public class ActividadDAOImpl extends BusinessEntityDAOImpl<Actividad> implement
 		return crit.list();
 	}
 
-	@SuppressWarnings("unchecked")
-	public Integer countByProyectoEstados(Proyecto proyecto, EstadoActividad ... estadoActividad) {
-		return findAllByProyectoEstados(proyecto, estadoActividad).size();
+	public Integer countByProyectoExceptEstados(Proyecto proyecto, EstadoActividad ... estadoActividad) {
+		return findAllByProyectoExceptEstados(proyecto, estadoActividad).size();
 	}
 
 	@SuppressWarnings("unchecked")

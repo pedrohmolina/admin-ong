@@ -36,6 +36,11 @@
 		</p><br><p>
 		<label for="labelFinanciador"><bean:message key="sirius.actividad.financiador.label" />&nbsp;:</label>
 		<html:text property="labelFinanciador" readonly="true" />
+		<logic:notEmpty name="actividadForm" property="fechaFinalizacion" >
+			</p><br><p>
+			<label for="fechaFinalizacion"><bean:message key="sirius.actividad.fechaFinalizacion.label" />&nbsp;:</label>
+			<html:text property="fechaFinalizacion" readonly="true" />
+		</logic:notEmpty>
 		</p><br>
 	</div>
 
