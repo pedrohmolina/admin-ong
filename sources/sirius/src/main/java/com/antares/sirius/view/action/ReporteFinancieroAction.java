@@ -6,9 +6,16 @@ package com.antares.sirius.view.action;
 import static ar.com.fdvs.dj.core.DJConstants.DATA_SOURCE_ORIGIN_PARAMETER;
 import static ar.com.fdvs.dj.core.DJConstants.DATA_SOURCE_TYPE_COLLECTION;
 import static ar.com.fdvs.dj.domain.DJCalculation.SUM;
+import static ar.com.fdvs.dj.domain.constants.Border.NO_BORDER;
+import static ar.com.fdvs.dj.domain.constants.Border.THIN;
 import static ar.com.fdvs.dj.domain.constants.Font.ARIAL_MEDIUM;
+import static ar.com.fdvs.dj.domain.constants.Font._FONT_VERDANA;
+import static ar.com.fdvs.dj.domain.constants.HorizontalAlign.CENTER;
 import static ar.com.fdvs.dj.domain.constants.HorizontalAlign.RIGHT;
+import static ar.com.fdvs.dj.domain.constants.Transparency.OPAQUE;
+import static java.awt.Color.LIGHT_GRAY;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -18,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JRGraphicElement;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
 
@@ -28,16 +36,28 @@ import org.apache.struts.util.MessageResources;
 
 import ar.com.fdvs.dj.core.DynamicJasperHelper;
 import ar.com.fdvs.dj.core.layout.ClassicLayoutManager;
+import ar.com.fdvs.dj.domain.AutoText;
+import ar.com.fdvs.dj.domain.DJCalculation;
 import ar.com.fdvs.dj.domain.DJCrosstab;
+import ar.com.fdvs.dj.domain.DJGroupLabel;
 import ar.com.fdvs.dj.domain.DynamicReport;
+import ar.com.fdvs.dj.domain.Style;
 import ar.com.fdvs.dj.domain.builders.ColumnBuilderException;
 import ar.com.fdvs.dj.domain.builders.CrosstabBuilder;
 import ar.com.fdvs.dj.domain.builders.CrosstabColumnBuilder;
 import ar.com.fdvs.dj.domain.builders.CrosstabRowBuilder;
 import ar.com.fdvs.dj.domain.builders.DynamicReportBuilder;
+import ar.com.fdvs.dj.domain.builders.GroupBuilder;
 import ar.com.fdvs.dj.domain.builders.StyleBuilder;
 import ar.com.fdvs.dj.domain.constants.Border;
+import ar.com.fdvs.dj.domain.constants.Font;
+import ar.com.fdvs.dj.domain.constants.GroupLayout;
+import ar.com.fdvs.dj.domain.constants.HorizontalAlign;
+import ar.com.fdvs.dj.domain.constants.Transparency;
+import ar.com.fdvs.dj.domain.constants.VerticalAlign;
+import ar.com.fdvs.dj.domain.entities.DJGroup;
 import ar.com.fdvs.dj.domain.entities.columns.AbstractColumn;
+import ar.com.fdvs.dj.domain.entities.columns.PropertyColumn;
 
 import com.antares.commons.enums.TipoAgregacionEnum;
 import com.antares.commons.util.Utils;
@@ -72,6 +92,7 @@ import com.antares.sirius.view.form.ReporteFinancieroForm;
 public class ReporteFinancieroAction extends ReporteAction {
 
 	private static final String COL_DESCRIPCION = "descripcion";
+	private static final String COL_RUBRO = "rubro";
 	private static final String SUFIJO_PRESUPUESTADO = "-a";
 	private static final String SUFIJO_GASTADO = "-b";
 	private static final String SUFIJO_DIFERENCIA = "-c";
@@ -152,26 +173,57 @@ public class ReporteFinancieroAction extends ReporteAction {
 	 * Agrega las columnas necesarias al reporte
 	 */
 	private void addColumns(DynamicReportBuilder drb, Collection<Rubro> rubros, ReporteFinancieroForm reporteForm) throws ColumnBuilderException {
-		AbstractColumn columnaDescripcion = getColumn(COL_DESCRIPCION, String.class, Utils.getMessage("sirius.reportes.finanzas.descripcion.label"), 80, getHeaderStyle(), getDetailStyle());
-		drb.addColumn(columnaDescripcion);
+
+		String tituloActividad = Utils.getMessage("sirius.reportes.finanzas.actividad.label");
+		String tituloRubro = Utils.getMessage("sirius.reportes.finanzas.rubrosPorActividad.label");
 		String tituloPresupuestado = Utils.getMessage("sirius.reportes.finanzas.presupuestado.label"); 
 		String tituloGastado = Utils.getMessage("sirius.reportes.finanzas.gastado.label"); 
 		String tituloDiferencia = Utils.getMessage("sirius.reportes.finanzas.diferencia.label"); 
+		
+ 		Style headerVariables = new Style();
+ 		headerVariables.setFont(Font.VERDANA_MEDIUM_BOLD);
+ 		headerVariables.setBackgroundColor(Color.LIGHT_GRAY);
+ 		headerVariables.setTransparency(OPAQUE);
+ 		headerVariables.setBorderBottom(Border.PEN_1_POINT);
+ 		headerVariables.setHorizontalAlign(HorizontalAlign.CENTER);
+ 		headerVariables.setVerticalAlign(VerticalAlign.MIDDLE);
+ 		headerVariables.setOverridesExistingStyle(true);
 
-		for (Rubro rubro : rubros) {
-			if (reporteForm.getVerPresupuestado()) {
-				AbstractColumn columnaPresupuestado = getColumn(rubro.getId() + SUFIJO_PRESUPUESTADO, Double.class, tituloPresupuestado, 80, getHeaderStyle(), getDetailStyle());
-				drb.addColumn(columnaPresupuestado);
-			}
-			if (reporteForm.getVerGastado()) {
-				AbstractColumn columnaGastado = getColumn(rubro.getId() + SUFIJO_GASTADO, Double.class, tituloGastado, 80, getHeaderStyle(), getDetailStyle());
-				drb.addColumn(columnaGastado);
-			}
-			if (reporteForm.getVerDiferencia()) {
-				AbstractColumn columnaDif = getColumn(rubro.getId() + SUFIJO_DIFERENCIA, Double.class, tituloDiferencia, 80, getHeaderStyle(), getDetailStyle());
-				drb.addColumn(columnaDif);
-			}
+ 		
+		AbstractColumn columnaDescripcion = getColumn(COL_DESCRIPCION, String.class, tituloActividad, 80, getHeaderStyle(), headerVariables);
+		drb.addColumn(columnaDescripcion);
+		AbstractColumn columnaRubro = getColumn(COL_RUBRO, String.class, tituloRubro, 80, getHeaderStyle(), null);
+		drb.addColumn(columnaRubro);
+	
+		AbstractColumn columnaPresupuestado = null;
+		AbstractColumn columnaGastado = null;
+		AbstractColumn columnaDif = null;
+		
+		if (reporteForm.getVerPresupuestado()) {
+			columnaPresupuestado = getColumn(SUFIJO_PRESUPUESTADO, Double.class, tituloPresupuestado, 80, getHeaderStyle(), null);
+			drb.addColumn(columnaPresupuestado);
 		}
+		if (reporteForm.getVerGastado()) {
+			columnaGastado = getColumn(SUFIJO_GASTADO, Double.class, tituloGastado, 80, getHeaderStyle(), null);
+			drb.addColumn(columnaGastado);
+		}
+		if (reporteForm.getVerDiferencia()) {
+			columnaDif = getColumn(SUFIJO_DIFERENCIA, Double.class, tituloDiferencia, 80, getHeaderStyle(), null);
+			drb.addColumn(columnaDif);
+		}
+
+		GroupBuilder gb1 = new GroupBuilder();
+  		
+		DJGroup g1 = gb1.setCriteriaColumn((PropertyColumn) columnaDescripcion)
+	  		.addHeaderVariable(columnaPresupuestado, DJCalculation.SUM, headerVariables)
+	  		.addHeaderVariable(columnaGastado, DJCalculation.SUM, headerVariables) 
+	  		.addHeaderVariable(columnaDif, DJCalculation.SUM, headerVariables)
+	        .setGroupLayout(GroupLayout.VALUE_IN_HEADER) 
+	        .build();
+
+  		drb.addGroup(g1);
+  		drb.setPrintBackgroundOnOddRows(false);
+
 	}
 
 	/*
@@ -181,33 +233,34 @@ public class ReporteFinancieroAction extends ReporteAction {
 
 		Collection<Map<String, Object>> col = new ArrayList<Map<String, Object>>(); 
 		for (PersistentObject persistentObject : persistentObjects) {
-			Map<String, Object> map = new HashMap<String, Object>();
 			for (Rubro rubro : rubros) {
-				MontoDTO monto = finanzas.get(persistentObject.getId(), rubro.getId());
+				Map<String, Object> map = new HashMap<String, Object>();
 				map.put(COL_DESCRIPCION, Utils.getPropertyValue(persistentObject, "nombre").toString());
+				map.put(COL_RUBRO, rubro.getNombre());
+				MontoDTO monto = finanzas.get(persistentObject.getId(), rubro.getId());
 				if (monto != null) {
 					if (reporteForm.getVerPresupuestado()) {
-						map.put(rubro.getId().toString() + SUFIJO_PRESUPUESTADO, monto.getMontoPresupuestado());
+						map.put(SUFIJO_PRESUPUESTADO, monto.getMontoPresupuestado());
 					}
 					if (reporteForm.getVerGastado()) {
-						map.put(rubro.getId().toString() + SUFIJO_GASTADO, monto.getMontoGastado());
+						map.put(SUFIJO_GASTADO, monto.getMontoGastado());
 					}
 					if (reporteForm.getVerDiferencia()) {
-						map.put(rubro.getId().toString() + SUFIJO_DIFERENCIA, monto.getMontoDif());
+						map.put(SUFIJO_DIFERENCIA, monto.getMontoDif());
 					}
 				} else {
 					if (reporteForm.getVerPresupuestado()) {
-						map.put(rubro.getId().toString() + SUFIJO_PRESUPUESTADO, Double.valueOf(0D));
+						map.put(SUFIJO_PRESUPUESTADO, Double.valueOf(0D));
 					}
 					if (reporteForm.getVerGastado()) {
-						map.put(rubro.getId().toString() + SUFIJO_GASTADO, Double.valueOf(0D));
+						map.put(SUFIJO_GASTADO, Double.valueOf(0D));
 					}
 					if (reporteForm.getVerDiferencia()) {
-						map.put(rubro.getId().toString() + SUFIJO_DIFERENCIA, Double.valueOf(0D));
+						map.put(SUFIJO_DIFERENCIA, Double.valueOf(0D));
 					}
 				}
+				col.add(map);
 			}
-			col.add(map);
 		}
 
 		return new JRMapCollectionDataSource(col);
