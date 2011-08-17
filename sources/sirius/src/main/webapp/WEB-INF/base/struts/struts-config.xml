@@ -693,7 +693,7 @@
 
 		<action path="/reportes/reporte-financiero-validate" name="reporteFinancieroForm" parameter="method" 
 				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
-				input="/reportes/reporte-financiero.do?method=showForm">
+				input=".reporteFinanciero">
 			<forward name="generarReporteFinanciero"   path=".reporteFinanciero" />
 		</action>
 		<!-- Fin de actions de reportes -->
