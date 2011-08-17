@@ -25,6 +25,7 @@ public class ActividadForm extends AbstractForm<Actividad> {
 	private String observaciones;
 	private String fechaInicio;
 	private String fechaFin;
+	private String fechaFinalizacion;
 	private String idMeta;
 	private String idFinanciador;
 	private String completitud;
@@ -186,6 +187,14 @@ public class ActividadForm extends AbstractForm<Actividad> {
 		this.estadosActividad = estadosActividad;
 	}
 
+	public String getFechaFinalizacion() {
+		return fechaFinalizacion;
+	}
+
+	public void setFechaFinalizacion(String fechaFinalizacion) {
+		this.fechaFinalizacion = fechaFinalizacion;
+	}
+
 	@Override
 	public void initialize() {
 		this.id = null;
@@ -195,6 +204,7 @@ public class ActividadForm extends AbstractForm<Actividad> {
 		this.observaciones = "";
 		this.fechaInicio = "";
 		this.fechaFin = "";
+		this.fechaFinalizacion = "";
 		this.completitud = "0";
 		this.idMeta = "";
 		this.idFinanciador = "";
@@ -216,6 +226,7 @@ public class ActividadForm extends AbstractForm<Actividad> {
 		this.observaciones = "";
 		this.fechaInicio = "";
 		this.fechaFin = "";
+		this.fechaFinalizacion = "";
 		this.completitud = "0";
 		this.idMeta = "";
 		this.idFinanciador = "";
@@ -234,6 +245,7 @@ public class ActividadForm extends AbstractForm<Actividad> {
 		this.observaciones = entity.getObservaciones();
 		this.fechaInicio = Utils.formatDate(entity.getFechaInicio());
 		this.fechaFin = Utils.formatDate(entity.getFechaFin());
+		this.fechaFinalizacion = Utils.formatDate(entity.getFechaFinalizacion());
 		this.completitud = new Integer(entity.getCompletitud().intValue()).toString();
 		this.idMeta = entity.getMeta().getId().toString();
 		this.idFinanciador = entity.getFinanciador().getId().toString();

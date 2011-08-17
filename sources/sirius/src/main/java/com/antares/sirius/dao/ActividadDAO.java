@@ -38,13 +38,13 @@ public interface ActividadDAO extends BusinessEntityDAO<Actividad> {
 	Collection<Actividad> findAllByProyecto(Proyecto proyecto);
 
 	/**
-	 * Devuelve la cantidad de actividades pertenecientes al proyecto y que se encuentran en los estados indicados
+	 * Devuelve la cantidad de actividades pertenecientes al proyecto y que no se encuentran en los estados indicados
 	 * 
 	 * @param proyecto proyecto de las actividades deseadas
 	 * @param estadoActividad estado de las actividades deseadas
 	 * @return
 	 */
-	Integer countByProyectoEstados(Proyecto proyecto, EstadoActividad ... estadoActividad);
+	Integer countByProyectoExceptEstados(Proyecto proyecto, EstadoActividad ... estadoActividad);
 
 	/**
 	 * Devuelve todas las actividades pertenecientes al proyecto y que se encuentran en los estados indicados
