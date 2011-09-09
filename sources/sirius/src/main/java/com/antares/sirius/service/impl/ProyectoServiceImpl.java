@@ -1,5 +1,8 @@
 package com.antares.sirius.service.impl;
 
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
+
 import java.util.Collection;
 
 import com.antares.commons.service.impl.BusinessEntityServiceImpl;
@@ -69,13 +72,13 @@ public class ProyectoServiceImpl extends BusinessEntityServiceImpl<Proyecto, Pro
 	}
 
 	public boolean isIndividual(Proyecto proyecto) {
-		boolean isIndividual = Boolean.TRUE;
+		boolean isIndividual = TRUE;
 		isIndividual = proyecto.getTipoAgrupamiento().getId().equals(parametroService.findIdTipoAgrupamientoIndividual());
 		return isIndividual;
 	}
 
 	public boolean isAgrupado(Proyecto proyecto) {
-		boolean isAgrupado = Boolean.FALSE;
+		boolean isAgrupado = FALSE;
 		isAgrupado = proyecto.getTipoAgrupamiento().getId().equals(parametroService.findIdTipoAgrupamientoAgrupado());
 		return isAgrupado;
 	}

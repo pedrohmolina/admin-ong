@@ -1,5 +1,6 @@
 package com.antares.sirius.service.impl;
 
+import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
 import java.util.Collection;
@@ -50,7 +51,7 @@ public class GastoServiceImpl extends BusinessEntityServiceImpl<Gasto, GastoDAO>
 	}
 	
 	public boolean isIndividual(Gasto gasto) {
-		boolean isIndividual = Boolean.TRUE;
+		boolean isIndividual = TRUE;
 		Proyecto proyecto = findProyecto(gasto);
 		if (proyecto != null) {
 			isIndividual = proyectoService.isIndividual(proyecto);
@@ -59,7 +60,7 @@ public class GastoServiceImpl extends BusinessEntityServiceImpl<Gasto, GastoDAO>
 	}
 
 	public boolean isAgrupado(Gasto gasto) {
-		boolean isAgrupado = Boolean.FALSE;
+		boolean isAgrupado = FALSE;
 		Proyecto proyecto = findProyecto(gasto);
 		if (proyecto != null) {
 			isAgrupado = proyectoService.isAgrupado(proyecto);
@@ -145,7 +146,7 @@ public class GastoServiceImpl extends BusinessEntityServiceImpl<Gasto, GastoDAO>
 	@Override
 	public Collection<Gasto> findAllGastosProyectoNoConfirmados() {
 		GastoFilter filter = new GastoFilter();
-		filter.setConfirmado(Boolean.FALSE);
+		filter.setConfirmado(FALSE);
 		filter.setTipoGasto(tipoGastoService.findTipoGastoProyecto());
 		findByFilter(filter);
 		return findByFilter(filter);
@@ -154,7 +155,7 @@ public class GastoServiceImpl extends BusinessEntityServiceImpl<Gasto, GastoDAO>
 	@Override
 	public Collection<Gasto> findAllGastosActividadNoConfirmados() {
 		GastoFilter filter = new GastoFilter();
-		filter.setConfirmado(Boolean.FALSE);
+		filter.setConfirmado(FALSE);
 		filter.setTipoGasto(tipoGastoService.findTipoGastoActividad());
 		findByFilter(filter);
 		return findByFilter(filter);

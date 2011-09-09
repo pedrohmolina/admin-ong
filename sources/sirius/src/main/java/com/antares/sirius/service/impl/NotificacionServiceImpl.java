@@ -1,5 +1,6 @@
 package com.antares.sirius.service.impl;
 
+import static com.antares.sirius.base.Constants.ID_ACCESO_CONFIRMAR_GASTOS_ACTIVIDAD;
 import static com.antares.sirius.base.Constants.ID_ACCESO_CONFIRMAR_GASTOS_PROYECTO;
 import static com.antares.sirius.base.Constants.NOTIFICACION_MAXLENGTH;
 import static java.lang.Boolean.FALSE;
@@ -61,7 +62,7 @@ public class NotificacionServiceImpl extends BusinessEntityServiceImpl<Notificac
 	}
 
 	public void ejecutarNotificacionGastoActividadExcedido(Proyecto proyecto, String mensaje) {
-		Acceso acceso = accesoService.findById(Constants.ID_ACCESO_CONFIRMAR_GASTOS_ACTIVIDAD);
+		Acceso acceso = accesoService.findById(ID_ACCESO_CONFIRMAR_GASTOS_ACTIVIDAD);
 		Collection<Usuario> usuarios = usuarioService.usuariosByAcceso(acceso);
 		for (Usuario usuario : usuarios) {
 			ejecutarNotificacion(usuario, proyecto, mensaje);

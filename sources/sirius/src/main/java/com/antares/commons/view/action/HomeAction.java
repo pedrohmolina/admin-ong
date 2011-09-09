@@ -21,7 +21,7 @@ public class HomeAction extends Action implements Constants {
 
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		ActionForward result = null;
+		ActionForward result = mapping.findForward("adminHome");
 
 		//En caso de redirigir a otra pantalla al loguearse, hacerlo desde acá
 		if (notificacionService.findAllNoLeidas().size() > 0) {
@@ -30,8 +30,6 @@ public class HomeAction extends Action implements Constants {
 			if (gastoService.hayGastosSinConfirmar()) {
 				result = mapping.findForward("verificarGastos");
 			}
-		} else {
-			result = mapping.findForward("adminHome");
 		}
 
 		return result;

@@ -64,8 +64,10 @@ function changeProyecto(mensaje) {
 		<display:column sortable="true" property="importe" 						titleKey="sirius.gasto.importe.label" style="text-align: right" decorator="com.antares.commons.view.decorator.DoubleDecorator" />
 
 		<display:column title="Acciones" media="html" style="text-align: center">
-			<a href="<c:url value="/gasto/verificar-gasto-query.do?method=confirmar&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Confirmar" title="Confirmar"
-				src="<c:url value="/img/tick.png"/>" onclick="return confirmarAccion('Est&aacute; seguro que desea confirmar el gasto?')" /></a>
+			<logic:notEqual name="item" property="confirmado" value="true">
+				<a href="<c:url value="/gasto/verificar-gasto-query.do?method=confirmar&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Confirmar" title="Confirmar"
+					src="<c:url value="/img/tick.png"/>" onclick="return confirmarAccion('Est&aacute; seguro que desea confirmar el gasto?')" /></a>
+			</logic:notEqual>
 		</display:column>
 	</display-el:table>
 
