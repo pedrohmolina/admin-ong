@@ -44,7 +44,7 @@ INSERT INTO `coordinador` (`idProyecto`, `idPersona`) VALUES
   (3, 6),
   (3, 10),
   (4, 2),
-  (4, 7),
+  (4, 7);
 
 commit;
 
@@ -62,7 +62,7 @@ INSERT INTO `objetivoespecifico` (`id`, `nombre`, `descripcion`, `ponderacion`, 
   (3, 'Ejecutar Promocion de Salud', NULL, 50, 2, 1),
   (4, 'Promocion de jovenes promotores de salud', NULL, 100, 3, 1),
   (5, 'Autosustentacion cooperativa AraSur', NULL, 70, 4, 1);
- 
+
  commit;
 
 /* Metas */
@@ -72,7 +72,7 @@ INSERT INTO `meta` (`id`, `nombre`, `descripcion`, `ponderacion`, `idObjetivoEsp
   (4, 'Evaluacion capacidad autogestion', NULL, 60, 5, 1),
   (5, 'Capacitar sobre autogestion', NULL, 50, 5, 1),
   (6, 'Supervision de la autogestion', NULL, 50, 5, 1);
- 
+
  commit;
 
 /* Actividades */
@@ -88,5 +88,5 @@ INSERT INTO `actividad` (`id`, `idMeta`, `idFinanciador`, `idEstadoActividad`, `
   (13, 5, 2, 1, 'Introduccion a la autogestion', NULL, '2011-08-14', '2011-08-19', 60, 0, 1, NULL),
   (14, 5, 3, 1, 'Practica autogestion', NULL, '2011-08-17', '2011-08-24', 40, 0, 1, NULL),
   (15, 6, 2, 1, 'Supervision autogestion', NULL, '2011-08-17', '2011-08-24', 50, 0, 1, NULL);
-  
+
   commit;
