@@ -18,6 +18,7 @@ function changeProyecto() {
 	$("#divAgregacion input").attr("checked", false);
 
 	$("#idAgregacion").attr("disabled", true);
+	$("#idAgregacionVacio").attr("disabled", false);
  	$("#idAgregacion").removeOption(/^[^-]/i);
  	$("#idAgregacion").val("");
 
@@ -31,6 +32,7 @@ function changeProyecto() {
 
 function cargarCombo(method){
 	$("#idAgregacion").attr("disabled", false);
+	$("#idAgregacionVacio").attr("disabled", true);
  	$("#idAgregacion").removeOption(/^[^-]/i);
  	$("#idAgregacion").val("");
  	if (method != '') {
@@ -39,6 +41,7 @@ function cargarCombo(method){
 		$("#idAgregacion").ajaxAddOption(url, {idProyecto:selectedOption}, false);
 	} else {
 		$("#idAgregacion").attr("disabled", true);
+		$("#idAgregacionVacio").attr("disabled", false);
 	}
 }
 
@@ -78,6 +81,7 @@ function cargarCombo(method){
 		<label for="idAgregacion"><bean:message key="sirius.reportes.finanzas.seleccione.label" />&nbsp;:</label>
 		<html:select property="idAgregacion" styleId="idAgregacion">
 		</html:select>
+		<html:hidden property="idAgregacion" styleId="idAgregacionVacio" value=""/>
 		</p><br>
 	</div>
 

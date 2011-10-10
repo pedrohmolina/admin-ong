@@ -3,17 +3,7 @@
  */
 package com.antares.sirius.view.action;
 
-import static ar.com.fdvs.dj.core.DJConstants.DATA_SOURCE_ORIGIN_PARAMETER;
-import static ar.com.fdvs.dj.core.DJConstants.DATA_SOURCE_TYPE_COLLECTION;
-import static ar.com.fdvs.dj.domain.DJCalculation.SUM;
-import static ar.com.fdvs.dj.domain.constants.Border.NO_BORDER;
-import static ar.com.fdvs.dj.domain.constants.Border.THIN;
-import static ar.com.fdvs.dj.domain.constants.Font.ARIAL_MEDIUM;
-import static ar.com.fdvs.dj.domain.constants.Font._FONT_VERDANA;
-import static ar.com.fdvs.dj.domain.constants.HorizontalAlign.CENTER;
-import static ar.com.fdvs.dj.domain.constants.HorizontalAlign.RIGHT;
 import static ar.com.fdvs.dj.domain.constants.Transparency.OPAQUE;
-import static java.awt.Color.LIGHT_GRAY;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -25,35 +15,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.JRGraphicElement;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
 
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.util.MessageResources;
 
 import ar.com.fdvs.dj.core.DynamicJasperHelper;
 import ar.com.fdvs.dj.core.layout.ClassicLayoutManager;
-import ar.com.fdvs.dj.domain.AutoText;
 import ar.com.fdvs.dj.domain.DJCalculation;
-import ar.com.fdvs.dj.domain.DJCrosstab;
-import ar.com.fdvs.dj.domain.DJGroupLabel;
 import ar.com.fdvs.dj.domain.DynamicReport;
 import ar.com.fdvs.dj.domain.Style;
 import ar.com.fdvs.dj.domain.builders.ColumnBuilderException;
-import ar.com.fdvs.dj.domain.builders.CrosstabBuilder;
-import ar.com.fdvs.dj.domain.builders.CrosstabColumnBuilder;
-import ar.com.fdvs.dj.domain.builders.CrosstabRowBuilder;
 import ar.com.fdvs.dj.domain.builders.DynamicReportBuilder;
 import ar.com.fdvs.dj.domain.builders.GroupBuilder;
-import ar.com.fdvs.dj.domain.builders.StyleBuilder;
 import ar.com.fdvs.dj.domain.constants.Border;
 import ar.com.fdvs.dj.domain.constants.Font;
 import ar.com.fdvs.dj.domain.constants.GroupLayout;
 import ar.com.fdvs.dj.domain.constants.HorizontalAlign;
-import ar.com.fdvs.dj.domain.constants.Transparency;
 import ar.com.fdvs.dj.domain.constants.VerticalAlign;
 import ar.com.fdvs.dj.domain.entities.DJGroup;
 import ar.com.fdvs.dj.domain.entities.columns.AbstractColumn;
@@ -140,21 +120,47 @@ public class ReporteFinancieroAction extends ReporteAction {
 		ReporteFinancieroForm reporteForm = (ReporteFinancieroForm)form;
 		Collection<Rubro> rubros = findRubros(reporteForm.getRubrosSeleccionados());
 
+		TipoAgregacionEnum tipoAgregacion = TipoAgregacionEnum.findByNombre(reporteForm.getTipoAgregacion());
+
 		Proyecto proyecto = proyectoService.findById(Utils.parseInteger(reporteForm.getIdProyecto()));
-		FinanzasDTO finanzas = getFinanzas(reporteForm, proyecto, rubros.toArray(new Rubro[0]));
+		PersistentObject persistentObject = getPersistentObject(tipoAgregacion, reporteForm);
+		FinanzasDTO finanzas = getFinanzas(tipoAgregacion, reporteForm, proyecto, rubros.toArray(new Rubro[0]), persistentObject);
 
 		DynamicReportBuilder drb = getDynamicReport(Utils.getMessage("sirius.organizacion"), Utils.getMessage("sirius.reportes.finanzas.title"), "ReporteFinanzas");
-		drb.setSubtitle(Utils.getMessage("sirius.reportes.finanzas.title") + " - " + Utils.getMessage("sirius.reportes.finanzas.proyecto.label") + ": " + proyecto.getNombre());
-		addColumns(drb, rubros, reporteForm);
+		drb.setSubtitle(buildSubtitulo(tipoAgregacion, proyecto, persistentObject));
+		addColumns(tipoAgregacion, drb, rubros, reporteForm);
 
 		DynamicReport dr = drb.build();
-		Collection<PersistentObject> persistentObjects = getPersistentObjects(reporteForm, proyecto);
-		JRDataSource ds = buildDataSource(finanzas, persistentObjects, rubros, reporteForm);
+		Collection<PersistentObject> elementosDetalle = getElementosDetalle(tipoAgregacion, persistentObject, proyecto);
+		JRDataSource ds = buildDataSource(finanzas, elementosDetalle, rubros, reporteForm);
 		JasperPrint jasperPrint = DynamicJasperHelper.generateJasperPrint(dr, new ClassicLayoutManager(), ds);
 
 		Integer reportType = Utils.parseInteger(reporteForm.getFormatoReporte());
 		this.generateReport(request, response, reportType, jasperPrint);
 		return null;
+	}
+
+	private String buildSubtitulo(TipoAgregacionEnum tipoAgregacion, Proyecto proyecto, PersistentObject persistentObject) {
+		String subtitulo = Utils.getMessage("sirius.reportes.finanzas.title");
+		switch (tipoAgregacion) {
+			case ACTIVIDAD: 
+				subtitulo += " por " + Utils.getMessage("sirius.reportes.finanzas.actividad.label") + ": " + ((Actividad)persistentObject).getNombre();
+				break;
+			case META: 
+				subtitulo += " por " + Utils.getMessage("sirius.reportes.finanzas.meta.label") + ": " + ((Meta)persistentObject).getNombre();
+				break;
+			case OBJETIVO_ESPECIFICO: 
+				subtitulo += " por " + Utils.getMessage("sirius.reportes.finanzas.objetivoEspecifico.label") + ": " + ((ObjetivoEspecifico)persistentObject).getNombre();
+				break;
+			case OBJETIVO_GENERAL: 
+				subtitulo += " por " + Utils.getMessage("sirius.reportes.finanzas.objetivoGeneral.label") + ": " + ((ObjetivoGeneral)persistentObject).getNombre();
+				break;
+			case PROYECTO: 
+				subtitulo += " por " + Utils.getMessage("sirius.reportes.finanzas.proyecto.label") + ": " + proyecto.getNombre(); 
+				break;
+			default: break;
+		}
+		return subtitulo;
 	}
 
 	private Collection<Rubro> findRubros(Integer[] idRubros) {
@@ -169,13 +175,14 @@ public class ReporteFinancieroAction extends ReporteAction {
 		}
 		return rubros;
 	}
+
 	/*
 	 * Agrega las columnas necesarias al reporte
 	 */
-	private void addColumns(DynamicReportBuilder drb, Collection<Rubro> rubros, ReporteFinancieroForm reporteForm) throws ColumnBuilderException {
+	private void addColumns(TipoAgregacionEnum tipoAgregacion, DynamicReportBuilder drb, Collection<Rubro> rubros, ReporteFinancieroForm reporteForm) throws ColumnBuilderException {
 
-		String tituloActividad = Utils.getMessage("sirius.reportes.finanzas.actividad.label");
-		String tituloRubro = Utils.getMessage("sirius.reportes.finanzas.rubrosPorActividad.label");
+		String tituloElementos = getTituloColumnaElementos(tipoAgregacion);
+		String tituloRubro = getTituloColumnaElementos(tipoAgregacion);
 		String tituloPresupuestado = Utils.getMessage("sirius.reportes.finanzas.presupuestado.label"); 
 		String tituloGastado = Utils.getMessage("sirius.reportes.finanzas.gastado.label"); 
 		String tituloDiferencia = Utils.getMessage("sirius.reportes.finanzas.diferencia.label"); 
@@ -190,7 +197,7 @@ public class ReporteFinancieroAction extends ReporteAction {
  		headerVariables.setOverridesExistingStyle(true);
 
  		
-		AbstractColumn columnaDescripcion = getColumn(COL_DESCRIPCION, String.class, tituloActividad, 80, getHeaderStyle(), headerVariables);
+		AbstractColumn columnaDescripcion = getColumn(COL_DESCRIPCION, String.class, tituloElementos, 80, getHeaderStyle(), headerVariables);
 		drb.addColumn(columnaDescripcion);
 		AbstractColumn columnaRubro = getColumn(COL_RUBRO, String.class, tituloRubro, 80, getHeaderStyle(), null);
 		drb.addColumn(columnaRubro);
@@ -213,17 +220,38 @@ public class ReporteFinancieroAction extends ReporteAction {
 		}
 
 		GroupBuilder gb1 = new GroupBuilder();
-  		
-		DJGroup g1 = gb1.setCriteriaColumn((PropertyColumn) columnaDescripcion)
-	  		.addHeaderVariable(columnaPresupuestado, DJCalculation.SUM, headerVariables)
-	  		.addHeaderVariable(columnaGastado, DJCalculation.SUM, headerVariables) 
-	  		.addHeaderVariable(columnaDif, DJCalculation.SUM, headerVariables)
-	        .setGroupLayout(GroupLayout.VALUE_IN_HEADER) 
-	        .build();
+		gb1.setCriteriaColumn((PropertyColumn) columnaDescripcion);
+	  	gb1.addHeaderVariable(columnaPresupuestado, DJCalculation.SUM, headerVariables);
+	  	gb1.addHeaderVariable(columnaGastado, DJCalculation.SUM, headerVariables); 
+	  	gb1.addHeaderVariable(columnaDif, DJCalculation.SUM, headerVariables);
+	    gb1.setGroupLayout(GroupLayout.VALUE_IN_HEADER); 
+	    DJGroup g1 = gb1.build();
 
   		drb.addGroup(g1);
   		drb.setPrintBackgroundOnOddRows(false);
+	}
 
+	private String getTituloColumnaElementos(TipoAgregacionEnum tipoAgregacion) {
+		String tituloColumna = "";
+		switch (tipoAgregacion) {
+			case ACTIVIDAD: 
+				tituloColumna += Utils.getMessage("sirius.reportes.finanzas.rubrosPorActividad.label");
+				break;
+			case META: 
+				tituloColumna += Utils.getMessage("sirius.reportes.finanzas.rubrosPorMeta.label");
+				break;
+			case OBJETIVO_ESPECIFICO: 
+				tituloColumna += Utils.getMessage("sirius.reportes.finanzas.rubrosPorObjetivoEspecifico.label");
+				break;
+			case OBJETIVO_GENERAL: 
+				tituloColumna += Utils.getMessage("sirius.reportes.finanzas.rubrosPorObjetivoGeneral.label");
+				break;
+			case PROYECTO: 
+				tituloColumna += Utils.getMessage("sirius.reportes.finanzas.rubrosPorProyecto.label");
+				break;
+			default: break;
+		}
+		return tituloColumna;
 	}
 
 	/*
@@ -266,27 +294,46 @@ public class ReporteFinancieroAction extends ReporteAction {
 		return new JRMapCollectionDataSource(col);
 	}
 
+	private PersistentObject getPersistentObject(TipoAgregacionEnum tipoAgregacion, ReporteFinancieroForm reporteForm) {
+		PersistentObject persistentObject = null;
+		switch (tipoAgregacion) {
+			case ACTIVIDAD:
+				persistentObject = actividadService.findById(Integer.parseInt(reporteForm.getIdAgregacion()));
+				break;
+			case META:
+				persistentObject = metaService.findById(Integer.parseInt(reporteForm.getIdAgregacion()));
+				break;
+			case OBJETIVO_ESPECIFICO:
+				persistentObject = objetivoEspecificoService.findById(Integer.parseInt(reporteForm.getIdAgregacion()));
+				break;
+			case OBJETIVO_GENERAL:
+				persistentObject = objetivoGeneralService.findById(Integer.parseInt(reporteForm.getIdAgregacion()));
+				break;
+			default: break;
+		}
+		return persistentObject;
+	}
+
 	/*
 	 * Obtiene las finanzas correspondientes al nivel de agregacion indicado en el reporteForm
 	 */
-	private FinanzasDTO getFinanzas(ReporteFinancieroForm reporteForm, Proyecto proyecto, Rubro[] rubros) {
-		TipoAgregacionEnum tipoAgregacion = TipoAgregacionEnum.findByNombre(reporteForm.getTipoAgregacion());
+	private FinanzasDTO getFinanzas(TipoAgregacionEnum tipoAgregacion, ReporteFinancieroForm reporteForm, Proyecto proyecto, Rubro[] rubros, PersistentObject persistentObject) {
 		FinanzasDTO finanzas = null;
 		switch (tipoAgregacion) {
 			case ACTIVIDAD:
-				Actividad actividad = actividadService.findById(Integer.parseInt(reporteForm.getIdAgregacion()));
+				Actividad actividad = (Actividad)persistentObject;
 				finanzas = finanzasService.finanzasPorActividad(actividad, rubros, reporteForm.calcularPresupuestos(), reporteForm.calcularGastos());
 				break;
 			case META:
-				Meta meta = metaService.findById(Integer.parseInt(reporteForm.getIdAgregacion()));
+				Meta meta = (Meta)persistentObject;
 				finanzas = finanzasService.finanzasPorMeta(meta, rubros, reporteForm.calcularPresupuestos(), reporteForm.calcularGastos());
 				break;
 			case OBJETIVO_ESPECIFICO:
-				ObjetivoEspecifico objetivoEspecifico = objetivoEspecificoService.findById(Integer.parseInt(reporteForm.getIdAgregacion()));
+				ObjetivoEspecifico objetivoEspecifico = (ObjetivoEspecifico)persistentObject;
 				finanzas = finanzasService.finanzasPorObjetivoEspecifico(objetivoEspecifico, rubros, reporteForm.calcularPresupuestos(), reporteForm.calcularGastos());
 				break;
 			case OBJETIVO_GENERAL:
-				ObjetivoGeneral objetivoGeneral = objetivoGeneralService.findById(Integer.parseInt(reporteForm.getIdAgregacion()));
+				ObjetivoGeneral objetivoGeneral = (ObjetivoGeneral)persistentObject;
 				finanzas = finanzasService.finanzasPorObjetivoGeneral(objetivoGeneral, rubros, reporteForm.calcularPresupuestos(), reporteForm.calcularGastos());
 				break;
 			case PROYECTO:
@@ -300,78 +347,31 @@ public class ReporteFinancieroAction extends ReporteAction {
 	/*
 	 * Obtiene la lista de objetos persistentes correspondientes al nivel de agregacion indicado en el reporteForm
 	 */
-	private Collection<PersistentObject> getPersistentObjects(ReporteFinancieroForm reporteForm, Proyecto proyecto) {
-		TipoAgregacionEnum tipoAgregacion = TipoAgregacionEnum.findByNombre(reporteForm.getTipoAgregacion());
-		Collection<PersistentObject> persistentObject= new ArrayList<PersistentObject>();
+	private Collection<PersistentObject> getElementosDetalle(TipoAgregacionEnum tipoAgregacion, PersistentObject persistentObject, Proyecto proyecto) {
+		Collection<PersistentObject> elementosDetalle = new ArrayList<PersistentObject>();
 		switch (tipoAgregacion) {
 			case ACTIVIDAD:
-				Actividad actividad = actividadService.findById(Integer.parseInt(reporteForm.getIdAgregacion()));
-				persistentObject.add(actividad);
+				Actividad actividad = (Actividad)persistentObject;
+				elementosDetalle.add(actividad);
 				break;
 			case META:
-				Meta meta = metaService.findById(Integer.parseInt(reporteForm.getIdAgregacion()));
-				persistentObject.addAll(meta.getActividades());
+				Meta meta = (Meta)persistentObject;
+				elementosDetalle.addAll(meta.getActividades());
 				break;
 			case OBJETIVO_ESPECIFICO:
-				ObjetivoEspecifico objetivoEspecifico = objetivoEspecificoService.findById(Integer.parseInt(reporteForm.getIdAgregacion()));
-				persistentObject.addAll(objetivoEspecifico.getMetas());
+				ObjetivoEspecifico objetivoEspecifico = (ObjetivoEspecifico)persistentObject;
+				elementosDetalle.addAll(objetivoEspecifico.getMetas());
 				break;
 			case OBJETIVO_GENERAL:
-				ObjetivoGeneral objetivoGeneral = objetivoGeneralService.findById(Integer.parseInt(reporteForm.getIdAgregacion()));
-				persistentObject.addAll(objetivoGeneral.getObjetivosEspecificos());
+				ObjetivoGeneral objetivoGeneral = (ObjetivoGeneral)persistentObject;
+				elementosDetalle.addAll(objetivoGeneral.getObjetivosEspecificos());
 				break;
 			case PROYECTO:
-				persistentObject.addAll(proyecto.getObjetivosGenerales());
+				elementosDetalle.addAll(proyecto.getObjetivosGenerales());
 				break;
 			default: break;
 		}
-		return persistentObject;
-	}
-
-	/*
-	 * TODO borrar
-	 * Este metodo lo dejé para tener de ejemple del uso de crosstabs
-	 */
-	private DJCrosstab createCrosstab(HttpServletRequest request) {
-		
-		MessageResources messageResources = getResources(request);
-		
-		CrosstabBuilder djcross = new CrosstabBuilder();
-		djcross.setHeight(200);
-		djcross.setWidth(500);
-		djcross.useMainReportDatasource(false);
-		djcross.setHeaderStyle(getHeaderStyle());
-		djcross.setDatasource("sr",DATA_SOURCE_ORIGIN_PARAMETER, DATA_SOURCE_TYPE_COLLECTION, true);
-		djcross.setUseFullWidth(true);
-		djcross.setAutomaticTitle(true);
-		djcross.setColumnStyles(getHeaderStyle(), getTotalStyle(), getHeaderStyle());
-		djcross.setCellBorder(Border.THIN);
-		
-		CrosstabRowBuilder row = new CrosstabRowBuilder();
-		row.setProperty("actividad.nombre",String.class.getName());
-		row.setHeaderWidth(100).setHeight(20);
-		row.setTitle(messageResources.getMessage("sirius.entidad.actividad.label")).setShowTotals(true);
-		row.setShowTotals(true).setTotalStyle(getTotalStyle());
-		row.setTotalHeaderStyle(getHeaderStyle()).setHeaderStyle(getColHeaderStyle());
-		
-		djcross.addRow(row.build());
-		
-		CrosstabColumnBuilder col = new CrosstabColumnBuilder().setProperty("rubro.nombre",String.class.getName());
-		col.setHeaderHeight(60).setWidth(80);
-		col.setTitle(messageResources.getMessage("sirius.entidad.rubro.label")).setShowTotals(true);
-		col.setTotalStyle(getTotalStyle()).setTotalHeaderStyle(getHeaderStyle());
-		col.setHeaderStyle(getColHeaderStyle());
-		djcross.addColumn(col.build());
-
-		djcross.addMeasure("monto",Double.class.getName(), SUM , 
-				messageResources.getMessage("sirius.ingreso.monto.label"),
-				new StyleBuilder(false).setPattern("#,###.##")
-	 			.setHorizontalAlign(RIGHT)
-	 			.setFont(ARIAL_MEDIUM)
-				.build());
-	
-
-		return djcross.build();
+		return elementosDetalle;
 	}
 
 	/**

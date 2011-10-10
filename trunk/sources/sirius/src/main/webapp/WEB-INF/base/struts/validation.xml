@@ -1249,6 +1249,13 @@
 			<field property="tipoAgregacion" depends="required">
 				<arg position="0" key="sirius.reportes.finanzas.nivelAgregacion.label"/>
 			</field>
+			<field property="idAgregacion" depends="validwhen">
+				<arg position="0" key="sirius.reportes.finanzas.seleccione.label"/>
+				<var>
+					<var-name>test</var-name>
+					<var-value>((*this* != null) or (tipoAgregacion == "PROYECTO"))</var-value>
+				</var>
+			</field>
 		</form>
 	</formset>
 
