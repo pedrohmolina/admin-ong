@@ -1,14 +1,14 @@
---  Area Tematica
-INSERT INTO areatematica (id,descripcion) VALUES (1,'Salud y NutriciÛn');
+Ôªø--  Area Tematica
+INSERT INTO areatematica (id,descripcion) VALUES (1,'Salud y Nutrici√≥n');
 INSERT INTO areatematica (id,descripcion) VALUES (2,'Derechos Humanos');
-INSERT INTO areatematica (id,descripcion) VALUES (3,'EducaciÛn B·sica');
-INSERT INTO areatematica (id,descripcion) VALUES (4,'Desarrollo Democr·tico');
-INSERT INTO areatematica (id,descripcion) VALUES (5,'CapacitaciÛn Laboral');
+INSERT INTO areatematica (id,descripcion) VALUES (3,'Educaci√≥n B√°sica');
+INSERT INTO areatematica (id,descripcion) VALUES (4,'Desarrollo Democr√°tico');
+INSERT INTO areatematica (id,descripcion) VALUES (5,'Capacitaci√≥n Laboral');
 INSERT INTO areatematica (id,descripcion) VALUES (6,'Otros');
 
 --  Tipo Financiador
 INSERT INTO tipofinanciador (id,descripcion) VALUES (1,'Persona');
-INSERT INTO tipofinanciador (id,descripcion) VALUES (2,'InstituciÛn');
+INSERT INTO tipofinanciador (id,descripcion) VALUES (2,'Instituci√≥n');
 INSERT INTO tipofinanciador (id,descripcion) VALUES (3,'Empresa');
 
 --  Estado Financiador
@@ -18,14 +18,14 @@ INSERT INTO estadofinanciador (id,descripcion) VALUES (3,'Potencial');
 
 --  Estado Proyecto
 INSERT INTO estadoproyecto (id,idEstadoAnterior,descripcion) VALUES (1,null,'Idea');
-INSERT INTO estadoproyecto (id,idEstadoAnterior,descripcion) VALUES (2,1,'DiseÒo');
-INSERT INTO estadoproyecto (id,idEstadoAnterior,descripcion) VALUES (3,2,'EvaluaciÛn');
-INSERT INTO estadoproyecto (id,idEstadoAnterior,descripcion) VALUES (4,3,'EjecuciÛn');
+INSERT INTO estadoproyecto (id,idEstadoAnterior,descripcion) VALUES (2,1,'Dise√±o');
+INSERT INTO estadoproyecto (id,idEstadoAnterior,descripcion) VALUES (3,2,'Evaluaci√≥n');
+INSERT INTO estadoproyecto (id,idEstadoAnterior,descripcion) VALUES (4,3,'Ejecuci√≥n');
 INSERT INTO estadoproyecto (id,idEstadoAnterior,descripcion) VALUES (5,4,'Cierre');
 INSERT INTO estadoproyecto (id,idEstadoAnterior,descripcion) VALUES (6,5,'Finalizado');
 
 --  Tipo Ingreso
-INSERT INTO tipoingreso (id,descripcion) VALUES (1,'DonaciÛn');
+INSERT INTO tipoingreso (id,descripcion) VALUES (1,'Donaci√≥n');
 INSERT INTO tipoingreso (id,descripcion) VALUES (2,'Venta de Servicio');
 INSERT INTO tipoingreso (id,descripcion) VALUES (3,'Financiador');
 
@@ -34,7 +34,7 @@ INSERT INTO tipodocumento (id,descripcion) VALUES (1,'DNI');
 INSERT INTO tipodocumento (id,descripcion) VALUES (2,'Cedula Identidad');
 INSERT INTO tipodocumento (id,descripcion) VALUES (3,'Pasaporte');
 INSERT INTO tipodocumento (id,descripcion) VALUES (4,'Libreta de Enrolamiento');
-INSERT INTO tipodocumento (id,descripcion) VALUES (5,'Libreta CÌvica');
+INSERT INTO tipodocumento (id,descripcion) VALUES (5,'Libreta C√≠vica');
 
 --  Tipo Gasto
 INSERT INTO tipogasto (id,descripcion) VALUES (1,'Gastos de Actividad');
@@ -51,7 +51,7 @@ INSERT INTO tipocomprobante (id,descripcion) VALUES (4,'Factura Tipo C');
 INSERT INTO formapago (id,descripcion) VALUES (1,'Efectivo');
 INSERT INTO formapago (id,descripcion) VALUES (2,'Cheque');
 INSERT INTO formapago (id,descripcion) VALUES (3,'Transferencia Bancaria');
-INSERT INTO formapago (id,descripcion) VALUES (4,'Tarjeta de CrÈdito');
+INSERT INTO formapago (id,descripcion) VALUES (4,'Tarjeta de Cr√©dito');
 
 --  Tipo Presupuesto
 insert into tipoPresupuesto (id, descripcion) VALUES (1, 'Proyecto');
@@ -59,7 +59,7 @@ insert into tipoPresupuesto (id, descripcion) VALUES (2, 'Actividad');
 
 --  Tipo Proveedor
 INSERT INTO tipoproveedor (id,descripcion) VALUES (1,'Persona');
-INSERT INTO tipoproveedor (id,descripcion) VALUES (2,'InstituciÛn');
+INSERT INTO tipoproveedor (id,descripcion) VALUES (2,'Instituci√≥n');
 INSERT INTO tipoproveedor (id,descripcion) VALUES (3,'Empresa');
 
 --  Tipo Asignacion
@@ -70,7 +70,7 @@ INSERT INTO tipoasignacion (id,descripcion) VALUES (3,'Por mes');
 --  Estado Actividad
 INSERT INTO estadoactividad (id,descripcion) VALUES (1,'Latencia');
 INSERT INTO estadoactividad (id,descripcion) VALUES (2,'Progreso');
-INSERT INTO estadoactividad (id,descripcion) VALUES (3,'SuspensiÛn');
+INSERT INTO estadoactividad (id,descripcion) VALUES (3,'Suspensi√≥n');
 INSERT INTO estadoactividad (id,descripcion) VALUES (4,'Cancelada');
 INSERT INTO estadoactividad (id,descripcion) VALUES (5,'Cumplida');
 
@@ -81,7 +81,7 @@ INSERT INTO relacioncontractual (id,nombre,descripcion,activo) VALUES (3,'Volunt
 INSERT INTO relacioncontractual (id,nombre,descripcion,activo) VALUES (4,'Becario','Becario',true);
 INSERT INTO relacioncontractual (id,nombre,descripcion,activo) VALUES (5,'Pasante','Pasante',true);
 INSERT INTO relacioncontractual (id,nombre,descripcion,activo) VALUES (6,'Socio','Socio',true);
-INSERT INTO relacioncontractual (id,nombre,descripcion,activo) VALUES (7,'Miembro CD','Miembro de la ComisiÛn Directiva',true);
+INSERT INTO relacioncontractual (id,nombre,descripcion,activo) VALUES (7,'Miembro CD','Miembro de la Comisi√≥n Directiva',true);
 
 --  Parametros
 INSERT INTO parametro (id, nombre, valor, descripcion) VALUES (1, 'ID_TIPO_INGRESO_FINANCIACION', '3', 'Id de la tabla tipoIngreso correspondiente al registro que representa Financiacion');
