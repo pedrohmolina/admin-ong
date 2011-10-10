@@ -77,20 +77,24 @@ INSERT INTO `meta` (`id`, `nombre`, `descripcion`, `ponderacion`, `idObjetivoEsp
 
 /* Actividades */
 INSERT INTO `actividad` (`id`, `idMeta`, `idFinanciador`, `idEstadoActividad`, `nombre`, `observaciones`, `fechaInicio`, `fechaFin`, `ponderacion`, `completitud`, `activo`, `fechaFinalizacion`) VALUES
-  (3, 2, 2, 1, 'Capacitacion Personas', NULL, '2011-08-18', '2011-08-19', 50, 0, 1, '2011-08-15'),
-  (4, 2, 2, 1, 'Evaluacion Promotores', NULL, '2011-08-09', '2011-08-16', 30, 13, 1, '2011-08-15'),
-  (5, 3, 5, 1, 'Capacitar jovenes promotores', NULL, '2011-08-09', '2011-08-16', 40, 59, 1, '2011-08-15'),
-  (6, 3, 5, 1, 'Trabajo de campo de los jovenes promotores de salud', NULL, '2011-08-10', '2011-08-17', 60, 0, 1, '2011-08-15'),
-  (7, 2, 2, 1, 'Evaluar Promotores', NULL, '2011-08-09', '2011-08-16', 20, 12, 1, NULL),
-  (8, 2, 3, 1, 'Ejercicio practico', NULL, '2011-08-03', '2011-08-11', 0, 0, 0, '2011-08-15'),
-  (9, 3, 5, 1, 'Induccion a promotores', NULL, '2011-08-03', '2011-08-03', 0, 0, 0, NULL),
-  (12, 4, 2, 1, 'Evaluacion estado gestion actual', NULL, '2011-08-10', '2011-08-17', 75, 0, 1, '2011-08-15'),
-  (13, 5, 2, 1, 'Introduccion a la autogestion', NULL, '2011-08-14', '2011-08-19', 60, 0, 1, NULL),
-  (14, 5, 3, 1, 'Practica autogestion', NULL, '2011-08-17', '2011-08-24', 40, 0, 1, NULL),
-  (15, 6, 2, 1, 'Supervision autogestion', NULL, '2011-08-17', '2011-08-24', 50, 0, 1, NULL);
+  (3, 2, 2, 1, 'Capacitacion Personas', NULL, '2011-08-18', '2011-11-19', 50, 0, 1, NULL),
+  (4, 2, 2, 1, 'Evaluacion Promotores', NULL, '2011-08-09', '2011-11-16', 30, 13, 1, NULL),
+  (5, 3, 5, 1, 'Capacitar jovenes promotores', NULL, '2011-08-09', '2011-12-16', 40, 59, 1, NULL),
+  (6, 3, 5, 1, 'Trabajo de campo de los jovenes promotores de salud', NULL, '2011-08-10', '2011-12-17', 60, 0, 1, NULL),
+  (7, 2, 2, 1, 'Evaluar Promotores', NULL, '2011-08-09', '2011-12-16', 20, 12, 1, NULL),
+  (8, 2, 3, 1, 'Ejercicio practico', NULL, '2011-08-03', '2011-12-11', 0, 0, 0, NULL),
+  (9, 3, 5, 1, 'Induccion a promotores', NULL, '2011-08-03', '2011-12-03', 0, 0, 0, NULL),
+  (12, 4, 2, 1, 'Evaluacion estado gestion actual', NULL, '2011-08-10', '2011-12-17', 75, 0, 1, NULL),
+  (13, 5, 2, 1, 'Introduccion a la autogestion', NULL, '2011-08-14', '2011-12-19', 60, 0, 1, NULL),
+  (14, 5, 3, 1, 'Practica autogestion', NULL, '2011-08-17', '2011-12-24', 40, 0, 1, NULL),
+  (15, 6, 2, 1, 'Supervision autogestion', NULL, '2011-08-17', '2011-12-24', 50, 0, 1, NULL);
 
   commit;
   
 /* Usuarios */
 INSERT INTO `usuario` (`id`, `idPersona`, `username`, `password`, `idPerfil`, `bloqueado`, `activo`) VALUES
   (2, 3, 'jrodriguez', 'a7fc661fbbb7dadc495975e0fbb905e0', 2, 0, 1);
+
+/* Perfil para carga de gastos */
+INSERT INTO `perfilrol` (`idPerfil`, `idRol`) VALUES
+  (2, 16);
