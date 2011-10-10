@@ -1,0 +1,66 @@
+package com.antares.sirius.dao.impl;
+
+import java.util.Collection;
+
+import org.hibernate.Criteria;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
+
+import com.antares.commons.dao.impl.BusinessEntityDAOImpl;
+import com.antares.commons.filter.Filter;
+import com.antares.commons.util.Utils;
+import com.antares.sirius.dao.ObjetivoEspecificoDAO;
+import com.antares.sirius.filter.ObjetivoEspecificoFilter;
+import com.antares.sirius.model.EstadoProyecto;
+import com.antares.sirius.model.ObjetivoEspecifico;
+import com.antares.sirius.model.Proyecto;
+
+/**
+ * Implementacion de la interfaz ObjetivoEspecificoDAO.
+ *
+ * @version 1.0.0 Created 23/01/2011 by Julian Martinez
+ * @author <a href:mailto:otakon@gmail.com> Julian Martinez </a>
+ *
+ */
+public class ObjetivoEspecificoDAOImpl extends BusinessEntityDAOImpl<ObjetivoEspecifico> implements ObjetivoEspecificoDAO {
+	
+	public ObjetivoEspecifico findByNombre(String nombre) {
+		Criteria crit = buildCriteria();
+		crit.add(ilike("nombre", nombre, MatchMode.EXACT));
+		return (ObjetivoEspecifico)crit.uniqueResult();
+	}
+
+	@SuppressWarnings("unchecked")
+	public Collection<ObjetivoEspecifico> findAllByProyecto(Proyecto proyecto) {
+		Criteria crit = buildCriteria();
+		crit.createAlias("objetivoGeneral", "objetivoGeneral");
+		crit.add(Restrictions.eq("objetivoGeneral.proyecto", proyecto));
+		return crit.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	public Collection<ObjetivoEspecifico> findAllExceptEstados(EstadoProyecto ... estadoProyecto) {
+		Criteria crit = buildCriteria();
+		crit.createAlias("objetivoGeneral", "objetivoGeneral");
+		crit.createAlias("objetivoGeneral.proyecto", "proyecto");
+		crit.add(Restrictions.not(Restrictions.in("proyecto.estadoProyecto", estadoProyecto)));
+		return crit.list();
+	}
+
+	@Override
+	protected void addFilter(Criteria crit, Filter<ObjetivoEspecifico> filter) {
+		ObjetivoEspecificoFilter entityFilter = (ObjetivoEspecificoFilter)filter;
+		if (Utils.isNotNullNorEmpty(entityFilter.getNombre())) {
+			crit.add(ilike("nombre", entityFilter.getNombre(), MatchMode.ANYWHERE));
+		}
+		if (entityFilter.getObjetivoGeneral() != null) {
+			crit.add(Restrictions.eq("objetivoGeneral", entityFilter.getObjetivoGeneral()));
+		}
+	}
+
+	@Override
+	protected void addOrder(Criteria crit) {
+		crit.addOrder(Order.asc("nombre"));
+	}
+}

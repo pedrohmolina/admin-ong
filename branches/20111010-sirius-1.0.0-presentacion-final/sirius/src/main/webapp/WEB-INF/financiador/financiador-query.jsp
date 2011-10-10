@@ -1,0 +1,85 @@
+<%@ taglib uri="/WEB-INF/tlds/struts-bean.tld" prefix="bean"%>
+<%@ taglib uri="/WEB-INF/tlds/struts-bean-el.tld" prefix="bean-el"%>
+<%@ taglib uri="/WEB-INF/tlds/struts-html.tld" prefix="html"%>
+<%@ taglib uri="/WEB-INF/tlds/struts-logic.tld" prefix="logic"%>
+<%@ taglib uri="/WEB-INF/tlds/struts-tiles.tld" prefix="tiles"%>
+<%@ taglib uri="/WEB-INF/tlds/struts-nested.tld" prefix="nested"%>
+<%@ taglib uri="/WEB-INF/tlds/displaytag.tld" prefix="display"%>
+<%@ taglib uri="/WEB-INF/tlds/displaytag-el.tld" prefix="display-el"%>
+<%@ taglib uri="/WEB-INF/tlds/authz.tld" prefix="authz"%>
+<%@ taglib uri="/WEB-INF/tlds/c.tld" prefix="c"%>
+
+<script>
+function limpiarFiltro(){
+	hacerSubmit('financiador/financiador-query.do?method=initQuery');
+}
+
+function confirmarAccion(mensaje) {
+	return confirm(mensaje);
+}
+
+</script>
+
+<div class="form">
+	<html:form action="/financiador/financiador-query-validate.do?method=query">
+	<div style="float:left; width: 100%;">
+		<p>
+		<label for="filtroNombre"><bean:message key="sirius.financiador.nombre.label" />:</label>
+		<html:text property="filtroNombre" />
+		</p><br><p>
+		<label for="filtroIdTipoFinanciador"><bean:message key="sirius.financiador.tipoFinanciador.label" />:</label>
+		<html:select property="filtroIdTipoFinanciador">
+			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
+			<html:optionsCollection name="financiadorQuery" property="tiposFinanciador" label="descripcion" value="id"/>
+		</html:select>
+		</p><br><p>
+		<label for="filtroIdEstadoFinanciador"><bean:message key="sirius.financiador.estadoFinanciador.label" />:</label>
+		<html:select property="filtroIdEstadoFinanciador">
+			<html:option value=""><bean:message key="antares.base.seleccione.label"/></html:option>
+			<html:optionsCollection name="financiadorQuery" property="estadosFinanciador" label="descripcion" value="id"/>
+		</html:select>
+		</p><br>
+	</div>
+
+	<div style="float: left; width: 100%;">
+		<div class="boton">
+			<a href="#" onclick="javascript:limpiarFiltro();"><bean:message key="antares.base.limpiarfiltro.label"/></a>
+			<authz:authorize ifAllGranted="ENTIDAD_FINANCIADOR-LISTADO">
+				<a href="#" onclick="financiadorQuery.submit();"><bean:message key="antares.base.buscar.label" /></a>
+			</authz:authorize>
+			<authz:authorize ifAllGranted="ENTIDAD_FINANCIADOR-ALTA">
+				<a href="#" onclick="return hacerSubmit('financiador/financiador-form.do?method=initCreate');"><bean:message key="antares.base.nuevo.label" /></a>
+			</authz:authorize>
+		</div>
+	</div>
+	
+	</html:form>
+	
+	<div style="clear: both;" class="errores">
+		<html:errors />
+	</div>
+
+	<h1><bean:message key="antares.base.result.label" /></h1>
+	<display-el:table export="true" defaultsort="1" pagesize="${requestScope['displayTagPageSize']}" class="tabla" name="sessionScope.financiadorQuery.result" id="item"
+		requestURI="/financiador/financiador-query.do" sort="list" >
+
+		<display:column sortable="true" property="nombre" 							titleKey="sirius.financiador.nombre.label" maxLength="30" />
+		<display:column sortable="true" property="tipoFinanciador.descripcion" 		titleKey="sirius.financiador.tipoFinanciador.label" />
+		<display:column sortable="true" property="estadoFinanciador.descripcion" 	titleKey="sirius.financiador.estadoFinanciador.label" style="text-align: center" />
+
+		<display:column title="Acciones" media="html" style="text-align: center">
+			<authz:authorize ifAllGranted="ENTIDAD_FINANCIADOR-DETALLE">
+				<a href="<c:url value="/financiador/financiador-form.do?method=view&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Visualizar" title="Visualizar"
+					src="<c:url value="/img/icon.lupa.gif"/>" /></a>
+			</authz:authorize>
+			<authz:authorize ifAllGranted="ENTIDAD_FINANCIADOR-MODIFICACION">
+				<a href="<c:url value="/financiador/financiador-form.do?method=initUpdate&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Editar" title="Modificar"
+					src="<c:url value="/img/icoModificar.gif"/>" /></a>
+			</authz:authorize>
+			<authz:authorize ifAllGranted="ENTIDAD_FINANCIADOR-BAJA">
+				<a href="<c:url value="/financiador/financiador-query.do?method=remove&id="/><bean:write name="item" property="id"/>"><img border="0" alt="Eliminar" title="Eliminar"
+					src="<c:url value="/img/icons/cross.png"/>" onclick="return confirmarAccion('Est&aacute; seguro que desea eliminar el registro <bean:write name="item" property="nombre"/>?')" /></a>
+			</authz:authorize>
+		</display:column>
+	</display-el:table>
+</div>

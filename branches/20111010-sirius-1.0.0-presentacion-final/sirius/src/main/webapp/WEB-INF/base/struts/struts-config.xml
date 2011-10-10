@@ -1,0 +1,720 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+                               "http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
+<struts-config>
+	<!-- ==================== Form Bean Definitions ==================== -->
+	<form-beans>
+		<form-bean name="datosPersonalesForm" type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="fax" type="java.lang.String" />
+			<form-property name="telefono" type="java.lang.String" />
+			<form-property name="mail" type="java.lang.String" />
+			<form-property name="apellido" type="java.lang.String" />
+			<form-property name="nombre" type="java.lang.String" />
+		</form-bean>
+		<form-bean name="passForm" type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="oldPassword" type="java.lang.String" />
+			<form-property name="password" type="java.lang.String" />
+			<form-property name="password2" type="java.lang.String" />
+		</form-bean>
+		<form-bean name="homeForm" type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property initial="3" name="idDia" type="java.lang.Integer" />
+		</form-bean>
+		
+		<form-bean name="actividadForm" 			type="com.antares.sirius.view.form.ActividadForm" />
+		<form-bean name="actividadQuery" 			type="com.antares.sirius.view.form.ActividadForm" />
+		<form-bean name="asignacionForm" 			type="com.antares.sirius.view.form.AsignacionForm" />
+		<form-bean name="asignacionQuery" 			type="com.antares.sirius.view.form.AsignacionForm" />
+		<form-bean name="financiadorForm" 			type="com.antares.sirius.view.form.FinanciadorForm" />
+		<form-bean name="financiadorQuery" 			type="com.antares.sirius.view.form.FinanciadorForm" />
+		<form-bean name="gastoActividadForm" 		type="com.antares.sirius.view.form.GastoForm" />
+		<form-bean name="gastoActividadQuery" 		type="com.antares.sirius.view.form.GastoForm" />
+		<form-bean name="gastoOrganizacionForm" 	type="com.antares.sirius.view.form.GastoForm" />
+		<form-bean name="gastoOrganizacionQuery" 	type="com.antares.sirius.view.form.GastoForm" />
+		<form-bean name="gastoProyectoForm" 		type="com.antares.sirius.view.form.GastoForm" />
+		<form-bean name="gastoProyectoQuery" 		type="com.antares.sirius.view.form.GastoForm" />
+		<form-bean name="verificarGastoQuery" 		type="com.antares.sirius.view.form.GastoForm" />
+		<form-bean name="ingresoForm" 				type="com.antares.sirius.view.form.IngresoForm" />
+		<form-bean name="ingresoQuery" 				type="com.antares.sirius.view.form.IngresoForm" />
+		<form-bean name="metaForm" 					type="com.antares.sirius.view.form.MetaForm" />
+		<form-bean name="metaQuery"					type="com.antares.sirius.view.form.MetaForm" />
+		<form-bean name="notificacionQuery" 		type="com.antares.sirius.view.form.NotificacionForm" />
+		<form-bean name="objetivoEspecificoForm" 	type="com.antares.sirius.view.form.ObjetivoEspecificoForm" />
+		<form-bean name="objetivoEspecificoQuery" 	type="com.antares.sirius.view.form.ObjetivoEspecificoForm" />
+		<form-bean name="objetivoGeneralForm" 		type="com.antares.sirius.view.form.ObjetivoGeneralForm" />
+		<form-bean name="objetivoGeneralQuery" 		type="com.antares.sirius.view.form.ObjetivoGeneralForm" />
+		<form-bean name="perfilForm" 				type="com.antares.sirius.view.form.PerfilForm" />
+		<form-bean name="perfilQuery" 				type="com.antares.sirius.view.form.PerfilForm" />
+		<form-bean name="personaForm" 				type="com.antares.sirius.view.form.PersonaForm" />
+		<form-bean name="personaQuery" 				type="com.antares.sirius.view.form.PersonaForm" />
+		<form-bean name="proveedorForm" 			type="com.antares.sirius.view.form.ProveedorForm" />
+		<form-bean name="proveedorQuery" 			type="com.antares.sirius.view.form.ProveedorForm" />
+		<form-bean name="proyectoForm" 				type="com.antares.sirius.view.form.ProyectoForm" />
+		<form-bean name="proyectoQuery"				type="com.antares.sirius.view.form.ProyectoForm" />
+		<form-bean name="reglaForm" 				type="com.antares.sirius.view.form.ReglaForm" />
+		<form-bean name="reglaQuery" 				type="com.antares.sirius.view.form.ReglaForm" />
+		<form-bean name="relacionContractualForm" 	type="com.antares.sirius.view.form.RelacionContractualForm" />
+		<form-bean name="relacionContractualQuery" 	type="com.antares.sirius.view.form.RelacionContractualForm" />
+		<form-bean name="rolForm" 					type="com.antares.sirius.view.form.RolForm" />
+		<form-bean name="rolQuery" 					type="com.antares.sirius.view.form.RolForm" />
+		<form-bean name="rubroForm" 				type="com.antares.sirius.view.form.RubroForm" />
+		<form-bean name="rubroQuery" 				type="com.antares.sirius.view.form.RubroForm" />
+		<form-bean name="usuarioForm" 				type="com.antares.sirius.view.form.UsuarioForm" />
+		<form-bean name="usuarioQuery" 				type="com.antares.sirius.view.form.UsuarioForm" />
+		<form-bean name="usuarioPersonaForm" 		type="com.antares.sirius.view.form.UsuarioPersonaForm" />
+		<form-bean name="usuarioPasswordForm" 		type="com.antares.sirius.view.form.UsuarioPasswordForm" />
+		<form-bean name="reportePersonaForm" 		type="com.antares.sirius.view.form.ReportePersonaForm" />
+		<form-bean name="reporteFinanciadorForm" 	type="com.antares.sirius.view.form.ReporteFinanciadorForm" />
+		<form-bean name="reporteProveedorForm" 		type="com.antares.sirius.view.form.ReporteProveedorForm" />
+		<form-bean name="reporteFinancieroForm" 	type="com.antares.sirius.view.form.ReporteFinancieroForm" />
+		
+		<form-bean name="presupuestoForm" type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="idProyecto" 		type="java.lang.Integer" />
+			<form-property name="nombreProyecto" 	type="java.lang.String" />
+			<form-property name="actividades" 		type="java.util.List" />
+			<form-property name="rubros" 			type="java.util.List" />
+			<form-property name="nombresColumnas" 	type="java.lang.String" />
+			<form-property name="presupuestos" 		type="com.antares.sirius.dto.PresupuestoDTO" />
+		</form-bean>
+
+	</form-beans>
+
+	<!-- ================= Global Exceptions Definitions ================== -->
+	<global-exceptions>
+		<!-- Agregar handlers para las exceptions que lleguen a la vista -->
+	</global-exceptions>
+
+	<!-- ================= Global Forward Definitions ================== -->
+	<global-forwards>
+		<forward name="restrictedAccess" 	path="/errors/403.do" />
+		<forward name="message" 			path=".message" />
+	</global-forwards>
+
+	<!-- ================= Action Mapping Definitions ================== -->
+	<action-mappings>
+		<action path="/public/login" parameter=".login" type="org.apache.struts.actions.ForwardAction" />
+		<action path="/public/message" parameter=".message" type="org.apache.struts.actions.ForwardAction" />
+
+		<action path="/public/logout" type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path=".logout" />
+		</action>
+
+		<action path="/errors/400" parameter=".400" type="org.apache.struts.actions.ForwardAction" />
+		<action path="/errors/403" parameter=".403" type="org.apache.struts.actions.ForwardAction" />
+		<action path="/errors/404" parameter=".404" type="org.apache.struts.actions.ForwardAction" />
+		<action path="/errors/500" parameter=".500" type="org.apache.struts.actions.ForwardAction" />
+
+		<action path="/base/home-init" name="homeForm" scope="request" 
+				type="org.springframework.web.struts.DelegatingActionProxy" validate="false">
+			<forward name="adminHome" 			path=".adminHome" />
+			<forward name="notificaciones" 		path="/notificacion/notificacion-query.do?method=initQuery" />
+			<forward name="verificarGastos" 	path="/gasto/verificar-gasto-query.do?method=initQuery" />
+		</action>
+
+
+		<!-- Actions de actividades -->
+		<action path="/actividad/actividad-query" name="actividadQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="query" 			path=".abmActividadQuery" />
+		</action>
+
+		<action path="/actividad/actividad-query-validate" name="actividadQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/actividad/actividad-query.do?method=showQuery">
+			<forward name="query" 		path=".abmActividadQuery" />
+		</action>
+
+		<action path="/actividad/actividad-form" name="actividadForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="form" 		path=".abmActividadForm" />
+			<forward name="view" 		path=".abmActividadView"></forward>
+		</action>
+
+		<action path="/actividad/actividad-form-validate" name="actividadForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/actividad/actividad-form.do?method=showForm">
+			<forward name="successCreate" 	path="/actividad/actividad-query.do?method=lastQuery" />
+			<forward name="successUpdate" 	path="/actividad/actividad-query.do?method=query" />
+		</action>
+		<!-- Fin de actions de actividades -->
+
+		<!-- Actions de asignaciones -->
+		<action path="/asignacion/asignacion-query" name="asignacionQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="query" 		path=".abmAsignacionQuery" />
+		</action>
+
+		<action path="/asignacion/asignacion-query-validate" name="asignacionQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/asignacion/asignacion-query.do?method=showQuery">
+			<forward name="query" 		path=".abmAsignacionQuery" />
+		</action>
+
+		<action path="/asignacion/asignacion-form" name="asignacionForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="form" 		path=".abmAsignacionForm" />
+			<forward name="view" 		path=".abmAsignacionView"></forward>
+		</action>
+
+		<action path="/asignacion/asignacion-form-validate" name="asignacionForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/asignacion/asignacion-form.do?method=showForm">
+			<forward name="successCreate" 	path="/asignacion/asignacion-query.do?method=lastQuery" />
+			<forward name="successUpdate" 	path="/asignacion/asignacion-query.do?method=query" />
+		</action>
+		<!-- Fin de actions de actividades -->
+
+		<!-- Actions de financiadores -->
+		<action path="/financiador/financiador-query" name="financiadorQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="query" 		path=".abmFinanciadorQuery" />
+		</action>
+
+		<action path="/financiador/financiador-query-validate" name="financiadorQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/financiador/financiador-query.do?method=showQuery">
+			<forward name="query" 		path=".abmFinanciadorQuery" />
+		</action>
+
+		<action path="/financiador/financiador-form" name="financiadorForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="form" 		path=".abmFinanciadorForm" />
+			<forward name="view" 		path=".abmFinanciadorView"></forward>
+		</action>
+
+		<action path="/financiador/financiador-form-validate" name="financiadorForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/financiador/financiador-form.do?method=showForm">
+			<forward name="successCreate" 	path="/financiador/financiador-query.do?method=lastQuery" />
+			<forward name="successUpdate" 	path="/financiador/financiador-query.do?method=query" />
+		</action>
+		<!-- Fin de actions de financiadores -->
+
+		<!-- Actions de gastos de actividad -->
+		<action path="/gasto/gasto-actividad-query" name="gastoActividadQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="query" 		path=".abmGastoActividadQuery" />
+		</action>
+
+		<action path="/gasto/gasto-actividad-query-validate" name="gastoActividadQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/gasto/gasto-actividad-query.do?method=showQuery">
+			<forward name="query" 		path=".abmGastoActividadQuery" />
+		</action>
+
+		<action path="/gasto/gasto-actividad-list" name="gastoActividadQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="query" 		path=".abmGastoActividadList" />
+		</action>
+
+		<action path="/gasto/gasto-actividad-list-validate" name="gastoActividadQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/gasto/gasto-actividad-list.do?method=showList">
+			<forward name="query" 		path=".abmGastoActividadList" />
+		</action>
+
+		<action path="/gasto/gasto-actividad-form" name="gastoActividadForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="form" 		path=".abmGastoActividadForm" />
+			<forward name="view" 		path=".abmGastoActividadView"></forward>
+			<forward name="referencia" 	path=".abmGastoActividadReferencia"></forward>
+		</action>
+
+		<action path="/gasto/gasto-actividad-form-validate" name="gastoActividadForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/gasto/gasto-actividad-form.do?method=showForm">
+			<forward name="successCreate" 	path="/public/message.do" />
+			<forward name="successUpdate" 	path="/gasto/gasto-actividad-query.do?method=query" />
+		</action>
+		<!-- Fin de actions de gastos de actividad -->
+
+		<!-- Actions de gastos de organizacion -->
+		<action path="/gasto/gasto-organizacion-query" name="gastoOrganizacionQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="query" 		path=".abmGastoOrganizacionQuery" />
+		</action>
+
+		<action path="/gasto/gasto-organizacion-query-validate" name="gastoOrganizacionQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/gasto/gasto-organizacion-query.do?method=showQuery">
+			<forward name="query" 		path=".abmGastoOrganizacionQuery" />
+		</action>
+
+		<action path="/gasto/gasto-organizacion-form" name="gastoOrganizacionForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="form" 		path=".abmGastoOrganizacionForm" />
+			<forward name="view" 		path=".abmGastoOrganizacionView"></forward>
+		</action>
+
+		<action path="/gasto/gasto-organizacion-form-validate" name="gastoOrganizacionForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/gasto/gasto-organizacion-form.do?method=showForm">
+			<forward name="successCreate" 	path="/gasto/gasto-organizacion-query.do?method=lastQuery" />
+			<forward name="successUpdate" 	path="/gasto/gasto-organizacion-query.do?method=query" />
+		</action>
+		<!-- Fin de actions de gastos de organizacion -->
+
+		<!-- Actions de gastos de proyecto -->
+		<action path="/gasto/gasto-proyecto-query" name="gastoProyectoQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="query" 		path=".abmGastoProyectoQuery" />
+		</action>
+
+		<action path="/gasto/gasto-proyecto-query-validate" name="gastoProyectoQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/gasto/gasto-proyecto-query.do?method=showQuery">
+			<forward name="query" 		path=".abmGastoProyectoQuery" />
+		</action>
+
+		<action path="/gasto/gasto-proyecto-form" name="gastoProyectoForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="form" 		path=".abmGastoProyectoForm" />
+			<forward name="view" 		path=".abmGastoProyectoView"></forward>
+		</action>
+
+		<action path="/gasto/gasto-proyecto-form-validate" name="gastoProyectoForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/gasto/gasto-proyecto-form.do?method=showForm">
+			<forward name="successCreate" 	path="/gasto/gasto-proyecto-query.do?method=lastQuery" />
+			<forward name="successUpdate" 	path="/gasto/gasto-proyecto-query.do?method=query" />
+		</action>
+		<!-- Fin de actions de gastos de proyecto -->
+
+		<!-- Actions de verificar gastos -->
+		<action path="/gasto/verificar-gasto-query" name="verificarGastoQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="query" 		path=".abmVerificarGastoQuery" />
+		</action>
+		<!-- Fin de actions de verificar gastos -->
+
+		<!-- Actions de ingresos -->
+		<action path="/ingreso/ingreso-query" name="ingresoQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="query" 		path=".abmIngresoQuery" />
+		</action>
+
+		<action path="/ingreso/ingreso-query-validate" name="ingresoQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/ingreso/ingreso-query.do?method=showQuery">
+			<forward name="query" 		path=".abmIngresoQuery" />
+		</action>
+
+		<action path="/ingreso/ingreso-form" name="ingresoForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="form" 		path=".abmIngresoForm" />
+			<forward name="view" 		path=".abmIngresoView"></forward>
+		</action>
+
+		<action path="/ingreso/ingreso-form-validate" name="ingresoForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/ingreso/ingreso-form.do?method=showForm">
+			<forward name="successCreate" 	path="/ingreso/ingreso-query.do?method=lastQuery" />
+			<forward name="successUpdate" 	path="/ingreso/ingreso-query.do?method=query" />
+		</action>
+		<!-- Fin de actions de ingresos -->
+
+		<!-- Actions de metas -->
+		<action path="/meta/meta-query" name="metaQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="query" 		path=".abmMetaQuery" />
+		</action>
+
+		<action path="/meta/meta-query-validate" name="metaQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/meta/meta-query.do?method=showQuery">
+			<forward name="query" 		path=".abmMetaQuery" />
+		</action>
+
+		<action path="/meta/meta-form" name="metaForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="form" 		path=".abmMetaForm" />
+			<forward name="view" 		path=".abmMetaView"></forward>
+		</action>
+
+		<action path="/meta/meta-form-validate" name="metaForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/meta/meta-form.do?method=showForm">
+			<forward name="successCreate" 	path="/meta/meta-query.do?method=lastQuery" />
+			<forward name="successUpdate" 	path="/meta/meta-query.do?method=query" />
+		</action>
+		<!-- Fin de actions de metas -->
+
+		<!-- Actions de notificaciones -->
+		<action path="/notificacion/notificacion-query" name="notificacionQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="query" 		path=".abmNotificacionQuery" />
+		</action>
+		<!-- Fin de actions de notificaciones -->
+
+		<!-- Actions de objetivos especificos -->
+		<action path="/objetivo-especifico/objetivo-especifico-query" name="objetivoEspecificoQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="query" 		path=".abmObjetivoEspecificoQuery" />
+		</action>
+
+		<action path="/objetivo-especifico/objetivo-especifico-query-validate" name="objetivoEspecificoQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/objetivo-especifico/objetivo-especifico-query.do?method=showQuery">
+			<forward name="query" 		path=".abmObjetivoEspecificoQuery" />
+		</action>
+
+		<action path="/objetivo-especifico/objetivo-especifico-form" name="objetivoEspecificoForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="form" 		path=".abmObjetivoEspecificoForm" />
+			<forward name="view" 		path=".abmObjetivoEspecificoView"></forward>
+		</action>
+
+		<action path="/objetivo-especifico/objetivo-especifico-form-validate" name="objetivoEspecificoForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/objetivo-especifico/objetivo-especifico-form.do?method=showForm">
+			<forward name="successCreate" 	path="/objetivo-especifico/objetivo-especifico-query.do?method=lastQuery" />
+			<forward name="successUpdate" 	path="/objetivo-especifico/objetivo-especifico-query.do?method=query" />
+		</action>
+		<!-- Fin de actions de objetivos especificos -->
+
+		<!-- Actions de objetivos generales -->
+		<action path="/objetivo-general/objetivo-general-query" name="objetivoGeneralQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="query" 		path=".abmObjetivoGeneralQuery" />
+		</action>
+
+		<action path="/objetivo-general/objetivo-general-query-validate" name="objetivoGeneralQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/objetivo-general/objetivo-general-query.do?method=showQuery">
+			<forward name="query" 		path=".abmObjetivoGeneralQuery" />
+		</action>
+
+		<action path="/objetivo-general/objetivo-general-form" name="objetivoGeneralForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="form" 		path=".abmObjetivoGeneralForm" />
+			<forward name="view" 		path=".abmObjetivoGeneralView"></forward>
+		</action>
+
+		<action path="/objetivo-general/objetivo-general-form-validate" name="objetivoGeneralForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/objetivo-general/objetivo-general-form.do?method=showForm">
+			<forward name="successCreate" 	path="/objetivo-general/objetivo-general-query.do?method=lastQuery" />
+			<forward name="successUpdate" 	path="/objetivo-general/objetivo-general-query.do?method=query" />
+		</action>
+		<!-- Fin de actions de objetivos generales -->
+
+		<!-- Actions de perfiles -->
+		<action path="/perfil/perfil-query" name="perfilQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="query" 		path=".abmPerfilQuery" />
+		</action>
+
+		<action path="/perfil/perfil-query-validate" name="perfilQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/perfil/perfil-query.do?method=showQuery">
+			<forward name="query" 		path=".abmPerfilQuery" />
+		</action>
+
+		<action path="/perfil/perfil-form" name="perfilForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="form" 		path=".abmPerfilForm" />
+			<forward name="view" 		path=".abmPerfilView"></forward>
+		</action>
+
+		<action path="/perfil/perfil-form-validate" name="perfilForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/perfil/perfil-form.do?method=showForm">
+			<forward name="successCreate" 	path="/perfil/perfil-query.do?method=lastQuery" />
+			<forward name="successUpdate" 	path="/perfil/perfil-query.do?method=query" />
+		</action>
+		<!-- Fin de actions de perfiles -->
+
+		<!-- Actions de personas -->
+		<action path="/persona/persona-query" name="personaQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="query" 		path=".abmPersonaQuery" />
+		</action>
+
+		<action path="/persona/persona-query-validate" name="personaQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/persona/persona-query.do?method=showQuery">
+			<forward name="query" 		path=".abmPersonaQuery" />
+		</action>
+
+		<action path="/persona/persona-form" name="personaForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="form" 		path=".abmPersonaForm" />
+			<forward name="view" 		path=".abmPersonaView"></forward>
+		</action>
+
+		<action path="/persona/persona-form-validate" name="personaForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/persona/persona-form.do?method=showForm">
+			<forward name="successCreate" 	path="/persona/persona-query.do?method=lastQuery" />
+			<forward name="successUpdate" 	path="/persona/persona-query.do?method=query" />
+		</action>
+		<!-- Fin de actions de personas -->
+
+		<!-- Actions de proveedores -->
+		<action path="/proveedor/proveedor-query" name="proveedorQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="query" 		path=".abmProveedorQuery" />
+		</action>
+
+		<action path="/proveedor/proveedor-query-validate" name="proveedorQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/proveedor/proveedor-query.do?method=showQuery">
+			<forward name="query" 		path=".abmProveedorQuery" />
+		</action>
+
+		<action path="/proveedor/proveedor-form" name="proveedorForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="form" 		path=".abmProveedorForm" />
+			<forward name="view" 		path=".abmProveedorView"></forward>
+		</action>
+
+		<action path="/proveedor/proveedor-form-validate" name="proveedorForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/proveedor/proveedor-form.do?method=showForm">
+			<forward name="successCreate" 	path="/proveedor/proveedor-query.do?method=lastQuery" />
+			<forward name="successUpdate" 	path="/proveedor/proveedor-query.do?method=query" />
+		</action>
+		<!-- Fin de actions de proveedores -->
+
+		<!-- Actions de proyectos -->
+		<action path="/proyecto/proyecto-query" name="proyectoQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="query" 		path=".abmProyectoQuery" />
+		</action>
+
+		<action path="/proyecto/proyecto-query-validate" name="proyectoQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/proyecto/proyecto-query.do?method=showQuery">
+			<forward name="query" 		path=".abmProyectoQuery" />
+		</action>
+
+		<action path="/proyecto/proyecto-form" name="proyectoForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="form" 		path=".abmProyectoForm" />
+			<forward name="view" 		path=".abmProyectoView"></forward>
+		</action>
+
+		<action path="/proyecto/proyecto-form-validate" name="proyectoForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/proyecto/proyecto-form.do?method=showForm">
+			<forward name="successCreate" 	path="/proyecto/proyecto-query.do?method=lastQuery" />
+			<forward name="successUpdate" 	path="/proyecto/proyecto-query.do?method=query" />
+		</action>
+
+		<action path="/proyecto/presupuesto-form" name="presupuestoForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="show" 		path=".presupuestoForm" />
+			<forward name="success" 	path="/proyecto/proyecto-query.do?method=query" />
+		</action>
+		<!-- Fin de actions de proyectos -->
+
+		<!-- Actions de relaciones contractuales -->
+		<action path="/relacion-contractual/relacion-contractual-query" name="relacionContractualQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="query" 		path=".abmRelacionContractualQuery" />
+		</action>
+
+		<action path="/relacion-contractual/relacion-contractual-query-validate" name="relacionContractualQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/relacion-contractual/relacion-contractual-query.do?method=showQuery">
+			<forward name="query" 		path=".abmRelacionContractualQuery" />
+		</action>
+
+		<action path="/relacion-contractual/relacion-contractual-form" name="relacionContractualForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="form" 		path=".abmRelacionContractualForm" />
+			<forward name="view" 		path=".abmRelacionContractualView"></forward>
+		</action>
+
+		<action path="/relacion-contractual/relacion-contractual-form-validate" name="relacionContractualForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/relacion-contractual/relacion-contractual-form.do?method=showForm">
+			<forward name="successCreate" 	path="/relacion-contractual/relacion-contractual-query.do?method=lastQuery" />
+			<forward name="successUpdate" 	path="/relacion-contractual/relacion-contractual-query.do?method=query" />
+		</action>
+		<!-- Fin de actions de relaciones contractuales -->
+
+		<!-- Actions de reglas -->
+		<action path="/regla/regla-query" name="reglaQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="query" 		path=".abmReglaQuery" />
+		</action>
+
+		<action path="/regla/regla-query-validate" name="reglaQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/regla/regla-query.do?method=showQuery">
+			<forward name="query" 		path=".abmReglaQuery" />
+		</action>
+
+		<action path="/regla/regla-form" name="reglaForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="form" 		path=".abmReglaForm" />
+			<forward name="view" 		path=".abmReglaView"></forward>
+		</action>
+
+		<action path="/regla/regla-form-validate" name="reglaForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/regla/regla-form.do?method=showForm">
+			<forward name="successCreate" 	path="/regla/regla-query.do?method=lastQuery" />
+			<forward name="successUpdate" 	path="/regla/regla-query.do?method=query" />
+		</action>
+		<!-- Fin de actions de reglas -->
+
+		<!-- Actions de roles -->
+		<action path="/rol/rol-query" name="rolQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="query" 		path=".abmRolQuery" />
+		</action>
+
+		<action path="/rol/rol-query-validate" name="rolQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/rol/rol-query.do?method=showQuery">
+			<forward name="query" 		path=".abmRolQuery" />
+		</action>
+
+		<action path="/rol/rol-form" name="rolForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="form" 		path=".abmRolForm" />
+			<forward name="view" 		path=".abmRolView"></forward>
+		</action>
+
+		<action path="/rol/rol-form-validate" name="rolForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/rol/rol-form.do?method=showForm">
+			<forward name="successCreate" 	path="/rol/rol-query.do?method=lastQuery" />
+			<forward name="successUpdate" 	path="/rol/rol-query.do?method=query" />
+		</action>
+		<!-- Fin de actions de roles -->
+
+		<!-- Actions de rubros -->
+		<action path="/rubro/rubro-query" name="rubroQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="query" 		path=".abmRubroQuery" />
+		</action>
+
+		<action path="/rubro/rubro-query-validate" name="rubroQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/rubro/rubro-query.do?method=showQuery">
+			<forward name="query" 		path=".abmRubroQuery" />
+		</action>
+
+		<action path="/rubro/rubro-form" name="rubroForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="form" 		path=".abmRubroForm" />
+			<forward name="view" 		path=".abmRubroView"></forward>
+		</action>
+
+		<action path="/rubro/rubro-form-validate" name="rubroForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/rubro/rubro-form.do?method=showForm">
+			<forward name="successCreate" 	path="/rubro/rubro-query.do?method=lastQuery" />
+			<forward name="successUpdate" 	path="/rubro/rubro-query.do?method=query" />
+		</action>
+		<!-- Fin de actions de rubros -->
+
+		<!-- Actions de usuarios -->
+		<action path="/usuario/usuario-query" name="usuarioQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="query" 		path=".abmUsuarioQuery" />
+		</action>
+
+		<action path="/usuario/usuario-query-validate" name="usuarioQuery" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/usuario/usuario-query.do?method=showQuery">
+			<forward name="query" 		path=".abmUsuarioQuery" />
+		</action>
+
+		<action path="/usuario/usuario-form" name="usuarioForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="form" 		path=".abmUsuarioForm" />
+			<forward name="view" 		path=".abmUsuarioView"></forward>
+		</action>
+
+		<action path="/usuario/usuario-form-validate" name="usuarioForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/usuario/usuario-form.do?method=showForm">
+			<forward name="successCreate" 	path="/usuario/usuario-query.do?method=lastQuery" />
+			<forward name="successUpdate" 	path="/usuario/usuario-query.do?method=query" />
+		</action>
+
+		<action path="/usuario/usuario-persona-form" name="usuarioPersonaForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="form" 		path=".abmUsuarioPersonaForm" />
+		</action>
+
+		<action path="/usuario/usuario-persona-form-validate" name="usuarioPersonaForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/usuario/usuario-persona-form.do?method=showFormUsuarioPersona">
+			<forward name="success" 	path="/persona/persona-query.do?method=query" />
+		</action>
+
+		<action path="/usuario/usuario-password-form" name="usuarioPasswordForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="form" 		path=".abmUsuarioPasswordForm" />
+		</action>
+
+		<action path="/usuario/usuario-password-form-validate" name="usuarioPasswordForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input="/usuario/usuario-password-form.do?method=showCambiarPassword">
+		</action>
+
+		<!-- Fin de actions de usuarios -->
+
+		<!-- Actions para archivos -->
+		<action path="/archivo/archivo" name="usuarioForm" parameter="method" 
+				scope="request" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false" />
+		<!-- Fin de actions para archivos -->
+
+		<!-- Actions de reportes -->
+		<action path="/reportes/reporte-persona" name="reportePersonaForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="init" 			   		   path=".reportePersona" />
+			<forward name="verResultados"		 	   path=".reportePersona" />
+			<forward name="generarReportePersona" 	   path=".reportePersona" />
+		</action>
+
+		<action path="/reportes/reporte-financiador" name="reporteFinanciadorForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="init" 			   		   path=".reporteFinanciador" />
+			<forward name="verResultados"		 	   path=".reporteFinanciador" />
+			<forward name="generarReporteFinanciador"  path=".reporteFinanciador" />
+		</action>
+		
+		<action path="/reportes/reporte-proveedor" name="reporteProveedorForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="init" 			   		   path=".reporteProveedor" />
+			<forward name="verResultados"		 	   path=".reporteProveedor" />
+			<forward name="generarReporteProveedor"    path=".reporteProveedor" />
+		</action>
+		
+		<action path="/reportes/reporte-financiero" name="reporteFinancieroForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="false">
+			<forward name="init" 			   		   path=".reporteFinanciero" />
+		</action>
+
+		<action path="/reportes/reporte-financiero-validate" name="reporteFinancieroForm" parameter="method" 
+				scope="session" type="org.springframework.web.struts.DelegatingActionProxy"	validate="true"
+				input=".reporteFinanciero">
+			<forward name="generarReporteFinanciero"   path=".reporteFinanciero" />
+		</action>
+		<!-- Fin de actions de reportes -->
+	
+	</action-mappings>
+	<controller maxFileSize="2048M" nocache="true" />
+
+	<!-- =============== Message Resources Definitions ================= -->
+	<message-resources null="false" parameter="messages" />
+
+	<!-- =================== Plug Ins Configuration ==================== -->
+	<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+		<set-property property="pathnames"
+			value="/WEB-INF/base/struts/validator-rules.xml, /WEB-INF/base/struts/validation.xml" />
+		<set-property property="definitions-parser-validate"
+			value="false" />
+	</plug-in>
+	<plug-in className="org.apache.struts.tiles.TilesPlugin">
+		<set-property property="definitions-config"
+			value="/WEB-INF/base/tiles/tiles-defs.xml,/WEB-INF/usuarios/tiles/tiles-defs.xml" />
+		<set-property property="definitions-parser-validate"
+			value="false" />
+	</plug-in>
+</struts-config>

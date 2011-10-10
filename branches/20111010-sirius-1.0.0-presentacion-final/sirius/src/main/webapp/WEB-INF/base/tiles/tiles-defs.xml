@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 1.3//EN"
+       "http://struts.apache.org/dtds/tiles-config_1_3.dtd">
+       
+<tiles-definitions>
+
+
+	<definition name="mainLayout" path="/layouts/main-layout.jsp">
+		<put name="js-header" value="/common/js-header.jsp" />
+		<put name="menu" value="/common/menu.jsp" />
+	</definition>
+
+	<definition name="loginLayout" path="/layouts/login-layout.jsp">
+		<put name="js-header" value="/common/js-header.jsp" />
+	</definition>
+
+	<definition name="popupLayout" path="/layouts/popup-layout.jsp">
+		<put name="js-header" value="/common/js-header.jsp" />
+		<put name="messages" value="/common/message.jsp" />
+	</definition>
+
+	<definition name=".message" extends="mainLayout">
+		<put name="title" value="Información" />
+		<put name="body" value="/common/message.jsp" />
+	</definition>
+
+	<definition name=".login" extends="loginLayout">
+		<put name="title" value="Sirius - Login" />
+		<put name="body" value="/public/login.jsp" />
+	</definition>
+
+	<definition name=".400" extends="mainLayout">
+		<put name="title" value="Pedido malformado" />
+		<put name="body" value="/errors/400.jsp" />
+	</definition>
+
+	<definition name=".403" extends="mainLayout">
+		<put name="title" value="Sin Permisos" />
+		<put name="body" value="/errors/403.jsp" />
+	</definition>
+
+	<definition name=".404" extends="mainLayout">
+		<put name="title" value="Recurso no encontrado" />
+		<put name="body" value="/errors/404.jsp" />
+	</definition>
+
+	<definition name=".500" extends="mainLayout">
+		<put name="title" value="Problema interno" />
+		<put name="body" value="/errors/500.jsp" />
+	</definition>
+
+	<definition name=".adminHome" extends="mainLayout">
+		<put name="title" value="Sirius - Bienvenido" />
+		<put name="body" value="/base/admin-home.jsp" />
+	</definition>
+
+
+	<!-- Actividad -->
+	<definition name=".abmActividadQuery" extends="mainLayout">
+		<put name="title" value="Administración de Actividades" />
+		<put name="body" value="/WEB-INF/actividad/actividad-query.jsp" />
+	</definition>
+
+	<definition name=".abmActividadForm" extends="mainLayout">
+		<put name="title" value="Actividad - Datos" />
+		<put name="body" value="/WEB-INF/actividad/actividad-form.jsp" />
+	</definition>
+
+	<definition name=".abmActividadView" extends="mainLayout">
+		<put name="title" value="Actividad - Datos" />
+		<put name="body" value="/WEB-INF/actividad/actividad-view.jsp" />
+	</definition>
+
+	<!-- Asignacion -->
+	<definition name=".abmAsignacionQuery" extends="mainLayout">
+		<put name="title" value="Administración de Asignaciones" />
+		<put name="body" value="/WEB-INF/asignacion/asignacion-query.jsp" />
+	</definition>
+
+	<definition name=".abmAsignacionForm" extends="mainLayout">
+		<put name="title" value="Asignación - Datos" />
+		<put name="body" value="/WEB-INF/asignacion/asignacion-form.jsp" />
+	</definition>
+
+	<definition name=".abmAsignacionView" extends="mainLayout">
+		<put name="title" value="Asignación - Datos" />
+		<put name="body" value="/WEB-INF/asignacion/asignacion-view.jsp" />
+	</definition>
+
+	<!-- Financiador -->
+	<definition name=".abmFinanciadorQuery" extends="mainLayout">
+		<put name="title" value="Administración de Financiadores" />
+		<put name="body" value="/WEB-INF/financiador/financiador-query.jsp" />
+	</definition>
+
+	<definition name=".abmFinanciadorForm" extends="mainLayout">
+		<put name="title" value="Financiador - Datos" />
+		<put name="body" value="/WEB-INF/financiador/financiador-form.jsp" />
+	</definition>
+
+	<definition name=".abmFinanciadorView" extends="mainLayout">
+		<put name="title" value="Financiador - Datos" />
+		<put name="body" value="/WEB-INF/financiador/financiador-view.jsp" />
+	</definition>
+
+	<!-- Gasto Actividad -->
+	<definition name=".abmGastoActividadQuery" extends="mainLayout">
+		<put name="title" value="Administración de Gastos de Actividad" />
+		<put name="body" value="/WEB-INF/gasto/gasto-actividad-query.jsp" />
+	</definition>
+
+	<definition name=".abmGastoActividadList" extends="mainLayout">
+		<put name="title" value="Administración de Gastos de Actividad" />
+		<put name="body" value="/WEB-INF/gasto/gasto-actividad-list.jsp" />
+	</definition>
+
+	<definition name=".abmGastoActividadForm" extends="mainLayout">
+		<put name="title" value="Gasto de Actividad - Datos" />
+		<put name="body" value="/WEB-INF/gasto/gasto-actividad-form.jsp" />
+	</definition>
+
+	<definition name=".abmGastoActividadView" extends="mainLayout">
+		<put name="title" value="Gasto de Actividad - Datos" />
+		<put name="body" value="/WEB-INF/gasto/gasto-actividad-view.jsp" />
+	</definition>
+
+	<definition name=".abmGastoActividadReferencia" extends="popupLayout">
+		<put name="title" value="Gasto de Actividad - Referencia" />
+		<put name="body" value="/WEB-INF/gasto/gasto-actividad-referencia.jsp" />
+	</definition>
+
+	<!-- Gasto Organizacion -->
+	<definition name=".abmGastoOrganizacionQuery" extends="mainLayout">
+		<put name="title" value="Administración de Gastos Generales de Organización" />
+		<put name="body" value="/WEB-INF/gasto/gasto-organizacion-query.jsp" />
+	</definition>
+
+	<definition name=".abmGastoOrganizacionForm" extends="mainLayout">
+		<put name="title" value="Gasto General de Organización - Datos" />
+		<put name="body" value="/WEB-INF/gasto/gasto-organizacion-form.jsp" />
+	</definition>
+
+	<definition name=".abmGastoOrganizacionView" extends="mainLayout">
+		<put name="title" value="Gasto General de Organización - Datos" />
+		<put name="body" value="/WEB-INF/gasto/gasto-organizacion-view.jsp" />
+	</definition>
+
+	<!-- Gasto Proyecto -->
+	<definition name=".abmGastoProyectoQuery" extends="mainLayout">
+		<put name="title" value="Administración de Gastos Generales de Proyecto" />
+		<put name="body" value="/WEB-INF/gasto/gasto-proyecto-query.jsp" />
+	</definition>
+
+	<definition name=".abmGastoProyectoForm" extends="mainLayout">
+		<put name="title" value="Gasto General de Proyecto - Datos" />
+		<put name="body" value="/WEB-INF/gasto/gasto-proyecto-form.jsp" />
+	</definition>
+
+	<definition name=".abmGastoProyectoView" extends="mainLayout">
+		<put name="title" value="Gasto General de Proyecto - Datos" />
+		<put name="body" value="/WEB-INF/gasto/gasto-proyecto-view.jsp" />
+	</definition>
+
+	<!-- Verificar Gasto -->
+	<definition name=".abmVerificarGastoQuery" extends="mainLayout">
+		<put name="title" value="Verificar Gastos" />
+		<put name="body" value="/WEB-INF/gasto/verificar-gasto-query.jsp" />
+	</definition>
+
+	<!-- Ingreso -->
+	<definition name=".abmIngresoQuery" extends="mainLayout">
+		<put name="title" value="Administración de Ingresos" />
+		<put name="body" value="/WEB-INF/ingreso/ingreso-query.jsp" />
+	</definition>
+
+	<definition name=".abmIngresoForm" extends="mainLayout">
+		<put name="title" value="Ingreso - Datos" />
+		<put name="body" value="/WEB-INF/ingreso/ingreso-form.jsp" />
+	</definition>
+
+	<definition name=".abmIngresoView" extends="mainLayout">
+		<put name="title" value="Ingreso - Datos" />
+		<put name="body" value="/WEB-INF/ingreso/ingreso-view.jsp" />
+	</definition>
+
+	<!-- Meta -->
+	<definition name=".abmMetaQuery" extends="mainLayout">
+		<put name="title" value="Administración de Metas" />
+		<put name="body" value="/WEB-INF/meta/meta-query.jsp" />
+	</definition>
+
+	<definition name=".abmMetaForm" extends="mainLayout">
+		<put name="title" value="Meta - Datos" />
+		<put name="body" value="/WEB-INF/meta/meta-form.jsp" />
+	</definition>
+
+	<definition name=".abmMetaView" extends="mainLayout">
+		<put name="title" value="Meta - Datos" />
+		<put name="body" value="/WEB-INF/meta/meta-view.jsp" />
+	</definition>
+
+	<!-- Notificacion -->
+	<definition name=".abmNotificacionQuery" extends="mainLayout">
+		<put name="title" value="Notificaciones" />
+		<put name="body" value="/WEB-INF/notificacion/notificacion-query.jsp" />
+	</definition>
+
+	<!-- Objetivo Especifico -->
+	<definition name=".abmObjetivoEspecificoQuery" extends="mainLayout">
+		<put name="title" value="Administración de Objetivos Especificos" />
+		<put name="body" value="/WEB-INF/objetivo-especifico/objetivo-especifico-query.jsp" />
+	</definition>
+
+	<definition name=".abmObjetivoEspecificoForm" extends="mainLayout">
+		<put name="title" value="Objetivo Específico - Datos" />
+		<put name="body" value="/WEB-INF/objetivo-especifico/objetivo-especifico-form.jsp" />
+	</definition>
+
+	<definition name=".abmObjetivoEspecificoView" extends="mainLayout">
+		<put name="title" value="Objetivo Específico - Datos" />
+		<put name="body" value="/WEB-INF/objetivo-especifico/objetivo-especifico-view.jsp" />
+	</definition>
+
+	<!-- Objetivo General -->
+	<definition name=".abmObjetivoGeneralQuery" extends="mainLayout">
+		<put name="title" value="Administración de Objetivos Generales" />
+		<put name="body" value="/WEB-INF/objetivo-general/objetivo-general-query.jsp" />
+	</definition>
+
+	<definition name=".abmObjetivoGeneralForm" extends="mainLayout">
+		<put name="title" value="Objetivo General - Datos" />
+		<put name="body" value="/WEB-INF/objetivo-general/objetivo-general-form.jsp" />
+	</definition>
+
+	<definition name=".abmObjetivoGeneralView" extends="mainLayout">
+		<put name="title" value="Objetivo General - Datos" />
+		<put name="body" value="/WEB-INF/objetivo-general/objetivo-general-view.jsp" />
+	</definition>
+
+	<!-- Perfil -->
+	<definition name=".abmPerfilQuery" extends="mainLayout">
+		<put name="title" value="Administración de Perfiles" />
+		<put name="body" value="/WEB-INF/perfil/perfil-query.jsp" />
+	</definition>
+
+	<definition name=".abmPerfilForm" extends="mainLayout">
+		<put name="title" value="Perfil - Datos" />
+		<put name="body" value="/WEB-INF/perfil/perfil-form.jsp" />
+	</definition>
+
+	<definition name=".abmPerfilView" extends="mainLayout">
+		<put name="title" value="Perfil - Datos" />
+		<put name="body" value="/WEB-INF/perfil/perfil-view.jsp" />
+	</definition>
+
+	<!-- Persona -->
+	<definition name=".abmPersonaQuery" extends="mainLayout">
+		<put name="title" value="Administración de Personas" />
+		<put name="body" value="/WEB-INF/persona/persona-query.jsp" />
+	</definition>
+
+	<definition name=".abmPersonaForm" extends="mainLayout">
+		<put name="title" value="Persona - Datos" />
+		<put name="body" value="/WEB-INF/persona/persona-form.jsp" />
+	</definition>
+
+	<definition name=".abmPersonaView" extends="mainLayout">
+		<put name="title" value="Persona - Datos" />
+		<put name="body" value="/WEB-INF/persona/persona-view.jsp" />
+	</definition>
+
+	<!-- Proveedor -->
+	<definition name=".abmProveedorQuery" extends="mainLayout">
+		<put name="title" value="Administración de Proveedores" />
+		<put name="body" value="/WEB-INF/proveedor/proveedor-query.jsp" />
+	</definition>
+
+	<definition name=".abmProveedorForm" extends="mainLayout">
+		<put name="title" value="Proveedor - Datos" />
+		<put name="body" value="/WEB-INF/proveedor/proveedor-form.jsp" />
+	</definition>
+
+	<definition name=".abmProveedorView" extends="mainLayout">
+		<put name="title" value="Proveedor - Datos" />
+		<put name="body" value="/WEB-INF/proveedor/proveedor-view.jsp" />
+	</definition>
+
+	<!-- Proyecto -->
+	<definition name=".abmProyectoQuery" extends="mainLayout">
+		<put name="title" value="Administración de Proyecto" />
+		<put name="body" value="/WEB-INF/proyecto/proyecto-query.jsp" />
+	</definition>
+
+	<definition name=".abmProyectoForm" extends="mainLayout">
+		<put name="title" value="Proyecto - Datos" />
+		<put name="body" value="/WEB-INF/proyecto/proyecto-form.jsp" />
+	</definition>
+
+	<definition name=".abmProyectoView" extends="mainLayout">
+		<put name="title" value="Proyecto - Datos" />
+		<put name="body" value="/WEB-INF/proyecto/proyecto-view.jsp" />
+	</definition>
+
+	<definition name=".presupuestoForm" extends="mainLayout">
+		<put name="title" value="Proyecto - Presupuesto" />
+		<put name="body" value="/WEB-INF/proyecto/presupuesto-form.jsp" />
+	</definition>
+
+	<!-- Regla -->
+	<definition name=".abmReglaQuery" extends="mainLayout">
+		<put name="title" value="Administración de Reglas" />
+		<put name="body" value="/WEB-INF/regla/regla-query.jsp" />
+	</definition>
+
+	<definition name=".abmReglaForm" extends="mainLayout">
+		<put name="title" value="Regla - Datos" />
+		<put name="body" value="/WEB-INF/regla/regla-form.jsp" />
+	</definition>
+
+	<definition name=".abmReglaView" extends="mainLayout">
+		<put name="title" value="Regla - Datos" />
+		<put name="body" value="/WEB-INF/regla/regla-view.jsp" />
+	</definition>
+
+	<!-- Relacion Contractual -->
+	<definition name=".abmRelacionContractualQuery" extends="mainLayout">
+		<put name="title" value="Administración de Relaciones Contractuales" />
+		<put name="body" value="/WEB-INF/relacion-contractual/relacion-contractual-query.jsp" />
+	</definition>
+
+	<definition name=".abmRelacionContractualForm" extends="mainLayout">
+		<put name="title" value="Relación Contractual - Datos" />
+		<put name="body" value="/WEB-INF/relacion-contractual/relacion-contractual-form.jsp" />
+	</definition>
+
+	<definition name=".abmRelacionContractualView" extends="mainLayout">
+		<put name="title" value="Relación Contractual - Datos" />
+		<put name="body" value="/WEB-INF/relacion-contractual/relacion-contractual-view.jsp" />
+	</definition>
+
+	<!-- Rol -->
+	<definition name=".abmRolQuery" extends="mainLayout">
+		<put name="title" value="Administración de Roles" />
+		<put name="body" value="/WEB-INF/rol/rol-query.jsp" />
+	</definition>
+
+	<definition name=".abmRolForm" extends="mainLayout">
+		<put name="title" value="Rol - Datos" />
+		<put name="body" value="/WEB-INF/rol/rol-form.jsp" />
+	</definition>
+
+	<definition name=".abmRolView" extends="mainLayout">
+		<put name="title" value="Rol - Datos" />
+		<put name="body" value="/WEB-INF/rol/rol-view.jsp" />
+	</definition>
+
+	<!-- Rubro -->
+	<definition name=".abmRubroQuery" extends="mainLayout">
+		<put name="title" value="Administración de Rubros" />
+		<put name="body" value="/WEB-INF/rubro/rubro-query.jsp" />
+	</definition>
+
+	<definition name=".abmRubroForm" extends="mainLayout">
+		<put name="title" value="Rubro - Datos" />
+		<put name="body" value="/WEB-INF/rubro/rubro-form.jsp" />
+	</definition>
+
+	<definition name=".abmRubroView" extends="mainLayout">
+		<put name="title" value="Rubro - Datos" />
+		<put name="body" value="/WEB-INF/rubro/rubro-view.jsp" />
+	</definition>
+
+	<!-- Usuario -->
+	<definition name=".abmUsuarioQuery" extends="mainLayout">
+		<put name="title" value="Administración de Usuarios" />
+		<put name="body" value="/WEB-INF/usuario/usuario-query.jsp" />
+	</definition>
+
+	<definition name=".abmUsuarioForm" extends="mainLayout">
+		<put name="title" value="Usuario - Datos" />
+		<put name="body" value="/WEB-INF/usuario/usuario-form.jsp" />
+	</definition>
+
+	<definition name=".abmUsuarioView" extends="mainLayout">
+		<put name="title" value="Usuario - Datos" />
+		<put name="body" value="/WEB-INF/usuario/usuario-view.jsp" />
+	</definition>
+
+	<definition name=".abmUsuarioPersonaForm" extends="mainLayout">
+		<put name="title" value="Usuario - Datos" />
+		<put name="body" value="/WEB-INF/usuario/usuario-persona-form.jsp" />
+	</definition>
+
+	<definition name=".abmUsuarioPasswordForm" extends="mainLayout">
+		<put name="title" value="Usuario - Datos" />
+		<put name="body" value="/WEB-INF/usuario/usuario-password-form.jsp" />
+	</definition>
+
+	<!-- Reportes -->
+	<definition name=".reportePersona" extends="mainLayout">
+		<put name="title" value="Reportes de Personas" />
+		<put name="body" value="/WEB-INF/reportes/reporte-persona.jsp" />
+	</definition>
+
+	<definition name=".reporteFinanciador" extends="mainLayout">
+		<put name="title" value="Reportes de Financiadores" />
+		<put name="body" value="/WEB-INF/reportes/reporte-financiador.jsp" />
+	</definition>
+
+	<definition name=".reporteProveedor" extends="mainLayout">
+		<put name="title" value="Reportes de Proveedores" />
+		<put name="body" value="/WEB-INF/reportes/reporte-proveedor.jsp" />
+	</definition>
+
+	<definition name=".reporteFinanciero" extends="mainLayout">
+		<put name="title" value="Reportes de Finanzas" />
+		<put name="body" value="/WEB-INF/reportes/reporte-financiero.jsp" />
+	</definition>
+</tiles-definitions>
