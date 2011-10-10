@@ -90,3 +90,7 @@ INSERT INTO `actividad` (`id`, `idMeta`, `idFinanciador`, `idEstadoActividad`, `
   (15, 6, 2, 1, 'Supervision autogestion', NULL, '2011-08-17', '2011-08-24', 50, 0, 1, NULL);
 
   commit;
+  
+/* Usuarios */
+INSERT INTO `usuario` (`id`, `idPersona`, `username`, `password`, `idPerfil`, `bloqueado`, `activo`) VALUES
+  (2, 3, 'jrodriguez', 'a7fc661fbbb7dadc495975e0fbb905e0', 2, 0, 1);
