@@ -1,5 +1,5 @@
--- Agregar Persona
-INSERT INTO `persona` (`id`, `apellido`, `nombre`, `segundoNombre`, `idTipoDocumento`, `numeroDocumento`, `cuit`, `cbu`, `nacionalidad`, `fechaNacimiento`, `profesion`, `direccion`, `telefono`, `celular`, `email`, `funcion`, `idRelacionContractual`, `idFormaPago`, `idPersonaFactura`, `observaciones`, `activo`) VALUES ('2', 'Lopez', 'Gustavo', '', '1', '29564435.0', '20295644359', '5465735676545676567656', 'Argentina', '1980-11-18', 'Administrador de Empresas', 'Avenida Maipu 2564', '4799-5830', '15-4564-7763', 'guslopez@arnet.com', 'asesor de proyectos', '1', '1', NULL, 'Esta disponible solo los días Lunes y Miércoles', '1');
+ï»¿-- Agregar Persona
+INSERT INTO `persona` (`id`, `apellido`, `nombre`, `segundoNombre`, `idTipoDocumento`, `numeroDocumento`, `cuit`, `cbu`, `nacionalidad`, `fechaNacimiento`, `profesion`, `direccion`, `telefono`, `celular`, `email`, `funcion`, `idRelacionContractual`, `idFormaPago`, `idPersonaFactura`, `observaciones`, `activo`) VALUES ('2', 'Lopez', 'Gustavo', '', '1', '29564435.0', '20295644359', '5465735676545676567656', 'Argentina', '1980-11-18', 'Administrador de Empresas', 'Avenida Maipu 2564', '4799-5830', '15-4564-7763', 'guslopez@arnet.com', 'asesor de proyectos', '1', '1', NULL, 'Esta disponible solo los dÃ­as Lunes y MiÃ©rcoles', '1');
 
 
 -- Agregar Financiador
@@ -12,7 +12,7 @@ INSERT INTO `proveedor` (`id`, `idTipoProveedor`, `nombre`, `cuit`, `cbu`, `dire
 
 -- Agregar Rubros
 INSERT INTO `rubro` (`id`, `idRubroPadre`, `idRubroPrimerNivel`, `nombre`, `descripcion`, `activo`) VALUES ('1', NULL, 1, 'Materiales', 'Se utiliza para identificar cualquier tipo de material utilizado en un proyecto', '1');
-INSERT INTO `rubro` (`id`, `idRubroPadre`, `idRubroPrimerNivel`, `nombre`, `descripcion`, `activo`) VALUES ('2', '1', 1, 'Librería', 'Identifica todos los materiales relacionados con libreria', '1');
+INSERT INTO `rubro` (`id`, `idRubroPadre`, `idRubroPrimerNivel`, `nombre`, `descripcion`, `activo`) VALUES ('2', '1', 1, 'LibrerÃ­a', 'Identifica todos los materiales relacionados con libreria', '1');
 INSERT INTO `rubro` (`id`, `idRubroPadre`, `idRubroPrimerNivel`, `nombre`, `descripcion`, `activo`) VALUES ('3', '2', 1, 'Fotocopias', 'Fotocopias hechas para un proyecto', '1');
 INSERT INTO `rubro` (`id`, `idRubroPadre`, `idRubroPrimerNivel`, `nombre`, `descripcion`, `activo`) VALUES ('4', NULL, 4, 'Honorarios', 'Honorarios', '1');
 INSERT INTO `rubro` (`id`, `idRubroPadre`, `idRubroPrimerNivel`, `nombre`, `descripcion`, `activo`) VALUES ('5', NULL, 5, 'Movilidad', 'Movilidad', '1');
@@ -32,7 +32,7 @@ INSERT INTO `objetivogeneral` (`id`, `nombre`, `descripcion`, `ponderacion`, `id
 
 
 -- Agregar Objetivo Especifico
-INSERT INTO `objetivoespecifico` (`id`, `nombre`, `descripcion`, `ponderacion`, `idObjetivoGeneral`, `activo`) VALUES ('1', 'Vacunar a 200 chicos de la zona de Morón', 'Vacunar a 200 chicos de la zona de Morón contra la gripe', '33.0', '1', '1');
+INSERT INTO `objetivoespecifico` (`id`, `nombre`, `descripcion`, `ponderacion`, `idObjetivoGeneral`, `activo`) VALUES ('1', 'Vacunar a 200 chicos de la zona de MorÃ³n', 'Vacunar a 200 chicos de la zona de MorÃ³n contra la gripe', '33.0', '1', '1');
 
 
 -- Agregar Meta
@@ -44,7 +44,7 @@ INSERT INTO `actividad` (`id`, `idMeta`, `idFinanciador`, `idEstadoActividad`, `
 
 
 -- Agregar Ingreso
-INSERT INTO `ingreso` (`id`, `idTipoIngreso`, `monto`, `fecha`, `descripcion`, `idFinanciador`, `activo`) VALUES ('1', '1', '30000.0', '2011-03-05', 'Dinero destinado para vacunar a los chicos mas necesitados contra la gripe y también para comprar abrigos para los chicos', '1', '1');
+INSERT INTO `ingreso` (`id`, `idTipoIngreso`, `monto`, `fecha`, `descripcion`, `idFinanciador`, `activo`) VALUES ('1', '1', '30000.0', '2011-03-05', 'Dinero destinado para vacunar a los chicos mas necesitados contra la gripe y tambiÃ©n para comprar abrigos para los chicos', '1', '1');
 
 
 -- ******************  Agregar Origen
@@ -60,11 +60,3 @@ INSERT INTO `gasto` (`id`, `idProyecto`, `idActividad`, `fecha`, `idRubro`, `idO
 -- Actualizar password
 
 update usuario set password = '32ff9ee7e841b26a966870c144fdcaec' where id = 1 and username = 'admin';
-
--- Juli Script 24-07
-insert into accion (id, descripcion) values (13, 'CAMBIAR_PASSWORD');
-insert into acceso (id, idRecurso, idAccion) values (112, 22, 13);
-insert into rolacceso (idRol, idAcceso) values (19, 112);
-
-
-
