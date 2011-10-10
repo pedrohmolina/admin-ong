@@ -101,29 +101,6 @@ INSERT INTO `perfilrol` (`idPerfil`, `idRol`) VALUES
 
 /* Presupuesto */
 INSERT INTO `presupuesto` (`id`, `idTipoPresupuesto`, `idProyecto`, `idActividad`, `idRubro`, `monto`) VALUES
-  (1, 2, NULL, 12, 4, 500),
-  (2, 2, NULL, 12, 1, 2121),
-  (3, 2, NULL, 12, 7, 7000),
-  (4, 1, 4, NULL, 7, 190),
-  (5, 1, 4, NULL, 5, 189),
-  (6, 2, NULL, 13, 7, 500),
-  (7, 2, NULL, 14, 7, 700),
-  (8, 2, NULL, 15, 7, 900),
-  (9, 2, NULL, 13, 4, 1000),
-  (10, 2, NULL, 14, 4, 1000),
-  (11, 2, NULL, 15, 4, 2000),
-  (12, 2, NULL, 13, 1, 980),
-  (13, 2, NULL, 14, 1, 768.39),
-  (14, 2, NULL, 13, 5, 590),
-  (15, 2, NULL, 15, 5, 1934),
-  (16, 2, NULL, 13, 6, 831),
-  (17, 1, 6, NULL, 7, 1000),
-  (18, 1, 6, NULL, 4, 1100),
-  (19, 1, 6, NULL, 1, 900),
-  (20, 1, 6, NULL, 5, 500),
-  (21, 1, 6, NULL, 6, 3000),
-  (22, 2, NULL, 3, 7, 110),
-  (23, 2, NULL, 7, 7, 95),
   (24, 2, NULL, 4, 4, 100),
   (25, 2, NULL, 3, 1, 100),
   (26, 2, NULL, 4, 1, 110),
@@ -133,4 +110,3 @@ INSERT INTO `presupuesto` (`id`, `idTipoPresupuesto`, `idProyecto`, `idActividad
   (30, 2, NULL, 4, 6, 90),
   (31, 2, NULL, 7, 6, 95),
   (32, 1, 2, NULL, 1, 1000);
-
