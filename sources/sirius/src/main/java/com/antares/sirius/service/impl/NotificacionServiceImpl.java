@@ -13,7 +13,6 @@ import org.apache.commons.lang.StringUtils;
 
 import com.antares.commons.service.impl.BusinessEntityServiceImpl;
 import com.antares.commons.util.Utils;
-import com.antares.sirius.base.Constants;
 import com.antares.sirius.dao.NotificacionDAO;
 import com.antares.sirius.model.Acceso;
 import com.antares.sirius.model.Notificacion;
