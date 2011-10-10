@@ -57,7 +57,7 @@ INSERT INTO `origen` (`id`, `descripcion`) VALUES ('3', 'Efectivo');
 INSERT INTO `gasto` (`id`, `idProyecto`, `idActividad`, `fecha`, `idRubro`, `idOrigen`, `idProveedor`, `idTipoComprobante`, `numeroComprobante`, `paquete`, `importe`, `idPersona`, `idTipoGasto`, `observaciones`, `referencia`, `confirmado`, `activo`) VALUES ('5', NULL, NULL, '2011-03-05', '3', '1', '1', '2', '123456789', NULL, '1000.0', '1', '1', 'Compra de 1 Impresora HP', NULL, '0', '1');
 
 
---Actualizar password
+-- Actualizar password
 
 update usuario set password = '32ff9ee7e841b26a966870c144fdcaec' where id = 1 and username = 'admin';
 
