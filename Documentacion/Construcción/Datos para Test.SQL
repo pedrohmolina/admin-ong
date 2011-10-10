@@ -47,12 +47,6 @@ INSERT INTO `actividad` (`id`, `idMeta`, `idFinanciador`, `idEstadoActividad`, `
 INSERT INTO `ingreso` (`id`, `idTipoIngreso`, `monto`, `fecha`, `descripcion`, `idFinanciador`, `activo`) VALUES ('1', '1', '30000.0', '2011-03-05', 'Dinero destinado para vacunar a los chicos mas necesitados contra la gripe y también para comprar abrigos para los chicos', '1', '1');
 
 
--- ******************  Agregar Origen
-INSERT INTO `origen` (`id`, `descripcion`) VALUES ('1', 'Caja Chica');
-INSERT INTO `origen` (`id`, `descripcion`) VALUES ('2', 'Caja');
-INSERT INTO `origen` (`id`, `descripcion`) VALUES ('3', 'Efectivo');
-
-
 -- Agregar Gasto General de Organizacion
 INSERT INTO `gasto` (`id`, `idProyecto`, `idActividad`, `fecha`, `idRubro`, `idOrigen`, `idProveedor`, `idTipoComprobante`, `numeroComprobante`, `paquete`, `importe`, `idPersona`, `idTipoGasto`, `observaciones`, `referencia`, `confirmado`, `activo`) VALUES ('5', NULL, NULL, '2011-03-05', '3', '1', '1', '2', '123456789', NULL, '1000.0', '1', '1', 'Compra de 1 Impresora HP', NULL, '0', '1');
 

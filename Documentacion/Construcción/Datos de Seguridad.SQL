@@ -1,4 +1,4 @@
--- Datos de Seguridad
+﻿-- Datos de Seguridad
 insert into accion (id, descripcion) values (1, 'LISTADO');
 insert into accion (id, descripcion) values (2, 'ALTA');
 insert into accion (id, descripcion) values (3, 'BAJA');
@@ -493,3 +493,7 @@ insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEnt
 insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad) values (16, 11, 3, 'financiador');
 insert into entidadReferenciada (id, idEntidad, idEntidadReferenciada, nombreEntidad) values (17, 11, 9, 'responsable');
 
+-- Agregar Origen
+INSERT INTO `origen` (`id`, `descripcion`) VALUES ('1', 'Caja Chica');
+INSERT INTO `origen` (`id`, `descripcion`) VALUES ('2', 'Caja');
+INSERT INTO `origen` (`id`, `descripcion`) VALUES ('3', 'Efectivo');
