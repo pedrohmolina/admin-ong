@@ -31,10 +31,10 @@ INSERT INTO tipoingreso (id,descripcion) VALUES (3,'Financiador');
 
 --  Tipo Documento
 INSERT INTO tipodocumento (id,descripcion) VALUES (1,'DNI');
-INSERT INTO tipodocumento (id,descripcion) VALUES (2,'Cedula Identidad');
+INSERT INTO tipodocumento (id,descripcion) VALUES (2,'CI');
 INSERT INTO tipodocumento (id,descripcion) VALUES (3,'Pasaporte');
-INSERT INTO tipodocumento (id,descripcion) VALUES (4,'Libreta de Enrolamiento');
-INSERT INTO tipodocumento (id,descripcion) VALUES (5,'Libreta Cívica');
+INSERT INTO tipodocumento (id,descripcion) VALUES (4,'LE');
+INSERT INTO tipodocumento (id,descripcion) VALUES (5,'LC');
 
 --  Tipo Gasto
 INSERT INTO tipogasto (id,descripcion) VALUES (1,'Gastos de Actividad');
