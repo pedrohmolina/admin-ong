@@ -1,0 +1,22 @@
++ Cambiar numeros del testing (Cantidad CP por cantidad Incidencias)
++ Agregar numeros de implementacion mejoras (1 solo grafico)
+
++ Desvios: Ota-framework: al encararlo de forma generico (originalmente no estaba pensado asi) se ahorro mucho tiempo en implementacion de ABM (gracias al ABM generico)
+
+
+Conclusiones
++ Poca disponibilidad horaria - horas rinden poco
++ La elección de tecnologías probadas y conocidas ayudó a completar el desarrollo en forma exitosa.
++ Se respetaron los requerimientos planteados y se implementaron las funcionalidades definidas
++ Segun aptitud y perfil de cada uno elegimos bien los roles
++ El éxito del grupo se debió a la distribución y completitud de las tareas en tiempo y forma según el perfil de cada integrante
++ Al tener el apoyo de un cliente real en un negocio desconocido (ONG) mas alla de encararlo como producto nos ayudo a introducirnos al negocio (desconocido hasta el momento)
++ Producto ONG + Open Source = Incentivo extra
+
+Lecciones aprendidas
++ Se debe mejorar el proceso de estimación para evitar desvíos
++ Por la metodología de trabajo a distancia, por momentos se generó cierto aislamiento.
++ En cierto momento perdimos el enfoque de negocio por estar enfrascado en cuestiones tecnicas
++ Metodologia cascada: al no testear los CU encontramos errores funcionales en etapa de implementacion
++ Se lograron sobrellevar situaciones conflictivas dentro del grupo (apelando al perfil profesional)
+
