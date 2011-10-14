@@ -32,7 +32,7 @@ commit;
 
 /* Proyectos */
 INSERT INTO `proyecto` (`id`, `idEstadoProyecto`, `idTipoAgrupamiento`, `nombre`, `descripcion`, `fechaInicio`, `fechaFin`, `ubicacion`, `responsable`, `beneficiariosDirectos`, `beneficiariosIndirectos`, `financiador`, `presupuestoTotal`, `resumen`, `idArchivo`, `activo`) VALUES
-  (2, 4, 2, 'Promotores de Salud 2011', NULL, '2011-08-01', '2011-08-31', 'Gral. Lamadrid', 4, NULL, NULL, 2, 7000, NULL, NULL, 1),
+  (2, 4, 1, 'Promotores de Salud 2011', NULL, '2011-08-01', '2011-08-31', 'Gral. Lamadrid', 4, NULL, NULL, 2, 7000, NULL, NULL, 1),
   (3, 2, 2, 'Jóvenes Promotores de Salud', 'Capacitar y promover a jovenes promotores de Salud vv', '2011-08-03', '2011-08-17', 'Manzanares. Partido de Pilar. Provincia de Buenos Aires.', 7, 'Mujeres: 34\r\nHombres: 7\r\nNiños/as: 234\r\nTOTAL: 275', 'Mujeres: 486\r\nHombres: 449\r\nNiños/as: 530\r\nTOTAL: 1.465', 4, 94010, NULL, NULL, 1),
   (4, 4, 2, 'Cooperativa AraSur', NULL, '2011-08-10', '2011-09-01', 'Villa Langostura', 1, NULL, NULL, 2, 62000, NULL, NULL, 1);
 
