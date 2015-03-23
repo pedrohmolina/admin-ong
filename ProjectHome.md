@@ -1,0 +1,1 @@
+The ADMIN-ONG is a web system developed with the purpose of providing support for non governmental organizations and their administration.
